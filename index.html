@@ -380,4 +380,206 @@
     </div>
 
     <script>
-        // Answer key (multiple correct answers possible
+        // Answer key (multiple correct answers possible)
+        const answers = {
+            '0-0': ['the reflex', 'reflex', 'new moon on monday'],
+            '0-1': ['like a virgin', 'material girl', 'borderline'],
+            '0-2': ['thriller', 'billie jean', 'beat it', 'p.y.t.'],
+            '1-0': ['girls on film'],
+            '1-1': ['material girl'],
+            '1-2': ['the girl is mine'],
+            '2-0': ['notorious', 'skin trade', 'meet el presidente'],
+            '2-1': ['who\'s that girl', 'causing a commotion', 'the look of love'],
+            '2-2': ['bad', 'the way you make me feel', 'man in the mirror', 'dirty diana', 'smooth criminal', 'i just can\'t stop loving you']
+        };
+
+        function normalizeString(str) {
+            return str.toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function checkAnswers() {
+            const cells = document.querySelectorAll('.cell');
+            let correct = 0;
+            let total = 0;
+
+            cells.forEach(cell => {
+                const input = cell.querySelector('input');
+                const userAnswer = normalizeString(input.value);
+                const row = cell.dataset.row;
+                const col = cell.dataset.col;
+                const key = `${row}-${col}`;
+                
+                if (userAnswer) {
+                    total++;
+                    const validAnswers = answers[key].map(a => normalizeString(a));
+                    
+                    if (validAnswers.some(answer => userAnswer === answer || userAnswer.includes(answer) || answer.includes(userAnswer))) {
+                        cell.classList.add('correct');
+                        cell.classList.remove('incorrect');
+                        correct++;
+                    } else {
+                        cell.classList.add('incorrect');
+                        cell.classList.remove('correct');
+                    }
+                }
+            });
+
+            if (total > 0) {
+                // Increment play counter (only once per session)
+                if (!sessionStorage.getItem('hasPlayed')) {
+                    let plays = parseInt(localStorage.getItem('80sGridPlays') || '0');
+                    plays++;
+                    localStorage.setItem('80sGridPlays', plays);
+                    updatePlaysCounter();
+                    sessionStorage.setItem('hasPlayed', 'true');
+                }
+                
+                document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
+                document.getElementById('results').style.display = 'block';
+                
+                // Check for high score (8 or 9 correct)
+                if (correct >= 8 && total === 9) {
+                    setTimeout(() => {
+                        document.getElementById('highScoreEntry').style.display = 'block';
+                        document.getElementById('initial1').focus();
+                    }, 1000);
+                }
+                
+                // Always show leaderboard
+                displayLeaderboard();
+            } else {
+                alert('Fill in some answers first!');
+            }
+        }
+
+        function updatePlaysCounter() {
+            const plays = parseInt(localStorage.getItem('80sGridPlays') || '0');
+            document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
+        }
+
+        function showLeaderboard() {
+            displayLeaderboard();
+            document.getElementById('leaderboard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function shareScore() {
+            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid: https://80sgrid.github.io/`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: "Leonardo's 80s Hits Grid",
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Link copied to clipboard! Share it with your friends!');
+                }).catch(() => {
+                    alert(shareText);
+                });
+            }
+        }
+
+        function saveHighScore() {
+            const i1 = document.getElementById('initial1').value.toUpperCase();
+            const i2 = document.getElementById('initial2').value.toUpperCase();
+            const i3 = document.getElementById('initial3').value.toUpperCase();
+            
+            if (!i1 || !i2 || !i3) {
+                alert('Please enter all 3 initials!');
+                return;
+            }
+            
+            const initials = i1 + i2 + i3;
+            const score = parseInt(document.getElementById('score').textContent.match(/\d+/)[0]);
+            
+            // Get existing scores
+            let scores = JSON.parse(localStorage.getItem('80sGridScores') || '[]');
+            
+            // Add new score
+            scores.push({
+                initials: initials,
+                score: score,
+                date: new Date().toLocaleDateString()
+            });
+            
+            // Sort by score (highest first)
+            scores.sort((a, b) => b.score - a.score);
+            
+            // Keep top 10
+            scores = scores.slice(0, 10);
+            
+            // Save
+            localStorage.setItem('80sGridScores', JSON.stringify(scores));
+            
+            // Hide entry form
+            document.getElementById('highScoreEntry').style.display = 'none';
+            
+            // Show leaderboard
+            displayLeaderboard();
+        }
+
+        function displayLeaderboard() {
+            const scores = JSON.parse(localStorage.getItem('80sGridScores') || '[]');
+            
+            if (scores.length === 0) return;
+            
+            const leaderboard = document.getElementById('leaderboard');
+            const list = document.getElementById('leaderboardList');
+            
+            list.innerHTML = scores.map((entry, index) => `
+                <div class="leaderboard-entry">
+                    <span class="rank">${index + 1}.</span>
+                    <span>${entry.initials}</span>
+                    <span>${entry.score}/9</span>
+                    <span>${entry.date}</span>
+                </div>
+            `).join('');
+            
+            leaderboard.style.display = 'block';
+        }
+
+        function resetGrid() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.querySelector('input').value = '';
+                cell.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('highScoreEntry').style.display = 'none';
+            document.getElementById('initial1').value = '';
+            document.getElementById('initial2').value = '';
+            document.getElementById('initial3').value = '';
+        }
+
+        // Auto-advance initials input
+        document.addEventListener('DOMContentLoaded', () => {
+            const i1 = document.getElementById('initial1');
+            const i2 = document.getElementById('initial2');
+            const i3 = document.getElementById('initial3');
+            
+            i1.addEventListener('input', () => { if (i1.value) i2.focus(); });
+            i2.addEventListener('input', () => { if (i2.value) i3.focus(); });
+            i3.addEventListener('input', () => { if (i3.value) saveHighScore(); });
+            
+            // Initialize plays counter
+            updatePlaysCounter();
+            
+            // Load leaderboard on page load
+            displayLeaderboard();
+        });
+
+        // Allow Enter key to submit
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkAnswers();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
