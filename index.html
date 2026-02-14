@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Len's Eighties Hits Immaculate Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 700px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 100px repeat(3, 1fr);
+            grid-template-rows: 70px repeat(3, 90px);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.75em;
+            line-height: 1.2;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            .subtitle {
+                font-size: 0.9em;
+            }
+            .grid {
+                grid-template-columns: 90px repeat(3, 1fr);
+                grid-template-rows: 75px repeat(3, 80px);
+                gap: 5px;
+            }
+            .header {
+                font-size: 0.68em;
+                padding: 6px;
+                line-height: 1.3;
+            }
+            .cell input {
+                font-size: 0.75em;
+            }
+            .instructions {
+                font-size: 0.9em;
+                padding: 12px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2em;
+            }
+            .grid {
+                grid-template-columns: 80px repeat(3, 1fr);
+                grid-template-rows: 70px repeat(3, 75px);
+                gap: 4px;
+            }
+            .header {
+                font-size: 0.62em;
+                padding: 5px;
+                line-height: 1.25;
+            }
+            .cell input {
+                font-size: 0.7em;
+            }
+        }
+        .row-header {
+            background: #764ba2;
+        }
+        .corner {
+            background: #333;
+        }
+        .cell {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .cell:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+            transform: scale(1.02);
+        }
+        .cell input {
+            width: 90%;
+            height: 80%;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 0.85em;
+            outline: none;
+        }
+        .cell.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        .cell.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎸 Len's Eighties Hits Immaculate Grid 🎸</h1>
+        <p class="subtitle">Find songs that match both the row and column criteria</p>
+        
+        <div class="instructions">
+            <h3>How to Play:</h3>
+            <p>Each cell needs a song that matches BOTH the artist/band (column) AND the criteria (row). Type your answer and press Enter. Good luck!</p>
+        </div>
+
+        <div style="background: #e3f2fd; border: 1px solid #2196f3; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 0.9em;">
+            <strong>🚧 Beta Version</strong> - This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
+        </div>
+
+        <div class="grid">
+            <div class="header corner"></div>
+            <div class="header">Duran Duran</div>
+            <div class="header">Madonna</div>
+            <div class="header">Michael Jackson</div>
+            
+            <div class="header row-header">Had a Top 10 Hit in 1984</div>
+            <div class="cell" data-row="0" data-col="0">
+                <input type="text" placeholder="?" />
+            </div>
+            <div class="cell" data-row="0" data-col="1">
+                <input type="text" placeholder="?" />
+            </div>
+            <div class="cell" data-row="0" data-col="2">
+                <input type="text" placeholder="?" />
+            </div>
+            
+            <div class="header row-header">Song with "Girl" in the Title</div>
+            <div class="cell" data-row="1" data-col="0">
+                <input type="text" placeholder="?" />
+            </div>
+            <div class="cell" data-row="1" data-col="1">
+                <input type="text" placeholder="?" />
+            </div>
+            <div class="cell" data-row="1" data-col="2">
+                <input type="text" placeholder="?" />
+            </div>
+            
+            <div class="header row-header">Song from an Album Released in 1987</div>
+            <div class="cell" data-row="2" data-col="0">
+                <input type="text" placeholder="?" />
+            </div>
+            <div class="cell" data-row="2" data-col="1">
+                <input type="text" placeholder="?" />
+            </div>
+            <div class="cell" data-row="2" data-col="2">
+                <input type="text" placeholder="?" />
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="checkAnswers()">Check Answers</button>
+            <button onclick="resetGrid()">Reset Grid</button>
+        </div>
+
+        <div id="results" style="display: none; margin-top: 20px; padding: 20px; background: #e7f3ff; border: 2px solid #667eea; border-radius: 8px; text-align: center;">
+            <div id="score" style="font-size: 1.3em; font-weight: bold; color: #333; margin-bottom: 15px;"></div>
+            <div style="font-size: 0.95em; color: #555; margin-bottom: 8px;">Brought to you by</div>
+            <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">
+                <a href="https://arrivealivepodcast.com" target="_blank" style="color: #667eea; text-decoration: none;">The Arrive Alive Podcast</a>
+            </div>
+            <div style="font-size: 0.9em; color: #666; font-style: italic;">The Top Motorcycle Safety Podcast</div>
+        </div>
+    </div>
+
+    <script>
+        // Answer key (multiple correct answers possible)
+        const answers = {
+            '0-0': ['the reflex', 'reflex', 'new moon on monday'],
+            '0-1': ['like a virgin', 'material girl', 'borderline'],
+            '0-2': ['thriller', 'billie jean', 'beat it', 'p.y.t.'],
+            '1-0': ['girls on film'],
+            '1-1': ['material girl'],
+            '1-2': ['the girl is mine'],
+            '2-0': ['notorious', 'skin trade', 'meet el presidente'],
+            '2-1': ['who\'s that girl', 'causing a commotion', 'the look of love'],
+            '2-2': ['bad', 'the way you make me feel', 'man in the mirror', 'dirty diana', 'smooth criminal', 'i just can\'t stop loving you']
+        };
+
+        function normalizeString(str) {
+            return str.toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function checkAnswers() {
+            const cells = document.querySelectorAll('.cell');
+            let correct = 0;
+            let total = 0;
+
+            cells.forEach(cell => {
+                const input = cell.querySelector('input');
+                const userAnswer = normalizeString(input.value);
+                const row = cell.dataset.row;
+                const col = cell.dataset.col;
+                const key = `${row}-${col}`;
+                
+                if (userAnswer) {
+                    total++;
+                    const validAnswers = answers[key].map(a => normalizeString(a));
+                    
+                    if (validAnswers.some(answer => userAnswer === answer || userAnswer.includes(answer) || answer.includes(userAnswer))) {
+                        cell.classList.add('correct');
+                        cell.classList.remove('incorrect');
+                        correct++;
+                    } else {
+                        cell.classList.add('incorrect');
+                        cell.classList.remove('correct');
+                    }
+                }
+            });
+
+            if (total > 0) {
+                document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
+                document.getElementById('results').style.display = 'block';
+            } else {
+                alert('Fill in some answers first!');
+            }
+        }
+
+        function resetGrid() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.querySelector('input').value = '';
+                cell.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('results').style.display = 'none';
+        }
+
+        // Allow Enter key to submit
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkAnswers();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
