@@ -177,6 +177,91 @@
             text-align: center;
             margin-top: 20px;
         }
+        .high-score-entry {
+            background: #000;
+            border: 4px solid #00ff00;
+            padding: 30px;
+            border-radius: 0;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+        .high-score-entry h2 {
+            color: #00ff00;
+            text-align: center;
+            font-size: 1.8em;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 10px #00ff00;
+            letter-spacing: 3px;
+        }
+        .initials-input {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .initials-input input {
+            width: 60px;
+            height: 80px;
+            font-size: 3em;
+            text-align: center;
+            background: #000;
+            border: 3px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        .initials-input input:focus {
+            outline: none;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .arcade-button {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+            letter-spacing: 2px;
+        }
+        .arcade-button:hover {
+            background: #00cc00;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 1);
+        }
+        .leaderboard {
+            background: #000;
+            border: 4px solid #ff00ff;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        .leaderboard h3 {
+            color: #ff00ff;
+            text-align: center;
+            font-size: 1.5em;
+            margin: 0 0 15px 0;
+            text-shadow: 0 0 10px #ff00ff;
+            letter-spacing: 3px;
+        }
+        .leaderboard-entry {
+            display: flex;
+            justify-content: space-between;
+            color: #ffff00;
+            font-size: 1.2em;
+            padding: 8px;
+            border-bottom: 1px solid #333;
+        }
+        .leaderboard-entry:last-child {
+            border-bottom: none;
+        }
+        .rank { color: #ff00ff; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -246,6 +331,24 @@
             </div>
             <div style="font-size: 0.9em; color: #666; font-style: italic;">The Top Motorcycle Safety Podcast</div>
         </div>
+
+        <div id="highScoreEntry" class="high-score-entry" style="display: none;">
+            <h2>★ HIGH SCORE ★</h2>
+            <p style="color: #00ff00; text-align: center; font-size: 1.2em; margin-bottom: 20px;">ENTER YOUR INITIALS</p>
+            <div class="initials-input">
+                <input type="text" maxlength="1" id="initial1" />
+                <input type="text" maxlength="1" id="initial2" />
+                <input type="text" maxlength="1" id="initial3" />
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="arcade-button" onclick="saveHighScore()">SAVE</button>
+            </div>
+        </div>
+
+        <div id="leaderboard" class="leaderboard" style="display: none;">
+            <h3>═══ HIGH SCORES ═══</h3>
+            <div id="leaderboardList"></div>
+        </div>
     </div>
 
     <script>
@@ -299,9 +402,79 @@
             if (total > 0) {
                 document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
                 document.getElementById('results').style.display = 'block';
+                
+                // Check for high score (8 or 9 correct)
+                if (correct >= 8 && total === 9) {
+                    setTimeout(() => {
+                        document.getElementById('highScoreEntry').style.display = 'block';
+                        document.getElementById('initial1').focus();
+                    }, 1000);
+                }
+                
+                // Always show leaderboard
+                displayLeaderboard();
             } else {
                 alert('Fill in some answers first!');
             }
+        }
+
+        function saveHighScore() {
+            const i1 = document.getElementById('initial1').value.toUpperCase();
+            const i2 = document.getElementById('initial2').value.toUpperCase();
+            const i3 = document.getElementById('initial3').value.toUpperCase();
+            
+            if (!i1 || !i2 || !i3) {
+                alert('Please enter all 3 initials!');
+                return;
+            }
+            
+            const initials = i1 + i2 + i3;
+            const score = parseInt(document.getElementById('score').textContent.match(/\d+/)[0]);
+            
+            // Get existing scores
+            let scores = JSON.parse(localStorage.getItem('80sGridScores') || '[]');
+            
+            // Add new score
+            scores.push({
+                initials: initials,
+                score: score,
+                date: new Date().toLocaleDateString()
+            });
+            
+            // Sort by score (highest first)
+            scores.sort((a, b) => b.score - a.score);
+            
+            // Keep top 10
+            scores = scores.slice(0, 10);
+            
+            // Save
+            localStorage.setItem('80sGridScores', JSON.stringify(scores));
+            
+            // Hide entry form
+            document.getElementById('highScoreEntry').style.display = 'none';
+            
+            // Show leaderboard
+            displayLeaderboard();
+        }
+
+        function displayLeaderboard() {
+            const scores = JSON.parse(localStorage.getItem('80sGridScores') || '[]');
+            
+            if (scores.length === 0) return;
+            
+            const leaderboard = document.getElementById('leaderboard');
+            const list = document.getElementById('leaderboardList');
+            
+            list.innerHTML = scores.map((entry, index) => `
+                <div class="leaderboard-entry">
+                    <span class="rank">${index + 1}.</span>
+                    <span>${entry.initials}</span>
+                    <span>${entry.score}/9</span>
+                    <span>${entry.date}</span>
+                </div>
+            `).join('');
+            
+            leaderboard.style.display = 'block';
         }
 
         function resetGrid() {
@@ -311,7 +484,25 @@
                 cell.classList.remove('correct', 'incorrect');
             });
             document.getElementById('results').style.display = 'none';
+            document.getElementById('highScoreEntry').style.display = 'none';
+            document.getElementById('initial1').value = '';
+            document.getElementById('initial2').value = '';
+            document.getElementById('initial3').value = '';
         }
+
+        // Auto-advance initials input
+        document.addEventListener('DOMContentLoaded', () => {
+            const i1 = document.getElementById('initial1');
+            const i2 = document.getElementById('initial2');
+            const i3 = document.getElementById('initial3');
+            
+            i1.addEventListener('input', () => { if (i1.value) i2.focus(); });
+            i2.addEventListener('input', () => { if (i2.value) i3.focus(); });
+            i3.addEventListener('input', () => { if (i3.value) saveHighScore(); });
+            
+            // Load leaderboard on page load
+            displayLeaderboard();
+        });
 
         // Allow Enter key to submit
         document.querySelectorAll('input').forEach(input => {
