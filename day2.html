@@ -502,6 +502,9 @@
                 // Increment global play counter
                 incrementPlayCounter();
                 
+                // Set unlock flag for answer key
+                localStorage.setItem('quiz2Completed', 'true');
+                
                 document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
                 document.getElementById('results').style.display = 'block';
                 
