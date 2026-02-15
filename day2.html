@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's 80s Hits Grid - Day 2</title>
+    <title>Leonardo's 80s Hits Grid - Quiz 2</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -263,9 +263,15 @@
             color: #ff00ff;
             text-align: center;
             font-size: 1.5em;
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
             text-shadow: 0 0 10px #ff00ff;
             letter-spacing: 3px;
+        }
+        .leaderboard p {
+            color: #00ff00;
+            text-align: center;
+            margin: 0 0 15px 0;
+            font-size: 0.9em;
         }
         .leaderboard-entry {
             display: flex;
@@ -285,7 +291,7 @@
     <div class="container">
         <img src="https://www.dropbox.com/scl/fi/s96q4lwfjan4g8buo4i31/80SG.jpg?rlkey=e8dmffvxl7gy7uksg79409tc2&st=l7i0dypg&raw=1" alt="80s Grid Logo" class="logo-img">
         
-        <h1>🎸 Leonardo's 80s Hits Grid - Day 2 🎸</h1>
+        <h1>🎸 Leonardo's 80s Hits Grid - Quiz 2 🎸</h1>
         <p class="subtitle">Find songs that match both the row and column criteria</p>
         
         <div style="text-align: center; margin-bottom: 15px;">
@@ -376,7 +382,8 @@
         </div>
 
         <div id="leaderboard" class="leaderboard" style="display: none;">
-            <h3>═══ HIGH SCORES ═══</h3>
+            <h3>═══ COMBINED HIGH SCORES ═══</h3>
+            <p>Quiz 1 + Quiz 2 (out of 18)</p>
             <div id="leaderboardList"></div>
         </div>
     </div>
@@ -435,12 +442,12 @@
             });
 
             if (total > 0) {
-                if (!sessionStorage.getItem('hasPlayedDay2')) {
-                    let plays = parseInt(localStorage.getItem('80sGridPlaysDay2') || '5089');
+                if (!sessionStorage.getItem('hasPlayedQuiz2')) {
+                    let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
                     plays++;
-                    localStorage.setItem('80sGridPlaysDay2', plays);
+                    localStorage.setItem('80sGridPlaysQuiz2', plays);
                     updatePlaysCounter();
-                    sessionStorage.setItem('hasPlayedDay2', 'true');
+                    sessionStorage.setItem('hasPlayedQuiz2', 'true');
                 }
                 
                 document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
@@ -460,10 +467,10 @@
         }
 
         function updatePlaysCounter() {
-            let plays = parseInt(localStorage.getItem('80sGridPlaysDay2') || '5089');
+            let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
             if (plays < 5089) {
                 plays = 5089;
-                localStorage.setItem('80sGridPlaysDay2', plays);
+                localStorage.setItem('80sGridPlaysQuiz2', plays);
             }
             document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
         }
@@ -474,11 +481,11 @@
         }
 
         function shareScore() {
-            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Day 2: https://80sgrid.github.io/day2`;
+            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Quiz 2: https://80sgrid.com/quiz2`;
             
             if (navigator.share) {
                 navigator.share({
-                    title: "Leonardo's 80s Hits Grid - Day 2",
+                    title: "Leonardo's 80s Hits Grid - Quiz 2",
                     text: shareText
                 }).catch(() => {});
             } else {
@@ -501,26 +508,43 @@
             }
             
             const initials = i1 + i2 + i3;
-            const score = parseInt(document.getElementById('score').textContent.match(/\d+/)[0]);
+            const quiz2Score = parseInt(document.getElementById('score').textContent.match(/\d+/)[0]);
             
-            let scores = JSON.parse(localStorage.getItem('80sGridScoresDay2') || '[]');
+            // Get Quiz 1 score from localStorage
+            const quiz1Score = parseInt(localStorage.getItem('80sGridQuiz1Score_' + initials) || '0');
             
-            scores.push({
-                initials: initials,
-                score: score,
-                date: new Date().toLocaleDateString()
-            });
+            // Combined score
+            const combinedScore = quiz1Score + quiz2Score;
+            
+            // Save Quiz 2 score for this user
+            localStorage.setItem('80sGridQuiz2Score_' + initials, quiz2Score);
+            
+            // Get combined scores
+            let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
+            
+            // Add or update combined score
+            const existingIndex = scores.findIndex(s => s.initials === initials);
+            if (existingIndex >= 0) {
+                scores[existingIndex].score = combinedScore;
+                scores[existingIndex].date = new Date().toLocaleDateString();
+            } else {
+                scores.push({
+                    initials: initials,
+                    score: combinedScore,
+                    date: new Date().toLocaleDateString()
+                });
+            }
             
             scores.sort((a, b) => b.score - a.score);
             scores = scores.slice(0, 10);
-            localStorage.setItem('80sGridScoresDay2', JSON.stringify(scores));
+            localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
             
             document.getElementById('highScoreEntry').style.display = 'none';
             displayLeaderboard();
         }
 
         function displayLeaderboard() {
-            let realScores = JSON.parse(localStorage.getItem('80sGridScoresDay2') || '[]');
+            let realScores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
             let displayScores = [...realScores];
             
             if (realScores.length < 10) {
@@ -529,7 +553,7 @@
                 
                 const fakeScores = fakeInitials.map((initials, index) => ({
                     initials: initials,
-                    score: Math.random() > 0.5 ? 9 : 8,
+                    score: Math.floor(Math.random() * 7) + 12, // Random 12-18
                     date: getRandomDateInFebruary(),
                     isFake: true
                 }));
@@ -551,7 +575,7 @@
                 <div class="leaderboard-entry">
                     <span class="rank">${index + 1}.</span>
                     <span>${entry.initials}</span>
-                    <span>${entry.score}/9</span>
+                    <span>${entry.score}/18</span>
                     <span>${entry.date}</span>
                 </div>
             `).join('');
