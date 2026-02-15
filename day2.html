@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -301,6 +302,14 @@
             background: #FFA500;
             box-shadow: 0 0 30px rgba(255, 165, 0, 0.8);
         }
+        .answer-key-button a.disabled {
+            background: #888;
+            color: #444;
+            border-color: #666;
+            box-shadow: none;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -399,7 +408,7 @@
 
         <!-- View Answer Key Button (appears above high scores) -->
         <div class="answer-key-button">
-            <a href="https://80sgrid.github.io/answers.html">🔍 View Answer Key</a>
+            <a href="https://80sgrid.github.io/answers.html" id="answerKeyBtn" class="disabled">🔍 View Answers for Quiz 1 & Quiz 2</a>
         </div>
 
         <div id="leaderboard" class="leaderboard" style="display: none;">
@@ -670,6 +679,22 @@
             
             // Initialize plays counter
             updatePlaysCounter();
+            
+            // Enable answer key button when user starts typing
+            const answerKeyBtn = document.getElementById('answerKeyBtn');
+            const quizInputs = document.querySelectorAll('.cell input');
+            
+            quizInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    // Check if any input has content
+                    const hasContent = Array.from(quizInputs).some(inp => inp.value.trim() !== '');
+                    if (hasContent) {
+                        answerKeyBtn.classList.remove('disabled');
+                    } else {
+                        answerKeyBtn.classList.add('disabled');
+                    }
+                });
+            });
         });
 
         // Allow Enter key to submit
