@@ -481,18 +481,26 @@
         }
 
         function shareScore() {
-            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Quiz 2: https://80sgrid.com/quiz2`;
+            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid: https://80sgrid.com/quiz2`;
             
             if (navigator.share) {
                 navigator.share({
                     title: "Leonardo's 80s Hits Grid - Quiz 2",
-                    text: shareText
-                }).catch(() => {});
+                    text: shareText,
+                    url: 'https://80sgrid.com/quiz2'
+                }).catch(() => {
+                    // If share fails, copy to clipboard
+                    navigator.clipboard.writeText('https://80sgrid.com/quiz2').then(() => {
+                        alert('Link copied to clipboard! Share it with your friends!');
+                    });
+                });
             } else {
-                navigator.clipboard.writeText(shareText).then(() => {
+                // Fallback: just copy the URL
+                navigator.clipboard.writeText('https://80sgrid.com/quiz2').then(() => {
                     alert('Link copied to clipboard! Share it with your friends!');
                 }).catch(() => {
-                    alert(shareText);
+                    // Final fallback if clipboard doesn't work
+                    prompt('Copy this link to share:', 'https://80sgrid.com/quiz2');
                 });
             }
         }
