@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80s Grid - Answer Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #FF1493 0%, #00CED1 50%, #FF69B4 100%);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        .day-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #667eea;
+        }
+        .day-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: -25px -25px 20px -25px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+        .artist-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #764ba2;
+        }
+        .artist-name {
+            color: #764ba2;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .criteria {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .criteria-label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .answers {
+            color: #555;
+            padding-left: 20px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-link a {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .back-link a:hover {
+            background: #5568d3;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .day-header {
+                font-size: 1.2em;
+            }
+            .artist-name {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎸 80s Grid Answer Key 🎸</h1>
+        <p class="subtitle">Complete solutions for all quizzes</p>
+
+        <!-- Locked Message (shown if Quiz 2 not completed) -->
+        <div id="lockedMessage" style="display: none; text-align: center; padding: 60px 20px;">
+            <div style="font-size: 5em; margin-bottom: 20px;">🔒</div>
+            <h2 style="color: #FF1493; font-size: 2em; margin-bottom: 20px;">Answer Key Locked!</h2>
+            <p style="font-size: 1.2em; color: #333; margin-bottom: 30px;">Complete Quiz 2 to unlock the answer key</p>
+            <a href="https://80sgrid.github.io/day2.html" style="display: inline-block; background: #00FFFF; color: #000; border: 3px solid #FF00FF; padding: 15px 35px; border-radius: 8px; text-decoration: none; font-size: 1.1em; font-weight: bold; box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); text-transform: uppercase;">
+                Play Quiz 2 Now
+            </a>
+        </div>
+
+        <!-- Unlocked Content (shown if Quiz 2 completed) -->
+        <div id="unlockedContent" style="display: none;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="font-size: 3em; margin-bottom: 10px;">🎉</div>
+                <p style="color: #28a745; font-weight: bold; font-size: 1.2em; margin-bottom: 20px;">Congratulations! You've unlocked the answer key!</p>
+                <button onclick="shareAnswerKey()" style="background: #00FFFF; color: #000; border: 3px solid #FF00FF; padding: 15px 35px; border-radius: 8px; cursor: pointer; font-size: 1.1em; font-weight: bold; box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); text-transform: uppercase;">
+                    📤 Share This With a Friend
+                </button>
+            </div>
+
+        <!-- QUIZ 1 -->
+        <div class="day-section">
+            <div class="day-header">Quiz 1</div>
+            
+            <div class="artist-section">
+                <div class="artist-name">Duran Duran</div>
+                <div class="criteria">
+                    <span class="criteria-label">Top 10 Hit in 1984:</span>
+                    <div class="answers">"The Reflex" or "New Moon on Monday"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song with "Girl" in Title:</span>
+                    <div class="answers">"Girls on Film"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song from 1987 Album:</span>
+                    <div class="answers">"Notorious" or "Skin Trade" or "Meet El Presidente"</div>
+                </div>
+            </div>
+
+            <div class="artist-section">
+                <div class="artist-name">Madonna</div>
+                <div class="criteria">
+                    <span class="criteria-label">Top 10 Hit in 1984:</span>
+                    <div class="answers">"Like a Virgin" or "Material Girl" or "Borderline"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song with "Girl" in Title:</span>
+                    <div class="answers">"Material Girl" or "Who's That Girl"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song from 1987 Album:</span>
+                    <div class="answers">"Who's That Girl" or "Causing a Commotion" or "The Look of Love"</div>
+                </div>
+            </div>
+
+            <div class="artist-section">
+                <div class="artist-name">Michael Jackson</div>
+                <div class="criteria">
+                    <span class="criteria-label">Top 10 Hit in 1984:</span>
+                    <div class="answers">"Thriller" or "Billie Jean" or "Beat It" or "P.Y.T."</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song with "Girl" in Title:</span>
+                    <div class="answers">"The Girl Is Mine"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song from 1987 Album:</span>
+                    <div class="answers">"Bad" or "The Way You Make Me Feel" or "Man in the Mirror" or "Dirty Diana" or "Smooth Criminal" or "I Just Can't Stop Loving You"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ 2 -->
+        <div class="day-section">
+            <div class="day-header">Quiz 2</div>
+            
+            <div class="artist-section">
+                <div class="artist-name">Simple Minds</div>
+                <div class="criteria">
+                    <span class="criteria-label">Song from a John Hughes Film Soundtrack:</span>
+                    <div class="answers">"Don't You (Forget About Me)" (The Breakfast Club)</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">A Top 5 Hit in the 1980s:</span>
+                    <div class="answers">"Don't You (Forget About Me)"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song Title with One Word:</span>
+                    <div class="answers">"Alive" or "Sanctify" or "Waterfront"</div>
+                </div>
+            </div>
+
+            <div class="artist-section">
+                <div class="artist-name">OMD (Orchestral Manoeuvres in the Dark)</div>
+                <div class="criteria">
+                    <span class="criteria-label">Song from a John Hughes Film Soundtrack:</span>
+                    <div class="answers">"If You Leave" (Pretty in Pink)</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">A Top 5 Hit in the 1980s:</span>
+                    <div class="answers">"If You Leave"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song Title with One Word:</span>
+                    <div class="answers">"Electricity" or "Souvenir" or "Enola"</div>
+                </div>
+            </div>
+
+            <div class="artist-section">
+                <div class="artist-name">INXS</div>
+                <div class="criteria">
+                    <span class="criteria-label">Song from a John Hughes Film Soundtrack:</span>
+                    <div class="answers">"Do Wot You Do" (Pretty in Pink)</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">A Top 5 Hit in the 1980s:</span>
+                    <div class="answers">"Need You Tonight"</div>
+                </div>
+                <div class="criteria">
+                    <span class="criteria-label">Song Title with One Word:</span>
+                    <div class="answers">"Mystify" or "Disappear" or "Suicide"</div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="back-link">
+            <a href="https://80sgrid.github.io/">← Back to 80s Grid</a>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if Quiz 2 has been completed
+        function checkUnlockStatus() {
+            const quiz2Completed = localStorage.getItem('quiz2Completed');
+            
+            if (quiz2Completed === 'true') {
+                // Show unlocked content
+                document.getElementById('unlockedContent').style.display = 'block';
+                document.getElementById('lockedMessage').style.display = 'none';
+            } else {
+                // Show locked message
+                document.getElementById('unlockedContent').style.display = 'none';
+                document.getElementById('lockedMessage').style.display = 'block';
+            }
+        }
+
+        function shareAnswerKey() {
+            const shareText = `🎸 Need help with the 80s Grid? Check out the answer key! https://80sgrid.github.io/answers.html`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: "80s Grid Answer Key",
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Link copied to clipboard! Share it with your friends!');
+                }).catch(() => {
+                    alert(shareText);
+                });
+            }
+        }
+
+        // Check unlock status when page loads
+        document.addEventListener('DOMContentLoaded', checkUnlockStatus);
+    </script>
+</body>
+</html>
