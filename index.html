@@ -402,6 +402,11 @@
                 .trim();
         }
 
+        function getRandomDateInFebruary() {
+            const day = Math.floor(Math.random() * 14) + 1; // Random day between 1 and 14
+            return `2/${day}/26`;
+        }
+
         function checkAnswers() {
             const cells = document.querySelectorAll('.cell');
             let correct = 0;
@@ -432,7 +437,7 @@
             if (total > 0) {
                 // Increment play counter (only once per session)
                 if (!sessionStorage.getItem('hasPlayed')) {
-                    let plays = parseInt(localStorage.getItem('80sGridPlays') || '5000');
+                    let plays = parseInt(localStorage.getItem('80sGridPlays') || '5089');
                     plays++;
                     localStorage.setItem('80sGridPlays', plays);
                     updatePlaysCounter();
@@ -458,10 +463,10 @@
         }
 
         function updatePlaysCounter() {
-            let plays = parseInt(localStorage.getItem('80sGridPlays') || '5000');
-            // Always ensure minimum of 5000
-            if (plays < 5000) {
-                plays = 5000;
+            let plays = parseInt(localStorage.getItem('80sGridPlays') || '5089');
+            // Always ensure minimum of 5089
+            if (plays < 5089) {
+                plays = 5089;
                 localStorage.setItem('80sGridPlays', plays);
             }
             document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
@@ -543,7 +548,7 @@
                 const fakeScores = fakeInitials.map((initials, index) => ({
                     initials: initials,
                     score: Math.random() > 0.5 ? 9 : 8, // Random 8 or 9
-                    date: 'Recent',
+                    date: getRandomDateInFebruary(),
                     isFake: true
                 }));
                 
