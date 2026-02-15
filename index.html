@@ -432,7 +432,7 @@
             if (total > 0) {
                 // Increment play counter (only once per session)
                 if (!sessionStorage.getItem('hasPlayed')) {
-                    let plays = parseInt(localStorage.getItem('80sGridPlays') || '0');
+                    let plays = parseInt(localStorage.getItem('80sGridPlays') || '5000');
                     plays++;
                     localStorage.setItem('80sGridPlays', plays);
                     updatePlaysCounter();
@@ -458,9 +458,9 @@
         }
 
         function updatePlaysCounter() {
-            let plays = parseInt(localStorage.getItem('80sGridPlays') || '0');
-            // Start at 5000 if no plays recorded yet
-            if (plays === 0) {
+            let plays = parseInt(localStorage.getItem('80sGridPlays') || '5000');
+            // Always ensure minimum of 5000
+            if (plays < 5000) {
                 plays = 5000;
                 localStorage.setItem('80sGridPlays', plays);
             }
@@ -530,14 +530,43 @@
         }
 
         function displayLeaderboard() {
-            const scores = JSON.parse(localStorage.getItem('80sGridScores') || '[]');
+            let realScores = JSON.parse(localStorage.getItem('80sGridScores') || '[]');
             
-            if (scores.length === 0) return;
+            // If we have fewer than 10 real scores, generate fake ones to fill to 20
+            let displayScores = [...realScores];
+            
+            if (realScores.length < 10) {
+                // Generate consistent fake scores
+                const fakeInitials = ['ACE', 'MAX', 'JAX', 'REX', 'ZAP', 'ROX', 'VIX', 'LUX', 'FOX', 'SAM', 
+                                     'KAI', 'ASH', 'JET', 'SKY', 'RIO', 'DEX', 'NOX', 'BEX', 'MIA', 'ZEE'];
+                
+                const fakeScores = fakeInitials.map((initials, index) => ({
+                    initials: initials,
+                    score: Math.random() > 0.5 ? 9 : 8, // Random 8 or 9
+                    date: 'Recent',
+                    isFake: true
+                }));
+                
+                // Combine real and fake scores
+                displayScores = [...realScores, ...fakeScores];
+                
+                // Sort by score
+                displayScores.sort((a, b) => b.score - a.score);
+                
+                // Take top 20
+                displayScores = displayScores.slice(0, 20);
+            } else {
+                // Only show real scores once we have 10+
+                displayScores.sort((a, b) => b.score - a.score);
+                displayScores = displayScores.slice(0, 20);
+            }
+            
+            if (displayScores.length === 0) return;
             
             const leaderboard = document.getElementById('leaderboard');
             const list = document.getElementById('leaderboardList');
             
-            list.innerHTML = scores.map((entry, index) => `
+            list.innerHTML = displayScores.map((entry, index) => `
                 <div class="leaderboard-entry">
                     <span class="rank">${index + 1}.</span>
                     <span>${entry.initials}</span>
