@@ -173,6 +173,14 @@
         button:hover {
             background: #5568d3;
         }
+        button:disabled {
+            background: #ccc !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        button:disabled:hover {
+            background: #ccc !important;
+        }
         .button-container {
             text-align: center;
             margin-top: 20px;
@@ -354,6 +362,7 @@
         <div class="button-container">
             <button onclick="checkAnswers()">Check Answers</button>
             <button onclick="resetGrid()">Reset Grid</button>
+            <button id="answerKeyButton" onclick="window.location.href='quiz2-answers.html'" style="background: #9D4EDD;" disabled>View Answer Key</button>
         </div>
 
         <div id="results" style="display: none; margin-top: 20px; padding: 20px; background: #e7f3ff; border: 2px solid #667eea; border-radius: 8px; text-align: center;">
@@ -614,6 +623,14 @@
             i3.addEventListener('input', () => { if (i3.value) saveHighScore(); });
             
             updatePlaysCounter();
+            
+            // Enable answer key button when user starts typing
+            document.querySelectorAll('.cell input').forEach(input => {
+                input.addEventListener('input', function() {
+                    const hasInput = Array.from(document.querySelectorAll('.cell input')).some(inp => inp.value.trim() !== '');
+                    document.getElementById('answerKeyButton').disabled = !hasInput;
+                });
+            });
         });
 
         document.querySelectorAll('input').forEach(input => {
