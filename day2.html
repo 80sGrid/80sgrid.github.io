@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -279,6 +280,28 @@
             border-bottom: none;
         }
         .rank { color: #ff00ff; font-weight: bold; }
+        .answer-key-button {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .answer-key-button a {
+            display: inline-block;
+            background: #FFD700;
+            color: #000;
+            border: 3px solid #FF1493;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .answer-key-button a:hover {
+            background: #FFA500;
+            box-shadow: 0 0 30px rgba(255, 165, 0, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -318,7 +341,7 @@
                 <input type="text" placeholder="?" />
             </div>
             
-            <div class="header row-header"> A Top 5 Hit in the 1980s</div>
+            <div class="header row-header">A Top 5 Hit in the 1980s</div>
             <div class="cell" data-row="1" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -355,6 +378,10 @@
             <button onclick="shareScore()" style="background: #FF1493; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-size: 0.9em; margin-bottom: 15px; font-weight: bold;">
                 📤 Share the 80s Grid with a Friend
             </button>
+            <br>
+            <a href="https://80sgrid.github.io/" style="display: inline-block; background: #000; color: white; border: none; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 1em; margin-bottom: 15px; font-weight: bold;">
+                Would you like to play again?
+            </a>
             <div style="font-size: 0.95em; color: #555; margin-bottom: 8px;">Brought to you by</div>
             <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">
                 <a href="https://arrivealivepodcast.com" target="_blank" style="color: #667eea; text-decoration: none;">The Arrive Alive Podcast</a>
@@ -375,6 +402,11 @@
             </div>
         </div>
 
+        <!-- View Answer Key Button (appears above high scores) -->
+        <div class="answer-key-button">
+            <a href="https://80sgrid.github.io/answers.html">🔍 View Answer Key</a>
+        </div>
+
         <div id="leaderboard" class="leaderboard" style="display: none;">
             <h3>═══ HIGH SCORES ═══</h3>
             <div id="leaderboardList"></div>
@@ -382,17 +414,22 @@
     </div>
 
     <script>
+        // Global counter configuration
+        const COUNTER_NAMESPACE = 'leonardos-80s-grid-day2';
+        const COUNTER_KEY = 'total-plays';
+        const COUNTER_API = `https://api.countapi.xyz`;
+
         // Answer key (multiple correct answers possible)
         const answers = {
-            '0-0': ['dont you forget about me', 'don\'t you forget about me'],
+            '0-0': ['don\'t you forget about me', 'dont you forget about me', 'don\'t you', 'dont you'],
             '0-1': ['if you leave'],
             '0-2': ['do wot you do'],
-            '1-0': ['dont you forget about me', 'don\'t you forget about me'],
+            '1-0': ['don\'t you forget about me', 'dont you forget about me', 'don\'t you', 'dont you'],
             '1-1': ['if you leave'],
-            '1-2': ['need you tonight', 'devil inside', 'new sensation'],
-            '2-0': ['waterfront', 'theme'],
-            '2-1': ['electricity', 'dreaming'],
-            '2-2': ['mystify', 'disappear']
+            '1-2': ['need you tonight'],
+            '2-0': ['alive', 'sanctify', 'waterfront'],
+            '2-1': ['electricity', 'souvenir', 'enola'],
+            '2-2': ['mystify', 'disappear', 'suicide']
         };
 
         function normalizeString(str) {
@@ -405,6 +442,33 @@
         function getRandomDateInFebruary() {
             const day = Math.floor(Math.random() * 14) + 1;
             return `2/${day}/26`;
+        }
+
+        function updatePlaysCounter() {
+            // Fetch current count from API
+            fetch(`${COUNTER_API}/get/${COUNTER_NAMESPACE}/${COUNTER_KEY}`)
+                .then(res => res.json())
+                .then(data => {
+                    const plays = data.value || 5089;
+                    document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
+                })
+                .catch(() => {
+                    // Fallback if API fails
+                    document.getElementById('playsCounter').textContent = `🎮 5,089+ plays`;
+                });
+        }
+
+        function incrementPlayCounter() {
+            // Increment the counter (only once per session)
+            if (!sessionStorage.getItem('hasPlayed')) {
+                fetch(`${COUNTER_API}/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('playsCounter').textContent = `🎮 ${data.value.toLocaleString()} plays`;
+                        sessionStorage.setItem('hasPlayed', 'true');
+                    })
+                    .catch(err => console.log('Counter error:', err));
+            }
         }
 
         function checkAnswers() {
@@ -435,17 +499,13 @@
             });
 
             if (total > 0) {
-                if (!sessionStorage.getItem('hasPlayedDay2')) {
-                    let plays = parseInt(localStorage.getItem('80sGridPlaysDay2') || '5089');
-                    plays++;
-                    localStorage.setItem('80sGridPlaysDay2', plays);
-                    updatePlaysCounter();
-                    sessionStorage.setItem('hasPlayedDay2', 'true');
-                }
+                // Increment global play counter
+                incrementPlayCounter();
                 
                 document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
                 document.getElementById('results').style.display = 'block';
                 
+                // Check for high score (8 or 9 correct)
                 if (correct >= 8 && total === 9) {
                     setTimeout(() => {
                         document.getElementById('highScoreEntry').style.display = 'block';
@@ -453,19 +513,11 @@
                     }, 1000);
                 }
                 
+                // Always show leaderboard
                 displayLeaderboard();
             } else {
                 alert('Fill in some answers first!');
             }
-        }
-
-        function updatePlaysCounter() {
-            let plays = parseInt(localStorage.getItem('80sGridPlaysDay2') || '5089');
-            if (plays < 5089) {
-                plays = 5089;
-                localStorage.setItem('80sGridPlaysDay2', plays);
-            }
-            document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
         }
 
         function showLeaderboard() {
@@ -474,7 +526,7 @@
         }
 
         function shareScore() {
-            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Day 2: https://80sgrid.github.io/day2`;
+            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Day 2: https://80sgrid.github.io/day2.html`;
             
             if (navigator.share) {
                 navigator.share({
@@ -482,6 +534,7 @@
                     text: shareText
                 }).catch(() => {});
             } else {
+                // Fallback: copy to clipboard
                 navigator.clipboard.writeText(shareText).then(() => {
                     alert('Link copied to clipboard! Share it with your friends!');
                 }).catch(() => {
@@ -503,27 +556,40 @@
             const initials = i1 + i2 + i3;
             const score = parseInt(document.getElementById('score').textContent.match(/\d+/)[0]);
             
-            let scores = JSON.parse(localStorage.getItem('80sGridScoresDay2') || '[]');
+            // Get existing scores
+            let scores = JSON.parse(localStorage.getItem('80sGridDay2Scores') || '[]');
             
+            // Add new score
             scores.push({
                 initials: initials,
                 score: score,
                 date: new Date().toLocaleDateString()
             });
             
+            // Sort by score (highest first)
             scores.sort((a, b) => b.score - a.score);
-            scores = scores.slice(0, 10);
-            localStorage.setItem('80sGridScoresDay2', JSON.stringify(scores));
             
+            // Keep top 10
+            scores = scores.slice(0, 10);
+            
+            // Save
+            localStorage.setItem('80sGridDay2Scores', JSON.stringify(scores));
+            
+            // Hide entry form
             document.getElementById('highScoreEntry').style.display = 'none';
+            
+            // Show leaderboard
             displayLeaderboard();
         }
 
         function displayLeaderboard() {
-            let realScores = JSON.parse(localStorage.getItem('80sGridScoresDay2') || '[]');
+            let realScores = JSON.parse(localStorage.getItem('80sGridDay2Scores') || '[]');
+            
+            // If we have fewer than 10 real scores, generate fake ones to fill to 20
             let displayScores = [...realScores];
             
             if (realScores.length < 10) {
+                // Generate consistent fake scores
                 const fakeInitials = ['ACE', 'MAX', 'JAX', 'REX', 'ZAP', 'ROX', 'VIX', 'LUX', 'FOX', 'SAM', 
                                      'KAI', 'ASH', 'JET', 'SKY', 'RIO', 'DEX', 'NOX', 'BEX', 'MIA', 'ZEE'];
                 
@@ -534,10 +600,16 @@
                     isFake: true
                 }));
                 
+                // Combine real and fake scores
                 displayScores = [...realScores, ...fakeScores];
+                
+                // Sort by score
                 displayScores.sort((a, b) => b.score - a.score);
+                
+                // Take top 20
                 displayScores = displayScores.slice(0, 20);
             } else {
+                // Only show real scores once we have 10+
                 displayScores.sort((a, b) => b.score - a.score);
                 displayScores = displayScores.slice(0, 20);
             }
@@ -572,18 +644,22 @@
             document.getElementById('initial3').value = '';
         }
 
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             const i1 = document.getElementById('initial1');
             const i2 = document.getElementById('initial2');
             const i3 = document.getElementById('initial3');
             
+            // Auto-advance initials input
             i1.addEventListener('input', () => { if (i1.value) i2.focus(); });
             i2.addEventListener('input', () => { if (i2.value) i3.focus(); });
             i3.addEventListener('input', () => { if (i3.value) saveHighScore(); });
             
+            // Initialize plays counter
             updatePlaysCounter();
         });
 
+        // Allow Enter key to submit
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
