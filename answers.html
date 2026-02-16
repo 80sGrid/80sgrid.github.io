@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's 80s Hits Grid - Day 2 Answers</title>
+    <title>80s Grid - Answer Key</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,109 +12,80 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF1493 0%, #00CED1 50%, #FF69B4 100%);
             padding: 20px;
         }
         .container {
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            max-width: 800px;
+            max-width: 900px;
+            width: 100%;
+        }
+        .logo-img {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
         }
         h1 {
             text-align: center;
             color: #333;
             margin-bottom: 10px;
-            font-size: 2em;
+            font-size: 2.5em;
         }
-        .subtitle {
+        h2 {
             text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 100px repeat(3, 1fr);
-            grid-template-rows: 70px repeat(3, 90px);
-            gap: 8px;
-            margin-bottom: 30px;
-        }
-        .header {
-            background: #667eea;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.75em;
-            line-height: 1.2;
-        }
-        .row-header {
-            background: #764ba2;
-        }
-        .corner {
-            background: #00CED1;
-        }
-        .cell {
-            background: #d4edda;
-            border: 2px solid #28a745;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            font-size: 0.85em;
-            font-weight: bold;
-            text-align: center;
-            color: #333;
-        }
-        .answer-details {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .answer-section {
-            margin-bottom: 25px;
-        }
-        .answer-section h3 {
             color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            margin: 40px 0 30px 0;
+            font-size: 2em;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
         }
-        .answer-list {
-            background: white;
-            padding: 15px;
-            border-left: 4px solid #667eea;
+        .artist-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+        .artist-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
             margin-bottom: 15px;
         }
-        .answer-list h4 {
-            margin: 0 0 8px 0;
-            color: #333;
-            font-size: 1em;
+        .criteria {
+            margin-bottom: 15px;
         }
-        .answer-list ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        .answer-list li {
-            margin: 5px 0;
+        .criteria-label {
+            font-weight: bold;
             color: #555;
-        }
-        .logo-img {
             display: block;
-            margin: 0 auto 20px auto;
-            max-width: 400px;
-            width: 100%;
-            height: auto;
+            margin-bottom: 5px;
         }
-        button {
-            background: #667eea;
+        .answers {
+            color: #333;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .share-button {
+            background: #FF1493;
             color: white;
             border: none;
             padding: 12px 30px;
@@ -122,164 +93,147 @@
             cursor: pointer;
             font-size: 1em;
             font-weight: bold;
-            transition: background 0.3s;
             display: block;
-            margin: 20px auto;
+            margin: 30px auto;
         }
-        button:hover {
-            background: #5568d3;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            .grid {
-                grid-template-columns: 90px repeat(3, 1fr);
-                grid-template-rows: 75px repeat(3, 80px);
-                gap: 5px;
-            }
-            .header {
-                font-size: 0.68em;
-            }
-            .cell {
-                font-size: 0.75em;
-                padding: 5px;
-            }
+        .share-button:hover {
+            background: #ff69b4;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://www.dropbox.com/scl/fi/s96q4lwfjan4g8buo4i31/80SG.jpg?rlkey=e8dmffvxl7gy7uksg79409tc2&st=l7i0dypg&raw=1" alt="80s Grid Logo" class="logo-img">
+        <img src="https://www.dropbox.com/scl/fi/kc0jiw14zjlxh8xzl7vgc/Screenshot-2026-02-15-at-10.57.15-PM.png?rlkey=shyyk8lor606ktuvkh0a0xez2&st=0ac23xxy&raw=1" alt="80s Grid Logo" class="logo-img">
+        <div style="text-align: center; font-weight: bold; font-size: 1.2em; margin-bottom: 20px; color: #333;">80sgrid.com</div>
         
-        <h1>🎸 Day 2 Answer Key 🎸</h1>
-        <p class="subtitle">All acceptable answers for today's grid</p>
+        <h1>🎸 Answer Key 🎸</h1>
+
+        <!-- QUIZ 1 ANSWERS -->
+        <h2>Quiz 1</h2>
         
-        <div class="grid">
-            <div class="header corner"></div>
-            <div class="header">Simple Minds</div>
-            <div class="header">OMD</div>
-            <div class="header">INXS</div>
-            
-            <div class="header row-header">Song from a John Hughes Film Soundtrack</div>
-            <div class="cell">Don't You (Forget About Me)</div>
-            <div class="cell">If You Leave</div>
-            <div class="cell">Do Wot You Do</div>
-            
-            <div class="header row-header">Had a Top 5 Hit in the 1980s</div>
-            <div class="cell">Don't You (Forget About Me)</div>
-            <div class="cell">If You Leave</div>
-            <div class="cell">Need You Tonight</div>
-            
-            <div class="header row-header">Song Title with One Word</div>
-            <div class="cell">Waterfront</div>
-            <div class="cell">Electricity</div>
-            <div class="cell">Mystify</div>
-        </div>
-
-        <div class="answer-details">
-            <div class="answer-section">
-                <h3>Row 1: Song from a John Hughes Film Soundtrack</h3>
-                
-                <div class="answer-list">
-                    <h4>Simple Minds</h4>
-                    <ul>
-                        <li><strong>Don't You (Forget About Me)</strong> – The Breakfast Club (1985)</li>
-                    </ul>
-                </div>
-
-                <div class="answer-list">
-                    <h4>OMD</h4>
-                    <ul>
-                        <li><strong>If You Leave</strong> – Pretty in Pink (1986) – Written in 24 hours for the film's ending change</li>
-                    </ul>
-                </div>
-
-                <div class="answer-list">
-                    <h4>INXS</h4>
-                    <ul>
-                        <li><strong>Do Wot You Do</strong> – Pretty in Pink (1986)</li>
-                    </ul>
-                </div>
+        <div class="artist-section">
+            <div class="artist-name">Duran Duran</div>
+            <div class="criteria">
+                <span class="criteria-label">Top 10 Hit in 1984:</span>
+                <div class="answers">"The Reflex" or "New Moon on Monday"</div>
             </div>
-
-            <div class="answer-section">
-                <h3>Row 2: Had a Top 5 Hit in the 1980s</h3>
-                
-                <div class="answer-list">
-                    <h4>Simple Minds</h4>
-                    <ul>
-                        <li><strong>Don't You (Forget About Me)</strong> – #1 hit in 1985</li>
-                    </ul>
-                </div>
-
-                <div class="answer-list">
-                    <h4>OMD</h4>
-                    <ul>
-                        <li><strong>If You Leave</strong> – #4 hit in 1986</li>
-                    </ul>
-                </div>
-
-                <div class="answer-list">
-                    <h4>INXS</h4>
-                    <ul>
-                        <li><strong>Need You Tonight</strong> – #1 hit in 1988</li>
-                        <li><strong>Devil Inside</strong> – #2 hit in 1988</li>
-                        <li><strong>New Sensation</strong> – #3 hit in 1988</li>
-                    </ul>
-                </div>
+            <div class="criteria">
+                <span class="criteria-label">Song with "Girl" in Title:</span>
+                <div class="answers">"Girls on Film"</div>
             </div>
-
-            <div class="answer-section">
-                <h3>Row 3: Song Title with One Word</h3>
-                
-                <div class="answer-list">
-                    <h4>Simple Minds (10 possible answers)</h4>
-                    <ul>
-                        <li><strong>Waterfront</strong> – 1983 hit from Sparkle in the Rain</li>
-                        <li><strong>Theme</strong></li>
-                        <li><strong>Changeling</strong> – From Real to Real Cacophony (1979)</li>
-                        <li><strong>Celebrate</strong> – From Empires and Dance (1980)</li>
-                        <li><strong>Premonition</strong> – From Real to Real Cacophony</li>
-                        <li><strong>Ghostdancing</strong> – From Once Upon a Time (1985)</li>
-                        <li><strong>Hypnotised</strong> – From Good News from the Next World (1995)</li>
-                        <li><strong>Factory</strong> – From Real to Real Cacophony</li>
-                        <li><strong>Travel</strong> – From Life in a Day (1979)</li>
-                        <li><strong>Utopia</strong></li>
-                    </ul>
-                </div>
-
-                <div class="answer-list">
-                    <h4>OMD (3 possible answers)</h4>
-                    <ul>
-                        <li><strong>Electricity</strong></li>
-                        <li><strong>Dreaming</strong></li>
-                        <li><strong>Secret</strong></li>
-                    </ul>
-                </div>
-
-                <div class="answer-list">
-                    <h4>INXS (9 possible answers)</h4>
-                    <ul>
-                        <li><strong>Disappear</strong> – Top 10 hit from X (1990)</li>
-                        <li><strong>Mystify</strong> – Fifth single from Kick (1987)</li>
-                        <li><strong>Searching</strong> – From Elegantly Wasted (1997)</li>
-                        <li><strong>Sometimes</strong> – From Full Moon, Dirty Hearts (1993)</li>
-                        <li><strong>Scratch</strong> – From Elegantly Wasted</li>
-                        <li><strong>Shine</strong> – From Elegantly Wasted</li>
-                        <li><strong>Sway</strong> – From Welcome to Wherever You Are (1992)</li>
-                        <li><strong>Swing</strong> – Title track from The Swing (1984)</li>
-                        <li><strong>Viking</strong> – From Full Moon, Dirty Hearts</li>
-                    </ul>
-                </div>
+            <div class="criteria">
+                <span class="criteria-label">Song from 1987 Album:</span>
+                <div class="answers">"Notorious" or "Skin Trade" or "Meet El Presidente"</div>
             </div>
         </div>
 
-        <button onclick="window.location.href='day2.html'">Play Day 2</button>
-        <button onclick="window.location.href='index.html'" style="background: #764ba2;">Back to Main Page</button>
+        <div class="artist-section">
+            <div class="artist-name">Madonna</div>
+            <div class="criteria">
+                <span class="criteria-label">Top 10 Hit in 1984:</span>
+                <div class="answers">"Like a Virgin" or "Material Girl" or "Borderline"</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song with "Girl" in Title:</span>
+                <div class="answers">"Material Girl" or "Who's That Girl"</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song from 1987 Album:</span>
+                <div class="answers">"Who's That Girl" or "Causing a Commotion" or "The Look of Love"</div>
+            </div>
+        </div>
+
+        <div class="artist-section">
+            <div class="artist-name">Michael Jackson</div>
+            <div class="criteria">
+                <span class="criteria-label">Top 10 Hit in 1984:</span>
+                <div class="answers">"Thriller" or "Billie Jean" or "Beat It" or "P.Y.T."</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song with "Girl" in Title:</span>
+                <div class="answers">"The Girl Is Mine"</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song from 1987 Album:</span>
+                <div class="answers">"Bad" or "The Way You Make Me Feel" or "Man in the Mirror" or "Dirty Diana" or "Smooth Criminal" or "I Just Can't Stop Loving You"</div>
+            </div>
+        </div>
+
+        <!-- QUIZ 2 ANSWERS -->
+        <h2>Quiz 2</h2>
+        
+        <div class="artist-section">
+            <div class="artist-name">Simple Minds</div>
+            <div class="criteria">
+                <span class="criteria-label">Song from a John Hughes Film Soundtrack:</span>
+                <div class="answers">"Don't You (Forget About Me)" from The Breakfast Club</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Had a Top 5 Hit in the 1980s:</span>
+                <div class="answers">"Don't You (Forget About Me)" - #1 hit in 1985</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song Title with One Word:</span>
+                <div class="answers">"Waterfront" or "Theme" or "Changeling" or "Celebrate" or "Premonition" or "Ghostdancing" or "Hypnotised" or "Factory" or "Travel" or "Utopia"</div>
+            </div>
+        </div>
+
+        <div class="artist-section">
+            <div class="artist-name">OMD (Orchestral Manoeuvres in the Dark)</div>
+            <div class="criteria">
+                <span class="criteria-label">Song from a John Hughes Film Soundtrack:</span>
+                <div class="answers">"If You Leave" from Pretty in Pink</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Had a Top 5 Hit in the 1980s:</span>
+                <div class="answers">"If You Leave" - #4 hit in 1986</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song Title with One Word:</span>
+                <div class="answers">"Electricity" or "Dreaming" or "Secret" or "Souvenir"</div>
+            </div>
+        </div>
+
+        <div class="artist-section">
+            <div class="artist-name">INXS</div>
+            <div class="criteria">
+                <span class="criteria-label">Song from a John Hughes Film Soundtrack:</span>
+                <div class="answers">"Do Wot You Do" from Pretty in Pink</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Had a Top 5 Hit in the 1980s:</span>
+                <div class="answers">"Need You Tonight" - #1 hit in 1988, "Devil Inside" - #2 hit in 1988, or "New Sensation" - #3 hit in 1988</div>
+            </div>
+            <div class="criteria">
+                <span class="criteria-label">Song Title with One Word:</span>
+                <div class="answers">"Mystify" or "Disappear" or "Searching" or "Sometimes" or "Scratch" or "Shine" or "Sway" or "Swing" or "Viking" or "Kick"</div>
+            </div>
+        </div>
+
+        <button class="share-button" onclick="shareAnswerKey()">📤 Share Answer Key with a Friend</button>
+
+        <div class="back-link">
+            <a href="index.html">← Back to Quiz 1</a> | <a href="day2.html">Play Quiz 2</a>
+        </div>
     </div>
+
+    <script>
+        function shareAnswerKey() {
+            const shareText = `🎸 Check out the answer key for Leonardo's 80s Hits Grid! https://80sgrid.com/answers.html`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: "80s Grid Answer Key",
+                    text: shareText
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Link copied to clipboard! Share it with your friends!');
+                }).catch(() => {
+                    alert(shareText);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
