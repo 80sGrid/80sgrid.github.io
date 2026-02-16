@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +80,55 @@
             line-height: 1.2;
             word-wrap: break-word;
             hyphens: auto;
+        }
+        
+        /* 80s Neon Headers */
+        .header.col-header:nth-child(2) {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
+            border: 2px solid #FF1493;
+        }
+        .header.col-header:nth-child(3) {
+            background: linear-gradient(135deg, #00CED1, #1E90FF);
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.6);
+            border: 2px solid #00CED1;
+        }
+        .header.col-header:nth-child(4) {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            border: 2px solid #FFD700;
+            color: #000;
+            font-weight: 900;
+        }
+        
+        .header.row-header {
+            background: linear-gradient(135deg, #8B00FF, #DA70D6);
+            box-shadow: 0 0 15px rgba(139, 0, 255, 0.6);
+            border: 2px solid #8B00FF;
+        }
+        
+        .how-to-play {
+            background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .how-to-play h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .how-to-play p {
+            margin: 10px 0;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         @media (max-width: 768px) {
@@ -271,14 +321,18 @@
         <div style="text-align: center; font-weight: bold; font-size: 1.2em; margin-bottom: 20px; color: #333;">80sgrid.com</div>
         
         <h1>🎸 Leonardo's 80s Hits Grid 🎸</h1>
+        
+        <div class="how-to-play">
+            <h2>🎯 How to Play</h2>
+            <p>Match the artist (column) with the category (row). Multiple answers may work - get creative! 🏆 Score 8+ to make the leaderboard!</p>
+        </div>
+        
         <div class="subtitle">Quiz 1</div>
         
         <div style="text-align: center; margin-bottom: 15px;">
             <span id="playsCounter" style="color: #667eea; font-weight: bold; font-size: 0.9em;">🎮 Loading plays...</span>
             <span style="margin: 0 10px; color: #ccc;">|</span>
-            <a href="#" onclick="shareScore(); return false;" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 0.9em;">📤 Share with a Friend</a>
-            <span style="margin: 0 10px; color: #ccc;">|</span>
-            <a href="#" onclick="showLeaderboard(); return false;" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 0.9em;">🏆 View High Scores</a>
+            <a href="#" onclick="showLeaderboard(); return false;" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 0.9em;">🏆 View Leaderboard</a>
         </div>
         
         <div class="plays-counter" style="display: none;">
@@ -332,14 +386,11 @@
         <div class="button-container">
             <button onclick="checkAnswers()">Check Answers</button>
             <button onclick="resetGrid()">Reset Grid</button>
+            <button onclick="shareScore()" style="background: #FF1493;">📤 Share with a Friend</button>
         </div>
 
         <div id="results" style="display: none;">
             <div id="score" style="font-size: 1.3em; font-weight: bold; color: #333; margin-bottom: 15px;"></div>
-            <button onclick="shareScore()" style="background: #FF1493; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-size: 0.9em; margin-bottom: 15px; font-weight: bold;">
-                📤 Share the 80s Grid with a Friend
-            </button>
-            <br>
             <a href="day2.html" style="display: inline-block; background: #000; color: white; border: none; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 1em; margin-bottom: 15px; font-weight: bold;">
                 Play Quiz 2
             </a>
@@ -364,7 +415,7 @@
         </div>
 
         <div id="leaderboard" class="leaderboard" style="display: none;">
-            <h3>═══ COMBINED HIGH SCORES ═══</h3>
+            <h3>═══ LEADERBOARD ═══</h3>
             <p style="text-align: center; margin-bottom: 20px;">Quiz 1 + Quiz 2 (out of 18)</p>
             <div id="leaderboardList"></div>
         </div>
