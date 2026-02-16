@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,80 +65,43 @@
             h1 {
                 font-size: 1.5em;
             }
-            .subtitle {
-                font-size: 0.9em;
-            }
-            .grid {
-                grid-template-columns: 90px repeat(3, 1fr);
-                grid-template-rows: 75px repeat(3, 80px);
-                gap: 5px;
-            }
-            .header {
-                font-size: 0.68em;
-                padding: 6px;
-                line-height: 1.3;
-            }
-            .cell input {
-                font-size: 0.75em;
-            }
-            .instructions {
-                font-size: 0.9em;
-                padding: 12px;
-            }
-            button {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.2em;
-            }
             .grid {
                 grid-template-columns: 80px repeat(3, 1fr);
-                grid-template-rows: 70px repeat(3, 75px);
-                gap: 4px;
+                grid-template-rows: 60px repeat(3, 80px);
+                gap: 6px;
             }
             .header {
-                font-size: 0.62em;
-                padding: 5px;
-                line-height: 1.25;
+                font-size: 0.65em;
+                padding: 6px;
             }
-            .cell input {
-                font-size: 0.7em;
-            }
+        }
+
+        .col-header {
+            grid-row: 1;
         }
         .row-header {
-            background: #764ba2;
-        }
-        .corner {
-            background: #00CED1;
+            grid-column: 1;
         }
         .cell {
             background: #f8f9fa;
-            border: 2px solid #ddd;
+            border: 2px solid #dee2e6;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-        .cell:hover {
-            background: #e9ecef;
-            border-color: #667eea;
-            transform: scale(1.02);
+            padding: 8px;
         }
         .cell input {
-            width: 90%;
-            height: 80%;
+            width: 100%;
+            padding: 8px;
             border: none;
             background: transparent;
             text-align: center;
-            font-size: 0.85em;
+            font-size: 0.9em;
             outline: none;
+        }
+        .cell input::placeholder {
+            color: #adb5bd;
         }
         .cell.correct {
             background: #d4edda;
@@ -147,27 +111,20 @@
             background: #f8d7da;
             border-color: #dc3545;
         }
-        .instructions {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .instructions h3 {
-            margin-top: 0;
-            color: #856404;
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         button {
             background: #667eea;
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 1em;
-            font-weight: bold;
-            margin-right: 10px;
             transition: background 0.3s;
         }
         button:hover {
@@ -178,51 +135,44 @@
             cursor: not-allowed;
             opacity: 0.6;
         }
-        button:disabled:hover {
-            background: #ccc !important;
-        }
-        .button-container {
-            text-align: center;
+        #results {
             margin-top: 20px;
+            padding: 20px;
+            background: #e7f3ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            text-align: center;
         }
-        .logo-img {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-        }
-        @media (max-width: 768px) {
-            .logo-img {
-                max-width: 300px;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-img {
-                max-width: 250px;
-            }
+        .plays-counter {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
         }
         .high-score-entry {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: #000;
+            color: #00ff00;
+            padding: 40px;
+            border-radius: 10px;
             border: 4px solid #00ff00;
-            padding: 30px;
-            border-radius: 0;
-            margin-top: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            text-align: center;
+            z-index: 1000;
             font-family: 'Courier New', monospace;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
         }
         .high-score-entry h2 {
-            color: #00ff00;
-            text-align: center;
-            font-size: 1.8em;
-            margin: 0 0 20px 0;
-            text-shadow: 0 0 10px #00ff00;
-            letter-spacing: 3px;
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00;
+            margin-bottom: 20px;
         }
         .initials-input {
             display: flex;
-            justify-content: center;
             gap: 15px;
+            justify-content: center;
             margin: 20px 0;
         }
         .initials-input input {
@@ -233,14 +183,8 @@
             background: #000;
             border: 3px solid #00ff00;
             color: #00ff00;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
             text-transform: uppercase;
-            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
-        }
-        .initials-input input:focus {
-            outline: none;
-            box-shadow: 0 0 20px #00ff00;
+            font-family: 'Courier New', monospace;
         }
         .arcade-button {
             background: #00ff00;
@@ -248,80 +192,73 @@
             border: none;
             padding: 15px 40px;
             font-size: 1.2em;
-            font-family: 'Courier New', monospace;
             font-weight: bold;
             cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
-            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
         }
         .arcade-button:hover {
             background: #00cc00;
-            box-shadow: 0 0 25px rgba(0, 255, 0, 1);
         }
         .leaderboard {
+            margin-top: 30px;
             background: #000;
-            border: 4px solid #ff00ff;
-            padding: 20px;
-            margin-top: 20px;
+            color: #00ff00;
+            padding: 25px;
+            border-radius: 10px;
+            border: 3px solid #00ff00;
             font-family: 'Courier New', monospace;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
         }
         .leaderboard h3 {
-            color: #ff00ff;
+            color: #ffff00;
             text-align: center;
-            font-size: 1.5em;
-            margin: 0 0 10px 0;
-            text-shadow: 0 0 10px #ff00ff;
-            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ffff00;
         }
-        .leaderboard p {
-            color: #00ff00;
-            text-align: center;
-            margin: 0 0 15px 0;
-            font-size: 0.9em;
-        }
-        .leaderboard-entry {
+        .leaderboard-item {
             display: flex;
             justify-content: space-between;
-            color: #ffff00;
-            font-size: 1.2em;
-            padding: 8px;
-            border-bottom: 1px solid #333;
+            padding: 10px;
+            border-bottom: 1px solid #00ff00;
         }
-        .leaderboard-entry:last-child {
+        .leaderboard-item:last-child {
             border-bottom: none;
         }
-        .rank { color: #ff00ff; font-weight: bold; }
+        .logo-img {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="https://www.dropbox.com/scl/fi/s96q4lwfjan4g8buo4i31/80SG.jpg?rlkey=e8dmffvxl7gy7uksg79409tc2&st=l7i0dypg&raw=1" alt="80s Grid Logo" class="logo-img">
         
-        <h1>🎸 Leonardo's 80s Hits Grid - Quiz 2 🎸</h1>
-        <p class="subtitle">Find songs that match both the row and column criteria</p>
+        <h1>🎸 Leonardo's 80s Hits Grid 🎸</h1>
+        <div class="subtitle">Quiz 2</div>
         
         <div style="text-align: center; margin-bottom: 15px;">
-            <span id="playsCounter" style="color: #667eea; font-weight: bold; font-size: 0.9em;">Loading...</span>
+            <span id="playsCounter" style="color: #667eea; font-weight: bold; font-size: 0.9em;">🎮 Loading plays...</span>
             <span style="margin: 0 10px; color: #ccc;">|</span>
             <a href="#" onclick="shareScore(); return false;" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 0.9em;">📤 Share with a Friend</a>
             <span style="margin: 0 10px; color: #ccc;">|</span>
             <a href="#" onclick="showLeaderboard(); return false;" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 0.9em;">🏆 View High Scores</a>
         </div>
         
-        <div class="instructions">
-            <h3>How to Play:</h3>
-            <p>Each cell needs a song that matches BOTH the artist/band (column) AND the criteria (row). Type your answer and press Enter. Good luck!</p>
+        <div class="plays-counter" style="display: none;">
+            <span id="playsCounterOld">🎮 Loading plays...</span>
         </div>
 
         <div class="grid">
-            <div class="header corner"></div>
-            <div class="header">Simple Minds</div>
-            <div class="header">OMD</div>
-            <div class="header">INXS</div>
+            <div class="header" style="grid-row: 1; grid-column: 1; background: transparent;"></div>
+            <div class="header col-header" style="grid-column: 2;">Simple Minds</div>
+            <div class="header col-header" style="grid-column: 3;">OMD</div>
+            <div class="header col-header" style="grid-column: 4;">INXS</div>
             
-            <div class="header row-header">Song from a John Hughes Film Soundtrack</div>
+            <div class="header row-header" style="grid-row: 2;">Song from John Hughes Film</div>
             <div class="cell" data-row="0" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -332,7 +269,7 @@
                 <input type="text" placeholder="?" />
             </div>
             
-            <div class="header row-header">Had a Top 5 Hit in the 1980s</div>
+            <div class="header row-header" style="grid-row: 3;">Top 5 Hit in the 1980s</div>
             <div class="cell" data-row="1" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -343,7 +280,7 @@
                 <input type="text" placeholder="?" />
             </div>
             
-            <div class="header row-header">Song Title with One Word</div>
+            <div class="header row-header" style="grid-row: 4;">Song Title with One Word</div>
             <div class="cell" data-row="2" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -362,15 +299,19 @@
         <div class="button-container">
             <button onclick="checkAnswers()">Check Answers</button>
             <button onclick="resetGrid()">Reset Grid</button>
-            <button id="answerKeyButton" onclick="window.location.href='answers.html'" style="background: #9D4EDD;" disabled>View Answer Key</button>
+            <button id="answerKeyButton" onclick="window.location.href='https://80sgrid.com/answers'" style="background: #9D4EDD;" disabled>View Answer Key</button>
         </div>
 
-        <div id="results" style="display: none; margin-top: 20px; padding: 20px; background: #e7f3ff; border: 2px solid #667eea; border-radius: 8px; text-align: center;">
+        <div id="results" style="display: none;">
             <div id="score" style="font-size: 1.3em; font-weight: bold; color: #333; margin-bottom: 15px;"></div>
             <button onclick="shareScore()" style="background: #FF1493; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-size: 0.9em; margin-bottom: 15px; font-weight: bold;">
                 📤 Share the 80s Grid with a Friend
             </button>
-            <div style="font-size: 0.95em; color: #555; margin-bottom: 8px;">Brought to you by</div>
+            <br>
+            <a href="https://80sgrid.com/" style="display: inline-block; background: #000; color: white; border: none; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 1em; margin-bottom: 15px; font-weight: bold;">
+                Play Quiz 1 Again
+            </a>
+            <div style="font-size: 0.95em; color: #555; margin-top: 15px;">Brought to you by</div>
             <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">
                 <a href="https://arrivealivepodcast.com" target="_blank" style="color: #667eea; text-decoration: none;">The Arrive Alive Podcast</a>
             </div>
@@ -392,29 +333,35 @@
 
         <div id="leaderboard" class="leaderboard" style="display: none;">
             <h3>═══ COMBINED HIGH SCORES ═══</h3>
-            <p>Quiz 1 + Quiz 2 (out of 18)</p>
+            <p style="text-align: center; margin-bottom: 20px;">Quiz 1 + Quiz 2 (out of 18)</p>
             <div id="leaderboardList"></div>
         </div>
     </div>
 
     <script>
-        // Answer key (multiple correct answers possible)
+        // Answer key with all updates
         const answers = {
-            '0-0': ['dont you forget about me', 'don\'t you forget about me'],
-            '0-1': ['if you leave'],
-            '0-2': ['do wot you do'],
-            '1-0': ['dont you forget about me', 'don\'t you forget about me'],
-            '1-1': ['if you leave'],
-            '1-2': ['need you tonight', 'devil inside', 'new sensation'],
+            // Simple Minds Column
+            '0-0': ['dont you forget about me'],
+            '1-0': ['dont you forget about me'],
             '2-0': ['waterfront', 'theme', 'changeling', 'celebrate', 'premonition', 'ghostdancing', 'hypnotised', 'factory', 'travel', 'utopia'],
-            '2-1': ['electricity', 'dreaming', 'secret'],
-            '2-2': ['mystify', 'disappear', 'searching', 'sometimes', 'scratch', 'shine', 'sway', 'swing', 'viking']
+            
+            // OMD Column
+            '0-1': ['if you leave'],
+            '1-1': ['if you leave'],
+            '2-1': ['electricity', 'dreaming', 'secret', 'souvenir'],
+            
+            // INXS Column  
+            '0-2': ['do wot you do'],
+            '1-2': ['need you tonight', 'devil inside', 'new sensation'],
+            '2-2': ['mystify', 'disappear', 'searching', 'sometimes', 'scratch', 'shine', 'sway', 'swing', 'viking', 'kick']
         };
 
         function normalizeString(str) {
             return str.toLowerCase()
-                .replace(/[^a-z0-9\s]/g, '')
-                .replace(/\s+/g, ' ')
+                .replace(/[''']/g, '')  // Remove apostrophes
+                .replace(/[^a-z0-9\s]/g, '')  // Remove special characters
+                .replace(/\s+/g, ' ')  // Normalize spaces
                 .trim();
         }
 
@@ -451,6 +398,7 @@
             });
 
             if (total > 0) {
+                // Track play count
                 if (!sessionStorage.getItem('hasPlayedQuiz2')) {
                     let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
                     plays++;
@@ -458,6 +406,9 @@
                     updatePlaysCounter();
                     sessionStorage.setItem('hasPlayedQuiz2', 'true');
                 }
+                
+                // Store Quiz 2 score
+                localStorage.setItem('quiz2Score', correct);
                 
                 document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
                 document.getElementById('results').style.display = 'block';
@@ -490,70 +441,57 @@
         }
 
         function shareScore() {
-            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid: https://80sgrid.com/quiz2`;
+            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Quiz 2: https://80sgrid.com/quiz2`;
             
             if (navigator.share) {
                 navigator.share({
                     title: "Leonardo's 80s Hits Grid - Quiz 2",
-                    text: shareText,
-                    url: 'https://80sgrid.com/quiz2'
-                }).catch(() => {
-                    // If share fails, copy to clipboard
-                    navigator.clipboard.writeText('https://80sgrid.com/quiz2').then(() => {
-                        alert('Link copied to clipboard! Share it with your friends!');
-                    });
-                });
+                    text: shareText
+                }).catch(() => {});
             } else {
-                // Fallback: just copy the URL
-                navigator.clipboard.writeText('https://80sgrid.com/quiz2').then(() => {
+                navigator.clipboard.writeText(shareText).then(() => {
                     alert('Link copied to clipboard! Share it with your friends!');
                 }).catch(() => {
-                    // Final fallback if clipboard doesn't work
-                    prompt('Copy this link to share:', 'https://80sgrid.com/quiz2');
+                    alert(shareText);
                 });
             }
         }
 
+        function resetGrid() {
+            const inputs = document.querySelectorAll('.cell input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.parentElement.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('highScoreEntry').style.display = 'none';
+        }
+
         function saveHighScore() {
-            const i1 = document.getElementById('initial1').value.toUpperCase();
-            const i2 = document.getElementById('initial2').value.toUpperCase();
-            const i3 = document.getElementById('initial3').value.toUpperCase();
+            const initial1 = document.getElementById('initial1').value.toUpperCase();
+            const initial2 = document.getElementById('initial2').value.toUpperCase();
+            const initial3 = document.getElementById('initial3').value.toUpperCase();
             
-            if (!i1 || !i2 || !i3) {
+            if (!initial1 || !initial2 || !initial3) {
                 alert('Please enter all 3 initials!');
                 return;
             }
             
-            const initials = i1 + i2 + i3;
-            const quiz2Score = parseInt(document.getElementById('score').textContent.match(/\d+/)[0]);
-            
-            // Get Quiz 1 score from localStorage
-            const quiz1Score = parseInt(localStorage.getItem('80sGridQuiz1Score_' + initials) || '0');
-            
-            // Combined score
+            const initials = initial1 + initial2 + initial3;
+            const quiz1Score = parseInt(localStorage.getItem('quiz1Score') || '0');
+            const quiz2Score = parseInt(localStorage.getItem('quiz2Score') || '0');
             const combinedScore = quiz1Score + quiz2Score;
             
-            // Save Quiz 2 score for this user
-            localStorage.setItem('80sGridQuiz2Score_' + initials, quiz2Score);
-            
-            // Get combined scores
             let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
-            
-            // Add or update combined score
-            const existingIndex = scores.findIndex(s => s.initials === initials);
-            if (existingIndex >= 0) {
-                scores[existingIndex].score = combinedScore;
-                scores[existingIndex].date = new Date().toLocaleDateString();
-            } else {
-                scores.push({
-                    initials: initials,
-                    score: combinedScore,
-                    date: new Date().toLocaleDateString()
-                });
-            }
+            scores.push({
+                initials: initials,
+                score: combinedScore,
+                date: getRandomDateInFebruary()
+            });
             
             scores.sort((a, b) => b.score - a.score);
             scores = scores.slice(0, 10);
+            
             localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
             
             document.getElementById('highScoreEntry').style.display = 'none';
@@ -561,84 +499,58 @@
         }
 
         function displayLeaderboard() {
-            let realScores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
-            let displayScores = [...realScores];
+            let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
             
-            if (realScores.length < 10) {
-                const fakeInitials = ['ACE', 'MAX', 'JAX', 'REX', 'ZAP', 'ROX', 'VIX', 'LUX', 'FOX', 'SAM', 
-                                     'KAI', 'ASH', 'JET', 'SKY', 'RIO', 'DEX', 'NOX', 'BEX', 'MIA', 'ZEE'];
+            if (scores.length < 10) {
+                const fakeScores = [
+                    { initials: 'LEO', score: 18, date: '2/1/26' },
+                    { initials: 'RCK', score: 17, date: '2/3/26' },
+                    { initials: 'MTV', score: 16, date: '2/5/26' },
+                    { initials: 'DAN', score: 15, date: '2/7/26' },
+                    { initials: 'SYN', score: 14, date: '2/9/26' },
+                    { initials: 'POP', score: 13, date: '2/11/26' },
+                    { initials: 'RAD', score: 12, date: '2/12/26' },
+                    { initials: 'VHS', score: 12, date: '2/13/26' }
+                ];
                 
-                const fakeScores = fakeInitials.map((initials, index) => ({
-                    initials: initials,
-                    score: Math.floor(Math.random() * 7) + 12, // Random 12-18
-                    date: getRandomDateInFebruary(),
-                    isFake: true
-                }));
-                
-                displayScores = [...realScores, ...fakeScores];
-                displayScores.sort((a, b) => b.score - a.score);
-                displayScores = displayScores.slice(0, 20);
-            } else {
-                displayScores.sort((a, b) => b.score - a.score);
-                displayScores = displayScores.slice(0, 20);
+                scores = [...scores, ...fakeScores].slice(0, 10);
+                scores.sort((a, b) => b.score - a.score);
             }
             
-            if (displayScores.length === 0) return;
-            
-            const leaderboard = document.getElementById('leaderboard');
-            const list = document.getElementById('leaderboardList');
-            
-            list.innerHTML = displayScores.map((entry, index) => `
-                <div class="leaderboard-entry">
-                    <span class="rank">${index + 1}.</span>
-                    <span>${entry.initials}</span>
-                    <span>${entry.score}/18</span>
-                    <span>${entry.date}</span>
+            const leaderboardList = document.getElementById('leaderboardList');
+            leaderboardList.innerHTML = scores.map((score, index) => `
+                <div class="leaderboard-item">
+                    <span>${index + 1}. ${score.initials}</span>
+                    <span>${score.score}/18 - ${score.date}</span>
                 </div>
             `).join('');
             
-            leaderboard.style.display = 'block';
+            document.getElementById('leaderboard').style.display = 'block';
         }
 
-        function resetGrid() {
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => {
-                cell.querySelector('input').value = '';
-                cell.classList.remove('correct', 'incorrect');
-            });
-            document.getElementById('results').style.display = 'none';
-            document.getElementById('highScoreEntry').style.display = 'none';
-            document.getElementById('initial1').value = '';
-            document.getElementById('initial2').value = '';
-            document.getElementById('initial3').value = '';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const i1 = document.getElementById('initial1');
-            const i2 = document.getElementById('initial2');
-            const i3 = document.getElementById('initial3');
-            
-            i1.addEventListener('input', () => { if (i1.value) i2.focus(); });
-            i2.addEventListener('input', () => { if (i2.value) i3.focus(); });
-            i3.addEventListener('input', () => { if (i3.value) saveHighScore(); });
-            
-            updatePlaysCounter();
-            
-            // Enable answer key button when user starts typing
-            document.querySelectorAll('.cell input').forEach(input => {
-                input.addEventListener('input', function() {
-                    const hasInput = Array.from(document.querySelectorAll('.cell input')).some(inp => inp.value.trim() !== '');
-                    document.getElementById('answerKeyButton').disabled = !hasInput;
-                });
+        // Enable answer key button when user starts typing
+        document.querySelectorAll('.cell input').forEach(input => {
+            input.addEventListener('input', function() {
+                const hasInput = Array.from(document.querySelectorAll('.cell input')).some(inp => inp.value.trim() !== '');
+                document.getElementById('answerKeyButton').disabled = !hasInput;
             });
         });
 
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkAnswers();
-                }
-            });
+        // Auto-tab between initial inputs
+        document.getElementById('initial1').addEventListener('input', function() {
+            if (this.value) document.getElementById('initial2').focus();
+        });
+        document.getElementById('initial2').addEventListener('input', function() {
+            if (this.value) document.getElementById('initial3').focus();
+        });
+        document.getElementById('initial3').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') saveHighScore();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePlaysCounter();
+            displayLeaderboard();
         });
     </script>
 </body>
