@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's 80s Hits Grid - Quiz 2</title>
+    <title>Leonardo's 80s Hits Grid - Quiz 1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -253,10 +253,11 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://www.dropbox.com/scl/fi/s96q4lwfjan4g8buo4i31/80SG.jpg?rlkey=e8dmffvxl7gy7uksg79409tc2&st=l7i0dypg&raw=1" alt="80s Grid Logo" class="logo-img">
+        <img src="https://www.dropbox.com/scl/fi/kc0jiw14zjlxh8xzl7vgc/Screenshot-2026-02-15-at-10.57.15-PM.png?rlkey=shyyk8lor606ktuvkh0a0xez2&st=0ac23xxy&raw=1" alt="80s Grid Logo" class="logo-img">
+        <div style="text-align: center; font-weight: bold; font-size: 1.2em; margin-bottom: 20px; color: #333;">80sgrid.com</div>
         
         <h1>🎸 Leonardo's 80s Hits Grid 🎸</h1>
-        <div class="subtitle">Quiz 2</div>
+        <div class="subtitle">Quiz 1</div>
         
         <div style="text-align: center; margin-bottom: 15px;">
             <span id="playsCounter" style="color: #667eea; font-weight: bold; font-size: 0.9em;">🎮 Loading plays...</span>
@@ -272,11 +273,11 @@
 
         <div class="grid">
             <div class="header" style="grid-row: 1; grid-column: 1; background: transparent;"></div>
-            <div class="header col-header" style="grid-column: 2;">Simple Minds</div>
-            <div class="header col-header" style="grid-column: 3;">OMD</div>
-            <div class="header col-header" style="grid-column: 4;">INXS</div>
+            <div class="header col-header" style="grid-column: 2;">Duran Duran</div>
+            <div class="header col-header" style="grid-column: 3;">Madonna</div>
+            <div class="header col-header" style="grid-column: 4;">Michael Jackson</div>
             
-            <div class="header row-header" style="grid-row: 2;">Song from John Hughes Film</div>
+            <div class="header row-header" style="grid-row: 2;">Top 10 Hit in 1984</div>
             <div class="cell" data-row="0" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -287,7 +288,7 @@
                 <input type="text" placeholder="?" />
             </div>
             
-            <div class="header row-header" style="grid-row: 3;">Top 5 Hit in the 1980s</div>
+            <div class="header row-header" style="grid-row: 3;">Song with "Girl" in Title</div>
             <div class="cell" data-row="1" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -298,7 +299,7 @@
                 <input type="text" placeholder="?" />
             </div>
             
-            <div class="header row-header" style="grid-row: 4;">Song Title with One Word</div>
+            <div class="header row-header" style="grid-row: 4;">Song from 1987 Album</div>
             <div class="cell" data-row="2" data-col="0">
                 <input type="text" placeholder="?" />
             </div>
@@ -317,7 +318,6 @@
         <div class="button-container">
             <button onclick="checkAnswers()">Check Answers</button>
             <button onclick="resetGrid()">Reset Grid</button>
-            <button id="answerKeyButton" onclick="window.location.href='answers.html'" style="background: #9D4EDD;" disabled>View Answer Key</button>
         </div>
 
         <div id="results" style="display: none;">
@@ -326,8 +326,8 @@
                 📤 Share the 80s Grid with a Friend
             </button>
             <br>
-            <a href="index.html" style="display: inline-block; background: #000; color: white; border: none; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 1em; margin-bottom: 15px; font-weight: bold;">
-                Play Quiz 1 Again
+            <a href="day2.html" style="display: inline-block; background: #000; color: white; border: none; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 1em; margin-bottom: 15px; font-weight: bold;">
+                Play Quiz 2
             </a>
             <div style="font-size: 0.95em; color: #555; margin-top: 15px;">Brought to you by</div>
             <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">
@@ -357,22 +357,22 @@
     </div>
 
     <script>
-        // Answer key with all updates
+        // Answer key with normalization
         const answers = {
-            // Simple Minds Column
-            '0-0': ['dont you forget about me'],
-            '1-0': ['dont you forget about me'],
-            '2-0': ['waterfront', 'theme', 'changeling', 'celebrate', 'premonition', 'ghostdancing', 'hypnotised', 'factory', 'travel', 'utopia'],
+            // Duran Duran Column
+            '0-0': ['the reflex', 'reflex', 'new moon on monday'],
+            '1-0': ['girls on film'],
+            '2-0': ['notorious', 'skin trade', 'meet el presidente'],
             
-            // OMD Column
-            '0-1': ['if you leave'],
-            '1-1': ['if you leave'],
-            '2-1': ['electricity', 'dreaming', 'secret', 'souvenir'],
+            // Madonna Column  
+            '0-1': ['like a virgin', 'material girl', 'borderline'],
+            '1-1': ['material girl', 'whos that girl'],
+            '2-1': ['whos that girl', 'causing a commotion', 'the look of love'],
             
-            // INXS Column  
-            '0-2': ['do wot you do'],
-            '1-2': ['need you tonight', 'devil inside', 'new sensation'],
-            '2-2': ['mystify', 'disappear', 'searching', 'sometimes', 'scratch', 'shine', 'sway', 'swing', 'viking', 'kick']
+            // Michael Jackson Column
+            '0-2': ['thriller', 'billie jean', 'beat it', 'pyt'],
+            '1-2': ['the girl is mine', 'girl is mine'],
+            '2-2': ['bad', 'the way you make me feel', 'man in the mirror', 'dirty diana', 'smooth criminal', 'i just cant stop loving you']
         };
 
         function normalizeString(str) {
@@ -417,16 +417,16 @@
 
             if (total > 0) {
                 // Track play count
-                if (!sessionStorage.getItem('hasPlayedQuiz2')) {
-                    let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
+                if (!sessionStorage.getItem('hasPlayedQuiz1')) {
+                    let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz1') || '5089');
                     plays++;
-                    localStorage.setItem('80sGridPlaysQuiz2', plays);
+                    localStorage.setItem('80sGridPlaysQuiz1', plays);
                     updatePlaysCounter();
-                    sessionStorage.setItem('hasPlayedQuiz2', 'true');
+                    sessionStorage.setItem('hasPlayedQuiz1', 'true');
                 }
                 
-                // Store Quiz 2 score
-                localStorage.setItem('quiz2Score', correct);
+                // Store Quiz 1 score
+                localStorage.setItem('quiz1Score', correct);
                 
                 document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
                 document.getElementById('results').style.display = 'block';
@@ -445,10 +445,10 @@
         }
 
         function updatePlaysCounter() {
-            let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
+            let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz1') || '5089');
             if (plays < 5089) {
                 plays = 5089;
-                localStorage.setItem('80sGridPlaysQuiz2', plays);
+                localStorage.setItem('80sGridPlaysQuiz1', plays);
             }
             document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
         }
@@ -459,11 +459,11 @@
         }
 
         function shareScore() {
-            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Quiz 2: https://80sgrid.com/day2.html`;
+            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid: https://80sgrid.com/`;
             
             if (navigator.share) {
                 navigator.share({
-                    title: "Leonardo's 80s Hits Grid - Quiz 2",
+                    title: "Leonardo's 80s Hits Grid",
                     text: shareText
                 }).catch(() => {});
             } else {
@@ -545,14 +545,6 @@
             
             document.getElementById('leaderboard').style.display = 'block';
         }
-
-        // Enable answer key button when user starts typing
-        document.querySelectorAll('.cell input').forEach(input => {
-            input.addEventListener('input', function() {
-                const hasInput = Array.from(document.querySelectorAll('.cell input')).some(inp => inp.value.trim() !== '');
-                document.getElementById('answerKeyButton').disabled = !hasInput;
-            });
-        });
 
         // Auto-tab between initial inputs
         document.getElementById('initial1').addEventListener('input', function() {
