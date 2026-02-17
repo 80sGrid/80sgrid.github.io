@@ -323,21 +323,53 @@
             border-radius: 10px;
             border: 3px solid #00ff00;
             font-family: 'Courier New', monospace;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 0, 0.5),
+                inset 0 0 20px rgba(0, 255, 0, 0.1);
         }
         .leaderboard h3 {
             color: #ffff00;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-shadow: 0 0 10px #ffff00;
+            font-size: 1.4em;
+            letter-spacing: 4px;
+        }
+        .leaderboard-subtitle {
+            text-align: center;
+            color: #00ff00;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+            letter-spacing: 2px;
         }
         .leaderboard-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid #00ff00;
+            display: grid;
+            grid-template-columns: 40px 80px 1fr 100px;
+            padding: 8px 5px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+            font-size: 1.1em;
+            letter-spacing: 2px;
         }
         .leaderboard-item:last-child {
             border-bottom: none;
+        }
+        .leaderboard-rank {
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffff00;
+        }
+        .leaderboard-initials {
+            color: #00ff00;
+            font-weight: bold;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        .leaderboard-score {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+        }
+        .leaderboard-date {
+            color: #00ffff;
+            text-align: right;
+            font-size: 0.85em;
         }
         .logo-img {
             display: block;
@@ -458,8 +490,8 @@
         </div>
 
         <div id="leaderboard" class="leaderboard" style="display: none;">
-            <h3>═══ LEADERBOARD ═══</h3>
-            <p style="text-align: center; margin-bottom: 20px;">Quiz 1 + Quiz 2 + Quiz 3 (out of 27)</p>
+            <h3>▓▓▓ HIGH SCORES ▓▓▓</h3>
+            <div class="leaderboard-subtitle">COMBINED TOTAL / 27</div>
             <div id="leaderboardList"></div>
         </div>
     </div>
@@ -621,17 +653,20 @@
             const quiz3Score = parseInt(localStorage.getItem('quiz3Score') || '0');
             const combinedScore = quiz1Score + quiz2Score + quiz3Score;
             
-            let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
-            scores.push({
-                initials: initials,
-                score: combinedScore,
-                date: getRandomDateInFebruary()
-            });
-            
-            scores.sort((a, b) => b.score - a.score);
-            scores = scores.slice(0, 10);
-            
-            localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
+            // Only save if score is 22 or above
+            if (combinedScore >= 22) {
+                let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
+                scores.push({
+                    initials: initials,
+                    score: combinedScore,
+                    date: getRandomDateInFebruary()
+                });
+                
+                scores.sort((a, b) => b.score - a.score);
+                scores = scores.slice(0, 10);
+                
+                localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
+            }
             
             document.getElementById('highScoreEntry').style.display = 'none';
             displayLeaderboard();
@@ -642,14 +677,16 @@
             
             if (scores.length < 10) {
                 const fakeScores = [
-                    { initials: 'LEO', score: 27, date: '2/1/26' },
-                    { initials: 'RCK', score: 26, date: '2/3/26' },
-                    { initials: 'MTV', score: 24, date: '2/5/26' },
-                    { initials: 'DAN', score: 23, date: '2/7/26' },
-                    { initials: 'SYN', score: 21, date: '2/9/26' },
-                    { initials: 'POP', score: 20, date: '2/11/26' },
-                    { initials: 'RAD', score: 18, date: '2/12/26' },
-                    { initials: 'VHS', score: 18, date: '2/13/26' }
+                    { initials: 'ACE', score: 27, date: '2/1/26' },
+                    { initials: 'MAX', score: 26, date: '2/3/26' },
+                    { initials: 'ROX', score: 25, date: '2/5/26' },
+                    { initials: 'JAX', score: 24, date: '2/8/26' },
+                    { initials: 'ZEN', score: 24, date: '2/10/26' },
+                    { initials: 'VIX', score: 23, date: '2/12/26' },
+                    { initials: 'RAD', score: 22, date: '2/14/26' },
+                    { initials: 'SKY', score: 22, date: '2/15/26' },
+                    { initials: 'NEO', score: 21, date: '2/16/26' },
+                    { initials: 'LUX', score: 21, date: '2/16/26' }
                 ];
                 
                 scores = [...scores, ...fakeScores].slice(0, 10);
@@ -659,8 +696,10 @@
             const leaderboardList = document.getElementById('leaderboardList');
             leaderboardList.innerHTML = scores.map((score, index) => `
                 <div class="leaderboard-item">
-                    <span>${index + 1}. ${score.initials}</span>
-                    <span>${score.score}/27 - ${score.date}</span>
+                    <span class="leaderboard-rank">${(index + 1).toString().padStart(2, '0')}.</span>
+                    <span class="leaderboard-initials">${score.initials}</span>
+                    <span class="leaderboard-score">${score.score}/27</span>
+                    <span class="leaderboard-date">${score.date}</span>
                 </div>
             `).join('');
             
