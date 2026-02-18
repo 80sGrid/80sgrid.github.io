@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo's 80s Hits Grid - Quiz 2</title>
+    <title>Len's 80sGrid.com Music Edition</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://80sgrid.com/day2">
+    <meta property="og:title" content="Len's 80sGrid.com Music Edition - Quiz 2">
+    <meta property="og:description" content="Test your 80s music knowledge! Can you name songs by Simple Minds, OMD, and INXS?">
+    <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://80sgrid.com/day2">
+    <meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 2">
+    <meta property="twitter:description" content="Test your 80s music knowledge! Can you name songs by Simple Minds, OMD, and INXS?">
+    <meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +24,8 @@
             margin: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
         .container {
             background: white;
@@ -21,12 +33,19 @@
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             max-width: 700px;
+            width: 100%;
+            box-sizing: border-box;
         }
-        h1 {
+        .logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; }
+        .tagline-sub {
             text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2em;
+            font-family: 'Georgia', serif;
+            font-size: 1.4em;
+            font-style: italic;
+            color: #6a0dad;
+            letter-spacing: 2px;
+            margin: 0 0 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
         }
         .subtitle {
             text-align: center;
@@ -34,15 +53,22 @@
             font-size: 4.5em;
             font-weight: bold;
             color: #ff006e;
-            text-shadow: 
-                3px 3px 0px #fb5607,
-                6px 6px 0px #ffbe0b,
-                9px 9px 0px #8338ec,
-                12px 12px 0px #3a86ff;
+            text-shadow: 3px 3px 0px #fb5607, 6px 6px 0px #ffbe0b, 9px 9px 0px #8338ec, 12px 12px 0px #3a86ff;
             font-family: 'Arial Black', sans-serif;
             letter-spacing: 5px;
             transform: perspective(500px) rotateX(5deg);
         }
+        .how-to-play {
+            background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 0 20px rgba(255,20,147,.4);
+            border: 3px solid rgba(255,255,255,.3);
+        }
+        .how-to-play h2 { text-align:center; margin-top:0; margin-bottom:10px; font-size:1.5em; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
+        .how-to-play p { margin:0; line-height:1.6; text-shadow:1px 1px 2px rgba(0,0,0,.5); }
         .grid {
             display: grid;
             grid-template-columns: 100px repeat(3, 1fr);
@@ -60,676 +86,431 @@
             padding: 8px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 0.75em;
+            font-size: 0.85em;
             line-height: 1.2;
             word-wrap: break-word;
             hyphens: auto;
         }
-        
-        /* 80s Neon Headers */
-        .header.col-header:nth-child(2) {
-            background: linear-gradient(135deg, #FF1493, #FF69B4);
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
-            border: 2px solid #FF1493;
-        }
-        .header.col-header:nth-child(3) {
-            background: linear-gradient(135deg, #00CED1, #1E90FF);
-            box-shadow: 0 0 15px rgba(0, 206, 209, 0.6);
-            border: 2px solid #00CED1;
-        }
-        .header.col-header:nth-child(4) {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-            border: 2px solid #FFD700;
-            color: #000;
-            font-weight: 900;
-        }
-        
-        .header.row-header {
-            background: linear-gradient(135deg, #8B00FF, #DA70D6);
-            box-shadow: 0 0 15px rgba(139, 0, 255, 0.6);
-            border: 2px solid #8B00FF;
-        }
-        
-        .how-to-play {
-            background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+        .header.col-header:nth-child(2) { background:linear-gradient(135deg,#FF1493,#FF69B4); box-shadow:0 0 15px rgba(255,20,147,.6); border:2px solid #FF1493; }
+        .header.col-header:nth-child(3) { background:linear-gradient(135deg,#00CED1,#1E90FF); box-shadow:0 0 15px rgba(0,206,209,.6); border:2px solid #00CED1; }
+        .header.col-header:nth-child(4) { background:linear-gradient(135deg,#FFD700,#FFA500); box-shadow:0 0 15px rgba(255,215,0,.6); border:2px solid #FFD700; color:#000; font-weight:900; }
+        .header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; }
+        .col-header { grid-row: 1; }
+        .row-header { grid-column: 1; }
+        .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:8px; }
+        .cell input { width:100%; padding:8px; border:none; background:transparent; text-align:center; font-size:0.85em; font-weight:bold; outline:none; }
+        .cell input::placeholder { color:#adb5bd; font-style:italic; }
+        .cell.correct { background:#d4edda; border-color:#28a745; }
+        .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
+        .button-container { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+        button { background:#667eea; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:1em; transition:background 0.3s; }
+        button:hover { background:#5568d3; }
+        #results { margin-top:20px; padding:20px; background:#e7f3ff; border:2px solid #667eea; border-radius:8px; text-align:center; }
+
+        /* NEXT QUIZ BUTTON */
+        .next-quiz-btn {
+            display: inline-block;
+            margin: 15px auto;
+            background: linear-gradient(135deg, #FF1493, #8B00FF);
             color: white;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.3em;
+            font-weight: 900;
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: 2px;
+            box-shadow: 0 0 25px rgba(255,20,147,0.7), 0 5px 15px rgba(0,0,0,0.3);
+            animation: pulse 1.5s infinite;
         }
-        
-        .how-to-play h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .next-quiz-btn:hover { transform: scale(1.05); }
+        @keyframes pulse {
+            0%,100% { box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); }
+            50% { box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4); }
         }
-        
-        .how-to-play p {
-            margin: 10px 0;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
+
+        /* SURVEY */
         .survey-question {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 25px;
             border-radius: 12px;
             margin-top: 20px;
             color: white;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(102,126,234,.4);
+            border: 3px solid rgba(255,255,255,.3);
         }
-        
-        .survey-question h3 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .survey-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .survey-option {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        .survey-option:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: white;
-            transform: scale(1.02);
-        }
-        
-        .survey-option.selected {
-            background: #00ff00;
-            color: #000;
-            border-color: #00ff00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            .subtitle {
-                font-size: 2.5em;
-                letter-spacing: 3px;
-                text-shadow: 
-                    2px 2px 0px #fb5607,
-                    4px 4px 0px #ffbe0b,
-                    6px 6px 0px #8338ec,
-                    8px 8px 0px #3a86ff;
-            }
-            .grid {
-                grid-template-columns: 80px repeat(3, 1fr);
-                grid-template-rows: 60px repeat(3, 80px);
-                gap: 6px;
-            }
-            .header {
-                font-size: 0.65em;
-                padding: 6px;
-            }
-        }
+        .survey-question h3 { text-align:center; margin-top:0; margin-bottom:20px; font-size:1.3em; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
+        .survey-options { display:flex; flex-direction:column; gap:12px; }
+        .survey-option { background:rgba(255,255,255,.2); padding:15px; border-radius:8px; cursor:pointer; transition:all .3s; border:2px solid transparent; text-align:center; font-weight:bold; }
+        .survey-option:hover { background:rgba(255,255,255,.3); border-color:white; transform:scale(1.02); }
+        .survey-option.selected { background:#00ff00; color:#000; border-color:#00ff00; box-shadow:0 0 20px rgba(0,255,0,.5); }
 
-        .col-header {
-            grid-row: 1;
-        }
-        .row-header {
-            grid-column: 1;
-        }
-        .cell {
-            background: #f8f9fa;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-        }
-        .cell input {
-            width: 100%;
-            padding: 8px;
-            border: none;
-            background: transparent;
-            text-align: center;
-            font-size: 0.9em;
-            outline: none;
-        }
-        .cell input::placeholder {
-            color: #adb5bd;
-        }
-        .cell.correct {
-            background: #d4edda;
-            border-color: #28a745;
-        }
-        .cell.incorrect {
-            background: #f8d7da;
-            border-color: #dc3545;
-        }
-        .button-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #5568d3;
-        }
-        button:disabled {
-            background: #ccc !important;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-        #results {
-            margin-top: 20px;
-            padding: 20px;
-            background: #e7f3ff;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .plays-counter {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 0.9em;
-            color: #666;
-        }
-        .high-score-entry {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #000;
-            color: #00ff00;
-            padding: 40px;
-            border-radius: 10px;
-            border: 4px solid #00ff00;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
-            text-align: center;
-            z-index: 1000;
-            font-family: 'Courier New', monospace;
-        }
-        .high-score-entry h2 {
-            color: #ffff00;
-            text-shadow: 0 0 10px #ffff00;
-            margin-bottom: 20px;
-        }
-        .initials-input {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .initials-input input {
-            width: 60px;
-            height: 80px;
-            font-size: 3em;
-            text-align: center;
-            background: #000;
-            border: 3px solid #00ff00;
-            color: #00ff00;
-            text-transform: uppercase;
-            font-family: 'Courier New', monospace;
-        }
-        .arcade-button {
-            background: #00ff00;
-            color: #000;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-        }
-        .arcade-button:hover {
-            background: #00cc00;
-        }
+        /* MY STATS MODAL */
+        .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
+        .stats-modal.show { display:flex; }
+        .stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Courier New',monospace; box-shadow:0 0 40px rgba(255,20,147,0.6); }
+        .stats-box h2 { color:#FF1493; text-shadow:0 0 10px #FF1493; font-size:1.3em; letter-spacing:3px; margin:0 0 5px; text-align:center; }
+        .stats-sub { color:#00ffff; text-align:center; font-size:0.75em; letter-spacing:2px; margin-bottom:20px; }
+        .stat-row { border-bottom:1px solid rgba(255,20,147,0.3); padding:12px 0; display:flex; justify-content:space-between; align-items:center; }
+        .stat-label { color:#aaa; font-size:0.85em; letter-spacing:1px; }
+        .stat-value { color:#ffff00; font-size:1.2em; font-weight:bold; text-shadow:0 0 8px #ffff00; }
+        .stats-close { display:block; margin:25px auto 0; background:#FF1493; color:#000; border:none; padding:10px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; border-radius:4px; }
+
+        /* DAILY LIMIT MODAL */
+        .limit-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
+        .limit-modal.show { display:flex; }
+        .limit-box { background:#000; border:4px solid #FF1493; border-radius:12px; padding:40px 30px; text-align:center; font-family:'Courier New',monospace; max-width:320px; width:90%; box-shadow:0 0 40px rgba(255,20,147,0.7); }
+        .limit-box h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; font-size:1.4em; letter-spacing:3px; margin-bottom:15px; }
+        .limit-box p { color:#00ff00; line-height:1.7; margin-bottom:20px; }
+        .limit-box button { background:#FF1493; color:#000; border:none; padding:12px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; border-radius:4px; }
+
+        /* HIGH SCORE ENTRY */
+        .high-score-entry { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#000; color:#00ff00; padding:40px; border-radius:10px; border:4px solid #00ff00; box-shadow:0 0 30px rgba(0,255,0,.5); text-align:center; z-index:1000; font-family:'Courier New',monospace; width:90%; max-width:340px; box-sizing:border-box; }
+        .high-score-entry h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; margin-bottom:20px; }
+        .initials-input { display:flex; gap:15px; justify-content:center; margin:20px 0; }
+        .initials-input input { width:60px; height:80px; font-size:3em; text-align:center; background:#000; border:3px solid #00ff00; color:#00ff00; text-transform:uppercase; font-family:'Courier New',monospace; }
+        .arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Courier New',monospace; box-shadow:0 0 20px rgba(0,255,0,.5); }
+        .arcade-button:hover { background:#00cc00; }
+
+        /* LEADERBOARD */
         .leaderboard {
             margin-top: 30px;
-            background: #000;
+            background: #000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top / contain no-repeat;
             color: #00ff00;
-            padding: 25px;
+            padding: 15px;
             border-radius: 10px;
             border: 3px solid #00ff00;
             font-family: 'Courier New', monospace;
-            box-shadow: 
-                0 0 30px rgba(0, 255, 0, 0.5),
-                inset 0 0 20px rgba(0, 255, 0, 0.1);
-        }
-        .leaderboard h3 {
-            color: #ffff00;
-            text-align: center;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #ffff00;
-            font-size: 1.4em;
-            letter-spacing: 4px;
-        }
-        .leaderboard-subtitle {
-            text-align: center;
-            color: #00ff00;
-            margin-bottom: 25px;
-            font-size: 0.9em;
-            letter-spacing: 2px;
-        }
-        .leaderboard-item {
-            display: grid;
-            grid-template-columns: 40px 80px 1fr 100px;
-            padding: 8px 5px;
-            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
-            font-size: 1.1em;
-            letter-spacing: 2px;
-        }
-        .leaderboard-item:last-child {
-            border-bottom: none;
-        }
-        .leaderboard-rank {
-            color: #ffff00;
-            text-shadow: 0 0 5px #ffff00;
-        }
-        .leaderboard-initials {
-            color: #00ff00;
-            font-weight: bold;
-            text-shadow: 0 0 5px #00ff00;
-        }
-        .leaderboard-score {
-            color: #ff00ff;
-            text-shadow: 0 0 5px #ff00ff;
-        }
-        .leaderboard-date {
-            color: #00ffff;
-            text-align: right;
-            font-size: 0.85em;
-        }
-        .logo-img {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 300px;
+            box-shadow: 0 0 30px rgba(0,255,0,.5), inset 0 0 20px rgba(0,255,0,.1);
+            min-height: 300px;
             width: 100%;
-            height: auto;
+            box-sizing: border-box;
+        }
+        .leaderboard-scores-wrap { margin-top:160px; background:rgba(0,0,0,0.75); border-radius:8px; padding:15px 10px 10px; }
+        .leaderboard-subtitle { text-align:center; color:#00ffff; margin-bottom:15px; font-size:0.85em; letter-spacing:3px; }
+        .leaderboard-item { display:grid; grid-template-columns:40px 70px 1fr 80px; padding:8px 5px; border-bottom:1px solid rgba(0,255,0,.3); font-size:1em; letter-spacing:2px; }
+        .leaderboard-item:last-child { border-bottom:none; }
+        .leaderboard-rank { color:#ffff00; text-shadow:0 0 5px #ffff00; }
+        .leaderboard-initials { color:#00ff00; font-weight:bold; text-shadow:0 0 5px #00ff00; }
+        .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
+        .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
+
+        @media (max-width:768px) {
+            .container { padding:15px; }
+            .subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
+            .grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,80px); gap:6px; }
+            .header { font-size:.65em; padding:6px; }
+            .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
+            .leaderboard-scores-wrap { margin-top:100px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- My Stats Modal -->
+    <div class="stats-modal" id="statsModal" onclick="if(event.target===this) toggleStats()">
+        <div class="stats-box">
+            <h2>★ MY STATS ★</h2>
+            <div class="stats-sub">PLAYER PROFILE</div>
+            <div class="stat-row"><span class="stat-label">QUIZZES TODAY</span><span class="stat-value" id="statToday">0</span></div>
+            <div class="stat-row"><span class="stat-label">TOTAL PLAYED</span><span class="stat-value" id="statTotal">0</span></div>
+            <div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0%</span></div>
+            <div class="stat-row"><span class="stat-label">BEST QUIZ SCORE</span><span class="stat-value" id="statBest">0/9</span></div>
+            <div class="stat-row"><span class="stat-label">🔥 DAY STREAK</span><span class="stat-value" id="statStreak">0</span></div>
+            <button class="stats-close" onclick="toggleStats()">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- Daily Limit Modal -->
+    <div class="limit-modal" id="limitModal">
+        <div class="limit-box">
+            <h2>⚡ GAME OVER ⚡</h2>
+            <p>You've maxed out your quizzes for today!<br><br>🎸 Come back tomorrow for more 80s glory! 🎸</p>
+            <button onclick="document.getElementById('limitModal').classList.remove('show')">OK, SEE YOU TOMORROW!</button>
+        </div>
+    </div>
+
     <div class="container">
-        <img src="https://www.dropbox.com/scl/fi/s96q4lwfjan4g8buo4i31/80SG.jpg?rlkey=e8dmffvxl7gy7uksg79409tc2&st=l7i0dypg&raw=1" alt="80s Grid Logo" class="logo-img">
-        
-        <h1>🎸 Leonardo's 80s Hits Grid 🎸</h1>
-        
+        <img src="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1" alt="80s Grid Header" class="logo-img">
+        <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+
         <div class="how-to-play">
-            <h2>🎯 How to Play</h2>
-            <p>Match the artist (column) with the category (row). Multiple answers may work - get creative! 🏆 Score 8+ to make the leaderboard!</p>
+            <h2>How to Play</h2>
+            <p>Match the artist (column) with the category (row). Type your answers in the boxes below. Multiple answers may work — get creative!</p>
         </div>
-        
+
         <div class="subtitle">Quiz 2</div>
-        
-        <div style="text-align: center; margin-bottom: 15px;">
-            <span id="playsCounter" style="color: #667eea; font-weight: bold; font-size: 0.9em;">🎮 Loading plays...</span>
-            <span style="margin: 0 10px; color: #ccc;">|</span>
-            <a href="#" onclick="showLeaderboard(); return false;" style="color: #667eea; text-decoration: none; font-weight: bold; font-size: 0.9em;">🏆 View Leaderboard</a>
-        </div>
-        
-        <div class="plays-counter" style="display: none;">
-            <span id="playsCounterOld">🎮 Loading plays...</span>
+
+        <div style="text-align:center; margin-bottom:15px;">
+            <div style="margin-bottom:8px;">
+                <span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span>
+            </div>
+            <div>
+                <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 High Scores</a>
+                <span style="margin:0 8px; color:#ccc;">|</span>
+                <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📊 My Stats</a>
+            </div>
         </div>
 
         <div class="grid">
-            <div class="header" style="grid-row: 1; grid-column: 1; background: transparent;"></div>
-            <div class="header col-header" style="grid-column: 2;">Simple Minds</div>
-            <div class="header col-header" style="grid-column: 3;">OMD</div>
-            <div class="header col-header" style="grid-column: 4;">INXS</div>
-            
-            <div class="header row-header" style="grid-row: 2;">Song from John Hughes Film</div>
-            <div class="cell" data-row="0" data-col="0">
-                <input type="text" placeholder="?" />
-            </div>
-            <div class="cell" data-row="0" data-col="1">
-                <input type="text" placeholder="?" />
-            </div>
-            <div class="cell" data-row="0" data-col="2">
-                <input type="text" placeholder="?" />
-            </div>
-            
-            <div class="header row-header" style="grid-row: 3;">Top 5 Hit in the 1980s</div>
-            <div class="cell" data-row="1" data-col="0">
-                <input type="text" placeholder="?" />
-            </div>
-            <div class="cell" data-row="1" data-col="1">
-                <input type="text" placeholder="?" />
-            </div>
-            <div class="cell" data-row="1" data-col="2">
-                <input type="text" placeholder="?" />
-            </div>
-            
-            <div class="header row-header" style="grid-row: 4;">Song Title with One Word</div>
-            <div class="cell" data-row="2" data-col="0">
-                <input type="text" placeholder="?" />
-            </div>
-            <div class="cell" data-row="2" data-col="1">
-                <input type="text" placeholder="?" />
-            </div>
-            <div class="cell" data-row="2" data-col="2">
-                <input type="text" placeholder="?" />
-            </div>
+            <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
+            <div class="header col-header" style="grid-column:2;">Simple<br>Minds</div>
+            <div class="header col-header" style="grid-column:3;">OMD</div>
+            <div class="header col-header" style="grid-column:4;">INXS</div>
+
+            <div class="header row-header" style="grid-row:2;">Song from John Hughes Film</div>
+            <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" /></div>
+            <div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type here" /></div>
+            <div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type here" /></div>
+
+            <div class="header row-header" style="grid-row:3;">Top 5 Hit in the 1980s</div>
+            <div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type here" /></div>
+            <div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type here" /></div>
+            <div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type here" /></div>
+
+            <div class="header row-header" style="grid-row:4;">Song Title with One Word</div>
+            <div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Type here" /></div>
+            <div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Type here" /></div>
+            <div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Type here" /></div>
         </div>
 
-        <div style="background: #e3f2fd; border: 1px solid #2196f3; padding: 12px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 0.9em;">
-            <strong>🚧 Beta Version</strong> - This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
+        <div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
+            <strong>🚧 Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
         </div>
 
         <div class="button-container">
             <button onclick="checkAnswers()">Check Answers</button>
             <button onclick="resetGrid()">Reset Grid</button>
-            <button onclick="shareScore()" style="background: #FF1493;">📤 Share with a Friend</button>
-            <button id="answerKeyButton" onclick="window.location.href='https://80sgrid.com/answers'" style="background: #9D4EDD;" disabled>View Answer Key</button>
+            <button onclick="shareScore()" style="background:#FF1493;">📤 Share with a Friend</button>
         </div>
 
-        <div id="results" style="display: none;">
-            <div id="score" style="font-size: 1.3em; font-weight: bold; color: #333; margin-bottom: 15px;"></div>
-            
+        <div id="results" style="display:none;">
+            <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+
             <div id="surveyQuestion" class="survey-question">
                 <h3>💖 How much do you love 80s music? 💖</h3>
                 <div class="survey-options">
-                    <div class="survey-option" onclick="selectSurvey(this, 'A')">A. I love it</div>
-                    <div class="survey-option" onclick="selectSurvey(this, 'B')">B. I love it so much</div>
-                    <div class="survey-option" onclick="selectSurvey(this, 'C')">C. Oh my God, I love 80s music!</div>
-                    <div class="survey-option" onclick="selectSurvey(this, 'D')">D. I worship Depeche Mode, Duran Duran and The Smiths</div>
+                    <div class="survey-option" onclick="selectSurvey(this,'A')">A. I love it</div>
+                    <div class="survey-option" onclick="selectSurvey(this,'B')">B. I love it so much</div>
+                    <div class="survey-option" onclick="selectSurvey(this,'C')">C. Oh my God, I love 80s music!</div>
+                    <div class="survey-option" onclick="selectSurvey(this,'D')">D. I worship Depeche Mode, Duran Duran and The Smiths</div>
                 </div>
             </div>
-            
-            <a href="quiz3.html" style="display: inline-block; background: #000; color: white; border: none; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-size: 1em; margin: 15px 0; font-weight: bold;">
-                Are you ready to play Quiz 3 featuring Prince and Queen? Click here if you're ready!
-            </a>
-            <div style="font-size: 0.95em; color: #555; margin-top: 15px;">Brought to you by</div>
-            <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">
-                <a href="https://arrivealivepodcast.com" target="_blank" style="color: #667eea; text-decoration: none;">The Arrive Alive Podcast</a>
+
+            <a href="quiz3.html" class="next-quiz-btn">🎸 PLAY QUIZ 3 → 🎸</a>
+            <div style="font-size:.95em; color:#555; margin-top:20px;">Brought to you by</div>
+            <div style="font-size:1.1em; font-weight:bold; margin-bottom:5px;">
+                <a href="https://arrivealivepodcast.com" target="_blank" style="color:#667eea; text-decoration:none;">The Arrive Alive Podcast</a>
             </div>
-            <div style="font-size: 0.9em; color: #666; font-style: italic;">The Top Motorcycle Safety Podcast</div>
+            <div style="font-size:.9em; color:#666; font-style:italic;">The Top Motorcycle Safety Podcast</div>
         </div>
 
-        <div id="highScoreEntry" class="high-score-entry" style="display: none;">
+        <div id="highScoreEntry" class="high-score-entry" style="display:none;">
             <h2>★ HIGH SCORE ★</h2>
-            <p style="color: #00ff00; text-align: center; font-size: 1.2em; margin-bottom: 20px;">ENTER YOUR INITIALS</p>
+            <p style="color:#00ff00; text-align:center; font-size:1.2em; margin-bottom:20px;">ENTER YOUR INITIALS</p>
             <div class="initials-input">
                 <input type="text" maxlength="1" id="initial1" />
                 <input type="text" maxlength="1" id="initial2" />
                 <input type="text" maxlength="1" id="initial3" />
             </div>
-            <div style="text-align: center; margin-top: 20px;">
+            <div style="text-align:center; margin-top:20px;">
                 <button class="arcade-button" onclick="saveHighScore()">SAVE</button>
             </div>
         </div>
 
-        <div id="leaderboard" class="leaderboard" style="display: none;">
-            <h3>▓▓▓ HIGH SCORES ▓▓▓</h3>
-            <div class="leaderboard-subtitle">COMBINED TOTAL / 27</div>
-            <div id="leaderboardList"></div>
+        <div id="leaderboard" class="leaderboard" style="display:none;">
+            <div class="leaderboard-scores-wrap">
+                <div class="leaderboard-subtitle">── HIGH SCORES ──</div>
+                <div id="leaderboardList"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Answer key with all updates
+        const DAILY_LIMIT = 2;
+        function getTodayKey() { return 'quizzesPlayed_' + new Date().toISOString().slice(0,10); }
+        function getQuizzesPlayedToday() { return parseInt(localStorage.getItem(getTodayKey()) || '0'); }
+        function incrementQuizzesPlayedToday() {
+            const k = getTodayKey(), n = getQuizzesPlayedToday() + 1;
+            localStorage.setItem(k, n); return n;
+        }
+
+        function loadStats() {
+            const today = getQuizzesPlayedToday();
+            const total = parseInt(localStorage.getItem('totalQuizzesPlayed') || '0');
+            const q1 = parseInt(localStorage.getItem('quiz1Score')||0);
+            const q2 = parseInt(localStorage.getItem('quiz2Score')||0);
+            const q3 = parseInt(localStorage.getItem('quiz3Score')||0);
+            const totalCorrect = q1+q2+q3;
+            const quizzesPlayed = (q1>0?1:0)+(q2>0?1:0)+(q3>0?1:0);
+            const possible = quizzesPlayed * 9;
+            const pct = possible > 0 ? Math.round((totalCorrect/possible)*100) : 0;
+            const best = parseInt(localStorage.getItem('bestQuizScore') || '0');
+            const streak = parseInt(localStorage.getItem('playStreak') || '0');
+            document.getElementById('statToday').textContent = today + ' / ' + DAILY_LIMIT;
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statCumulative').textContent = pct + '%';
+            document.getElementById('statBest').textContent = best + '/9';
+            document.getElementById('statStreak').textContent = streak + ' days';
+        }
+
+        function toggleStats() {
+            loadStats();
+            document.getElementById('statsModal').classList.toggle('show');
+        }
+
+        function updateStreak() {
+            const today = new Date().toISOString().slice(0,10);
+            const lastPlayed = localStorage.getItem('lastPlayedDate');
+            let streak = parseInt(localStorage.getItem('playStreak') || '0');
+            if (lastPlayed === today) return;
+            const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+            streak = (lastPlayed === yesterday) ? streak + 1 : 1;
+            localStorage.setItem('playStreak', streak);
+            localStorage.setItem('lastPlayedDate', today);
+        }
+
         const answers = {
-            // Simple Minds Column
             '0-0': ['dont you forget about me'],
             '1-0': ['dont you forget about me'],
-            '2-0': ['waterfront', 'theme', 'changeling', 'celebrate', 'premonition', 'ghostdancing', 'hypnotised', 'factory', 'travel', 'utopia'],
-            
-            // OMD Column
+            '2-0': ['waterfront','theme','changeling','celebrate','premonition','ghostdancing','hypnotised','factory','travel','utopia'],
             '0-1': ['if you leave'],
             '1-1': ['if you leave'],
-            '2-1': ['electricity', 'dreaming', 'secret', 'souvenir'],
-            
-            // INXS Column  
+            '2-1': ['electricity','dreaming','secret','souvenir'],
             '0-2': ['do wot you do'],
-            '1-2': ['need you tonight', 'devil inside', 'new sensation'],
-            '2-2': ['mystify', 'disappear', 'searching', 'sometimes', 'scratch', 'shine', 'sway', 'swing', 'viking', 'kick']
+            '1-2': ['need you tonight','devil inside','new sensation'],
+            '2-2': ['mystify','disappear','searching','sometimes','scratch','shine','sway','swing','viking','kick']
         };
 
         function normalizeString(str) {
-            return str.toLowerCase()
-                .replace(/[''']/g, '')  // Remove apostrophes
-                .replace(/[^a-z0-9\s]/g, '')  // Remove special characters
-                .replace(/\s+/g, ' ')  // Normalize spaces
-                .trim();
-        }
-
-        function getRandomDateInFebruary() {
-            const day = Math.floor(Math.random() * 14) + 1;
-            return `2/${day}/26`;
+            return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
         }
 
         function checkAnswers() {
+            if (getQuizzesPlayedToday() >= DAILY_LIMIT) {
+                document.getElementById('limitModal').classList.add('show');
+                return;
+            }
             const cells = document.querySelectorAll('.cell');
-            let correct = 0;
-            let total = 0;
-
+            let correct = 0, total = 0;
             cells.forEach(cell => {
                 const input = cell.querySelector('input');
                 const userAnswer = normalizeString(input.value);
-                const row = cell.dataset.row;
-                const col = cell.dataset.col;
-                const key = `${row}-${col}`;
-                
+                const key = `${cell.dataset.row}-${cell.dataset.col}`;
                 if (userAnswer) {
                     total++;
-                    const validAnswers = answers[key].map(a => normalizeString(a));
-                    
-                    if (validAnswers.some(answer => userAnswer === answer || userAnswer.includes(answer) || answer.includes(userAnswer))) {
-                        cell.classList.add('correct');
-                        cell.classList.remove('incorrect');
-                        correct++;
+                    const valid = answers[key].map(a => normalizeString(a));
+                    if (valid.some(a => userAnswer===a || userAnswer.includes(a) || a.includes(userAnswer))) {
+                        cell.classList.add('correct'); cell.classList.remove('incorrect'); correct++;
                     } else {
-                        cell.classList.add('incorrect');
-                        cell.classList.remove('correct');
+                        cell.classList.add('incorrect'); cell.classList.remove('correct');
                     }
                 }
             });
-
-            if (total > 0) {
-                // Track play count
-                if (!sessionStorage.getItem('hasPlayedQuiz2')) {
-                    let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
-                    plays++;
-                    localStorage.setItem('80sGridPlaysQuiz2', plays);
-                    updatePlaysCounter();
-                    sessionStorage.setItem('hasPlayedQuiz2', 'true');
-                }
-                
-                // Store Quiz 2 score
-                localStorage.setItem('quiz2Score', correct);
-                
-                document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
-                document.getElementById('results').style.display = 'block';
-                
-                if (correct >= 8 && total === 9) {
-                    setTimeout(() => {
-                        document.getElementById('highScoreEntry').style.display = 'block';
-                        document.getElementById('initial1').focus();
-                    }, 1000);
-                }
-                
-                displayLeaderboard();
-            } else {
-                alert('Fill in some answers first!');
+            if (total === 0) { alert('Fill in some answers first!'); return; }
+            if (!sessionStorage.getItem('hasPlayedQuiz2')) {
+                let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
+                plays++;
+                localStorage.setItem('80sGridPlaysQuiz2', plays);
+                updatePlaysCounter();
+                sessionStorage.setItem('hasPlayedQuiz2', 'true');
+                incrementQuizzesPlayedToday();
+                const tot = parseInt(localStorage.getItem('totalQuizzesPlayed') || '0') + 1;
+                localStorage.setItem('totalQuizzesPlayed', tot);
+                updateStreak();
+                const best = parseInt(localStorage.getItem('bestQuizScore') || '0');
+                if (correct > best) localStorage.setItem('bestQuizScore', correct);
             }
+            localStorage.setItem('quiz2Score', correct);
+            document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
+            document.getElementById('results').style.display = 'block';
+            if (correct >= 8 && total === 9) {
+                setTimeout(() => { document.getElementById('highScoreEntry').style.display = 'block'; document.getElementById('initial1').focus(); }, 1000);
+            }
+            displayLeaderboard();
         }
 
         function updatePlaysCounter() {
             let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz2') || '5089');
-            if (plays < 5089) {
-                plays = 5089;
-                localStorage.setItem('80sGridPlaysQuiz2', plays);
-            }
+            if (plays < 5089) { plays = 5089; localStorage.setItem('80sGridPlaysQuiz2', plays); }
             document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
         }
 
         function showLeaderboard() {
             displayLeaderboard();
-            document.getElementById('leaderboard').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('leaderboard').scrollIntoView({ behavior:'smooth' });
         }
 
         function shareScore() {
-            const shareText = `🎸 Test your 80s music knowledge! Can you name these classic hits? Play Leonardo's 80s Hits Grid Quiz 2: https://80sgrid.com/quiz2`;
-            
+            const shareText = `🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/day2`;
             if (navigator.share) {
-                navigator.share({
-                    title: "Leonardo's 80s Hits Grid - Quiz 2",
-                    text: shareText
-                }).catch(() => {});
+                navigator.share({ title:"Len's 80sGrid.com Music Edition", text: shareText }).catch(()=>{});
             } else {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('Link copied to clipboard! Share it with your friends!');
-                }).catch(() => {
-                    alert(shareText);
-                });
+                navigator.clipboard.writeText(shareText).then(()=>{ alert('Link copied! Share it with your friends!'); }).catch(()=>{ alert(shareText); });
             }
         }
 
         function selectSurvey(element, answer) {
-            // Remove selected class from all options
-            document.querySelectorAll('.survey-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            // Add selected class to clicked option
+            document.querySelectorAll('.survey-option').forEach(opt => opt.classList.remove('selected'));
             element.classList.add('selected');
-            
-            // Store the answer
             localStorage.setItem('80sGridSurveyAnswer', answer);
         }
 
         function resetGrid() {
-            const inputs = document.querySelectorAll('.cell input');
-            inputs.forEach(input => {
-                input.value = '';
-                input.parentElement.classList.remove('correct', 'incorrect');
-            });
+            document.querySelectorAll('.cell input').forEach(i => { i.value=''; i.parentElement.classList.remove('correct','incorrect'); });
             document.getElementById('results').style.display = 'none';
             document.getElementById('highScoreEntry').style.display = 'none';
         }
 
         function saveHighScore() {
-            const initial1 = document.getElementById('initial1').value.toUpperCase();
-            const initial2 = document.getElementById('initial2').value.toUpperCase();
-            const initial3 = document.getElementById('initial3').value.toUpperCase();
-            
-            if (!initial1 || !initial2 || !initial3) {
-                alert('Please enter all 3 initials!');
-                return;
-            }
-            
-            const initials = initial1 + initial2 + initial3;
-            const quiz1Score = parseInt(localStorage.getItem('quiz1Score') || '0');
-            const quiz2Score = parseInt(localStorage.getItem('quiz2Score') || '0');
-            const quiz3Score = parseInt(localStorage.getItem('quiz3Score') || '0');
-            const combinedScore = quiz1Score + quiz2Score + quiz3Score;
-            
-            // Only save if score is 22 or above
-            if (combinedScore >= 22) {
-                let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
-                scores.push({
-                    initials: initials,
-                    score: combinedScore,
-                    date: getRandomDateInFebruary()
-                });
-                
-                scores.sort((a, b) => b.score - a.score);
-                scores = scores.slice(0, 10);
-                
+            const i1 = document.getElementById('initial1').value.toUpperCase();
+            const i2 = document.getElementById('initial2').value.toUpperCase();
+            const i3 = document.getElementById('initial3').value.toUpperCase();
+            if (!i1||!i2||!i3) { alert('Please enter all 3 initials!'); return; }
+            const q1 = parseInt(localStorage.getItem('quiz1Score')||0);
+            const q2 = parseInt(localStorage.getItem('quiz2Score')||0);
+            const q3 = parseInt(localStorage.getItem('quiz3Score')||0);
+            const totalCorrect = q1+q2+q3;
+            const quizzesPlayed = (q1>0?1:0)+(q2>0?1:0)+(q3>0?1:0);
+            const possible = quizzesPlayed * 9;
+            const pct = possible > 0 ? Math.round((totalCorrect/possible)*100) : 0;
+            if (pct >= 80) {
+                let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
+                scores.push({ initials:i1+i2+i3, pct, quizzes:quizzesPlayed, date: new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'}) });
+                scores.sort((a,b)=>b.pct-a.pct);
+                scores = scores.slice(0,10);
                 localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
             }
-            
             document.getElementById('highScoreEntry').style.display = 'none';
             displayLeaderboard();
         }
 
         function displayLeaderboard() {
-            let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined') || '[]');
-            
-            if (scores.length < 10) {
-                const fakeScores = [
-                    { initials: 'ACE', score: 27, date: '2/1/26' },
-                    { initials: 'MAX', score: 26, date: '2/3/26' },
-                    { initials: 'ROX', score: 25, date: '2/5/26' },
-                    { initials: 'JAX', score: 24, date: '2/8/26' },
-                    { initials: 'ZEN', score: 24, date: '2/10/26' },
-                    { initials: 'VIX', score: 23, date: '2/12/26' },
-                    { initials: 'RAD', score: 22, date: '2/14/26' },
-                    { initials: 'SKY', score: 22, date: '2/15/26' },
-                    { initials: 'NEO', score: 21, date: '2/16/26' },
-                    { initials: 'LUX', score: 21, date: '2/16/26' }
-                ];
-                
-                scores = [...scores, ...fakeScores].slice(0, 10);
-                scores.sort((a, b) => b.score - a.score);
-            }
-            
-            const leaderboardList = document.getElementById('leaderboardList');
-            leaderboardList.innerHTML = scores.map((score, index) => `
+            let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
+            const fakeScores = [
+                {initials:'ACE',pct:100,date:'2/1/26'},{initials:'MAX',pct:96,date:'2/3/26'},
+                {initials:'ROX',pct:93,date:'2/5/26'},{initials:'JAX',pct:89,date:'2/8/26'},
+                {initials:'ZEN',pct:89,date:'2/10/26'},{initials:'VIX',pct:85,date:'2/12/26'},
+                {initials:'RAD',pct:85,date:'2/14/26'},{initials:'SKY',pct:82,date:'2/15/26'},
+                {initials:'NEO',pct:81,date:'2/16/26'},{initials:'LUX',pct:80,date:'2/16/26'}
+            ];
+            if (scores.length < 10) scores = [...scores,...fakeScores].slice(0,10);
+            scores.sort((a,b)=>b.pct-a.pct);
+            document.getElementById('leaderboardList').innerHTML = scores.map((s,i)=>`
                 <div class="leaderboard-item">
-                    <span class="leaderboard-rank">${(index + 1).toString().padStart(2, '0')}.</span>
-                    <span class="leaderboard-initials">${score.initials}</span>
-                    <span class="leaderboard-score">${score.score}/27</span>
-                    <span class="leaderboard-date">${score.date}</span>
-                </div>
-            `).join('');
-            
+                    <span class="leaderboard-rank">${String(i+1).padStart(2,'0')}.</span>
+                    <span class="leaderboard-initials">${s.initials}</span>
+                    <span class="leaderboard-score">${s.pct}%</span>
+                    <span class="leaderboard-date">${s.date}</span>
+                </div>`).join('');
             document.getElementById('leaderboard').style.display = 'block';
         }
 
-        // Enable answer key button when user starts typing
-        document.querySelectorAll('.cell input').forEach(input => {
-            input.addEventListener('input', function() {
-                const hasInput = Array.from(document.querySelectorAll('.cell input')).some(inp => inp.value.trim() !== '');
-                document.getElementById('answerKeyButton').disabled = !hasInput;
-            });
-        });
+        document.getElementById('initial1').addEventListener('input', function(){ if(this.value) document.getElementById('initial2').focus(); });
+        document.getElementById('initial2').addEventListener('input', function(){ if(this.value) document.getElementById('initial3').focus(); });
+        document.getElementById('initial3').addEventListener('keypress', function(e){ if(e.key==='Enter') saveHighScore(); });
 
-        // Auto-tab between initial inputs
-        document.getElementById('initial1').addEventListener('input', function() {
-            if (this.value) document.getElementById('initial2').focus();
-        });
-        document.getElementById('initial2').addEventListener('input', function() {
-            if (this.value) document.getElementById('initial3').focus();
-        });
-        document.getElementById('initial3').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') saveHighScore();
-        });
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePlaysCounter();
-            displayLeaderboard();
-        });
+        document.addEventListener('DOMContentLoaded', ()=>{ updatePlaysCounter(); displayLeaderboard(); });
     </script>
 </body>
 </html>
