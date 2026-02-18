@@ -98,7 +98,7 @@ hyphens: auto;
 .col-header { grid-row: 1; }
 .row-header { grid-column: 1; }
 .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
-.cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.75em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.7; }
+.cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.7em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.8; }
 .cell input::placeholder { color:#adb5bd; font-style:italic; white-space:normal; word-spacing:100vw; }
 .cell.correct { background:#d4edda; border-color:#28a745; }
 .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
@@ -273,7 +273,7 @@ box-sizing: border-box;
 
 <div class="how-to-play">
 <h2>How to Play</h2>
-<p>Match the artist (column) with the category (row). Click any box to enter your answer. Multiple answers may work — get creative!</p>
+<p>Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</p>
 </div>
 
 <div class="subtitle">Quiz 1</div>
@@ -410,8 +410,8 @@ const row = cell.dataset.row;
 const col = cell.dataset.col;
 
 // Get column and row headers
-const colHeader = document.querySelector(`.col-header[style*="grid-column: ${parseInt(col) + 2}"]`).textContent.replace('<br>',' ').trim();
-const rowHeader = document.querySelector(`.row-header[style*="grid-row: ${parseInt(row) + 2}"]`).textContent;
+const colHeader = document.querySelector(`.col-header[style*="grid-column:${parseInt(col) + 2}"]`).textContent.trim().replace(/\s+/g, ' ');
+const rowHeader = document.querySelector(`.row-header[style*="grid-row:${parseInt(row) + 2}"]`).textContent.trim();
 
 document.getElementById('modalTitle').textContent = `${colHeader} - ${rowHeader}`;
 document.getElementById('modalInput').value = input.value;
