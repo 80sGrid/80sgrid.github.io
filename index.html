@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +87,7 @@
             padding: 8px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 0.75em;
+            font-size: 0.85em;
             line-height: 1.2;
             word-wrap: break-word;
             hyphens: auto;
@@ -98,7 +99,7 @@
         .col-header { grid-row: 1; }
         .row-header { grid-column: 1; }
         .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:8px; }
-        .cell input { width:100%; padding:8px; border:none; background:transparent; text-align:center; font-size:0.85em; outline:none; }
+        .cell input { width:100%; padding:8px; border:none; background:transparent; text-align:center; font-size:1em; font-weight:bold; outline:none; }
         .cell input::placeholder { color:#adb5bd; font-style:italic; }
         .cell.correct { background:#d4edda; border-color:#28a745; }
         .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
@@ -217,7 +218,7 @@
         <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 
         <div class="how-to-play">
-            <h2>🎯 How to Play</h2>
+            <h2>How to Play</h2>
             <p>Match the artist (column) with the category (row). Type your answers in the boxes below. Multiple answers may work — get creative!</p>
         </div>
 
@@ -236,9 +237,9 @@
 
         <div class="grid">
             <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-            <div class="header col-header" style="grid-column:2;">Duran Duran</div>
+            <div class="header col-header" style="grid-column:2;">Duran<br>Duran</div>
             <div class="header col-header" style="grid-column:3;">Madonna</div>
-            <div class="header col-header" style="grid-column:4;">Michael Jackson</div>
+            <div class="header col-header" style="grid-column:4;">Michael<br>Jackson</div>
 
             <div class="header row-header" style="grid-row:2;">Top 10 Hit in 1984</div>
             <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" /></div>
