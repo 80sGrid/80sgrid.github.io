@@ -72,7 +72,7 @@ border: 3px solid rgba(255,255,255,.3);
 .grid {
 display: grid;
 grid-template-columns: 100px repeat(3, 1fr);
-grid-template-rows: 70px repeat(3, 90px);
+grid-template-rows: 70px repeat(3, 110px);
 gap: 8px;
 margin-bottom: 20px;
 }
@@ -97,9 +97,9 @@ hyphens: auto;
 .header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; }
 .col-header { grid-row: 1; }
 .row-header { grid-column: 1; }
-.cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:8px; cursor:pointer; }
-.cell input { width:100%; padding:8px; border:none; background:transparent; text-align:center; font-size:0.85em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; }
-.cell input::placeholder { color:#adb5bd; font-style:italic; white-space:pre-line; }
+.cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
+.cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.75em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.7; }
+.cell input::placeholder { color:#adb5bd; font-style:italic; white-space:normal; word-spacing:100vw; }
 .cell.correct { background:#d4edda; border-color:#28a745; }
 .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
 .button-container { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
@@ -224,7 +224,7 @@ box-sizing: border-box;
 @media (max-width:768px) {
 .container { padding:15px; }
 .subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
-.grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,80px); gap:6px; }
+.grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
 .header { font-size:.65em; padding:6px; }
 .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
 .leaderboard-scores-wrap { margin-top:100px; }
@@ -283,7 +283,7 @@ box-sizing: border-box;
 <span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span>
 </div>
 <div>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">We Love The '80s!</a>
+<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 High Scores</a>
 <span style="margin:0 8px; color:#ccc;">|</span>
 <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📊 My Stats</a>
 </div>
@@ -296,19 +296,19 @@ box-sizing: border-box;
 <div class="header col-header" style="grid-column:4;">Michael<br>Jackson</div>
 
 <div class="header row-header" style="grid-row:2;">Top 10 Hit in 1984</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
-<div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
-<div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
 
 <div class="header row-header" style="grid-row:3;">Song with "Girl" in Title</div>
-<div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
-<div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
-<div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
+<div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
 
 <div class="header row-header" style="grid-row:4;">Song from 1987 Album</div>
-<div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
-<div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
-<div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Click To&#10;Answer" readonly /></div>
+<div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
 </div>
 
 <div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
