@@ -8,12 +8,12 @@
     <meta property="og:url" content="https://80sgrid.com/">
     <meta property="og:title" content="Leonardo's 80s Hits Grid - Quiz 1">
     <meta property="og:description" content="Test your 80s music knowledge! Can you name songs by Duran Duran, Madonna, and Michael Jackson?">
-    <meta property="og:image" content="https://www.dropbox.com/scl/fi/kc0jiw14zjlxh8xzl7vgc/Screenshot-2026-02-15-at-10.57.15-PM.png?rlkey=shyyk8lor606ktuvkh0a0xez2&st=0ac23xxy&raw=1">
+    <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://80sgrid.com/">
-    <meta property="twitter:title" content="Leonardo's 80s Hits Grid - Quiz 1">
+    <meta property="twitter:title" content="Len's 80sGrid.com Music Edition">
     <meta property="twitter:description" content="Test your 80s music knowledge! Can you name songs by Duran Duran, Madonna, and Michael Jackson?">
-    <meta property="twitter:image" content="https://www.dropbox.com/scl/fi/kc0jiw14zjlxh8xzl7vgc/Screenshot-2026-02-15-at-10.57.15-PM.png?rlkey=shyyk8lor606ktuvkh0a0xez2&st=0ac23xxy&raw=1">
+    <meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
 
     <style>
         /* ── HAMBURGER MENU ── */
@@ -163,6 +163,7 @@
             margin: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
+            overflow-x: hidden;
         }
         .container {
             background: white;
@@ -340,14 +341,16 @@
         /* ── LEADERBOARD ── */
         .leaderboard {
             margin-top: 30px;
-            background: #000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top / cover no-repeat;
+            background: #000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top / contain no-repeat;
             color: #00ff00;
-            padding: 25px;
+            padding: 15px;
             border-radius: 10px;
             border: 3px solid #00ff00;
             font-family: 'Courier New', monospace;
             box-shadow: 0 0 30px rgba(0,255,0,.5), inset 0 0 20px rgba(0,255,0,.1);
             min-height: 300px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .leaderboard-scores-wrap {
             margin-top: 160px; /* push scores below the logo in the bg image */
@@ -444,7 +447,7 @@
 
         <div class="how-to-play">
             <h2>🎯 How to Play</h2>
-            <p>Match the artist (column) with the category (row). Type your answers in the boxes below. Multiple answers may work — get creative! 🏆 Score 8+ to make the leaderboard!</p>
+            <p>Match the artist (column) with the category (row). Type your answers in the boxes below. Multiple answers may work — get creative!</p>
         </div>
 
         <div class="subtitle">Quiz 1</div>
