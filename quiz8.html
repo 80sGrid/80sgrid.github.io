@@ -135,6 +135,18 @@ button:hover { background:#5568d3; }
 .mc-option:hover { background:#e8c8ff; transform:scale(1.02); }
 .mc-option:last-child { margin-bottom:0; }
 .text-section.hidden { display:none; }
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -387,14 +399,14 @@ const answers = {
 };
 
 const mcOptions = {
-  '0-0': ['Kiss of Life', 'Sledgehammer', 'In Your Eyes'],
+  '0-0': ['Kiss of Life', 'Kiss on My List', 'Kiss the Bride'],
   '1-0': ['Genesis', 'The Lamb Lies Down on Broadway', 'Peter Gabriel Band'],
-  '2-0': ['Kate Bush', 'Sinead O'Connor', 'Annie Lennox'],
-  '0-1': ['The Shoop Shoop Song', 'If I Could Turn Back Time', 'Believe'],
+  '2-0': ['Kate Bush', "Sinead O'Connor", 'Annie Lennox'],
+  '0-1': ["The Shoop Shoop Song (It's in His Kiss)", 'Kiss', 'Kisses on the Wind'],
   '1-1': ['Sonny & Cher', 'The Wreckers', 'Gregg Allman Band'],
   '2-1': ['Peter Cetera', 'Jon Bon Jovi', 'David Coverdale'],
-  '0-2': ['Kiss Me Deadly', 'Close My Eyes Forever', 'Back to the Cave'],
-  '1-2': ['The Runaways', 'The Bangles', 'The Go-Go's'],
+  '0-2': ['Kiss Me Deadly', 'Kiss on My List', 'Kiss the Bride'],
+  '1-2': ['The Runaways', 'The Bangles', "The Go-Go's"],
   '2-2': ['Ozzy Osbourne', 'Jon Bon Jovi', 'Dee Snider']
 };
 let lifelinesRemaining = 3;
@@ -514,6 +526,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   initializeCells(); updatePlaysCounter(); displayLeaderboard(); updateLifelineUI();
   if(st){ st.textContent=SPONSOR_TAGLINE; }
 });
+
+
 </script>
 </body>
 </html>
