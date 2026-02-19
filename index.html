@@ -3,51 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Len's 80sGrid.com — Quiz 1</title>
+<title>Len's 80sGrid.com Music Edition</title>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://80sgrid.com/index.html">
-<meta property="og:title" content="Len's 80sGrid.com — Quiz 1">
-<meta property="og:description" content="Test your 80s music knowledge! Duran Duran, Madonna, Michael Jackson">
+<meta property="og:url" content="https://80sgrid.com/">
+<meta property="og:title" content="Len's 80sGrid.com Music Edition">
+<meta property="og:description" content="Test your 80s music knowledge! Can you name songs by Duran Duran, Madonna, and Michael Jackson?">
 <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://80sgrid.com/">
+<meta property="twitter:title" content="Len's 80sGrid.com Music Edition">
+<meta property="twitter:description" content="Test your 80s music knowledge! Can you name songs by Duran Duran, Madonna, and Michael Jackson?">
+<meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
 <style>
-body { font-family:Arial,sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:20px; overflow-x:hidden; box-sizing:border-box; }
-.container { background:white; padding:30px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.3); max-width:700px; width:100%; box-sizing:border-box; }
+body {
+font-family: Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+margin: 0;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+padding: 20px;
+overflow-x: hidden;
+box-sizing: border-box;
+}
+.container {
+background: white;
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+max-width: 700px;
+width: 100%;
+box-sizing: border-box;
+}
 .logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; }
-.tagline-sub { text-align:center; font-family:'Georgia',serif; font-size:1.4em; font-style:italic; color:#6a0dad; letter-spacing:2px; margin:0 0 20px; text-shadow:1px 1px 3px rgba(0,0,0,0.15); }
-.subtitle { text-align:center; margin-bottom:30px; font-size:4.5em; font-weight:bold; color:#ff006e; text-shadow:3px 3px 0px #fb5607,6px 6px 0px #ffbe0b,9px 9px 0px #8338ec,12px 12px 0px #3a86ff; font-family:'Arial Black',sans-serif; letter-spacing:5px; transform:perspective(500px) rotateX(5deg); }
-.how-to-play { background:linear-gradient(135deg,#FF1493 0%,#8B00FF 50%,#00CED1 100%); padding:20px; border-radius:12px; margin-bottom:20px; color:white; box-shadow:0 0 20px rgba(255,20,147,.4); border:3px solid rgba(255,255,255,.3); }
+.tagline-sub {
+text-align: center;
+font-family: 'Georgia', serif;
+font-size: 1.4em;
+font-style: italic;
+color: #6a0dad;
+letter-spacing: 2px;
+margin: 0 0 20px;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+}
+.subtitle {
+text-align: center;
+margin-bottom: 30px;
+font-size: 4.5em;
+font-weight: bold;
+color: #ff006e;
+text-shadow: 3px 3px 0px #fb5607, 6px 6px 0px #ffbe0b, 9px 9px 0px #8338ec, 12px 12px 0px #3a86ff;
+font-family: 'Arial Black', sans-serif;
+letter-spacing: 5px;
+transform: perspective(500px) rotateX(5deg);
+}
+.how-to-play {
+background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
+padding: 20px;
+border-radius: 12px;
+margin-bottom: 20px;
+color: white;
+box-shadow: 0 0 20px rgba(255,20,147,.4);
+border: 3px solid rgba(255,255,255,.3);
+}
 .how-to-play h2 { text-align:center; margin-top:0; margin-bottom:10px; font-size:1.5em; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
 .how-to-play p { margin:0; line-height:1.6; text-shadow:1px 1px 2px rgba(0,0,0,.5); }
-.grid { display:grid; grid-template-columns:100px repeat(3,1fr); grid-template-rows:70px repeat(3,110px); gap:8px; margin-bottom:20px; }
-.header { background:#667eea; color:white; display:flex; align-items:center; justify-content:center; text-align:center; padding:8px; border-radius:8px; font-weight:bold; font-size:0.85em; line-height:1.2; word-wrap:break-word; hyphens:auto; }
+.grid {
+display: grid;
+grid-template-columns: 100px repeat(3, 1fr);
+grid-template-rows: 70px repeat(3, 110px);
+gap: 8px;
+margin-bottom: 20px;
+}
+.header {
+background: #667eea;
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 8px;
+border-radius: 8px;
+font-weight: bold;
+font-size: 0.85em;
+line-height: 1.2;
+word-wrap: break-word;
+hyphens: auto;
+}
 .header.col-header:nth-child(2) { background:linear-gradient(135deg,#FF1493,#FF69B4); box-shadow:0 0 15px rgba(255,20,147,.6); border:2px solid #FF1493; }
 .header.col-header:nth-child(3) { background:linear-gradient(135deg,#00CED1,#1E90FF); box-shadow:0 0 15px rgba(0,206,209,.6); border:2px solid #00CED1; }
 .header.col-header:nth-child(4) { background:linear-gradient(135deg,#FFD700,#FFA500); box-shadow:0 0 15px rgba(255,215,0,.6); border:2px solid #FFD700; color:#000; font-weight:900; }
 .header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; }
-.col-header { grid-row:1; }
-.row-header { grid-column:1; }
+.col-header { grid-row: 1; }
+.row-header { grid-column: 1; }
 .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
 .cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.7em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.8; }
-.cell input::placeholder { color:#adb5bd; font-style:italic; }
+.cell input::placeholder { color:#adb5bd; font-style:italic; white-space:normal; word-spacing:100vw; }
 .cell.correct { background:#d4edda; border-color:#28a745; }
 .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
 .button-container { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
 button { background:#667eea; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:1em; transition:background 0.3s; }
 button:hover { background:#5568d3; }
 #results { margin-top:20px; padding:20px; background:#e7f3ff; border:2px solid #667eea; border-radius:8px; text-align:center; }
-.next-quiz-btn { display:inline-block; margin:15px auto; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; text-decoration:none; padding:18px 40px; border-radius:12px; font-size:1.3em; font-weight:900; font-family:'Arial Black',sans-serif; letter-spacing:2px; box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); animation:pulse 1.5s infinite; }
-.next-quiz-btn:hover { transform:scale(1.05); }
-@keyframes pulse { 0%,100% { box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); } 50% { box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4); } }
+.next-quiz-btn {
+display: inline-block;
+margin: 15px auto;
+background: linear-gradient(135deg, #FF1493, #8B00FF);
+color: white;
+text-decoration: none;
+padding: 18px 40px;
+border-radius: 12px;
+font-size: 1.3em;
+font-weight: 900;
+font-family: 'Arial Black', sans-serif;
+letter-spacing: 2px;
+box-shadow: 0 0 25px rgba(255,20,147,0.7), 0 5px 15px rgba(0,0,0,0.3);
+animation: pulse 1.5s infinite;
+}
+.next-quiz-btn:hover { transform: scale(1.05); }
+@keyframes pulse {
+0%,100% { box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); }
+50% { box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4); }
+}
+
 /* INPUT MODAL */
-.input-modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:15px; box-shadow:0 10px 50px rgba(0,0,0,0.5); z-index:3500; display:none; min-width:300px; max-width:90%; box-sizing:border-box; }
-.input-modal.active { display:block; }
-.input-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:3499; display:none; }
-.input-modal-overlay.active { display:block; }
-.input-modal h3 { margin-top:0; margin-bottom:20px; color:#333; font-size:1.2em; text-align:center; }
-.input-modal input { width:100%; padding:15px; font-size:1.2em; border:2px solid #667eea; border-radius:8px; margin-bottom:15px; box-sizing:border-box; }
-.input-modal-buttons { display:flex; gap:10px; }
-.input-modal-buttons button { flex:1; padding:12px; font-size:1em; }
-/* STATS MODAL */
+.input-modal {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: white;
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+z-index: 3500;
+display: none;
+min-width: 300px;
+max-width: 90%;
+box-sizing: border-box;
+}
+.input-modal.active { display: block; }
+.input-modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.7);
+z-index: 3499;
+display: none;
+}
+.input-modal-overlay.active { display: block; }
+.input-modal h3 {
+margin-top: 0;
+margin-bottom: 20px;
+color: #333;
+font-size: 1.2em;
+text-align: center;
+}
+.input-modal input {
+width: 100%;
+padding: 15px;
+font-size: 1.2em;
+border: 2px solid #667eea;
+border-radius: 8px;
+margin-bottom: 15px;
+box-sizing: border-box;
+}
+.input-modal-buttons { display: flex; gap: 10px; }
+.input-modal-buttons button { flex: 1; padding: 12px; font-size: 1em; }
+
+/* MY STATS MODAL */
 .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
 .stats-modal.show { display:flex; }
 .stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Courier New',monospace; box-shadow:0 0 40px rgba(255,20,147,0.6); }
@@ -57,6 +181,7 @@ button:hover { background:#5568d3; }
 .stat-label { color:#aaa; font-size:0.85em; letter-spacing:1px; }
 .stat-value { color:#ffff00; font-size:1.2em; font-weight:bold; text-shadow:0 0 8px #ffff00; }
 .stats-close { display:block; margin:25px auto 0; background:#FF1493; color:#000; border:none; padding:10px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; border-radius:4px; }
+
 /* DAILY LIMIT MODAL */
 .limit-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
 .limit-modal.show { display:flex; }
@@ -64,15 +189,29 @@ button:hover { background:#5568d3; }
 .limit-box h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; font-size:1.4em; letter-spacing:3px; margin-bottom:15px; }
 .limit-box p { color:#00ff00; line-height:1.7; margin-bottom:20px; }
 .limit-box button { background:#FF1493; color:#000; border:none; padding:12px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; border-radius:4px; }
-/* HIGH SCORE */
+
+/* HIGH SCORE ENTRY */
 .high-score-entry { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#000; color:#00ff00; padding:40px; border-radius:10px; border:4px solid #00ff00; box-shadow:0 0 30px rgba(0,255,0,.5); text-align:center; z-index:1000; font-family:'Courier New',monospace; width:90%; max-width:340px; box-sizing:border-box; }
 .high-score-entry h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; margin-bottom:20px; }
 .initials-input { display:flex; gap:15px; justify-content:center; margin:20px 0; }
 .initials-input input { width:60px; height:80px; font-size:3em; text-align:center; background:#000; border:3px solid #00ff00; color:#00ff00; text-transform:uppercase; font-family:'Courier New',monospace; }
 .arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Courier New',monospace; box-shadow:0 0 20px rgba(0,255,0,.5); }
 .arcade-button:hover { background:#00cc00; }
+
 /* LEADERBOARD */
-.leaderboard { margin-top:30px; background:#000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top/contain no-repeat; color:#00ff00; padding:15px; border-radius:10px; border:3px solid #00ff00; font-family:'Courier New',monospace; box-shadow:0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1); min-height:300px; width:100%; box-sizing:border-box; }
+.leaderboard {
+margin-top: 30px;
+background: #000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top / contain no-repeat;
+color: #00ff00;
+padding: 15px;
+border-radius: 10px;
+border: 3px solid #00ff00;
+font-family: 'Courier New', monospace;
+box-shadow: 0 0 30px rgba(0,255,0,.5), inset 0 0 20px rgba(0,255,0,.1);
+min-height: 300px;
+width: 100%;
+box-sizing: border-box;
+}
 .leaderboard-scores-wrap { margin-top:160px; background:rgba(0,0,0,0.75); border-radius:8px; padding:15px 10px 10px; }
 .leaderboard-subtitle { text-align:center; color:#00ffff; margin-bottom:15px; font-size:0.85em; letter-spacing:3px; }
 .leaderboard-item { display:grid; grid-template-columns:40px 70px 1fr 80px; padding:8px 5px; border-bottom:1px solid rgba(0,255,0,.3); font-size:1em; letter-spacing:2px; }
@@ -81,42 +220,17 @@ button:hover { background:#5568d3; }
 .leaderboard-initials { color:#00ff00; font-weight:bold; text-shadow:0 0 5px #00ff00; }
 .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
 .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
-/* PAGE NAV */
-.page-nav { display:flex; justify-content:center; gap:6px; margin-bottom:16px; flex-wrap:wrap; }
-.page-nav a { display:inline-block; padding:5px 11px; border-radius:6px; background:#f0f0f0; color:#667eea; text-decoration:none; font-size:0.8em; font-weight:bold; border:2px solid #dee2e6; transition:background 0.2s; }
-.page-nav a:hover { background:#667eea; color:white; }
-.page-nav a.current { background:#667eea; color:white; border-color:#667eea; }
-/* DIFFICULTY BADGE */
-.difficulty-badge { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 20px; padding:14px 20px; border-radius:12px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 20px var(--badge-glow); }
-.badge-left { text-align:left; }
-.badge-label { font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:2px; color:var(--badge-color); text-transform:uppercase; }
-.badge-score { font-size:0.8em; color:#666; font-weight:bold; margin-top:2px; }
-.badge-stars { font-size:1.5em; color:var(--badge-color); letter-spacing:2px; }
-.badge-desc { font-size:0.75em; color:#888; font-style:italic; margin-top:2px; }
-/* FOOTNOTES */
-.footnote-box { background:#f8f0ff; border-left:4px solid #8B00FF; padding:14px 16px; border-radius:8px; margin-bottom:20px; font-size:0.85em; line-height:1.7; color:#444; }
-.footnote-box strong { color:#6a0dad; display:block; margin-bottom:6px; font-size:1em; }
-.footnote-box li { margin-left:16px; margin-bottom:4px; }
-/* HOW TO PLAY MODAL */
-.htp-modal { display:none; position:fixed; inset:0; z-index:4000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
-.htp-modal.show { display:flex; }
-.htp-box { background:white; border-radius:15px; padding:30px; max-width:380px; width:90%; box-shadow:0 10px 50px rgba(0,0,0,0.4); box-sizing:border-box; }
-.htp-box h2 { margin:0 0 15px; font-family:'Arial Black',sans-serif; color:#8B00FF; font-size:1.3em; text-align:center; }
-.htp-box p { margin:0 0 12px; line-height:1.7; color:#444; font-size:0.95em; }
-.htp-box ul { margin:0 0 15px; padding-left:18px; color:#444; font-size:0.9em; line-height:1.8; }
-.htp-close { display:block; width:100%; padding:12px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:1em; font-weight:bold; cursor:pointer; margin-top:5px; }
-.htp-link { color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em; cursor:pointer; border:none; background:none; padding:0; font-family:Arial,sans-serif; }
-.htp-link:hover { text-decoration:underline; }
+
 @media (max-width:768px) {
-  .container { padding:15px; }
-  .subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
-  .grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
-  .header { font-size:.65em; padding:6px; }
-  .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
-  .leaderboard-scores-wrap { margin-top:100px; }
+.container { padding:15px; }
+.subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
+.grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
+.header { font-size:.65em; padding:6px; }
+.next-quiz-btn { font-size:1.1em; padding:15px 25px; }
+.leaderboard-scores-wrap { margin-top:100px; }
 }
 
-/* LIFELINE COUNTER */
+/* LIFELINE */
 .lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
 .lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
 .lifeline-pips { display:flex; gap:5px; }
@@ -125,20 +239,25 @@ button:hover { background:#5568d3; }
 .lifeline-count { font-size:0.82em; color:#888; font-style:italic; }
 .lifeline-count.empty { color:#dc3545; font-weight:bold; font-style:normal; }
 .no-lifeline-badge { display:none; text-align:center; margin:10px 0; padding:8px 14px; background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:8px; font-weight:900; font-size:0.9em; color:#000; box-shadow:0 0 12px rgba(255,215,0,0.5); }
-/* MC STYLES */
 .mc-toggle-btn { display:block; width:100%; margin-top:12px; padding:11px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:0.95em; font-weight:bold; cursor:pointer; letter-spacing:0.5px; transition:opacity 0.2s; }
 .mc-toggle-btn:hover { opacity:0.88; }
 .mc-toggle-btn:disabled { opacity:0.35; cursor:not-allowed; }
-.mc-section { display:none; }
+.mc-section { display:none; margin-top:8px; }
 .mc-section.visible { display:block; }
 .mc-option { display:block; width:100%; margin-bottom:10px; padding:14px 12px; background:#f8f0ff; border:2px solid #8B00FF; border-radius:10px; font-size:0.95em; font-weight:bold; color:#4a0080; cursor:pointer; text-align:center; transition:background 0.15s,transform 0.1s; box-sizing:border-box; }
 .mc-option:hover { background:#e8c8ff; transform:scale(1.02); }
 .mc-option:last-child { margin-bottom:0; }
+.text-section { }
 .text-section.hidden { display:none; }
+.page-nav { display:flex; justify-content:center; gap:6px; margin-bottom:16px; flex-wrap:wrap; }
+.page-nav a { display:inline-block; padding:5px 11px; border-radius:6px; background:#f0f0f0; color:#667eea; text-decoration:none; font-size:0.8em; font-weight:bold; border:2px solid #dee2e6; transition:background 0.2s; }
+.page-nav a:hover { background:#667eea; color:white; }
+.page-nav a.current { background:#667eea; color:white; border-color:#667eea; }
 </style>
 </head>
 <body>
 
+<!-- Input Modal -->
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
 <h3 id="modalTitle">Enter Answer</h3>
@@ -156,19 +275,21 @@ button:hover { background:#5568d3; }
 </div>
 </div>
 
+<!-- My Stats Modal -->
 <div class="stats-modal" id="statsModal" onclick="if(event.target===this) toggleStats()">
 <div class="stats-box">
 <h2>★ MY STATS ★</h2>
 <div class="stats-sub">PLAYER PROFILE</div>
 <div class="stat-row"><span class="stat-label">QUIZZES TODAY</span><span class="stat-value" id="statToday">0</span></div>
 <div class="stat-row"><span class="stat-label">TOTAL PLAYED</span><span class="stat-value" id="statTotal">0</span></div>
-<div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0/81</span></div>
+<div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0/27</span></div>
 <div class="stat-row"><span class="stat-label">BEST QUIZ SCORE</span><span class="stat-value" id="statBest">0/9</span></div>
 <div class="stat-row"><span class="stat-label">🔥 DAY STREAK</span><span class="stat-value" id="statStreak">0</span></div>
 <button class="stats-close" onclick="toggleStats()">CLOSE</button>
 </div>
 </div>
 
+<!-- Daily Limit Modal -->
 <div class="limit-modal" id="limitModal">
 <div class="limit-box">
 <h2>⚡ GAME OVER ⚡</h2>
@@ -177,26 +298,7 @@ button:hover { background:#5568d3; }
 </div>
 </div>
 
-<div class="htp-modal" id="htpModal" onclick="if(event.target===this) closeHTP()">
-<div class="htp-box">
-<h2>🎸 How to Play</h2>
-<p>Match the <strong>artist</strong> (column) with the <strong>category</strong> (row) to fill in the grid.</p>
-<ul>
-<li>Click any cell to type your answer</li>
-<li>Hit <strong>Check Answers</strong> when ready</li>
-<li>Green = correct, Red = incorrect</li>
-<li>Multiple answers may be accepted — get creative!</li>
-<li>Use the quiz nav at the top to jump between all 9 quizzes</li>
-</ul>
-<p style="font-size:0.8em; color:#888; margin:0;">Tip: Start with Quiz 9 if you want an easier warm-up!</p>
-<button class="htp-close" onclick="closeHTP()">Got it — Let's Play! 🎵</button>
-</div>
-</div>
-
 <div class="container">
-<img src="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1" alt="80s Grid Header" class="logo-img">
-<div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
-
 <div class="page-nav">
 <a href="index.html" class="current">Quiz 1</a>
 <a href="quiz2.html">Quiz 2</a>
@@ -207,33 +309,26 @@ button:hover { background:#5568d3; }
 <a href="quiz7.html">Quiz 7</a>
 <a href="quiz8.html">Quiz 8</a>
 <a href="quiz9.html">Quiz 9</a>
+<a href="quiz10.html">Quiz 10</a>
 </div>
+<img src="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1" alt="80s Grid Header" class="logo-img">
+<div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 
 <div class="how-to-play">
 <h2>How to Play</h2>
 <p>Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</p>
 </div>
 
-
-<div class="difficulty-badge" style="--badge-color:#28a745; --badge-glow:rgba(40,167,69,0.5);">
-<div class="badge-stars">★★☆☆☆</div>
-<div class="badge-left">
-<div class="badge-label">Difficulty: EASY</div>
-<div class="badge-score">Difficulty Score: 3/10</div>
-<div class="badge-desc">The most mainstream artists of the decade</div>
-</div>
-</div>
-
 <div class="subtitle">Quiz 1</div>
 
 <div style="text-align:center; margin-bottom:15px;">
-<div style="margin-bottom:8px;"><span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span></div>
+<div style="margin-bottom:8px;">
+<span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span>
+</div>
 <div>
 <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 High Scores</a>
 <span style="margin:0 8px; color:#ccc;">|</span>
 <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📊 My Stats</a>
-<span style="margin:0 8px; color:#ccc;">|</span>
-<a href="#" onclick="openHTP(); return false;" class="htp-link">❓ How to Play</a>
 </div>
 </div>
 
@@ -253,40 +348,41 @@ button:hover { background:#5568d3; }
 <div class="header col-header" style="grid-column:2;">Duran<br>Duran</div>
 <div class="header col-header" style="grid-column:3;">Madonna</div>
 <div class="header col-header" style="grid-column:4;">Michael<br>Jackson</div>
+
 <div class="header row-header" style="grid-row:2;">Top 10 Hit in 1984</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
-<div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
-<div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type" readonly /></div>
+<div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type" readonly /></div>
+<div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type" readonly /></div>
+
 <div class="header row-header" style="grid-row:3;">Song with "Girl" in Title</div>
-<div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
-<div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
-<div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type" readonly /></div>
+<div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type" readonly /></div>
+<div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type" readonly /></div>
+
 <div class="header row-header" style="grid-row:4;">Song from 1987 Album</div>
-<div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
-<div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
-<div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
+<div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Type" readonly /></div>
+<div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Type" readonly /></div>
+<div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Type" readonly /></div>
 </div>
 
-<div class="footnote-box">
-<strong>📝 Notes</strong>
-<ul>
-<li>Duran Duran were the biggest band in the world in 1984 — their Sing Blue Silver tour sold out arenas on three continents.</li>
-<li>Madonna released three studio albums in the 1980s — each one bigger than the last, culminating in Like a Prayer in 1989.</li>
-<li>Michael Jackson's Thriller is still the best-selling album of all time, with estimated sales between 66 and 70 million copies worldwide.</li>
-<li>All three acts appeared in heavy MTV rotation — this grid is a love letter to the original MTV era.</li>
-</ul>
+<div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
+<strong>🚧 Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
 </div>
+
 <div class="button-container">
 <button onclick="checkAnswers()">Check Answers</button>
 <button onclick="resetGrid()">Reset Grid</button>
 <button onclick="shareScore()" style="background:#FF1493;">📤 Share with a Friend</button>
 </div>
 
-<div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
-<a href="quiz2.html" class="next-quiz-btn">🎸 PLAY QUIZ 2 → 🎸</a>
-
+<a href="day2.html" class="next-quiz-btn">🎸 PLAY QUIZ 2 → 🎸</a>
+<div style="font-size:.95em; color:#555; margin-top:20px;">Brought to you by</div>
+<div style="font-size:1.1em; font-weight:bold; margin-bottom:5px;">
+<a href="https://arrivealivepodcast.com" target="_blank" style="color:#667eea; text-decoration:none;">The Arrive Alive Podcast</a>
+</div>
+<div style="font-size:.9em; color:#666; font-style:italic;">The Top Motorcycle Safety Podcast</div>
 </div>
 
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
@@ -297,7 +393,9 @@ button:hover { background:#5568d3; }
 <input type="text" maxlength="1" id="initial2" />
 <input type="text" maxlength="1" id="initial3" />
 </div>
-<div style="text-align:center; margin-top:20px;"><button class="arcade-button" onclick="saveHighScore()">SAVE</button></div>
+<div style="text-align:center; margin-top:20px;">
+<button class="arcade-button" onclick="saveHighScore()">SAVE</button>
+</div>
 </div>
 
 <div id="leaderboard" class="leaderboard" style="display:none;">
@@ -309,99 +407,125 @@ button:hover { background:#5568d3; }
 </div>
 
 <script>
-const QUIZ_NUM = 1;
-const PLAYS_KEY = '80sGridPlaysQuiz1';
-const SESSION_KEY = 'hasPlayedQuiz1';
-const QUIZ_KEY = 'quiz1Score';
-const DAILY_LIMIT = 999;
-const FAKE_SCORES = [
-    { initials: 'ACE', pct: 100, quizzes: 9, date: '2/1/26' },
-    { initials: 'MAX', pct: 96,  quizzes: 9, date: '2/3/26' },
-    { initials: 'ROX', pct: 93,  quizzes: 9, date: '2/5/26' },
-    { initials: 'JAX', pct: 89,  quizzes: 9, date: '2/8/26' },
-    { initials: 'ZEN', pct: 89,  quizzes: 5, date: '2/10/26' },
-    { initials: 'VIX', pct: 85,  quizzes: 9, date: '2/12/26' },
-    { initials: 'RAD', pct: 85,  quizzes: 4, date: '2/14/26' },
-    { initials: 'SKY', pct: 82,  quizzes: 9, date: '2/15/26' },
-    { initials: 'NEO', pct: 81,  quizzes: 5, date: '2/16/26' },
-    { initials: 'LUX', pct: 80,  quizzes: 9, date: '2/16/26' }
-  ];
-const SHARE_TEXT = "🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/";
-
-
-
-const PLAYS_START = 100;
+const DAILY_LIMIT = 2;
 let currentCell = null;
 
 function getTodayKey() { return 'quizzesPlayed_' + new Date().toISOString().slice(0,10); }
 function getQuizzesPlayedToday() { return parseInt(localStorage.getItem(getTodayKey()) || '0'); }
-function incrementQuizzesPlayedToday() { const k=getTodayKey(); const n=getQuizzesPlayedToday()+1; localStorage.setItem(k,n); return n; }
+function incrementQuizzesPlayedToday() {
+const k = getTodayKey();
+const n = getQuizzesPlayedToday() + 1;
+localStorage.setItem(k, n);
+return n;
+}
 
 function loadStats() {
-  const today=getQuizzesPlayedToday();
-  const total=parseInt(localStorage.getItem('totalQuizzesPlayed')||'0');
-  let cum=0; for(let i=1;i<=9;i++) cum+=parseInt(localStorage.getItem('quiz'+i+'Score')||0);
-  const best=parseInt(localStorage.getItem('bestQuizScore')||'0');
-  const streak=parseInt(localStorage.getItem('playStreak')||'0');
-  document.getElementById('statToday').textContent=today+' / '+DAILY_LIMIT;
-  document.getElementById('statTotal').textContent=total;
-  document.getElementById('statCumulative').textContent=cum+'/81';
-  document.getElementById('statBest').textContent=best+'/9';
-  document.getElementById('statStreak').textContent=streak+' days';
+const today = getQuizzesPlayedToday();
+const total = parseInt(localStorage.getItem('totalQuizzesPlayed') || '0');
+const cumulative = parseInt(localStorage.getItem('quiz1Score')||0) + parseInt(localStorage.getItem('quiz2Score')||0) + parseInt(localStorage.getItem('quiz3Score')||0);
+const best = parseInt(localStorage.getItem('bestQuizScore') || '0');
+const streak = parseInt(localStorage.getItem('playStreak') || '0');
+document.getElementById('statToday').textContent = today + ' / ' + DAILY_LIMIT;
+document.getElementById('statTotal').textContent = total;
+document.getElementById('statCumulative').textContent = cumulative + '/27';
+document.getElementById('statBest').textContent = best + '/9';
+document.getElementById('statStreak').textContent = streak + ' days';
 }
-function toggleStats() { loadStats(); document.getElementById('statsModal').classList.toggle('show'); }
+
+function toggleStats() {
+loadStats();
+document.getElementById('statsModal').classList.toggle('show');
+}
+
 function updateStreak() {
-  const today=new Date().toISOString().slice(0,10);
-  const lastPlayed=localStorage.getItem('lastPlayedDate');
-  let streak=parseInt(localStorage.getItem('playStreak')||'0');
-  if(lastPlayed===today) return;
-  const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
-  streak=(lastPlayed===yesterday)?streak+1:1;
-  localStorage.setItem('playStreak',streak); localStorage.setItem('lastPlayedDate',today);
+const today = new Date().toISOString().slice(0,10);
+const lastPlayed = localStorage.getItem('lastPlayedDate');
+let streak = parseInt(localStorage.getItem('playStreak') || '0');
+if (lastPlayed === today) return;
+const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+streak = (lastPlayed === yesterday) ? streak + 1 : 1;
+localStorage.setItem('playStreak', streak);
+localStorage.setItem('lastPlayedDate', today);
 }
-function initializeCells() { document.querySelectorAll('.cell').forEach(cell=>{ cell.addEventListener('click',()=>openModal(cell)); }); }
+
+// Initialize cell click handlers
+function initializeCells() {
+document.querySelectorAll('.cell').forEach(cell => {
+cell.addEventListener('click', () => {
+openModal(cell);
+});
+});
+}
+
 function openModal(cell) {
-  currentCell=cell;
-  const colHeaders=['Duran Duran','Madonna','Michael Jackson'];
-  const rowHeaders=['Top 10 Hit in 1984','Song with \"Girl\" in Title','Song from 1987 Album'];
-  document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
-  document.getElementById('modalInput').value=cell.querySelector('input').value;
-  showTextEntry();
-  document.getElementById('inputModal').classList.add('active');
-  document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+currentCell = cell;
+const input = cell.querySelector('input');
+const row = cell.dataset.row;
+const col = cell.dataset.col;
+
+// Get column and row headers
+const colHeader = document.querySelector(`.col-header[style*="grid-column:${parseInt(col) + 2}"]`).textContent.trim().replace(/\s+/g, ' ');
+const rowHeader = document.querySelector(`.row-header[style*="grid-row:${parseInt(row) + 2}"]`).textContent.trim();
+
+document.getElementById('modalTitle').textContent = `${colHeader} - ${rowHeader}`;
+document.getElementById('modalInput').value = input.value;
+showTextEntry();
+document.getElementById('inputModal').classList.add('active');
+document.getElementById('inputOverlay').classList.add('active');
+
+// Focus the input
+setTimeout(() => {
+document.getElementById('modalInput').focus();
+}, 100);
 }
-function closeModal() { document.getElementById('inputModal').classList.remove('active'); document.getElementById('inputOverlay').classList.remove('active'); currentCell=null; }
-function saveModalAnswer() { if(currentCell){ currentCell.querySelector('input').value=document.getElementById('modalInput').value; closeModal(); } }
-function openHTP() { document.getElementById('htpModal').classList.add('show'); }
-function closeHTP() { document.getElementById('htpModal').classList.remove('show'); }
-document.addEventListener('keypress',(e)=>{ if(e.key==='Enter'&&document.getElementById('inputModal').classList.contains('active')) saveModalAnswer(); });
-document.getElementById('inputOverlay').addEventListener('click',closeModal);
+
+function closeModal() {
+document.getElementById('inputModal').classList.remove('active');
+document.getElementById('inputOverlay').classList.remove('active');
+currentCell = null;
+}
+
+function saveModalAnswer() {
+if (currentCell) {
+const input = currentCell.querySelector('input');
+input.value = document.getElementById('modalInput').value;
+closeModal();
+}
+}
+
+// Handle Enter key in modal
+document.addEventListener('keypress', (e) => {
+if (e.key === 'Enter' && document.getElementById('inputModal').classList.contains('active')) {
+saveModalAnswer();
+}
+});
+
+// Close modal on overlay click
+document.getElementById('inputOverlay').addEventListener('click', closeModal);
 
 const answers = {
-'0-0': ['the reflex', 'reflex', 'new moon on monday'],
+'0-0': ['the reflex','reflex','new moon on monday'],
 '1-0': ['girls on film'],
-'2-0': ['notorious', 'skin trade', 'meet el presidente'],
-'0-1': ['like a virgin', 'material girl', 'borderline'],
-'1-1': ['material girl', 'whos that girl'],
-'2-1': ['whos that girl', 'causing a commotion', 'the look of love'],
-'0-2': ['thriller', 'billie jean', 'beat it', 'pyt'],
-'1-2': ['the girl is mine', 'girl is mine'],
-'2-2': ['bad', 'the way you make me feel', 'man in the mirror', 'dirty diana', 'smooth criminal', 'i just cant stop loving you']
+'2-0': ['notorious','skin trade','meet el presidente'],
+'0-1': ['like a virgin','material girl','borderline'],
+'1-1': ['material girl','whos that girl'],
+'2-1': ['whos that girl','causing a commotion','the look of love'],
+'0-2': ['thriller','billie jean','beat it','pyt'],
+'1-2': ['the girl is mine','girl is mine'],
+'2-2': ['bad','the way you make me feel','man in the mirror','dirty diana','smooth criminal','i just cant stop loving you']
 };
 
 const mcOptions = {
-  '0-0': ['I Confess', 'Mirror in the Bathroom', 'Save It for Later'],
-  '1-0': ['The Tears of a Clown', 'Stand Down Margaret', 'Twist and Crawl'],
-  '2-0': ['I Just Can't Stop It', 'Wha'ppen?', 'Waking Up with the House on Fire'],
-  '0-1': ['Tenderness', 'Never You Done That', 'Come Again'],
-  '1-1': ['I'll Take You There', 'Burning Bright', 'Come Again'],
-  '2-1': ['All the Rage', 'Fine Young Cannibals', 'The Raw & the Cooked'],
-  '0-2': ['She Drives Me Crazy', 'Ever Fallen in Love', 'Johnny Come Home'],
-  '1-2': ['Suspicious Minds', 'I'm Not the Man I Used to Be', 'Johnny Come Home'],
-  '2-2': ['Fine Young Cannibals', 'The Raw & the Cooked', 'Primitive Cool'],
+  "0-0": ["The Reflex", "New Moon on Monday", "Girls on Film"],
+  "1-0": ["Girls on Film", "Hungry Like the Wolf", "Planet Earth"],
+  "2-0": ["Notorious", "Skin Trade", "A View to a Kill"],
+  "0-1": ["Like a Virgin", "Material Girl", "Borderline"],
+  "1-1": ["Material Girl", "Open Your Heart", "La Isla Bonita"],
+  "2-1": ["Whos That Girl", "Causing a Commotion", "The Look of Love"],
+  "0-2": ["Thriller", "Billie Jean", "Beat It"],
+  "1-2": ["The Girl Is Mine", "Say Say Say", "PYT"],
+  "2-2": ["Bad", "The Way You Make Me Feel", "Man in the Mirror"],
 };
-
 let lifelinesRemaining = 3;
 function updateLifelineUI() {
   for (let i = 1; i <= 3; i++) {
@@ -449,73 +573,141 @@ function selectMCOption(value) {
     updateLifelineUI(); closeModal();
   }
 }
-function normalizeString(str) { return str.toLowerCase().replace(/[\u2018\u2019']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
+
+function normalizeString(str) {
+return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+}
+
 function checkAnswers() {
-  if(getQuizzesPlayedToday()>=DAILY_LIMIT){ document.getElementById('limitModal').classList.add('show'); return; }
-  const cells=document.querySelectorAll('.cell'); let correct=0,total=0;
-  cells.forEach(cell=>{
-    const input=cell.querySelector('input'); const userAnswer=normalizeString(input.value);
-    const key=`${cell.dataset.row}-${cell.dataset.col}`;
-    if(userAnswer){ total++;
-      const valid=answers[key].map(a=>normalizeString(a));
-      if(valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer))){ cell.classList.add('correct'); cell.classList.remove('incorrect'); correct++; }
-      else{ cell.classList.add('incorrect'); cell.classList.remove('correct'); }
-    }
-  });
-  if(total===0){ alert('Fill in some answers first!'); return; }
-  if(!sessionStorage.getItem(SESSION_KEY)){
-    let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); plays++;
-    localStorage.setItem(PLAYS_KEY,plays); updatePlaysCounter(); sessionStorage.setItem(SESSION_KEY,'true');
-    incrementQuizzesPlayedToday();
-    const tot=parseInt(localStorage.getItem('totalQuizzesPlayed')||'0')+1; localStorage.setItem('totalQuizzesPlayed',tot);
-    updateStreak();
-    const best=parseInt(localStorage.getItem('bestQuizScore')||'0'); if(correct>best) localStorage.setItem('bestQuizScore',correct);
-  }
-  localStorage.setItem(QUIZ_KEY,correct);
-  document.getElementById('score').textContent=`You got ${correct} out of ${total} correct!`;
-  document.getElementById('results').style.display='block';
-  if(correct>=8&&total===9) setTimeout(()=>{ document.getElementById('highScoreEntry').style.display='block'; document.getElementById('initial1').focus(); },1000);
-  displayLeaderboard();
+if (getQuizzesPlayedToday() >= DAILY_LIMIT) {
+document.getElementById('limitModal').classList.add('show');
+return;
 }
-function updatePlaysCounter() { let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); document.getElementById('playsCounter').textContent=`🎮 ${plays.toLocaleString()} plays`; }
-function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'}); }
-function shareScore() { if(navigator.share){ navigator.share({title:"Len's 80sGrid.com",text:SHARE_TEXT}).catch(()=>{}); } else{ navigator.clipboard.writeText(SHARE_TEXT).then(()=>{alert('Link copied!');}).catch(()=>{alert(SHARE_TEXT);}); } }
-function resetGrid() { document.querySelectorAll('.cell input').forEach(i=>{ i.value=''; i.parentElement.classList.remove('correct','incorrect'); }); document.getElementById('results').style.display='none'; document.getElementById('highScoreEntry').style.display='none'; }
+const cells = document.querySelectorAll('.cell');
+let correct = 0, total = 0;
+cells.forEach(cell => {
+const input = cell.querySelector('input');
+const userAnswer = normalizeString(input.value);
+const key = `${cell.dataset.row}-${cell.dataset.col}`;
+if (userAnswer) {
+total++;
+const valid = answers[key].map(a => normalizeString(a));
+if (valid.some(a => userAnswer === a || userAnswer.includes(a) || a.includes(userAnswer))) {
+cell.classList.add('correct'); cell.classList.remove('incorrect'); correct++;
+} else {
+cell.classList.add('incorrect'); cell.classList.remove('correct');
+}
+}
+});
+if (total === 0) { alert('Fill in some answers first!'); return; }
+if (!sessionStorage.getItem('hasPlayedQuiz1')) {
+let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz1') || '5089');
+plays++;
+localStorage.setItem('80sGridPlaysQuiz1', plays);
+updatePlaysCounter();
+sessionStorage.setItem('hasPlayedQuiz1', 'true');
+incrementQuizzesPlayedToday();
+const tot = parseInt(localStorage.getItem('totalQuizzesPlayed') || '0') + 1;
+localStorage.setItem('totalQuizzesPlayed', tot);
+updateStreak();
+const best = parseInt(localStorage.getItem('bestQuizScore') || '0');
+if (correct > best) localStorage.setItem('bestQuizScore', correct);
+}
+localStorage.setItem('quiz1Score', correct);
+document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
+document.getElementById('results').style.display = 'block';
+  if (lifelinesRemaining === 3) document.getElementById('noLifelineBadge').style.display = 'block';
+if (correct >= 8 && total === 9) {
+setTimeout(() => { document.getElementById('highScoreEntry').style.display = 'block'; document.getElementById('initial1').focus(); }, 1000);
+}
+displayLeaderboard();
+}
+
+function updatePlaysCounter() {
+let plays = parseInt(localStorage.getItem('80sGridPlaysQuiz1') || '5089');
+if (plays < 5089) { plays = 5089; localStorage.setItem('80sGridPlaysQuiz1', plays); }
+document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
+}
+
+function showLeaderboard() {
+displayLeaderboard();
+document.getElementById('leaderboard').scrollIntoView({ behavior:'smooth' });
+}
+
+function shareScore() {
+const shareText = `🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/`;
+if (navigator.share) {
+navigator.share({ title:"Len's 80sGrid.com Music Edition", text: shareText }).catch(()=>{});
+} else {
+navigator.clipboard.writeText(shareText).then(()=>{ alert('Link copied! Share it with your friends!'); }).catch(()=>{ alert(shareText); });
+}
+}
+
+function resetGrid() {
+document.querySelectorAll('.cell input').forEach(i => { i.value=''; i.parentElement.classList.remove('correct','incorrect'); });
+document.getElementById('results').style.display = 'none';
+document.getElementById('highScoreEntry').style.display = 'none';
+document.getElementById('noLifelineBadge').style.display = 'none';
+lifelinesRemaining = 3; updateLifelineUI();
+}
+
 function saveHighScore() {
-  const i1=document.getElementById('initial1').value.toUpperCase();
-  const i2=document.getElementById('initial2').value.toUpperCase();
-  const i3=document.getElementById('initial3').value.toUpperCase();
-  if(!i1||!i2||!i3){ alert('Please enter all 3 initials!'); return; }
-  let totalCorrect=0; let quizzesPlayed=0;
-  for(let i=1;i<=9;i++){ const s=parseInt(localStorage.getItem('quiz'+i+'Score')||0); totalCorrect+=s; if(s>0) quizzesPlayed++; }
-  const possible=quizzesPlayed*9; const pct=possible>0?Math.round((totalCorrect/possible)*100):0;
-  if(pct>=80){
-    let scores=JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
-    scores.push({initials:i1+i2+i3,pct,quizzes:quizzesPlayed,date:new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'})});
-    scores.sort((a,b)=>b.pct-a.pct); scores=scores.slice(0,10);
-    localStorage.setItem('80sGridScoresCombined',JSON.stringify(scores));
-  }
-  document.getElementById('highScoreEntry').style.display='none'; displayLeaderboard();
+const i1 = document.getElementById('initial1').value.toUpperCase();
+const i2 = document.getElementById('initial2').value.toUpperCase();
+const i3 = document.getElementById('initial3').value.toUpperCase();
+if (!i1||!i2||!i3) { alert('Please enter all 3 initials!'); return; }
+const q1 = parseInt(localStorage.getItem('quiz1Score')||0);
+const q2 = parseInt(localStorage.getItem('quiz2Score')||0);
+const q3 = parseInt(localStorage.getItem('quiz3Score')||0);
+const totalCorrect = q1 + q2 + q3;
+const quizzesPlayed = (q1>0?1:0)+(q2>0?1:0)+(q3>0?1:0);
+const possible = quizzesPlayed * 9;
+const pct = possible > 0 ? Math.round((totalCorrect / possible) * 100) : 0;
+if (pct >= 80) {
+let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
+scores.push({ initials: i1+i2+i3, pct, quizzes: quizzesPlayed, date: new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'}) });
+scores.sort((a,b)=>b.pct-a.pct);
+scores = scores.slice(0,10);
+localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
 }
+document.getElementById('highScoreEntry').style.display = 'none';
+displayLeaderboard();
+}
+
 function displayLeaderboard() {
-  let scores=JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
-  if(scores.length<10) scores=[...scores,...FAKE_SCORES].slice(0,10);
-  scores.sort((a,b)=>b.pct-a.pct);
-  document.getElementById('leaderboardList').innerHTML=scores.map((s,i)=>`
-    <div class="leaderboard-item">
-    <span class="leaderboard-rank">${String(i+1).padStart(2,'0')}.</span>
-    <span class="leaderboard-initials">${s.initials}</span>
-    <span class="leaderboard-score">${s.pct}%</span>
-    <span class="leaderboard-date">${s.date}</span>
-    </div>`).join('');
-  document.getElementById('leaderboard').style.display='block';
+let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
+const fakeScores = [
+{initials:'ACE',pct:100,quizzes:3,date:'2/1/26'},
+{initials:'MAX',pct:96,quizzes:3,date:'2/3/26'},
+{initials:'ROX',pct:93,quizzes:3,date:'2/5/26'},
+{initials:'JAX',pct:89,quizzes:3,date:'2/8/26'},
+{initials:'ZEN',pct:89,quizzes:2,date:'2/10/26'},
+{initials:'VIX',pct:85,quizzes:3,date:'2/12/26'},
+{initials:'RAD',pct:85,quizzes:2,date:'2/14/26'},
+{initials:'SKY',pct:82,quizzes:3,date:'2/15/26'},
+{initials:'NEO',pct:81,quizzes:2,date:'2/16/26'},
+{initials:'LUX',pct:80,quizzes:3,date:'2/16/26'}
+];
+if (scores.length < 10) scores = [...scores,...fakeScores].slice(0,10);
+scores.sort((a,b)=>b.pct-a.pct);
+document.getElementById('leaderboardList').innerHTML = scores.map((s,i)=>`
+<div class="leaderboard-item">
+<span class="leaderboard-rank">${String(i+1).padStart(2,'0')}.</span>
+<span class="leaderboard-initials">${s.initials}</span>
+<span class="leaderboard-score">${s.pct}%</span>
+<span class="leaderboard-date">${s.date}</span>
+</div>`).join('');
+document.getElementById('leaderboard').style.display = 'block';
 }
-document.getElementById('initial1').addEventListener('input',function(){ if(this.value) document.getElementById('initial2').focus(); });
-document.getElementById('initial2').addEventListener('input',function(){ if(this.value) document.getElementById('initial3').focus(); });
-document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
-document.addEventListener('DOMContentLoaded',()=>{
-  initializeCells(); updatePlaysCounter(); displayLeaderboard();
-  if(st){ st.textContent=SPONSOR_TAGLINE; }
+
+document.getElementById('initial1').addEventListener('input', function(){ if(this.value) document.getElementById('initial2').focus(); });
+document.getElementById('initial2').addEventListener('input', function(){ if(this.value) document.getElementById('initial3').focus(); });
+document.getElementById('initial3').addEventListener('keypress', function(e){ if(e.key==='Enter') saveHighScore(); });
+
+document.addEventListener('DOMContentLoaded', ()=>{ 
+initializeCells();
+updatePlaysCounter(); 
+displayLeaderboard(); 
 });
 </script>
 </body>
