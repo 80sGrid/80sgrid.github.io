@@ -115,6 +115,26 @@ button:hover { background:#5568d3; }
   .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
   .leaderboard-scores-wrap { margin-top:100px; }
 }
+
+/* LIFELINE COUNTER */
+.lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
+.lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
+.lifeline-pips { display:flex; gap:5px; }
+.lifeline-pip { width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,#FF1493,#8B00FF); box-shadow:0 0 8px rgba(255,20,147,0.5); display:flex; align-items:center; justify-content:center; font-size:0.75em; transition:all 0.3s; }
+.lifeline-pip.used { background:#dee2e6; box-shadow:none; }
+.lifeline-count { font-size:0.82em; color:#888; font-style:italic; }
+.lifeline-count.empty { color:#dc3545; font-weight:bold; font-style:normal; }
+.no-lifeline-badge { display:none; text-align:center; margin:10px 0; padding:8px 14px; background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:8px; font-weight:900; font-size:0.9em; color:#000; box-shadow:0 0 12px rgba(255,215,0,0.5); }
+/* MC BUTTON */
+.mc-toggle-btn { display:block; width:100%; margin-top:12px; padding:11px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:0.95em; font-weight:bold; cursor:pointer; letter-spacing:0.5px; transition:opacity 0.2s; }
+.mc-toggle-btn:hover { opacity:0.88; }
+.mc-toggle-btn:disabled { opacity:0.35; cursor:not-allowed; }
+.mc-section { display:none; }
+.mc-section.visible { display:block; }
+.mc-option { display:block; width:100%; margin-bottom:10px; padding:14px 12px; background:#f8f0ff; border:2px solid #8B00FF; border-radius:10px; font-size:0.95em; font-weight:bold; color:#4a0080; cursor:pointer; text-align:center; transition:background 0.15s,transform 0.1s; box-sizing:border-box; }
+.mc-option:hover { background:#e8c8ff; transform:scale(1.02); }
+.mc-option:last-child { margin-bottom:0; }
+.text-section.hidden { display:none; }
 </style>
 </head>
 <body>
@@ -122,10 +142,17 @@ button:hover { background:#5568d3; }
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
 <h3 id="modalTitle">Enter Answer</h3>
+<div class="text-section" id="textSection">
 <input type="text" id="modalInput" placeholder="Type your answer..." />
 <div class="input-modal-buttons">
 <button onclick="saveModalAnswer()">Save</button>
 <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
+</div>
+<button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">🎯 Multiple Choice (<span id="mcRemaining">3</span> left)</button>
+</div>
+<div class="mc-section" id="mcSection">
+<div id="mcOptions"></div>
+<button onclick="showTextEntry()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">✏️ Type My Own Answer</button>
 </div>
 </div>
 
@@ -206,6 +233,17 @@ button:hover { background:#5568d3; }
 </div>
 </div>
 
+<!-- Lifeline Counter -->
+<div class="lifeline-bar" id="lifelineBar">
+<span class="lifeline-label">🎯 Lifelines</span>
+<div class="lifeline-pips">
+<div class="lifeline-pip" id="pip1">🎯</div>
+<div class="lifeline-pip" id="pip2">🎯</div>
+<div class="lifeline-pip" id="pip3">🎯</div>
+</div>
+<span class="lifeline-count" id="lifelineCount">3 remaining</span>
+</div>
+<div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 <div class="grid">
 <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
 <div class="header col-header" style="grid-column:2;">Peter Gabriel</div>
@@ -259,7 +297,7 @@ button:hover { background:#5568d3; }
 
 <div id="leaderboard" class="leaderboard" style="display:none;">
 <div class="leaderboard-scores-wrap">
-<div class="leaderboard-subtitle">── HIGH SCORES ──</div>
+<div class="leaderboard-subtitle"></div>
 <div id="leaderboardList"></div>
 </div>
 </div>
@@ -323,6 +361,7 @@ function openModal(cell) {
   const rowHeaders=['Hit Song with \"Kiss\" in Title','Prior Group / Band','Famous Duet With'];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);
@@ -345,6 +384,65 @@ const answers = {
 '1-2': ['the runaways', 'runaways'],
 '2-2': ['ozzy osbourne', 'ozzy']
 };
+
+const mcOptions = {
+  '0-0': ['Kiss of Life', 'Sledgehammer', 'In Your Eyes'],
+  '1-0': ['Genesis', 'The Lamb Lies Down on Broadway', 'Peter Gabriel Band'],
+  '2-0': ['Kate Bush', 'Sinead O'Connor', 'Annie Lennox'],
+  '0-1': ['The Shoop Shoop Song', 'If I Could Turn Back Time', 'Believe'],
+  '1-1': ['Sonny & Cher', 'The Wreckers', 'Gregg Allman Band'],
+  '2-1': ['Peter Cetera', 'Jon Bon Jovi', 'David Coverdale'],
+  '0-2': ['Kiss Me Deadly', 'Close My Eyes Forever', 'Back to the Cave'],
+  '1-2': ['The Runaways', 'The Bangles', 'The Go-Go's'],
+  '2-2': ['Ozzy Osbourne', 'Jon Bon Jovi', 'Dee Snider']
+};
+let lifelinesRemaining = 3;
+function updateLifelineUI() {
+  for (let i = 1; i <= 3; i++) {
+    const pip = document.getElementById('pip' + i);
+    if (i <= lifelinesRemaining) { pip.classList.remove('used'); pip.textContent = '🎯'; }
+    else { pip.classList.add('used'); pip.textContent = ''; }
+  }
+  const countEl = document.getElementById('lifelineCount');
+  const btnEl = document.getElementById('mcToggleBtn');
+  const remainEl = document.getElementById('mcRemaining');
+  if (remainEl) remainEl.textContent = lifelinesRemaining;
+  if (lifelinesRemaining === 0) {
+    countEl.textContent = 'None left!'; countEl.classList.add('empty');
+    if (btnEl) { btnEl.disabled = true; btnEl.title = 'No lifelines remaining'; }
+  } else {
+    countEl.textContent = lifelinesRemaining + ' remaining'; countEl.classList.remove('empty');
+    if (btnEl) { btnEl.disabled = false; btnEl.title = ''; }
+  }
+}
+function showMultipleChoice() {
+  if (lifelinesRemaining <= 0) return;
+  const key = `${currentCell.dataset.row}-${currentCell.dataset.col}`;
+  const opts = [...mcOptions[key]];
+  for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [opts[i],opts[j]]=[opts[j],opts[i]]; }
+  const container = document.getElementById('mcOptions');
+  container.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'mc-option'; btn.textContent = opt;
+    btn.onclick = () => selectMCOption(opt);
+    container.appendChild(btn);
+  });
+  document.getElementById('textSection').classList.add('hidden');
+  document.getElementById('mcSection').classList.add('visible');
+}
+function showTextEntry() {
+  document.getElementById('textSection').classList.remove('hidden');
+  document.getElementById('mcSection').classList.remove('visible');
+  setTimeout(() => document.getElementById('modalInput').focus(), 60);
+}
+function selectMCOption(value) {
+  if (currentCell) {
+    currentCell.querySelector('input').value = value;
+    lifelinesRemaining = Math.max(0, lifelinesRemaining - 1);
+    updateLifelineUI(); closeModal();
+  }
+}
 
 function normalizeString(str) { return str.toLowerCase().replace(/[\u2018\u2019']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function checkAnswers() {
@@ -371,13 +469,14 @@ function checkAnswers() {
   localStorage.setItem(QUIZ_KEY,correct);
   document.getElementById('score').textContent=`You got ${correct} out of ${total} correct!`;
   document.getElementById('results').style.display='block';
+    if(lifelinesRemaining===3) document.getElementById('noLifelineBadge').style.display='block';
   if(correct>=8&&total===9) setTimeout(()=>{ document.getElementById('highScoreEntry').style.display='block'; document.getElementById('initial1').focus(); },1000);
   displayLeaderboard();
 }
 function updatePlaysCounter() { let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); document.getElementById('playsCounter').textContent=`🎮 ${plays.toLocaleString()} plays`; }
 function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'}); }
 function shareScore() { if(navigator.share){ navigator.share({title:"Len's 80sGrid.com",text:SHARE_TEXT}).catch(()=>{}); } else{ navigator.clipboard.writeText(SHARE_TEXT).then(()=>{alert('Link copied!');}).catch(()=>{alert(SHARE_TEXT);}); } }
-function resetGrid() { document.querySelectorAll('.cell input').forEach(i=>{ i.value=''; i.parentElement.classList.remove('correct','incorrect'); }); document.getElementById('results').style.display='none'; document.getElementById('highScoreEntry').style.display='none'; }
+function resetGrid() { document.querySelectorAll('.cell input').forEach(i=>{ i.value=''; i.parentElement.classList.remove('correct','incorrect'); }); document.getElementById('results').style.display='none'; document.getElementById('highScoreEntry').style.display='none'; document.getElementById('noLifelineBadge').style.display='none'; lifelinesRemaining=3; updateLifelineUI(); }
 function saveHighScore() {
   const i1=document.getElementById('initial1').value.toUpperCase();
   const i2=document.getElementById('initial2').value.toUpperCase();
@@ -411,7 +510,7 @@ document.getElementById('initial1').addEventListener('input',function(){ if(this
 document.getElementById('initial2').addEventListener('input',function(){ if(this.value) document.getElementById('initial3').focus(); });
 document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
 document.addEventListener('DOMContentLoaded',()=>{
-  initializeCells(); updatePlaysCounter(); displayLeaderboard();
+  initializeCells(); updatePlaysCounter(); displayLeaderboard(); updateLifelineUI();
   if(st){ st.textContent=SPONSOR_TAGLINE; }
 });
 </script>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,6 +172,68 @@ color: #888;
 font-style: italic;
 margin-top: 2px;
 }
+
+/* LIFELINE COUNTER */
+.lifeline-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #fff0f8, #f0f0ff);
+  border: 2px solid rgba(139,0,255,0.25);
+  border-radius: 10px;
+  font-family: 'Arial Black', sans-serif;
+}
+.lifeline-label {
+  font-size: 0.8em;
+  font-weight: 900;
+  color: #555;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.lifeline-pips {
+  display: flex;
+  gap: 5px;
+}
+.lifeline-pip {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF1493, #8B00FF);
+  box-shadow: 0 0 8px rgba(255,20,147,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  transition: all 0.3s;
+}
+.lifeline-pip.used {
+  background: #dee2e6;
+  box-shadow: none;
+}
+.lifeline-count {
+  font-size: 0.82em;
+  color: #888;
+  font-style: italic;
+}
+.lifeline-count.empty {
+  color: #dc3545;
+  font-weight: bold;
+}
+.no-lifeline-badge {
+  display: none;
+  text-align: center;
+  margin: 10px 0;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 0.9em;
+  color: #000;
+  box-shadow: 0 0 12px rgba(255,215,0,0.5);
+}
 </style>
 </head>
 <body>
@@ -189,7 +250,7 @@ margin-top: 2px;
       <button onclick="saveModalAnswer()">Save</button>
       <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
     </div>
-    <button class="mc-toggle-btn" onclick="showMultipleChoice()">🎯 Multiple Choice</button>
+    <button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">🎯 Multiple Choice (<span id="mcRemaining">3</span> left)</button>
   </div>
 
   <!-- Multiple choice section -->
@@ -228,15 +289,17 @@ margin-top: 2px;
   <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 
   <div class="page-nav">
-    <a href="grid1.html">Quiz 1</a>
-    <a href="grid2.html">Quiz 2</a>
-    <a href="grid3.html">Quiz 3</a>
-    <a href="grid4.html">Quiz 4</a>
-    <a href="grid5.html">Quiz 5</a>
-    <a href="grid6.html">Quiz 6</a>
-    <a href="grid7.html">Quiz 7</a>
-    <a href="quiz10.html" class="current">Quiz 8</a>
-  </div>
+<a href="index.html">Quiz 1</a>
+<a href="quiz2.html">Quiz 2</a>
+<a href="quiz3.html">Quiz 3</a>
+<a href="quiz4.html">Quiz 4</a>
+<a href="quiz5.html">Quiz 5</a>
+<a href="quiz6.html">Quiz 6</a>
+<a href="quiz7.html">Quiz 7</a>
+<a href="quiz8.html">Quiz 8</a>
+<a href="quiz9.html">Quiz 9</a>
+<a href="quiz10.html" class="current">Quiz 10</a>
+</div>
 
   <div class="subtitle">Quiz 10</div>
 <div class="difficulty-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
@@ -247,6 +310,18 @@ margin-top: 2px;
 <div class="badge-desc">You know your MTV — but do you know your album titles?</div>
 </div>
 </div>
+
+  <!-- Lifeline Counter -->
+  <div class="lifeline-bar" id="lifelineBar">
+    <span class="lifeline-label">🎯 Lifelines</span>
+    <div class="lifeline-pips">
+      <div class="lifeline-pip" id="pip1">🎯</div>
+      <div class="lifeline-pip" id="pip2">🎯</div>
+      <div class="lifeline-pip" id="pip3">🎯</div>
+    </div>
+    <span class="lifeline-count" id="lifelineCount">3 remaining</span>
+  </div>
+  <div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 
   <div style="text-align:center; margin-bottom:15px;">
     <div style="margin-bottom:8px;"><span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span></div>
@@ -310,7 +385,7 @@ margin-top: 2px;
 
   <div id="results" style="display:none;">
     <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
-    <a href="quiz1.html" class="next-quiz-btn">🎸 PLAY FROM THE START → 🎸</a>
+    <a href="index.html" class="next-quiz-btn">🎸 PLAY FROM THE START → 🎸</a>
     <div style="font-size:.95em; color:#555; margin-top:20px;">Brought to you by</div>
     <div style="font-size:1.1em; font-weight:bold; margin-bottom:5px;">
       <a href="https://arrivealivepodcast.com" target="_blank" style="color:#667eea; text-decoration:none;">The Arrive Alive Podcast</a>
@@ -331,7 +406,7 @@ margin-top: 2px;
 
   <div id="leaderboard" class="leaderboard" style="display:none;">
     <div class="leaderboard-scores-wrap">
-      <div class="leaderboard-subtitle">── HIGH SCORES ──</div>
+      <div class="leaderboard-subtitle"></div>
       <div id="leaderboardList"></div>
       <p style="color:#000; font-style:italic; font-size:0.78em; text-align:center; margin-top:16px; margin-bottom:0; letter-spacing:0.5px;">🎯 Lifeline available — click any cell to find it.</p>
     </div>
@@ -408,12 +483,50 @@ function saveModalAnswer() {
   }
 }
 
+// ─── LIFELINE SYSTEM ──────────────────────────────────────────────────────────
+let lifelinesRemaining = 3;
+
+function updateLifelineUI() {
+  // Update pips
+  for (let i = 1; i <= 3; i++) {
+    const pip = document.getElementById('pip' + i);
+    if (i <= lifelinesRemaining) {
+      pip.classList.remove('used');
+      pip.textContent = '🎯';
+    } else {
+      pip.classList.add('used');
+      pip.textContent = '';
+    }
+  }
+  // Update count text
+  const countEl = document.getElementById('lifelineCount');
+  const btnEl = document.getElementById('mcToggleBtn');
+  const remainEl = document.getElementById('mcRemaining');
+  if (remainEl) remainEl.textContent = lifelinesRemaining;
+
+  if (lifelinesRemaining === 0) {
+    countEl.textContent = 'None left!';
+    countEl.classList.add('empty');
+    if (btnEl) {
+      btnEl.disabled = true;
+      btnEl.style.opacity = '0.4';
+      btnEl.style.cursor = 'not-allowed';
+      btnEl.title = 'No lifelines remaining';
+    }
+  } else {
+    countEl.textContent = lifelinesRemaining + ' remaining';
+    countEl.classList.remove('empty');
+  }
+}
+
 // ─── MULTIPLE CHOICE ──────────────────────────────────────────────────────────
 function showMultipleChoice() {
+  if (lifelinesRemaining <= 0) return;
+
   const row = currentCell.dataset.row;
   const col = currentCell.dataset.col;
   const key = `${row}-${col}`;
-  const opts = [...mcOptions[key]]; // [correct, wrong1, wrong2]
+  const opts = [...mcOptions[key]];
 
   // Shuffle
   for (let i = opts.length - 1; i > 0; i--) {
@@ -444,6 +557,9 @@ function showTextEntry() {
 function selectMCOption(value) {
   if (currentCell) {
     currentCell.querySelector('input').value = value;
+    // Deduct lifeline
+    lifelinesRemaining = Math.max(0, lifelinesRemaining - 1);
+    updateLifelineUI();
     closeModal();
   }
 }
@@ -494,6 +610,10 @@ function checkAnswers() {
   }
   localStorage.setItem(QUIZ_KEY, correct);
   document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
+  // Show no-lifeline badge if they never used one
+  if (lifelinesRemaining === 3) {
+    document.getElementById('noLifelineBadge').style.display = 'block';
+  }
   document.getElementById('results').style.display = 'block';
   if (correct >= 8 && total === 9) setTimeout(() => { document.getElementById('highScoreEntry').style.display = 'block'; document.getElementById('initial1').focus(); }, 1000);
   displayLeaderboard();
@@ -516,6 +636,12 @@ function resetGrid() {
   document.querySelectorAll('.cell input').forEach(i => { i.value=''; i.parentElement.classList.remove('correct','incorrect'); });
   document.getElementById('results').style.display = 'none';
   document.getElementById('highScoreEntry').style.display = 'none';
+  document.getElementById('noLifelineBadge').style.display = 'none';
+  // Reset lifelines
+  lifelinesRemaining = 3;
+  const btnEl = document.getElementById('mcToggleBtn');
+  if (btnEl) { btnEl.disabled = false; btnEl.style.opacity = '1'; btnEl.style.cursor = 'pointer'; btnEl.title = ''; }
+  updateLifelineUI();
 }
 
 function updateStreak() {
@@ -591,7 +717,7 @@ document.getElementById('initial1').addEventListener('input', function(){ if(thi
 document.getElementById('initial2').addEventListener('input', function(){ if(this.value) document.getElementById('initial3').focus(); });
 document.getElementById('initial3').addEventListener('keypress', function(e){ if(e.key==='Enter') saveHighScore(); });
 
-document.addEventListener('DOMContentLoaded', () => { initializeCells(); updatePlaysCounter(); displayLeaderboard(); });
+document.addEventListener('DOMContentLoaded', () => { initializeCells(); updatePlaysCounter(); displayLeaderboard(); updateLifelineUI(); });
 </script>
 </body>
 </html>
