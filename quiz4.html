@@ -362,6 +362,7 @@ function openModal(cell) {
   const rowHeaders=['Highest Charting Single in U.S. (1980s)','Most Famous Cover Song by Band','Debut Album'];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);

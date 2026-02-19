@@ -366,6 +366,7 @@ function openModal(cell) {
   const rowHeaders=['Top 10 Hit in 1984','Song with \"Girl\" in Title','Song from 1987 Album'];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);

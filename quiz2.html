@@ -366,6 +366,7 @@ function openModal(cell) {
   const rowHeaders=['Song from John Hughes Film','Top 5 Hit in the 1980s','Song Title with One Word'];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);

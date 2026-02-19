@@ -362,6 +362,7 @@ function openModal(cell) {
   const rowHeaders=['Top 5 U.S. Hit','Anti-Apartheid Song','Hit Song with \"Don\'t\" in the Title'];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);

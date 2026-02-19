@@ -362,6 +362,7 @@ function openModal(cell) {
   const rowHeaders=['Hit Song with \"Dream\" in Title','U.S. Billboard Hot 100 #1 Song','Toured in 1986? (Yes or No)'];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);
