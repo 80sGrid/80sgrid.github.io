@@ -1,195 +1,52 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Len's 80sGrid.com Music Edition - Quiz 3</title>
+<title>Len's 80sGrid.com Music Edition</title>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://80sgrid.com/quiz3">
-<meta property="og:title" content="Len's 80sGrid.com Music Edition - Quiz 3">
-<meta property="og:description" content="Test your 80s music knowledge! Can you name songs by Queen, Prince, and Flesh for Lulu?">
+<meta property="og:url" content="https://80sgrid.com/">
+<meta property="og:title" content="Len's 80sGrid.com Music Edition">
+<meta property="og:description" content="Test your 80s music knowledge! Prince, Queen, Flesh for Lulu">
 <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://80sgrid.com/quiz3">
-<meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 3">
-<meta property="twitter:description" content="Test your 80s music knowledge! Can you name songs by Queen, Prince, and Flesh for Lulu?">
-<meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
 <style>
-body {
-font-family: Arial, sans-serif;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-margin: 0;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-padding: 20px;
-overflow-x: hidden;
-box-sizing: border-box;
-}
-.container {
-background: white;
-padding: 30px;
-border-radius: 15px;
-box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-max-width: 700px;
-width: 100%;
-box-sizing: border-box;
-}
+body { font-family:Arial,sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:20px; overflow-x:hidden; box-sizing:border-box; }
+.container { background:white; padding:30px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.3); max-width:700px; width:100%; box-sizing:border-box; }
 .logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; }
-.tagline-sub {
-text-align: center;
-font-family: 'Georgia', serif;
-font-size: 1.4em;
-font-style: italic;
-color: #6a0dad;
-letter-spacing: 2px;
-margin: 0 0 20px;
-text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-}
-.subtitle {
-text-align: center;
-margin-bottom: 30px;
-font-size: 4.5em;
-font-weight: bold;
-color: #ff006e;
-text-shadow: 3px 3px 0px #fb5607, 6px 6px 0px #ffbe0b, 9px 9px 0px #8338ec, 12px 12px 0px #3a86ff;
-font-family: 'Arial Black', sans-serif;
-letter-spacing: 5px;
-transform: perspective(500px) rotateX(5deg);
-}
-.how-to-play {
-background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
-padding: 20px;
-border-radius: 12px;
-margin-bottom: 20px;
-color: white;
-box-shadow: 0 0 20px rgba(255,20,147,.4);
-border: 3px solid rgba(255,255,255,.3);
-}
+.tagline-sub { text-align:center; font-family:'Georgia',serif; font-size:1.4em; font-style:italic; color:#6a0dad; letter-spacing:2px; margin:0 0 20px; text-shadow:1px 1px 3px rgba(0,0,0,0.15); }
+.subtitle { text-align:center; margin-bottom:30px; font-size:4.5em; font-weight:bold; color:#ff006e; text-shadow:3px 3px 0px #fb5607,6px 6px 0px #ffbe0b,9px 9px 0px #8338ec,12px 12px 0px #3a86ff; font-family:'Arial Black',sans-serif; letter-spacing:5px; transform:perspective(500px) rotateX(5deg); }
+.how-to-play { background:linear-gradient(135deg,#FF1493 0%,#8B00FF 50%,#00CED1 100%); padding:20px; border-radius:12px; margin-bottom:20px; color:white; box-shadow:0 0 20px rgba(255,20,147,.4); border:3px solid rgba(255,255,255,.3); }
 .how-to-play h2 { text-align:center; margin-top:0; margin-bottom:10px; font-size:1.5em; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
 .how-to-play p { margin:0; line-height:1.6; text-shadow:1px 1px 2px rgba(0,0,0,.5); }
-.grid {
-display: grid;
-grid-template-columns: 100px repeat(3, 1fr);
-grid-template-rows: 70px repeat(3, 110px);
-gap: 8px;
-margin-bottom: 20px;
-}
-.header {
-background: #667eea;
-color: white;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-padding: 8px;
-border-radius: 8px;
-font-weight: bold;
-font-size: 0.85em;
-line-height: 1.2;
-word-wrap: break-word;
-hyphens: auto;
-}
+.grid { display:grid; grid-template-columns:100px repeat(3,1fr); grid-template-rows:70px repeat(3,110px); gap:8px; margin-bottom:20px; }
+.header { background:#667eea; color:white; display:flex; align-items:center; justify-content:center; text-align:center; padding:8px; border-radius:8px; font-weight:bold; font-size:0.85em; line-height:1.2; word-wrap:break-word; hyphens:auto; }
 .header.col-header:nth-child(2) { background:linear-gradient(135deg,#FF1493,#FF69B4); box-shadow:0 0 15px rgba(255,20,147,.6); border:2px solid #FF1493; }
 .header.col-header:nth-child(3) { background:linear-gradient(135deg,#00CED1,#1E90FF); box-shadow:0 0 15px rgba(0,206,209,.6); border:2px solid #00CED1; }
 .header.col-header:nth-child(4) { background:linear-gradient(135deg,#FFD700,#FFA500); box-shadow:0 0 15px rgba(255,215,0,.6); border:2px solid #FFD700; color:#000; font-weight:900; }
 .header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; }
-.col-header { grid-row: 1; }
-.row-header { grid-column: 1; }
+.col-header { grid-row:1; }
+.row-header { grid-column:1; }
 .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
 .cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.7em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.8; }
-.cell input::placeholder { color:#adb5bd; font-style:italic; white-space:normal; word-spacing:100vw; }
+.cell input::placeholder { color:#adb5bd; font-style:italic; }
 .cell.correct { background:#d4edda; border-color:#28a745; }
 .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
 .button-container { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
 button { background:#667eea; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:1em; transition:background 0.3s; }
 button:hover { background:#5568d3; }
 #results { margin-top:20px; padding:20px; background:#e7f3ff; border:2px solid #667eea; border-radius:8px; text-align:center; }
-
-/* INPUT MODAL */
-.input-modal {
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-background: white;
-padding: 30px;
-border-radius: 15px;
-box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-z-index: 3500;
-display: none;
-min-width: 300px;
-max-width: 90%;
-box-sizing: border-box;
-}
-.input-modal.active { display: block; }
-.input-modal-overlay {
-position: fixed;
-inset: 0;
-background: rgba(0,0,0,0.7);
-z-index: 3499;
-display: none;
-}
-.input-modal-overlay.active { display: block; }
-.input-modal h3 {
-margin-top: 0;
-margin-bottom: 20px;
-color: #333;
-font-size: 1.2em;
-text-align: center;
-}
-.input-modal input {
-width: 100%;
-padding: 15px;
-font-size: 1.2em;
-border: 2px solid #667eea;
-border-radius: 8px;
-margin-bottom: 15px;
-box-sizing: border-box;
-}
-.input-modal-buttons { display: flex; gap: 10px; }
-.input-modal-buttons button { flex: 1; padding: 12px; font-size: 1em; }
-
-/* NEXT QUIZ BUTTON */
-.next-quiz-btn {
-display: inline-block;
-margin: 15px auto;
-background: linear-gradient(135deg, #FF1493, #8B00FF);
-color: white;
-text-decoration: none;
-padding: 18px 40px;
-border-radius: 12px;
-font-size: 1.3em;
-font-weight: 900;
-font-family: 'Arial Black', sans-serif;
-letter-spacing: 2px;
-box-shadow: 0 0 25px rgba(255,20,147,0.7), 0 5px 15px rgba(0,0,0,0.3);
-animation: pulse 1.5s infinite;
-}
-.next-quiz-btn:hover { transform: scale(1.05); }
-@keyframes pulse {
-0%,100% { box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); }
-50% { box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4); }
-}
-
-/* SURVEY */
-.survey-question {
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-padding: 25px;
-border-radius: 12px;
-margin-top: 20px;
-color: white;
-box-shadow: 0 0 20px rgba(102,126,234,.4);
-border: 3px solid rgba(255,255,255,.3);
-}
-.survey-question h3 { text-align:center; margin-top:0; margin-bottom:20px; font-size:1.3em; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
-.survey-options { display:flex; flex-direction:column; gap:12px; }
-.survey-option { background:rgba(255,255,255,.2); padding:15px; border-radius:8px; cursor:pointer; transition:all .3s; border:2px solid transparent; text-align:center; font-weight:bold; }
-.survey-option:hover { background:rgba(255,255,255,.3); border-color:white; transform:scale(1.02); }
-.survey-option.selected { background:#00ff00; color:#000; border-color:#00ff00; box-shadow:0 0 20px rgba(0,255,0,.5); }
-
-/* MY STATS MODAL */
+.next-quiz-btn { display:inline-block; margin:15px auto; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; text-decoration:none; padding:18px 40px; border-radius:12px; font-size:1.3em; font-weight:900; font-family:'Arial Black',sans-serif; letter-spacing:2px; box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); animation:pulse 1.5s infinite; }
+.next-quiz-btn:hover { transform:scale(1.05); }
+@keyframes pulse { 0%,100% { box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); } 50% { box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4); } }
+.input-modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:15px; box-shadow:0 10px 50px rgba(0,0,0,0.5); z-index:3500; display:none; min-width:300px; max-width:90%; box-sizing:border-box; }
+.input-modal.active { display:block; }
+.input-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:3499; display:none; }
+.input-modal-overlay.active { display:block; }
+.input-modal h3 { margin-top:0; margin-bottom:20px; color:#333; font-size:1.2em; text-align:center; }
+.input-modal input { width:100%; padding:15px; font-size:1.2em; border:2px solid #667eea; border-radius:8px; margin-bottom:15px; box-sizing:border-box; }
+.input-modal-buttons { display:flex; gap:10px; }
+.input-modal-buttons button { flex:1; padding:12px; font-size:1em; }
 .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
 .stats-modal.show { display:flex; }
 .stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Courier New',monospace; box-shadow:0 0 40px rgba(255,20,147,0.6); }
@@ -199,37 +56,19 @@ border: 3px solid rgba(255,255,255,.3);
 .stat-label { color:#aaa; font-size:0.85em; letter-spacing:1px; }
 .stat-value { color:#ffff00; font-size:1.2em; font-weight:bold; text-shadow:0 0 8px #ffff00; }
 .stats-close { display:block; margin:25px auto 0; background:#FF1493; color:#000; border:none; padding:10px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; border-radius:4px; }
-
-/* DAILY LIMIT MODAL */
 .limit-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
 .limit-modal.show { display:flex; }
 .limit-box { background:#000; border:4px solid #FF1493; border-radius:12px; padding:40px 30px; text-align:center; font-family:'Courier New',monospace; max-width:320px; width:90%; box-shadow:0 0 40px rgba(255,20,147,0.7); }
 .limit-box h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; font-size:1.4em; letter-spacing:3px; margin-bottom:15px; }
 .limit-box p { color:#00ff00; line-height:1.7; margin-bottom:20px; }
 .limit-box button { background:#FF1493; color:#000; border:none; padding:12px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; border-radius:4px; }
-
-/* HIGH SCORE ENTRY */
 .high-score-entry { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#000; color:#00ff00; padding:40px; border-radius:10px; border:4px solid #00ff00; box-shadow:0 0 30px rgba(0,255,0,.5); text-align:center; z-index:1000; font-family:'Courier New',monospace; width:90%; max-width:340px; box-sizing:border-box; }
 .high-score-entry h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; margin-bottom:20px; }
 .initials-input { display:flex; gap:15px; justify-content:center; margin:20px 0; }
 .initials-input input { width:60px; height:80px; font-size:3em; text-align:center; background:#000; border:3px solid #00ff00; color:#00ff00; text-transform:uppercase; font-family:'Courier New',monospace; }
 .arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Courier New',monospace; box-shadow:0 0 20px rgba(0,255,0,.5); }
 .arcade-button:hover { background:#00cc00; }
-
-/* LEADERBOARD */
-.leaderboard {
-margin-top: 30px;
-background: #000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top / contain no-repeat;
-color: #00ff00;
-padding: 15px;
-border-radius: 10px;
-border: 3px solid #00ff00;
-font-family: 'Courier New', monospace;
-box-shadow: 0 0 30px rgba(0,255,0,.5), inset 0 0 20px rgba(0,255,0,.1);
-min-height: 300px;
-width: 100%;
-box-sizing: border-box;
-}
+.leaderboard { margin-top:30px; background:#000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top/contain no-repeat; color:#00ff00; padding:15px; border-radius:10px; border:3px solid #00ff00; font-family:'Courier New',monospace; box-shadow:0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1); min-height:300px; width:100%; box-sizing:border-box; }
 .leaderboard-scores-wrap { margin-top:160px; background:rgba(0,0,0,0.75); border-radius:8px; padding:15px 10px 10px; }
 .leaderboard-subtitle { text-align:center; color:#00ffff; margin-bottom:15px; font-size:0.85em; letter-spacing:3px; }
 .leaderboard-item { display:grid; grid-template-columns:40px 70px 1fr 80px; padding:8px 5px; border-bottom:1px solid rgba(0,255,0,.3); font-size:1em; letter-spacing:2px; }
@@ -238,15 +77,7 @@ box-sizing: border-box;
 .leaderboard-initials { color:#00ff00; font-weight:bold; text-shadow:0 0 5px #00ff00; }
 .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
 .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
-
-@media (max-width:768px) {
-.container { padding:15px; }
-.subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
-.grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
-.header { font-size:.65em; padding:6px; }
-.next-quiz-btn { font-size:1.1em; padding:15px 25px; }
-.leaderboard-scores-wrap { margin-top:100px; }
-}
+@media (max-width:768px) { .container{padding:15px;} .subtitle{font-size:2.5em;letter-spacing:3px;} .grid{grid-template-columns:80px repeat(3,1fr);grid-template-rows:60px repeat(3,100px);gap:6px;} .header{font-size:.65em;padding:6px;} .next-quiz-btn{font-size:1.1em;padding:15px 25px;} .leaderboard-scores-wrap{margin-top:100px;} }
 
 /* LIFELINE */
 .lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
@@ -303,8 +134,6 @@ box-sizing: border-box;
 </style>
 </head>
 <body>
-
-<!-- Input Modal -->
 <div class="yn-toast" id="ynToast">No lifeline needed — it's Yes or No! 🎸</div>
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
@@ -322,22 +151,18 @@ box-sizing: border-box;
 <button onclick="showTextEntry()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">✏️ Type My Own Answer</button>
 </div>
 </div>
-
-<!-- My Stats Modal -->
 <div class="stats-modal" id="statsModal" onclick="if(event.target===this) toggleStats()">
 <div class="stats-box">
 <h2>★ MY STATS ★</h2>
 <div class="stats-sub">PLAYER PROFILE</div>
 <div class="stat-row"><span class="stat-label">QUIZZES TODAY</span><span class="stat-value" id="statToday">0</span></div>
 <div class="stat-row"><span class="stat-label">TOTAL PLAYED</span><span class="stat-value" id="statTotal">0</span></div>
-<div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0%</span></div>
+<div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0/63</span></div>
 <div class="stat-row"><span class="stat-label">BEST QUIZ SCORE</span><span class="stat-value" id="statBest">0/9</span></div>
 <div class="stat-row"><span class="stat-label">🔥 DAY STREAK</span><span class="stat-value" id="statStreak">0</span></div>
 <button class="stats-close" onclick="toggleStats()">CLOSE</button>
 </div>
 </div>
-
-<!-- Daily Limit Modal -->
 <div class="limit-modal" id="limitModal">
 <div class="limit-box">
 <h2>⚡ GAME OVER ⚡</h2>
@@ -358,8 +183,8 @@ box-sizing: border-box;
 <div class="page-nav">
 <a href="index.html">Quiz 1</a>
 <a href="quiz2.html">Quiz 2</a>
-<a href="quiz3.html" class="current">Quiz 3</a>
-<a href="quiz4.html">Quiz 4</a>
+<a href="quiz3.html">Quiz 3</a>
+<a href="quiz4.html" class="current">Quiz 4</a>
 <a href="quiz5.html">Quiz 5</a>
 <a href="quiz6.html">Quiz 6</a>
 <a href="quiz7.html">Quiz 7</a>
@@ -373,23 +198,19 @@ box-sizing: border-box;
 <div class="badge-left">
 <div class="badge-label">Difficulty: HARD</div>
 <div class="badge-score">Difficulty Score: 7/10</div>
-<div class="badge-desc">One obscure band makes this a real challenge</div>
+<div class="badge-desc">Same artists, different angles — trickier than it looks</div>
 </div>
 </div>
 
-<div class="subtitle">Quiz 3</div>
-
+<div class="subtitle">Quiz 4</div>
 <div style="text-align:center; margin-bottom:15px;">
-<div style="margin-bottom:8px;">
-<span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span>
-</div>
+<div style="margin-bottom:8px;"><span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span></div>
 <div>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">Music Edition</a>
+<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 High Scores</a>
 <span style="margin:0 8px; color:#ccc;">|</span>
 <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📊 My Stats</a>
 </div>
 </div>
-
 <!-- Lifeline Counter -->
 <div class="lifeline-bar" id="lifelineBar">
 <span class="lifeline-label">🎯 Lifelines</span>
@@ -403,37 +224,29 @@ box-sizing: border-box;
 <div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 <div class="grid">
 <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" style="grid-column:2;">Queen</div>
-<div class="header col-header" style="grid-column:3;">Prince</div>
-<div class="header col-header" style="grid-column:4;">Flesh for<br>Lulu</div>
-
-<div class="header row-header" style="grid-row:2;">Song with "Crazy" in Title</div>
+<div class="header col-header" style="grid-column:2;">Prince</div>
+<div class="header col-header" style="grid-column:3;">Queen</div>
+<div class="header col-header" style="grid-column:4;">Flesh for Lulu</div>
+<div class="header row-header" style="grid-row:2;">Hit Song with "Crazy" in the Title</div>
 <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
-
-<div class="header row-header" style="grid-row:3;">First U.S. Top 40 Hit</div>
+<div class="header row-header" style="grid-row:3;">First U.S. Top 40 Song</div>
 <div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
-
-<div class="header row-header" style="grid-row:4;">Grammy Yes or No?</div>
+<div class="header row-header" style="grid-row:4;">Grammy? (Yes or No)</div>
 <div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
 </div>
-
-<div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
-<strong>🚧 Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
-</div>
-
 <div class="footnote-box">
 <strong>📝 Notes</strong>
 <ul>
-<li>Two legendary acts paired with one of the most underrated cult bands of the 80s — Flesh for Lulu were a critics' favorite who never quite broke through to the mainstream.</li>
-<li>Queen's 80s output is often overlooked, but the band continued to release hit singles and arena-filling anthems right through the decade.</li>
-<li>Prince was arguably the most prolific hitmaker of the 80s — the sheer volume of classic songs he released between 1982 and 1989 is staggering.</li>
-<li>Flesh for Lulu got their biggest break from a John Hughes film soundtrack — a path to fame that several 80s bands shared.</li>
+<li>The same trio returns with different categories — proving that deep knowledge of these artists is what separates casual fans from true 80s obsessives.</li>
+<li>Prince recorded hundreds of songs that were never officially released — his vault at Paisley Park is one of the great mysteries in music history.</li>
+<li>Queen's first U.S. hit came from an unexpected direction — they were already huge in the UK before America finally caught on.</li>
+<li>Flesh for Lulu's Nick Marsh had one of the most distinctive voices in post-punk — a gravelly baritone that stood out in an era of synth-pop crooners.</li>
 </ul>
 </div>
 <div class="button-container">
@@ -441,28 +254,13 @@ box-sizing: border-box;
 <button onclick="resetGrid()">Reset Grid</button>
 <button onclick="shareScore()" style="background:#FF1493;">📤 Share with a Friend</button>
 </div>
-
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
-
-<div id="surveyQuestion" class="survey-question">
-<h3>💖 How much do you love 80s music? 💖</h3>
-<div class="survey-options">
-<div class="survey-option" onclick="selectSurvey(this,'A')">A. I love it</div>
-<div class="survey-option" onclick="selectSurvey(this,'B')">B. I love it so much</div>
-<div class="survey-option" onclick="selectSurvey(this,'C')">C. Oh my God, I love 80s music!</div>
-<div class="survey-option" onclick="selectSurvey(this,'D')">D. I worship Depeche Mode, Duran Duran and The Smiths</div>
-</div>
-</div>
-
-<a href="index.html" class="next-quiz-btn">🎸 PLAY QUIZ 1 AGAIN → 🎸</a>
+<a href="grid5.html" class="next-quiz-btn">🎸 PLAY QUIZ 5 → 🎸</a>
 <div style="font-size:.95em; color:#555; margin-top:20px;">Brought to you by</div>
-<div style="font-size:1.1em; font-weight:bold; margin-bottom:5px;">
-<a href="https://arrivealivepodcast.com" target="_blank" style="color:#667eea; text-decoration:none;">The Arrive Alive Podcast</a>
-</div>
+<div style="font-size:1.1em; font-weight:bold; margin-bottom:5px;"><a href="https://arrivealivepodcast.com" target="_blank" style="color:#667eea; text-decoration:none;">The Arrive Alive Podcast</a></div>
 <div style="font-size:.9em; color:#666; font-style:italic;">The Top Motorcycle Safety Podcast</div>
 </div>
-
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>★ HIGH SCORE ★</h2>
 <p style="color:#00ff00; text-align:center; font-size:1.2em; margin-bottom:20px;">ENTER YOUR INITIALS</p>
@@ -471,11 +269,8 @@ box-sizing: border-box;
 <input type="text" maxlength="1" id="initial2" />
 <input type="text" maxlength="1" id="initial3" />
 </div>
-<div style="text-align:center; margin-top:20px;">
-<button class="arcade-button" onclick="saveHighScore()">SAVE</button>
+<div style="text-align:center; margin-top:20px;"><button class="arcade-button" onclick="saveHighScore()">SAVE</button></div>
 </div>
-</div>
-
 <div id="leaderboard" class="leaderboard" style="display:none;">
 <div class="leaderboard-scores-wrap">
 <div class="leaderboard-subtitle"></div>
@@ -483,12 +278,11 @@ box-sizing: border-box;
 </div>
 </div>
 </div>
-
 <script>
-const QUIZ_NUM = 3;
-const PLAYS_KEY = '80sGridPlaysQuiz3';
-const SESSION_KEY = 'hasPlayedQuiz3';
-const QUIZ_KEY = 'quiz3Score';
+const QUIZ_NUM = 4;
+const PLAYS_KEY = '80sGridPlaysQuiz4';
+const SESSION_KEY = 'hasPlayedQuiz4';
+const QUIZ_KEY = 'quiz4Score';
 const DAILY_LIMIT = 999;
 const FAKE_SCORES = [
     { initials: 'ACE', pct: 100, quizzes: 9, date: '2/1/26' },
@@ -534,8 +328,8 @@ function updateStreak() {
 function initializeCells() { document.querySelectorAll('.cell').forEach(cell=>{ cell.addEventListener('click',()=>openModal(cell)); }); }
 function openModal(cell) {
   currentCell=cell;
-  const colHeaders=['Queen','Prince','Flesh for Lulu'];
-  const rowHeaders=["Song with \"Crazy\" in Title","First U.S. Top 40 Hit","Grammy Yes or No?"];
+  const colHeaders=['Prince','Queen','Flesh for Lulu'];
+  const rowHeaders=["Hit Song with \"Crazy\" in the Title","First U.S. Top 40 Song","Grammy? (Yes or No)"];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' \u2014 '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
   showTextEntry();
@@ -549,23 +343,23 @@ document.addEventListener('keypress',(e)=>{ if(e.key==='Enter'&&document.getElem
 document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 const answers = {
-'0-0': ['crazy little thing called love'],
-'1-0': ['killer queen'],
-'0-1': ['lets go crazy'],
-'1-1': ['i wanna be your lover','i want to be your lover'],
-'0-2': ['i go crazy'],
-'2-0': ['no'],
-'1-2': ['i go crazy'],
-'2-1': ['yes'],
+'0-0': ['lets go crazy', 'go crazy'],
+'1-0': ['i wanna be your lover', 'wanna be your lover'],
+'0-1': ['crazy little thing called love'],
+'1-1': ['killer queen'],
+'0-2': ['i go crazy', 'go crazy'],
+'2-0': ['yes'],
+'1-2': ['i go crazy', 'go crazy'],
+'2-1': ['no'],
 '2-2': ['no']
 };
 
 const mcOptions = {
-  "0-0": ["Crazy Little Thing Called Love", "Crazy for You", "She Drives Me Crazy"],
-  "1-0": ["Killer Queen", "Bohemian Rhapsody", "We Will Rock You"],
-  "0-1": ["Let's Go Crazy", "Crazy Train", "Crazy Crazy Nights"],
-  "1-1": ["I Wanna Be Your Lover", "Soft and Wet", "For You"],
-  "0-2": ["I Go Crazy", "Crazy for You", "She Drives Me Crazy"],
+  "0-0": ["Let's Go Crazy", "Crazy for You", "She Drives Me Crazy"],
+  "1-0": ["I Wanna Be Your Lover", "Soft and Wet", "For You"],
+  "0-1": ["Crazy Little Thing Called Love", "Crazy Train", "Crazy Crazy Nights"],
+  "1-1": ["Killer Queen", "Bohemian Rhapsody", "We Will Rock You"],
+  "0-2": ["I Go Crazy", "Crazy for You", "Crazy Train"],
   "1-2": ["I Go Crazy", "Roman Candle", "Postcards from Paradise"]
 };
 
