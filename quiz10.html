@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,6 +133,46 @@ button:hover { background:#5568d3; }
 .page-nav a:hover { background:#667eea; color:white; }
 .page-nav a.current { background:#667eea; color:white; border-color:#667eea; }
 @media (max-width:768px) { .container{padding:15px;} .subtitle{font-size:2.5em;letter-spacing:3px;} .grid{grid-template-columns:80px repeat(3,1fr);grid-template-rows:60px repeat(3,100px);gap:6px;} .header{font-size:.65em;padding:6px;} .next-quiz-btn{font-size:1.1em;padding:15px 25px;} .leaderboard-scores-wrap{margin-top:100px;} }
+
+/* DIFFICULTY BADGE */
+.difficulty-badge {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+margin: 0 0 20px;
+padding: 14px 20px;
+border-radius: 12px;
+border: 2px solid var(--badge-color);
+background: color-mix(in srgb, var(--badge-color) 10%, white);
+box-shadow: 0 0 20px var(--badge-glow);
+}
+.badge-left { text-align: left; }
+.badge-label {
+font-family: 'Arial Black', sans-serif;
+font-size: 1.1em;
+font-weight: 900;
+letter-spacing: 2px;
+color: var(--badge-color);
+text-transform: uppercase;
+}
+.badge-score {
+font-size: 0.8em;
+color: #666;
+font-weight: bold;
+margin-top: 2px;
+}
+.badge-stars {
+font-size: 1.5em;
+color: var(--badge-color);
+letter-spacing: 2px;
+}
+.badge-desc {
+font-size: 0.75em;
+color: #888;
+font-style: italic;
+margin-top: 2px;
+}
 </style>
 </head>
 <body>
@@ -198,11 +239,14 @@ button:hover { background:#5568d3; }
   </div>
 
   <div class="subtitle">Quiz 10</div>
-  <div style="text-align:center; margin-bottom:12px;">
-    <span style="font-size:0.82em; font-weight:bold; color:#555; letter-spacing:1px; text-transform:uppercase;">Difficulty</span><br>
-    <span style="font-size:1.5em; line-height:1.6;" title="Medium difficulty">⭐⭐⭐☆☆</span>
-    <span style="font-size:0.78em; color:#888; font-style:italic; display:block; margin-top:1px;">Medium</span>
-  </div>
+<div class="difficulty-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
+<div class="badge-stars">★★★☆☆</div>
+<div class="badge-left">
+<div class="badge-label">Difficulty: MEDIUM</div>
+<div class="badge-score">Difficulty Score: 5/10</div>
+<div class="badge-desc">You know your MTV — but do you know your album titles?</div>
+</div>
+</div>
 
   <div style="text-align:center; margin-bottom:15px;">
     <div style="margin-bottom:8px;"><span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span></div>
