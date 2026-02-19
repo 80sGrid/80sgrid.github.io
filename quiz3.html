@@ -284,11 +284,16 @@ box-sizing: border-box;
 .footnote-box { background:#f8f0ff; border-left:4px solid #8B00FF; padding:14px 16px; border-radius:8px; margin-bottom:20px; font-size:0.85em; line-height:1.7; color:#444; }
 .footnote-box strong { color:#6a0dad; display:block; margin-bottom:6px; font-size:1em; }
 .footnote-box li { margin-left:16px; margin-bottom:4px; }
+
+/* Y/N TOAST */
+.yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
+.yn-toast.show { opacity:1; }
 </style>
 </head>
 <body>
 
 <!-- Input Modal -->
+<div class="yn-toast" id="ynToast">No lifeline needed — it's Yes or No! 🎸</div>
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
 <h3 id="modalTitle">Enter Answer</h3>
@@ -571,25 +576,19 @@ document.getElementById('inputOverlay').addEventListener('click', closeModal);
 const answers = {
 '0-0': ['crazy little thing called love'],
 '1-0': ['killer queen'],
-'2-0': ['no'],
 '0-1': ['lets go crazy'],
 '1-1': ['i wanna be your lover','i want to be your lover'],
-'2-1': ['yes'],
 '0-2': ['i go crazy'],
 '1-2': ['i go crazy'],
-'2-2': ['no']
 };
 
 const mcOptions = {
   "0-0": ["Crazy Little Thing Called Love", "Radio Ga Ga", "Bohemian Rhapsody"],
   "1-0": ["Killer Queen", "Bohemian Rhapsody", "We Will Rock You"],
-  "2-0": ["No", "Yes", "Maybe"],
   "0-1": ["Lets Go Crazy", "1999", "Purple Rain"],
   "1-1": ["I Wanna Be Your Lover", "Soft and Wet", "For You"],
-  "2-1": ["Yes", "No", "Maybe"],
   "0-2": ["I Go Crazy", "Roman Candle", "Postcards from Paradise"],
   "1-2": ["I Go Crazy", "Roman Candle", "Postcards from Paradise"],
-  "2-2": ["No", "Yes", "Maybe"],
 };
 let lifelinesRemaining = 3;
 function updateLifelineUI() {
@@ -613,6 +612,13 @@ function updateLifelineUI() {
 function showMultipleChoice() {
   if (lifelinesRemaining <= 0) return;
   const key = currentCell.dataset.row + '-' + currentCell.dataset.col;
+  const yesNoKeys = ['2-0', '2-1', '2-2'];
+  if (yesNoKeys.includes(key)) {
+    const toast = document.getElementById('ynToast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+    return;
+  }
   const opts = [...mcOptions[key]];
   for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [opts[i],opts[j]]=[opts[j],opts[i]]; }
   const container = document.getElementById('mcOptions');
