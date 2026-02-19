@@ -9,7 +9,6 @@
 <meta property="og:title" content="Len's 80sGrid.com — Quiz 9">
 <meta property="og:description" content="Test your 80s music knowledge! Phil Collins, Run DMC, Duran Duran">
 <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
-<script src="config.js"></script>
 <style>
 body { font-family:Arial,sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:20px; overflow-x:hidden; box-sizing:border-box; }
 .container { background:white; padding:30px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.3); max-width:700px; width:100%; box-sizing:border-box; }
@@ -230,12 +229,11 @@ button:hover { background:#5568d3; }
 <strong>📝 Notes</strong>
 <ul>
 <li>The most famous grid of the nine — all three acts are household names well beyond 80s music circles.</li>
-<li>Phil Collins is the only artist to have played both the London and Philadelphia Live Aid shows in the same day — he took Concorde across the Atlantic between sets.</li>
-<li>Run DMC's appearance at Live Aid Philadelphia was a milestone moment for hip hop being recognized alongside rock on the world stage.</li>
-<li>Duran Duran's A View to a Kill is the only James Bond theme to reach #1 on the Billboard Hot 100.</li>
+<li>Phil Collins pulled off one of the most legendary logistical feats in rock history at Live Aid 1985 — look it up if you don't know the story.</li>
+<li>Run DMC's Live Aid appearance was a milestone moment for hip hop being recognized alongside rock on the world stage.</li>
+<li>Duran Duran contributed one of the most commercially successful James Bond themes ever recorded — a genuine chart-topper on both sides of the Atlantic.</li>
 </ul>
 </div>
-
 <div class="button-container">
 <button onclick="checkAnswers()">Check Answers</button>
 <button onclick="resetGrid()">Reset Grid</button>
@@ -245,11 +243,7 @@ button:hover { background:#5568d3; }
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
 <a href="index.html" class="next-quiz-btn">🎸 BACK TO QUIZ 1 → 🎸</a>
-<div style="font-size:.95em; color:#555; margin-top:20px;">Brought to you by</div>
-<div style="font-size:1.1em; font-weight:bold; margin-bottom:5px;">
-<a id="sponsorLink" href="#" target="_blank" style="color:#667eea; text-decoration:none;"></a>
-</div>
-<div id="sponsorTagline" style="font-size:.9em; color:#666; font-style:italic;"></div>
+
 </div>
 
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
@@ -276,13 +270,24 @@ const QUIZ_NUM = 9;
 const PLAYS_KEY = '80sGridPlaysQuiz9';
 const SESSION_KEY = 'hasPlayedQuiz9';
 const QUIZ_KEY = 'quiz9Score';
-const DAILY_LIMIT = GRID_CONFIG.DAILY_LIMIT;
-const FAKE_SCORES = GRID_CONFIG.FAKE_SCORES;
-const SHARE_TEXT = GRID_CONFIG.SHARE_TEXT;
-const SPONSOR_URL = GRID_CONFIG.SPONSOR_URL;
-const SPONSOR_NAME = GRID_CONFIG.SPONSOR_NAME;
-const SPONSOR_TAGLINE = GRID_CONFIG.SPONSOR_TAGLINE;
-const PLAYS_START = GRID_CONFIG.PLAYS_START[QUIZ_NUM];
+const DAILY_LIMIT = 999;
+const FAKE_SCORES = [
+    { initials: 'ACE', pct: 100, quizzes: 9, date: '2/1/26' },
+    { initials: 'MAX', pct: 96,  quizzes: 9, date: '2/3/26' },
+    { initials: 'ROX', pct: 93,  quizzes: 9, date: '2/5/26' },
+    { initials: 'JAX', pct: 89,  quizzes: 9, date: '2/8/26' },
+    { initials: 'ZEN', pct: 89,  quizzes: 5, date: '2/10/26' },
+    { initials: 'VIX', pct: 85,  quizzes: 9, date: '2/12/26' },
+    { initials: 'RAD', pct: 85,  quizzes: 4, date: '2/14/26' },
+    { initials: 'SKY', pct: 82,  quizzes: 9, date: '2/15/26' },
+    { initials: 'NEO', pct: 81,  quizzes: 5, date: '2/16/26' },
+    { initials: 'LUX', pct: 80,  quizzes: 9, date: '2/16/26' }
+  ];
+const SHARE_TEXT = "🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/";
+
+
+
+const PLAYS_START = 100;
 let currentCell = null;
 
 function getTodayKey() { return 'quizzesPlayed_' + new Date().toISOString().slice(0,10); }
@@ -356,7 +361,7 @@ function checkAnswers() {
   });
   if(total===0){ alert('Fill in some answers first!'); return; }
   if(!sessionStorage.getItem(SESSION_KEY)){
-    let plays=parseInt(localStorage.getItem(PLAYS_KEY)||PLAYS_START); plays++;
+    let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); plays++;
     localStorage.setItem(PLAYS_KEY,plays); updatePlaysCounter(); sessionStorage.setItem(SESSION_KEY,'true');
     incrementQuizzesPlayedToday();
     const tot=parseInt(localStorage.getItem('totalQuizzesPlayed')||'0')+1; localStorage.setItem('totalQuizzesPlayed',tot);
@@ -369,7 +374,7 @@ function checkAnswers() {
   if(correct>=8&&total===9) setTimeout(()=>{ document.getElementById('highScoreEntry').style.display='block'; document.getElementById('initial1').focus(); },1000);
   displayLeaderboard();
 }
-function updatePlaysCounter() { let plays=parseInt(localStorage.getItem(PLAYS_KEY)||PLAYS_START); document.getElementById('playsCounter').textContent=`🎮 ${plays.toLocaleString()} plays`; }
+function updatePlaysCounter() { let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); document.getElementById('playsCounter').textContent=`🎮 ${plays.toLocaleString()} plays`; }
 function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'}); }
 function shareScore() { if(navigator.share){ navigator.share({title:"Len's 80sGrid.com",text:SHARE_TEXT}).catch(()=>{}); } else{ navigator.clipboard.writeText(SHARE_TEXT).then(()=>{alert('Link copied!');}).catch(()=>{alert(SHARE_TEXT);}); } }
 function resetGrid() { document.querySelectorAll('.cell input').forEach(i=>{ i.value=''; i.parentElement.classList.remove('correct','incorrect'); }); document.getElementById('results').style.display='none'; document.getElementById('highScoreEntry').style.display='none'; }
@@ -407,8 +412,6 @@ document.getElementById('initial2').addEventListener('input',function(){ if(this
 document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
 document.addEventListener('DOMContentLoaded',()=>{
   initializeCells(); updatePlaysCounter(); displayLeaderboard();
-  const sl=document.getElementById('sponsorLink'); const st=document.getElementById('sponsorTagline');
-  if(sl){ sl.href=SPONSOR_URL; sl.textContent=SPONSOR_NAME; }
   if(st){ st.textContent=SPONSOR_TAGLINE; }
 });
 </script>
