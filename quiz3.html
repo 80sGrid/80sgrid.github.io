@@ -3,18 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
-<script src="analytics.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FE9N3JWSGN');
+</script>
 <title>Len's 80sGrid.com Music Edition - Quiz 3</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://80sgrid.com/quiz3">
 <meta property="og:title" content="Len's 80sGrid.com Music Edition - Quiz 3">
-<meta property="og:description" content="Test your 80s music knowledge! Can you name songs by Queen, Prince, and Flesh for Lulu?">
+<meta property="og:description" content="Test your 80s music knowledge! Can you name facts about The Police, The Cure, and Depeche Mode?">
 <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://80sgrid.com/quiz3">
 <meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 3">
-<meta property="twitter:description" content="Test your 80s music knowledge! Can you name songs by Queen, Prince, and Flesh for Lulu?">
+<meta property="twitter:description" content="Test your 80s music knowledge! Can you name facts about The Police, The Cure, and Depeche Mode?">
 <meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
 <style>
 body {
@@ -405,21 +411,21 @@ box-sizing: border-box;
 <div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 <div class="grid">
 <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" style="grid-column:2;">Queen</div>
-<div class="header col-header" style="grid-column:3;">Prince</div>
-<div class="header col-header" style="grid-column:4;">Flesh for<br>Lulu</div>
+<div class="header col-header" style="grid-column:2;">The Police</div>
+<div class="header col-header" style="grid-column:3;">The Cure</div>
+<div class="header col-header" style="grid-column:4;">Depeche<br>Mode</div>
 
-<div class="header row-header" style="grid-row:2;">Song with "Crazy" in Title</div>
+<div class="header row-header" style="grid-row:2;">Lead Singer's First Name</div>
 <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
 
-<div class="header row-header" style="grid-row:3;">First U.S. Top 40 Hit</div>
+<div class="header row-header" style="grid-row:3;">Song with "Night" in Title</div>
 <div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
 
-<div class="header row-header" style="grid-row:4;">Grammy Yes or No?</div>
+<div class="header row-header" style="grid-row:4;">Played Sold Out Concert at Rose Bowl</div>
 <div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Type here" readonly /></div>
 <div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Type here" readonly /></div>
@@ -432,10 +438,10 @@ box-sizing: border-box;
 <div class="footnote-box">
 <strong>📝 Notes</strong>
 <ul>
-<li>Two legendary acts paired with one of the most underrated cult bands of the 80s — Flesh for Lulu were a critics' favorite who never quite broke through to the mainstream.</li>
-<li>Queen's 80s output is often overlooked, but the band continued to release hit singles and arena-filling anthems right through the decade.</li>
-<li>Prince was arguably the most prolific hitmaker of the 80s — the sheer volume of classic songs he released between 1982 and 1989 is staggering.</li>
-<li>Flesh for Lulu got their biggest break from a John Hughes film soundtrack — a path to fame that several 80s bands shared.</li>
+<li>The Police were only together for about 7 years (1977-1984) but became one of the biggest bands in the world — their "Synchronicity" album spent 17 weeks at #1 in the US.</li>
+<li>Depeche Mode started as a cheerful synth-pop band but gradually evolved into darker, moodier territory throughout the 80s — their sound transformation mirrors the decade itself.</li>
+<li>The Cure released six studio albums during the 1980s alone, ranging from dark post-punk to jangly pop — few bands explored such diverse sonic territory in a single decade.</li>
+<li>All three of these bands proved that "new wave" wasn't just a flash in the pan — they built lasting careers that extended far beyond the 80s into multiple decades of success.</li>
 </ul>
 </div>
 <div class="button-container">
@@ -536,8 +542,8 @@ function updateStreak() {
 function initializeCells() { document.querySelectorAll('.cell').forEach(cell=>{ cell.addEventListener('click',()=>openModal(cell)); }); }
 function openModal(cell) {
   currentCell=cell;
-  const colHeaders=['Queen','Prince','Flesh for Lulu'];
-  const rowHeaders=["Song with \"Crazy\" in Title","First U.S. Top 40 Hit","Grammy Yes or No?"];
+  const colHeaders=['The Police','The Cure','Depeche Mode'];
+  const rowHeaders=["Lead Singer's First Name","Song with \"Night\" in Title","Played Sold Out Concert at Rose Bowl"];
   document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' \u2014 '+rowHeaders[parseInt(cell.dataset.row)];
   document.getElementById('modalInput').value=cell.querySelector('input').value;
   showTextEntry();
@@ -551,24 +557,24 @@ document.addEventListener('keypress',(e)=>{ if(e.key==='Enter'&&document.getElem
 document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 const answers = {
-'0-0': ['crazy little thing called love'],
-'1-0': ['killer queen'],
-'0-1': ['lets go crazy'],
-'1-1': ['i wanna be your lover','i want to be your lover'],
-'0-2': ['i go crazy'],
+'0-0': ['sting','gordon'],
+'0-1': ['robert'],
+'0-2': ['dave'],
+'1-0': ['bring on the night'],
+'1-1': ['1015 saturday night','10 15 saturday night','saturday night'],
+'1-2': ['waiting for the night to fall'],
 '2-0': ['no'],
-'1-2': ['i go crazy'],
 '2-1': ['yes'],
-'2-2': ['no']
+'2-2': ['yes']
 };
 
 const mcOptions = {
-  "0-0": ["Crazy Little Thing Called Love", "Crazy for You", "She Drives Me Crazy"],
-  "1-0": ["Killer Queen", "Bohemian Rhapsody", "We Will Rock You"],
-  "0-1": ["Let's Go Crazy", "Crazy Train", "Crazy Crazy Nights"],
-  "1-1": ["I Wanna Be Your Lover", "Soft and Wet", "For You"],
-  "0-2": ["I Go Crazy", "Crazy for You", "She Drives Me Crazy"],
-  "1-2": ["I Go Crazy", "Roman Candle", "Postcards from Paradise"]
+  "0-0": ["Sting", "Gordon", "Andy"],
+  "0-1": ["Robert", "Roger", "Roland"],
+  "0-2": ["Dave", "Daniel", "David"],
+  "1-0": ["Bring on the Night", "Walking on the Moon", "Message in a Bottle"],
+  "1-1": ["10:15 Saturday Night", "Friday I'm in Love", "Boys Don't Cry"],
+  "1-2": ["Waiting for the Night to Fall", "Enjoy the Silence", "Personal Jesus"]
 };
 
 let lifelinesRemaining = 3;
