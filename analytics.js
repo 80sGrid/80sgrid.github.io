@@ -147,18 +147,62 @@ function getPageType() {
       });
     });
 
-    // --- Track outbound link clicks ---
+    // --- Track outbound link clicks (with dedicated sponsor tracking) ---
     document.querySelectorAll('a[href^="http"]').forEach(function(link) {
       if (!link.href.includes('80sgrid')) {
         link.addEventListener('click', function() {
+          var url = this.href;
+          var isSponsor = url.includes('arrivealivepodcast');
           trackEvent('outbound_click', {
             quiz_number: quizNum,
-            url: this.href,
-            link_text: this.textContent.trim().substring(0, 50)
+            url: url,
+            link_text: this.textContent.trim().substring(0, 50),
+            link_type: isSponsor ? 'sponsor' : 'external'
           });
+          // Dedicated sponsor conversion event for ROI measurement
+          if (isSponsor) {
+            trackEvent('sponsor_click', {
+              quiz_number: quizNum,
+              sponsor_name: 'arrive_alive_podcast',
+              sponsor_url: url,
+              user_completed_quiz: document.getElementById('results') && document.getElementById('results').style.display !== 'none',
+              user_score: document.getElementById('score') ? document.getElementById('score').textContent : ''
+            });
+          }
         });
       }
     });
+
+    // --- Quiz progression funnel (cross-quiz journey tracking) ---
+    (function() {
+      var completedQuizzes = [];
+      var quizScores = {};
+      for (var i = 1; i <= 10; i++) {
+        var score = parseInt(localStorage.getItem('quiz' + i + 'Score') || '0');
+        if (score > 0) {
+          completedQuizzes.push(i);
+          quizScores['quiz_' + i + '_score'] = score;
+        }
+      }
+      var farthestQuiz = completedQuizzes.length > 0 ? Math.max.apply(null, completedQuizzes) : 0;
+      trackEvent('quiz_progression', {
+        quiz_number: quizNum,
+        quizzes_completed: completedQuizzes.length,
+        completed_list: completedQuizzes.join(','),
+        farthest_quiz: farthestQuiz,
+        is_sequential: completedQuizzes.length === farthestQuiz,
+        dropped_off_at: farthestQuiz > 0 && farthestQuiz < 10 ? farthestQuiz + 1 : null,
+        completion_rate: Math.round((completedQuizzes.length / 10) * 100)
+      });
+      // Fire a funnel step event so GA4 can build a proper funnel
+      if (typeof quizNum === 'number' && quizNum >= 1 && quizNum <= 10) {
+        trackEvent('quiz_funnel_step', {
+          quiz_number: quizNum,
+          step_name: 'quiz_' + quizNum + '_viewed',
+          quizzes_completed_before: completedQuizzes.filter(function(q) { return q < quizNum; }).length
+        });
+      }
+    })();
 
     // --- Monkey-patch: checkAnswers ---
     if (typeof window.checkAnswers === 'function') {
