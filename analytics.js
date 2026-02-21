@@ -230,8 +230,37 @@ function getQuizUrl(quizNum) {
     // --- Monkey-patch: checkAnswers ---
     if (typeof window.checkAnswers === 'function') {
       var origCheckAnswers = window.checkAnswers;
+      // Track which cells were answered via lifeline (multiple choice)
+      var mcCells = {};
+      var origSelectMCOption = window.selectMCOption;
+      if (typeof origSelectMCOption === 'function') {
+        window.selectMCOption = function(value) {
+          if (typeof currentCell !== 'undefined' && currentCell) {
+            mcCells[currentCell.dataset.row + '-' + currentCell.dataset.col] = true;
+          }
+          return origSelectMCOption.apply(this, arguments);
+        };
+      }
+
       window.checkAnswers = function() {
+        // Snapshot filled cells before checkAnswers runs (it may return early)
+        var filledCount = 0;
+        document.querySelectorAll('.cell').forEach(function(cell) {
+          var input = cell.querySelector('input');
+          if (input && input.value.trim()) filledCount++;
+        });
+
         origCheckAnswers.apply(this, arguments);
+
+        // Detect empty submission (checkAnswers returned early, no score written)
+        if (filledCount === 0) {
+          trackEvent('quiz_submit_empty', {
+            quiz_number: quizNum,
+            engagement_time_msec: Date.now() - sessionStart
+          });
+          return;
+        }
+
         // After checkAnswers runs, read the score from the DOM
         var scoreEl = document.getElementById('score');
         if (scoreEl && scoreEl.textContent) {
@@ -242,6 +271,17 @@ function getQuizUrl(quizNum) {
             var lifelinesUsed = 3 - (typeof lifelinesRemaining !== 'undefined' ? lifelinesRemaining : 3);
             var timeToComplete = quizStartTime ? Math.round((Date.now() - quizStartTime) / 1000) : null;
 
+            // Count cells answered via typed text vs multiple choice
+            var cellsMC = 0;
+            var cellsTyped = 0;
+            document.querySelectorAll('.cell').forEach(function(cell) {
+              var input = cell.querySelector('input');
+              if (input && input.value.trim()) {
+                var key = cell.dataset.row + '-' + cell.dataset.col;
+                if (mcCells[key]) { cellsMC++; } else { cellsTyped++; }
+              }
+            });
+
             trackEvent('quiz_complete', {
               quiz_number: quizNum,
               score: correct,
@@ -250,6 +290,8 @@ function getQuizUrl(quizNum) {
               perfect_score: correct === 9,
               lifelines_used: lifelinesUsed,
               no_lifelines: lifelinesUsed === 0,
+              cells_typed: cellsTyped,
+              cells_mc: cellsMC,
               time_to_complete_seconds: timeToComplete,
               engagement_time_msec: Date.now() - sessionStart
             });
