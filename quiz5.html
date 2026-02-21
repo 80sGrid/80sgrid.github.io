@@ -5,20 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
 <script src="analytics.js"></script>
-<title>Len's 80sGrid.com Music Edition - Quiz 5</title>
-<meta name="description" content="Test your 80s music knowledge! UB40, Eddy Grant, Peter Gabriel">
-<link rel="canonical" href="https://80sgrid.com/quiz5.html">
+<title>Len's 80sGrid.com — Quiz 5</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://80sgrid.com/quiz5.html">
-<meta property="og:title" content="Len's 80sGrid.com Music Edition - Quiz 5">
+<meta property="og:title" content="Len's 80sGrid.com — Quiz 5">
 <meta property="og:description" content="Test your 80s music knowledge! UB40, Eddy Grant, Peter Gabriel">
 <meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
-<meta property="og:site_name" content="80sGrid.com">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://80sgrid.com/quiz5.html">
-<meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 5">
-<meta property="twitter:description" content="Test your 80s music knowledge! UB40, Eddy Grant, Peter Gabriel">
-<meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
 <style>
 body { font-family:Arial,sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:20px; overflow-x:hidden; box-sizing:border-box; }
 .container { background:white; padding:30px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.3); max-width:700px; width:100%; box-sizing:border-box; }
@@ -92,10 +84,14 @@ button:hover { background:#5568d3; }
 .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
 .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
 /* PAGE NAV */
-.page-nav { display:flex; justify-content:center; gap:6px; margin-bottom:16px; flex-wrap:wrap; }
+.page-nav { display:flex; justify-content:center; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
 .page-nav a { display:inline-block; padding:5px 11px; border-radius:6px; background:#f0f0f0; color:#667eea; text-decoration:none; font-size:0.8em; font-weight:bold; border:2px solid #dee2e6; transition:background 0.2s; }
-.page-nav a:hover { background:#667eea; color:white; }
-.page-nav a.current { background:#667eea; color:white; border-color:#667eea; }
+.page-nav a:hover { opacity:0.85; }
+.page-nav a.easy { background:#28a745; color:white; border-color:#28a745; }
+.page-nav a.medium { background:#fd7e14; color:white; border-color:#fd7e14; }
+.page-nav a.hard { background:#dc3545; color:white; border-color:#dc3545; }
+.page-nav a.current { box-shadow: 0 0 12px rgba(0,0,0,0.4); transform: scale(1.15); z-index:1; }
+.nav-legend { text-align:center; font-size:0.75em; color:#666; margin-bottom:16px; }
 /* DIFFICULTY BADGE */
 .difficulty-badge { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 20px; padding:14px 20px; border-radius:12px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 20px var(--badge-glow); }
 .badge-left { text-align:left; }
@@ -208,17 +204,30 @@ button:hover { background:#5568d3; }
 <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 
 <div class="page-nav">
-<a href="index.html">Quiz 1</a>
-<a href="quiz2.html">Quiz 2</a>
-<a href="quiz3.html">Quiz 3</a>
-<a href="quiz4.html">Quiz 4</a>
-<a href="quiz5.html" class="current">Quiz 5</a>
-<a href="quiz6.html">Quiz 6</a>
-<a href="quiz7.html">Quiz 7</a>
-<a href="quiz8.html">Quiz 8</a>
-<a href="quiz9.html">Quiz 9</a>
-<a href="quiz10.html">Quiz 10</a>
+<a href="index.html" class="easy">1</a>
+<a href="quiz2.html" class="medium">2</a>
+<a href="quiz3.html" class="medium">3</a>
+<a href="quiz4.html" class="hard">4</a>
+<a href="quiz5.html" class="medium current">5</a>
+<a href="quiz6.html" class="medium">6</a>
+<a href="quiz7.html" class="easy">7</a>
+<a href="quiz8.html" class="medium">8</a>
+<a href="quiz9.html" class="easy">9</a>
+<a href="quiz10.html" class="medium">10</a>
 </div>
+<div class="page-nav">
+<a href="quiz11.html" class="hard">11</a>
+<a href="quiz12.html" class="medium">12</a>
+<a href="quiz13.html" class="medium">13</a>
+<a href="quiz14.html" class="medium">14</a>
+<a href="quiz15.html" class="hard">15</a>
+<a href="quiz16.html" class="easy">16</a>
+<a href="quiz17.html" class="medium">17</a>
+<a href="quiz18.html" class="hard">18</a>
+<a href="quiz19.html" class="easy">19</a>
+<a href="quiz20.html" class="hard">20</a>
+</div>
+<div class="nav-legend">🟢 Easy &nbsp;|&nbsp; 🟠 Medium &nbsp;|&nbsp; 🔴 Hard</div>
 
 
 
@@ -320,7 +329,7 @@ const QUIZ_NUM = 5;
 const PLAYS_KEY = '80sGridPlaysQuiz5';
 const SESSION_KEY = 'hasPlayedQuiz5';
 const QUIZ_KEY = 'quiz5Score';
-const DAILY_LIMIT = 999;
+const DAILY_LIMIT = 3;
 const FAKE_SCORES = [
     { initials: 'ACE', pct: 100, quizzes: 9, date: '2/1/26' },
     { initials: 'MAX', pct: 96,  quizzes: 9, date: '2/3/26' },
@@ -379,7 +388,24 @@ function openModal(cell) {
   setTimeout(()=>document.getElementById('modalInput').focus(),100);
 }
 function closeModal() { document.getElementById('inputModal').classList.remove('active'); document.getElementById('inputOverlay').classList.remove('active'); currentCell=null; }
-function saveModalAnswer() { if(currentCell){ currentCell.querySelector('input').value=document.getElementById('modalInput').value; closeModal(); } }
+function saveModalAnswer() {
+if (currentCell) {
+const modalValue = document.getElementById('modalInput').value;
+
+if (modalValue.toUpperCase() === 'RAD' && !radBonusUsed) {
+  radBonusUsed = true;
+  lifelinesRemaining++;
+  updateLifelineUI();
+  alert("Len's Bonus lifeline unlocked! 🛟");
+  document.getElementById('modalInput').value = '';
+  document.getElementById('modalInput').focus();
+  return;
+}
+const input = currentCell.querySelector('input');
+input.value = modalValue;
+closeModal();
+}
+}
 function openHTP() { document.getElementById('htpModal').classList.add('show'); }
 function closeHTP() { document.getElementById('htpModal').classList.remove('show'); }
 document.addEventListener('keypress',(e)=>{ if(e.key==='Enter'&&document.getElementById('inputModal').classList.contains('active')) saveModalAnswer(); });
@@ -410,6 +436,7 @@ const mcOptions = {
 };
 
 let lifelinesRemaining = 3;
+let radBonusUsed = false;
 function updateLifelineUI() {
   for (let i = 1; i <= 3; i++) {
     const pip = document.getElementById('pip' + i);
