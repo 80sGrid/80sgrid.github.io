@@ -11,6 +11,16 @@ gtag('config', 'G-FE9N3JWSGN', {
   send_page_view: true
 });
 
+// ─── PERSISTENT USER ID FOR COHORT ANALYSIS ────────────────────────────────
+(function() {
+  var uid = localStorage.getItem('80sGrid_uid');
+  if (!uid) {
+    uid = Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
+    localStorage.setItem('80sGrid_uid', uid);
+  }
+  gtag('config', 'G-FE9N3JWSGN', { user_id: uid, send_page_view: false });
+})();
+
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 function trackEvent(name, params) {
   if (typeof gtag === 'function') {
@@ -31,6 +41,12 @@ function getQuizNumber() {
 function getPageType() {
   var q = getQuizNumber();
   return q === 'answers' ? 'answer_key' : 'quiz';
+}
+
+function getQuizUrl(quizNum) {
+  if (quizNum === 1) return 'https://80sgrid.com/';
+  if (quizNum === 'answers') return 'https://80sgrid.com/answers.html';
+  return 'https://80sgrid.com/quiz' + quizNum + '.html';
 }
 
 // ─── PAGE-LEVEL TRACKING ─────────────────────────────────────────────────────
@@ -271,25 +287,43 @@ function getPageType() {
       };
     }
 
-    // --- Monkey-patch: shareScore ---
+    // --- Override: shareScore (replaces original with score + UTM tracking) ---
     if (typeof window.shareScore === 'function') {
-      var origShareScore = window.shareScore;
       window.shareScore = function() {
         var method = navigator.share ? 'native_share' : 'clipboard';
+        var resultsVisible = document.getElementById('results') && document.getElementById('results').style.display !== 'none';
+        var scoreEl = document.getElementById('score');
+        var scoreMatch = scoreEl && scoreEl.textContent ? scoreEl.textContent.match(/(\d+)\s*out\s*of\s*(\d+)/) : null;
+        var shareUrl = getQuizUrl(quizNum) + '?utm_source=share&utm_medium=' + method + '&utm_campaign=quiz' + quizNum;
+        var shareText;
+        if (resultsVisible && scoreMatch) {
+          shareText = 'I scored ' + scoreMatch[1] + '/' + scoreMatch[2] + ' on Len\'s 80sGrid Quiz ' + quizNum + '! Can you beat me? ' + shareUrl;
+        } else {
+          shareText = 'Test your 80s music knowledge on Len\'s 80sGrid! ' + shareUrl;
+        }
+
         trackEvent('share_click', {
           quiz_number: quizNum,
-          share_method: method
+          share_method: method,
+          has_score: !!scoreMatch,
+          engagement_time_msec: Date.now() - sessionStart
         });
-        // Viral tracking — count shares
         var shareCount = parseInt(localStorage.getItem('80sGrid_shareCount') || '0') + 1;
         localStorage.setItem('80sGrid_shareCount', shareCount);
         trackEvent('viral_share', {
           quiz_number: quizNum,
           share_method: method,
           total_shares_by_user: shareCount,
-          share_context: document.getElementById('results') && document.getElementById('results').style.display !== 'none' ? 'after_quiz' : 'before_quiz'
+          share_context: resultsVisible ? 'after_quiz' : 'before_quiz'
         });
-        origShareScore.apply(this, arguments);
+
+        if (navigator.share) {
+          navigator.share({ title: "Len's 80sGrid.com Music Edition", text: shareText }).catch(function() {});
+        } else {
+          navigator.clipboard.writeText(shareText).then(function() {
+            alert('Link copied! Share it with your friends!');
+          }).catch(function() { alert(shareText); });
+        }
       };
     }
 
@@ -406,9 +440,21 @@ function getPageType() {
         });
       }
 
+      // K-factor: track when someone arrives via a share link
+      if (utm_source === 'share') {
+        trackEvent('share_conversion', {
+          quiz_number: quizNum,
+          share_medium: utm_medium || '(not set)',
+          share_campaign: utm_campaign || '(not set)',
+          is_new_user: parseInt(localStorage.getItem('80sGrid_visitCount') || '0') <= 1
+        });
+      }
+
       // Classify traffic source
       var source = 'direct';
-      if (ref) {
+      if (utm_source === 'share') {
+        source = 'share';
+      } else if (ref) {
         if (ref.includes('facebook.com') || ref.includes('fb.com') || ref.includes('fbclid')) source = 'facebook';
         else if (ref.includes('twitter.com') || ref.includes('t.co') || ref.includes('x.com')) source = 'twitter_x';
         else if (ref.includes('instagram.com')) source = 'instagram';
@@ -425,6 +471,46 @@ function getPageType() {
         referrer_full: ref ? ref.substring(0, 200) : 'direct',
         is_viral: source !== 'direct' && source !== 'google' && source !== 'bing' && source !== 'internal'
       });
+    })();
+
+    // ─── RETENTION TRACKING ─────────────────────────────────────────────────
+    (function() {
+      var firstVisit = localStorage.getItem('80sGrid_firstVisit');
+      if (!firstVisit) return;
+      var daysSince = Math.floor((Date.now() - new Date(firstVisit).getTime()) / 86400000);
+      if (daysSince < 1) return;
+
+      // Track today's date to avoid duplicate retention events
+      var today = new Date().toISOString().slice(0, 10);
+      var lastRetentionDay = localStorage.getItem('80sGrid_lastRetentionDay');
+      if (lastRetentionDay === today) return;
+      localStorage.setItem('80sGrid_lastRetentionDay', today);
+
+      // Fire retention milestone events
+      var milestones = [1, 3, 7, 14, 30, 60, 90];
+      var hitMilestones = localStorage.getItem('80sGrid_retentionHit') || '';
+      milestones.forEach(function(d) {
+        if (daysSince >= d && hitMilestones.indexOf('d' + d) === -1) {
+          trackEvent('retention', {
+            quiz_number: quizNum,
+            retention_day: d,
+            days_since_first_visit: daysSince,
+            total_quizzes_played: parseInt(localStorage.getItem('totalQuizzesPlayed') || '0'),
+            visit_count: parseInt(localStorage.getItem('80sGrid_visitCount') || '0')
+          });
+          hitMilestones += ',d' + d;
+          localStorage.setItem('80sGrid_retentionHit', hitMilestones);
+        }
+      });
+
+      // Fire a return_visit event every time a returning user comes back
+      trackEvent('return_visit', {
+        quiz_number: quizNum,
+        days_since_first_visit: daysSince,
+        days_since_last_visit: Math.floor((Date.now() - parseInt(localStorage.getItem('80sGrid_lastVisitTs') || Date.now())) / 86400000),
+        visit_count: parseInt(localStorage.getItem('80sGrid_visitCount') || '0')
+      });
+      localStorage.setItem('80sGrid_lastVisitTs', Date.now().toString());
     })();
 
   }); // end DOMContentLoaded
