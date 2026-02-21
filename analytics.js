@@ -8,8 +8,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-FE9N3JWSGN', {
-  send_page_view: true,
-  cookie_flags: 'SameSite=None;Secure'
+  send_page_view: true
 });
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -88,7 +87,8 @@ function getPageType() {
           scrollMilestones[milestone] = true;
           trackEvent('scroll_depth', {
             quiz_number: quizNum,
-            depth_percent: milestone
+            depth_percent: milestone,
+            engagement_time_msec: Date.now() - sessionStart
           });
         }
       });
@@ -96,14 +96,18 @@ function getPageType() {
   });
 
   // ─── TIME ON PAGE (beacon on unload) ─────────────────────────────────────
+  var sessionEndSent = false;
   function sendTimeOnPage() {
+    if (sessionEndSent) return;
+    sessionEndSent = true;
     var elapsed = Math.round((Date.now() - sessionStart) / 1000);
     var quizTime = quizStartTime ? Math.round((Date.now() - quizStartTime) / 1000) : null;
     var data = {
       quiz_number: quizNum,
       total_seconds: elapsed,
       max_scroll_depth: maxScrollDepth,
-      started_quiz: firstCellClicked
+      started_quiz: firstCellClicked,
+      engagement_time_msec: elapsed * 1000
     };
     if (quizTime !== null) data.quiz_seconds = quizTime;
     // Use sendBeacon for reliability on page unload
@@ -121,17 +125,20 @@ function getPageType() {
     document.querySelectorAll('.cell').forEach(function(cell) {
       cell.addEventListener('click', function() {
         var pos = cell.dataset.row + '-' + cell.dataset.col;
+        var engagementMs = Date.now() - sessionStart;
         if (!firstCellClicked) {
           firstCellClicked = true;
           quizStartTime = Date.now();
           trackEvent('quiz_start', {
             quiz_number: quizNum,
-            first_cell: pos
+            first_cell: pos,
+            engagement_time_msec: engagementMs
           });
         }
         trackEvent('cell_click', {
           quiz_number: quizNum,
-          cell_position: pos
+          cell_position: pos,
+          engagement_time_msec: engagementMs
         });
       });
     });
@@ -227,7 +234,8 @@ function getPageType() {
               perfect_score: correct === 9,
               lifelines_used: lifelinesUsed,
               no_lifelines: lifelinesUsed === 0,
-              time_to_complete_seconds: timeToComplete
+              time_to_complete_seconds: timeToComplete,
+              engagement_time_msec: Date.now() - sessionStart
             });
 
             // Track individual answer results for deeper analysis
