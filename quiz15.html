@@ -145,6 +145,10 @@ button:hover { background:#5568d3; }
 /* Y/N TOAST */
 .yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
 .yn-toast.show { opacity:1; }
+
+/* SURVEY TRIBE CARDS */
+.survey-option:hover { transform:scale(1.02); filter:brightness(1.15); }
+.survey-option.selected { box-shadow:0 0 25px rgba(0,255,0,0.6), inset 0 0 15px rgba(0,255,0,0.1); border-color:#00ff00 !important; transform:scale(1.03); }
 </style>
 </head>
 <body>
@@ -305,6 +309,64 @@ button:hover { background:#5568d3; }
 
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+
+<div id="surveyQuestion" class="survey-question" style="background:linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding:25px 18px;">
+<h3 style="font-family:'Arial Black',sans-serif; letter-spacing:3px; font-size:1.1em; text-shadow:0 0 20px rgba(255,20,147,0.5); margin-bottom:14px;">&#127926; WHAT TYPE OF 80s FAN ARE YOU? &#127926;</h3>
+<div class="survey-options" id="surveyOptions" style="gap:8px;">
+
+<div class="survey-option" onclick="selectSurvey(this,'New Wave')" data-tribe="New Wave" data-pct="26" data-color="#9d4edd" style="background:linear-gradient(135deg,#6a0dad,#9d4edd); border:2px solid #b388ff; padding:12px 14px; display:flex; align-items:center; gap:12px; text-align:left; border-radius:10px;">
+  <div class="tribe-icon" style="min-width:40px; height:40px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.4em; border:2px solid rgba(179,136,255,0.5);">&#127929;</div>
+  <div style="flex:1;">
+    <div class="tribe-label" style="font-size:0.95em; font-weight:900; letter-spacing:1px;">NEW WAVE</div>
+    <div class="tribe-artists" style="font-size:0.72em; font-weight:normal; opacity:0.85; margin-top:2px;">Depeche Mode &#8226; The Cure &#8226; Tears for Fears</div>
+    <div class="tribe-bar" style="display:none; margin-top:6px; background:rgba(0,0,0,0.3); border-radius:4px; height:8px; overflow:hidden;"><div class="tribe-fill" style="height:100%; border-radius:4px; transition:width 0.8s ease;"></div></div>
+  </div>
+  <div class="tribe-pct" style="display:none; font-size:1.1em; font-weight:900; min-width:42px; text-align:right;"></div>
+</div>
+
+<div class="survey-option" onclick="selectSurvey(this,'Hair Metal')" data-tribe="Hair Metal" data-pct="15" data-color="#dc2626" style="background:linear-gradient(135deg,#b91c1c,#dc2626); border:2px solid #f87171; padding:12px 14px; display:flex; align-items:center; gap:12px; text-align:left; border-radius:10px;">
+  <div class="tribe-icon" style="min-width:40px; height:40px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.4em; border:2px solid rgba(248,113,113,0.5);">&#127928;</div>
+  <div style="flex:1;">
+    <div class="tribe-label" style="font-size:0.95em; font-weight:900; letter-spacing:1px;">HAIR METAL</div>
+    <div class="tribe-artists" style="font-size:0.72em; font-weight:normal; opacity:0.85; margin-top:2px;">M&ouml;tley Cr&uuml;e &#8226; Def Leppard &#8226; Bon Jovi</div>
+    <div class="tribe-bar" style="display:none; margin-top:6px; background:rgba(0,0,0,0.3); border-radius:4px; height:8px; overflow:hidden;"><div class="tribe-fill" style="height:100%; border-radius:4px; transition:width 0.8s ease;"></div></div>
+  </div>
+  <div class="tribe-pct" style="display:none; font-size:1.1em; font-weight:900; min-width:42px; text-align:right;"></div>
+</div>
+
+<div class="survey-option" onclick="selectSurvey(this,'Pop Royalty')" data-tribe="Pop Royalty" data-pct="28" data-color="#FF1493" style="background:linear-gradient(135deg,#FF1493,#ff69b4); border:2px solid #ffb6c1; padding:12px 14px; display:flex; align-items:center; gap:12px; text-align:left; border-radius:10px;">
+  <div class="tribe-icon" style="min-width:40px; height:40px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.4em; border:2px solid rgba(255,182,193,0.5);">&#128081;</div>
+  <div style="flex:1;">
+    <div class="tribe-label" style="font-size:0.95em; font-weight:900; letter-spacing:1px;">POP ROYALTY</div>
+    <div class="tribe-artists" style="font-size:0.72em; font-weight:normal; opacity:0.85; margin-top:2px;">Madonna &#8226; Michael Jackson &#8226; Prince</div>
+    <div class="tribe-bar" style="display:none; margin-top:6px; background:rgba(0,0,0,0.3); border-radius:4px; height:8px; overflow:hidden;"><div class="tribe-fill" style="height:100%; border-radius:4px; transition:width 0.8s ease;"></div></div>
+  </div>
+  <div class="tribe-pct" style="display:none; font-size:1.1em; font-weight:900; min-width:42px; text-align:right;"></div>
+</div>
+
+<div class="survey-option" onclick="selectSurvey(this,'Goth Dark Wave')" data-tribe="Goth Dark Wave" data-pct="14" data-color="#888" style="background:linear-gradient(135deg,#1a1a1a,#333333); border:2px solid #666; padding:12px 14px; display:flex; align-items:center; gap:12px; text-align:left; border-radius:10px;">
+  <div class="tribe-icon" style="min-width:40px; height:40px; background:rgba(0,0,0,0.5); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.4em; border:2px solid rgba(102,102,102,0.5);">&#128420;</div>
+  <div style="flex:1;">
+    <div class="tribe-label" style="font-size:0.95em; font-weight:900; letter-spacing:1px;">GOTH / DARK WAVE</div>
+    <div class="tribe-artists" style="font-size:0.72em; font-weight:normal; opacity:0.85; margin-top:2px;">Siouxsie &#8226; Bauhaus &#8226; The Smiths</div>
+    <div class="tribe-bar" style="display:none; margin-top:6px; background:rgba(0,0,0,0.3); border-radius:4px; height:8px; overflow:hidden;"><div class="tribe-fill" style="height:100%; border-radius:4px; transition:width 0.8s ease;"></div></div>
+  </div>
+  <div class="tribe-pct" style="display:none; font-size:1.1em; font-weight:900; min-width:42px; text-align:right;"></div>
+</div>
+
+<div class="survey-option" onclick="selectSurvey(this,'Heartland Rock')" data-tribe="Heartland Rock" data-pct="17" data-color="#d97706" style="background:linear-gradient(135deg,#b45309,#d97706); border:2px solid #fbbf24; padding:12px 14px; display:flex; align-items:center; gap:12px; text-align:left; border-radius:10px;">
+  <div class="tribe-icon" style="min-width:40px; height:40px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.4em; border:2px solid rgba(251,191,36,0.5);">&#127482;&#127480;</div>
+  <div style="flex:1;">
+    <div class="tribe-label" style="font-size:0.95em; font-weight:900; letter-spacing:1px;">HEARTLAND ROCK</div>
+    <div class="tribe-artists" style="font-size:0.72em; font-weight:normal; opacity:0.85; margin-top:2px;">Springsteen &#8226; Petty &#8226; Mellencamp</div>
+    <div class="tribe-bar" style="display:none; margin-top:6px; background:rgba(0,0,0,0.3); border-radius:4px; height:8px; overflow:hidden;"><div class="tribe-fill" style="height:100%; border-radius:4px; transition:width 0.8s ease;"></div></div>
+  </div>
+  <div class="tribe-pct" style="display:none; font-size:1.1em; font-weight:900; min-width:42px; text-align:right;"></div>
+</div>
+
+</div>
+</div>
+
 <a href="quiz16.html" class="next-quiz-btn">🎸 NEXT QUIZ → 🎸</a>
 
 </div>
@@ -551,6 +613,60 @@ function displayLeaderboard() {
 document.getElementById('initial1').addEventListener('input',function(){ if(this.value) document.getElementById('initial2').focus(); });
 document.getElementById('initial2').addEventListener('input',function(){ if(this.value) document.getElementById('initial3').focus(); });
 document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
+
+const FORMSPREE_SURVEY_URL = 'https://formspree.io/f/xeelpozw';
+
+function selectSurvey(el, choice) {
+  if (document.querySelector('.survey-voted')) return;
+  document.querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  localStorage.setItem('80sGrid_fanType', choice);
+  try {
+    fetch(FORMSPREE_SURVEY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ type: 'survey', quiz: 'Quiz ' + QUIZ_NUM, fan_type: choice, date: new Date().toISOString() }),
+    });
+  } catch (e) {}
+  revealSurveyResults(choice);
+}
+
+function revealSurveyResults(choice) {
+  document.getElementById('surveyOptions').classList.add('survey-voted');
+  document.querySelectorAll('.survey-option').forEach(function(card) {
+    var tribe = card.dataset.tribe;
+    var pct = parseInt(card.dataset.pct);
+    var color = card.dataset.color;
+    var isYours = tribe === choice;
+    card.querySelector('.tribe-artists').style.display = 'none';
+    var bar = card.querySelector('.tribe-bar');
+    bar.style.display = 'block';
+    var fill = card.querySelector('.tribe-fill');
+    fill.style.background = isYours ? 'linear-gradient(135deg,' + color + ',#fff)' : color;
+    fill.style.boxShadow = isYours ? '0 0 10px ' + color : 'none';
+    setTimeout(function() { fill.style.width = pct + '%'; }, 50);
+    var pctEl = card.querySelector('.tribe-pct');
+    pctEl.style.display = 'block';
+    pctEl.textContent = pct + '%';
+    pctEl.style.color = '#fff';
+    pctEl.style.textShadow = '0 0 10px rgba(0,0,0,0.5)';
+    if (isYours) {
+      card.classList.add('selected');
+      card.style.boxShadow = '0 0 20px ' + color + ', inset 0 0 10px rgba(255,255,255,0.1)';
+      card.querySelector('.tribe-label').textContent += ' \u2713';
+    } else {
+      card.style.opacity = '0.65';
+    }
+    card.style.cursor = 'default';
+    card.onclick = null;
+  });
+}
+
+function restoreSurvey() {
+  var saved = localStorage.getItem('80sGrid_fanType');
+  if (saved) revealSurveyResults(saved);
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   initializeCells(); updatePlaysCounter(); displayLeaderboard(); updateLifelineUI();
 });
