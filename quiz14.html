@@ -167,6 +167,18 @@ button:hover { background:#5568d3; }
 /* SURVEY TRIBE CARDS */
 .survey-option:hover { transform:scale(1.02); filter:brightness(1.15); }
 .survey-option.selected { box-shadow:0 0 25px rgba(0,255,0,0.6), inset 0 0 15px rgba(0,255,0,0.1); border-color:#00ff00 !important; transform:scale(1.03); }
+
+/* DESKTOP NAV COMPACT */
+@media (min-width: 600px) {
+  #quizGridNav { grid-template-columns: repeat(5, 55px) !important; gap: 6px !important; justify-content: center !important; }
+  #quizGridNav a { width: 55px !important; height: 40px !important; font-size: 15px !important; border-radius: 8px !important; line-height: 40px !important; }
+  .group-tabs { gap: 4px !important; }
+  .group-tab { padding: 5px 14px !important; font-size: 0.8em !important; }
+}
+
+.secret-code-btn { display:none; margin:8px auto 0; padding:6px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:20px; font-size:0.8em; font-weight:bold; cursor:pointer; text-align:center; animation:pulseGlow 2s infinite; }
+.secret-code-btn:hover { transform:scale(1.05); }
+@keyframes pulseGlow { 0%,100%{box-shadow:0 0 5px rgba(102,126,234,0.4)} 50%{box-shadow:0 0 15px rgba(102,126,234,0.8)} }
 </style>
 </head>
 <body>
@@ -268,6 +280,7 @@ button:hover { background:#5568d3; }
 </div>
 <span class="lifeline-count" id="lifelineCount">3 remaining</span>
 </div>
+<button class="secret-code-btn" id="secretCodeBtn" onclick="promptSecretCode()">🔓 Enter Secret Code for Bonus Lifeline</button>
 <div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 <div class="grid">
 <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
@@ -337,7 +350,7 @@ window.QUIZ_NUM = QUIZ_NUM;
 const PLAYS_KEY = '80sGridPlaysQuiz14';
 const SESSION_KEY = 'hasPlayedQuiz14';
 const QUIZ_KEY = 'quiz14Score';
-const DAILY_LIMIT = 3;
+const DAILY_LIMIT = 2;
 const FAKE_SCORES = [
     { initials: 'ACE', pct: 100, quizzes: 14, date: '2/1/26' },
     { initials: 'MAX', pct: 96,  quizzes: 14, date: '2/3/26' },
@@ -488,6 +501,16 @@ function selectMCOption(value) {
   }
 }
 
+function promptSecretCode() {
+  var code = prompt("Enter secret code for a bonus lifeline:");
+  if (code && code.toUpperCase() === "RAD") {
+    lifelinesRemaining++;
+    updateLifelineUI();
+    alert("🛡️ Bonus lifeline unlocked!");
+  } else if (code) {
+    alert("Sorry, that code is not valid. Keep looking!");
+  }
+}
 function normalizeString(str) { return str.toLowerCase().replace(/[\u2018\u2019']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function checkAnswers() {
   if(getQuizzesPlayedToday()>=DAILY_LIMIT){ document.getElementById('limitModal').classList.add('show'); return; }

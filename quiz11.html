@@ -261,6 +261,18 @@ margin-top: 2px;
 /* SURVEY TRIBE CARDS */
 .survey-option:hover { transform:scale(1.02); filter:brightness(1.15); }
 .survey-option.selected { box-shadow:0 0 25px rgba(0,255,0,0.6), inset 0 0 15px rgba(0,255,0,0.1); border-color:#00ff00 !important; transform:scale(1.03); }
+
+/* DESKTOP NAV COMPACT */
+@media (min-width: 600px) {
+  #quizGridNav { grid-template-columns: repeat(5, 55px) !important; gap: 6px !important; justify-content: center !important; }
+  #quizGridNav a { width: 55px !important; height: 40px !important; font-size: 15px !important; border-radius: 8px !important; line-height: 40px !important; }
+  .group-tabs { gap: 4px !important; }
+  .group-tab { padding: 5px 14px !important; font-size: 0.8em !important; }
+}
+
+.secret-code-btn { display:none; margin:8px auto 0; padding:6px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:20px; font-size:0.8em; font-weight:bold; cursor:pointer; text-align:center; animation:pulseGlow 2s infinite; }
+.secret-code-btn:hover { transform:scale(1.05); }
+@keyframes pulseGlow { 0%,100%{box-shadow:0 0 5px rgba(102,126,234,0.4)} 50%{box-shadow:0 0 15px rgba(102,126,234,0.8)} }
 </style>
 </head>
 <body>
@@ -432,7 +444,7 @@ margin-top: 2px;
 <script>
 const QUIZ_KEY = 'quiz4Score';
 const PLAYS_KEY = 'quiz4Plays';
-const DAILY_LIMIT = 3;
+const DAILY_LIMIT = 2;
 const QUIZ_NUM = 11;
 window.QUIZ_NUM = QUIZ_NUM;
 
@@ -558,6 +570,7 @@ function updateLifelineUI() {
   if (lifelinesRemaining === 0) {
     countEl.textContent = 'None left!';
     countEl.classList.add('empty');
+      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block';
     if (btnEl) {
       btnEl.disabled = true;
       btnEl.style.opacity = '0.5';
@@ -566,6 +579,7 @@ function updateLifelineUI() {
   } else {
     countEl.textContent = lifelinesRemaining + ' remaining';
     countEl.classList.remove('empty');
+      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none';
     if (btnEl) {
       btnEl.disabled = false;
       btnEl.style.opacity = '1';

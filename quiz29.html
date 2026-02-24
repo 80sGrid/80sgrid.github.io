@@ -293,6 +293,18 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
 .leaderboard-scores-wrap { margin-top:100px; }
 }
+
+/* DESKTOP NAV COMPACT */
+@media (min-width: 600px) {
+  #quizGridNav { grid-template-columns: repeat(5, 55px) !important; gap: 6px !important; justify-content: center !important; }
+  #quizGridNav a { width: 55px !important; height: 40px !important; font-size: 15px !important; border-radius: 8px !important; line-height: 40px !important; }
+  .group-tabs { gap: 4px !important; }
+  .group-tab { padding: 5px 14px !important; font-size: 0.8em !important; }
+}
+
+.secret-code-btn { display:none; margin:8px auto 0; padding:6px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:20px; font-size:0.8em; font-weight:bold; cursor:pointer; text-align:center; animation:pulseGlow 2s infinite; }
+.secret-code-btn:hover { transform:scale(1.05); }
+@keyframes pulseGlow { 0%,100%{box-shadow:0 0 5px rgba(102,126,234,0.4)} 50%{box-shadow:0 0 15px rgba(102,126,234,0.8)} }
 </style>
 </head>
 <body>
@@ -373,6 +385,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <span class="lifeline-count" id="lifelineCount">3 remaining</span>
 </div>
+<button class="secret-code-btn" id="secretCodeBtn" onclick="promptSecretCode()">🔓 Enter Secret Code for Bonus Lifeline</button>
 <div class="no-lifeline-badge" id="noLifelineBadge" style="">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
 <div class="grid">
 
@@ -588,8 +601,10 @@ function updateLifelineUI() {
   for(let i=1;i<=3;i++) { const pip=document.getElementById('pip'+i); if(i<=lifelinesRemaining){pip.classList.remove('used');pip.textContent='&#127919;';}else{pip.classList.add('used');pip.textContent='';} }
   const countEl=document.getElementById('lifelineCount'); const btnEl=document.getElementById('mcToggleBtn'); const remainEl=document.getElementById('mcRemaining');
   if(remainEl) remainEl.textContent=lifelinesRemaining;
-  if(lifelinesRemaining===0) { countEl.textContent='None left!'; countEl.classList.add('empty'); if(btnEl){btnEl.disabled=true;} }
-  else { countEl.textContent=lifelinesRemaining+' remaining'; countEl.classList.remove('empty'); if(btnEl){btnEl.disabled=false;} }
+  if(lifelinesRemaining===0) { countEl.textContent='None left!'; countEl.classList.add('empty');
+      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block'; if(btnEl){btnEl.disabled=true;} }
+  else { countEl.textContent=lifelinesRemaining+' remaining'; countEl.classList.remove('empty');
+      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none'; if(btnEl){btnEl.disabled=false;} }
 }
 function showMultipleChoice() {
   if(lifelinesRemaining<=0) return;
@@ -603,6 +618,16 @@ function showMultipleChoice() {
 }
 function showTextEntry() { document.getElementById('textSection').classList.remove('hidden'); document.getElementById('mcSection').classList.remove('visible'); setTimeout(()=>document.getElementById('modalInput').focus(),60); }
 function selectMCOption(value) { if(currentCell) { currentCell.querySelector('input').value=value; lifelinesRemaining=Math.max(0,lifelinesRemaining-1); updateLifelineUI(); closeModal(); } }
+function promptSecretCode() {
+  var code = prompt("Enter secret code for a bonus lifeline:");
+  if (code && code.toUpperCase() === "RAD") {
+    lifelinesRemaining++;
+    updateLifelineUI();
+    alert("🛡️ Bonus lifeline unlocked!");
+  } else if (code) {
+    alert("Sorry, that code is not valid. Keep looking!");
+  }
+}
 function normalizeString(str) { return str.toLowerCase().replace(/[‘’']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function checkAnswers() {
   let _isFirstPlayToday=false;
