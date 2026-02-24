@@ -203,26 +203,50 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .mc-option { display:block; width:100%; margin-bottom:10px; padding:14px 12px; background:#f8f0ff; border:2px solid #8B00FF; border-radius:10px; font-size:0.95em; font-weight:bold; color:#4a0080; cursor:pointer; text-align:center; transition:background 0.15s,transform 0.1s; box-sizing:border-box; }
 .mc-option:hover { background:#e8c8ff; transform:scale(1.02); }
 .text-section.hidden { display:none; }
-.quiz-nav-wrap { margin-bottom: 16px; }
-.quiz-nav-row { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:4px; }
-.nav-arrow { width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; font-size:0.95em; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.2s; box-shadow:0 2px 8px rgba(102,126,234,0.4); user-select:none; padding:0; }
-.nav-arrow:hover { transform:scale(1.1); box-shadow:0 4px 12px rgba(102,126,234,0.6); }
-.nav-arrow:disabled { opacity:0.22; cursor:default; transform:none; box-shadow:none; }
-.nav-btns { display:flex; gap:5px; justify-content:center; flex-wrap:nowrap; }
-.nav-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:28px; border-radius:6px; text-decoration:none; font-size:0.78em; font-weight:bold; border:2px solid transparent; transition:all 0.15s; cursor:pointer; user-select:none; position:relative; color:white; }
-.nav-btn.easy { background:#28a745; border-color:#28a745; }
-.nav-btn.medium { background:#fd7e14; border-color:#fd7e14; }
-.nav-btn.hard { background:#dc3545; border-color:#dc3545; }
-.nav-btn.played { background:#e0e0e0 !important; color:#999 !important; border-color:#ccc !important; opacity:0.75; }
-.nav-btn.played::after { content:'✓'; position:absolute; top:-5px; right:-5px; width:12px; height:12px; background:#28a745; color:white; border-radius:50%; font-size:0.55em; display:flex; align-items:center; justify-content:center; line-height:12px; font-weight:900; }
-.nav-btn.current { transform:scale(1.18); z-index:1; }
-.nav-btn.easy.current { box-shadow:0 0 0 2px white,0 0 0 4px #28a745; }
-.nav-btn.medium.current { box-shadow:0 0 0 2px white,0 0 0 4px #fd7e14; }
-.nav-btn.hard.current { box-shadow:0 0 0 2px white,0 0 0 4px #dc3545; }
-.nav-btn.played.current { box-shadow:0 0 0 2px white,0 0 0 4px #999; }
-.nav-page-ind { text-align:center; font-size:0.65em; color:#bbb; letter-spacing:1px; font-weight:bold; text-transform:uppercase; margin-bottom:3px; }
-.nav-legend { text-align:center; font-size:0.72em; color:#666; margin-bottom:16px; line-height:1.8; }
-.page-nav { display:none; }
+.group-tabs { display:flex; justify-content:center; gap:6px; margin-bottom:10px; }
+.group-tab { flex:1; padding:8px 4px; text-align:center; font-family:Arial,sans-serif; font-size:0.75em; font-weight:900; letter-spacing:1px; border:2px solid #ddd; border-radius:8px; background:#f0f0f0; color:#999; cursor:pointer; transition:all 0.3s; }
+.group-tab:hover { border-color:#667eea; color:#667eea; background:#f0f0ff; }
+.group-tab.active { border-color:#667eea; color:white; background:#667eea; box-shadow:0 3px 10px rgba(102,126,234,0.4); }
+.quiz-grid-nav { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:10px; }
+.quiz-grid-nav a { display:flex; align-items:center; justify-content:center; aspect-ratio:1.2; border-radius:10px; font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:1px; color:white; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; position:relative; }
+.quiz-grid-nav a:hover { transform:scale(1.08); }
+.quiz-grid-nav a.easy { background:linear-gradient(135deg,#28a745,#20913b); box-shadow:0 3px 10px rgba(40,167,69,0.4); }
+.quiz-grid-nav a.easy:hover { box-shadow:0 5px 18px rgba(40,167,69,0.6); }
+.quiz-grid-nav a.medium { background:linear-gradient(135deg,#fd7e14,#e06b00); box-shadow:0 3px 10px rgba(253,126,20,0.4); }
+.quiz-grid-nav a.medium:hover { box-shadow:0 5px 18px rgba(253,126,20,0.6); }
+.quiz-grid-nav a.hard { background:linear-gradient(135deg,#dc3545,#c42030); box-shadow:0 3px 10px rgba(220,53,69,0.4); }
+.quiz-grid-nav a.hard:hover { box-shadow:0 5px 18px rgba(220,53,69,0.6); }
+.quiz-grid-nav a.current { outline:3px solid #667eea; outline-offset:2px; animation:navpulse 2s ease-in-out infinite; }
+@keyframes navpulse { 0%,100%{outline-color:#667eea;} 50%{outline-color:#FF1493;} }
+.quiz-grid-nav a.played { background:linear-gradient(135deg,#bbb,#999); box-shadow:0 2px 6px rgba(0,0,0,0.15); opacity:0.7; }
+.quiz-grid-nav a.played:hover { transform:none; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+.quiz-grid-nav a.played::after { content:'\2713'; position:absolute; top:1px; right:4px; font-size:0.5em; color:white; opacity:0.8; }
+.nav-legend2 { text-align:center; font-size:0.72em; color:#666; margin-bottom:4px; line-height:1.8; }
+.nav-status-bar { background:#f0f4ff; border:2px solid #667eea; border-radius:10px; padding:8px 14px; text-align:center; font-size:0.82em; font-weight:bold; color:#667eea; margin-bottom:4px; }
+.nav-status-bar.limit-reached { background:#fff0f0; border-color:#dc3545; color:#dc3545; }
+.nav-replay-note { text-align:center; font-size:0.72em; color:#888; font-style:italic; margin-bottom:14px; line-height:1.4; }
+.group-tabs { display:flex; justify-content:center; gap:6px; margin-bottom:10px; }
+.group-tab { flex:1; padding:8px 4px; text-align:center; font-family:Arial,sans-serif; font-size:0.75em; font-weight:900; letter-spacing:1px; border:2px solid #ddd; border-radius:8px; background:#f0f0f0; color:#999; cursor:pointer; transition:all 0.3s; }
+.group-tab:hover { border-color:#667eea; color:#667eea; background:#f0f0ff; }
+.group-tab.active { border-color:#667eea; color:white; background:#667eea; box-shadow:0 3px 10px rgba(102,126,234,0.4); }
+.quiz-grid-nav { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:10px; }
+.quiz-grid-nav a { display:flex; align-items:center; justify-content:center; aspect-ratio:1.2; border-radius:10px; font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:1px; color:white; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; position:relative; }
+.quiz-grid-nav a:hover { transform:scale(1.08); }
+.quiz-grid-nav a.easy { background:linear-gradient(135deg,#28a745,#20913b); box-shadow:0 3px 10px rgba(40,167,69,0.4); }
+.quiz-grid-nav a.easy:hover { box-shadow:0 5px 18px rgba(40,167,69,0.6); }
+.quiz-grid-nav a.medium { background:linear-gradient(135deg,#fd7e14,#e06b00); box-shadow:0 3px 10px rgba(253,126,20,0.4); }
+.quiz-grid-nav a.medium:hover { box-shadow:0 5px 18px rgba(253,126,20,0.6); }
+.quiz-grid-nav a.hard { background:linear-gradient(135deg,#dc3545,#c42030); box-shadow:0 3px 10px rgba(220,53,69,0.4); }
+.quiz-grid-nav a.hard:hover { box-shadow:0 5px 18px rgba(220,53,69,0.6); }
+.quiz-grid-nav a.current { outline:3px solid #667eea; outline-offset:2px; animation:navpulse 2s ease-in-out infinite; }
+@keyframes navpulse { 0%,100%{outline-color:#667eea;} 50%{outline-color:#FF1493;} }
+.quiz-grid-nav a.played { background:linear-gradient(135deg,#bbb,#999); box-shadow:0 2px 6px rgba(0,0,0,0.15); opacity:0.7; }
+.quiz-grid-nav a.played:hover { transform:none; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+.quiz-grid-nav a.played::after { content:'\2713'; position:absolute; top:1px; right:4px; font-size:0.5em; color:white; opacity:0.8; }
+.nav-legend2 { text-align:center; font-size:0.72em; color:#666; margin-bottom:4px; line-height:1.8; }
+.nav-status-bar { background:#f0f4ff; border:2px solid #667eea; border-radius:10px; padding:8px 14px; text-align:center; font-size:0.82em; font-weight:bold; color:#667eea; margin-bottom:4px; }
+.nav-status-bar.limit-reached { background:#fff0f0; border-color:#dc3545; color:#dc3545; }
+.nav-replay-note { text-align:center; font-size:0.72em; color:#888; font-style:italic; margin-bottom:14px; line-height:1.4; }
 .difficulty-badge { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 20px; padding:14px 20px; border-radius:12px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 20px var(--badge-glow); }
 .badge-left { text-align:left; }
 .badge-label { font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:2px; color:var(--badge-color); text-transform:uppercase; }
@@ -315,15 +339,11 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <h2>How to Play</h2>
 <p>Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</p>
 </div>
-<div class="quiz-nav-wrap">
-<div class="nav-page-ind" id="navInd"></div>
-<div class="quiz-nav-row">
-<button class="nav-arrow" id="navPrev" onclick="navChangePage(-1)">&#8592;</button>
-<div class="nav-btns" id="navBtns"></div>
-<button class="nav-arrow" id="navNext" onclick="navChangePage(1)">&#8594;</button>
-</div>
-</div>
-<div class="nav-legend">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;&nbsp;&bull;&nbsp;&nbsp; &#10003; Already played &mdash; tap anytime to replay &nbsp;&bull;&nbsp; 2 quizzes per day. All past quizzes available to replay anytime.</div>
+<div class="group-tabs" id="groupTabs"></div>
+<div class="quiz-grid-nav" id="quizGridNav"></div>
+<div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
+<div class="nav-status-bar" id="navStatusBar"></div>
+<div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 <div class="difficulty-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.5);">
 <div class="badge-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
 <div class="badge-left">
@@ -642,27 +662,43 @@ document.getElementById('initial2').addEventListener('input',function(){if(this.
 document.getElementById('initial3').addEventListener('keypress',function(e){if(e.key==='Enter')saveHighScore();});
 /* ===== PAGINATED NAV ===== */
 const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'}];
-const NAV_PAGES=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20)];
-let navCurrentPage=0;
+const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30)];
+const GROUP_LABELS=['1 \u2013 10','11 \u2013 20','21 \u2013 30','31 \u2013 40'];
+let navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:3;
 function hasPlayedQuiz(n){const key=n===1?'quiz1Score':'quiz'+n+'Score';return parseInt(localStorage.getItem(key)||'0')>0;}
-function navChangePage(dir){navCurrentPage=Math.max(0,Math.min(NAV_PAGES.length-1,navCurrentPage+dir));renderNav();}
-function renderNav(){
-  const btns=document.getElementById('navBtns');const ind=document.getElementById('navInd');
-  const prev=document.getElementById('navPrev');const next=document.getElementById('navNext');
-  if(!btns)return;
-  ind.textContent='Page '+(navCurrentPage+1)+' of '+NAV_PAGES.length;
-  prev.disabled=navCurrentPage===0;next.disabled=navCurrentPage===NAV_PAGES.length-1;
-  btns.innerHTML='';
-  NAV_PAGES[navCurrentPage].forEach(q=>{
-    const a=document.createElement('a');const played=hasPlayedQuiz(q.n);const isCurrent=q.n===QUIZ_NUM;
-    let cls=played?'nav-btn played':'nav-btn '+q.c;if(isCurrent)cls+=' current';
-    a.className=cls;a.textContent=q.n;a.href=q.f;btns.appendChild(a);
+function showNavGroup(idx){
+  navActiveGroup=idx;
+  document.querySelectorAll('.group-tab').forEach(function(t,i){t.classList.toggle('active',i===idx);});
+  renderNavGrid();
+}
+function renderNavGrid(){
+  var grid=document.getElementById('quizGridNav');if(!grid)return;
+  grid.innerHTML='';
+  var tabs=document.getElementById('groupTabs');
+  if(tabs&&!tabs.hasChildNodes()){
+    GROUP_LABELS.forEach(function(label,i){
+      var d=document.createElement('div');d.className='group-tab'+(i===navActiveGroup?' active':'');
+      d.textContent=label;d.onclick=function(){showNavGroup(i);};tabs.appendChild(d);
+    });
+  }
+  var quizzes=NAV_GROUPS[navActiveGroup]||[];
+  quizzes.forEach(function(q){
+    var a=document.createElement('a');
+    var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;
+    a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');
+    a.textContent=q.n;a.href=q.f;grid.appendChild(a);
   });
+  updateNavStatus();
 }
-function initNav(){
-  if(QUIZ_NUM<=10)navCurrentPage=0;else if(QUIZ_NUM<=20)navCurrentPage=1;else navCurrentPage=2;
-  renderNav();
+function updateNavStatus(){
+  var bar=document.getElementById('navStatusBar');if(!bar)return;
+  var played=getQuizzesPlayedToday();var limit=getEffectiveDailyLimit();
+  var isUnlimited=getUnlockType()==='unlimited';
+  if(isUnlimited){bar.innerHTML='\u267e\ufe0f Unlimited mode active!';bar.className='nav-status-bar';}
+  else if(played>=limit){bar.innerHTML='\ud83d\udeab Daily limit reached \u2014 replay old quizzes or come back tomorrow!';bar.className='nav-status-bar limit-reached';}
+  else{bar.innerHTML='\ud83d\udd79\ufe0f '+(limit-played)+' of '+limit+' plays remaining today';bar.className='nav-status-bar';}
 }
+function initNav(){renderNavGrid();}
 /* ===== END NAV ===== */
 /* ===== ROTATING SURVEY SYSTEM ===== */
 const SURVEY_FORMSPREE='https://formspree.io/f/xeelpozw';

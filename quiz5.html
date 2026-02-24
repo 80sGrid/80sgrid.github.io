@@ -85,15 +85,32 @@ button:hover { background:#5568d3; }
 .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
 .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
 /* PAGE NAV */
-.page-nav { display:flex; justify-content:center; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
-.page-nav a { display:inline-block; padding:5px 11px; border-radius:6px; background:#f0f0f0; color:#667eea; text-decoration:none; font-size:0.8em; font-weight:bold; border:2px solid #dee2e6; transition:background 0.2s; }
-.page-nav a:hover { opacity:0.85; }
-.page-nav a.easy { background:#28a745; color:white; border-color:#28a745; }
-.page-nav a.medium { background:#fd7e14; color:white; border-color:#fd7e14; }
-.page-nav a.hard { background:#dc3545; color:white; border-color:#dc3545; }
-.page-nav a.current { box-shadow: 0 0 12px rgba(0,0,0,0.4); transform: scale(1.15); z-index:1; }
+
 .nav-legend { text-align:center; font-size:0.75em; color:#666; margin-bottom:16px; }
 /* DIFFICULTY BADGE */
+.group-tabs { display:flex; justify-content:center; gap:6px; margin-bottom:10px; }
+.group-tab { flex:1; padding:8px 4px; text-align:center; font-family:Arial,sans-serif; font-size:0.75em; font-weight:900; letter-spacing:1px; border:2px solid #ddd; border-radius:8px; background:#f0f0f0; color:#999; cursor:pointer; transition:all 0.3s; }
+.group-tab:hover { border-color:#667eea; color:#667eea; background:#f0f0ff; }
+.group-tab.active { border-color:#667eea; color:white; background:#667eea; box-shadow:0 3px 10px rgba(102,126,234,0.4); }
+.quiz-grid-nav { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:10px; }
+.quiz-grid-nav a { display:flex; align-items:center; justify-content:center; aspect-ratio:1.2; border-radius:10px; font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:1px; color:white; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; position:relative; }
+.quiz-grid-nav a:hover { transform:scale(1.08); }
+.quiz-grid-nav a.easy { background:linear-gradient(135deg,#28a745,#20913b); box-shadow:0 3px 10px rgba(40,167,69,0.4); }
+.quiz-grid-nav a.easy:hover { box-shadow:0 5px 18px rgba(40,167,69,0.6); }
+.quiz-grid-nav a.medium { background:linear-gradient(135deg,#fd7e14,#e06b00); box-shadow:0 3px 10px rgba(253,126,20,0.4); }
+.quiz-grid-nav a.medium:hover { box-shadow:0 5px 18px rgba(253,126,20,0.6); }
+.quiz-grid-nav a.hard { background:linear-gradient(135deg,#dc3545,#c42030); box-shadow:0 3px 10px rgba(220,53,69,0.4); }
+.quiz-grid-nav a.hard:hover { box-shadow:0 5px 18px rgba(220,53,69,0.6); }
+.quiz-grid-nav a.current { outline:3px solid #667eea; outline-offset:2px; animation:navpulse 2s ease-in-out infinite; }
+@keyframes navpulse { 0%,100%{outline-color:#667eea;} 50%{outline-color:#FF1493;} }
+.quiz-grid-nav a.played { background:linear-gradient(135deg,#bbb,#999); box-shadow:0 2px 6px rgba(0,0,0,0.15); opacity:0.7; }
+.quiz-grid-nav a.played:hover { transform:none; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+.quiz-grid-nav a.played::after { content:'\2713'; position:absolute; top:1px; right:4px; font-size:0.5em; color:white; opacity:0.8; }
+.nav-legend2 { text-align:center; font-size:0.72em; color:#666; margin-bottom:4px; line-height:1.8; }
+.nav-status-bar { background:#f0f4ff; border:2px solid #667eea; border-radius:10px; padding:8px 14px; text-align:center; font-size:0.82em; font-weight:bold; color:#667eea; margin-bottom:4px; }
+.nav-status-bar.limit-reached { background:#fff0f0; border-color:#dc3545; color:#dc3545; }
+.nav-replay-note { text-align:center; font-size:0.72em; color:#888; font-style:italic; margin-bottom:14px; line-height:1.4; }
+
 .difficulty-badge { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 20px; padding:14px 20px; border-radius:12px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 20px var(--badge-glow); }
 .badge-left { text-align:left; }
 .badge-label { font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:2px; color:var(--badge-color); text-transform:uppercase; }
@@ -208,32 +225,11 @@ button:hover { background:#5568d3; }
 <img src="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1" alt="80s Grid Header" class="logo-img">
 <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 
-<div class="page-nav">
-<a href="index.html" class="easy">1</a>
-<a href="quiz2.html" class="medium">2</a>
-<a href="quiz3.html" class="medium">3</a>
-<a href="quiz4.html" class="hard">4</a>
-<a href="quiz5.html" class="medium current">5</a>
-<a href="quiz6.html" class="medium">6</a>
-<a href="quiz7.html" class="easy">7</a>
-<a href="quiz8.html" class="medium">8</a>
-<a href="quiz9.html" class="easy">9</a>
-<a href="quiz10.html" class="medium">10</a>
-</div>
-<div class="page-nav">
-<a href="quiz11.html" class="hard">11</a>
-<a href="quiz12.html" class="medium">12</a>
-<a href="quiz13.html" class="medium">13</a>
-<a href="quiz14.html" class="medium">14</a>
-<a href="quiz15.html" class="hard">15</a>
-<a href="quiz16.html" class="easy">16</a>
-<a href="quiz17.html" class="medium">17</a>
-<a href="quiz18.html" class="hard">18</a>
-<a href="quiz19.html" class="easy">19</a>
-<a href="quiz20.html" class="hard">20</a>
-</div>
-<div class="nav-legend">🟢 Easy &nbsp;|&nbsp; 🟠 Medium &nbsp;|&nbsp; 🔴 Hard</div>
-
+<div class="group-tabs" id="groupTabs"></div>
+<div class="quiz-grid-nav" id="quizGridNav"></div>
+<div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
+<div class="nav-status-bar" id="navStatusBar"></div>
+<div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 
 <div class="difficulty-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.5);">
 <div class="badge-stars">★★★☆☆</div>
@@ -351,7 +347,6 @@ const FAKE_SCORES = [
     { initials: 'LUX', pct: 80,  quizzes: 9, date: '2/16/26' }
   ];
 const SHARE_TEXT = "🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/";
-
 
 const PLAYS_START = 100;
 let currentCell = null;
@@ -555,6 +550,48 @@ function displayLeaderboard() {
 document.getElementById('initial1').addEventListener('input',function(){ if(this.value) document.getElementById('initial2').focus(); });
 document.getElementById('initial2').addEventListener('input',function(){ if(this.value) document.getElementById('initial3').focus(); });
 document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
+/* ===== GROUP TAB NAV ===== */
+const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'}];
+const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30)];
+const GROUP_LABELS=['1 \u2013 10','11 \u2013 20','21 \u2013 30','31 \u2013 40'];
+var navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:3;
+function hasPlayedQuiz(n){var key=n===1?'quiz1Score':'quiz'+n+'Score';return parseInt(localStorage.getItem(key)||'0')>0;}
+function showNavGroup(idx){
+  navActiveGroup=idx;
+  document.querySelectorAll('.group-tab').forEach(function(t,i){t.classList.toggle('active',i===idx);});
+  renderNavGrid();
+}
+function renderNavGrid(){
+  var grid=document.getElementById('quizGridNav');if(!grid)return;
+  grid.innerHTML='';
+  var tabs=document.getElementById('groupTabs');
+  if(tabs&&!tabs.hasChildNodes()){
+    GROUP_LABELS.forEach(function(label,i){
+      var d=document.createElement('div');d.className='group-tab'+(i===navActiveGroup?' active':'');
+      d.textContent=label;d.onclick=function(){showNavGroup(i);};tabs.appendChild(d);
+    });
+  }
+  var quizzes=NAV_GROUPS[navActiveGroup]||[];
+  quizzes.forEach(function(q){
+    var a=document.createElement('a');
+    var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;
+    a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');
+    a.textContent=q.n;a.href=q.f;grid.appendChild(a);
+  });
+  updateNavStatus();
+}
+function updateNavStatus(){
+  var bar=document.getElementById('navStatusBar');if(!bar)return;
+  var played=getQuizzesPlayedToday();
+  var limit=(typeof getEffectiveDailyLimit==='function')?getEffectiveDailyLimit():DAILY_LIMIT;
+  var isUnlimited=(typeof getUnlockType==='function')&&getUnlockType()==='unlimited';
+  if(isUnlimited){bar.innerHTML='\u267e\ufe0f Unlimited mode active!';bar.className='nav-status-bar';}
+  else if(played>=limit){bar.innerHTML='\ud83d\udeab Daily limit reached \u2014 replay old quizzes or come back tomorrow!';bar.className='nav-status-bar limit-reached';}
+  else{bar.innerHTML='\ud83d\udd79\ufe0f '+(limit-played)+' of '+limit+' plays remaining today';bar.className='nav-status-bar';}
+}
+function initNav(){renderNavGrid();}
+/* ===== END NAV ===== */
+
 document.addEventListener('DOMContentLoaded',()=>{
   initializeCells(); updatePlaysCounter(); displayLeaderboard();
   if(st){ st.textContent=SPONSOR_TAGLINE; }
