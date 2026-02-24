@@ -828,14 +828,22 @@ function renderNavGrid(){
   updateNavStatus();
 }
 function updateNavStatus(){
-  var bar=document.getElementById('navStatusBar');if(!bar)return;
-  var played=getQuizzesPlayedToday();var limit=getEffectiveDailyLimit();
-  var isUnlimited=getUnlockType()==='unlimited';
-  if(isUnlimited){bar.innerHTML='\u267e\ufe0f Unlimited mode active!';bar.className='nav-status-bar';}
-  else if(played>=limit){bar.innerHTML='\ud83d\udeab Daily limit reached \u2014 replay old quizzes or come back tomorrow!';bar.className='nav-status-bar limit-reached';}
-  else{bar.innerHTML='\ud83d\udd79\ufe0f '+(limit-played)+' of '+limit+' plays remaining today';bar.className='nav-status-bar';}
+  var bar=document.getElementById("navStatusBar");if(!bar)return;
+  var played=getQuizzesPlayedToday();
+  var limit=(typeof getEffectiveDailyLimit==="function")?getEffectiveDailyLimit():DAILY_LIMIT;
+  var isUnlimited=(typeof getUnlockType==="function")&&getUnlockType()==="unlimited";
+  var panel=document.getElementById("unlockPanel");
+  if(isUnlimited){
+    bar.innerHTML="\u267e\ufe0f Unlimited mode active!";bar.className="nav-status-bar unlimited";
+    if(panel)panel.classList.remove("show");
+  } else if(played>=limit){
+    bar.innerHTML="\uD83D\uDEAB Daily limit reached \u2014 replay completed quizzes or unlock more below!";bar.className="nav-status-bar limit-reached";
+    if(panel)panel.classList.add("show");
+  } else {
+    bar.innerHTML="\uD83D\uDD79\ufe0f "+(limit-played)+" of "+limit+" plays remaining today";bar.className="nav-status-bar";
+    if(panel)panel.classList.remove("show");
+  }
 }
-function initNav(){renderNavGrid();}
 /* ===== END NAV ===== */
 /* ===== ROTATING SURVEY SYSTEM ===== */
 const SURVEY_FORMSPREE='https://formspree.io/f/xeelpozw';
