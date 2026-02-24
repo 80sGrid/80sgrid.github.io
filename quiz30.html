@@ -194,7 +194,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .lifeline-pip.used { background:#dee2e6; box-shadow:none; }
 .lifeline-count { font-size:0.82em; color:#888; font-style:italic; }
 .lifeline-count.empty { color:#dc3545; font-weight:bold; font-style:normal; }
-.no-lifeline-badge { text-align:center; margin:10px 0; padding:8px 14px; background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:8px; font-weight:900; font-size:0.9em; color:#000; box-shadow:0 0 12px rgba(255,215,0,0.5); }
+.no-lifeline-badge { display:none; text-align:center; margin:10px 0; padding:8px 14px; background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:8px; font-weight:900; font-size:0.9em; color:#000; box-shadow:0 0 12px rgba(255,215,0,0.5); }
 .mc-toggle-btn { display:block; width:100%; margin-top:12px; padding:11px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:0.95em; font-weight:bold; cursor:pointer; letter-spacing:0.5px; transition:opacity 0.2s; }
 .mc-toggle-btn:hover { opacity:0.88; }
 .mc-toggle-btn:disabled { opacity:0.35; cursor:not-allowed; }
@@ -583,6 +583,7 @@ function showTextEntry() { document.getElementById('textSection').classList.remo
 function selectMCOption(value) { if(currentCell) { currentCell.querySelector('input').value=value; lifelinesRemaining=Math.max(0,lifelinesRemaining-1); updateLifelineUI(); closeModal(); } }
 function normalizeString(str) { return str.toLowerCase().replace(/[‘’']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function checkAnswers() {
+  let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0'); const isThisAReplay=previousScore>0;
   if(!isThisAReplay&&!hasNewPlaysLeft()) { document.getElementById('limitModal').classList.add('show'); return; }
   const cells=document.querySelectorAll('.cell'); let correct=0,total=0;
@@ -605,7 +606,6 @@ function checkAnswers() {
   }
   const oldScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0'); if(correct>oldScore) localStorage.setItem(QUIZ_KEY,correct);
   document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
-  var _isFirstPlayToday=false;
   document.getElementById('results').style.display='block';
   updatePostQuizUI();
   if(correct>=8&&total===9) setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
