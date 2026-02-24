@@ -283,6 +283,46 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .secret-code-btn { display:none; margin:8px auto 0; padding:6px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:20px; font-size:0.8em; font-weight:bold; cursor:pointer; text-align:center; animation:pulseGlow 2s infinite; }
 .secret-code-btn:hover { transform:scale(1.05); }
 @keyframes pulseGlow { 0%,100%{box-shadow:0 0 5px rgba(102,126,234,0.4)} 50%{box-shadow:0 0 15px rgba(102,126,234,0.8)} }
+
+
+/* DESKTOP NAV COMPACT */
+@media (min-width: 600px) {
+  #quizGridNav { grid-template-columns: repeat(5, 55px) !important; gap: 6px !important; justify-content: center !important; }
+  #quizGridNav a { width: 55px !important; height: 40px !important; font-size: 15px !important; border-radius: 8px !important; line-height: 40px !important; }
+  .group-tabs { gap: 4px !important; }
+  .group-tab { padding: 5px 14px !important; font-size: 0.8em !important; }
+}
+/* UNLOCK PANEL */
+.unlock-panel { display:none; background:linear-gradient(135deg, #f8f0ff, #f0f4ff); border:2px solid #764ba2; border-radius:12px; padding:18px 20px; margin-top:10px; text-align:center; }
+.unlock-panel.show { display:block; }
+.unlock-panel h3 { margin:0 0 12px; font-size:1em; color:#764ba2; }
+.code-row { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.code-row label { font-size:0.85em; font-weight:bold; color:#555; white-space:nowrap; }
+.code-input { padding:10px 14px; border:2px solid #ccc; border-radius:8px; font-size:1em; text-transform:uppercase; letter-spacing:2px; width:160px; text-align:center; outline:none; transition:border 0.2s; }
+.code-input:focus { border-color:#764ba2; }
+.code-input::placeholder { color:#ccc; letter-spacing:1px; text-transform:none; }
+.code-submit { padding:10px 18px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:8px; font-size:0.9em; font-weight:bold; cursor:pointer; transition:transform 0.15s; }
+.code-submit:hover { transform:scale(1.05); }
+.code-hint { font-size:0.72em; color:#bbb; margin-top:6px; }
+.unlock-divider { display:flex; align-items:center; gap:14px; margin:18px 0; color:#764ba2; font-size:1.1em; font-weight:bold; text-transform:uppercase; letter-spacing:2px; }
+.unlock-divider::before,.unlock-divider::after { content:''; flex:1; height:2px; background:linear-gradient(to right, transparent, #764ba2, transparent); }
+.email-unlock-btn { display:inline-block; padding:10px 24px; background:linear-gradient(135deg,#28a745,#20c997); color:white; border:none; border-radius:25px; font-size:0.9em; font-weight:bold; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s; box-shadow:0 3px 12px rgba(40,167,69,0.3); }
+.email-unlock-btn:hover { transform:scale(1.03); box-shadow:0 5px 20px rgba(40,167,69,0.5); }
+.email-expand { display:none; margin-top:12px; }
+.email-expand.show { display:block; }
+.email-expand input { padding:10px 14px; border:2px solid #28a745; border-radius:8px; font-size:1em; width:220px; text-align:center; outline:none; }
+.email-expand input:focus { border-color:#20c997; }
+.email-expand input::placeholder { color:#bbb; }
+.email-expand-submit { margin-top:8px; padding:10px 24px; background:linear-gradient(135deg,#28a745,#20c997); color:white; border:none; border-radius:8px; font-size:0.9em; font-weight:bold; cursor:pointer; }
+.email-note { font-size:0.72em; color:#aaa; margin-top:8px; }
+.unlock-success-msg { display:none; text-align:center; padding:12px; margin-top:10px; border-radius:10px; background:#f0fff4; border:2px solid #28a745; color:#28a745; }
+.unlock-success-msg.show { display:block; }
+.unlock-success-msg .big { font-size:1.5em; }
+/* SECRET LIFELINE BUTTON */
+.secret-code-btn { display:none; margin:8px auto 0; padding:6px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:20px; font-size:0.8em; font-weight:bold; cursor:pointer; text-align:center; animation:pulseGlow 2s infinite; }
+.secret-code-btn:hover { transform:scale(1.05); }
+@keyframes pulseGlow { 0%,100%{box-shadow:0 0 5px rgba(102,126,234,0.4)} 50%{box-shadow:0 0 15px rgba(102,126,234,0.8)} }
+
 </style>
 </head>
 <body>
@@ -333,6 +373,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="quiz-grid-nav" id="quizGridNav"></div>
 <div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
 <div class="nav-status-bar" id="navStatusBar"></div>
+<div class="unlock-panel" id="unlockPanel"><h3>🔓 Want to keep playing?</h3><div class="code-row"><label>Have a secret code?</label><input type="text" class="code-input" id="unlockCodeInput" placeholder="Enter code"><button class="code-submit" onclick="submitUnlockCode()">Submit</button></div><div class="code-hint">Hint: Codes drop on our social media & the Arrive Alive Podcast</div><div class="unlock-divider">OR</div><button class="email-unlock-btn" onclick="toggleUnlockEmail()">📧 Enter your email for a free bonus play!</button><div class="email-expand" id="unlockEmailExpand"><div style="margin-top:8px;"><input type="email" id="unlockEmailInput" placeholder="your@email.com"></div><button class="email-expand-submit" onclick="submitUnlockEmail()">Unlock Bonus Quiz 🎸</button><div class="email-note">We'll send you 80s trivia tips & new quiz alerts. Unsubscribe anytime.</div></div><div class="unlock-success-msg" id="unlockSuccess"><span class="big" id="unlockSuccessEmoji">🎉</span><br><strong id="unlockSuccessText">Bonus quiz unlocked!</strong></div></div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 <div class="difficulty-badge" style="--badge-color:#6f42c1; --badge-glow:rgba(111,66,193,0.5);">
 <div class="badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -609,6 +650,74 @@ function promptSecretCode() {
     alert("Sorry, that code is not valid. Keep looking!");
   }
 }
+
+/* === UNLOCK SYSTEM === */
+function getTodayStr() { return new Date().toISOString().slice(0,10); }
+function getBonusPlays() { var k='bonusPlays_'+getTodayStr(); return parseInt(localStorage.getItem(k)||'0'); }
+function addBonusPlay(n) { var k='bonusPlays_'+getTodayStr(); var v=getBonusPlays()+n; localStorage.setItem(k,v); return v; }
+function getUnlockType() { return localStorage.getItem('unlockType_'+getTodayStr())||''; }
+function setUnlockType(t) { localStorage.setItem('unlockType_'+getTodayStr(),t); }
+function hasEmailedToday() { return localStorage.getItem('emailUnlock_'+getTodayStr())==='1'; }
+function setEmailedToday() { localStorage.setItem('emailUnlock_'+getTodayStr(),'1'); }
+function getEffectiveDailyLimit() { if(getUnlockType()==='unlimited') return 9999; return DAILY_LIMIT+getBonusPlays(); }
+
+function showUnlockPanel() {
+  var p=document.getElementById('unlockPanel'); if(p) p.classList.add('show');
+}
+function hideUnlockPanel() {
+  var p=document.getElementById('unlockPanel'); if(p) p.classList.remove('show');
+}
+
+function submitUnlockCode() {
+  var input=document.getElementById('unlockCodeInput');
+  var code=input.value.trim().toUpperCase();
+  if(!code){alert('Enter a code first!');return;}
+  if(code==='MAGIC'){
+    setUnlockType('unlimited');
+    showUnlockSuccess('\u267e\ufe0f','Unlimited mode activated! Play all you want today!');
+    setTimeout(function(){hideUnlockPanel();updateNavStatus();},2000);
+  } else if(code==='LEN'){
+    addBonusPlay(1);
+    showUnlockSuccess('\uD83C\uDF89\uD83C\uDFB8','Code accepted! Bonus quiz unlocked \u2014 go crush it!');
+    setTimeout(function(){hideUnlockPanel();updateNavStatus();},2000);
+  } else {
+    alert('Sorry, that code is not valid. Keep looking!');
+    input.value='';input.focus();
+  }
+}
+
+function toggleUnlockEmail() {
+  if(hasEmailedToday()){alert('You already unlocked a bonus quiz with your email today!');return;}
+  var el=document.getElementById('unlockEmailExpand');
+  el.classList.toggle('show');
+  if(el.classList.contains('show')) document.getElementById('unlockEmailInput').focus();
+}
+
+function submitUnlockEmail() {
+  var email=document.getElementById('unlockEmailInput').value.trim();
+  if(!email||!email.includes('@')){alert('Please enter a valid email address.');return;}
+  fetch('https://formspree.io/f/xqedyjjd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,source:'unlock-bonus',quiz:QUIZ_NUM||0,date:getTodayStr()})}).then(function(){}).catch(function(){});
+  setEmailedToday();
+  addBonusPlay(1);
+  document.getElementById('unlockEmailExpand').classList.remove('show');
+  showUnlockSuccess('\uD83C\uDF89\uD83C\uDFB8','Bonus quiz unlocked! Check your inbox for 80s goodies.');
+  setTimeout(function(){hideUnlockPanel();updateNavStatus();},2000);
+}
+
+function showUnlockSuccess(emoji,text) {
+  var el=document.getElementById('unlockSuccess');
+  document.getElementById('unlockSuccessEmoji').textContent=emoji;
+  document.getElementById('unlockSuccessText').textContent=text;
+  el.classList.add('show');
+}
+
+function promptSecretCode() {
+  var code=prompt('Enter secret code for a bonus lifeline:');
+  if(code&&code.toUpperCase()==='RAD'){lifelinesRemaining++;updateLifelineUI();alert('\uD83D\uDEE1\ufe0f Bonus lifeline unlocked!');}
+  else if(code){alert('Sorry, that code is not valid. Keep looking!');}
+}
+/* === END UNLOCK SYSTEM === */
+
 function normalizeString(str) { return str.toLowerCase().replace(/[‘’']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function checkAnswers() {
   let _isFirstPlayToday=false;
