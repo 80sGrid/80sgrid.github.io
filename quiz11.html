@@ -460,7 +460,7 @@ margin-top: 2px;
 const QUIZ_KEY = 'quiz4Score';
 const PLAYS_KEY = 'quiz4Plays';
 const DAILY_LIMIT = 3;
-const QUIZ_NUM = 11;
+const QUIZ_NUM = 4;
 
 const cellData = [
   // Row 0: Hit Song with "Love" in the Title
@@ -718,10 +718,8 @@ function checkAnswers() {
     document.getElementById('noLifelineBadge').style.display = 'block';
   }
   document.getElementById('results').style.display = 'block';
-  var isFirstPlayToday = false;
   if (correct >= 8 && total === 9) setTimeout(() => { document.getElementById('highScoreEntry').style.display = 'block'; document.getElementById('initial1').focus(); }, 1000);
   displayLeaderboard();
-  maybeShowSurvey(typeof isFirstPlayToday !== "undefined" && isFirstPlayToday);
 }
 
 function updatePlaysCounter() {
@@ -822,224 +820,58 @@ document.getElementById('initial2').addEventListener('input', function(){ if(thi
 document.getElementById('initial3').addEventListener('keypress', function(e){ if(e.key==='Enter') saveHighScore(); });
 
 
+const FORMSPREE_SURVEY_URL = 'https://formspree.io/f/xeelpozw';
 
-/* ===== PAGINATED NAV ===== */
-const ALL_NAV_QUIZZES = [{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'}];
-const NAV_PAGES = [ALL_NAV_QUIZZES.slice(0,10), ALL_NAV_QUIZZES.slice(10,20), ALL_NAV_QUIZZES.slice(20)];
-let navCurrentPage = 0;
-
-function hasPlayedQuiz(n) {
-  const key = n === 1 ? 'quiz1Score' : 'quiz' + n + 'Score';
-  return parseInt(localStorage.getItem(key) || '0') > 0;
-}
-function navChangePage(dir) {
-  navCurrentPage = Math.max(0, Math.min(NAV_PAGES.length - 1, navCurrentPage + dir));
-  renderNav();
-}
-function renderNav() {
-  const btns = document.getElementById('navBtns');
-  const ind = document.getElementById('navInd');
-  const prev = document.getElementById('navPrev');
-  const next = document.getElementById('navNext');
-  if (!btns) return;
-  ind.textContent = 'Page ' + (navCurrentPage + 1) + ' of ' + NAV_PAGES.length;
-  prev.disabled = navCurrentPage === 0;
-  next.disabled = navCurrentPage === NAV_PAGES.length - 1;
-  btns.innerHTML = '';
-  NAV_PAGES[navCurrentPage].forEach(q => {
-    const a = document.createElement('a');
-    const played = hasPlayedQuiz(q.n);
-    const isCurrent = q.n === QUIZ_NUM;
-    let cls = played ? 'nav-btn played' : 'nav-btn ' + q.c;
-    if (isCurrent) cls += ' current';
-    a.className = cls;
-    a.textContent = q.n;
-    a.href = q.f;
-    btns.appendChild(a);
-  });
-}
-function initNav() {
-  // Auto-jump to the page containing current quiz
-  if (QUIZ_NUM <= 10) navCurrentPage = 0;
-  else if (QUIZ_NUM <= 20) navCurrentPage = 1;
-  else navCurrentPage = 2;
-  renderNav();
-}
-/* ===== END NAV ===== */
-
-
-/* ===== ROTATING SURVEY SYSTEM ===== */
-const SURVEY_FORMSPREE = 'https://formspree.io/f/xeelpozw';
-const SURVEYS = {
-  tribe: {
-    id: 'tribe',
-    title: '&#127926; WHAT TYPE OF 80s FAN ARE YOU? &#127926;',
-    options: [
-      { value: 'New Wave',      icon: '&#127929;', label: 'NEW WAVE',       sub: 'Depeche Mode &bull; The Cure &bull; Tears for Fears', color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 26 },
-      { value: 'Hair Metal',    icon: '&#127928;', label: 'HAIR METAL',     sub: 'M&ouml;tley Cr&uuml;e &bull; Def Leppard &bull; Bon Jovi', color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
-      { value: 'Pop Royalty',   icon: '&#128081;', label: 'POP ROYALTY',    sub: 'Madonna &bull; Michael Jackson &bull; Prince', color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 28 },
-      { value: 'Goth Dark Wave',icon: '&#128420;', label: 'GOTH / DARK WAVE', sub: 'Siouxsie &bull; Bauhaus &bull; The Smiths', color: '#888', bg: 'linear-gradient(135deg,#1a1a1a,#333333)', border: '#666', pct: 14 },
-      { value: 'Heartland Rock',icon: '&#127482;&#127480;', label: 'HEARTLAND ROCK', sub: 'Springsteen &bull; Petty &bull; Mellencamp', color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 17 },
-    ]
-  },
-  prom: {
-    id: 'prom',
-    title: '&#127891; DID YOU GO TO YOUR PROM? &#127891;',
-    options: [
-      { value: 'Yes - married prom date', icon: '&#128141;', label: 'YES &mdash; AND I LATER MARRIED MY PROM DATE', sub: '', color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 8 },
-      { value: 'Yes - blast',             icon: '&#128378;', label: 'YES &mdash; HAD AN ABSOLUTE BLAST',           sub: '', color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 42 },
-      { value: 'Yes - hated it',          icon: '&#128543;', label: 'YES &mdash; HATED EVERY SECOND OF IT',        sub: '', color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 19 },
-      { value: 'No - not saying',         icon: '&#129296;', label: "NO&hellip; AND THAT'S ALL I'M SAYING ABOUT THAT", sub: '', color: '#555', bg: 'linear-gradient(135deg,#333,#555)', border: '#777', pct: 31 },
-    ]
-  },
-  mall: {
-    id: 'mall',
-    title: '&#128722; WHAT WAS YOUR FAVORITE MALL STORE? &#128722;',
-    options: [
-      { value: 'Esprit',       icon: '&#128084;', label: 'ESPRIT',       sub: 'The colorblock queen of the mall', color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 22 },
-      { value: 'The Limited',  icon: '&#128717;', label: 'THE LIMITED',  sub: 'Power suits and shoulder pads', color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 31 },
-      { value: 'Benetton',     icon: '&#127757;', label: 'BENETTON',     sub: 'United Colors and bold statements', color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 18 },
-      { value: 'Chess King',   icon: '&#9820;',   label: 'CHESS KING',   sub: 'Where the cool guys shopped', color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 14 },
-      { value: 'Sam Goody',    icon: '&#127925;', label: 'SAM GOODY',    sub: 'Your cassette tape headquarters', color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
-    ]
-  },
-  sat: {
-    id: 'sat',
-    title: '&#128221; WHAT DID YOU GET ON YOUR SATs? &#128221;',
-    options: [
-      { value: 'Over 1400',   icon: '&#127891;', label: 'OVER 1400 &mdash; CRUSHED IT',        sub: '', color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 18 },
-      { value: '1000-1399',   icon: '&#128218;', label: '1000&ndash;1399 &mdash; SOLID',        sub: '', color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 39 },
-      { value: '800-999',     icon: '&#128517;', label: '800&ndash;999 &mdash; GOT IN ANYWAY',  sub: '', color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 28 },
-      { value: 'Ask Mr Hand', icon: '&#127940;', label: 'ASK MR. HAND&hellip;',                 sub: 'Fast Times reference — you know who you are', color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
-    ]
-  },
-  coffee: {
-    id: 'coffee',
-    title: '&#9749; COFFEE WITH ONE PERSON &mdash; WHO? &#9749;',
-    options: [
-      { value: 'Prince',   icon: '&#127880;', label: 'PRINCE',   sub: "If he'd even show up",              color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 29 },
-      { value: 'Madonna',  icon: '&#128132;', label: 'MADONNA',  sub: "She'd do all the talking",          color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 24 },
-      { value: 'Bono',     icon: '&#127758;', label: 'BONO',     sub: 'Bring earplugs',                    color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 13 },
-      { value: 'Sade',     icon: '&#127801;', label: 'SAD&Eacute;', sub: 'The most mysterious conversation ever', color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 34 },
-    ]
-  }
-};
-
-const SURVEY_ORDER = ['tribe','prom','mall','sat','coffee'];
-const SURVEY_DONE_KEY = '80sGrid_surveysCompleted';
-const SURVEY_SHOWN_TODAY_KEY = '80sGrid_surveyShownDate';
-
-function getSurveysCompleted() {
-  try { return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY) || '[]'); } catch(e) { return []; }
-}
-function markSurveyCompleted(id) {
-  const done = getSurveysCompleted();
-  if (!done.includes(id)) { done.push(id); localStorage.setItem(SURVEY_DONE_KEY, JSON.stringify(done)); }
-}
-function hasShownSurveyToday() {
-  const today = new Date().toISOString().slice(0,10);
-  return localStorage.getItem(SURVEY_SHOWN_TODAY_KEY) === today;
-}
-function markSurveyShownToday() {
-  localStorage.setItem(SURVEY_SHOWN_TODAY_KEY, new Date().toISOString().slice(0,10));
-}
-function getNextSurvey() {
-  const done = getSurveysCompleted();
-  const remaining = SURVEY_ORDER.filter(id => !done.includes(id));
-  if (remaining.length === 0) return null;
-  // Pick randomly from remaining
-  return remaining[Math.floor(Math.random() * remaining.length)];
-}
-
-function renderSurvey(surveyId) {
-  const survey = SURVEYS[surveyId];
-  if (!survey) return;
-  const el = document.getElementById('surveyQuestion');
-  const titleEl = document.getElementById('surveyTitle');
-  const optionsEl = document.getElementById('surveyOptions');
-  if (!el || !titleEl || !optionsEl) return;
-
-  titleEl.innerHTML = survey.title;
-  optionsEl.innerHTML = '';
-
-  survey.options.forEach(opt => {
-    const div = document.createElement('div');
-    div.className = 'survey-option';
-    div.style.cssText = `background:${opt.bg}; border:2px solid ${opt.border}; padding:12px 14px; display:flex; align-items:center; gap:12px; text-align:left; border-radius:10px; cursor:pointer; transition:all 0.3s;`;
-    div.dataset.surveyId = surveyId;
-    div.dataset.value = opt.value;
-    div.dataset.pct = opt.pct;
-    div.dataset.color = opt.color;
-    div.innerHTML = `
-      <div style="min-width:40px; height:40px; background:rgba(0,0,0,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.4em; border:2px solid rgba(255,255,255,0.2);">${opt.icon}</div>
-      <div style="flex:1;">
-        <div style="font-size:0.9em; font-weight:900; letter-spacing:1px; color:white;">${opt.label}</div>
-        ${opt.sub ? `<div style="font-size:0.72em; opacity:0.85; margin-top:2px; color:white;">${opt.sub}</div>` : ''}
-        <div class="tribe-bar" style="display:none; margin-top:6px; background:rgba(0,0,0,0.3); border-radius:4px; height:8px; overflow:hidden;"><div class="tribe-fill" style="height:100%; border-radius:4px; transition:width 0.8s ease;"></div></div>
-      </div>
-      <div class="tribe-pct" style="display:none; font-size:1.1em; font-weight:900; min-width:42px; text-align:right; color:white;"></div>`;
-    div.onclick = () => handleSurveyClick(div, surveyId, opt.value);
-    optionsEl.appendChild(div);
-  });
-
-  // Restore if already answered
-  const saved = localStorage.getItem('80sGrid_surveyAnswer_' + surveyId);
-  if (saved) revealSurveyResults(surveyId, saved);
-
-  el.style.display = 'block';
-}
-
-function handleSurveyClick(el, surveyId, value) {
-  if (document.getElementById('surveyOptions').classList.contains('survey-voted')) return;
-  localStorage.setItem('80sGrid_surveyAnswer_' + surveyId, value);
-  markSurveyCompleted(surveyId);
+function selectSurvey(el, choice) {
+  if (document.querySelector('.survey-voted')) return;
+  document.querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  localStorage.setItem('80sGrid_fanType', choice);
   try {
-    fetch(SURVEY_FORMSPREE, {
+    fetch(FORMSPREE_SURVEY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ type: 'survey', survey_id: surveyId, answer: value, quiz: 'Quiz ' + QUIZ_NUM, date: new Date().toISOString() }),
+      body: JSON.stringify({ type: 'survey', quiz: 'Quiz ' + QUIZ_NUM, fan_type: choice, date: new Date().toISOString() }),
     });
-  } catch(e) {}
-  revealSurveyResults(surveyId, value);
+  } catch (e) {}
+  revealSurveyResults(choice);
 }
 
-function revealSurveyResults(surveyId, chosen) {
-  const survey = SURVEYS[surveyId];
-  if (!survey) return;
-  const optionsEl = document.getElementById('surveyOptions');
-  optionsEl.classList.add('survey-voted');
-  optionsEl.querySelectorAll('.survey-option').forEach(card => {
-    const val = card.dataset.value;
-    const pct = parseInt(card.dataset.pct);
-    const color = card.dataset.color;
-    const isChosen = val === chosen;
-    const subDiv = card.querySelector('div[style*="0.72em"]');
-    if (subDiv) subDiv.style.display = 'none';
-    const bar = card.querySelector('.tribe-bar');
-    if (bar) { bar.style.display = 'block'; }
-    const fill = card.querySelector('.tribe-fill');
-    if (fill) { fill.style.background = isChosen ? `linear-gradient(135deg,${color},#fff)` : color; setTimeout(() => { fill.style.width = pct + '%'; }, 50); }
-    const pctEl = card.querySelector('.tribe-pct');
-    if (pctEl) { pctEl.style.display = 'block'; pctEl.textContent = pct + '%'; }
-    if (isChosen) { card.classList.add('selected'); card.style.boxShadow = `0 0 20px ${color}, inset 0 0 10px rgba(255,255,255,0.1)`; }
-    else { card.style.opacity = '0.65'; }
+function revealSurveyResults(choice) {
+  document.getElementById('surveyOptions').classList.add('survey-voted');
+  document.querySelectorAll('.survey-option').forEach(function(card) {
+    var tribe = card.dataset.tribe;
+    var pct = parseInt(card.dataset.pct);
+    var color = card.dataset.color;
+    var isYours = tribe === choice;
+    card.querySelector('.tribe-artists').style.display = 'none';
+    var bar = card.querySelector('.tribe-bar');
+    bar.style.display = 'block';
+    var fill = card.querySelector('.tribe-fill');
+    fill.style.background = isYours ? 'linear-gradient(135deg,' + color + ',#fff)' : color;
+    fill.style.boxShadow = isYours ? '0 0 10px ' + color : 'none';
+    setTimeout(function() { fill.style.width = pct + '%'; }, 50);
+    var pctEl = card.querySelector('.tribe-pct');
+    pctEl.style.display = 'block';
+    pctEl.textContent = pct + '%';
+    pctEl.style.color = '#fff';
+    pctEl.style.textShadow = '0 0 10px rgba(0,0,0,0.5)';
+    if (isYours) {
+      card.classList.add('selected');
+      card.style.boxShadow = '0 0 20px ' + color + ', inset 0 0 10px rgba(255,255,255,0.1)';
+      card.querySelector('.tribe-label').textContent += ' \u2713';
+    } else {
+      card.style.opacity = '0.65';
+    }
     card.style.cursor = 'default';
     card.onclick = null;
   });
 }
 
-function maybeShowSurvey(isFirstPlayToday) {
-  if (!isFirstPlayToday) return;
-  if (hasShownSurveyToday()) return;
-  const nextId = getNextSurvey();
-  if (!nextId) return;
-  markSurveyShownToday();
-  renderSurvey(nextId);
-  // Restore previous answer if they already took this one
-  const saved = localStorage.getItem('80sGrid_surveyAnswer_' + nextId);
-  if (saved) revealSurveyResults(nextId, saved);
+function restoreSurvey() {
+  var saved = localStorage.getItem('80sGrid_fanType');
+  if (saved) revealSurveyResults(saved);
 }
-/* ===== END SURVEY SYSTEM ===== */
 
 document.addEventListener('DOMContentLoaded', () => { 
   if (!checkDailyLimit()) return;
@@ -1047,19 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePlaysCounter(); 
   displayLeaderboard(); 
   updateLifelineUI(); 
- initNav(); restoreSurveyOnLoad();});
-
-function restoreSurveyOnLoad() {
-  const done = getSurveysCompleted();
-  const shownToday = hasShownSurveyToday();
-  if (shownToday) {
-    // Find which survey was shown today and restore it if answered
-    for (const id of SURVEY_ORDER) {
-      const saved = localStorage.getItem('80sGrid_surveyAnswer_' + id);
-      if (saved) { renderSurvey(id); break; }
-    }
-  }
-}
+});
 </script>
 </body>
 </html>
