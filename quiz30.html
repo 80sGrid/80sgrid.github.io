@@ -380,7 +380,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="limit-modal" id="limitModal">
 <div class="limit-box">
 <h2>&#9889; GAME OVER &#9889;</h2>
-<p>You've maxed out your quizzes for today!<br><br>&#127928; Come back tomorrow for more 80s glory! &#127928;</p>
+<p>You\'ve maxed out your quizzes for today!<br><br>&#127928; Come back tomorrow for more 80s glory! &#127928;</p>
 <button onclick="document.getElementById('limitModal').classList.remove('show')">OK, SEE YOU TOMORROW!</button>
 </div>
 </div>
@@ -576,8 +576,8 @@ function updatePostQuizUI() {
     progressEl.style.display='block'; unlimitedEl.style.display='none';
     let pipsHTML=''; for(let i=0;i<limit;i++) pipsHTML+='<div class="progress-pip '+(i<played?'filled':'empty')+'"></div>';
     document.getElementById('postProgressPips').innerHTML=pipsHTML;
-    let text; if(playsLeft>0) { text='You've played <strong style="color:#8B00FF;">'+played+'</strong> of your <strong style="color:#FF1493;">'+limit+'</strong> new quizzes today.'; text+=playsLeft===1?' You've got <strong style="color:#28a745;">1 new quiz</strong> left!':' You've got <strong style="color:#28a745;">'+playsLeft+' new quizzes</strong> left!'; }
-    else { text='You've played all <strong style="color:#FF1493;">'+limit+'</strong> new quizzes for today! &#127881;'; }
+    let text; if(playsLeft>0) { text='You\'ve played <strong style="color:#8B00FF;">'+played+'</strong> of your <strong style="color:#FF1493;">'+limit+'</strong> new quizzes today.'; text+=playsLeft===1?' You\'ve got <strong style="color:#28a745;">1 new quiz</strong> left!':' You\'ve got <strong style="color:#28a745;">'+playsLeft+' new quizzes</strong> left!'; }
+    else { text='You\'ve played all <strong style="color:#FF1493;">'+limit+'</strong> new quizzes for today! &#127881;'; }
     document.getElementById('postProgressText').innerHTML=text;
   }
   const nextQuizEl=document.getElementById('postNextQuiz'); const wrapEl=document.getElementById('postWrapBox');
@@ -668,72 +668,7 @@ function promptSecretCode() {
   }
 }
 
-/* === UNLOCK SYSTEM === */
-function getTodayStr() { return new Date().toISOString().slice(0,10); }
-function getBonusPlays() { var k='bonusPlays_'+getTodayStr(); return parseInt(localStorage.getItem(k)||'0'); }
-function addBonusPlay(n) { var k='bonusPlays_'+getTodayStr(); var v=getBonusPlays()+n; localStorage.setItem(k,v); return v; }
-function getUnlockType() { return localStorage.getItem('unlockType_'+getTodayStr())||''; }
-function setUnlockType(t) { localStorage.setItem('unlockType_'+getTodayStr(),t); }
-function hasEmailedToday() { return localStorage.getItem('emailUnlock_'+getTodayStr())==='1'; }
-function setEmailedToday() { localStorage.setItem('emailUnlock_'+getTodayStr(),'1'); }
-function getEffectiveDailyLimit() { if(getUnlockType()==='unlimited') return 9999; return DAILY_LIMIT+getBonusPlays(); }
 
-function showUnlockPanel() {
-  var p=document.getElementById('unlockPanel'); if(p) p.classList.add('show');
-}
-function hideUnlockPanel() {
-  var p=document.getElementById('unlockPanel'); if(p) p.classList.remove('show');
-}
-
-function submitUnlockCode() {
-  var input=document.getElementById('unlockCodeInput');
-  var code=input.value.trim().toUpperCase();
-  if(!code){alert('Enter a code first!');return;}
-  if(code==='MAGIC'){
-    setUnlockType('unlimited');
-    showUnlockSuccess('\u267e\ufe0f','Unlimited mode activated! Play all you want today!');
-    setTimeout(function(){hideUnlockPanel();updateNavStatus();},2000);
-  } else if(code==='LEN'){
-    addBonusPlay(1);
-    showUnlockSuccess('\uD83C\uDF89\uD83C\uDFB8','Code accepted! Bonus quiz unlocked \u2014 go crush it!');
-    setTimeout(function(){hideUnlockPanel();updateNavStatus();},2000);
-  } else {
-    alert('Sorry, that code is not valid. Keep looking!');
-    input.value='';input.focus();
-  }
-}
-
-function toggleUnlockEmail() {
-  if(hasEmailedToday()){alert('You already unlocked a bonus quiz with your email today!');return;}
-  var el=document.getElementById('unlockEmailExpand');
-  el.classList.toggle('show');
-  if(el.classList.contains('show')) document.getElementById('unlockEmailInput').focus();
-}
-
-function submitUnlockEmail() {
-  var email=document.getElementById('unlockEmailInput').value.trim();
-  if(!email||!email.includes('@')){alert('Please enter a valid email address.');return;}
-  fetch('https://formspree.io/f/xqedyjjd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,source:'unlock-bonus',quiz:QUIZ_NUM||0,date:getTodayStr()})}).then(function(){}).catch(function(){});
-  setEmailedToday();
-  addBonusPlay(1);
-  document.getElementById('unlockEmailExpand').classList.remove('show');
-  showUnlockSuccess('\uD83C\uDF89\uD83C\uDFB8','Bonus quiz unlocked! Check your inbox for 80s goodies.');
-  setTimeout(function(){hideUnlockPanel();updateNavStatus();},2000);
-}
-
-function showUnlockSuccess(emoji,text) {
-  var el=document.getElementById('unlockSuccess');
-  document.getElementById('unlockSuccessEmoji').textContent=emoji;
-  document.getElementById('unlockSuccessText').textContent=text;
-  el.classList.add('show');
-}
-
-function promptSecretCode() {
-  var code=prompt('Enter secret code for a bonus lifeline:');
-  if(code&&code.toUpperCase()==='RAD'){lifelinesRemaining++;updateLifelineUI();alert('\uD83D\uDEE1\ufe0f Bonus lifeline unlocked!');}
-  else if(code){alert('Sorry, that code is not valid. Keep looking!');}
-}
-/* === END UNLOCK SYSTEM === */
 
 function normalizeString(str) { return str.toLowerCase().replace(/[‘’']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function checkAnswers() {
