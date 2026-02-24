@@ -834,7 +834,8 @@ function updateNavStatus(){
 function initNav(){renderNavGrid();}
 /* ===== END NAV ===== */
 
-document.addEventListener('DOMContentLoaded', () => { 
+document.addEventListener('DOMContentLoaded', () => {
+    initNav(); 
   if (!checkDailyLimit()) return;
   initializeCells(); 
   updatePlaysCounter(); 
