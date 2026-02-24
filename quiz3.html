@@ -1025,59 +1025,6 @@ document.getElementById('initial1').addEventListener('input',function(){ if(this
 document.getElementById('initial2').addEventListener('input',function(){ if(this.value) document.getElementById('initial3').focus(); });
 document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
 
-const FORMSPREE_SURVEY_URL = 'https://formspree.io/f/xeelpozw';
-
-function selectSurvey(el, choice) {
-  if (document.querySelector('.survey-voted')) return;
-  document.querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-  localStorage.setItem('80sGrid_fanType', choice);
-  try {
-    fetch(FORMSPREE_SURVEY_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ type: 'survey', quiz: 'Quiz ' + QUIZ_NUM, fan_type: choice, date: new Date().toISOString() }),
-    });
-  } catch (e) {}
-  revealSurveyResults(choice);
-}
-
-function revealSurveyResults(choice) {
-  document.getElementById('surveyOptions').classList.add('survey-voted');
-  document.querySelectorAll('.survey-option').forEach(function(card) {
-    var tribe = card.dataset.tribe;
-    var pct = parseInt(card.dataset.pct);
-    var color = card.dataset.color;
-    var isYours = tribe === choice;
-    card.querySelector('.tribe-artists').style.display = 'none';
-    var bar = card.querySelector('.tribe-bar');
-    bar.style.display = 'block';
-    var fill = card.querySelector('.tribe-fill');
-    fill.style.background = isYours ? 'linear-gradient(135deg,' + color + ',#fff)' : color;
-    fill.style.boxShadow = isYours ? '0 0 10px ' + color : 'none';
-    setTimeout(function() { fill.style.width = pct + '%'; }, 50);
-    var pctEl = card.querySelector('.tribe-pct');
-    pctEl.style.display = 'block';
-    pctEl.textContent = pct + '%';
-    pctEl.style.color = '#fff';
-    pctEl.style.textShadow = '0 0 10px rgba(0,0,0,0.5)';
-    if (isYours) {
-      card.classList.add('selected');
-      card.style.boxShadow = '0 0 20px ' + color + ', inset 0 0 10px rgba(255,255,255,0.1)';
-      card.querySelector('.tribe-label').textContent += ' \u2713';
-    } else {
-      card.style.opacity = '0.65';
-    }
-    card.style.cursor = 'default';
-    card.onclick = null;
-  });
-}
-
-function restoreSurvey() {
-  var saved = localStorage.getItem('80sGrid_fanType');
-  if (saved) revealSurveyResults(saved);
-}
-
 
 /* ===== PAGINATED NAV ===== */
 const ALL_NAV_QUIZZES = [{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'}];

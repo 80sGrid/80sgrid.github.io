@@ -854,59 +854,6 @@ document.getElementById('initial2').addEventListener('input', function(){ if(thi
 document.getElementById('initial3').addEventListener('keypress', function(e){ if(e.key==='Enter') saveHighScore(); });
 
 
-const FORMSPREE_SURVEY_URL = 'https://formspree.io/f/xeelpozw';
-
-function selectSurvey(el, choice) {
-  if (document.querySelector('.survey-voted')) return;
-  document.querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-  localStorage.setItem('80sGrid_fanType', choice);
-  try {
-    fetch(FORMSPREE_SURVEY_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ type: 'survey', quiz: 'Quiz ' + QUIZ_NUM, fan_type: choice, date: new Date().toISOString() }),
-    });
-  } catch (e) {}
-  revealSurveyResults(choice);
-}
-
-function revealSurveyResults(choice) {
-  document.getElementById('surveyOptions').classList.add('survey-voted');
-  document.querySelectorAll('.survey-option').forEach(function(card) {
-    var tribe = card.dataset.tribe;
-    var pct = parseInt(card.dataset.pct);
-    var color = card.dataset.color;
-    var isYours = tribe === choice;
-    card.querySelector('.tribe-artists').style.display = 'none';
-    var bar = card.querySelector('.tribe-bar');
-    bar.style.display = 'block';
-    var fill = card.querySelector('.tribe-fill');
-    fill.style.background = isYours ? 'linear-gradient(135deg,' + color + ',#fff)' : color;
-    fill.style.boxShadow = isYours ? '0 0 10px ' + color : 'none';
-    setTimeout(function() { fill.style.width = pct + '%'; }, 50);
-    var pctEl = card.querySelector('.tribe-pct');
-    pctEl.style.display = 'block';
-    pctEl.textContent = pct + '%';
-    pctEl.style.color = '#fff';
-    pctEl.style.textShadow = '0 0 10px rgba(0,0,0,0.5)';
-    if (isYours) {
-      card.classList.add('selected');
-      card.style.boxShadow = '0 0 20px ' + color + ', inset 0 0 10px rgba(255,255,255,0.1)';
-      card.querySelector('.tribe-label').textContent += ' \u2713';
-    } else {
-      card.style.opacity = '0.65';
-    }
-    card.style.cursor = 'default';
-    card.onclick = null;
-  });
-}
-
-function restoreSurvey() {
-  var saved = localStorage.getItem('80sGrid_fanType');
-  if (saved) revealSurveyResults(saved);
-}
-
 
 const QUIZ_NUM = 2;
 /* ===== PAGINATED NAV ===== */
