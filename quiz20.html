@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
 <script src="analytics.js"></script>
+<script src="survey.js"></script>
 <title>Len's 80sGrid.com — Quiz 20</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://80sgrid.com/quiz20.html">
@@ -235,7 +236,6 @@ button:hover { background:#5568d3; }
 <div class="nav-legend">🟢 Easy &nbsp;|&nbsp; 🟠 Medium &nbsp;|&nbsp; 🔴 Hard</div>
 
 
-
 <div class="difficulty-badge" style="--badge-color:#dc3545; --badge-glow:rgba(220,53,69,0.5);">
 <div class="badge-stars">★★★★☆</div>
 <div class="badge-left">
@@ -305,6 +305,9 @@ button:hover { background:#5568d3; }
 
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+
+<div id="surveyContainer"></div>
+
 <a href="index.html" class="next-quiz-btn">🎸 BACK TO QUIZ 1 → 🎸</a>
 
 </div>
@@ -330,6 +333,7 @@ button:hover { background:#5568d3; }
 
 <script>
 const QUIZ_NUM = 20;
+window.QUIZ_NUM = QUIZ_NUM;
 const PLAYS_KEY = '80sGridPlaysQuiz20';
 const SESSION_KEY = 'hasPlayedQuiz20';
 const QUIZ_KEY = 'quiz20Score';
@@ -347,7 +351,6 @@ const FAKE_SCORES = [
     { initials: 'LUX', pct: 80,  quizzes: 20, date: '2/16/26' }
   ];
 const SHARE_TEXT = "🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/";
-
 
 
 const PLAYS_START = 100;
@@ -511,6 +514,7 @@ function checkAnswers() {
   localStorage.setItem(QUIZ_KEY,correct);
   document.getElementById('score').textContent=`You got ${correct} out of ${total} correct!`;
   document.getElementById('results').style.display='block';
+showSurveyIfNeeded();
     if(lifelinesRemaining===3) document.getElementById('noLifelineBadge').style.display='block';
   if(correct>=8&&total===9) setTimeout(()=>{ document.getElementById('highScoreEntry').style.display='block'; document.getElementById('initial1').focus(); },1000);
   displayLeaderboard();
