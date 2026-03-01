@@ -10,12 +10,12 @@
 <meta property="og:url" content="https://80sgrid.com/quiz31.html">
 <meta property="og:title" content="Len's 80sGrid.com Music Edition - Quiz 31">
 <meta property="og:description" content="Test your knowledge of Jimmy Cliff, Dusty Springfield, and Neil Diamond — and their UB40 connections!">
-<meta property="og:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
+<meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://80sgrid.com/quiz31.html">
 <meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 31">
 <meta property="twitter:description" content="Test your knowledge of Jimmy Cliff, Dusty Springfield, and Neil Diamond — and their UB40 connections!">
-<meta property="twitter:image" content="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1">
+<meta property="twitter:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <style>
 body {
 font-family: Arial, sans-serif;
@@ -367,7 +367,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 </div>
 <div class="container">
-<img src="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1" alt="80s Grid Header" class="logo-img">
+<img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img">
 <div class="mini-nav">
     <a href="about.html">About</a>
     <span>|</span>
@@ -755,7 +755,7 @@ document.getElementById('initial1').addEventListener('input',function(){if(this.
 document.getElementById('initial2').addEventListener('input',function(){if(this.value)document.getElementById('initial3').focus();});
 document.getElementById('initial3').addEventListener('keypress',function(e){if(e.key==='Enter')saveHighScore();});
 /* ===== PAGINATED NAV ===== */
-const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'}];
+const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'},{n:32,f:'quiz32.html',c:'hard'},{n:33,f:'quiz33.html',c:'medium'},{n:34,f:'quiz34.html',c:'hard'},{n:35,f:'quiz35.html',c:'hard'},{n:36,f:'quiz36.html',c:'medium'}];
 const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30)];
 const GROUP_LABELS=['1 \u2013 10','11 \u2013 20','21 \u2013 30','31 \u2013 40'];
 let navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:3;
