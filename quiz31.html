@@ -323,6 +323,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .secret-code-btn:hover { transform:scale(1.05); }
 @keyframes pulseGlow { 0%,100%{box-shadow:0 0 5px rgba(102,126,234,0.4)} 50%{box-shadow:0 0 15px rgba(102,126,234,0.8)} }
 
+.mini-nav { text-align:center; margin:8px 0 16px; font-size:0.88em; }
+.mini-nav a { color:#8B00FF; font-weight:bold; text-decoration:none; margin:0 12px; }
+.mini-nav a:hover { color:#FF1493; }
+.mini-nav span { color:#ccc; }
 </style>
 </head>
 <body>
@@ -336,7 +340,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <button onclick="saveModalAnswer()">Save</button>
 <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
 </div>
-<button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Multiple Choice (<span id="mcRemaining">3</span> left)</button>
+<button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Lifeline: Multiple Choice (<span id="mcRemaining">3</span> left)</button>
 </div>
 <div class="mc-section" id="mcSection">
 <div id="mcOptions"></div>
@@ -364,6 +368,13 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="container">
 <img src="https://www.dropbox.com/scl/fi/xe71bdsordlklx2o1wz22/new-header.png?rlkey=ti8auttvj17cao8ipecef0vu2&st=s3gjdvos&raw=1" alt="80s Grid Header" class="logo-img">
+<div class="mini-nav">
+    <a href="about.html">About</a>
+    <span>|</span>
+    <a href="sponsor.html">Sponsor</a>
+    <span>|</span>
+    <a href="collaborate.html">Collaborate</a>
+  </div>
 <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 <div class="how-to-play">
 <h2>How to Play</h2>
@@ -590,7 +601,7 @@ function initializeCells() {
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
     const isYN=yesNoKeys.includes(key);
-    if(isYN) cell.querySelector('input').placeholder='Yes or No?';
+    cell.querySelector('input').placeholder=isYN?'Y/N':'Answer';
     cell.addEventListener('click',()=>openModal(cell));
   });
 }
@@ -604,7 +615,7 @@ function openModal(cell) {
   document.getElementById('modalInput').value=cell.querySelector('input').value;
   showTextEntry();
   const mcBtn=document.getElementById('mcToggleBtn');
-  if(mcBtn) mcBtn.style.display=(Object.keys(mcOptions).length===0||isYN)?'none':'block';
+  if(mcBtn) mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
   setTimeout(()=>document.getElementById('modalInput').focus(),100);
