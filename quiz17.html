@@ -6,11 +6,11 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
 <script src="analytics.js"></script>
 <script src="survey.js"></script>
-<title>Len's 80sGrid.com — Quiz 17</title>
+<title>Len's 80sGrid.com Music Edition</title>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://80sgrid.com/quiz17.html">
-<meta property="og:title" content="Len's 80sGrid.com — Quiz 17">
-<meta property="og:description" content="Test your 80s music knowledge! Peter Gabriel, Cher, Lita Ford">
+<meta property="og:url" content="https://80sgrid.com/">
+<meta property="og:title" content="Len's 80sGrid.com Music Edition">
+<meta property="og:description" content="Test your 80s music knowledge! Fleetwood Mac, Talking Heads, and The Cars!">
 <meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <style>
 body { font-family:Arial,sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); padding:20px; overflow-x:hidden; box-sizing:border-box; }
@@ -41,16 +41,62 @@ button:hover { background:#5568d3; }
 .next-quiz-btn { display:inline-block; margin:15px auto; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; text-decoration:none; padding:18px 40px; border-radius:12px; font-size:1.3em; font-weight:900; font-family:'Arial Black',sans-serif; letter-spacing:2px; box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); animation:pulse 1.5s infinite; }
 .next-quiz-btn:hover { transform:scale(1.05); }
 @keyframes pulse { 0%,100% { box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3); } 50% { box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4); } }
+
 /* INPUT MODAL */
-.input-modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:15px; box-shadow:0 10px 50px rgba(0,0,0,0.5); z-index:3500; display:none; min-width:300px; max-width:90%; box-sizing:border-box; }
+.input-modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:30px; border-radius:15px; box-shadow:0 10px 50px rgba(0,0,0,0.5); z-index:3500; display:none; min-width:300px; max-width:92%; width:340px; box-sizing:border-box; }
 .input-modal.active { display:block; }
 .input-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:3499; display:none; }
 .input-modal-overlay.active { display:block; }
-.input-modal h3 { margin-top:0; margin-bottom:20px; color:#333; font-size:1.2em; text-align:center; }
-.input-modal input { width:100%; padding:15px; font-size:1.2em; border:2px solid #667eea; border-radius:8px; margin-bottom:15px; box-sizing:border-box; }
-.input-modal-buttons { display:flex; gap:10px; }
+.input-modal h3 { margin-top:0; margin-bottom:16px; color:#333; font-size:1.1em; text-align:center; line-height:1.4; }
+.input-modal input { width:100%; padding:15px; font-size:1.1em; border:2px solid #667eea; border-radius:8px; margin-bottom:12px; box-sizing:border-box; }
+.input-modal-buttons { display:flex; gap:10px; margin-bottom:0; }
 .input-modal-buttons button { flex:1; padding:12px; font-size:1em; }
-/* STATS MODAL */
+
+/* MULTIPLE CHOICE button */
+.mc-toggle-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  background: linear-gradient(135deg, #FF1493, #8B00FF);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95em;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+.mc-toggle-btn:hover { opacity: 0.88; background: linear-gradient(135deg, #FF1493, #8B00FF); }
+
+/* MULTIPLE CHOICE options */
+.mc-section { display:none; margin-top:4px; }
+.mc-section.visible { display:block; }
+.mc-option {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 14px 12px;
+  background: #f8f0ff;
+  border: 2px solid #8B00FF;
+  border-radius: 10px;
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #4a0080;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, transform 0.1s;
+  box-sizing: border-box;
+}
+.mc-option:hover { background: #e8c8ff; transform: scale(1.02); }
+.mc-option:last-child { margin-bottom: 0; }
+
+/* text input section */
+.text-section { }
+.text-section.hidden { display:none; }
+
+/* STATS / LIMIT / LEADERBOARD — same as other grids */
 .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
 .stats-modal.show { display:flex; }
 .stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Courier New',monospace; box-shadow:0 0 40px rgba(255,20,147,0.6); }
@@ -60,21 +106,18 @@ button:hover { background:#5568d3; }
 .stat-label { color:#aaa; font-size:0.85em; letter-spacing:1px; }
 .stat-value { color:#ffff00; font-size:1.2em; font-weight:bold; text-shadow:0 0 8px #ffff00; }
 .stats-close { display:block; margin:25px auto 0; background:#FF1493; color:#000; border:none; padding:10px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; border-radius:4px; }
-/* DAILY LIMIT MODAL */
 .limit-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
 .limit-modal.show { display:flex; }
 .limit-box { background:#000; border:4px solid #FF1493; border-radius:12px; padding:40px 30px; text-align:center; font-family:'Courier New',monospace; max-width:320px; width:90%; box-shadow:0 0 40px rgba(255,20,147,0.7); }
 .limit-box h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; font-size:1.4em; letter-spacing:3px; margin-bottom:15px; }
 .limit-box p { color:#00ff00; line-height:1.7; margin-bottom:20px; }
 .limit-box button { background:#FF1493; color:#000; border:none; padding:12px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; border-radius:4px; }
-/* HIGH SCORE */
 .high-score-entry { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#000; color:#00ff00; padding:40px; border-radius:10px; border:4px solid #00ff00; box-shadow:0 0 30px rgba(0,255,0,.5); text-align:center; z-index:1000; font-family:'Courier New',monospace; width:90%; max-width:340px; box-sizing:border-box; }
 .high-score-entry h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; margin-bottom:20px; }
 .initials-input { display:flex; gap:15px; justify-content:center; margin:20px 0; }
 .initials-input input { width:60px; height:80px; font-size:3em; text-align:center; background:#000; border:3px solid #00ff00; color:#00ff00; text-transform:uppercase; font-family:'Courier New',monospace; }
 .arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Courier New',monospace; box-shadow:0 0 20px rgba(0,255,0,.5); }
 .arcade-button:hover { background:#00cc00; }
-/* LEADERBOARD */
 .leaderboard { margin-top:30px; background:#000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top/contain no-repeat; color:#00ff00; padding:15px; border-radius:10px; border:3px solid #00ff00; font-family:'Courier New',monospace; box-shadow:0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1); min-height:300px; width:100%; box-sizing:border-box; }
 .leaderboard-scores-wrap { margin-top:160px; background:rgba(0,0,0,0.75); border-radius:8px; padding:15px 10px 10px; }
 .leaderboard-subtitle { text-align:center; color:#00ffff; margin-bottom:15px; font-size:0.85em; letter-spacing:3px; }
@@ -84,9 +127,13 @@ button:hover { background:#5568d3; }
 .leaderboard-initials { color:#00ff00; font-weight:bold; text-shadow:0 0 5px #00ff00; }
 .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
 .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
-/* PAGE NAV */
+.footnote-box { background:#f8f0ff; border-left:4px solid #8B00FF; padding:14px 16px; border-radius:8px; margin-bottom:20px; font-size:0.85em; line-height:1.7; color:#444; }
+.footnote-box strong { color:#6a0dad; display:block; margin-bottom:6px; }
+.footnote-box li { margin-left:16px; margin-bottom:4px; }
 
 .nav-legend { text-align:center; font-size:0.75em; color:#666; margin-bottom:16px; }
+@media (max-width:768px) { .container{padding:15px;} .subtitle{font-size:2.5em;letter-spacing:3px;} .grid{grid-template-columns:80px repeat(3,1fr);grid-template-rows:60px repeat(3,100px);gap:6px;} .header{font-size:.65em;padding:6px;} .next-quiz-btn{font-size:1.1em;padding:15px 25px;} .leaderboard-scores-wrap{margin-top:100px;} }
+
 /* DIFFICULTY BADGE */
 .group-tabs { display:flex; justify-content:center; gap:6px; margin-bottom:10px; }
 .group-tab { flex:1; padding:8px 4px; text-align:center; font-family:Arial,sans-serif; font-size:0.75em; font-weight:900; letter-spacing:1px; border:2px solid #ddd; border-radius:8px; background:#f0f0f0; color:#999; cursor:pointer; transition:all 0.3s; }
@@ -111,58 +158,106 @@ button:hover { background:#5568d3; }
 .nav-status-bar.limit-reached { background:#fff0f0; border-color:#dc3545; color:#dc3545; }
 .nav-replay-note { text-align:center; font-size:0.72em; color:#888; font-style:italic; margin-bottom:14px; line-height:1.4; }
 
-.difficulty-badge { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 20px; padding:14px 20px; border-radius:12px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 20px var(--badge-glow); }
-.badge-left { text-align:left; }
-.badge-label { font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:2px; color:var(--badge-color); text-transform:uppercase; }
-.badge-score { font-size:0.8em; color:#666; font-weight:bold; margin-top:2px; }
-.badge-stars { font-size:1.5em; color:var(--badge-color); letter-spacing:2px; }
-.badge-desc { font-size:0.75em; color:#888; font-style:italic; margin-top:2px; }
-/* FOOTNOTES */
-.footnote-box { background:#f8f0ff; border-left:4px solid #8B00FF; padding:14px 16px; border-radius:8px; margin-bottom:20px; font-size:0.85em; line-height:1.7; color:#444; }
-.footnote-box strong { color:#6a0dad; display:block; margin-bottom:6px; font-size:1em; }
-.footnote-box li { margin-left:16px; margin-bottom:4px; }
-/* HOW TO PLAY MODAL */
-.htp-modal { display:none; position:fixed; inset:0; z-index:4000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
-.htp-modal.show { display:flex; }
-.htp-box { background:white; border-radius:15px; padding:30px; max-width:380px; width:90%; box-shadow:0 10px 50px rgba(0,0,0,0.4); box-sizing:border-box; }
-.htp-box h2 { margin:0 0 15px; font-family:'Arial Black',sans-serif; color:#8B00FF; font-size:1.3em; text-align:center; }
-.htp-box p { margin:0 0 12px; line-height:1.7; color:#444; font-size:0.95em; }
-.htp-box ul { margin:0 0 15px; padding-left:18px; color:#444; font-size:0.9em; line-height:1.8; }
-.htp-close { display:block; width:100%; padding:12px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:1em; font-weight:bold; cursor:pointer; margin-top:5px; }
-.htp-link { color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em; cursor:pointer; border:none; background:none; padding:0; font-family:Arial,sans-serif; }
-.htp-link:hover { text-decoration:underline; }
-@media (max-width:768px) {
-  .container { padding:15px; }
-  .subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
-  .grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
-  .header { font-size:.65em; padding:6px; }
-  .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
-  .leaderboard-scores-wrap { margin-top:100px; }
+.difficulty-badge {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+margin: 0 0 20px;
+padding: 14px 20px;
+border-radius: 12px;
+border: 2px solid var(--badge-color);
+background: color-mix(in srgb, var(--badge-color) 10%, white);
+box-shadow: 0 0 20px var(--badge-glow);
+}
+.badge-left { text-align: left; }
+.badge-label {
+font-family: 'Arial Black', sans-serif;
+font-size: 1.1em;
+font-weight: 900;
+letter-spacing: 2px;
+color: var(--badge-color);
+text-transform: uppercase;
+}
+.badge-score {
+font-size: 0.8em;
+color: #666;
+font-weight: bold;
+margin-top: 2px;
+}
+.badge-stars {
+font-size: 1.5em;
+color: var(--badge-color);
+letter-spacing: 2px;
+}
+.badge-desc {
+font-size: 0.75em;
+color: #888;
+font-style: italic;
+margin-top: 2px;
 }
 
 /* LIFELINE COUNTER */
-.lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
-.lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
-.lifeline-pips { display:flex; gap:5px; }
-.lifeline-pip { width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,#FF1493,#8B00FF); box-shadow:0 0 8px rgba(255,20,147,0.5); display:flex; align-items:center; justify-content:center; font-size:0.75em; transition:all 0.3s; }
-.lifeline-pip.used { background:#dee2e6; box-shadow:none; }
-.lifeline-count { font-size:0.82em; color:#888; font-style:italic; }
-.lifeline-count.empty { color:#dc3545; font-weight:bold; font-style:normal; }
-.no-lifeline-badge { display:none; text-align:center; margin:10px 0; padding:8px 14px; background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:8px; font-weight:900; font-size:0.9em; color:#000; box-shadow:0 0 12px rgba(255,215,0,0.5); }
-/* MC BUTTON */
-.mc-toggle-btn { display:block; width:100%; margin-top:12px; padding:11px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:0.95em; font-weight:bold; cursor:pointer; letter-spacing:0.5px; transition:opacity 0.2s; }
-.mc-toggle-btn:hover { opacity:0.88; }
-.mc-toggle-btn:disabled { opacity:0.35; cursor:not-allowed; }
-.mc-section { display:none; }
-.mc-section.visible { display:block; }
-.mc-option { display:block; width:100%; margin-bottom:10px; padding:14px 12px; background:#f8f0ff; border:2px solid #8B00FF; border-radius:10px; font-size:0.95em; font-weight:bold; color:#4a0080; cursor:pointer; text-align:center; transition:background 0.15s,transform 0.1s; box-sizing:border-box; }
-.mc-option:hover { background:#e8c8ff; transform:scale(1.02); }
-.mc-option:last-child { margin-bottom:0; }
-.text-section.hidden { display:none; }
-
-/* Y/N TOAST */
-.yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
-.yn-toast.show { opacity:1; }
+.lifeline-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #fff0f8, #f0f0ff);
+  border: 2px solid rgba(139,0,255,0.25);
+  border-radius: 10px;
+  font-family: 'Arial Black', sans-serif;
+}
+.lifeline-label {
+  font-size: 0.8em;
+  font-weight: 900;
+  color: #555;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.lifeline-pips {
+  display: flex;
+  gap: 5px;
+}
+.lifeline-pip {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF1493, #8B00FF);
+  box-shadow: 0 0 8px rgba(255,20,147,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  transition: all 0.3s;
+}
+.lifeline-pip.used {
+  background: #dee2e6;
+  box-shadow: none;
+}
+.lifeline-count {
+  font-size: 0.82em;
+  color: #888;
+  font-style: italic;
+}
+.lifeline-count.empty {
+  color: #dc3545;
+  font-weight: bold;
+}
+.no-lifeline-badge {
+  display: none;
+  text-align: center;
+  margin: 10px 0;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 0.9em;
+  color: #000;
+  box-shadow: 0 0 12px rgba(255,215,0,0.5);
+}
 
 /* SURVEY TRIBE CARDS */
 .survey-option:hover { transform:scale(1.02); filter:brightness(1.15); }
@@ -223,231 +318,237 @@ button:hover { background:#5568d3; }
 </head>
 <body>
 
-<div class="yn-toast" id="ynToast">No lifeline needed — it's Yes or No! 🎸</div>
+<!-- Input Modal -->
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
-<h3 id="modalTitle">Enter Answer</h3>
-<div class="text-section" id="textSection">
-<input type="text" id="modalInput" placeholder="Type your answer..." />
-<div class="input-modal-buttons">
-<button onclick="saveModalAnswer()">Save</button>
-<button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
-</div>
-<button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">🎯 Multiple Choice (<span id="mcRemaining">3</span> left)</button>
-</div>
-<div class="mc-section" id="mcSection">
-<div id="mcOptions"></div>
-<button onclick="showTextEntry()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">✏️ Type My Own Answer</button>
-</div>
+  <h3 id="modalTitle">Enter Answer</h3>
+
+  <!-- Text entry section -->
+  <div class="text-section" id="textSection">
+    <input type="text" id="modalInput" placeholder="Type your answer..." />
+    <div class="input-modal-buttons">
+      <button onclick="saveModalAnswer()">Save</button>
+      <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
+    </div>
+    <button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">🎯 Multiple Choice (<span id="mcRemaining">3</span> left)</button>
+  </div>
+
+  <!-- Multiple choice section -->
+  <div class="mc-section" id="mcSection">
+    <div id="mcOptions"></div>
+    <button onclick="showTextEntry()" style="width:100%; margin-top:12px; background:#6c757d; padding:10px; font-size:0.9em;">✏️ Type My Own Answer</button>
+  </div>
 </div>
 
+<!-- Stats Modal -->
 <div class="stats-modal" id="statsModal" onclick="if(event.target===this) toggleStats()">
-<div class="stats-box">
-<h2>★ MY STATS ★</h2>
-<div class="stats-sub">PLAYER PROFILE</div>
-<div class="stat-row"><span class="stat-label">QUIZZES TODAY</span><span class="stat-value" id="statToday">0</span></div>
-<div class="stat-row"><span class="stat-label">TOTAL PLAYED</span><span class="stat-value" id="statTotal">0</span></div>
-<div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0/153</span></div>
-<div class="stat-row"><span class="stat-label">BEST QUIZ SCORE</span><span class="stat-value" id="statBest">0/9</span></div>
-<div class="stat-row"><span class="stat-label">🔥 DAY STREAK</span><span class="stat-value" id="statStreak">0</span></div>
-<button class="stats-close" onclick="toggleStats()">CLOSE</button>
-</div>
+  <div class="stats-box">
+    <h2>★ MY STATS ★</h2>
+    <div class="stats-sub">PLAYER PROFILE</div>
+    <div class="stat-row"><span class="stat-label">QUIZZES TODAY</span><span class="stat-value" id="statToday">0</span></div>
+    <div class="stat-row"><span class="stat-label">TOTAL PLAYED</span><span class="stat-value" id="statTotal">0</span></div>
+    <div class="stat-row"><span class="stat-label">CUMULATIVE SCORE</span><span class="stat-value" id="statCumulative">0/63</span></div>
+    <div class="stat-row"><span class="stat-label">BEST QUIZ SCORE</span><span class="stat-value" id="statBest">0/9</span></div>
+    <div class="stat-row"><span class="stat-label">🔥 DAY STREAK</span><span class="stat-value" id="statStreak">0</span></div>
+    <button class="stats-close" onclick="toggleStats()">CLOSE</button>
+    <p style="color:#000; font-style:italic; font-size:0.78em; text-align:center; margin-top:16px; margin-bottom:0; letter-spacing:0.5px;">🎯 Lifeline available — click any cell to find it.</p>
+  </div>
 </div>
 
+<!-- Daily Limit Modal -->
 <div class="limit-modal" id="limitModal">
-<div class="limit-box">
-<h2>⚡ GAME OVER ⚡</h2>
-<p>You've maxed out your quizzes for today!<br><br>🎸 Come back tomorrow for more 80s glory! 🎸</p>
-<button onclick="document.getElementById('limitModal').classList.remove('show')">OK, SEE YOU TOMORROW!</button>
-</div>
-</div>
-
-<div class="htp-modal" id="htpModal" onclick="if(event.target===this) closeHTP()">
-<div class="htp-box">
-<h2>🎸 How to Play</h2>
-<p>Match the <strong>artist</strong> (column) with the <strong>category</strong> (row) to fill in the grid.</p>
-<ul>
-<li>Click any cell to type your answer</li>
-<li>Hit <strong>Check Answers</strong> when ready</li>
-<li>Green = correct, Red = incorrect</li>
-<li>Multiple answers may be accepted — get creative!</li>
-<li>Use the quiz nav at the top to jump between all quizzes</li>
-</ul>
-<p style="font-size:0.8em; color:#888; margin:0;">Tip: These bands share some history — that's a hint!</p>
-<button class="htp-close" onclick="closeHTP()">Got it — Let's Play! 🎵</button>
-</div>
+  <div class="limit-box">
+    <h2>⚡ GAME OVER ⚡</h2>
+    <p>You've maxed out your quizzes for today!<br><br>🎸 Come back tomorrow for more 80s glory! 🎸</p>
+    <button onclick="document.getElementById('limitModal').classList.remove('show')">OK, SEE YOU TOMORROW!</button>
+  </div>
 </div>
 
 <div class="container">
-<img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img">
-<div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+  <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img">
+  <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 
-<div class="group-tabs" id="groupTabs"></div>
+  <div class="group-tabs" id="groupTabs"></div>
 <div class="quiz-grid-nav" id="quizGridNav"></div>
 <div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
 <div class="nav-status-bar" id="navStatusBar"></div>
 <div class="unlock-panel" id="unlockPanel"><h3>🔓 Want to keep playing?</h3><div class="code-row"><label>Have a secret code?</label><input type="text" class="code-input" id="unlockCodeInput" placeholder="Enter code"><button class="code-submit" onclick="submitUnlockCode()">Submit</button></div><div class="code-hint">Hint: Codes drop on our social media & the Arrive Alive Podcast</div><div class="unlock-divider">OR</div><button class="email-unlock-btn" onclick="toggleUnlockEmail()">📧 Enter your email for a free bonus play!</button><div class="email-expand" id="unlockEmailExpand"><div style="margin-top:8px;"><input type="email" id="unlockEmailInput" placeholder="your@email.com"></div><button class="email-expand-submit" onclick="submitUnlockEmail()">Unlock Bonus Quiz 🎸</button><div class="email-note">We'll send you 80s trivia tips & new quiz alerts. Unsubscribe anytime.</div></div><div class="unlock-success-msg" id="unlockSuccess"><span class="big" id="unlockSuccessEmoji">🎉</span><br><strong id="unlockSuccessText">Bonus quiz unlocked!</strong></div></div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 
-<div class="difficulty-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.5);">
+  <div class="subtitle">Quiz 17</div>
+<div class="difficulty-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
 <div class="badge-stars">★★★☆☆</div>
 <div class="badge-left">
 <div class="badge-label">Difficulty: MEDIUM</div>
-<div class="badge-score">Difficulty Score: 6/10</div>
-<div class="badge-desc">Duets and band history</div>
+<div class="badge-score">Difficulty Score: 5/10</div>
+<div class="badge-desc">70s legends with serious 80s comebacks — do you know your classic rock?</div>
 </div>
 </div>
 
-<div class="subtitle">Quiz 17</div>
+  <!-- Lifeline Counter -->
+  <div class="lifeline-bar" id="lifelineBar">
+    <span class="lifeline-label">🎯 Lifelines</span>
+    <div class="lifeline-pips">
+      <div class="lifeline-pip" id="pip1">🎯</div>
+      <div class="lifeline-pip" id="pip2">🎯</div>
+      <div class="lifeline-pip" id="pip3">🎯</div>
+    </div>
+    <span class="lifeline-count" id="lifelineCount">3 remaining</span>
+  </div>
+  <div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
 
-<div style="text-align:center; margin-bottom:15px;">
-<div style="margin-bottom:8px;"><span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span></div>
-<div>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 High Scores</a>
-<span style="margin:0 8px; color:#ccc;">|</span>
-<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📊 My Stats</a>
-<span style="margin:0 8px; color:#ccc;">|</span>
-<a href="#" onclick="openHTP(); return false;" class="htp-link">❓ How to Play</a>
-</div>
-</div>
+  <div style="text-align:center; margin-bottom:15px;">
+    <div style="margin-bottom:8px;"><span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">🎮 Loading plays...</span></div>
+    <div>
+      <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 High Scores</a>
+      <span style="margin:0 8px; color:#ccc;">|</span>
+      <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📊 My Stats</a>
+      <span style="margin:0 8px; color:#ccc;">|</span>
+      <a href="#" onclick="toggleHowToPlay(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">📖 How to Play</a>
+    </div>
+    <div style="margin-top:8px;">
+      <em style="color:#000; font-size:0.82em;">🎯 Lifeline available — click any cell to find it.</em>
+    </div>
+  </div>
 
-<!-- Lifeline Counter -->
-<div class="lifeline-bar" id="lifelineBar">
-<span class="lifeline-label">🎯 Lifelines</span>
-<div class="lifeline-pips">
-<div class="lifeline-pip" id="pip1">🎯</div>
-<div class="lifeline-pip" id="pip2">🎯</div>
-<div class="lifeline-pip" id="pip3">🎯</div>
-</div>
-<span class="lifeline-count" id="lifelineCount">3 remaining</span>
-</div>
-<button class="secret-code-btn" id="secretCodeBtn" onclick="promptSecretCode()">🔓 Enter Secret Code for Bonus Lifeline</button>
-<div class="no-lifeline-badge" id="noLifelineBadge">🏆 No Lifelines Used — Pure 80s Knowledge!</div>
-<div class="grid">
-<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" style="grid-column:2;">Peter Gabriel</div>
-<div class="header col-header" style="grid-column:3;">Cher</div>
-<div class="header col-header" style="grid-column:4;">Lita Ford</div>
-<div class="header row-header" style="grid-row:2;">Hit Song with &ldquo;Kiss&rdquo; in Title</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
-<div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
-<div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
-<div class="header row-header" style="grid-row:3;">Prior Group / Band</div>
-<div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
-<div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
-<div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
-<div class="header row-header" style="grid-row:4;">Famous Duet With</div>
-<div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
-<div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
-<div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
-</div>
+  <!-- How to Play (hidden by default, toggle on click) -->
+  <div class="how-to-play" id="howToPlayBox" style="display:none;">
+    <h2>How to Play</h2>
+    <p>Match the artist (column) with the category (row). Click any box to type your answer — or hit <strong>🎯 Multiple Choice</strong> if you need a hint. Multiple answers may work!</p>
+  </div>
 
-<div class="footnote-box">
-<strong>📝 Notes</strong>
-<ul>
-<li>Peter Gabriel's solo career is one of the most critically acclaimed in rock history — his artistic ambitions only grew after leaving his original band.</li>
-<li>Cher's career stretches across six decades — her earliest musical partnership began in the early 60s and launched one of TV's most iconic variety shows.</li>
-<li>Lita Ford was shredding guitar in an all-female rock band years before going solo — her early bandmate also became a rock legend.</li>
-<li>All three artists proved that reinvention is the key to longevity in the music business.</li>
-</ul>
-</div>
-<div class="button-container">
-<button onclick="checkAnswers()">Check Answers</button>
-<button onclick="resetGrid()">Reset Grid</button>
-<button onclick="shareScore()" style="background:#FF1493;">📤 Share with a Friend</button>
-</div>
+  <div class="grid">
+    <div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
+    <div class="header col-header" style="grid-column:2;">Fleetwood<br>Mac</div>
+    <div class="header col-header" style="grid-column:3;">Talking<br>Heads</div>
+    <div class="header col-header" style="grid-column:4;">The Cars</div>
 
-<div id="results" style="display:none;">
-<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+    <div class="header row-header" style="grid-row:2;">Biggest 80s Hit</div>
+    <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
+    <div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
+    <div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
 
+    <div class="header row-header" style="grid-row:3;">Lead Singer's First Name</div>
+    <div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
+    <div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
+    <div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+
+    <div class="header row-header" style="grid-row:4;">Lead Singer Went Solo (Yes or No)</div>
+    <div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
+    <div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
+    <div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+  </div>
+
+  <div class="footnote-box">
+    <strong>📝 Notes</strong>
+    <ul>
+      <li>Fleetwood Mac's Hold Me reached #4 on the Billboard Hot 100 in 1982 — Stevie Nicks had already launched a hugely successful solo career by then with Bella Donna (1981), proving she could dominate both fronts simultaneously.</li>
+      <li>Talking Heads' Burning Down the House was their biggest mainstream hit, reaching #9 in 1983 — David Byrne's eccentric persona and the band's art-rock style made them one of the most distinctive acts of the decade.</li>
+      <li>The Cars' Drive is one of the most emotional ballads of the 80s — it was famously used during the Live Aid broadcast in 1985 over footage of the Ethiopian famine, giving the song a whole new layer of meaning.</li>
+      <li>Ric Ocasek largely stepped away from solo performance after The Cars to focus on producing — working with Weezer, Bad Brains, and many others — while Stevie Nicks and David Byrne both became celebrated solo artists.</li>
+    </ul>
+  </div>
+
+  <div class="button-container">
+    <button onclick="checkAnswers()">Check Answers</button>
+    <button onclick="resetGrid()">Reset Grid</button>
+    <button onclick="shareScore()" style="background:#FF1493;">📤 Share with a Friend</button>
+  </div>
+
+  <div id="results" style="display:none;">
+    <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+    
 <div id="surveyContainer"></div>
 
 <a href="quiz18.html" class="next-quiz-btn">🎸 NEXT QUIZ → 🎸</a>
+    
+  </div>
 
-</div>
+  <div id="highScoreEntry" class="high-score-entry" style="display:none;">
+    <h2>★ HIGH SCORE ★</h2>
+    <p style="color:#00ff00; text-align:center; font-size:1.2em; margin-bottom:20px;">ENTER YOUR INITIALS</p>
+    <div class="initials-input">
+      <input type="text" maxlength="1" id="initial1" />
+      <input type="text" maxlength="1" id="initial2" />
+      <input type="text" maxlength="1" id="initial3" />
+    </div>
+    <div style="text-align:center; margin-top:20px;"><button class="arcade-button" onclick="saveHighScore()">SAVE</button></div>
+  </div>
 
-<div id="highScoreEntry" class="high-score-entry" style="display:none;">
-<h2>★ HIGH SCORE ★</h2>
-<p style="color:#00ff00; text-align:center; font-size:1.2em; margin-bottom:20px;">ENTER YOUR INITIALS</p>
-<div class="initials-input">
-<input type="text" maxlength="1" id="initial1" />
-<input type="text" maxlength="1" id="initial2" />
-<input type="text" maxlength="1" id="initial3" />
-</div>
-<div style="text-align:center; margin-top:20px;"><button class="arcade-button" onclick="saveHighScore()">SAVE</button></div>
-</div>
-
-<div id="leaderboard" class="leaderboard" style="display:none;">
-<div class="leaderboard-scores-wrap">
-<div class="leaderboard-subtitle"></div>
-<div id="leaderboardList"></div>
-</div>
-</div>
+  <div id="leaderboard" class="leaderboard" style="display:none;">
+    <div class="leaderboard-scores-wrap">
+      <div class="leaderboard-subtitle"></div>
+      <div id="leaderboardList"></div>
+      <p style="color:#000; font-style:italic; font-size:0.78em; text-align:center; margin-top:16px; margin-bottom:0; letter-spacing:0.5px;">🎯 Lifeline available — click any cell to find it.</p>
+    </div>
+  </div>
 </div>
 
 <script>
+const DAILY_LIMIT = 2;
 const QUIZ_NUM = 17;
 window.QUIZ_NUM = QUIZ_NUM;
+const QUIZ_KEY = 'quiz17Score';
 const PLAYS_KEY = '80sGridPlaysQuiz17';
 const SESSION_KEY = 'hasPlayedQuiz17';
-const QUIZ_KEY = 'quiz17Score';
-const DAILY_LIMIT = 2;
-const FAKE_SCORES = [
-    { initials: 'ACE', pct: 100, quizzes: 17, date: '2/1/26' },
-    { initials: 'MAX', pct: 96,  quizzes: 17, date: '2/3/26' },
-    { initials: 'ROX', pct: 93,  quizzes: 17, date: '2/5/26' },
-    { initials: 'JAX', pct: 89,  quizzes: 17, date: '2/8/26' },
-    { initials: 'ZEN', pct: 89,  quizzes: 5, date: '2/10/26' },
-    { initials: 'VIX', pct: 85,  quizzes: 17, date: '2/12/26' },
-    { initials: 'RAD', pct: 85,  quizzes: 4, date: '2/14/26' },
-    { initials: 'SKY', pct: 82,  quizzes: 17, date: '2/15/26' },
-    { initials: 'NEO', pct: 81,  quizzes: 5, date: '2/16/26' },
-    { initials: 'LUX', pct: 80,  quizzes: 17, date: '2/16/26' }
-  ];
-const SHARE_TEXT = "🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/";
-
-const PLAYS_START = 100;
 let currentCell = null;
 
-function getTodayKey() { return 'quizzesPlayed_' + new Date().toISOString().slice(0,10); }
-function getQuizzesPlayedToday() { return parseInt(localStorage.getItem(getTodayKey()) || '0'); }
-function incrementQuizzesPlayedToday() { const k=getTodayKey(); const n=getQuizzesPlayedToday()+1; localStorage.setItem(k,n); return n; }
+// ─── ANSWERS ─────────────────────────────────────────────────────────────────
+const answers = {
+  '0-0': ['hold me'],
+  '1-0': ['stevie'],
+  '2-0': ['yes'],
+  '0-1': ['burning down the house'],
+  '1-1': ['david'],
+  '2-1': ['yes'],
+  '0-2': ['drive'],
+  '1-2': ['ric'],
+  '2-2': ['no']
+};
 
-function loadStats() {
-  const today=getQuizzesPlayedToday();
-  const total=parseInt(localStorage.getItem('totalQuizzesPlayed')||'0');
-  let cum=0; for(let i=1;i<=17;i++) cum+=parseInt(localStorage.getItem('quiz'+i+'Score')||0);
-  const best=parseInt(localStorage.getItem('bestQuizScore')||'0');
-  const streak=parseInt(localStorage.getItem('playStreak')||'0');
-  document.getElementById('statToday').textContent=today+' / '+DAILY_LIMIT;
-  document.getElementById('statTotal').textContent=total;
-  document.getElementById('statCumulative').textContent=cum+'/153';
-  document.getElementById('statBest').textContent=best+'/9';
-  document.getElementById('statStreak').textContent=streak+' days';
+// ─── MULTIPLE CHOICE OPTIONS ──────────────────────────────────────────────────
+
+const mcOptions = {
+  '0-0': ["Hold Me", "Little Lies", "Everywhere"],
+  '1-0': ["Stevie", "Lindsey", "Christine"],
+  '2-0': ["Yes", "No", "Not Sure"],
+  '0-1': ["Burning Down the House", "Psycho Killer", "Once in a Lifetime"],
+  '1-1': ["David", "Jerry", "Tina"],
+  '2-1': ["Yes", "No", "Not Sure"],
+  '0-2': ["Drive", "Shake It Up", "Just What I Needed"],
+  '1-2': ["Ric", "Elliot", "Benjamin"],
+  '2-2': ["No", "Yes", "Not Sure"]
+};
+
+const colHeaders = ['Bon Jovi', 'Guns N' Roses', 'Twisted Sister'];
+const rowHeaders = ['Guest Starred on Popular 80s TV Show', 'Song with \"Everything\" In Title', 'In a Band Prior to Solo Career (Yes or No)'];
+
+// ─── MODAL ────────────────────────────────────────────────────────────────────
+function initializeCells() {
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', () => openModal(cell));
+  });
 }
-function toggleStats() { loadStats(); document.getElementById('statsModal').classList.toggle('show'); }
-function updateStreak() {
-  const today=new Date().toISOString().slice(0,10);
-  const lastPlayed=localStorage.getItem('lastPlayedDate');
-  let streak=parseInt(localStorage.getItem('playStreak')||'0');
-  if(lastPlayed===today) return;
-  const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
-  streak=(lastPlayed===yesterday)?streak+1:1;
-  localStorage.setItem('playStreak',streak); localStorage.setItem('lastPlayedDate',today);
-}
-function initializeCells() { document.querySelectorAll('.cell').forEach(cell=>{ cell.addEventListener('click',()=>openModal(cell)); }); }
+
 function openModal(cell) {
-  currentCell=cell;
-  const colHeaders=['Peter Gabriel', 'Cher', 'Lita Ford'];
-  const rowHeaders=['Hit Song with "Kiss" in Title', 'Prior Group / Band', 'Famous Duet With'];
-  document.getElementById('modalTitle').textContent=colHeaders[parseInt(cell.dataset.col)]+' — '+rowHeaders[parseInt(cell.dataset.row)];
-  document.getElementById('modalInput').value=cell.querySelector('input').value;
+  currentCell = cell;
+  const row = cell.dataset.row;
+  const col = cell.dataset.col;
+  document.getElementById('modalTitle').textContent = colHeaders[parseInt(col)] + ' — ' + rowHeaders[parseInt(row)];
+  document.getElementById('modalInput').value = cell.querySelector('input').value;
+  // Always open in text mode
   showTextEntry();
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  setTimeout(() => document.getElementById('modalInput').focus(), 100);
 }
-function closeModal() { document.getElementById('inputModal').classList.remove('active'); document.getElementById('inputOverlay').classList.remove('active'); currentCell=null; }
+
+function closeModal() {
+  document.getElementById('inputModal').classList.remove('active');
+  document.getElementById('inputOverlay').classList.remove('active');
+  currentCell = null;
+}
+
 function saveModalAnswer() {
 if (currentCell) {
 const modalValue = document.getElementById('modalInput').value;
@@ -466,85 +567,97 @@ input.value = modalValue;
 closeModal();
 }
 }
-function openHTP() { document.getElementById('htpModal').classList.add('show'); }
-function closeHTP() { document.getElementById('htpModal').classList.remove('show'); }
-document.addEventListener('keypress',(e)=>{ if(e.key==='Enter'&&document.getElementById('inputModal').classList.contains('active')) saveModalAnswer(); });
-document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
-const answers = {
-'0-0': ['kiss of life', 'kiss that frog'],
-'1-0': ['genesis'],
-'2-0': ['kate bush'],
-'0-1': ['the shoop shoop song', 'shoop shoop song', 'its in his kiss', 'it\'s in his kiss'],
-'1-1': ['sonny and cher', 'sonny & cher', 'sonny cher'],
-'2-1': ['peter cetera'],
-'0-2': ['kiss me deadly'],
-'1-2': ['the runaways', 'runaways'],
-'2-2': ['ozzy osbourne', 'ozzy']
-};
-
-const mcOptions = {
-  '0-0': ['Kiss of Life', 'In Your Eyes', 'Sledgehammer'],
-  '0-1': ['The Shoop Shoop Song', 'If I Could Turn Back Time', 'I Found Someone'],
-  '0-2': ['Kiss Me Deadly', 'Close My Eyes Forever', 'Back to the Cave'],
-  '1-0': ['Genesis', 'Yes', 'Pink Floyd'],
-  '1-1': ['Sonny & Cher', 'The Wrecking Crew', 'The Ronettes'],
-  '1-2': ['The Runaways', 'Girlschool', 'Vixen'],
-  '2-0': ['Kate Bush', 'Paula Cole', 'Sinead O\'Connor'],
-  '2-1': ['Peter Cetera', 'Meat Loaf', 'Phil Collins'],
-  '2-2': ['Ozzy Osbourne', 'Nikki Sixx', 'Jon Bon Jovi']
-};
-
+// ─── LIFELINE SYSTEM ──────────────────────────────────────────────────────────
 let lifelinesRemaining = 3;
 let radBonusUsed = false;
+
 function updateLifelineUI() {
-  document.getElementById('mcRemaining').textContent = lifelinesRemaining;
-  document.getElementById('lifelineCount').textContent = lifelinesRemaining > 0 ? lifelinesRemaining + ' remaining' : 'None left!';
-  document.getElementById('lifelineCount').classList.toggle('empty', lifelinesRemaining === 0);
+  // Update pips
   for (let i = 1; i <= 3; i++) {
-    document.getElementById('pip' + i).classList.toggle('used', i > lifelinesRemaining);
+    const pip = document.getElementById('pip' + i);
+    if (i <= lifelinesRemaining) {
+      pip.classList.remove('used');
+      pip.textContent = '🎯';
+    } else {
+      pip.classList.add('used');
+      pip.textContent = '';
+    }
   }
-  document.getElementById('mcToggleBtn').disabled = lifelinesRemaining === 0;
+  // Update count text
+  const countEl = document.getElementById('lifelineCount');
+  const btnEl = document.getElementById('mcToggleBtn');
+  const remainEl = document.getElementById('mcRemaining');
+  if (remainEl) remainEl.textContent = lifelinesRemaining;
+
+  if (lifelinesRemaining === 0) {
+    countEl.textContent = 'None left!';
+    countEl.classList.add('empty');
+      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block';
+    if (btnEl) {
+      btnEl.disabled = true;
+      btnEl.style.opacity = '0.4';
+      btnEl.style.cursor = 'not-allowed';
+      btnEl.title = 'No lifelines remaining';
+    }
+  } else {
+    countEl.textContent = lifelinesRemaining + ' remaining';
+    countEl.classList.remove('empty');
+      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none';
+  }
 }
-function isYesNoQuestion(row) {
-  const rowHeaders = ['Hit Song with "Kiss" in Title', 'Prior Group / Band', 'Famous Duet With'];
-  const q = rowHeaders[row].toLowerCase();
-  return q.includes('(yes or no)') || q.includes('(y/n)') || q.includes('grammy?') || q.includes('emmy?') || q.includes('tour?');
-}
+
+// ─── MULTIPLE CHOICE ──────────────────────────────────────────────────────────
 function showMultipleChoice() {
   if (lifelinesRemaining <= 0) return;
-  const row = parseInt(currentCell.dataset.row);
-  const col = parseInt(currentCell.dataset.col);
-  const key = row + '-' + col;
-  if (isYesNoQuestion(row)) {
-    const toast = document.getElementById('ynToast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2200);
-    return;
+
+  const row = currentCell.dataset.row;
+  const col = currentCell.dataset.col;
+  const key = `${row}-${col}`;
+  const opts = [...mcOptions[key]];
+
+  // Shuffle
+  for (let i = opts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [opts[i], opts[j]] = [opts[j], opts[i]];
   }
-  const opts = mcOptions[key];
-  if (!opts) {
-    alert('No multiple choice available for this cell!');
-    return;
-  }
+
   const container = document.getElementById('mcOptions');
-  container.innerHTML = opts.map(o => `<button class="mc-option" onclick="selectMCOption('${o}')">${o}</button>`).join('');
+  container.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'mc-option';
+    btn.textContent = opt;
+    btn.onclick = () => selectMCOption(opt);
+    container.appendChild(btn);
+  });
+
   document.getElementById('textSection').classList.add('hidden');
   document.getElementById('mcSection').classList.add('visible');
 }
+
 function showTextEntry() {
   document.getElementById('textSection').classList.remove('hidden');
   document.getElementById('mcSection').classList.remove('visible');
   setTimeout(() => document.getElementById('modalInput').focus(), 60);
 }
+
 function selectMCOption(value) {
   if (currentCell) {
     currentCell.querySelector('input').value = value;
+    // Deduct lifeline
     lifelinesRemaining = Math.max(0, lifelinesRemaining - 1);
-    updateLifelineUI(); closeModal();
+    updateLifelineUI();
+    closeModal();
   }
 }
 
+document.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && document.getElementById('inputModal').classList.contains('active')) saveModalAnswer();
+});
+document.getElementById('inputOverlay').addEventListener('click', closeModal);
+
+// ─── GAME LOGIC ───────────────────────────────────────────────────────────────
 function promptSecretCode() {
   var code = prompt("Enter secret code for a bonus lifeline:");
   if (code && code.toUpperCase() === "RAD") {
@@ -623,74 +736,155 @@ function promptSecretCode() {
 }
 /* === END UNLOCK SYSTEM === */
 
-function normalizeString(str) { return str.toLowerCase().replace(/[\u2018\u2019']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
+function normalizeString(str) {
+  return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+}
+
+function getTodayKey() { return 'quizzesPlayed_' + new Date().toISOString().slice(0,10); }
+function getQuizzesPlayedToday() { return parseInt(localStorage.getItem(getTodayKey()) || '0'); }
+function incrementQuizzesPlayedToday() { const k=getTodayKey(); const n=getQuizzesPlayedToday()+1; localStorage.setItem(k,n); return n; }
+
 function checkAnswers() {
-  if(getQuizzesPlayedToday()>=DAILY_LIMIT){ document.getElementById('limitModal').classList.add('show'); return; }
-  const cells=document.querySelectorAll('.cell'); let correct=0,total=0;
-  cells.forEach(cell=>{
-    const input=cell.querySelector('input'); const userAnswer=normalizeString(input.value);
-    const key=`${cell.dataset.row}-${cell.dataset.col}`;
-    if(userAnswer){ total++;
-      const valid=answers[key].map(a=>normalizeString(a));
-      if(valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer))){ cell.classList.add('correct'); cell.classList.remove('incorrect'); correct++; }
-      else{ cell.classList.add('incorrect'); cell.classList.remove('correct'); }
+  if (getQuizzesPlayedToday() >= DAILY_LIMIT) { document.getElementById('limitModal').classList.add('show'); return; }
+  const cells = document.querySelectorAll('.cell');
+  let correct = 0, total = 0;
+  cells.forEach(cell => {
+    const input = cell.querySelector('input');
+    const userAnswer = normalizeString(input.value);
+    const key = `${cell.dataset.row}-${cell.dataset.col}`;
+    if (userAnswer) {
+      total++;
+      const valid = answers[key].map(a => normalizeString(a));
+      if (valid.some(a => userAnswer === a || userAnswer.includes(a) || a.includes(userAnswer))) {
+        cell.classList.add('correct'); cell.classList.remove('incorrect'); correct++;
+      } else {
+        cell.classList.add('incorrect'); cell.classList.remove('correct');
+      }
     }
   });
-  if(total===0){ alert('Fill in some answers first!'); return; }
-  if(!sessionStorage.getItem(SESSION_KEY)){
-    let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); plays++;
-    localStorage.setItem(PLAYS_KEY,plays); updatePlaysCounter(); sessionStorage.setItem(SESSION_KEY,'true');
+  if (total === 0) { alert('Fill in some answers first!'); return; }
+  if (!sessionStorage.getItem(SESSION_KEY)) {
+    let plays = parseInt(localStorage.getItem(PLAYS_KEY) || '100'); plays++;
+    localStorage.setItem(PLAYS_KEY, plays); updatePlaysCounter();
+    sessionStorage.setItem(SESSION_KEY, 'true');
     incrementQuizzesPlayedToday();
-    const tot=parseInt(localStorage.getItem('totalQuizzesPlayed')||'0')+1; localStorage.setItem('totalQuizzesPlayed',tot);
+    const tot = parseInt(localStorage.getItem('totalQuizzesPlayed') || '0') + 1;
+    localStorage.setItem('totalQuizzesPlayed', tot);
     updateStreak();
-    const best=parseInt(localStorage.getItem('bestQuizScore')||'0'); if(correct>best) localStorage.setItem('bestQuizScore',correct);
+    const best = parseInt(localStorage.getItem('bestQuizScore') || '0');
+    if (correct > best) localStorage.setItem('bestQuizScore', correct);
   }
-  localStorage.setItem(QUIZ_KEY,correct);
-  document.getElementById('score').textContent=`You got ${correct} out of ${total} correct!`;
-  document.getElementById('results').style.display='block';
+  localStorage.setItem(QUIZ_KEY, correct);
+  document.getElementById('score').textContent = `You got ${correct} out of ${total} correct!`;
+  // Show no-lifeline badge if they never used one
+  if (lifelinesRemaining === 3) {
+    document.getElementById('noLifelineBadge').style.display = 'block';
+  }
+  document.getElementById('results').style.display = 'block';
 showSurveyIfNeeded();
-    if(lifelinesRemaining===3) document.getElementById('noLifelineBadge').style.display='block';
-  if(correct>=8&&total===9) setTimeout(()=>{ document.getElementById('highScoreEntry').style.display='block'; document.getElementById('initial1').focus(); },1000);
+  if (correct >= 8 && total === 9) setTimeout(() => { document.getElementById('highScoreEntry').style.display = 'block'; document.getElementById('initial1').focus(); }, 1000);
   displayLeaderboard();
 }
-function updatePlaysCounter() { let plays=(parseInt(localStorage.getItem(PLAYS_KEY)) || 100); document.getElementById('playsCounter').textContent=`🎮 ${plays.toLocaleString()} plays`; }
-function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'}); }
-function shareScore() { if(navigator.share){ navigator.share({title:"Len's 80sGrid.com",text:SHARE_TEXT}).catch(()=>{}); } else{ navigator.clipboard.writeText(SHARE_TEXT).then(()=>{alert('Link copied!');}).catch(()=>{alert(SHARE_TEXT);}); } }
-function resetGrid() { document.querySelectorAll('.cell input').forEach(i=>{ i.value=''; i.parentElement.classList.remove('correct','incorrect'); }); document.getElementById('results').style.display='none'; document.getElementById('highScoreEntry').style.display='none'; document.getElementById('noLifelineBadge').style.display='none'; lifelinesRemaining=3; updateLifelineUI(); }
+
+function updatePlaysCounter() {
+  let plays = parseInt(localStorage.getItem(PLAYS_KEY) || '100');
+  document.getElementById('playsCounter').textContent = `🎮 ${plays.toLocaleString()} plays`;
+}
+
+function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({ behavior:'smooth' }); }
+
+function shareScore() {
+  const shareText = `🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/`;
+  if (navigator.share) { navigator.share({ title:"Len's 80sGrid.com", text: shareText }).catch(()=>{}); }
+  else { navigator.clipboard.writeText(shareText).then(()=>{ alert('Link copied!'); }).catch(()=>{ alert(shareText); }); }
+}
+
+function resetGrid() {
+  document.querySelectorAll('.cell input').forEach(i => { i.value=''; i.parentElement.classList.remove('correct','incorrect'); });
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('highScoreEntry').style.display = 'none';
+  document.getElementById('noLifelineBadge').style.display = 'none';
+  // Reset lifelines
+  lifelinesRemaining = 3;
+  const btnEl = document.getElementById('mcToggleBtn');
+  if (btnEl) { btnEl.disabled = false; btnEl.style.opacity = '1'; btnEl.style.cursor = 'pointer'; btnEl.title = ''; }
+  updateLifelineUI();
+}
+
+function updateStreak() {
+  const today = new Date().toISOString().slice(0,10);
+  const lastPlayed = localStorage.getItem('lastPlayedDate');
+  let streak = parseInt(localStorage.getItem('playStreak') || '0');
+  if (lastPlayed === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+  streak = (lastPlayed === yesterday) ? streak + 1 : 1;
+  localStorage.setItem('playStreak', streak);
+  localStorage.setItem('lastPlayedDate', today);
+}
+
+function loadStats() {
+  const today = getQuizzesPlayedToday();
+  const total = parseInt(localStorage.getItem('totalQuizzesPlayed') || '0');
+  let cum = 0; for(let i=1;i<=8;i++) cum += parseInt(localStorage.getItem('quiz'+i+'Score')||0);
+  const best = parseInt(localStorage.getItem('bestQuizScore') || '0');
+  const streak = parseInt(localStorage.getItem('playStreak') || '0');
+  document.getElementById('statToday').textContent = today + ' / ' + DAILY_LIMIT;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statCumulative').textContent = cum + '/72';
+  document.getElementById('statBest').textContent = best + '/9';
+  document.getElementById('statStreak').textContent = streak + ' days';
+}
+function toggleStats() { loadStats(); document.getElementById('statsModal').classList.toggle('show'); }
+function toggleHowToPlay() {
+  const box = document.getElementById('howToPlayBox');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
 function saveHighScore() {
-  const i1=document.getElementById('initial1').value.toUpperCase();
-  const i2=document.getElementById('initial2').value.toUpperCase();
-  const i3=document.getElementById('initial3').value.toUpperCase();
-  if(!i1||!i2||!i3){ alert('Please enter all 3 initials!'); return; }
-  let totalCorrect=0; let quizzesPlayed=0;
-  for(let i=1;i<=17;i++){ const s=parseInt(localStorage.getItem('quiz'+i+'Score')||0); totalCorrect+=s; if(s>0) quizzesPlayed++; }
-  const possible=quizzesPlayed*9; const pct=possible>0?Math.round((totalCorrect/possible)*100):0;
-  if(pct>=80){
-    let scores=JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
-    scores.push({initials:i1+i2+i3,pct,quizzes:quizzesPlayed,date:new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'})});
-    scores.sort((a,b)=>b.pct-a.pct); scores=scores.slice(0,10);
-    localStorage.setItem('80sGridScoresCombined',JSON.stringify(scores));
+  const i1 = document.getElementById('initial1').value.toUpperCase();
+  const i2 = document.getElementById('initial2').value.toUpperCase();
+  const i3 = document.getElementById('initial3').value.toUpperCase();
+  if (!i1||!i2||!i3) { alert('Please enter all 3 initials!'); return; }
+  let totalCorrect = 0; let quizzesPlayed = 0;
+  for(let i=1;i<=8;i++) { const s=parseInt(localStorage.getItem('quiz'+i+'Score')||0); totalCorrect+=s; if(s>0) quizzesPlayed++; }
+  const possible = quizzesPlayed * 9;
+  const pct = possible > 0 ? Math.round((totalCorrect / possible) * 100) : 0;
+  if (pct >= 80) {
+    let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
+    scores.push({ initials: i1+i2+i3, pct, quizzes: quizzesPlayed, date: new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'}) });
+    scores.sort((a,b)=>b.pct-a.pct); scores = scores.slice(0,10);
+    localStorage.setItem('80sGridScoresCombined', JSON.stringify(scores));
   }
-  document.getElementById('highScoreEntry').style.display='none'; displayLeaderboard();
+  document.getElementById('highScoreEntry').style.display = 'none';
+  displayLeaderboard();
 }
+
 function displayLeaderboard() {
-  let scores=JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
-  if(scores.length<10) scores=[...scores,...FAKE_SCORES].slice(0,10);
+  let scores = JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
+  const fakeScores = [
+    {initials:'ACE',pct:100,quizzes:8,date:'2/1/26'},{initials:'MAX',pct:96,quizzes:8,date:'2/3/26'},
+    {initials:'ROX',pct:93,quizzes:8,date:'2/5/26'},{initials:'JAX',pct:89,quizzes:8,date:'2/8/26'},
+    {initials:'ZEN',pct:89,quizzes:6,date:'2/10/26'},{initials:'VIX',pct:85,quizzes:8,date:'2/12/26'},
+    {initials:'RAD',pct:85,quizzes:5,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:8,date:'2/15/26'},
+    {initials:'NEO',pct:81,quizzes:6,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:8,date:'2/16/26'}
+  ];
+  if (scores.length < 10) scores = [...scores,...fakeScores].slice(0,10);
   scores.sort((a,b)=>b.pct-a.pct);
-  document.getElementById('leaderboardList').innerHTML=scores.map((s,i)=>`
+  document.getElementById('leaderboardList').innerHTML = scores.map((s,i)=>`
     <div class="leaderboard-item">
-    <span class="leaderboard-rank">${String(i+1).padStart(2,'0')}.</span>
-    <span class="leaderboard-initials">${s.initials}</span>
-    <span class="leaderboard-score">${s.pct}%</span>
-    <span class="leaderboard-date">${s.date}</span>
+      <span class="leaderboard-rank">${String(i+1).padStart(2,'0')}.</span>
+      <span class="leaderboard-initials">${s.initials}</span>
+      <span class="leaderboard-score">${s.pct}%</span>
+      <span class="leaderboard-date">${s.date}</span>
     </div>`).join('');
-  document.getElementById('leaderboard').style.display='block';
+  document.getElementById('leaderboard').style.display = 'block';
 }
-document.getElementById('initial1').addEventListener('input',function(){ if(this.value) document.getElementById('initial2').focus(); });
-document.getElementById('initial2').addEventListener('input',function(){ if(this.value) document.getElementById('initial3').focus(); });
-document.getElementById('initial3').addEventListener('keypress',function(e){ if(e.key==='Enter') saveHighScore(); });
+
+document.getElementById('initial1').addEventListener('input', function(){ if(this.value) document.getElementById('initial2').focus(); });
+document.getElementById('initial2').addEventListener('input', function(){ if(this.value) document.getElementById('initial3').focus(); });
+document.getElementById('initial3').addEventListener('keypress', function(e){ if(e.key==='Enter') saveHighScore(); });
 /* ===== GROUP TAB NAV ===== */
-const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'},{n:32,f:'quiz32.html',c:'hard'},{n:33,f:'quiz33.html',c:'medium'},{n:34,f:'quiz34.html',c:'hard'},{n:35,f:'quiz35.html',c:'hard'},{n:36,f:'quiz36.html',c:'medium'}];
+const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'easy'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'medium'},{n:14,f:'quiz14.html',c:'medium'},{n:15,f:'quiz15.html',c:'hard'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'medium'},{n:18,f:'quiz18.html',c:'hard'},{n:19,f:'quiz19.html',c:'easy'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'easy'},{n:23,f:'quiz23.html',c:'hard'},{n:24,f:'quiz24.html',c:'easy'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'medium'},{n:29,f:'quiz29.html',c:'medium'},{n:30,f:'quiz30.html',c:'hard'},{n:31,f:'quiz31.html',c:'hard'},{n:32,f:'quiz32.html',c:'hard'},{n:33,f:'quiz33.html',c:'medium'},{n:34,f:'quiz34.html',c:'hard'},{n:35,f:'quiz35.html',c:'hard'},{n:36,f:'quiz36.html',c:'medium'},{n:37,f:'quiz37.html',c:'hard'},{n:38,f:'quiz38.html',c:'hard'},{n:39,f:'quiz39.html',c:'medium'},{n:40,f:'quiz40.html',c:'medium'}];
 const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30)];
 const GROUP_LABELS=['1 \u2013 10','11 \u2013 20','21 \u2013 30','31 \u2013 40'];
 var navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:3;
@@ -739,10 +933,8 @@ function updateNavStatus(){
 function initNav(){renderNavGrid();}
 /* ===== END NAV ===== */
 
-document.addEventListener('DOMContentLoaded',()=>{
-    initNav();
-  initializeCells(); updatePlaysCounter(); displayLeaderboard(); updateLifelineUI();
-});
+document.addEventListener('DOMContentLoaded', () => {
+    initNav(); initializeCells(); updatePlaysCounter(); displayLeaderboard(); updateLifelineUI(); });
 </script>
 </body>
 </html>
