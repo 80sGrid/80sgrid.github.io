@@ -618,7 +618,7 @@ function showBonusSuccess(type) {
 }
 function initializeCells() {
   const colH = ["Boy George", "Phil Collins", "Andy Gibb"];
-  const rowH = ["Guest Starred on Popular 80s TV Show", "Song with "Everything" In Title", "In a Band Prior to Solo Career (Yes or No)"];
+  const rowH = ["Guest Starred on Popular 80s TV Show", "Song with 'Everything' In Title", "In a Band Prior to Solo Career (Yes or No)"];
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
     const isYN=yesNoKeys.includes(key);
@@ -629,7 +629,7 @@ function initializeCells() {
 function openModal(cell) {
   currentCell=cell;
   const colH=["Boy George", "Phil Collins", "Andy Gibb"];
-  const rowH=["Guest Starred on Popular 80s TV Show", "Song with "Everything" In Title", "In a Band Prior to Solo Career (Yes or No)"];
+  const rowH=["Guest Starred on Popular 80s TV Show", "Song with 'Everything' In Title", "In a Band Prior to Solo Career (Yes or No)"];
   const key=cell.dataset.row+'-'+cell.dataset.col;
   const isYN=yesNoKeys.includes(key);
   document.getElementById('modalTitle').textContent=colH[parseInt(cell.dataset.col)]+' — '+rowH[parseInt(cell.dataset.row)]+(isYN?' (Yes or No)':'');
