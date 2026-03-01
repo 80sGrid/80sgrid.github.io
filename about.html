@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About 80sGrid | 80s Music Trivia</title>
+  <meta name="description" content="The story behind 80sGrid — a love letter to 80s music.">
+  
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:Arial,sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh;
+      padding:20px;
+    }
+    .container {
+      background:white;
+      padding:30px;
+      border-radius:15px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+      max-width:700px;
+      width:100%;
+      margin:0 auto;
+    }
+    .logo-img { display:block; margin:0 auto 20px; max-width:100%; height:auto; border-radius:10px; }
+    h1 {
+      text-align:center; font-size:2.2em; font-weight:bold; color:#ff006e;
+      text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec;
+      font-family:"Arial Black",sans-serif; letter-spacing:3px; margin-bottom:6px; line-height:1.2;
+    }
+    .tagline { text-align:center; font-family:Georgia,serif; font-size:1.1em; font-style:italic; color:#6a0dad; margin-bottom:28px; }
+    .card {
+      background:linear-gradient(135deg,#FF1493 0%,#8B00FF 50%,#00CED1 100%);
+      padding:22px; border-radius:12px; margin-bottom:18px; color:white;
+      box-shadow:0 0 20px rgba(255,20,147,.4); border:3px solid rgba(255,255,255,.3);
+    }
+    .card h2 {
+      font-family:"Arial Black",sans-serif; font-size:1.2em; letter-spacing:1px;
+      margin-bottom:12px; text-shadow:2px 2px 4px rgba(0,0,0,.5);
+    }
+    .card p { font-size:1em; line-height:1.75; margin-bottom:10px; text-shadow:1px 1px 2px rgba(0,0,0,.3); }
+    .card p:last-child { margin-bottom:0; }
+    .card-white {
+      background:white; border:2px solid #8338ec; border-radius:12px;
+      padding:22px; margin-bottom:18px; box-shadow:0 0 15px rgba(131,56,236,0.2);
+    }
+    .card-white h2 {
+      font-family:"Arial Black",sans-serif; font-size:1.2em; letter-spacing:1px;
+      color:#8B00FF; margin-bottom:12px;
+    }
+    .card-white p { font-size:1em; line-height:1.75; color:#333; margin-bottom:10px; }
+    .card-white p:last-child { margin-bottom:0; }
+    .quote-block {
+      background:linear-gradient(135deg,#667eea,#764ba2);
+      border-radius:10px; padding:16px 20px; margin-top:14px;
+      font-size:1.05em; font-style:italic; color:#fff; line-height:1.6;
+    }
+    .quote-block cite { display:block; margin-top:6px; font-size:0.85em; color:#ffbe0b; font-style:normal; }
+    .founder-wrap { display:flex; gap:20px; align-items:flex-start; }
+    .founder-photo {
+      width:120px; min-width:120px; border-radius:10px;
+      border:3px solid #FF1493; box-shadow:0 0 15px rgba(255,20,147,0.5);
+    }
+    @media(max-width:480px) {
+      .founder-wrap { flex-direction:column; align-items:center; }
+      .founder-photo { width:160px; min-width:160px; }
+    }
+    .tag-wrap { display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+    .tag {
+      background:linear-gradient(135deg,#8338ec,#3a86ff);
+      color:#fff; padding:4px 12px; border-radius:20px; font-size:0.82em; font-weight:bold;
+    }
+    .perks { list-style:none; margin:10px 0 0; padding:0; }
+    .perks li { padding:5px 0; color:#333; font-size:0.98em; line-height:1.6; }
+    .perks li::before { content:"🎸 "; }
+    .thanks-item { display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; }
+    .thanks-icon { font-size:1.5em; line-height:1; margin-top:2px; }
+    .sponsor-cta {
+      background:linear-gradient(135deg,#ffbe0b,#fb5607);
+      padding:20px; border-radius:12px; margin-bottom:18px;
+      text-align:center; box-shadow:0 0 20px rgba(255,190,11,0.4);
+      border:3px solid rgba(255,255,255,.3);
+    }
+    .sponsor-cta p { color:#fff; font-size:1.05em; font-weight:bold; line-height:1.6; text-shadow:1px 1px 2px rgba(0,0,0,.4); margin-bottom:12px; }
+    .sponsor-btn {
+      display:inline-block; background:white; color:#fb5607;
+      padding:10px 24px; border-radius:30px; font-weight:bold;
+      font-family:"Arial Black",sans-serif; font-size:0.95em;
+      text-decoration:none; letter-spacing:1px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.2);
+    }
+    .sponsor-btn:hover { opacity:0.9; }
+    .play-btn {
+      display:block; max-width:260px; margin:24px auto 0;
+      padding:14px 24px; background:linear-gradient(135deg,#ff006e,#fb5607);
+      color:#fff; text-decoration:none; border-radius:50px;
+      font-size:1em; font-weight:bold; text-align:center;
+      font-family:"Arial Black",sans-serif; letter-spacing:2px;
+      box-shadow:0 0 20px rgba(255,0,110,0.5);
+    }
+    .play-btn:hover { opacity:0.9; }
+    .email-btn {
+      display:inline-block; margin-top:12px;
+      background:linear-gradient(135deg,#ff006e,#8B00FF);
+      color:#fff; padding:10px 22px; border-radius:30px;
+      font-weight:bold; font-size:0.95em; cursor:pointer;
+      border:none; font-family:Arial,sans-serif;
+      box-shadow:0 0 15px rgba(255,0,110,0.4);
+    }
+    #email-display, #email-display2 { display:none; margin-top:10px; font-size:1.05em; }
+    .footer {
+      text-align:center; padding:16px; color:rgba(255,255,255,0.6);
+      font-size:0.85em; margin-top:10px;
+    }
+    .footer a { color:white; text-decoration:none; margin:0 8px; }
+    .footer a:hover { color:#ffbe0b; }
+    ul.privacy-list { padding-left:20px; margin:10px 0; }
+    ul.privacy-list li { padding:4px 0; color:#333; line-height:1.6; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html"><img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80sGrid" class="logo-img"></a>
+
+
+  <h1>ABOUT 80sGRID</h1>
+  <p class="tagline">A love letter to the music that defined a generation</p>
+
+  <div class="card-white">
+    <h2>MY LOVE LETTER TO 80s MUSIC</h2>
+    <div class="founder-wrap">
+      <div style="text-align:left;">
+        <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/c59955f577ec968b562a67a018aa9f8f74503f70/images/aboutus.jpg" alt="Len, Founder of 80sGrid" class="founder-photo">
+        <p style="margin-top:6px;color:#333;font-weight:bold;font-size:0.75em;text-align:left;">Len B / C8O<br><em>Chief 80s Officer</em></p>
+      </div>
+      <div>
+        <p>I built 80sGrid because the music of the 80s never left me — and I had a feeling it never left millions of others either.</p>
+        <p>This started as a personal obsession and grew into something I never expected: a game that people genuinely don't want to stop playing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-white">
+    <p>80sGrid is my love letter to 80s music. That love letter takes the form of a music trivia grid game designed to connect and reconnect people with the songs and artists that defined a generation.</p>
+    <p>From Depeche Mode and Pat Benatar to Prince, Sade, Madonna, The Cure, Michael Jackson, and Elvis Costello, 80s music told the story of my life. It still does. And now a whole new generation is discovering it for the first time.</p>
+    <p>80sGrid is free, shareable, and built for Gen X, elder Millennials, and younger Boomers who know their 80s. Every day brings a new challenge. Every score gets shared.</p>
+    <div class="quote-block">
+      "Every day, I write the book."
+      <cite>Elvis Costello</cite>
+    </div>
+  </div>
+
+  <div class="card-white">
+    <h2>SPECIAL THANKS</h2>
+    <p>This started with a group of friends from high school whose shared love of 80s music was the original catalyst for everything you see here. You know who you are.</p>
+    <div class="thanks-item">
+      <span class="thanks-icon">🏆</span>
+      <p><strong>Joe Cuomo</strong> — for his skillful attention to detail and encyclopedic knowledge of 80s music and culture. The grids are sharper because of him.</p>
+    </div>
+  </div>
+
+  <div class="card-white">
+    <h2>THE ARTISTS</h2>
+    <p>Just some of the legends who have appeared in the grids so far:</p>
+    <div class="tag-wrap">
+      <span class="tag">Depeche Mode</span><span class="tag">Madonna</span><span class="tag">Prince</span>
+      <span class="tag">The Cure</span><span class="tag">Sade</span><span class="tag">Pat Benatar</span>
+      <span class="tag">Michael Jackson</span><span class="tag">Elvis Costello</span><span class="tag">Bon Jovi</span>
+      <span class="tag">Run-DMC</span><span class="tag">Fleetwood Mac</span><span class="tag">Janet Jackson</span>
+      <span class="tag">Queen Latifah</span><span class="tag">Talking Heads</span><span class="tag">The Cars</span>
+      <span class="tag">LL Cool J</span><span class="tag">Guns N Roses</span><span class="tag">Twisted Sister</span>
+      <span class="tag">and many more...</span>
+    </div>
+  </div>
+
+  <div class="card-white">
+    <h2>GET INVOLVED</h2>
+    <p>I'm always looking for people to help out. The pay is absolutely astronomical and equal to zero — but if you want to be part of something real, I'd love to talk.</p>
+    <ul class="perks">
+      <li>Help write and research new quizzes</li>
+      <li>Promote the platform in your community</li>
+      <li>Lend your skills in design, tech, or social media</li>
+      <li>Just love 80s music and want to be involved</li>
+    </ul>
+    <p style="margin-top:12px;color:#333;">Reach out and let's have a conversation:</p>
+    <button class="email-btn" onclick="document.getElementById('email-display').style.display='block';this.style.display='none';">Show Contact Email</button>
+    <div id="email-display"></div>
+    <script>
+      (function(){
+        var u="80sforever",d="80sgrid.com";
+        var el=document.getElementById("email-display");
+        el.innerHTML='<a href="mailto:'+u+'@'+d+'" style="color:#ffbe0b;font-weight:bold;">'+u+'@'+d+'</a>';
+      })();
+    </script>
+  </div>
+
+  <div class="sponsor-cta">
+    <p>Want to connect with a highly engaged audience of 37 to 60 year olds with serious disposable income?</p>
+    <a href="sponsor.html" class="sponsor-btn">🎸 LEARN ABOUT SPONSORSHIP</a>
+  </div>
+
+  <a href="index.html" class="play-btn">🎸 PLAY NOW 🎸</a>
+
+  <div class="footer">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="sponsor.html">Sponsor</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</div>
+</body>
+</html>
