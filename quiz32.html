@@ -406,7 +406,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="quiz-grid-nav" id="quizGridNav"></div>
 <div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
 <div class="nav-status-bar" id="navStatusBar"></div>
-<div class="unlock-panel" id="unlockPanel"><h3>🔓 Want to keep playing?</h3><div class="code-row"><label>Have a secret code?</label><input type="text" class="code-input" id="unlockCodeInput" placeholder="Enter code"><button class="code-submit" onclick="submitUnlockCode()">Submit</button></div><div class="code-hint">Hint: Codes drop on our social media & the Arrive Alive Podcast</div><div class="unlock-divider">OR</div><button class="email-unlock-btn" onclick="toggleUnlockEmail()">📧 Enter your email for a free bonus play!</button><div class="email-expand" id="unlockEmailExpand"><div style="margin-top:8px;"><input type="email" id="unlockEmailInput" placeholder="your@email.com"></div><button class="email-expand-submit" onclick="submitUnlockEmail()">Unlock Bonus Quiz 🎸</button><div class="email-note">We'll send you 80s trivia tips & new quiz alerts. Unsubscribe anytime.</div></div><div class="unlock-success-msg" id="unlockSuccess"><span class="big" id="unlockSuccessEmoji">🎉</span><br><strong id="unlockSuccessText">Bonus quiz unlocked!</strong></div></div>
+<div class="unlock-panel" id="unlockPanel"><h3>🔓 Want to keep playing?</h3><div class="code-row"><label>Have a secret code?</label><input type="text" class="code-input" id="unlockCodeInput" placeholder="Enter code"><button class="code-submit" onclick="submitNavCode()">Submit</button></div><div class="code-hint">Hint: Codes drop on our social media & the Arrive Alive Podcast</div><div class="unlock-divider">OR</div><button class="email-unlock-btn" onclick="toggleUnlockEmail()">📧 Enter your email for a free bonus play!</button><div class="email-expand" id="unlockEmailExpand"><div style="margin-top:8px;"><input type="email" id="unlockEmailInput" placeholder="your@email.com"></div><button class="email-expand-submit" onclick="submitUnlockEmail()">Unlock Bonus Quiz 🎸</button><div class="email-note">We'll send you 80s trivia tips & new quiz alerts. Unsubscribe anytime.</div></div><div class="unlock-success-msg" id="unlockSuccess"><span class="big" id="unlockSuccessEmoji">🎉</span><br><strong id="unlockSuccessText">Bonus quiz unlocked!</strong></div></div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 <div class="difficulty-badge" style="--badge-color:#dc3545; --badge-glow:rgba(220,53,69,0.5);">
 <div class="badge-stars">★★★★★</div>
@@ -616,6 +616,42 @@ function showBonusSuccess(type) {
   el.style.display='block';
   if(type==='unlimited') { el.className='bonus-success unlimited-type'; titleEl.style.color='#FFA500'; titleEl.textContent='UNLIMITED MODE ACTIVATED!'; textEl.textContent='All quizzes unlocked. Play as many as you want!'; }
   else { el.className='bonus-success bonus-type'; titleEl.style.color='#28a745'; titleEl.textContent='BONUS QUIZ UNLOCKED!'; textEl.textContent='You unlocked 1 bonus quiz today!'; }
+}
+
+function submitNavCode() {
+  const input=document.getElementById('unlockCodeInput').value.trim();
+  const upper=input.toUpperCase();
+  if(SECRET_CODES[upper]) {
+    setUnlockType(SECRET_CODES[upper]);
+    document.getElementById('unlockCodeInput').value='';
+    if(SECRET_CODES[upper]==='unlimited') {
+      document.getElementById('unlockSuccess').style.display='block';
+      document.getElementById('unlockSuccessEmoji').textContent='\u267e\ufe0f';
+      document.getElementById('unlockSuccessText').textContent='UNLIMITED MODE — All quizzes unlocked!';
+    } else {
+      document.getElementById('unlockSuccess').style.display='block';
+      document.getElementById('unlockSuccessEmoji').textContent='\ud83c\udf89';
+      document.getElementById('unlockSuccessText').textContent='Bonus quiz unlocked!';
+    }
+    updateNavStatus();
+  } else if(input) {
+    alert('Invalid code. Try again!');
+  }
+}
+function toggleUnlockEmail() {
+  var el=document.getElementById('unlockEmailExpand');
+  el.style.display=el.style.display==='block'?'none':'block';
+}
+function submitUnlockEmail() {
+  var email=document.getElementById('unlockEmailInput').value.trim();
+  if(!isEmail(email)){alert('Please enter a valid email.');return;}
+  submitEmailToFormspree(email);
+  setUnlockType('bonus');
+  document.getElementById('unlockEmailExpand').style.display='none';
+  document.getElementById('unlockSuccess').style.display='block';
+  document.getElementById('unlockSuccessEmoji').textContent='\ud83c\udf89';
+  document.getElementById('unlockSuccessText').textContent='Bonus quiz unlocked!';
+  updateNavStatus();
 }
 function initializeCells() {
   const colH = ["New Order", "The Psychedelic Furs", "Suzanne Vega"];
