@@ -1042,13 +1042,13 @@ function shareLink() {
     ? `🎸 I scored ${score}/9 on Len's 80sGrid Quiz 11 — Blondie, Bryan Adams & Stevie Wonder! Can you beat me?`
     : `🎸 Think you know your 80s music? Try Len's 80sGrid Quiz 11!`;
   const url = 'https://80sgrid.com/quiz11.html';
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  if (navigator.share) {
-    // Mobile: triggers native iOS/Android share sheet → iMessage, WhatsApp, Facebook etc.
-    navigator.share({ title: "Len's 80sGrid", text: text, url: url })
-      .catch(() => {});
+  if (isMobile && navigator.share) {
+    // Mobile only: triggers native iOS/Android share sheet
+    navigator.share({ title: "Len's 80sGrid", text: text, url: url }).catch(() => {});
   } else {
-    // Desktop: copy link to clipboard
+    // Desktop: copy to clipboard with toast
     navigator.clipboard.writeText(text + ' ' + url).then(() => {
       const toast = document.createElement('div');
       toast.textContent = '✅ Link copied! Paste it anywhere.';
