@@ -258,6 +258,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .footnote-box li { margin-left:16px; margin-bottom:4px; }
 .yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
 .yn-toast.show { opacity:1; }
+@keyframes bonusPulse { 0%,100%{box-shadow:0 3px 14px rgba(139,0,255,0.35);transform:scale(1);} 50%{box-shadow:0 5px 22px rgba(255,20,147,0.55);transform:scale(1.04);} }
 .post-quiz-progress { background:linear-gradient(135deg,#f0f0ff,#fff0f8); border:2px solid rgba(102,126,234,0.3); border-radius:12px; padding:16px 20px; margin:20px 0; text-align:center; }
 .progress-pips { display:flex; justify-content:center; gap:8px; margin-bottom:10px; }
 .progress-pip { width:40px; height:8px; border-radius:4px; transition:all 0.3s ease; }
@@ -349,6 +350,38 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .mini-nav a { color:#8B00FF; font-weight:bold; text-decoration:none; margin:0 12px; }
 .mini-nav a:hover { color:#FF1493; }
 .mini-nav span { color:#ccc; }
+
+/* ===== SPONSOR BOX ===== */
+.sponsor-box { background:#fff; border:2px solid #e0d0f0; border-left:5px solid #8B00FF; border-radius:10px; padding:14px 16px; margin-bottom:16px; display:flex; align-items:center; gap:14px; box-shadow:0 2px 10px rgba(139,0,255,0.08); }
+.sponsor-logo-slot { flex-shrink:0; width:58px; height:58px; border-radius:8px; border:2px solid #e0d0f0; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#f8f3ff; cursor:pointer; transition:transform 0.2s,box-shadow 0.2s; text-decoration:none; }
+.sponsor-logo-slot:hover { transform:scale(1.07); box-shadow:0 0 12px rgba(139,0,255,0.3); border-color:#8B00FF; }
+.sponsor-logo-placeholder { font-size:1.8em; line-height:1; }
+.sponsor-body { flex:1; }
+.sponsor-label { font-size:0.68em; font-weight:900; letter-spacing:2px; color:#8B00FF; text-transform:uppercase; margin-bottom:4px; }
+.sponsor-text { font-size:0.88em; color:#111; line-height:1.5; margin-bottom:4px; }
+.sponsor-sub { font-size:0.78em; color:#555; letter-spacing:0.5px; }
+/* ===== FEEDBACK MODAL ===== */
+.feedback-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:4000; display:none; align-items:center; justify-content:center; }
+.feedback-modal-overlay.active { display:flex; }
+.feedback-modal { background:#000; border:3px solid #FF1493; border-radius:15px; padding:35px 30px; width:90%; max-width:400px; box-shadow:0 0 40px rgba(255,20,147,0.6); font-family:'Courier New',monospace; position:relative; box-sizing:border-box; }
+.feedback-modal h2 { color:#FF1493; text-shadow:0 0 10px #FF1493; font-size:1.2em; letter-spacing:3px; margin:0 0 6px; text-align:center; }
+.feedback-modal-sub { color:#00ffff; text-align:center; font-size:0.72em; letter-spacing:2px; margin-bottom:20px; }
+.feedback-stars { display:flex; justify-content:center; gap:10px; margin-bottom:18px; }
+.feedback-star { font-size:2em; cursor:pointer; color:#333; transition:color 0.15s,transform 0.15s; user-select:none; }
+.feedback-star.lit { color:#FFD700; text-shadow:0 0 10px rgba(255,215,0,0.7); }
+.feedback-star:hover { transform:scale(1.2); }
+.feedback-label { color:#aaa; font-size:0.72em; letter-spacing:1px; margin-bottom:6px; display:block; }
+.feedback-textarea { width:100%; background:rgba(255,255,255,0.05); border:2px solid rgba(255,20,147,0.4); border-radius:8px; padding:12px; color:#00ff88; font-family:'Courier New',monospace; font-size:0.9em; resize:vertical; min-height:80px; box-sizing:border-box; outline:none; margin-bottom:14px; }
+.feedback-textarea::placeholder { color:rgba(0,255,136,0.3); }
+.feedback-textarea:focus { border-color:#FF1493; }
+.feedback-quiz-tag { background:rgba(102,126,234,0.15); border:1px solid rgba(102,126,234,0.4); border-radius:6px; padding:6px 12px; color:#667eea; font-size:0.72em; letter-spacing:1px; margin-bottom:16px; text-align:center; display:block; }
+.feedback-submit { width:100%; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; padding:13px; border-radius:8px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; box-shadow:0 0 15px rgba(255,20,147,0.4); transition:opacity 0.2s; }
+.feedback-submit:hover { opacity:0.88; }
+.feedback-close { position:absolute; top:14px; right:18px; background:none; border:none; color:#555; font-size:1.4em; cursor:pointer; line-height:1; padding:0; transition:color 0.2s; }
+.feedback-close:hover { color:#FF1493; }
+.feedback-success { text-align:center; padding:20px 0; display:none; }
+.feedback-success .big { font-size:2.5em; display:block; margin-bottom:10px; }
+.feedback-success p { color:#00ff88; font-size:0.95em; line-height:1.6; margin:0; }
 </style>
 </head>
 <body>
@@ -363,6 +396,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
 </div>
 <button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Lifeline: Multiple Choice (<span id="mcRemaining">3</span> left)</button>
+<button id="modalBonusBtn" onclick="closeModal(); openBonusSurveyModal();" style="display:none; width:100%; margin-top:10px; padding:11px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:8px; font-size:0.92em; font-weight:900; cursor:pointer; letter-spacing:0.5px; animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
 </div>
 <div class="mc-section" id="mcSection">
 <div id="mcOptions"></div>
@@ -393,9 +427,11 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="mini-nav">
     <a href="about.html">About</a>
     <span>|</span>
-    <a href="sponsor.html">Sponsor</a>
+    <a href="sponsors.html">Our Sponsors</a>
     <span>|</span>
     <a href="collaborate.html">Collaborate</a>
+    <span>|</span>
+    <a href="#" onclick="openFeedback(); return false;">Feedback</a>
   </div>
 <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
 <div class="how-to-play">
@@ -406,7 +442,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="quiz-grid-nav" id="quizGridNav"></div>
 <div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
 <div class="nav-status-bar" id="navStatusBar"></div>
-<div class="unlock-panel" id="unlockPanel"><h3>🔓 Want to keep playing?</h3><div class="code-row"><label>Have a secret code?</label><input type="text" class="code-input" id="unlockCodeInput" placeholder="Enter code"><button class="code-submit" onclick="submitNavCode()">Submit</button></div><div class="code-hint">Hint: Codes drop on our social media & the Arrive Alive Podcast</div><div class="unlock-divider">OR</div><button class="email-unlock-btn" onclick="toggleUnlockEmail()">📧 Enter your email for a free bonus play!</button><div class="email-expand" id="unlockEmailExpand"><div style="margin-top:8px;"><input type="email" id="unlockEmailInput" placeholder="your@email.com"></div><button class="email-expand-submit" onclick="submitUnlockEmail()">Unlock Bonus Quiz 🎸</button><div class="email-note">We'll send you 80s trivia tips & new quiz alerts. Unsubscribe anytime.</div></div><div class="unlock-success-msg" id="unlockSuccess"><span class="big" id="unlockSuccessEmoji">🎉</span><br><strong id="unlockSuccessText">Bonus quiz unlocked!</strong></div></div>
+<div class="unlock-panel" id="unlockPanel"><h3>🔓 Want to keep playing?</h3><div class="code-row"><label>Have a secret code?</label><input type="text" class="code-input" id="unlockCodeInput" placeholder="Enter code"><button class="code-submit" onclick="submitUnlockCode()">Submit</button></div><div class="code-hint">Hint: Codes drop on our social media & the Arrive Alive Podcast</div><div class="unlock-divider">OR</div><button class="email-unlock-btn" onclick="toggleUnlockEmail()">📧 Enter your email for a free bonus play!</button><div class="email-expand" id="unlockEmailExpand"><div style="margin-top:8px;"><input type="email" id="unlockEmailInput" placeholder="your@email.com"></div><button class="email-expand-submit" onclick="submitUnlockEmail()">Unlock Bonus Quiz 🎸</button><div class="email-note">We'll send you 80s trivia tips & new quiz alerts. Unsubscribe anytime.</div></div><div class="unlock-success-msg" id="unlockSuccess"><span class="big" id="unlockSuccessEmoji">🎉</span><br><strong id="unlockSuccessText">Bonus quiz unlocked!</strong></div></div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 <div class="difficulty-badge" style="--badge-color:#dc3545; --badge-glow:rgba(220,53,69,0.5);">
 <div class="badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -437,7 +473,49 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <span class="lifeline-count" id="lifelineCount">3 remaining</span>
 </div>
-<button class="secret-code-btn" id="secretCodeBtn" onclick="promptSecretCode()">🔓 Enter Secret Code for Bonus Lifeline</button>
+<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
+  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);transition:all 0.2s;animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
+</div>
+<button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()" style="display:none;">🔑 Have a Secret Code?</button>
+
+<!-- ===== BONUS LIFELINE MODAL (Survey + Secret Code) ===== -->
+<div id="bonusSurveyOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:7000; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
+  <div style="background:#fff; border-radius:18px; padding:26px 22px 22px; max-width:400px; width:100%; box-shadow:0 0 60px rgba(139,0,255,0.4); border:3px solid #8B00FF; position:relative;">
+    
+    <!-- Tab switcher -->
+    <div style="display:flex; gap:6px; margin-bottom:18px;">
+      <button id="tabSurveyBtn" onclick="switchBonusTab('survey')" style="flex:1; padding:8px 6px; border-radius:8px; border:2px solid #8B00FF; background:#8B00FF; color:white; font-weight:900; font-size:0.78em; cursor:pointer; letter-spacing:0.5px;">🎁 Earn It Free</button>
+      <button id="tabCodeBtn" onclick="switchBonusTab('code')" style="flex:1; padding:8px 6px; border-radius:8px; border:2px solid #ddd; background:#f5f5f5; color:#888; font-weight:900; font-size:0.78em; cursor:pointer; letter-spacing:0.5px;">🔑 Have a Code?</button>
+    </div>
+
+    <!-- SURVEY TAB -->
+    <div id="bonusTabSurvey">
+      <div style="font-family:'Arial Black',sans-serif; font-size:1.05em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; text-align:center;">&#127873; EARN A BONUS LIFELINE</div>
+      <div style="font-size:0.78em; color:#FF1493; font-weight:700; letter-spacing:1px; text-align:center; margin-bottom:16px;">Quick question — answer &amp; play on!</div>
+      <div style="font-size:0.97em; font-weight:800; color:#222; margin-bottom:14px; text-align:center;">&#127930; Which of these do you still own?</div>
+      <div id="bonusSurveyOptions2" style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;"></div>
+      <button id="bonusSurveyBtn2" onclick="claimBonusLifeline()" disabled style="width:100%; padding:13px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:10px; font-size:1em; font-weight:900; cursor:pointer; opacity:0.4; transition:opacity 0.2s; letter-spacing:1px;">&#127919; CLAIM MY LIFELINE</button>
+    </div>
+
+    <!-- CODE TAB -->
+    <div id="bonusTabCode" style="display:none;">
+      <div style="font-family:'Arial Black',sans-serif; font-size:1.05em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; text-align:center;">&#128273; ENTER YOUR CODE</div>
+      <div style="font-size:0.78em; color:#666; text-align:center; margin-bottom:18px; line-height:1.5;">Codes drop on our social media &amp; the<br><strong>Arrive Alive Podcast</strong></div>
+      <input id="secretCodeInput" type="text" placeholder="Type code here..." 
+        style="width:100%; padding:13px 14px; border:2px solid #dee2e6; border-radius:10px; font-size:1.05em; font-weight:700; text-align:center; letter-spacing:3px; text-transform:uppercase; box-sizing:border-box; outline:none; transition:border-color 0.2s;"
+        oninput="this.value=this.value.toUpperCase(); validateSecretCode();"
+        onkeydown="if(event.key==='Enter') submitSecretCode();" />
+      <div id="secretCodeError" style="display:none; color:#dc3545; font-size:0.82em; font-weight:700; text-align:center; margin-top:8px;">❌ That code isn't valid — keep looking!</div>
+      <div id="secretCodeSuccess" style="display:none; color:#28a745; font-size:0.88em; font-weight:700; text-align:center; margin-top:8px;">🎯 Code accepted!</div>
+      <button id="secretCodeSubmitBtn" onclick="submitSecretCode()" disabled
+        style="width:100%; margin-top:14px; padding:13px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:10px; font-size:1em; font-weight:900; cursor:pointer; opacity:0.4; transition:opacity 0.2s; letter-spacing:1px;">
+        &#127919; UNLOCK LIFELINE
+      </button>
+    </div>
+
+    <button onclick="closeBonusSurveyModal()" style="display:block; width:100%; margin-top:12px; padding:8px; background:none; border:none; color:#bbb; font-size:0.8em; cursor:pointer;">No thanks, I'll skip</button>
+  </div>
+</div>
 <div class="no-lifeline-badge" id="noLifelineBadge" style="">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
 <div class="grid">
 
@@ -447,17 +525,11 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Type here" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Type here" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Type here" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Type here" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Type here" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Type here" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div>
 
 </div>
-<div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
-<strong>&#128679; Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
-</div>
-<div class="footnote-box">
-<strong>&#128221; Notes</strong>
-<ul><li>Blondie started in New York's punk scene at CBGB but quickly embraced a wide range of styles — disco, reggae, and rap all made appearances in their catalog during the late 70s and early 80s.</li><li>Bryan Adams was one of the most successful Canadian rock exports of the decade. His biggest ballad was written for a major motion picture and topped charts in multiple countries — but the film itself was a sequel.</li><li>Stevie Wonder recorded a reggae-influenced tribute to Bob Marley around the time of Marley's passing in 1981 — it became one of his biggest hits of the decade.</li><li>All three of these artists reached the very top of the Billboard Hot 100 at some point — though not necessarily in the 80s, and not necessarily with the songs in this quiz.</li></ul>
-</div>
 <div class="button-container">
 <button onclick="checkAnswers()">Check Answers</button>
 <button onclick="resetGrid()">Reset Grid</button>
-<button onclick="shareScore()" style="background:#FF1493;">&#128228; Share with a Friend</button>
+<button onclick="shareLink()" style="background:#FF1493;">📲 Share with a Friend</button>
+<button onclick="shareScore()" style="background:linear-gradient(135deg,#8B00FF,#4B0082);">📸 Brag on Instagram / TikTok</button>
 </div>
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
@@ -466,7 +538,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="progress-text" id="postProgressText"></div>
 </div>
 <div class="unlimited-banner" id="postUnlimitedBanner">&#128377;&#65039; UNLIMITED MODE ACTIVATED &#128377;&#65039;</div>
-<button onclick="shareScore()" style="background:#FF1493; color:white; border:none; padding:12px 30px; border-radius:10px; cursor:pointer; font-size:1em; font-weight:bold; width:100%; margin-bottom:10px; box-shadow:0 4px 15px rgba(255,20,147,0.3);">&#128228; Share the 80s Grid with a Friend</button>
+<div style="display:flex;gap:10px;margin-bottom:10px;">
+<button onclick="shareLink()" style="flex:1;background:#FF1493;color:white;border:none;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:0.95em;font-weight:bold;box-shadow:0 4px 15px rgba(255,20,147,0.3);">📲 Share with a Friend<br><span style="font-size:0.75em;font-weight:400;opacity:0.9;">iMessage · WhatsApp · Facebook</span></button>
+<button onclick="shareScore()" style="flex:1;background:linear-gradient(135deg,#8B00FF,#4B0082);color:white;border:none;padding:12px 16px;border-radius:10px;cursor:pointer;font-size:0.95em;font-weight:bold;box-shadow:0 4px 15px rgba(139,0,255,0.3);">📸 Brag About It<br><span style="font-size:0.75em;font-weight:400;opacity:0.9;">Instagram · TikTok · Twitter</span></button>
+</div>
 <div style="margin-bottom:10px;">
 <a href="quiz11.html" class="replay-btn">&#128260; Play Quiz 11 Again <span class="hint">(doesn't count toward daily limit)</span></a>
 </div>
@@ -498,6 +573,28 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 </div>
 </div>
+
+<!-- ===== SPONSOR BOX ===== -->
+<div class="sponsor-box" id="sponsorBox">
+  <a class="sponsor-logo-slot" id="sponsorLogoLink" href="#" target="_blank" rel="noopener">
+    <img id="sponsorLogoImg" src="" alt="Sponsor Logo" style="display:none; width:100%; height:100%; object-fit:contain; border-radius:6px;">
+    <span class="sponsor-logo-placeholder" id="sponsorLogoEmoji">&#127925;</span>
+  </a>
+  <div class="sponsor-body">
+    <div class="sponsor-label" id="sponsorLabel">&#127925; Sponsored by</div>
+    <div class="sponsor-text" id="sponsorText"></div>
+    <div class="sponsor-sub" id="sponsorSub"></div>
+  </div>
+</div>
+
+<div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
+<strong>&#128679; Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
+</div>
+<div class="footnote-box">
+<strong>&#128221; Notes</strong>
+<ul><li>Blondie started in New York's punk scene at CBGB but quickly embraced a wide range of styles — disco, reggae, and rap all made appearances in their catalog during the late 70s and early 80s.</li><li>Bryan Adams was one of the most successful Canadian rock exports of the decade. His biggest ballad was written for a major motion picture and topped charts in multiple countries — but the film itself was a sequel.</li><li>Stevie Wonder recorded a reggae-influenced tribute to Bob Marley around the time of Marley's passing in 1981 — it became one of his biggest hits of the decade.</li><li>All three of these artists reached the very top of the Billboard Hot 100 at some point — though not necessarily in the 80s, and not necessarily with the songs in this quiz.</li></ul>
+</div>
+
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
 <p style="color:#00ff00; text-align:center; font-size:1.2em; margin-bottom:20px;">ENTER YOUR INITIALS</p>
@@ -522,7 +619,7 @@ const SESSION_KEY = 'hasPlayedQuiz11';
 const QUIZ_KEY = 'quiz11Score';
 const DAILY_LIMIT = 2;
 const FORMSPREE_URL = 'https://formspree.io/f/xqedyjjd';
-const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited' };
+const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited', RAD: 'bonus' };
 const FAKE_SCORES = [
 {initials:'ACE',pct:100,quizzes:9,date:'2/1/26'},{initials:'MAX',pct:96,quizzes:9,date:'2/3/26'},
 {initials:'ROX',pct:93,quizzes:9,date:'2/5/26'},{initials:'JAX',pct:89,quizzes:9,date:'2/8/26'},
@@ -530,7 +627,13 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const SHARE_TEXT = "&#127928; Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/";
+const SHARE_TEXT_BASE = "🎸 Test your 80s music knowledge! Play Len's 80sGrid.com Music Edition: https://80sgrid.com/quiz11.html";
+function getShareText(score) {
+  if (score !== undefined && score !== null) {
+    return `🎸 I scored ${score}/9 on Quiz 11 — Blondie, Bryan Adams & Stevie Wonder! Can you beat me? Play Len's 80sGrid.com: https://80sgrid.com/quiz11.html`;
+  }
+  return SHARE_TEXT_BASE;
+}
 const PLAYS_START = 100;
 const yesNoKeys = [];
 const answers = {'0-0': ['the power of love', 'power of love'],
@@ -621,7 +724,7 @@ function showBonusSuccess(type) {
   else { el.className='bonus-success bonus-type'; titleEl.style.color='#28a745'; titleEl.textContent='BONUS QUIZ UNLOCKED!'; textEl.textContent='You unlocked 1 bonus quiz today!'; }
 }
 
-function submitNavCode() {
+function submitUnlockCode() {
   const input=document.getElementById('unlockCodeInput').value.trim();
   const upper=input.toUpperCase();
   if(SECRET_CODES[upper]) {
@@ -666,39 +769,34 @@ function initializeCells() {
     cell.addEventListener('click',()=>openModal(cell));
   });
 }
-function openModal(cell) {
-  currentCell=cell;
-  const colH=["Huey Lewis and the News", "Elvis Costello", "The Police"];
-  const rowH=["Hit Song with 'Love' in the Title", "Best Selling Studio Album", "First Song with Video on MTV"];
-  const key=cell.dataset.row+'-'+cell.dataset.col;
-  const isYN=yesNoKeys.includes(key);
-  document.getElementById('modalTitle').textContent=colH[parseInt(cell.dataset.col)]+' — '+rowH[parseInt(cell.dataset.row)]+(isYN?' (Yes or No)':'');
-  document.getElementById('modalInput').value=cell.querySelector('input').value;
-  showTextEntry();
-  const mcBtn=document.getElementById('mcToggleBtn');
-  if(mcBtn) mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
-  document.getElementById('inputModal').classList.add('active');
-  document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
-}
 function closeModal() { document.getElementById('inputModal').classList.remove('active'); document.getElementById('inputOverlay').classList.remove('active'); currentCell=null; }
 function saveModalAnswer() {
   if(currentCell) {
     const modalValue=document.getElementById('modalInput').value;
-    if(modalValue.toUpperCase()==='RAD'&&!radBonusUsed) { radBonusUsed=true; lifelinesRemaining++; updateLifelineUI(); alert("Len's Bonus lifeline unlocked! &#128703;"); document.getElementById('modalInput').value=''; document.getElementById('modalInput').focus(); return; }
     currentCell.querySelector('input').value=modalValue; closeModal();
   }
 }
 document.addEventListener('keypress',(e)=>{ if(e.key==='Enter'&&document.getElementById('inputModal').classList.contains('active')) saveModalAnswer(); });
-document.getElementById('inputOverlay').addEventListener('click',closeModal);
 function updateLifelineUI() {
-  for(let i=1;i<=3;i++) { const pip=document.getElementById('pip'+i); if(i<=lifelinesRemaining){pip.classList.remove('used');pip.textContent='&#127919;';}else{pip.classList.add('used');pip.textContent='';} }
+  for(let i=1;i<=3;i++) { const pip=document.getElementById('pip'+i); if(i<=lifelinesRemaining){pip.classList.remove('used');pip.textContent='\uD83C\uDFAF';}else{pip.classList.add('used');pip.textContent='';} }
   const countEl=document.getElementById('lifelineCount'); const btnEl=document.getElementById('mcToggleBtn'); const remainEl=document.getElementById('mcRemaining');
+  const bonusOffer = document.getElementById('bonusLifelineOffer');
+  const modalBonusBtn = document.getElementById('modalBonusBtn');
   if(remainEl) remainEl.textContent=lifelinesRemaining;
-  if(lifelinesRemaining===0) { countEl.textContent='None left!'; countEl.classList.add('empty');
-      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block'; if(btnEl){btnEl.disabled=true;} }
-  else { countEl.textContent=lifelinesRemaining+' remaining'; countEl.classList.remove('empty');
-      var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none'; if(btnEl){btnEl.disabled=false;} }
+  if(lifelinesRemaining===0) {
+    countEl.textContent='None left!'; countEl.classList.add('empty');
+    var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block';
+    if(btnEl){btnEl.disabled=true; btnEl.style.display='none';}
+    // Show bonus offer on main page AND inside modal
+    if(bonusOffer && !bonusLifelineUsed) bonusOffer.style.display='block';
+    if(modalBonusBtn && !bonusLifelineUsed) modalBonusBtn.style.display='block';
+  } else {
+    countEl.textContent=lifelinesRemaining+' remaining'; countEl.classList.remove('empty');
+    var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none';
+    if(btnEl){btnEl.disabled=false; btnEl.style.display='block';}
+    if(bonusOffer) bonusOffer.style.display='none';
+    if(modalBonusBtn) modalBonusBtn.style.display='none';
+  }
 }
 function showMultipleChoice() {
   if(lifelinesRemaining<=0) return;
@@ -712,16 +810,192 @@ function showMultipleChoice() {
 }
 function showTextEntry() { document.getElementById('textSection').classList.remove('hidden'); document.getElementById('mcSection').classList.remove('visible'); setTimeout(()=>document.getElementById('modalInput').focus(),60); }
 function selectMCOption(value) { if(currentCell) { currentCell.querySelector('input').value=value; lifelinesRemaining=Math.max(0,lifelinesRemaining-1); updateLifelineUI(); closeModal(); } }
-function promptSecretCode() {
-  var code = prompt("Enter secret code for a bonus lifeline:");
-  if (code && code.toUpperCase() === "RAD") {
-    lifelinesRemaining++;
-    updateLifelineUI();
-    alert("🛡️ Bonus lifeline unlocked!");
-  } else if (code) {
-    alert("Sorry, that code is not valid. Keep looking!");
+
+/* ===== BONUS LIFELINE SURVEY ===== */
+const BONUS_SURVEY = {
+  question: "Which of these do you still own?",
+  options: [
+    { value: "Record Player",  emoji: "🎵", label: "Record Player / Turntable" },
+    { value: "CD Player",      emoji: "💿", label: "CD Player" },
+    { value: "Cassette Deck",  emoji: "📼", label: "Cassette Deck" },
+    { value: "8-Track",        emoji: "🎞️", label: "8-Track Player" },
+    { value: "None",           emoji: "😅", label: "None of these (sadly)" },
+  ]
+};
+const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered';
+let bonusSurveyAnswers = [];
+let bonusLifelineUsed = false;
+
+function openBonusSurveyModal() {
+  if (bonusLifelineUsed) return;
+  switchBonusTab('survey');
+  bonusSurveyAnswers = [];
+  const container = document.getElementById('bonusSurveyOptions2');
+  container.innerHTML = '';
+  BONUS_SURVEY.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.style.cssText = 'width:100%; padding:11px 14px; border:2px solid #dee2e6; border-radius:10px; background:#f8f9fa; font-size:0.88em; font-weight:700; color:#333; cursor:pointer; text-align:left; transition:all 0.2s; display:flex; align-items:center; gap:10px;';
+    btn.innerHTML = `<span style="font-size:1.3em">${opt.emoji}</span><span>${opt.label}</span>`;
+    btn.dataset.value = opt.value;
+    btn.onclick = () => toggleSurveyOption(btn, opt.value);
+    container.appendChild(btn);
+  });
+  const claimBtn = document.getElementById('bonusSurveyBtn2');
+  claimBtn.disabled = true;
+  claimBtn.style.opacity = '0.4';
+  document.getElementById('bonusSurveyOverlay').style.display = 'flex';
+}
+
+function openSecretCodeModal() {
+  switchBonusTab('code');
+  document.getElementById('secretCodeInput').value = '';
+  document.getElementById('secretCodeError').style.display = 'none';
+  document.getElementById('secretCodeSuccess').style.display = 'none';
+  document.getElementById('secretCodeSubmitBtn').disabled = true;
+  document.getElementById('secretCodeSubmitBtn').style.opacity = '0.4';
+  document.getElementById('bonusSurveyOverlay').style.display = 'flex';
+  setTimeout(() => document.getElementById('secretCodeInput').focus(), 100);
+}
+
+function switchBonusTab(tab) {
+  const isSurvey = tab === 'survey';
+  document.getElementById('bonusTabSurvey').style.display = isSurvey ? 'block' : 'none';
+  document.getElementById('bonusTabCode').style.display = isSurvey ? 'none' : 'block';
+  const surveyBtn = document.getElementById('tabSurveyBtn');
+  const codeBtn = document.getElementById('tabCodeBtn');
+  if (isSurvey) {
+    surveyBtn.style.background = '#8B00FF'; surveyBtn.style.color = 'white'; surveyBtn.style.borderColor = '#8B00FF';
+    codeBtn.style.background = '#f5f5f5'; codeBtn.style.color = '#888'; codeBtn.style.borderColor = '#ddd';
+  } else {
+    codeBtn.style.background = '#8B00FF'; codeBtn.style.color = 'white'; codeBtn.style.borderColor = '#8B00FF';
+    surveyBtn.style.background = '#f5f5f5'; surveyBtn.style.color = '#888'; surveyBtn.style.borderColor = '#ddd';
+    setTimeout(() => document.getElementById('secretCodeInput').focus(), 100);
   }
 }
+
+function validateSecretCode() {
+  const val = document.getElementById('secretCodeInput').value.trim();
+  const btn = document.getElementById('secretCodeSubmitBtn');
+  document.getElementById('secretCodeError').style.display = 'none';
+  btn.disabled = val.length === 0;
+  btn.style.opacity = val.length > 0 ? '1' : '0.4';
+}
+
+function submitSecretCode() {
+  const code = document.getElementById('secretCodeInput').value.trim().toUpperCase();
+  if (!code) return;
+  if (SECRET_CODES[code] === 'bonus' || SECRET_CODES[code] === 'unlimited') {
+    document.getElementById('secretCodeSuccess').style.display = 'block';
+    document.getElementById('secretCodeError').style.display = 'none';
+    bonusLifelineUsed = true;
+    lifelinesRemaining = SECRET_CODES[code] === 'unlimited' ? 99 : Math.max(lifelinesRemaining, 1);
+    updateLifelineUI();
+    setTimeout(() => {
+      closeBonusSurveyModal();
+      showBonusGrantedToast(SECRET_CODES[code] === 'unlimited');
+    }, 800);
+  } else {
+    document.getElementById('secretCodeError').style.display = 'block';
+    document.getElementById('secretCodeSuccess').style.display = 'none';
+    document.getElementById('secretCodeInput').style.borderColor = '#dc3545';
+    setTimeout(() => { document.getElementById('secretCodeInput').style.borderColor = '#dee2e6'; }, 1500);
+  }
+}
+
+function closeBonusSurveyModal() {
+  document.getElementById('bonusSurveyOverlay').style.display = 'none';
+}
+
+function toggleSurveyOption(btn, value) {
+  const allBtns = document.querySelectorAll('#bonusSurveyOptions2 button');
+  if (value === 'None') {
+    bonusSurveyAnswers = ['None'];
+    allBtns.forEach(b => {
+      const isNone = b.dataset.value === 'None';
+      b.style.borderColor = isNone ? '#8B00FF' : '#dee2e6';
+      b.style.background = isNone ? 'linear-gradient(135deg,#f3eaff,#fff)' : '#f8f9fa';
+      b.style.color = isNone ? '#8B00FF' : '#333';
+    });
+  } else {
+    bonusSurveyAnswers = bonusSurveyAnswers.filter(v => v !== 'None');
+    const noneBtn = document.querySelector('#bonusSurveyOptions2 button[data-value="None"]');
+    if (noneBtn) { noneBtn.style.borderColor='#dee2e6'; noneBtn.style.background='#f8f9fa'; noneBtn.style.color='#333'; }
+    const idx = bonusSurveyAnswers.indexOf(value);
+    if (idx > -1) {
+      bonusSurveyAnswers.splice(idx, 1);
+      btn.style.borderColor = '#dee2e6';
+      btn.style.background = '#f8f9fa';
+      btn.style.color = '#333';
+    } else {
+      bonusSurveyAnswers.push(value);
+      btn.style.borderColor = '#8B00FF';
+      btn.style.background = 'linear-gradient(135deg,#f3eaff,#fff)';
+      btn.style.color = '#8B00FF';
+    }
+  }
+  const claimBtn = document.getElementById('bonusSurveyBtn2');
+  claimBtn.disabled = bonusSurveyAnswers.length === 0;
+  claimBtn.style.opacity = bonusSurveyAnswers.length > 0 ? '1' : '0.4';
+}
+
+function claimBonusLifeline() {
+  if (bonusSurveyAnswers.length === 0) return;
+  // Save & submit
+  localStorage.setItem(BONUS_SURVEY_KEY, JSON.stringify(bonusSurveyAnswers));
+  try {
+    fetch('https://formspree.io/f/xeelpozw', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({type:'bonus_lifeline_survey', answers: bonusSurveyAnswers.join(', '), quiz:'Quiz 11', date:new Date().toISOString()})
+    });
+  } catch(e) {}
+  // Grant lifeline
+  bonusLifelineUsed = true;
+  lifelinesRemaining = 1;
+  updateLifelineUI();
+  closeBonusSurveyModal();
+  showBonusGrantedToast(false);
+}
+
+function showBonusGrantedToast(isUnlimited) {
+  let toast = document.getElementById('bonusGrantedToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'bonusGrantedToast';
+    toast.style.cssText = 'position:fixed;top:18%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;padding:14px 28px;border-radius:14px;font-family:"Arial Black",sans-serif;font-size:1em;font-weight:900;letter-spacing:1px;box-shadow:0 0 30px rgba(139,0,255,0.5);z-index:8000;opacity:0;transition:opacity 0.3s;text-align:center;pointer-events:none;';
+    document.body.appendChild(toast);
+  }
+  if (isUnlimited) {
+    toast.innerHTML = '♾️ Unlimited Mode Activated!<br><span style="font-size:0.7em;font-weight:400;opacity:0.9;">All lifelines unlocked — you\'re on fire!</span>';
+  } else {
+    toast.innerHTML = '🎯 Bonus Lifeline Unlocked!<br><span style="font-size:0.7em;font-weight:400;opacity:0.9;">Use it wisely — only 1 per quiz!</span>';
+  }
+  toast.style.opacity = '1';
+  setTimeout(() => { toast.style.opacity = '0'; }, 2800);
+}
+
+function restoreSurveyOnLoad() {
+  if (localStorage.getItem(BONUS_SURVEY_KEY)) bonusLifelineUsed = true;
+}
+/* ===== END BONUS LIFELINE SURVEY ===== */
+
+function openModal(cell) {
+  currentCell = cell;
+  const colH=["Huey Lewis and the News","Elvis Costello","The Police"];
+  const rowH=["Hit Song with 'Love' in the Title","Best Selling Studio Album","First Song with Video on MTV"];
+  const key=cell.dataset.row+'-'+cell.dataset.col;
+  const isYN=yesNoKeys.includes(key);
+  document.getElementById('modalTitle').textContent = colH[parseInt(cell.dataset.col)]+' — '+rowH[parseInt(cell.dataset.row)]+(isYN?' (Yes or No)':'');
+  document.getElementById('modalInput').value = cell.querySelector('input').value;
+  document.getElementById('textSection').style.display = 'block';
+  showTextEntry();
+  const mcBtn=document.getElementById('mcToggleBtn');
+  if(mcBtn) mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
+  document.getElementById('inputModal').classList.add('active');
+  document.getElementById('inputOverlay').classList.add('active');
+  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+}
+/* ===== END BONUS LIFELINE SURVEY ===== */
 
 
 
@@ -758,7 +1032,317 @@ function checkAnswers() {
 }
 function updatePlaysCounter() { let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START); document.getElementById('playsCounter').textContent='&#127918; '+plays.toLocaleString()+' plays'; }
 function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'}); }
-function shareScore() { if(navigator.share){navigator.share({title:"Len's 80sGrid.com",text:SHARE_TEXT}).catch(()=>{});}else{navigator.clipboard.writeText(SHARE_TEXT).then(()=>{alert('Link copied!');}).catch(()=>{alert(SHARE_TEXT);});} }
+function getLastScore() {
+  return parseInt(localStorage.getItem(QUIZ_KEY) || '0') || null;
+}
+
+function shareLink() {
+  const score = getLastScore();
+  const text = score
+    ? `🎸 I scored ${score}/9 on Len's 80sGrid Quiz 11 — Blondie, Bryan Adams & Stevie Wonder! Can you beat me?`
+    : `🎸 Think you know your 80s music? Try Len's 80sGrid Quiz 11!`;
+  const url = 'https://80sgrid.com/quiz11.html';
+
+  if (navigator.share) {
+    // Mobile: triggers native iOS/Android share sheet → iMessage, WhatsApp, Facebook etc.
+    navigator.share({ title: "Len's 80sGrid", text: text, url: url })
+      .catch(() => {});
+  } else {
+    // Desktop: copy link to clipboard
+    navigator.clipboard.writeText(text + ' ' + url).then(() => {
+      const toast = document.createElement('div');
+      toast.textContent = '✅ Link copied! Paste it anywhere.';
+      toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 22px;border-radius:10px;font-size:0.95em;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }).catch(() => alert(text + '\n' + url));
+  }
+}
+
+
+function shareScore() {
+  const score = getLastScore();
+  const text = getShareText(score);
+  // Show the share modal with canvas image
+  buildShareCard(score, text);
+}
+
+function buildShareCard(score, text) {
+  const overlay = document.createElement('div');
+  overlay.id = 'shareCardOverlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:6000;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;box-sizing:border-box;';
+
+  const box = document.createElement('div');
+  box.style.cssText = 'background:#fff;border:3px solid #FF1493;border-radius:18px;padding:22px 20px 18px;max-width:460px;width:100%;text-align:center;box-shadow:0 0 60px rgba(255,20,147,0.45);box-sizing:border-box;';
+
+  box.innerHTML = `
+    <div style="font-weight:900;color:#111;font-size:1.05em;letter-spacing:2px;margin-bottom:2px;">📤 SHARE YOUR SCORE</div>
+    <div style="font-size:0.7em;font-weight:700;color:#FF1493;letter-spacing:2px;margin-bottom:14px;">LEN'S 80sGRID.COM</div>
+    <canvas id="shareCassette" width="420" height="290" style="display:block;margin:0 auto 14px;border-radius:10px;max-width:100%;box-shadow:0 4px 24px rgba(0,0,0,0.35);"></canvas>
+    <div style="font-size:0.8em;color:#555;margin-bottom:12px;line-height:1.5;padding:0 4px;">
+      Show off your score! <strong>Save the image</strong> to post on Instagram or TikTok, or <strong>copy the text</strong> to share on Facebook or in a text message.
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <button onclick="downloadShareCard()" style="flex:1;padding:13px 8px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">⬇️ Save Image<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Post to Instagram or TikTok</span></button>
+      <button onclick="copyShareText()" style="flex:1;padding:13px 8px;background:linear-gradient(135deg,#8B00FF,#4B0082);color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">📋 Copy Text<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Share on Facebook or text</span></button>
+    </div>
+    <button onclick="document.getElementById('shareCardOverlay').remove()" style="background:none;border:none;color:#bbb;font-size:0.82em;cursor:pointer;width:100%;">✕ Close</button>
+  `;
+
+  overlay.appendChild(box);
+  overlay.onclick = (e) => { if(e.target===overlay) overlay.remove(); };
+  document.body.appendChild(overlay);
+  setTimeout(() => drawCassetteCard(score), 40);
+}
+
+function rrShare(c, x, y, w, h, r, fill, stroke) {
+  c.beginPath();
+  c.moveTo(x+r,y); c.lineTo(x+w-r,y);
+  c.quadraticCurveTo(x+w,y,x+w,y+r);
+  c.lineTo(x+w,y+h-r); c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  c.lineTo(x+r,y+h); c.quadraticCurveTo(x,y+h,x,y+h-r);
+  c.lineTo(x,y+r); c.quadraticCurveTo(x,y,x+r,y);
+  c.closePath();
+  if(fill) c.fill();
+  if(stroke) c.stroke();
+}
+
+function drawCassetteCard(score) {
+  const canvas = document.getElementById('shareCassette');
+  if(!canvas) return;
+  const c = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  c.fillStyle='#fff'; c.fillRect(0,0,W,H);
+
+  // Shell
+  const sx=10,sy=8,sw=W-20,sh=H-16,sr=10;
+  c.fillStyle='rgba(0,0,0,0.2)'; rrShare(c,sx+5,sy+5,sw,sh,sr,true,false);
+  c.fillStyle='#1c1c1c'; rrShare(c,sx,sy,sw,sh,sr,true,false);
+  c.strokeStyle='#FF1493'; c.lineWidth=2; rrShare(c,sx,sy,sw,sh,sr,false,true);
+
+  // Notched corners
+  const nc=14; c.fillStyle='#fff';
+  [[sx,sy],[sx+sw-nc,sy],[sx,sy+sh-nc],[sx+sw-nc,sy+sh-nc]].forEach(([nx,ny])=>c.fillRect(nx,ny,nc,nc));
+  c.strokeStyle='#FF1493'; c.lineWidth=2; rrShare(c,sx,sy,sw,sh,sr,false,true);
+
+  // Screws
+  [[sx+20,sy+20],[sx+sw-20,sy+20],[sx+20,sy+sh-20],[sx+sw-20,sy+sh-20]].forEach(([qx,qy])=>{
+    c.beginPath(); c.arc(qx,qy,5,0,Math.PI*2); c.fillStyle='#111'; c.fill();
+    c.strokeStyle='#555'; c.lineWidth=1; c.stroke();
+    c.strokeStyle='#666'; c.lineWidth=1.2;
+    c.beginPath(); c.moveTo(qx-3,qy); c.lineTo(qx+3,qy); c.stroke();
+    c.beginPath(); c.moveTo(qx,qy-3); c.lineTo(qx,qy+3); c.stroke();
+  });
+
+  // Label
+  const lx=sx+14,ly=sy+12,lw=sw-28,lh=sh-50;
+  c.fillStyle='#f2f2f2'; rrShare(c,lx,ly,lw,lh,4,true,false);
+  const pg=c.createLinearGradient(lx,ly,lx,ly+lh);
+  pg.addColorStop(0,'rgba(255,255,255,0.9)'); pg.addColorStop(1,'rgba(230,230,230,0.6)');
+  c.fillStyle=pg; rrShare(c,lx,ly,lw,lh,4,true,false);
+
+  // Ruled lines on label
+  c.strokeStyle='rgba(160,170,210,0.5)'; c.lineWidth=0.8;
+  for(let lineY=ly+20;lineY<ly+lh*0.42;lineY+=11){
+    c.beginPath(); c.moveTo(lx+8,lineY); c.lineTo(lx+lw-8,lineY); c.stroke();
+  }
+
+  // "A" badge
+  c.fillStyle='#111'; rrShare(c,lx+8,ly+7,22,22,3,true,false);
+  c.fillStyle='#fff'; c.textAlign='center'; c.font='bold 14px Arial';
+  c.fillText('A',lx+19,ly+23);
+
+  // Orange + gold stripes
+  const stripeY=ly+lh*0.44;
+  c.fillStyle='#e8850a'; c.fillRect(lx,stripeY,lw,7);
+  const gg=c.createLinearGradient(0,stripeY+7,0,stripeY+13);
+  gg.addColorStop(0,'#d4a020'); gg.addColorStop(1,'#a07010');
+  c.fillStyle=gg; c.fillRect(lx,stripeY+7,lw,6);
+
+  // Quiz 11 title
+  c.textAlign='center'; c.font='bold 17px Arial'; c.fillStyle='#1a1a1a';
+  c.fillText('QUIZ 11',W/2,ly+26);
+  c.font='bold 10px Arial'; c.fillStyle='#222';
+  c.fillText('BLONDIE  •  BRYAN ADAMS  •  STEVIE WONDER',W/2,ly+40);
+
+  // Small label info
+  c.textAlign='left'; c.font='6px Arial'; c.fillStyle='#555';
+  c.fillText('Normal Bias',lx+8,stripeY-16);
+  c.fillText('EQ-120μs',lx+8,stripeY-8);
+  c.textAlign='right'; c.font='6px Arial';
+  c.fillText('Noise',lx+lw-8,stripeY-22);
+  c.fillText('Reduction',lx+lw-8,stripeY-14);
+  c.strokeStyle='#555'; c.lineWidth=0.8;
+  c.strokeRect(lx+lw-30,stripeY-10,6,6);
+  c.fillStyle='#c00'; c.font='8px Arial'; c.textAlign='left';
+  c.fillText('✕',lx+lw-31,stripeY-4);
+  c.fillStyle='#555'; c.font='6px Arial';
+  c.fillText('IN',lx+lw-22,stripeY-5);
+  c.strokeRect(lx+lw-30,stripeY-2,6,6);
+  c.fillText('OUT',lx+lw-22,stripeY+4);
+
+  // Bottom strip
+  const bsy=ly+lh, bsh=sy+sh-bsy-10;
+  c.fillStyle='#111'; rrShare(c,lx,bsy,lw,bsh,4,true,false);
+
+  // Star symbol + LEN.
+  const starX=lx+lw-95, starY2=bsy+bsh/2+1;
+  drawStar4Card(c,starX,starY2,11,'#FF1493');
+  c.textAlign='left'; c.font='bold 20px Arial Black,Arial'; c.fillStyle='#fff';
+  c.fillText('LEN.',starX+17,bsy+bsh-7);
+  c.font='6px Arial'; c.fillStyle='rgba(255,20,147,0.8)';
+  c.fillText('80sGRID.COM',starX+17,bsy+9);
+
+  // Quiz-11 bottom left
+  c.textAlign='left'; c.font='bold 15px Arial Black,Arial'; c.fillStyle='#fff';
+  c.fillText('Quiz-',lx+8,bsy+bsh-7);
+  c.fillStyle='#8B00FF';
+  c.fillText('11',lx+8+c.measureText('Quiz-').width,bsy+bsh-7);
+
+  // Stars in bottom strip
+  const stars=Math.round(((score||0)/9)*5);
+  c.textAlign='center'; c.font='18px serif'; c.fillStyle='#FF1493';
+  c.shadowColor='rgba(255,20,147,0.5)'; c.shadowBlur=6;
+  c.fillText('★'.repeat(stars)+'☆'.repeat(5-stars),W/2,bsy+22);
+  c.shadowBlur=0;
+
+  // Tape window — large, cuts into label, WHITE interior
+  const wx=lx+lw*0.12, wy=ly+lh*0.24, ww=lw*0.76, wh=bsy-wy-4;
+  c.fillStyle='#111'; rrShare(c,wx-5,wy-5,ww+10,wh+10,7,true,false);
+  c.fillStyle='#f5f5f5'; rrShare(c,wx,wy,ww,wh,4,true,false);
+  const winEdge=c.createRadialGradient(wx+ww/2,wy+wh/2,wh*0.2,wx+ww/2,wy+wh/2,wh*0.85);
+  winEdge.addColorStop(0,'rgba(0,0,0,0)'); winEdge.addColorStop(1,'rgba(0,0,0,0.1)');
+  c.fillStyle=winEdge; rrShare(c,wx,wy,ww,wh,4,true,false);
+
+  const midY=wy+wh*0.5, reelR=Math.min(wh*0.42,52);
+  const reelLX=wx+ww*0.22, reelRX=wx+ww*0.78;
+
+  // Center playback slot — WHITE
+  const slotW=ww*0.20, slotH=wh*0.60;
+  const slotX=W/2-slotW/2, slotY2=midY-slotH/2;
+  c.fillStyle='#222'; rrShare(c,slotX-3,slotY2-3,slotW+6,slotH+6,4,true,false);
+  c.fillStyle='#ffffff'; rrShare(c,slotX,slotY2,slotW,slotH,2,true,false);
+  c.strokeStyle='rgba(0,0,0,0.12)'; c.lineWidth=1;
+  for(let si=0;si<4;si++){
+    const slitY=slotY2+4+si*(slotH-8)/3;
+    c.beginPath(); c.moveTo(slotX+3,slitY); c.lineTo(slotX+slotW-3,slitY); c.stroke();
+  }
+
+  // Tape
+  const tH=8, tapeY=midY-tH/2, gL=slotX, gR=slotX+slotW;
+  c.fillStyle='#2e1a08';
+  c.fillRect(reelLX,tapeY,gL-reelLX,tH); c.fillRect(gR,tapeY,reelRX-gR,tH);
+  const tg=c.createLinearGradient(0,tapeY,0,tapeY+tH);
+  tg.addColorStop(0,'rgba(160,100,20,0.6)'); tg.addColorStop(1,'rgba(0,0,0,0.5)');
+  c.fillStyle=tg;
+  c.fillRect(reelLX,tapeY,gL-reelLX,tH); c.fillRect(gR,tapeY,reelRX-gR,tH);
+  c.strokeStyle='rgba(15,8,0,0.6)'; c.lineWidth=0.7;
+  [[reelLX,gL],[gR,reelRX]].forEach(([x1,x2])=>{
+    c.beginPath(); c.moveTo(x1,tapeY); c.lineTo(x2,tapeY); c.stroke();
+    c.beginPath(); c.moveTo(x1,tapeY+tH); c.lineTo(x2,tapeY+tH); c.stroke();
+  });
+
+  // Reels
+  drawWhiteReelCard(c,reelLX,midY,reelR);
+  drawWhiteReelCard(c,reelRX,midY,reelR);
+
+  // Score — purple, centered between reels in window
+  c.textAlign='center';
+  c.font='bold 8px Arial'; c.fillStyle='rgba(139,0,255,0.7)';
+  c.fillText('I  SCORED',W/2,midY-20);
+  c.font='900 48px Arial Black,Arial'; c.fillStyle='#8B00FF';
+  c.shadowColor='rgba(139,0,255,0.8)'; c.shadowBlur=18;
+  c.fillText(`${score||'?'}/9`,W/2,midY+18);
+  c.shadowBlur=0;
+
+  // Guide pins
+  [[W/2-48,sy+sh-14],[W/2,sy+sh-14],[W/2+48,sy+sh-14]].forEach(([px,py])=>{
+    c.beginPath(); c.arc(px,py,5,0,Math.PI*2);
+    c.fillStyle='#0a0a0a'; c.fill(); c.strokeStyle='#444'; c.lineWidth=1; c.stroke();
+  });
+}
+
+function drawStar4Card(c,cx,cy,r,color){
+  c.save(); c.fillStyle=color; c.shadowColor=color; c.shadowBlur=8;
+  c.beginPath();
+  for(let i=0;i<8;i++){
+    const a=(i/8)*Math.PI*2-Math.PI/2, rad=(i%2===0)?r:r*0.38;
+    const px=cx+Math.cos(a)*rad, py=cy+Math.sin(a)*rad;
+    i===0?c.moveTo(px,py):c.lineTo(px,py);
+  }
+  c.closePath(); c.fill(); c.shadowBlur=0; c.restore();
+}
+
+function drawWhiteReelCard(c,cx,cy,r){
+  const tapeInnerR=r*0.28, tapeOuterR=r*0.82, numLayers=18;
+  for(let i=0;i<numLayers;i++){
+    const t=i/numLayers, layR=tapeInnerR+t*(tapeOuterR-tapeInnerR);
+    const brightness=0.55+0.45*Math.sin(i*0.9);
+    const r2=Math.floor(200*brightness+40),g2=Math.floor(140*brightness+20),b2=Math.floor(10*brightness);
+    c.beginPath(); c.arc(cx,cy,layR,0,Math.PI*2);
+    c.strokeStyle=`rgb(${r2},${g2},${b2})`;
+    c.lineWidth=(tapeOuterR-tapeInnerR)/numLayers+0.5; c.stroke();
+  }
+  const tapeGlow=c.createRadialGradient(cx-r*0.25,cy-r*0.3,2,cx,cy,tapeOuterR);
+  tapeGlow.addColorStop(0,'rgba(255,220,100,0.35)'); tapeGlow.addColorStop(1,'rgba(0,0,0,0.2)');
+  c.beginPath(); c.arc(cx,cy,tapeOuterR,0,Math.PI*2); c.fillStyle=tapeGlow; c.fill();
+
+  c.beginPath(); c.arc(cx,cy,r,0,Math.PI*2);
+  const rg=c.createRadialGradient(cx-r*0.2,cy-r*0.25,2,cx,cy,r);
+  rg.addColorStop(0,'#f8f8f8'); rg.addColorStop(0.5,'#ddd'); rg.addColorStop(1,'#bbb');
+  c.fillStyle=rg; c.fill(); c.strokeStyle='#888'; c.lineWidth=1.5; c.stroke();
+  c.beginPath(); c.arc(cx,cy,r-3,0,Math.PI*2);
+  c.strokeStyle='rgba(0,0,0,0.2)'; c.lineWidth=1.5; c.stroke();
+
+  for(let i=0;i<4;i++){
+    const a=(i/4)*Math.PI*2-Math.PI/4, hw=0.20;
+    c.beginPath();
+    c.moveTo(cx+Math.cos(a-hw)*12,cy+Math.sin(a-hw)*12);
+    c.lineTo(cx+Math.cos(a-hw*0.5)*(r-4),cy+Math.sin(a-hw*0.5)*(r-4));
+    c.lineTo(cx+Math.cos(a+hw*0.5)*(r-4),cy+Math.sin(a+hw*0.5)*(r-4));
+    c.lineTo(cx+Math.cos(a+hw)*12,cy+Math.sin(a+hw)*12);
+    c.closePath();
+    const sg=c.createLinearGradient(cx+Math.cos(a)*10,cy+Math.sin(a)*10,cx+Math.cos(a)*(r-5),cy+Math.sin(a)*(r-5));
+    sg.addColorStop(0,'#f0f0f0'); sg.addColorStop(0.4,'#fff'); sg.addColorStop(1,'#ccc');
+    c.fillStyle=sg; c.fill(); c.strokeStyle='rgba(0,0,0,0.15)'; c.lineWidth=0.5; c.stroke();
+  }
+
+  c.beginPath(); c.arc(cx,cy,11,0,Math.PI*2);
+  const hg=c.createRadialGradient(cx-3,cy-3,1,cx,cy,11);
+  hg.addColorStop(0,'#fff'); hg.addColorStop(0.6,'#e0e0e0'); hg.addColorStop(1,'#bbb');
+  c.fillStyle=hg; c.fill(); c.strokeStyle='#999'; c.lineWidth=1; c.stroke();
+  c.beginPath(); c.arc(cx,cy,8,0,Math.PI*2);
+  c.strokeStyle='rgba(0,0,0,0.15)'; c.lineWidth=1; c.stroke();
+  c.beginPath(); c.arc(cx,cy,6,0,Math.PI*2);
+  c.strokeStyle='rgba(255,20,147,0.6)'; c.lineWidth=1.5; c.stroke();
+  c.beginPath();
+  for(let i=0;i<5;i++){
+    const a=(i/5)*Math.PI*2-Math.PI/2, px=cx+Math.cos(a)*4.5, py=cy+Math.sin(a)*4.5;
+    i===0?c.moveTo(px,py):c.lineTo(px,py);
+  }
+  c.closePath(); c.fillStyle='#333'; c.fill();
+}
+
+function downloadShareCard() {
+  const canvas = document.getElementById('shareCassette');
+  if (!canvas) return;
+  const link = document.createElement('a');
+  link.download = '80sgrid-quiz11-score.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function copyShareText() {
+  const score = getLastScore();
+  const text = getShareText(score);
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target.closest('button');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Copied!';
+    setTimeout(() => btn.innerHTML = orig, 2000);
+  }).catch(() => alert(text));
+}
 function resetGrid() { document.querySelectorAll('.cell input').forEach(i=>{i.value='';i.parentElement.classList.remove('correct','incorrect');});document.getElementById('results').style.display='none';document.getElementById('highScoreEntry').style.display='none'; }
 function saveHighScore() {
   const i1=document.getElementById('initial1').value.toUpperCase(); const i2=document.getElementById('initial2').value.toUpperCase(); const i3=document.getElementById('initial3').value.toUpperCase();
@@ -924,7 +1508,75 @@ function restoreSurveyOnLoad(){
   }
 }
 /* ===== END SURVEY SYSTEM ===== */
-document.addEventListener('DOMContentLoaded',()=>{ initializeCells(); updatePlaysCounter(); displayLeaderboard(); initNav(); restoreSurveyOnLoad(); });
+document.addEventListener('DOMContentLoaded',()=>{
+  initializeCells(); updatePlaysCounter(); displayLeaderboard(); initNav(); restoreSurveyOnLoad();
+  initSponsorBox();
+  const overlay = document.getElementById('inputOverlay');
+  if(overlay) overlay.addEventListener('click', closeModal);
+  document.querySelectorAll('.feedback-star').forEach((s,i)=>{
+    s.addEventListener('mouseenter',()=>updateStars(i+1));
+    s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
+  });
+});
+
+/* ===== SPONSOR BOX ===== */
+const SPONSOR={name:"VinylBay777",tagline:"Your #1 source for 80s vinyl, CDs & collectibles",url:"https://vinylbay777.com/",logo:"",emoji:"&#127925;",urlDisplay:"VinylBay777.com"};
+function initSponsorBox(){
+  const artists=Array.from(document.querySelectorAll('.header.col-header')).map(h=>h.innerText.replace(/\n/g,' ').trim()).filter(Boolean);
+  const artist=artists.length?artists[Math.floor(Math.random()*artists.length)]:null;
+  const text=artist?`Looking for <strong>${artist}</strong> vinyl, CDs or collectibles? <strong>${SPONSOR.name}</strong> has it all — ${SPONSOR.tagline}.`:`<strong>${SPONSOR.name}</strong> — ${SPONSOR.tagline}.`;
+  const searchUrl=artist?`${SPONSOR.url}search?q=${encodeURIComponent(artist)}&type=product`:SPONSOR.url;
+  const ctaText=artist?`Shop <strong>${artist}</strong> on ${SPONSOR.urlDisplay} →`:`Visit ${SPONSOR.urlDisplay} →`;
+  document.getElementById('sponsorLabel').innerHTML=`&#127925; Sponsored by <strong>${SPONSOR.name}</strong>`;
+  document.getElementById('sponsorText').innerHTML=text;
+  document.getElementById('sponsorSub').innerHTML=`<a href="${searchUrl}" target="_blank" rel="noopener" style="color:#8B00FF;font-weight:bold;text-decoration:none;">${ctaText}</a>`;
+  document.getElementById('sponsorLogoLink').href=searchUrl;
+  if(SPONSOR.logo){document.getElementById('sponsorLogoImg').src=SPONSOR.logo;document.getElementById('sponsorLogoImg').style.display='block';document.getElementById('sponsorLogoEmoji').style.display='none';}
+}
+
+/* ===== FEEDBACK SYSTEM ===== */
+const FEEDBACK_FORMSPREE='https://formspree.io/f/xeelpozw';
+let feedbackRating=0;
+function openFeedback(){document.getElementById('feedbackOverlay').classList.add('active');document.getElementById('feedbackForm').style.display='block';document.getElementById('feedbackSuccess').style.display='none';feedbackRating=0;updateStars(0);document.getElementById('feedbackText').value='';}
+function closeFeedback(){document.getElementById('feedbackOverlay').classList.remove('active');}
+function setRating(n){feedbackRating=n;updateStars(n);}
+function updateStars(n){document.querySelectorAll('.feedback-star').forEach((s,i)=>{s.classList.toggle('lit',i<n);});}
+function submitFeedback(){
+  const text=document.getElementById('feedbackText').value.trim();
+  if(!feedbackRating&&!text){document.getElementById('feedbackText').style.borderColor='#FF1493';return;}
+  try{fetch(FEEDBACK_FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'feedback',quiz:'Quiz 11',rating:feedbackRating,comment:text,date:new Date().toISOString()})});}catch(e){}
+  document.getElementById('feedbackForm').style.display='none';
+  document.getElementById('feedbackSuccess').style.display='block';
+  setTimeout(closeFeedback,3000);
+}
 </script>
+
+<!-- ===== FEEDBACK MODAL ===== -->
+<div class="feedback-modal-overlay" id="feedbackOverlay" onclick="if(event.target===this)closeFeedback()">
+  <div class="feedback-modal">
+    <button class="feedback-close" onclick="closeFeedback()">&#10005;</button>
+    <div id="feedbackForm">
+      <h2>&#127926; FEEDBACK &#127926;</h2>
+      <div class="feedback-modal-sub">TELL US WHAT YOU THINK</div>
+      <span class="feedback-quiz-tag">&#127918; Currently playing: Quiz 11</span>
+      <div class="feedback-stars">
+        <span class="feedback-star" onclick="setRating(1)">&#9733;</span>
+        <span class="feedback-star" onclick="setRating(2)">&#9733;</span>
+        <span class="feedback-star" onclick="setRating(3)">&#9733;</span>
+        <span class="feedback-star" onclick="setRating(4)">&#9733;</span>
+        <span class="feedback-star" onclick="setRating(5)">&#9733;</span>
+      </div>
+      <span class="feedback-label">WHAT'S ON YOUR MIND?</span>
+      <textarea class="feedback-textarea" id="feedbackText" placeholder="Wrong answer? Great quiz? Idea for a new one? Tell us..."></textarea>
+      <button class="feedback-submit" onclick="submitFeedback()">SUBMIT FEEDBACK</button>
+    </div>
+    <div class="feedback-success" id="feedbackSuccess">
+      <span class="big">&#127775;</span>
+      <p>Thanks for the feedback!<br><br>
+      <span style="color:#FFD700;">Your input helps make 80sGrid better for everyone.</span><br><br>
+      <span style="color:#aaa;font-size:0.85em;">— Len</span></p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
