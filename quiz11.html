@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -760,7 +759,7 @@ function submitUnlockEmail() {
 }
 function initializeCells() {
   const colH = ["Huey Lewis and the News", "Elvis Costello", "The Police"];
-  const rowH = ["Hit Song with 'Love' in the Title", "Best Selling Studio Album", "First Song with Video on MTV"];
+  const rowH = ["Highest Charting U.S. Single", "Best Selling Studio Album", "First Song with Video on MTV"];
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
     const isYN=yesNoKeys.includes(key);
@@ -981,7 +980,7 @@ function restoreSurveyOnLoad() {
 function openModal(cell) {
   currentCell = cell;
   const colH=["Huey Lewis and the News","Elvis Costello","The Police"];
-  const rowH=["Hit Song with 'Love' in the Title","Best Selling Studio Album","First Song with Video on MTV"];
+  const rowH=["Highest Charting U.S. Single","Best Selling Studio Album","First Song with Video on MTV"];
   const key=cell.dataset.row+'-'+cell.dataset.col;
   const isYN=yesNoKeys.includes(key);
   document.getElementById('modalTitle').textContent = colH[parseInt(cell.dataset.col)]+' — '+rowH[parseInt(cell.dataset.row)]+(isYN?' (Yes or No)':'');
