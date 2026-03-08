@@ -593,6 +593,13 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="progress-text" id="postProgressText"></div>
 </div>
 <div class="unlimited-banner" id="postUnlimitedBanner">&#128377;&#65039; UNLIMITED MODE ACTIVATED &#128377;&#65039;</div>
+
+<!-- SURVEY - shown immediately after score -->
+<div id="surveyQuestion" class="survey-question" style="display:none;">
+<h3 id="surveyTitle" style="font-family:'Arial Black',sans-serif; letter-spacing:3px; font-size:1.1em; text-shadow:0 0 20px rgba(255,20,147,0.5); margin-bottom:14px;"></h3>
+<div class="survey-options" id="surveyOptions" style="gap:8px;"></div>
+</div>
+
 <!-- TWO SHARE BUTTONS (quiz11 style) -->
 <div style="display:flex; gap:10px; margin-bottom:10px;">
   <button onclick="shareLink()" style="flex:1; background:#FF1493; color:white; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-size:0.95em; font-weight:bold; box-shadow:0 4px 15px rgba(255,20,147,0.3);">
@@ -607,10 +614,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div id="postNextQuiz">
 <a href="quiz13.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; PLAY QUIZ 13 &#8594; &#127928;</a>
-</div>
-<div id="surveyQuestion" class="survey-question" style="display:none;">
-<h3 id="surveyTitle" style="font-family:'Arial Black',sans-serif; letter-spacing:3px; font-size:1.1em; text-shadow:0 0 20px rgba(255,20,147,0.5); margin-bottom:14px;"></h3>
-<div class="survey-options" id="surveyOptions" style="gap:8px;"></div>
 </div>
 <div class="post-quiz-wrap" id="postWrapBox" style="display:none;">
 <div style="font-size:1.5em; margin-bottom:6px;">&#127926;</div>
@@ -1185,9 +1188,10 @@ const SURVEYS={
   prom:{id:'prom',title:'&#127891; DID YOU GO TO YOUR PROM? &#127891;',options:[{value:'Yes - married prom date',icon:'&#128141;',label:'YES &mdash; AND I LATER MARRIED MY PROM DATE',sub:'',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:8},{value:'Yes - blast',icon:'&#128378;',label:'YES &mdash; HAD AN ABSOLUTE BLAST',sub:'',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:42},{value:'Yes - hated it',icon:'&#128543;',label:'YES &mdash; HATED EVERY SECOND OF IT',sub:'',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:19},{value:'No - not saying',icon:'&#129296;',label:"NO&hellip; AND THAT'S ALL I'M SAYING ABOUT THAT",sub:'',color:'#555',bg:'linear-gradient(135deg,#333,#555)',border:'#777',pct:31}]},
   mall:{id:'mall',title:'&#128722; WHAT WAS YOUR FAVORITE MALL STORE? &#128722;',options:[{value:'Esprit',icon:'&#128084;',label:'ESPRIT',sub:'The colorblock queen of the mall',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:22},{value:'The Limited',icon:'&#128717;',label:'THE LIMITED',sub:'Power suits and shoulder pads',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:31},{value:'Benetton',icon:'&#127757;',label:'BENETTON',sub:'United Colors and bold statements',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:18},{value:'Chess King',icon:'&#9820;',label:'CHESS KING',sub:'Where the cool guys shopped',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:14},{value:'Sam Goody',icon:'&#127925;',label:'SAM GOODY',sub:'Your cassette tape headquarters',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:15}]},
   sat:{id:'sat',title:'&#128221; WHAT DID YOU GET ON YOUR SATs? &#128221;',options:[{value:'Over 1400',icon:'&#127891;',label:'OVER 1400 &mdash; CRUSHED IT',sub:'',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:18},{value:'1000-1399',icon:'&#128218;',label:'1000&ndash;1399 &mdash; SOLID',sub:'',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:39},{value:'800-999',icon:'&#128517;',label:'800&ndash;999 &mdash; GOT IN ANYWAY',sub:'',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:28},{value:'Ask Mr Hand',icon:'&#127940;',label:'ASK MR. HAND&hellip;',sub:'Fast Times reference — you know who you are',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:15}]},
-  coffee:{id:'coffee',title:'&#9749; COFFEE WITH ONE PERSON &mdash; WHO? &#9749;',options:[{value:'Prince',icon:'&#127880;',label:'PRINCE',sub:"If he'd even show up",color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:29},{value:'Madonna',icon:'&#128132;',label:'MADONNA',sub:"She'd do all the talking",color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:24},{value:'Bono',icon:'&#127758;',label:'BONO',sub:'Bring earplugs',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:13},{value:'Sade',icon:'&#127801;',label:'SAD&Eacute;',sub:'The most mysterious conversation ever',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:34}]}
+  coffee:{id:'coffee',title:'&#9749; COFFEE WITH ONE PERSON &mdash; WHO? &#9749;',options:[{value:'Prince',icon:'&#127880;',label:'PRINCE',sub:"If he'd even show up",color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:29},{value:'Madonna',icon:'&#128132;',label:'MADONNA',sub:"She'd do all the talking",color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:24},{value:'Bono',icon:'&#127758;',label:'BONO',sub:'Bring earplugs',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:13},{value:'Sade',icon:'&#127801;',label:'SAD&Eacute;',sub:'The most mysterious conversation ever',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:34}]},
+  generation:{id:'generation',title:'&#127914; WHICH GENERATION CLAIMS YOU? &#127914;',options:[{value:'Boomer',icon:'&#128116;',label:'BOOMER',sub:"I was a grown-up when this played. Still love it!",color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:18},{value:'Gen X',icon:'&#127928;',label:'GEN X',sub:'THIS IS MY MUSIC. I lived every second of it.',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:41},{value:'Millennial',icon:'&#128190;',label:'MILLENNIAL',sub:"I grew up on the tail end. Close enough!",color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:28},{value:'Gen Z',icon:'&#128247;',label:'GEN Z',sub:"I only know this from Stranger Things but I'm obsessed",color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:13}]}
 };
-const SURVEY_ORDER=['tribe','prom','mall','sat','coffee'];
+const SURVEY_ORDER=['tribe','prom','mall','sat','coffee','generation'];
 const SURVEY_DONE_KEY='80sGrid_surveysCompleted';
 const SURVEY_SHOWN_TODAY_KEY='80sGrid_surveyShownDate';
 function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY)||'[]');}catch(e){return[];}}
