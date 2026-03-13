@@ -1439,39 +1439,46 @@ const DEDICATIONS = [
     border: '#4a90d9', accent: '#4a90d9',
     icon: '🏠', label: 'Play With Purpose',
     body: 'This quiz is dedicated to <strong>Family Promise</strong>, a top-rated four-star charity helping homeless families stay together and find home. Play with purpose and support the mission.',
-    link: { url: 'https://familypromise.org', text: 'Visit FamilyPromise.org →', partnerKey: 'Family Promise' }
+    link: { url: 'https://familypromise.org', text: 'Visit FamilyPromise.org →' }
   },
   {
     bg: 'linear-gradient(135deg,#fff0f5,#ffe0ec)',
     border: '#e91e8c', accent: '#e91e8c',
     icon: '🎗️', label: 'Play With Purpose',
     body: "This quiz is dedicated to <strong>Susan G. Komen</strong>, the world's leading breast cancer awareness organization. Play with purpose!",
-    link: { url: 'https://komen.org', text: 'Visit Komen.org →', partnerKey: 'Susan G. Komen' }
+    link: { url: 'https://komen.org', text: 'Visit Komen.org →' }
   },
   {
     bg: 'linear-gradient(135deg,#f0f0ff,#e8e8ff)',
     border: '#5c6bc0', accent: '#5c6bc0',
     icon: '🛑', label: 'Play With Purpose',
     body: "This quiz is dedicated to <strong>STOMP Out Bullying</strong>, a premier four-star charity and the leading national nonprofit working to end digital abuse and school bullying. Let's stand together for kindness!",
-    link: { url: 'https://stompoutbullying.org', text: 'Visit StompOutBullying.org →', partnerKey: 'STOMP Out Bullying' }
+    link: { url: 'https://stompoutbullying.org', text: 'Visit StompOutBullying.org →' }
   },
   {
     bg: 'linear-gradient(135deg,#f0fff4,#e8f5e9)',
     border: '#43a047', accent: '#43a047',
     icon: '💼', label: 'For the Gen X Pros',
     body: "If you're Gen X and need a fresh r&eacute;sum&eacute; or a LinkedIn glow-up, <strong>Donna Serdula and Vision Board Media</strong> are the masters of the rebrand. They don't just polish your profile — they make you look totally choice.",
-    link: { url: 'https://visionboardmedia.com', text: 'Visit VisionBoardMedia.com →', partnerKey: 'Donna Serdula - Vision Board Media' }
+    link: { url: 'https://visionboardmedia.com', text: 'Visit VisionBoardMedia.com →' }
   },
   {
     bg: 'linear-gradient(135deg,#fff8e1,#fff3e0)',
     border: '#ff8f00', accent: '#ff8f00',
     icon: '✈️', label: 'Hit the Road',
     body: "Whether you're a power-suit professional or a road-trip rebel, this one's for you! Dedicated to the legends at <strong>SheBuysTravel.com</strong>. Their travel tips and money-saving strategies are totally choice — don't leave home without 'em!",
-    link: { url: 'https://shebuystravel.com', text: 'Visit SheBuysTravel.com →', partnerKey: 'SheBuysTravel' }
+    link: { url: 'https://shebuystravel.com', text: 'Visit SheBuysTravel.com →' }
   }
 ];
 
-function renderDedicationBox(d) {
+const MASON_JAR = {
+  bg:'linear-gradient(135deg,#fff8f0,#fff0e0)', border:'#f97316', accent:'#f97316',
+  icon:'🍺', label:'Local Sponsor — The Mason Jar NYC',
+  body:'Located in the heart of <strong>NoMad</strong>, <strong>The Mason Jar</strong> is Len\'s home away from home. You may come in as a stranger, but you\'ll leave as a friend. Award-winning wings, 30 craft beers on tap, and the atmosphere is fun and welcoming! Live Sports, Events, Trivia and more. <strong>Open till Midnight daily!</strong>',
+  link:{ url:'https://masonjarny.com/new-york-midtown-mason-jar-nyc-food-menu', text:'Click here to see their super delicious menu \u2192' }
+};
+
+function renderBox(d) {
   const anchor = document.getElementById('dedicationAnchor');
   if (!anchor) return;
   anchor.innerHTML =
@@ -1480,41 +1487,25 @@ function renderDedicationBox(d) {
       '<div>' +
         '<div style="font-size:0.68em; font-weight:900; letter-spacing:2px; color:' + d.accent + '; text-transform:uppercase; margin-bottom:4px;">' + d.label + '</div>' +
         '<div style="font-size:0.88em; color:#111; line-height:1.6;">' + d.body + '</div>' +
-        (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" onclick="trackDedicationClick(\'' + d.link.partnerKey + '\',18)" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
+        (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
       '</div>' +
     '</div>';
 }
 
-const MASON_JAR_DEDICATION = {
-  bg: 'linear-gradient(135deg,#fff8f0,#fff0e0)',
-  border: '#f97316', accent: '#f97316',
-  icon: '🍺', label: 'Local Sponsor — The Mason Jar NYC',
-  body: 'Located in the heart of <strong>NoMad</strong>, <strong>The Mason Jar</strong> is Len\'s home away from home. You may come in as a stranger, but you\'ll leave as a friend. Award-winning wings, 30 craft beers on tap, and the atmosphere is fun and welcoming! Live Sports, Events, Trivia and more. <strong>Open till Midnight daily!</strong>',
-  link: { url: 'https://masonjarny.com/new-york-midtown-mason-jar-nyc-food-menu', text: 'Click here to see their super delicious menu \u2192', partnerKey: 'The Mason Jar NYC' }
-};
-
 function initDedicationBox() {
-  const LOCAL_STATES = ['New York','New Jersey','Connecticut'];
   fetch('https://ipapi.co/json/')
     .then(function(r){ return r.json(); })
     .then(function(data){
-      if (LOCAL_STATES.indexOf(data.region || '') !== -1) {
-        renderDedicationBox(MASON_JAR_DEDICATION);
-        if (typeof gtag !== 'undefined') gtag('event','sponsor_impression',{partner:'The Mason Jar NYC',user_region:data.region,quiz_number:18});
+      var local = ['New York','New Jersey','Connecticut'];
+      if (local.indexOf(data.region || '') !== -1) {
+        renderBox(MASON_JAR);
       } else {
-        const d = DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)];
-        renderDedicationBox(d);
-        if (d.link && typeof gtag !== 'undefined') gtag('event','sponsor_impression',{partner:d.link.partnerKey||d.label,user_region:data.region||'unknown',quiz_number:18});
+        renderBox(DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)]);
       }
     })
     .catch(function(){
-      // Geo failed — fall back to random rotation
-      renderDedicationBox(DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)]);
+      renderBox(DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)]);
     });
-}
-
-function trackDedicationClick(partnerName, quizNum) {
-  if (typeof gtag !== 'undefined') gtag('event','dedication_click',{partner:partnerName,quiz_number:quizNum,event_category:'dedication_box'});
 }
 
 /* ===== FEEDBACK ===== */
