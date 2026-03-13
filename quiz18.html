@@ -575,16 +575,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 <!-- DEDICATION BOX - randomly rotated on every page load -->
 <div id="dedicationAnchor"></div>
-
-<!-- GEO-TARGETED SPONSOR BOX — one sponsor shown, geo-selected -->
-<div id="geoSponsorBox" style="display:flex; align-items:flex-start; gap:14px; background:#fff; border:2px solid #667eea; border-radius:12px; padding:16px 18px; margin-bottom:20px; box-shadow:0 2px 12px rgba(102,126,234,0.15);">
-  <a id="geoSponsorLogoLink" href="#" target="_blank" rel="noopener" style="flex-shrink:0; width:52px; height:52px; background:#f5f5f5; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.6em; text-decoration:none; border:1px solid #ddd;">♪</a>
-  <div style="flex:1;">
-    <div id="geoSponsorLabel" style="font-size:0.7em; font-weight:700; color:#667eea; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px;">🎵 SPONSORED BY VINYLBAY777</div>
-    <div id="geoSponsorText" style="font-size:0.9em; color:#333; line-height:1.5; margin-bottom:8px;">Looking for <strong>Journey, Foreigner &amp; REO Speedwagon</strong> vinyl, CDs or collectibles? <strong>VinylBay777</strong> has it all — Your #1 source for 80s vinyl, CDs &amp; collectibles.</div>
-    <div id="geoSponsorSub"><a href="https://vinylbay777.com" target="_blank" rel="noopener" style="color:#667eea; font-size:0.88em; font-weight:600; text-decoration:none;">Shop Journey, Foreigner &amp; REO Speedwagon on VinylBay777.com →</a></div>
-  </div>
-</div>
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
 <div class="post-quiz-progress" id="postQuizProgress">
@@ -1449,113 +1439,83 @@ const DEDICATIONS = [
     border: '#4a90d9', accent: '#4a90d9',
     icon: '🏠', label: 'Play With Purpose',
     body: 'This quiz is dedicated to <strong>Family Promise</strong>, a top-rated four-star charity helping homeless families stay together and find home. Play with purpose and support the mission.',
-    link: { url: 'https://familypromise.org', text: 'Visit FamilyPromise.org →' }
+    link: { url: 'https://familypromise.org', text: 'Visit FamilyPromise.org →', partnerKey: 'Family Promise' }
   },
   {
     bg: 'linear-gradient(135deg,#fff0f5,#ffe0ec)',
     border: '#e91e8c', accent: '#e91e8c',
     icon: '🎗️', label: 'Play With Purpose',
     body: "This quiz is dedicated to <strong>Susan G. Komen</strong>, the world's leading breast cancer awareness organization. Play with purpose!",
-    link: { url: 'https://komen.org', text: 'Visit Komen.org →' }
+    link: { url: 'https://komen.org', text: 'Visit Komen.org →', partnerKey: 'Susan G. Komen' }
   },
   {
     bg: 'linear-gradient(135deg,#f0f0ff,#e8e8ff)',
     border: '#5c6bc0', accent: '#5c6bc0',
     icon: '🛑', label: 'Play With Purpose',
     body: "This quiz is dedicated to <strong>STOMP Out Bullying</strong>, a premier four-star charity and the leading national nonprofit working to end digital abuse and school bullying. Let's stand together for kindness!",
-    link: { url: 'https://stompoutbullying.org', text: 'Visit StompOutBullying.org →' }
+    link: { url: 'https://stompoutbullying.org', text: 'Visit StompOutBullying.org →', partnerKey: 'STOMP Out Bullying' }
   },
   {
     bg: 'linear-gradient(135deg,#f0fff4,#e8f5e9)',
     border: '#43a047', accent: '#43a047',
     icon: '💼', label: 'For the Gen X Pros',
     body: "If you're Gen X and need a fresh r&eacute;sum&eacute; or a LinkedIn glow-up, <strong>Donna Serdula and Vision Board Media</strong> are the masters of the rebrand. They don't just polish your profile — they make you look totally choice.",
-    link: { url: 'https://visionboardmedia.com', text: 'Visit VisionBoardMedia.com →' }
+    link: { url: 'https://visionboardmedia.com', text: 'Visit VisionBoardMedia.com →', partnerKey: 'Donna Serdula - Vision Board Media' }
   },
   {
     bg: 'linear-gradient(135deg,#fff8e1,#fff3e0)',
     border: '#ff8f00', accent: '#ff8f00',
     icon: '✈️', label: 'Hit the Road',
     body: "Whether you're a power-suit professional or a road-trip rebel, this one's for you! Dedicated to the legends at <strong>SheBuysTravel.com</strong>. Their travel tips and money-saving strategies are totally choice — don't leave home without 'em!",
-    link: { url: 'https://shebuystravel.com', text: 'Visit SheBuysTravel.com →' }
+    link: { url: 'https://shebuystravel.com', text: 'Visit SheBuysTravel.com →', partnerKey: 'SheBuysTravel' }
   }
 ];
 
-function initDedicationBox() {
+function renderDedicationBox(d) {
   const anchor = document.getElementById('dedicationAnchor');
   if (!anchor) return;
-  const d = DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)];
   anchor.innerHTML =
     '<div style="background:' + d.bg + '; border:2px solid ' + d.border + '; border-left:5px solid ' + d.accent + '; border-radius:10px; padding:14px 16px; margin-bottom:20px; display:flex; align-items:flex-start; gap:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">' +
       '<span style="font-size:1.8em; flex-shrink:0; line-height:1.2;">' + d.icon + '</span>' +
       '<div>' +
         '<div style="font-size:0.68em; font-weight:900; letter-spacing:2px; color:' + d.accent + '; text-transform:uppercase; margin-bottom:4px;">' + d.label + '</div>' +
         '<div style="font-size:0.88em; color:#111; line-height:1.6;">' + d.body + '</div>' +
-        (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
+        (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" onclick="trackDedicationClick(\'' + d.link.partnerKey + '\',18)" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
       '</div>' +
     '</div>';
 }
 
-/* ===== GEO-TARGETED SPONSOR BOX ===== */
-(function(){
-  var LOCAL=['New York','New Jersey','Connecticut'];
-  var MASON={
-    label:'🍺 LOCAL SPONSOR — THE MASON JAR NYC', emoji:'🍺',
-    logoHref:'https://masonjarny.com', borderColor:'#f97316',
-    text:'Located in the heart of <strong>NoMad</strong>, <strong>The Mason Jar</strong> is Len\'s home away from home. You may come in as a stranger, but you\'ll leave as a friend. Award-winning wings, 30 craft beers on tap, and the atmosphere is fun and welcoming! Live Sports, Events, Trivia and more. <strong>Open till Midnight daily!</strong>',
-    linkText:'Click here to see their super delicious menu \u2192',
-    linkHref:'https://masonjarny.com/new-york-midtown-mason-jar-nyc-food-menu',
-    partnerKey:'The Mason Jar NYC'
-  };
-  var NATIONAL=[
-    {label:'🎵 SPONSORED BY VINYLBAY777', emoji:'♪', logoHref:'https://vinylbay777.com', borderColor:'#667eea',
-     text:'Looking for <strong>Journey, Foreigner &amp; REO Speedwagon</strong> vinyl, CDs or collectibles? <strong>VinylBay777</strong> has it all \u2014 Your #1 source for 80s vinyl, CDs &amp; collectibles.',
-     linkText:'Shop Journey, Foreigner &amp; REO Speedwagon on VinylBay777.com \u2192', linkHref:'https://vinylbay777.com', partnerKey:'VinylBay777'},
-    {label:'\u2708\ufe0f HIT THE ROAD', emoji:'\u2708\ufe0f', logoHref:'https://shebuystravel.com', borderColor:'#ff8f00',
-     text:'Whether you\'re a power-suit professional or a road-trip rebel, this one\'s for you! Dedicated to the legends at <strong>SheBuysTravel.com</strong> \u2014 their travel tips and money-saving strategies are totally choice!',
-     linkText:'Visit SheBuysTravel.com \u2192', linkHref:'https://shebuystravel.com', partnerKey:'SheBuysTravel'},
-    {label:'\ud83d\udcbc FOR THE GEN X PROS', emoji:'\ud83d\udcbc', logoHref:'https://visionboardmedia.com', borderColor:'#43a047',
-     text:'Need a fresh r\u00e9sum\u00e9 or LinkedIn glow-up? <strong>Donna Serdula and Vision Board Media</strong> are the masters of the Gen X rebrand. They don\'t just polish your profile \u2014 they make you look totally choice.',
-     linkText:'Visit VisionBoardMedia.com \u2192', linkHref:'https://visionboardmedia.com', partnerKey:'Donna Serdula - Vision Board Media'},
-    {label:'\ud83c\udfe0 PLAY WITH PURPOSE', emoji:'\ud83c\udfe0', logoHref:'https://familypromise.org', borderColor:'#4a90d9',
-     text:'This quiz is dedicated to <strong>Family Promise</strong>, a top-rated four-star charity helping homeless families stay together and find home. Play with purpose!',
-     linkText:'Visit FamilyPromise.org \u2192', linkHref:'https://familypromise.org', partnerKey:'Family Promise'},
-    {label:'\ud83c\udf97\ufe0f PLAY WITH PURPOSE', emoji:'\ud83c\udf97\ufe0f', logoHref:'https://komen.org', borderColor:'#e91e8c',
-     text:'This quiz is dedicated to <strong>Susan G. Komen</strong>, the world\'s leading breast cancer awareness organization. Play with purpose!',
-     linkText:'Visit Komen.org \u2192', linkHref:'https://komen.org', partnerKey:'Susan G. Komen'},
-    {label:'\ud83d\uded1 PLAY WITH PURPOSE', emoji:'\ud83d\uded1', logoHref:'https://stompoutbullying.org', borderColor:'#5c6bc0',
-     text:'This quiz is dedicated to <strong>STOMP Out Bullying</strong>, the leading national nonprofit working to end digital abuse and school bullying. Let\'s stand together for kindness!',
-     linkText:'Visit StompOutBullying.org \u2192', linkHref:'https://stompoutbullying.org', partnerKey:'STOMP Out Bullying'}
-  ];
-  function applyS(s){
-    var b=document.getElementById('geoSponsorBox');
-    var ll=document.getElementById('geoSponsorLogoLink');
-    var lb=document.getElementById('geoSponsorLabel');
-    var tx=document.getElementById('geoSponsorText');
-    var sb=document.getElementById('geoSponsorSub');
-    if(!b)return;
-    b.style.borderColor=s.borderColor;
-    ll.href=s.logoHref; ll.textContent=s.emoji;
-    ll.onclick=function(){trackSponsorClick(s.partnerKey,18);};
-    lb.textContent=s.label; lb.style.color=s.borderColor;
-    tx.innerHTML=s.text;
-    sb.innerHTML='<a href="'+s.linkHref+'" target="_blank" rel="noopener" style="color:'+s.borderColor+';font-size:0.88em;font-weight:600;text-decoration:none;" onclick="trackSponsorClick(\''+s.partnerKey.replace(/'/g,"\\'")+"',18)\">"+s.linkText+'</a>';
-    if(typeof gtag!=='undefined')gtag('event','sponsor_impression',{partner:s.partnerKey,quiz_number:18});
-  }
-  function init(){
-    fetch('https://ipapi.co/json/')
-      .then(function(r){return r.json();})
-      .then(function(d){
-        applyS(LOCAL.indexOf(d.region||'')!==-1 ? MASON : NATIONAL[Math.floor(Math.random()*NATIONAL.length)]);
-      })
-      .catch(function(){
-        applyS(NATIONAL[0]); // VinylBay fallback
-      });
-  }
-  document.readyState==='loading' ? document.addEventListener('DOMContentLoaded',init) : init();
-})();
-function trackSponsorClick(p,q){if(typeof gtag!=='undefined')gtag('event','sponsor_click',{partner:p,quiz_number:q,event_category:'sponsor_box'});}
-function trackDedicationClick(p,q){if(typeof gtag!=='undefined')gtag('event','dedication_click',{partner:p,quiz_number:q,event_category:'dedication_box'});}
+const MASON_JAR_DEDICATION = {
+  bg: 'linear-gradient(135deg,#fff8f0,#fff0e0)',
+  border: '#f97316', accent: '#f97316',
+  icon: '🍺', label: 'Local Sponsor — The Mason Jar NYC',
+  body: 'Located in the heart of <strong>NoMad</strong>, <strong>The Mason Jar</strong> is Len\'s home away from home. You may come in as a stranger, but you\'ll leave as a friend. Award-winning wings, 30 craft beers on tap, and the atmosphere is fun and welcoming! Live Sports, Events, Trivia and more. <strong>Open till Midnight daily!</strong>',
+  link: { url: 'https://masonjarny.com/new-york-midtown-mason-jar-nyc-food-menu', text: 'Click here to see their super delicious menu \u2192', partnerKey: 'The Mason Jar NYC' }
+};
+
+function initDedicationBox() {
+  const LOCAL_STATES = ['New York','New Jersey','Connecticut'];
+  fetch('https://ipapi.co/json/')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (LOCAL_STATES.indexOf(data.region || '') !== -1) {
+        renderDedicationBox(MASON_JAR_DEDICATION);
+        if (typeof gtag !== 'undefined') gtag('event','sponsor_impression',{partner:'The Mason Jar NYC',user_region:data.region,quiz_number:18});
+      } else {
+        const d = DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)];
+        renderDedicationBox(d);
+        if (d.link && typeof gtag !== 'undefined') gtag('event','sponsor_impression',{partner:d.link.partnerKey||d.label,user_region:data.region||'unknown',quiz_number:18});
+      }
+    })
+    .catch(function(){
+      // Geo failed — fall back to random rotation
+      renderDedicationBox(DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)]);
+    });
+}
+
+function trackDedicationClick(partnerName, quizNum) {
+  if (typeof gtag !== 'undefined') gtag('event','dedication_click',{partner:partnerName,quiz_number:quizNum,event_category:'dedication_box'});
+}
 
 /* ===== FEEDBACK ===== */
 function openFeedback(){document.getElementById('feedbackOverlay').classList.add('active');document.getElementById('feedbackForm').style.display='block';document.getElementById('feedbackSuccess').style.display='none';feedbackRating=0;updateStars(0);document.getElementById('feedbackText').value='';}
