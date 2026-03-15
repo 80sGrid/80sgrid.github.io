@@ -268,8 +268,9 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .badge-stars { font-size:1.5em; color:var(--badge-color); letter-spacing:2px; }
 .badge-desc { font-size:0.75em; color:#888; font-style:italic; margin-top:2px; }
 .footnote-box { background:#f8f0ff; border-left:4px solid #8B00FF; padding:14px 16px; border-radius:8px; margin-bottom:20px; font-size:0.85em; line-height:1.7; color:#444; }
-.footnote-box strong { color:#6a0dad; display:block; margin-bottom:6px; font-size:1em; }
-.footnote-box li { margin-left:16px; margin-bottom:4px; }
+.footnote-box strong { color:#6a0dad; display:inline; margin-bottom:0; font-size:1em; }
+.footnote-box ul { margin-top:6px; padding-left:1.8em; }
+.footnote-box li { margin-left:0; margin-bottom:4px; }
 .yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
 .yn-toast.show { opacity:1; }
 .post-quiz-progress { background:linear-gradient(135deg,#f0f0ff,#fff0f8); border:2px solid rgba(102,126,234,0.3); border-radius:12px; padding:16px 20px; margin:20px 0; text-align:center; }
@@ -1500,13 +1501,10 @@ function initDedicationBox() {
   if (!anchor) return;
   const d = DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)];
   anchor.innerHTML =
-    '<div style="background:' + d.bg + '; border:2px solid ' + d.border + '; border-left:5px solid ' + d.accent + '; border-radius:10px; padding:14px 16px; margin-bottom:20px; display:flex; align-items:flex-start; gap:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">' +
-      '<span style="font-size:1.8em; flex-shrink:0; line-height:1.2;">' + d.icon + '</span>' +
-      '<div>' +
-        '<div style="font-size:0.68em; font-weight:900; letter-spacing:2px; color:' + d.accent + '; text-transform:uppercase; margin-bottom:4px;">' + d.label + '</div>' +
-        '<div style="font-size:0.88em; color:#111; line-height:1.6;">' + d.body + '</div>' +
-        (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
-      '</div>' +
+    '<div style="background:' + d.bg + '; border:2px solid ' + d.border + '; border-left:5px solid ' + d.accent + '; border-radius:10px; padding:12px 16px; margin-bottom:20px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">' +
+      '<div style="font-size:0.68em; font-weight:900; letter-spacing:2px; color:' + d.accent + '; text-transform:uppercase; margin-bottom:4px;">' + d.icon + ' &nbsp;' + d.label + '</div>' +
+      '<div style="font-size:0.88em; color:#111; line-height:1.6;">' + d.body + '</div>' +
+      (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
     '</div>';
 }
 
