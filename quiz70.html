@@ -40,7 +40,7 @@ width: 100%;
 box-sizing: border-box;
 }
 .logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; object-fit:cover; object-position:center top; }
-@media (max-width: 540px) { .logo-img { max-height:110px; } }
+@media (max-width: 540px) { .logo-img { max-height:110px; content:url('moblle80s.jpg'); object-position:center center; } }
 .tagline-sub {
 text-align: center;
 font-family: 'Georgia', serif;
@@ -132,7 +132,7 @@ hyphens: auto;
 .header.col-header:nth-child(2) { background:linear-gradient(135deg,#FF1493,#FF69B4); box-shadow:0 0 15px rgba(255,20,147,.6); border:2px solid #FF1493; }
 .header.col-header:nth-child(3) { background:linear-gradient(135deg,#00CED1,#1E90FF); box-shadow:0 0 15px rgba(0,206,209,.6); border:2px solid #00CED1; }
 .header.col-header:nth-child(4) { background:linear-gradient(135deg,#FFD700,#FFA500); box-shadow:0 0 15px rgba(255,215,0,.6); border:2px solid #FFD700; color:#000; font-weight:900; }
-.header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; }
+.header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; font-size:0.88em; }
 .col-header { grid-row: 1; }
 .row-header { grid-column: 1; }
 .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
@@ -304,6 +304,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:none; }
 .grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
 .header { font-size:.82em; padding:6px; }
+.header.row-header { font-size:.75em; }
 .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
 .leaderboard-scores-wrap { margin-top:100px; }
 }
