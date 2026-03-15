@@ -39,7 +39,8 @@ max-width: 700px;
 width: 100%;
 box-sizing: border-box;
 }
-.logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; }
+.logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; object-fit:cover; object-position:center top; }
+@media (max-width: 540px) { .logo-img { max-height:110px; } }
 .tagline-sub {
 text-align: center;
 font-family: 'Georgia', serif;
@@ -224,7 +225,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
 .lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
 .lifeline-pips { display:flex; gap:5px; }
-.lifeline-pip { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#FF1493,#8B00FF); box-shadow:0 0 8px rgba(255,20,147,0.5); display:flex; align-items:center; justify-content:center; font-size:1em; transition:all 0.3s; }
+.lifeline-pip { width:28px; height:28px; border-radius:50%; background:none; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:1.3em; transition:all 0.3s; }
 .lifeline-pip.used { background:#dee2e6; box-shadow:none; }
 .lifeline-count { font-size:0.82em; color:#888; font-style:italic; }
 .lifeline-count.empty { color:#dc3545; font-weight:bold; font-style:normal; }
@@ -504,14 +505,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
   <div class="tagline-line"></div>
 </div>
-<div class="how-to-play">
-<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()">
-  <span>How to Play</span><span id="htpArrow">▾</span>
-</button>
-<div class="htp-body" id="htpBody">
-Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!
-</div>
-</div>
+
 <div class="group-tabs" id="groupTabs"></div>
 <div class="quiz-grid-nav" id="quizGridNav"></div>
 <div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
@@ -538,13 +532,21 @@ Match the artist (column) with the category (row). Click any box to type your an
 </div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
 <div class="subtitle">Quiz 70</div>
-<div style="text-align:center; margin-top:-15px; margin-bottom:14px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Bon Jovi, U2 &amp; Sting</div>
+<div style="text-align:center; margin-top:6px; margin-bottom:14px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Bon Jovi, U2 &amp; Sting</div>
 <div class="difficulty-badge" style="--badge-color:#28a745; --badge-glow:rgba(40,167,69,0.5);">
 <div class="badge-stars">&#9733;&#9734;&#9734;&#9734;&#9734;</div>
 <div class="badge-left">
 <div class="badge-label">Difficulty: EASY</div>
 <div class="badge-score">Difficulty Score: 3/10</div>
 <div class="badge-desc">80s legends who kept the hits coming well past 1995</div>
+</div>
+</div>
+<div class="how-to-play">
+<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()">
+  <span>How to Play</span><span id="htpArrow">▾</span>
+</button>
+<div class="htp-body" id="htpBody">
+Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!
 </div>
 </div>
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
@@ -795,7 +797,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['livin on a prayer','you give love a bad name','wanted dead or alive'],'0-1':['with or without you','where the streets have no name','i still havent found what im looking for','one'],'0-2':['every breath you take','roxanne','message in a bottle','dont stand so close to me'],'1-0':["its my life",'always','thank you for loving me','have a nice day'],'1-1':['beautiful day','vertigo','one','stuck in a moment you cant get out of'],'1-2':['desert rose','fields of gold','if you love somebody set them free','englishman in new york'],'2-0':['usa','united states','new jersey'],'2-1':['ireland','irish','republic of ireland','dublin'],'2-2':['england','uk','newcastle']};
 const mcOptions = {'0-0':["Livin' on a Prayer",'You Give Love a Bad Name','Wanted Dead or Alive'],'0-1':['With or Without You','Where the Streets Have No Name',"I Still Haven't Found What I'm Looking For"],'0-2':['Every Breath You Take','Roxanne',"Don't Stand So Close to Me"],'1-0':["It's My Life",'Always','Have a Nice Day'],'1-1':['Beautiful Day','Vertigo',"Stuck in a Moment"],'1-2':['Desert Rose','Fields of Gold','Englishman in New York'],'2-0':['USA','England','Ireland'],'2-1':['Ireland','England','USA'],'2-2':['England','USA','Ireland']};
