@@ -1,0 +1,2285 @@
+80sGrid Update Script — 2026-03-15 20:06:19
+============================================================
+
+[index.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[MISSING] quiz1.html — file not found, skipping
+
+[quiz2.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz3.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz4.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz5.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz6.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz7.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz8.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz9.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz10.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz11.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✗ SKIPPED (not found): Remove Brag Score button from share row
+  ✗ SKIPPED (not found): Remove TikTok icon from share row
+  ✗ SKIPPED (not found): Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✗ SKIPPED (not found): Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz12.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz13.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz14.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz15.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz16.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz17.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz18.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz19.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz20.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz21.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz22.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz23.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz24.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz25.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz26.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz27.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz28.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz29.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz30.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz31.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz32.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz33.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz34.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz35.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz36.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz37.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz38.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz39.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz40.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz41.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz42.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz43.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz44.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz45.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz46.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz47.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz48.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz49.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz50.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz51.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz52.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz53.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz54.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz55.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz56.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz57.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz58.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz59.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz60.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz61.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz62.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz63.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz64.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz65.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz66.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz67.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz68.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+[quiz69.html]
+  ✓ Add Oxanium font link
+  ✓ Replace subtitle CSS — Oxanium, no text-shadow, no 3D transform
+  ✓ Replace logo-img CSS — full width, object-fit cover
+  ✓ Replace tagline-sub CSS — add flanking lines support
+  ✓ Replace how-to-play CSS — collapsible styles
+  ✓ Update header base font size
+  ✓ Update row-header font size
+  ✓ Update mobile header font size override
+  ✓ Remove mobile subtitle text-shadow
+  ✓ Update badge-label CSS — lighter, no caps
+  ✓ Remove lifeline pip background/glow
+  ✓ Update footnote-box CSS — inline Notes label
+  ✓ Fix body align-items — center to flex-start
+  ✓ Add mobile media query — image swap, body min-height fix
+  ✓ Replace img tag with picture element for mobile image swap
+  ✓ Replace tagline HTML — add flanking lines
+  ✓ Replace How to Play HTML — collapsible toggle
+  ✓ Remove Brag Score button from share row
+  ✓ Remove TikTok icon from share row
+  ✓ Remove X/Twitter icon from share row
+  ✓ Replace dartboard with life preserver in lifeline label
+  ✓ Replace dartboard pips with life preserver pips
+  ✓ Update initDedicationBox — inline icon
+  ✓ Removed difficulty badge from above subtitle
+  ✓ Updated badge to two-line format
+  ✓ Inserted difficulty badge below artist names with divider
+  ✓ Removed How to Play from above nav grid
+  ✓ Inserted How to Play below difficulty badge
+  ✓ Consolidated stats row
+  ✓ Added thin divider after share row
+  → UPDATED
+
+============================================================
+SUMMARY: 69 updated, 1 skipped (missing), 0 unchanged
+Output files are in: ./output/
+Review a few files before uploading to GitHub!

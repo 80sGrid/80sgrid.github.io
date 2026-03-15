@@ -16,12 +16,13 @@
 <meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 66">
 <meta property="twitter:description" content="Match Van Halen, Def Leppard, and AC/DC to singers, albums, and Hall of Fame status">
 <meta property="twitter:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap" rel="stylesheet">
 <style>
 body {
 font-family: Arial, sans-serif;
 display: flex;
 justify-content: center;
-align-items: center;
+align-items: flex-start;
 min-height: 100vh;
 margin: 0;
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -38,39 +39,77 @@ max-width: 700px;
 width: 100%;
 box-sizing: border-box;
 }
-.logo-img { display:block; margin:0 auto 10px; max-width:100%; height:auto; }
+.logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
+@media (max-width: 540px) {
+  body { min-height: unset; height: auto; align-items: flex-start; }
+  .logo-img { max-height:110px; object-position:center bottom; }
+}
 .tagline-sub {
 text-align: center;
 font-family: 'Georgia', serif;
-font-size: 1.4em;
+font-size: 1.05em;
 font-style: italic;
 color: #6a0dad;
-letter-spacing: 2px;
-margin: 0 0 20px;
-text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+letter-spacing: 1px;
+margin: 0;
+}
+.tagline-wrap {
+display: flex;
+align-items: center;
+gap: 10px;
+margin: 0 0 12px;
+}
+.tagline-line {
+flex: 1;
+height: 1px;
+background: #c084fc;
+opacity: 0.5;
 }
 .subtitle {
 text-align: center;
-margin-bottom: 30px;
-font-size: 4.5em;
-font-weight: bold;
+margin-bottom: 8px;
+font-size: 2.8em;
+font-weight: 700;
 color: #ff006e;
-text-shadow: 3px 3px 0px #fb5607, 6px 6px 0px #ffbe0b, 9px 9px 0px #8338ec, 12px 12px 0px #3a86ff;
-font-family: 'Arial Black', sans-serif;
-letter-spacing: 5px;
-transform: perspective(500px) rotateX(5deg);
+font-family: 'Oxanium', sans-serif;
+letter-spacing: 3px;
+transform: none;
+text-shadow: none;
 }
 .how-to-play {
 background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
-padding: 20px;
+padding: 0;
 border-radius: 12px;
-margin-bottom: 20px;
+margin-bottom: 16px;
 color: white;
 box-shadow: 0 0 20px rgba(255,20,147,.4);
 border: 3px solid rgba(255,255,255,.3);
+overflow: hidden;
 }
-.how-to-play h2 { text-align:center; margin-top:0; margin-bottom:10px; font-size:1.5em; text-shadow:2px 2px 4px rgba(0,0,0,.5); }
-.how-to-play p { margin:0; line-height:1.6; text-shadow:1px 1px 2px rgba(0,0,0,.5); }
+.htp-toggle-btn {
+width: 100%;
+background: none;
+border: none;
+color: white;
+font-weight: bold;
+font-size: 1.1em;
+padding: 14px 18px;
+text-align: left;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-family: Arial, sans-serif;
+}
+.htp-toggle-btn:hover { opacity: 0.9; }
+.htp-body {
+display: none;
+padding: 0 20px 16px;
+line-height: 1.6;
+font-size: 0.97em;
+text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+}
+.htp-body.open { display: block; }
 .grid {
 display: grid;
 grid-template-columns: 100px repeat(3, 1fr);
@@ -88,15 +127,15 @@ text-align: center;
 padding: 8px;
 border-radius: 8px;
 font-weight: bold;
-font-size: 0.85em;
-line-height: 1.2;
+font-size: 1em;
+line-height: 1.3;
 word-wrap: break-word;
 hyphens: auto;
 }
 .header.col-header:nth-child(2) { background:linear-gradient(135deg,#FF1493,#FF69B4); box-shadow:0 0 15px rgba(255,20,147,.6); border:2px solid #FF1493; }
 .header.col-header:nth-child(3) { background:linear-gradient(135deg,#00CED1,#1E90FF); box-shadow:0 0 15px rgba(0,206,209,.6); border:2px solid #00CED1; }
 .header.col-header:nth-child(4) { background:linear-gradient(135deg,#FFD700,#FFA500); box-shadow:0 0 15px rgba(255,215,0,.6); border:2px solid #FFD700; color:#000; font-weight:900; }
-.header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; }
+.header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; font-size:0.88em; }
 .col-header { grid-row: 1; }
 .row-header { grid-column: 1; }
 .cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
@@ -190,7 +229,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
 .lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
 .lifeline-pips { display:flex; gap:5px; }
-.lifeline-pip { width:24px; height:24px; border-radius:50%; background:linear-gradient(135deg,#FF1493,#8B00FF); box-shadow:0 0 8px rgba(255,20,147,0.5); display:flex; align-items:center; justify-content:center; font-size:0.75em; transition:all 0.3s; }
+.lifeline-pip { width:28px; height:28px; border-radius:50%; background:none; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:1.3em; transition:all 0.3s; }
 .lifeline-pip.used { background:#dee2e6; box-shadow:none; }
 .lifeline-count { font-size:0.82em; color:#888; font-style:italic; }
 .lifeline-count.empty { color:#dc3545; font-weight:bold; font-style:normal; }
@@ -227,13 +266,14 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .nav-replay-note { text-align:center; font-size:0.72em; color:#888; font-style:italic; margin-bottom:14px; line-height:1.4; }
 .difficulty-badge { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 20px; padding:14px 20px; border-radius:12px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 20px var(--badge-glow); }
 .badge-left { text-align:left; }
-.badge-label { font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:2px; color:var(--badge-color); text-transform:uppercase; }
+.badge-label { font-size:0.95em; font-weight:bold; color:var(--badge-color); }
 .badge-score { font-size:0.8em; color:#666; font-weight:bold; margin-top:2px; }
 .badge-stars { font-size:1.5em; color:var(--badge-color); letter-spacing:2px; }
 .badge-desc { font-size:0.75em; color:#888; font-style:italic; margin-top:2px; }
 .footnote-box { background:#f8f0ff; border-left:4px solid #8B00FF; padding:14px 16px; border-radius:8px; margin-bottom:20px; font-size:0.85em; line-height:1.7; color:#444; }
-.footnote-box strong { color:#6a0dad; display:block; margin-bottom:6px; font-size:1em; }
-.footnote-box li { margin-left:16px; margin-bottom:4px; }
+.footnote-box strong { color:#6a0dad; display:inline; margin-bottom:0; font-size:1em; }
+.footnote-box ul { margin-top:6px; padding-left:1.8em; }
+.footnote-box li { margin-left:0; margin-bottom:4px; }
 .yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
 .yn-toast.show { opacity:1; }
 .post-quiz-progress { background:linear-gradient(135deg,#f0f0ff,#fff0f8); border:2px solid rgba(102,126,234,0.3); border-radius:12px; padding:16px 20px; margin:20px 0; text-align:center; }
@@ -265,9 +305,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .unlimited-banner { background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:10px; padding:14px 20px; margin:15px 0; text-align:center; font-family:'Arial Black',sans-serif; font-size:1em; color:#000; letter-spacing:2px; box-shadow:0 0 20px rgba(255,215,0,0.5); display:none; }
 @media (max-width:768px) {
 .container { padding:15px; }
-.subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:2px 2px 0px #fb5607,4px 4px 0px #ffbe0b,6px 6px 0px #8338ec,8px 8px 0px #3a86ff; }
+.subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:none; }
 .grid { grid-template-columns:80px repeat(3,1fr); grid-template-rows:60px repeat(3,100px); gap:6px; }
-.header { font-size:.65em; padding:6px; }
+.header { font-size:.82em; padding:6px; }
+.header.row-header { font-size:.75em; }
 .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
 .leaderboard-scores-wrap { margin-top:100px; }
 }
@@ -455,7 +496,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 
 <div class="container">
-<img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img">
+<picture style="display:block; width:100%; margin-bottom:10px;">
+  <source media="(max-width: 540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/moblle80s.jpg">
+  <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0;">
+</picture>
 <div class="mini-nav">
   <a href="about.html">About</a>
   <span>|</span>
@@ -465,10 +509,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <span>|</span>
   <a href="#" onclick="openFeedback(); return false;">Feedback</a>
 </div>
-<div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
-<div class="how-to-play">
-<h2>How to Play</h2>
-<p>Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</p>
+<div class="tagline-wrap">
+  <div class="tagline-line"></div>
+  <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+  <div class="tagline-line"></div>
 </div>
 <div class="group-tabs" id="groupTabs"></div>
 <div class="quiz-grid-nav" id="quizGridNav"></div>
@@ -495,31 +539,32 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </div>
 </div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
+<div class="subtitle">Quiz 66</div>
+<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Prince, Nena & Tommy Tutone</div>
 <div class="difficulty-badge" style="--badge-color:#28a745; --badge-glow:rgba(40,167,69,0.5);">
 <div class="badge-stars">&#9733;&#9734;&#9734;&#9734;&#9734;</div>
 <div class="badge-left">
-<div class="badge-label">Difficulty: EASY</div>
-<div class="badge-score">Difficulty Score: 3/10</div>
+<div class="badge-label">Score: 3/10 — Easy</div>
 <div class="badge-desc">Songs with a number in the title — can you name the digits?</div>
 </div>
 </div>
-<div class="subtitle">Quiz 66</div>
-<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Prince, Nena & Tommy Tutone</div>
-<div style="text-align:center; margin-bottom:15px;">
-<div style="margin-bottom:8px;">
-<span id="playsCounter" style="color:#667eea; font-weight:bold; font-size:.9em;">&#127918; Loading plays...</span>
+<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
+<div class="how-to-play">
+<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
+<div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</div>
 </div>
-<div>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">🏆 Leaderboard</a>
-<span style="margin:0 8px; color:#ccc;">|</span>
-<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em;">&#128202; My Stats</a>
-</div>
+
+<div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
+<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
+<span style="color:#ccc;">·</span>
+<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
+<span style="color:#ccc;">·</span>
+<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
 </div>
 
 <!-- PERSISTENT SHARE + SOCIAL ROW -->
 <div id="persistentShareRow" style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:0 0 18px; padding:10px 14px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border-radius:12px; border:1px solid #e8d5f5;">
   <button onclick="persistentShareQuiz()" style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.78em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
-  <button onclick="persistentBragScore()" style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:20px;font-size:0.78em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#127942; Brag Score</button>
   <span style="color:#ddd; font-size:0.9em; margin:0 2px;">|</span>
   <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -527,12 +572,8 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <a href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;text-decoration:none;flex-shrink:0;">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
   </a>
-  <a href="https://tiktok.com/@80sGrid" target="_blank" rel="noopener" title="TikTok" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#000;color:white;text-decoration:none;flex-shrink:0;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
-  </a>
-  <a href="https://x.com/80sGrid" target="_blank" rel="noopener" title="X / Twitter" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#000;color:white;text-decoration:none;flex-shrink:0;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-  </a>
+
+
 </div>
 
 <!-- PERSISTENT SHARE CHOICE MODAL -->
@@ -547,12 +588,13 @@ min-height: 300px; width: 100%; box-sizing: border-box;
     <button onclick="closePersistentShareModal()" style="margin-top:14px; background:none; border:none; color:#bbb; font-size:0.8em; cursor:pointer;">Cancel</button>
   </div>
 </div>
+<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
 <div class="lifeline-bar" id="lifelineBar">
-<span class="lifeline-label">&#127919; Lifelines</span>
+<span class="lifeline-label">🛟 Lifelines</span>
 <div class="lifeline-pips">
-<div class="lifeline-pip" id="pip1">&#127919;</div>
-<div class="lifeline-pip" id="pip2">&#127919;</div>
-<div class="lifeline-pip" id="pip3">&#127919;</div>
+<div class="lifeline-pip" id="pip1">🛟</div>
+<div class="lifeline-pip" id="pip2">🛟</div>
+<div class="lifeline-pip" id="pip3">🛟</div>
 </div>
 <span class="lifeline-count" id="lifelineCount">3 remaining</span>
 </div>
@@ -1460,13 +1502,10 @@ function initDedicationBox() {
   if (!anchor) return;
   const d = DEDICATIONS[Math.floor(Math.random() * DEDICATIONS.length)];
   anchor.innerHTML =
-    '<div style="background:' + d.bg + '; border:2px solid ' + d.border + '; border-left:5px solid ' + d.accent + '; border-radius:10px; padding:14px 16px; margin-bottom:20px; display:flex; align-items:flex-start; gap:12px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">' +
-      '<span style="font-size:1.8em; flex-shrink:0; line-height:1.2;">' + d.icon + '</span>' +
-      '<div>' +
-        '<div style="font-size:0.68em; font-weight:900; letter-spacing:2px; color:' + d.accent + '; text-transform:uppercase; margin-bottom:4px;">' + d.label + '</div>' +
-        '<div style="font-size:0.88em; color:#111; line-height:1.6;">' + d.body + '</div>' +
-        (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
-      '</div>' +
+    '<div style="background:' + d.bg + '; border:2px solid ' + d.border + '; border-left:5px solid ' + d.accent + '; border-radius:10px; padding:12px 16px; margin-bottom:20px; box-shadow:0 2px 10px rgba(0,0,0,0.06);">' +
+      '<div style="font-size:0.68em; font-weight:900; letter-spacing:2px; color:' + d.accent + '; text-transform:uppercase; margin-bottom:4px;">' + d.icon + ' &nbsp;' + d.label + '</div>' +
+      '<div style="font-size:0.88em; color:#111; line-height:1.6;">' + d.body + '</div>' +
+      (d.link ? '<a href="' + d.link.url + '" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; font-size:0.8em; font-weight:900; color:' + d.accent + '; text-decoration:none;">' + d.link.text + '</a>' : '') +
     '</div>';
 }
 
