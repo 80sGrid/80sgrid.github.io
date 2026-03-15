@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>George Michael was born Georgios Kyriacos Panayiotou in East Finchley, London. "Careless Whisper" (1984, credited to Wham! featuring George Michael) was written when he was 17. His album <em>Faith</em> (1987) sold over 25 million copies worldwide.</li><li>Janet Jackson is from Gary, Indiana — the same city that produced her brother Michael. Her <em>Control</em> album (1986) is one of the defining R&B records of the decade, produced entirely by Jimmy Jam and Terry Lewis.</li><li>MC Hammer (Stanley Kirk Burrell) was from Oakland, California. "U Can't Touch This" (1990) sampled Rick James's "Super Freak" and became one of the best-selling singles of the year. His parachute pants became as famous as the song.</li><li>All three of these artists were known as much for their dancing as their music — a new standard that MTV helped establish.</li></ul>
+<ul><li>George Michael was born Georgios Kyriacos Panayiotou in East Finchley, London. one of their signature songs(1984, credited to Wham! featuring George Michael) was written when he was 17. His album <em>Faith</em> (1987) sold over 25 million copies worldwide.</li><li>Janet Jackson is from Gary, Indiana — the same city that produced her brother Michael. Her <em>Control</em> album (1986) is one of the defining R&B records of the decade, produced entirely by Jimmy Jam and Terry Lewis.</li><li>MC Hammer (Stanley Kirk Burrell) was from Oakland, California. "U Can't Touch This" (1990) sampled Rick James's "Super Freak" and became one of the best-selling singles of the year. His parachute pants became as famous as the song.</li><li>All three of these artists were known as much for their dancing as their music — a new standard that MTV helped establish.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['careless whisper','faith','father figure','wake me up before you go go','one more try'],'0-1':['what have you done for me lately','nasty','control','miss you much','rhythm nation'],'0-2':['u cant touch this','too legit to quit','have you seen her','pray'],'1-0':['england','uk','united kingdom'],'1-1':['usa','united states','indiana','gary'],'1-2':['usa','united states','california','oakland'],'2-0':['1984','1987'],'2-1':['1986','1989'],'2-2':['1990']};
 const mcOptions = {'0-0':['Careless Whisper','Faith','Father Figure'],'0-1':['What Have You Done for Me Lately','Nasty','Rhythm Nation'],'0-2':["U Can't Touch This",'Too Legit to Quit','Pray'],'1-0':['England','USA','Australia'],'1-1':['USA','England','Canada'],'1-2':['USA','England','Jamaica'],'2-0':['1984','1987','1990'],'2-1':['1986','1989','1991'],'2-2':['1990','1988','1992']};

@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>A-ha's "Take On Me" (1985) won Video of the Year at the 1986 VMAs. The rotoscope animation video — where a comic book character reaches through the page into real life — is one of the most expensive and celebrated music videos ever made. Director Steve Barron spent months on it.</li><li>Peter Gabriel's "Sledgehammer" (1986) won at the 1987 VMAs and remains the most-played video in MTV history. The stop-motion clay animation was created by Aardman Animations — the same studio behind Wallace & Gromit.</li><li>INXS's "Need You Tonight" (1987) won at the 1988 VMAs. The video's fast-cutting style influenced an entire generation of music video directors. Michael Hutchence's charisma on screen was unlike anyone else of the era.</li><li>Norway, England, Australia — three consecutive years, three different continents. The VMAs in their golden era were genuinely global.</li></ul>
+<ul><li>A-ha's one of their signature songs won Video of the Year at the 1986 VMAs. The rotoscope animation video — where a comic book character reaches through the page into real life — is one of the most expensive and celebrated music videos ever made. Director Steve Barron spent months on it.</li><li>Peter Gabriel's one of their signature songs won at the 1987 VMAs and remains the most-played video in MTV history. The stop-motion clay animation was created by Aardman Animations — the same studio behind Wallace & Gromit.</li><li>INXS's one of their signature songs won at the 1988 VMAs. The video's fast-cutting style influenced an entire generation of music video directors. Michael Hutchence's charisma on screen was unlike anyone else of the era.</li><li>Norway, England, Australia — three consecutive years, three different continents. The VMAs in their golden era were genuinely global.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['take on me'],'0-1':['sledgehammer'],'0-2':['need you tonight','need you tonight mediate'],'1-0':['norway','norwegian'],'1-1':['england','uk','united kingdom'],'1-2':['australia','australian'],'2-0':['1986'],'2-1':['1987'],'2-2':['1988']};
 const mcOptions = {'0-0':['Take On Me','The Sun Always Shines on TV','Hunting High and Low'],'0-1':['Sledgehammer','Big Time','In Your Eyes'],'0-2':['Need You Tonight','Never Tear Us Apart','Devil Inside'],'1-0':['Norway','Sweden','Denmark'],'1-1':['England','USA','Australia'],'1-2':['Australia','New Zealand','England'],'2-0':['1986','1985','1987'],'2-1':['1987','1986','1988'],'2-2':['1988','1987','1989']};

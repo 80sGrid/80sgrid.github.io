@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Talk Talk started as a synth-pop act with "It's My Life" (1984) but evolved dramatically — their later albums <em>Spirit of Eden</em> and <em>Laughing Stock</em> are considered pioneering works of post-rock. Mark Hollis was one of music's great enigmas.</li><li>Roxy Music were one of the most influential British bands of the 70s and 80s. Bryan Ferry's suave, debonair persona was completely unique. "More Than This" from <em>Avalon</em> (1982) is widely considered one of the most beautiful pop songs ever recorded.</li><li>Big Audio Dynamite were formed by Mick Jones after he was fired from The Clash in 1983. Their mix of rock, hip-hop, and sampled film dialogue was years ahead of its time.</li><li>All three of these acts were critically lauded but commercially underappreciated — each one more influential on future musicians than their chart positions suggest.</li></ul>
+<ul><li>Talk Talk started as a synth-pop act with "It's My Life" (1984) but evolved dramatically — their later albums <em>Spirit of Eden</em> and <em>Laughing Stock</em> are considered pioneering works of post-rock. Mark Hollis was one of music's great enigmas.</li><li>Roxy Music were one of the most influential British bands of the 70s and 80s. Bryan Ferry's suave, debonair persona was completely unique. one of their signature songsfrom <em>Avalon</em> (1982) is widely considered one of the most beautiful pop songs ever recorded.</li><li>Big Audio Dynamite were formed by Mick Jones after he was fired from The Clash in 1983. Their mix of rock, hip-hop, and sampled film dialogue was years ahead of its time.</li><li>All three of these acts were critically lauded but commercially underappreciated — each one more influential on future musicians than their chart positions suggest.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['its my life','such a shame','lifes what you make it','talk talk'],'0-1':['more than this','avalon','love is the drug','virginia plain','jealous guy'],'0-2':['e=mc2','medicine show','rush','c mon every beatbox'],'1-0':['england','uk'],'1-1':['england','uk'],'1-2':['england','uk'],'2-0':['mark hollis','mark'],'2-1':['bryan ferry','bryan'],'2-2':['mick jones','mick']};
 const mcOptions = {'0-0':["It's My Life",'Such a Shame',"Life's What You Make It"],'0-1':['More Than This','Avalon','Love is the Drug'],'0-2':['E=MC2','Medicine Show','Rush'],'1-0':['England','USA','Ireland'],'1-1':['England','USA','Germany'],'1-2':['England','USA','Australia'],'2-0':['Mark Hollis','Lee Harris','Paul Webb'],'2-1':['Bryan Ferry','Phil Manzanera','Andy Mackay'],'2-2':['Mick Jones','Don Letts','Greg Roberts']};

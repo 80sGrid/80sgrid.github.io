@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>The J. Geils Band were from Boston. Peter Wolf fronted the band through their biggest years — "Centerfold" hit #1 in 1982 and stayed there for six weeks. Wolf left the band in 1983 to go solo.</li><li>The Waitresses were from Cleveland, Ohio. Patty Donahue's deadpan vocals on "I Know What Boys Like" (1982) made them cult favorites, and "Christmas Wrapping" (1981) is one of the great overlooked Christmas songs.</li><li>Split Enz formed in Auckland, New Zealand in 1972. "I Got You" (1980) was a breakthrough in both Australia and the US. The band is also notable for launching Neil Finn's career — he later formed Crowded House.</li><li>Boston, Cleveland, and Auckland — three cities that couldn't be more different, but all produced some of the most distinctive sounds of the early 80s.</li></ul>
+<ul><li>The J. Geils Band were from Boston. Peter Wolf fronted the band through their biggest years — one of their signature songshit #1 in 1982 and stayed there for six weeks. Wolf left the band in 1983 to go solo.</li><li>The Waitresses were from Cleveland, Ohio. Patty Donahue's deadpan vocals on one of their signature songs made them cult favorites, and one of their signature songs is one of the great overlooked Christmas songs.</li><li>Split Enz formed in Auckland, New Zealand in 1972. one of their signature songs was a breakthrough in both Australia and the US. The band is also notable for launching Neil Finn's career — he later formed Crowded House.</li><li>Boston, Cleveland, and Auckland — three cities that couldn't be more different, but all produced some of the most distinctive sounds of the early 80s.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['centerfold','freeze frame','love stinks'],'0-1':['i know what boys like','christmas wrapping','wasnt tomorrow wonderful'],'0-2':['i got you','poor boy','history never repeats','six months in a leaky boat'],'1-0':['usa','united states','boston','massachusetts'],'1-1':['usa','united states','cleveland','ohio'],'1-2':['new zealand','nz'],'2-0':['peter wolf','peter'],'2-1':['patty donahue','patty'],'2-2':['tim finn','neil finn','tim','neil']};
 const mcOptions = {'0-0':['Centerfold','Freeze Frame','Love Stinks'],'0-1':['I Know What Boys Like','Christmas Wrapping','Wasn\'t Tomorrow Wonderful'],'0-2':['I Got You','Poor Boy','History Never Repeats'],'1-0':['USA','England','Canada'],'1-1':['USA','England','Canada'],'1-2':['New Zealand','Australia','England'],'2-0':['Peter Wolf','Seth Justman','Magic Dick'],'2-1':['Patty Donahue','Tracy Thorn','Chrissie Hynde'],'2-2':['Tim Finn','Neil Finn','Phil Judd']};

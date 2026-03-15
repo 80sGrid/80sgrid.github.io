@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>New Order's "Blue Monday" (1983) is the best-selling 12-inch single of all time. It was famously released in a sleeve that cost more to manufacture than the retail price — meaning Factory Records lost money on every copy sold.</li><li>The Psychedelic Furs' "Pretty in Pink" (1981) inspired the 1986 John Hughes film of the same name. The band re-recorded the song for the soundtrack — a rare case of a song inspiring a film that then inspired a new version of the song.</li><li>Chris de Burgh is Irish-Argentine (born in Argentina to Irish parents) and is most associated with Ireland. "Lady in Red" (1986) hit #1 in the UK and became one of the most-played wedding songs of the decade.</li><li>Three different shades — blue, pink, and red — one great quiz theme.</li></ul>
+<ul><li>New Order's one of their signature songs is the best-selling 12-inch single of all time. It was famously released in a sleeve that cost more to manufacture than the retail price — meaning Factory Records lost money on every copy sold.</li><li>The Psychedelic Furs' one of their signature songs inspired the 1986 John Hughes film of the same name. The band re-recorded the song for the soundtrack — a rare case of a song inspiring a film that then inspired a new version of the song.</li><li>Chris de Burgh is Irish-Argentine (born in Argentina to Irish parents) and is most associated with Ireland. one of their signature songs hit #1 in the UK and became one of the most-played wedding songs of the decade.</li><li>Three different shades — blue, pink, and red — one great quiz theme.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['blue monday','true faith','bizarre love triangle'],'0-1':['pretty in pink','love my way','the ghost in you'],'0-2':['lady in red','dont pay the ferryman','a spaceman came travelling'],'1-0':['england','uk','manchester'],'1-1':['england','uk'],'1-2':['ireland','irish','republic of ireland'],'2-0':['1983'],'2-1':['1981','1984'],'2-2':['1986']};
 const mcOptions = {'0-0':['Blue Monday','True Faith','Bizarre Love Triangle'],'0-1':['Pretty in Pink','Love My Way','The Ghost in You'],'0-2':['Lady in Red',"Don't Pay the Ferryman",'A Spaceman Came Travelling'],'1-0':['England','USA','Ireland'],'1-1':['England','USA','Australia'],'1-2':['Ireland','England','USA'],'2-0':['1983','1985','1987'],'2-1':['1981','1984','1986'],'2-2':['1986','1983','1989']};

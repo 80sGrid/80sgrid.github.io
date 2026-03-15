@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Van Halen formed in Pasadena in 1972. Eddie Van Halen's guitar playing on "Eruption" (1978) rewrote what rock guitar could be. "Jump" (1984) hit #1 and became their signature song — ironically built around Eddie's keyboard playing, not guitar.</li><li>The Go-Gos formed in Hollywood in 1978 and became the first all-female band to write their own songs, play their own instruments, and top the Billboard album charts. "We Got the Beat" (1981) is pure California sunshine in three minutes.</li><li>The Bangles also formed in Hollywood. "Manic Monday" was written by Prince (under a pseudonym) and "Eternal Flame" (1989) became their biggest hit — Susanna Hoffs recorded her vocal in a single take, whispering into the mic to get that breathy quality.</li><li>Pasadena and Hollywood — barely 15 miles apart, yet three of the most distinct sounds of the decade.</li></ul>
+<ul><li>Van Halen formed in Pasadena in 1972. Eddie Van Halen's guitar playing on one of their signature songs rewrote what rock guitar could be. one of their signature songs hit #1 and became their signature song — ironically built around Eddie's keyboard playing, not guitar.</li><li>The Go-Gos formed in Hollywood in 1978 and became the first all-female band to write their own songs, play their own instruments, and top the Billboard album charts. one of their signature songs is pure California sunshine in three minutes.</li><li>The Bangles also formed in Hollywood. one of their signature songswas written by Prince (under a pseudonym) and one of their signature songs became their biggest hit — Susanna Hoffs recorded her vocal in a single take, whispering into the mic to get that breathy quality.</li><li>Pasadena and Hollywood — barely 15 miles apart, yet three of the most distinct sounds of the decade.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['jump','panama','hot for teacher','runnin with the devil','eruption'],'0-1':['we got the beat','vacation','our lips are sealed','head over heels'],'0-2':['eternal flame','manic monday','walk like an egyptian','in your room'],'1-0':['pasadena','los angeles','la'],'1-1':['hollywood','los angeles','la'],'1-2':['hollywood','los angeles','la'],'2-0':['david lee roth','sammy hagar','diamond dave','david','sammy'],'2-1':['belinda carlisle','belinda'],'2-2':['susanna hoffs','susanna']};
 const mcOptions = {'0-0':['Jump','Panama','Hot for Teacher'],'0-1':['We Got the Beat','Vacation','Our Lips Are Sealed'],'0-2':['Eternal Flame','Manic Monday','Walk Like an Egyptian'],'1-0':['Pasadena','Hollywood','Burbank'],'1-1':['Hollywood','Pasadena','Burbank'],'1-2':['Hollywood','Pasadena','Long Beach'],'2-0':['David Lee Roth','Sammy Hagar','Eddie Van Halen'],'2-1':['Belinda Carlisle','Jane Wiedlin','Charlotte Caffey'],'2-2':['Susanna Hoffs','Vicki Peterson','Debbi Peterson']};

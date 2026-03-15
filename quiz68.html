@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Blondie emerged from the CBGB scene in Lower Manhattan in the mid-70s. Debbie Harry and Chris Stein built the band from the punk underground up — "Call Me" (1980) hit #1 in the US and stayed there for six weeks, becoming the biggest single of that year.</li><li>Cyndi Lauper grew up in Queens. "Girls Just Want to Have Fun" (1983) was her debut single and became an anthem for a generation. She was 30 years old when it was released — proof that it's never too late.</li><li>Billy Joel grew up in Hicksville, Long Island. He is one of the best-selling artists of all time, and his songs are rooted in the working-class New York experience — from "Piano Man" to "We Didn't Start the Fire."</li><li>Manhattan, Queens, and Long Island — New York City and its orbit produced three of the most iconic artists of the decade.</li></ul>
+<ul><li>Blondie emerged from the CBGB scene in Lower Manhattan in the mid-70s. Debbie Harry and Chris Stein built the band from the punk underground up — one of their signature songs hit #1 in the US and stayed there for six weeks, becoming the biggest single of that year.</li><li>Cyndi Lauper grew up in Queens. one of their signature songs was her debut single and became an anthem for a generation. She was 30 years old when it was released — proof that it's never too late.</li><li>Billy Joel grew up in Hicksville, Long Island. He is one of the best-selling artists of all time, and his songs are rooted in the working-class New York experience — from one of their signature songsto "We Didn't Start the Fire."</li><li>Manhattan, Queens, and Long Island — New York City and its orbit produced three of the most iconic artists of the decade.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['call me','heart of glass','rapture','one way or another'],'0-1':['girls just want to have fun','time after time','true colors','she bop'],'0-2':['piano man','its still rock and roll to me','we didnt start the fire','uptown girl','tell her about it'],'1-0':['manhattan','lower east side','new york','nyc'],'1-1':['queens','new york','nyc'],'1-2':['long island','hicksville','new york','nyc'],'2-0':['1980','1981'],'2-1':['1983','1986'],'2-2':['1980','1983','1989']};
 const mcOptions = {'0-0':['Call Me','Heart of Glass','Rapture'],'0-1':['Girls Just Want to Have Fun','Time After Time','True Colors'],'0-2':["It's Still Rock and Roll to Me",'We Didn\'t Start the Fire','Uptown Girl'],'1-0':['Manhattan','Queens','Brooklyn'],'1-1':['Queens','Manhattan','Brooklyn'],'1-2':['Long Island','Brooklyn','Manhattan'],'2-0':['1980','1978','1982'],'2-1':['1983','1981','1986'],'2-2':['1980','1983','1989']};

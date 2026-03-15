@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Hall & Oates are the best-selling duo in music history. Daryl Hall and John Oates placed six songs at #1 on the Billboard Hot 100 between 1980 and 1985 alone. They are from Philadelphia, Pennsylvania.</li><li>Phil Collins was the drummer for Genesis before launching a massively successful solo career in 1981. "In the Air Tonight" features one of the most famous drum fills in pop history.</li><li>Stevie Nicks is famous for her flowing scarves, platform boots, and her omnipresent tambourine — which she has twirled on stage since her days with Fleetwood Mac in the early 70s.</li><li>Between them, these three artists accumulated more than 20 US Top 10 hits during the 1980s alone.</li></ul>
+<ul><li>Hall & Oates are the best-selling duo in music history. Daryl Hall and John Oates placed six songs at #1 on the Billboard Hot 100 between 1980 and 1985 alone. They are from Philadelphia, Pennsylvania.</li><li>Phil Collins was the drummer for Genesis before launching a massively successful solo career in 1981. one of their signature songsfeatures one of the most famous drum fills in pop history.</li><li>Stevie Nicks is famous for her flowing scarves, platform boots, and her omnipresent tambourine — which she has twirled on stage since her days with Fleetwood Mac in the early 70s.</li><li>Between them, these three artists accumulated more than 20 US Top 10 hits during the 1980s alone.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['maneater','out of touch','i cant go for that','sara smile','you make my dreams'],'0-1':['sussudio','in the air tonight','one more night','another day in paradise','invisible touch'],'0-2':['edge of seventeen','stand back','talk to me','leather and lace','stop draggin my heart around'],'1-0':['usa','united states','philadelphia','pennsylvania'],'1-1':['england','uk','united kingdom'],'1-2':['usa','united states','arizona','california'],'2-0':['guitar','keyboards','keys'],'2-1':['drums','drum kit'],'2-2':['tambourine']};
 const mcOptions = {'0-0':['Maneater','Out of Touch',"I Can't Go for That"],'0-1':['Sussudio','In the Air Tonight','One More Night'],'0-2':['Edge of Seventeen','Stand Back','Talk to Me'],'1-0':['USA','UK','Canada'],'1-1':['England','USA','Ireland'],'1-2':['USA','England','Australia'],'2-0':['Guitar','Saxophone','Tambourine'],'2-1':['Drums','Piano','Guitar'],'2-2':['Tambourine','Guitar','Piano']};

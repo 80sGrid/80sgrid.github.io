@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Swing Out Sister formed in Manchester in 1985. Corinne Drewery's distinctive voice and the band's sophisticated jazz-pop sound made "Breakout" (1986) a classic on both sides of the Atlantic.</li><li>Till Tuesday were from Boston. Aimee Mann co-wrote and sang lead on "Voices Carry" (1985), which peaked at #8 in the US. She later became one of the most critically acclaimed singer-songwriters of the 1990s and 2000s.</li><li>Scandal's Patty Smyth sang "The Warrior" in 1984, which hit #7 on the Billboard Hot 100. She later had a second chart run with Don Henley on "Sometimes Love Just Ain't Enough" in 1992.</li><li>Three very different cities — Manchester, Boston, and New York — but the same sharp, no-nonsense pop sensibility.</li></ul>
+<ul><li>Swing Out Sister formed in Manchester in 1985. Corinne Drewery's distinctive voice and the band's sophisticated jazz-pop sound made one of their signature songs a classic on both sides of the Atlantic.</li><li>Till Tuesday were from Boston. Aimee Mann co-wrote and sang lead on one of their signature songs, which peaked at #8 in the US. She later became one of the most critically acclaimed singer-songwriters of the 1990s and 2000s.</li><li>Scandal's Patty Smyth sang one of their signature songsin 1984, which hit #7 on the Billboard Hot 100. She later had a second chart run with Don Henley on "Sometimes Love Just Ain't Enough" in 1992.</li><li>Three very different cities — Manchester, Boston, and New York — but the same sharp, no-nonsense pop sensibility.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['breakout','you on my mind','surrender your love'],'0-1':['voices carry','coming up close'],'0-2':['the warrior','goodbye to you','beat of a heart'],'1-0':['corinne drewery','corinne'],'1-1':['aimee mann','aimee'],'1-2':['patty smyth','patty'],'2-0':['manchester','england','uk'],'2-1':['boston','usa','united states'],'2-2':['new york','usa','united states']};
 const mcOptions = {'0-0':['Breakout','You on My Mind','Surrender Your Love'],'0-1':['Voices Carry','Coming Up Close','What About Love'],'0-2':['The Warrior','Goodbye to You','Beat of a Heart'],'1-0':['Corinne Drewery','Sade','Alison Moyet'],'1-1':['Aimee Mann','Cyndi Lauper','Debbie Harry'],'1-2':['Patty Smyth','Pat Benatar','Joan Jett'],'2-0':['Manchester','London','Birmingham'],'2-1':['Boston','New York','Los Angeles'],'2-2':['New York','Los Angeles','Chicago']};

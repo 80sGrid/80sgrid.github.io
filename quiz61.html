@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Paul Weller fronted The Jam (one of the greatest punk/mod bands ever), then The Style Council, then went solo — each phase distinct and critically respected. "Town Called Malice" (1982) is one of the great British singles of the decade.</li><li>Paul Young had one of the finest blue-eyed soul voices of the 80s. His cover of Daryl Hall's "Everytime You Go Away" hit #1 in the US in 1985. His real name is actually Paul Young — no stage name needed.</li><li>Elvis Costello was born Declan Patrick MacManus. His prolific output spans new wave, country, classical, and jazz. "Oliver's Army" (1979) is one of the most-played songs in BBC radio history, despite its dark lyrical content.</li><li>Fun fact: Paul Weller was known as "The Modfather" for his influence on British fashion and music — a title that says a lot about how seriously the British take their style.</li></ul>
+<ul><li>Paul Weller fronted The Jam (one of the greatest punk/mod bands ever), then The Style Council, then went solo — each phase distinct and critically respected. one of their signature songs is one of the great British singles of the decade.</li><li>Paul Young had one of the finest blue-eyed soul voices of the 80s. His cover of Daryl Hall's one of their signature songshit #1 in the US in 1985. His real name is actually Paul Young — no stage name needed.</li><li>Elvis Costello was born Declan Patrick MacManus. His prolific output spans new wave, country, classical, and jazz. "Oliver's Army" (1979) is one of the most-played songs in BBC radio history, despite its dark lyrical content.</li><li>Fun fact: Paul Weller was known as "The Modfather" for his influence on British fashion and music — a title that says a lot about how seriously the British take their style.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['going underground','town called malice','walls come tumbling down','shout to the top','the eton rifles'],'0-1':['everytime you go away','come back and stay','wherever i lay my head','love of the common people'],'0-2':['olivers army','everyday i write the book','pump it up','alison','accidents will happen'],'1-0':['england','uk'],'1-1':['england','uk'],'1-2':['england','uk'],'2-0':['1982','1980'],'2-1':['1985'],'2-2':['1979','1983']};
 const mcOptions = {'0-0':['Going Underground','Town Called Malice','Walls Come Tumbling Down'],'0-1':['Everytime You Go Away','Come Back and Stay','Wherever I Lay My Head'],'0-2':["Oliver's Army",'Everyday I Write the Book','Pump It Up'],'1-0':['England','USA','Ireland'],'1-1':['England','USA','Ireland'],'1-2':['England','USA','Ireland'],'2-0':['1982','1979','1985'],'2-1':['1985','1983','1987'],'2-2':['1979','1977','1983']};

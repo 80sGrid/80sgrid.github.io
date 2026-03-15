@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Eurythmics were Annie Lennox and Dave Stewart — from Aberdeen, Scotland and Sunderland, England respectively. "Sweet Dreams (Are Made of This)" (1983) was recorded on a budget of almost nothing on a home computer and became a global #1.</li><li>Midnight Oil were from Sydney, Australia. "Beds Are Burning" (1987) is one of the great protest songs — about the Australian government's treatment of the Aboriginal people. Lead singer Peter Garrett later became a member of the Australian parliament.</li><li>Michael Jackson's <em>Thriller</em> (1982) remains the best-selling album of all time. By 1984, he had won eight Grammy Awards in a single night — a record that still stands.</li><li>Europe, Australia, and America — three continents, three completely different stories, all arriving at the same moment in pop history.</li></ul>
+<ul><li>Eurythmics were Annie Lennox and Dave Stewart — from Aberdeen, Scotland and Sunderland, England respectively. one of their signature songs was recorded on a budget of almost nothing on a home computer and became a global #1.</li><li>Midnight Oil were from Sydney, Australia. one of their signature songs is one of the great protest songs — about the Australian government's treatment of the Aboriginal people. Lead singer Peter Garrett later became a member of the Australian parliament.</li><li>Michael Jackson's <em>Thriller</em> (1982) remains the best-selling album of all time. By 1984, he had won eight Grammy Awards in a single night — a record that still stands.</li><li>Europe, Australia, and America — three continents, three completely different stories, all arriving at the same moment in pop history.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['sweet dreams','here comes the rain again','would i lie to you','there must be an angel','sisters are doin it for themselves'],'0-1':['beds are burning','the dead heart','blue sky mine','read about it'],'0-2':['billie jean','thriller','beat it','man in the mirror','black or white','rock with you'],'1-0':['scotland','england','uk','united kingdom'],'1-1':['australia'],'1-2':['usa','united states'],'2-0':['annie lennox','annie'],'2-1':['peter garrett','peter'],'2-2':['michael jackson','michael']};
 const mcOptions = {'0-0':['Sweet Dreams','Here Comes the Rain Again','Would I Lie to You'],'0-1':['Beds Are Burning','The Dead Heart','Blue Sky Mine'],'0-2':['Billie Jean','Thriller','Man in the Mirror'],'1-0':['Scotland/England','USA','Australia'],'1-1':['Australia','New Zealand','USA'],'1-2':['USA','England','Canada'],'2-0':['Annie Lennox','Dave Stewart','Clem Burke'],'2-1':['Peter Garrett','Jim Moginie','Martin Rotsey'],'2-2':['Michael Jackson','Jermaine Jackson','Tito Jackson']};

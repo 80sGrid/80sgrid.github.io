@@ -42,7 +42,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:110px; object-position:center bottom; }
+  .logo-img { max-height:130px; object-position:center bottom; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
 }
 .tagline-sub {
 text-align: center;
@@ -672,7 +673,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div class="footnote-box">
 <strong>&#128221; Notes</strong>
-<ul><li>Heaven 17 formed in Sheffield in 1980, emerging from the ashes of the Human League. Glenn Gregory's rich baritone on "Temptation" (1983) remains one of the finest vocal performances of the synth-pop era.</li><li>Yazoo were a duo: Vince Clarke (who had just left Depeche Mode) and Alison Moyet, whose powerful voice was unlike anything else in electronic pop. "Only You" (1982) is a near-perfect pop song.</li><li>Erasure were also formed by Vince Clarke — after Yazoo split, he teamed up with Andy Bell. "A Little Respect" (1988) gave them their biggest US hit and remains a dancefloor classic.</li><li>Vince Clarke trivia: he founded or co-founded three of the most important synth-pop acts of the era — Depeche Mode, Yazoo, and Erasure. That's a remarkable hat-trick.</li></ul>
+<ul><li>Heaven 17 formed in Sheffield in 1980, emerging from the ashes of the Human League. Glenn Gregory's rich baritone on one of their signature songs remains one of the finest vocal performances of the synth-pop era.</li><li>Yazoo were a duo: Vince Clarke (who had just left Depeche Mode) and Alison Moyet, whose powerful voice was unlike anything else in electronic pop. one of their signature songs is a near-perfect pop song.</li><li>Erasure were also formed by Vince Clarke — after Yazoo split, he teamed up with Andy Bell. one of their signature songs gave them their biggest US hit and remains a dancefloor classic.</li><li>Vince Clarke trivia: he founded or co-founded three of the most important synth-pop acts of the era — Depeche Mode, Yazoo, and Erasure. That's a remarkable hat-trick.</li></ul>
 </div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
@@ -803,7 +804,7 @@ const FAKE_SCORES = [
 {initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
 {initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
 ];
-const PLAYS_START = 100;
+const PLAYS_START = 1986;
 const yesNoKeys = [];
 const answers = {'0-0':['temptation','come live with me','crushed by the mill','lets all make a bomb'],'0-1':['only you','dont go','nobodys diary','situation'],'0-2':['a little respect','oh lamour','sometimes','ship of fools','chains of love'],'1-0':['england','uk','sheffield'],'1-1':['england','uk'],'1-2':['england','uk','london'],'2-0':['glenn gregory','glenn'],'2-1':['alison moyet','alf','alison'],'2-2':['andy bell','andy']};
 const mcOptions = {'0-0':['Temptation','Come Live with Me','Let\'s All Make a Bomb'],'0-1':['Only You',"Don't Go","Nobody's Diary"],'0-2':['A Little Respect','Oh L\'Amour','Sometimes'],'1-0':['England','USA','Germany'],'1-1':['England','USA','Sweden'],'1-2':['England','USA','Ireland'],'2-0':['Glenn Gregory','Martyn Ware','Ian Craig Marsh'],'2-1':['Alison Moyet','Vince Clarke','Cynthia Manley'],'2-2':['Andy Bell','Vince Clarke','Neil Tennant']};
