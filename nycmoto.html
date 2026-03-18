@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>NYC Moto Crew × 80sGrid.com — VIP Preview</title>
+<meta property="og:title" content="NYC Moto Crew × 80sGrid.com — VIP Preview">
+<meta property="og:description" content="Exclusive VIP preview for the NYC Motorcycle Meetup crew. Play 80sGrid free!">
+<meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .card {
+    background: #111;
+    border-radius: 16px;
+    box-shadow: 0 0 50px rgba(204,0,0,0.2), 0 20px 50px rgba(0,0,0,0.7);
+    max-width: 440px;
+    width: 100%;
+    padding: 0 0 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+  }
+
+  .card::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(90deg, #CC0000, #FFD700, #C0C0C0, #FFD700, #CC0000);
+    position: absolute;
+    top: 0; left: 0; right: 0;
+  }
+
+  .logo-wrap {
+    padding-top: 14px;
+    margin-bottom: 12px;
+  }
+  .logo-wrap img {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+
+  .card-body { padding: 0 22px; }
+
+  .vip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #7a5c00, #FFD700, #7a5c00);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95em;
+    letter-spacing: 3px;
+    padding: 5px 16px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3em, 12vw, 4.2em);
+    color: #C0C0C0;
+    letter-spacing: 6px;
+    line-height: 0.9;
+    margin-bottom: 4px;
+    text-shadow: 0 0 30px rgba(255,62,0,0.4), 2px 2px 0 #000;
+  }
+  .headline span {
+    color: #FF3E00;
+    display: block;
+    font-size: 0.6em;
+    letter-spacing: 8px;
+    text-shadow: 0 0 20px rgba(255,62,0,0.7);
+  }
+
+  .welcome-banner {
+    background: linear-gradient(135deg, #1a0800, #2a1000);
+    border: 1px solid #FF3E00;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin: 14px 0;
+    color: #ffcfa0;
+    box-shadow: 0 0 16px rgba(255,62,0,0.12);
+  }
+  .welcome-banner .wt {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 3px;
+    color: #FFD700;
+    margin-bottom: 4px;
+  }
+  .welcome-banner .ws {
+    font-size: 0.83em;
+    color: #ffb888;
+    line-height: 1.5;
+  }
+
+  .sample-box {
+    background: linear-gradient(135deg, #CC0000 0%, #880000 50%, #1a1a1a 100%);
+    border-radius: 12px;
+    padding: 16px 14px;
+    margin-bottom: 18px;
+    color: white;
+    box-shadow: 0 0 18px rgba(204,0,0,0.3);
+    border: 1px solid rgba(255,100,0,0.25);
+  }
+  .sample-label {
+    font-size: 0.63em;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+  .sample-q {
+    font-size: 0.98em;
+    font-weight: 900;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+  .ans {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 10px 8px;
+    font-size: 0.8em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    line-height: 1.3;
+    user-select: none;
+  }
+  .ans:hover, .ans:active { background: rgba(255,255,255,0.22); transform: scale(1.03); }
+  .ans.correct { background: rgba(50,205,50,0.45); border-color: #7fff00; animation: pop 0.3s ease; }
+  .ans.wrong   { background: rgba(180,0,0,0.55); border-color: #ff4d4d; }
+  @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.07)} 100%{transform:scale(1)} }
+
+  .answer-reveal {
+    margin-top: 9px;
+    font-size: 0.8em;
+    font-weight: 900;
+    opacity: 0;
+    transition: opacity 0.3s;
+    min-height: 1.2em;
+  }
+  .answer-reveal.show { opacity: 1; }
+
+  .howto {
+    font-size: 0.82em;
+    color: #aaa;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+  .howto strong { color: #FFD700; }
+
+  .cta-btn {
+    display: block;
+    background: linear-gradient(135deg, #CC0000, #990000);
+    color: white;
+    text-decoration: none;
+    padding: 20px 36px;
+    border-radius: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+    letter-spacing: 3px;
+    box-shadow: 0 0 30px rgba(204,0,0,0.5), 0 6px 20px rgba(0,0,0,0.4);
+    animation: pulse 1.8s infinite;
+    transition: transform 0.2s;
+    width: 100%;
+    border: 1px solid rgba(255,150,0,0.25);
+  }
+  .cta-btn .btn-sub {
+    display: block;
+    font-size: 0.38em;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 25px rgba(204,0,0,0.5), 0 6px 20px rgba(0,0,0,0.4); }
+    50%      { box-shadow: 0 0 48px rgba(204,0,0,0.85), 0 8px 26px rgba(0,0,0,0.5); }
+  }
+  .cta-btn:hover { transform: scale(1.03); }
+
+  .footer-note {
+    margin-top: 16px;
+    font-size: 0.68em;
+    color: #555;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 380px) {
+    .card-body { padding: 0 14px; }
+    .headline { font-size: 2.8em; }
+    .cta-btn { font-size: 1.6em; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="logo-wrap">
+    <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg"
+         alt="80sGrid.com"
+         onerror="this.style.display='none'">
+  </div>
+
+  <div class="card-body">
+
+    <div class="vip-badge">🏍️ &nbsp;VIP RIDER PREVIEW&nbsp; 🏍️</div>
+
+    <div class="headline">80s GRID<span>NYC MOTO CREW</span></div>
+
+    <div class="welcome-banner">
+      <div class="wt">🗽 Welcome, NYC Motorcycle Meetup!</div>
+      <div class="ws">You're getting an exclusive VIP first look at 80sGrid — the ultimate 80s music trivia challenge. You're in before anyone else. Share it with your crew!</div>
+    </div>
+
+    <div class="sample-box">
+      <div class="sample-label">🎵 Try a Sample Question</div>
+      <div class="sample-q">Which artist raced to #1 with "Born to Run" — anthem of the open road?</div>
+      <div class="answers" id="answers">
+        <div class="ans" onclick="pick(this, false)">Tom Petty</div>
+        <div class="ans" onclick="pick(this, true)">Bruce Springsteen</div>
+        <div class="ans" onclick="pick(this, false)">John Mellencamp</div>
+        <div class="ans" onclick="pick(this, false)">Bob Seger</div>
+      </div>
+      <div class="answer-reveal" id="reveal"></div>
+    </div>
+
+    <p class="howto">
+      Match artists to categories in a <strong>3×3 grid</strong>. One play per day — <strong>totally free, no login needed.</strong>
+    </p>
+
+    <a href="https://80sgrid.com/nycmoto.html" class="cta-btn">
+      🏍️ ▶ PLAY FREE NOW
+      <span class="btn-sub">80sGrid.com · NYC Moto Crew VIP Access</span>
+    </a>
+
+    <div class="footer-note">100% FREE · No sign-up required · VIP Moto Crew Access 🏍️</div>
+
+  </div>
+</div>
+
+<script>
+function pick(el, correct) {
+  const all = document.querySelectorAll('.ans');
+  const reveal = document.getElementById('reveal');
+  all.forEach(a => { a.onclick = null; a.style.cursor = 'default'; });
+  if (correct) {
+    el.classList.add('correct');
+    reveal.textContent = '✅ The Boss! Now try the full 80sGrid game!';
+  } else {
+    el.classList.add('wrong');
+    all.forEach(a => { if (a.textContent.trim() === 'Bruce Springsteen') a.classList.add('correct'); });
+    reveal.textContent = '❌ Not quite — it was Bruce Springsteen! Ride on 👇';
+  }
+  reveal.classList.add('show');
+}
+</script>
+</body>
+</html>
