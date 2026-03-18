@@ -105,10 +105,13 @@ font-family: Arial, sans-serif;
 .htp-toggle-btn:hover { opacity: 0.9; }
 .htp-body {
 display: none;
-padding: 0 20px 16px;
-line-height: 1.6;
-font-size: 0.97em;
-text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+padding: 12px 20px 16px;
+line-height: 1.7;
+font-size: 0.95em;
+background: #f8f0ff;
+color: #333;
+text-shadow: none;
+border-top: 1px solid rgba(255,255,255,0.25);
 }
 .htp-body.open { display: block; }
 .grid {
@@ -243,25 +246,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .mc-option { display:block; width:100%; margin-bottom:10px; padding:14px 12px; background:#f8f0ff; border:2px solid #8B00FF; border-radius:10px; font-size:0.95em; font-weight:bold; color:#4a0080; cursor:pointer; text-align:center; transition:background 0.15s,transform 0.1s; box-sizing:border-box; }
 .mc-option:hover { background:#e8c8ff; transform:scale(1.02); }
 .text-section.hidden { display:none; }
-.group-tabs { display:flex; justify-content:center; gap:6px; margin-bottom:10px; }
-.group-tab { flex:1; padding:8px 4px; text-align:center; font-family:Arial,sans-serif; font-size:0.75em; font-weight:900; letter-spacing:1px; border:2px solid #ddd; border-radius:8px; background:#f0f0f0; color:#999; cursor:pointer; transition:all 0.3s; }
-.group-tab:hover { border-color:#667eea; color:#667eea; background:#f0f0ff; }
-.group-tab.active { border-color:#667eea; color:white; background:#667eea; box-shadow:0 3px 10px rgba(102,126,234,0.4); }
-.quiz-grid-nav { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:10px; }
-.quiz-grid-nav a { display:flex; align-items:center; justify-content:center; aspect-ratio:1.2; border-radius:10px; font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:1px; color:white; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; position:relative; }
-.quiz-grid-nav a:hover { transform:scale(1.08); }
-.quiz-grid-nav a.easy { background:linear-gradient(135deg,#28a745,#20913b); box-shadow:0 3px 10px rgba(40,167,69,0.4); }
-.quiz-grid-nav a.easy:hover { box-shadow:0 5px 18px rgba(40,167,69,0.6); }
-.quiz-grid-nav a.medium { background:linear-gradient(135deg,#fd7e14,#e06b00); box-shadow:0 3px 10px rgba(253,126,20,0.4); }
-.quiz-grid-nav a.medium:hover { box-shadow:0 5px 18px rgba(253,126,20,0.6); }
-.quiz-grid-nav a.hard { background:linear-gradient(135deg,#dc3545,#c42030); box-shadow:0 3px 10px rgba(220,53,69,0.4); }
-.quiz-grid-nav a.hard:hover { box-shadow:0 5px 18px rgba(220,53,69,0.6); }
-.quiz-grid-nav a.current { outline:3px solid #667eea; outline-offset:2px; animation:navpulse 2s ease-in-out infinite; }
-@keyframes navpulse { 0%,100%{outline-color:#667eea;} 50%{outline-color:#FF1493;} }
-.quiz-grid-nav a.played { background:linear-gradient(135deg,#bbb,#999); box-shadow:0 2px 6px rgba(0,0,0,0.15); opacity:0.7; }
-.quiz-grid-nav a.played:hover { transform:none; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
-.quiz-grid-nav a.played::after { content:'\2713'; position:absolute; top:1px; right:4px; font-size:0.5em; color:white; opacity:0.8; }
-.nav-legend2 { text-align:center; font-size:0.72em; color:#666; margin-bottom:4px; line-height:1.8; }
 .nav-status-bar { background:#f0f4ff; border:2px solid #667eea; border-radius:10px; padding:8px 14px; text-align:center; font-size:0.82em; font-weight:bold; color:#667eea; margin-bottom:4px; }
 .nav-status-bar.limit-reached { background:#fff0f0; border-color:#dc3545; color:#dc3545; }
 .nav-replay-note { text-align:center; font-size:0.72em; color:#888; font-style:italic; margin-bottom:14px; line-height:1.4; }
@@ -312,12 +296,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .header.row-header { font-size:.75em; }
 .next-quiz-btn { font-size:1.1em; padding:15px 25px; }
 .leaderboard-scores-wrap { margin-top:100px; }
-}
-@media (min-width: 600px) {
-  #quizGridNav { grid-template-columns: repeat(5, 55px) !important; gap: 6px !important; justify-content: center !important; }
-  #quizGridNav a { width: 55px !important; height: 40px !important; font-size: 15px !important; border-radius: 8px !important; line-height: 40px !important; }
-  .group-tabs { gap: 4px !important; }
-  .group-tab { padding: 5px 14px !important; font-size: 0.8em !important; }
 }
 .secret-code-btn { display:none; margin:8px auto 0; padding:6px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:20px; font-size:0.8em; font-weight:bold; cursor:pointer; text-align:center; animation:pulseGlow 2s infinite; }
 .secret-code-btn:hover { transform:scale(1.05); }
@@ -501,6 +479,8 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <source media="(max-width: 540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/moblle80s.jpg">
   <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0;">
 </picture>
+
+<!-- MINI NAV -->
 <div class="mini-nav">
   <a href="about.html">About</a>
   <span>|</span>
@@ -510,14 +490,42 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <span>|</span>
   <a href="#" onclick="openFeedback(); return false;">Feedback</a>
 </div>
+
+<!-- TAGLINE -->
 <div class="tagline-wrap">
   <div class="tagline-line"></div>
   <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
   <div class="tagline-line"></div>
 </div>
-<div class="group-tabs" id="groupTabs"></div>
-<div class="quiz-grid-nav" id="quizGridNav"></div>
-<div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
+
+<!-- QUIZ IDENTITY -->
+<div class="subtitle">Quiz 1</div>
+<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Duran Duran, Madonna &amp; Michael Jackson</div>
+<div class="difficulty-badge" style="--badge-color:#28a745; --badge-glow:rgba(40,167,69,0.5);">
+  <div class="badge-stars">&#9733;&#9733;&#9734;&#9734;&#9734;</div>
+  <div class="badge-left">
+    <div class="badge-label">Score: 6/10 — Medium</div>
+    <div class="badge-desc">Do you know your 80s pop giants?</div>
+  </div>
+</div>
+
+<!-- HOW TO PLAY — auto-expands on first visit only via localStorage -->
+<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
+<div class="how-to-play">
+  <button class="htp-toggle-btn" id="htpBtn" onclick="toggleHtp()"><span>How to Play</span><span id="htpArrow">▾</span></button>
+  <div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any answer box to type your answer — or use a Lifeline for multiple choice hints. Multiple answers may work, so get creative! You get 2 new quizzes per day. Completed quizzes can always be replayed for free.</div>
+</div>
+
+<!-- STATS ROW -->
+<div style="text-align:center; margin:14px 0 8px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
+  <span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
+  <span style="color:#ccc;">·</span>
+  <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
+  <span style="color:#ccc;">·</span>
+  <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
+</div>
+
+<!-- PLAYS REMAINING -->
 <div class="nav-status-bar" id="navStatusBar"></div>
 <div class="unlock-panel" id="unlockPanel">
   <h3>&#128275; Want to keep playing?</h3>
@@ -540,56 +548,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </div>
 </div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
-<div class="subtitle">Quiz 1</div>
-<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Duran Duran, Madonna &amp; Michael Jackson</div>
-<div class="difficulty-badge" style="--badge-color:#28a745; --badge-glow:rgba(40,167,69,0.5);">
-<div class="badge-stars">&#9733;&#9733;&#9734;&#9734;&#9734;</div>
-<div class="badge-left">
-<div class="badge-label">Score: 6/10 — Medium</div>
-<div class="badge-desc">Do you know your 80s pop giants?</div>
-</div>
-</div>
-<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
-<div class="how-to-play">
-<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
-<div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</div>
-</div>
 
-<div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
-<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
-</div>
-
-<!-- PERSISTENT SHARE + SOCIAL ROW -->
-<div id="persistentShareRow" style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:0 0 18px; padding:10px 14px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border-radius:12px; border:1px solid #e8d5f5;">
-  <button onclick="persistentShareQuiz()" style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.78em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
-  <span style="color:#ddd; font-size:0.9em; margin:0 2px;">|</span>
-  <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-  </a>
-  <a href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;text-decoration:none;flex-shrink:0;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-  </a>
-
-
-</div>
-
-<!-- PERSISTENT SHARE CHOICE MODAL -->
-<div id="persistentShareModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:7500; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
-  <div style="background:white; border-radius:16px; padding:24px 20px; max-width:340px; width:100%; box-shadow:0 0 40px rgba(139,0,255,0.3); border:2px solid #8B00FF; text-align:center;">
-    <div style="font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:6px;" id="persistentShareTitle">📤 SHARE 80SGRID</div>
-    <div style="font-size:0.8em; color:#888; margin-bottom:20px;" id="persistentShareSubtitle">What would you like to share?</div>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-      <button onclick="doShareLink(); closePersistentShareModal();" style="padding:13px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:10px; font-size:0.9em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">&#128242; Share the Quiz<br><span style="font-size:0.72em; font-weight:400; opacity:0.9;">Send the link — challenge a friend!</span></button>
-      <button id="persistentBragBtn" onclick="doShareScore(); closePersistentShareModal();" style="padding:13px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:10px; font-size:0.9em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">&#127942; Brag About My Score<br><span style="font-size:0.72em; font-weight:400; opacity:0.9;" id="persistentBragSub">Post your score on social!</span></button>
-    </div>
-    <button onclick="closePersistentShareModal()" style="margin-top:14px; background:none; border:none; color:#bbb; font-size:0.8em; cursor:pointer;">Cancel</button>
-  </div>
-</div>
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
+
+<!-- LIFELINES -->
 <div class="lifeline-bar" id="lifelineBar">
 <span class="lifeline-label">🛟 Lifelines</span>
 <div class="lifeline-pips">
@@ -642,10 +604,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </button>
 </div>
 <div style="margin-bottom:10px;">
-<a href="quiz2.html" class="replay-btn">&#128260; Play Quiz 1 Again <span class="hint">(doesn't count toward daily limit)</span></a>
+<a href="index.html" class="replay-btn">&#128260; Play Quiz 1 Again <span class="hint">(doesn't count toward daily limit)</span></a>
 </div>
 <div id="postNextQuiz">
-<a href="quiz13.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; PLAY QUIZ 2 &#8594; &#127928; &#8594; &#127928;</a>
+<a href="quiz2.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; PLAY QUIZ 2 &#8594; &#127928; &#8594; &#127928;</a>
 </div>
 <div class="post-quiz-wrap" id="postWrapBox" style="display:none;">
 <div style="font-size:1.5em; margin-bottom:6px;">&#127926;</div>
@@ -767,7 +729,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
     <div id="feedbackForm">
       <h2>&#127926; FEEDBACK &#127926;</h2>
       <div class="feedback-modal-sub">TELL US WHAT YOU THINK</div>
-      <span class="feedback-quiz-tag">&#127918; Currently playing: Quiz 12</span>
+      <span class="feedback-quiz-tag">&#127918; Currently playing: Quiz 1</span>
       <div class="feedback-stars">
         <span class="feedback-star" onclick="setRating(1)">&#9733;</span>
         <span class="feedback-star" onclick="setRating(2)">&#9733;</span>
@@ -1088,7 +1050,7 @@ function toggleBonusSurveyOption(btn,value){
 function claimBonusLifeline(){
   if(bonusSurveyAnswers.length===0)return;
   localStorage.setItem(BONUS_SURVEY_KEY,JSON.stringify(bonusSurveyAnswers));
-  try{fetch('https://formspree.io/f/xeelpozw',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'bonus_lifeline_survey',answers:bonusSurveyAnswers.join(', '),quiz:'Quiz 12',date:new Date().toISOString()})});}catch(e){}
+  try{fetch('https://formspree.io/f/xeelpozw',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'bonus_lifeline_survey',answers:bonusSurveyAnswers.join(', '),quiz:'Quiz 1',date:new Date().toISOString()})});}catch(e){}
   bonusLifelineUsed=true;lifelinesRemaining=1;updateLifelineUI();closeBonusSurveyModal();showBonusGrantedToast(false);
 }
 function showBonusGrantedToast(isUnlimited){
@@ -1102,7 +1064,7 @@ function showBonusGrantedToast(isUnlimited){
 function shareLink(){
   const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||null;
   const text=score?"\uD83C\uDFB8 I scored "+score+"/9 on Len's 80sGrid Quiz "+QUIZ_NUM+"! Can you beat me?":"\uD83C\uDFB8 Think you know your 80s music? Try Len's 80sGrid Quiz "+QUIZ_NUM+"!";
-  const url='https://80sgrid.com/quiz'+QUIZ_NUM+'.html';
+  const url='https://80sgrid.com/';
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   if(isMobile&&navigator.share){navigator.share({title:"Len's 80sGrid",text:text,url:url}).catch(()=>{});}
   else{navigator.clipboard.writeText(text+' '+url).then(()=>{const toast=document.createElement('div');toast.textContent='\u2705 Link copied! Paste it anywhere.';toast.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 22px;border-radius:10px;font-size:0.95em;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);';document.body.appendChild(toast);setTimeout(()=>toast.remove(),3000);}).catch(()=>alert(text+' '+url));}
@@ -1112,8 +1074,8 @@ function getShareText(score){
   const artistLine=document.querySelector('[style*="margin-top:-15px"]');
   const artists=artistLine?artistLine.textContent.trim():'';
   return score
-    ?'\uD83C\uDFB8 I scored '+score+'/9 on Len\'s 80sGrid Quiz '+QUIZ_NUM+(artists?' ('+artists+')':'')+'! Can you beat me? \u{1F449} https://80sgrid.com/quiz'+QUIZ_NUM+'.html'
-    :'\uD83C\uDFB8 Test your 80s music knowledge! Play Len\'s 80sGrid.com: https://80sgrid.com/quiz'+QUIZ_NUM+'.html';
+    ?'\uD83C\uDFB8 I scored '+score+'/9 on Len\'s 80sGrid Quiz '+QUIZ_NUM+(artists?' ('+artists+')':'')+'! Can you beat me? \u{1F449} https://80sgrid.com/'
+    :'\uD83C\uDFB8 Test your 80s music knowledge! Play Len\'s 80sGrid.com: https://80sgrid.com/';
 }
 function shareScore(){try{gtag('event','brag_score',{quiz_number:QUIZ_NUM,score:getLastScore()});}catch(e){}buildShareCard(getLastScore(),getShareText(getLastScore()));}
 
@@ -1155,41 +1117,33 @@ function drawCassetteCard(score){
   const canvas=document.getElementById('shareCassette');if(!canvas)return;
   const c=canvas.getContext('2d');const W=canvas.width,H=canvas.height;
   c.fillStyle='#fff';c.fillRect(0,0,W,H);
-  // Shell
   const sx=10,sy=8,sw=W-20,sh=H-16,sr=10;
   c.fillStyle='rgba(0,0,0,0.2)';rrShare(c,sx+5,sy+5,sw,sh,sr,true,false);
   c.fillStyle='#1c1c1c';rrShare(c,sx,sy,sw,sh,sr,true,false);
   c.strokeStyle='#FF1493';c.lineWidth=2;rrShare(c,sx,sy,sw,sh,sr,false,true);
-  // Notched corners
   const nc=14;c.fillStyle='#fff';
   [[sx,sy],[sx+sw-nc,sy],[sx,sy+sh-nc],[sx+sw-nc,sy+sh-nc]].forEach(([nx,ny])=>c.fillRect(nx,ny,nc,nc));
   c.strokeStyle='#FF1493';c.lineWidth=2;rrShare(c,sx,sy,sw,sh,sr,false,true);
-  // Screws
   [[sx+20,sy+20],[sx+sw-20,sy+20],[sx+20,sy+sh-20],[sx+sw-20,sy+sh-20]].forEach(([qx,qy])=>{
     c.beginPath();c.arc(qx,qy,5,0,Math.PI*2);c.fillStyle='#111';c.fill();
     c.strokeStyle='#555';c.lineWidth=1;c.stroke();c.strokeStyle='#666';c.lineWidth=1.2;
     c.beginPath();c.moveTo(qx-3,qy);c.lineTo(qx+3,qy);c.stroke();
     c.beginPath();c.moveTo(qx,qy-3);c.lineTo(qx,qy+3);c.stroke();
   });
-  // Label
   const lx=sx+14,ly=sy+12,lw=sw-28,lh=sh-50;
   c.fillStyle='#f2f2f2';rrShare(c,lx,ly,lw,lh,4,true,false);
   const pg=c.createLinearGradient(lx,ly,lx,ly+lh);
   pg.addColorStop(0,'rgba(255,255,255,0.9)');pg.addColorStop(1,'rgba(230,230,230,0.6)');
   c.fillStyle=pg;rrShare(c,lx,ly,lw,lh,4,true,false);
-  // Ruled lines
   c.strokeStyle='rgba(160,170,210,0.5)';c.lineWidth=0.8;
   for(let lineY=ly+20;lineY<ly+lh*0.42;lineY+=11){c.beginPath();c.moveTo(lx+8,lineY);c.lineTo(lx+lw-8,lineY);c.stroke();}
-  // "A" badge
   c.fillStyle='#111';rrShare(c,lx+8,ly+7,22,22,3,true,false);
   c.fillStyle='#fff';c.textAlign='center';c.font='bold 14px Arial';c.fillText('A',lx+19,ly+23);
-  // Stripes
   const stripeY=ly+lh*0.44;
   c.fillStyle='#e8850a';c.fillRect(lx,stripeY,lw,7);
   const gg=c.createLinearGradient(0,stripeY+7,0,stripeY+13);
   gg.addColorStop(0,'#d4a020');gg.addColorStop(1,'#a07010');
   c.fillStyle=gg;c.fillRect(lx,stripeY+7,lw,6);
-  // Quiz title — dynamic
   const artistLine=document.querySelector('[style*="margin-top:-15px"]');
   const artistText=artistLine?artistLine.textContent.trim().toUpperCase():'';
   c.textAlign='center';c.font='bold 17px Arial';c.fillStyle='#1a1a1a';
@@ -1200,12 +1154,10 @@ function drawCassetteCard(score){
   c.fillText(artistText,W/2*(maxW/Math.max(c.measureText(artistText).width,maxW))||W/2,ly+40);
   c.restore();
   c.font='bold 9px Arial';c.fillStyle='#222';c.textAlign='center';
-  // Clamp artist text width
   if(c.measureText(artistText).width>lw-16){
     c.save();c.beginPath();c.rect(lx+4,ly,lw-8,50);c.clip();
     c.fillText(artistText,W/2,ly+40);c.restore();
   } else {c.fillText(artistText,W/2,ly+40);}
-  // Small label info
   c.textAlign='left';c.font='6px Arial';c.fillStyle='#555';
   c.fillText('Normal Bias',lx+8,stripeY-16);c.fillText('EQ-120μs',lx+8,stripeY-8);
   c.textAlign='right';c.font='6px Arial';
@@ -1214,25 +1166,20 @@ function drawCassetteCard(score){
   c.strokeRect(lx+lw-30,stripeY-10,6,6);c.fillStyle='#c00';c.font='8px Arial';c.textAlign='left';
   c.fillText('✕',lx+lw-31,stripeY-4);c.fillStyle='#555';c.font='6px Arial';
   c.fillText('IN',lx+lw-22,stripeY-5);c.strokeRect(lx+lw-30,stripeY-2,6,6);c.fillText('OUT',lx+lw-22,stripeY+4);
-  // Bottom strip
   const bsy=ly+lh,bsh=sy+sh-bsy-10;
   c.fillStyle='#111';rrShare(c,lx,bsy,lw,bsh,4,true,false);
-  // Star + LEN.
   const starX=lx+lw-95,starY2=bsy+bsh/2+1;
   drawStar4Card(c,starX,starY2,11,'#FF1493');
   c.textAlign='left';c.font='bold 20px Arial Black,Arial';c.fillStyle='#fff';
   c.fillText('LEN.',starX+17,bsy+bsh-7);
   c.font='6px Arial';c.fillStyle='rgba(255,20,147,0.8)';c.fillText('80sGRID.COM',starX+17,bsy+9);
-  // Quiz-N bottom left
   c.textAlign='left';c.font='bold 15px Arial Black,Arial';c.fillStyle='#fff';
   c.fillText('Quiz-',lx+8,bsy+bsh-7);c.fillStyle='#8B00FF';
   c.fillText(String(QUIZ_NUM),lx+8+c.measureText('Quiz-').width,bsy+bsh-7);
-  // Stars
   const stars=Math.round(((score||0)/9)*5);
   c.textAlign='center';c.font='18px serif';c.fillStyle='#FF1493';
   c.shadowColor='rgba(255,20,147,0.5)';c.shadowBlur=6;
   c.fillText('★'.repeat(stars)+'☆'.repeat(5-stars),W/2,bsy+22);c.shadowBlur=0;
-  // Tape window
   const wx=lx+lw*0.12,wy=ly+lh*0.24,ww=lw*0.76,wh=bsy-wy-4;
   c.fillStyle='#111';rrShare(c,wx-5,wy-5,ww+10,wh+10,7,true,false);
   c.fillStyle='#f5f5f5';rrShare(c,wx,wy,ww,wh,4,true,false);
@@ -1241,14 +1188,12 @@ function drawCassetteCard(score){
   c.fillStyle=winEdge;rrShare(c,wx,wy,ww,wh,4,true,false);
   const midY=wy+wh*0.5,reelR=Math.min(wh*0.42,52);
   const reelLX=wx+ww*0.22,reelRX=wx+ww*0.78;
-  // Center slot
   const slotW=ww*0.20,slotH=wh*0.60;
   const slotX=W/2-slotW/2,slotY2=midY-slotH/2;
   c.fillStyle='#222';rrShare(c,slotX-3,slotY2-3,slotW+6,slotH+6,4,true,false);
   c.fillStyle='#ffffff';rrShare(c,slotX,slotY2,slotW,slotH,2,true,false);
   c.strokeStyle='rgba(0,0,0,0.12)';c.lineWidth=1;
   for(let si=0;si<4;si++){const slitY=slotY2+4+si*(slotH-8)/3;c.beginPath();c.moveTo(slotX+3,slitY);c.lineTo(slotX+slotW-3,slitY);c.stroke();}
-  // Tape
   const tH=8,tapeY=midY-tH/2,gL=slotX,gR=slotX+slotW;
   c.fillStyle='#2e1a08';
   c.fillRect(reelLX,tapeY,gL-reelLX,tH);c.fillRect(gR,tapeY,reelRX-gR,tH);
@@ -1257,13 +1202,10 @@ function drawCassetteCard(score){
   c.fillStyle=tg;c.fillRect(reelLX,tapeY,gL-reelLX,tH);c.fillRect(gR,tapeY,reelRX-gR,tH);
   c.strokeStyle='rgba(15,8,0,0.6)';c.lineWidth=0.7;
   [[reelLX,gL],[gR,reelRX]].forEach(([x1,x2])=>{c.beginPath();c.moveTo(x1,tapeY);c.lineTo(x2,tapeY);c.stroke();c.beginPath();c.moveTo(x1,tapeY+tH);c.lineTo(x2,tapeY+tH);c.stroke();});
-  // Reels
   drawWhiteReelCard(c,reelLX,midY,reelR);drawWhiteReelCard(c,reelRX,midY,reelR);
-  // Score
   c.textAlign='center';c.font='bold 8px Arial';c.fillStyle='rgba(139,0,255,0.7)';c.fillText('I  SCORED',W/2,midY-20);
   c.font='900 48px Arial Black,Arial';c.fillStyle='#8B00FF';
   c.shadowColor='rgba(139,0,255,0.8)';c.shadowBlur=18;c.fillText(`${score||'?'}/9`,W/2,midY+18);c.shadowBlur=0;
-  // Guide pins
   [[W/2-48,sy+sh-14],[W/2,sy+sh-14],[W/2+48,sy+sh-14]].forEach(([px,py])=>{
     c.beginPath();c.arc(px,py,5,0,Math.PI*2);c.fillStyle='#0a0a0a';c.fill();c.strokeStyle='#444';c.lineWidth=1;c.stroke();
   });
@@ -1311,24 +1253,6 @@ function copyShareText(){
   }).catch(()=>alert(text));
 }
 
-/* ===== PERSISTENT SHARE ROW ===== */
-function persistentShareQuiz(){
-  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||null;
-  const bragBtn=document.getElementById('persistentBragBtn');
-  const bragSub=document.getElementById('persistentBragSub');
-  if(score){bragBtn.style.opacity='1';bragBtn.disabled=false;bragSub.textContent='Post your score on social!';}
-  else{bragBtn.style.opacity='0.5';bragBtn.disabled=true;bragSub.textContent='⚠️ Check your answers first to unlock this';}
-  document.getElementById('persistentShareModal').style.display='flex';
-}
-function persistentBragScore(){
-  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||null;
-  if(!score){persistentShareQuiz();return;}
-  doShareScore();
-}
-function doShareLink(){shareLink();}
-function doShareScore(){shareScore();}
-function closePersistentShareModal(){document.getElementById('persistentShareModal').style.display='none';}
-
 /* ===== MAIN GAME LOGIC ===== */
 function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();}
 function checkAnswers(){
@@ -1357,7 +1281,6 @@ function checkAnswers(){
   displayLeaderboard();
   maybeShowSurvey(_isFirstPlayToday);
 }
-/* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START);document.getElementById('playsCounter').innerHTML='&#127918; '+plays.toLocaleString()+' plays';}
 function showLeaderboard(){displayLeaderboard();document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'});}
 function resetGrid(){document.querySelectorAll('.cell input').forEach(i=>{i.value='';i.parentElement.classList.remove('correct','incorrect');});document.getElementById('results').style.display='none';document.getElementById('highScoreEntry').style.display='none';}
@@ -1381,21 +1304,24 @@ document.getElementById('initial1').addEventListener('input',function(){if(this.
 document.getElementById('initial2').addEventListener('input',function(){if(this.value)document.getElementById('initial3').focus();});
 document.getElementById('initial3').addEventListener('keypress',function(e){if(e.key==='Enter')saveHighScore();});
 
-/* ===== NAV ===== */
-const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz2.html',c:'medium'},{n:3,f:'quiz3.html',c:'medium'},{n:4,f:'quiz4.html',c:'hard'},{n:5,f:'quiz5.html',c:'medium'},{n:6,f:'quiz6.html',c:'medium'},{n:7,f:'quiz7.html',c:'easy'},{n:8,f:'quiz8.html',c:'medium'},{n:9,f:'quiz9.html',c:'medium'},{n:10,f:'quiz10.html',c:'medium'},{n:11,f:'quiz11.html',c:'hard'},{n:12,f:'quiz12.html',c:'medium'},{n:13,f:'quiz13.html',c:'hard'},{n:14,f:'quiz14.html',c:'hard'},{n:15,f:'quiz15.html',c:'medium'},{n:16,f:'quiz16.html',c:'easy'},{n:17,f:'quiz17.html',c:'hard'},{n:18,f:'quiz18.html',c:'easy'},{n:19,f:'quiz19.html',c:'medium'},{n:20,f:'quiz20.html',c:'hard'},{n:21,f:'quiz21.html',c:'medium'},{n:22,f:'quiz22.html',c:'medium'},{n:23,f:'quiz23.html',c:'medium'},{n:24,f:'quiz24.html',c:'hard'},{n:25,f:'quiz25.html',c:'hard'},{n:26,f:'quiz26.html',c:'hard'},{n:27,f:'quiz27.html',c:'medium'},{n:28,f:'quiz28.html',c:'hard'},{n:29,f:'quiz29.html',c:'hard'},{n:30,f:'quiz30.html',c:'medium'},{n:31,f:'quiz31.html',c:'easy'},{n:32,f:'quiz32.html',c:'medium'},{n:33,f:'quiz33.html',c:'easy'},{n:34,f:'quiz34.html',c:'medium'},{n:35,f:'quiz35.html',c:'medium'},{n:36,f:'quiz36.html',c:'hard'},{n:37,f:'quiz37.html',c:'medium'},{n:38,f:'quiz38.html',c:'hard'},{n:39,f:'quiz39.html',c:'hard'},{n:40,f:'quiz40.html',c:'hard'},{n:41,f:'quiz41.html',c:'easy'},{n:42,f:'quiz42.html',c:'medium'},{n:43,f:'quiz43.html',c:'easy'},{n:44,f:'quiz44.html',c:'easy'},{n:45,f:'quiz45.html',c:'easy'},{n:46,f:'quiz46.html',c:'medium'},{n:47,f:'quiz47.html',c:'easy'},{n:48,f:'quiz48.html',c:'medium'},{n:49,f:'quiz49.html',c:'easy'},{n:50,f:'quiz50.html',c:'easy'},{n:51,f:'quiz51.html',c:'easy'},{n:52,f:'quiz52.html',c:'medium'},{n:53,f:'quiz53.html',c:'medium'},{n:54,f:'quiz54.html',c:'medium'},{n:55,f:'quiz55.html',c:'medium'},{n:56,f:'quiz56.html',c:'easy'},{n:57,f:'quiz57.html',c:'medium'},{n:58,f:'quiz58.html',c:'easy'},{n:59,f:'quiz59.html',c:'medium'},{n:60,f:'quiz60.html',c:'medium'},{n:61,f:'quiz61.html',c:'medium'},{n:62,f:'quiz62.html',c:'easy'},{n:63,f:'quiz63.html',c:'medium'},{n:64,f:'quiz64.html',c:'easy'},{n:65,f:'quiz65.html',c:'medium'},{n:66,f:'quiz66.html',c:'easy'},{n:67,f:'quiz67.html',c:'medium'},{n:68,f:'quiz68.html',c:'easy'},{n:69,f:'quiz69.html',c:'easy'},{n:70,f:'quiz70.html',c:'easy'}];
-const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30,40),ALL_NAV_QUIZZES.slice(40,50),ALL_NAV_QUIZZES.slice(50,60),ALL_NAV_QUIZZES.slice(60)];
-const GROUP_LABELS=['1 – 10','11 – 20','21 – 30','31 – 40','41 – 50','51 – 60','61 – 70'];
-let navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:QUIZ_NUM<=40?3:QUIZ_NUM<=50?4:QUIZ_NUM<=60?5:6;
-function hasPlayedQuiz(n){const key=n===1?'quiz1Score':'quiz'+n+'Score';return parseInt(localStorage.getItem(key)||'0')>0;}
-function showNavGroup(idx){navActiveGroup=idx;document.querySelectorAll('.group-tab').forEach(function(t,i){t.classList.toggle('active',i===idx);});renderNavGrid();}
-function renderNavGrid(){
-  var grid=document.getElementById('quizGridNav');if(!grid)return;grid.innerHTML='';
-  var tabs=document.getElementById('groupTabs');
-  if(tabs&&!tabs.hasChildNodes()){GROUP_LABELS.forEach(function(label,i){var d=document.createElement('div');d.className='group-tab'+(i===navActiveGroup?' active':'');d.textContent=label;d.onclick=function(){showNavGroup(i);};tabs.appendChild(d);});}
-  var quizzes=NAV_GROUPS[navActiveGroup]||[];
-  quizzes.forEach(function(q){var a=document.createElement('a');var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');a.textContent=q.n;a.href=q.f;grid.appendChild(a);});
-  updateNavStatus();
+/* ===== HOW TO PLAY TOGGLE (first-visit auto-expand) ===== */
+const HTP_SEEN_KEY = '80sGrid_htpSeen';
+function toggleHtp(){
+  var body=document.getElementById('htpBody');
+  var arrow=document.getElementById('htpArrow');
+  var isOpen=body.classList.contains('open');
+  body.classList.toggle('open');
+  arrow.textContent=isOpen?'▾':'▴';
 }
+function initHtp(){
+  if(!localStorage.getItem(HTP_SEEN_KEY)){
+    document.getElementById('htpBody').classList.add('open');
+    document.getElementById('htpArrow').textContent='▴';
+    localStorage.setItem(HTP_SEEN_KEY,'1');
+  }
+}
+
+/* ===== NAV STATUS (no grid nav needed) ===== */
 function updateNavStatus(){
   var bar=document.getElementById("navStatusBar");if(!bar)return;
   var played=getQuizzesPlayedToday();var limit=getEffectiveDailyLimit();var isUnlimited=getUnlockType()==="unlimited";
@@ -1404,7 +1330,6 @@ function updateNavStatus(){
   else if(played>=limit){bar.innerHTML="\uD83D\uDEAB Daily limit reached \u2014 replay completed quizzes or unlock more below!";bar.className="nav-status-bar limit-reached";if(panel)panel.classList.add("show");}
   else{bar.innerHTML="\uD83D\uDD79\ufe0f "+(limit-played)+" of "+limit+" plays remaining today";bar.className="nav-status-bar";if(panel)panel.classList.remove("show");}
 }
-function initNav(){renderNavGrid();}
 
 /* ===== SURVEY SYSTEM ===== */
 const SURVEY_FORMSPREE='https://formspree.io/f/xeelpozw';
@@ -1534,7 +1459,7 @@ function updateStars(n){document.querySelectorAll('.feedback-star').forEach((s,i
 function submitFeedback(){
   const text=document.getElementById('feedbackText').value.trim();
   if(!feedbackRating&&!text){document.getElementById('feedbackText').style.borderColor='#FF1493';return;}
-  try{fetch(FEEDBACK_FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'feedback',quiz:'Quiz 12',rating:feedbackRating,comment:text,date:new Date().toISOString()})});}catch(e){}
+  try{fetch(FEEDBACK_FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'feedback',quiz:'Quiz 1',rating:feedbackRating,comment:text,date:new Date().toISOString()})});}catch(e){}
   document.getElementById('feedbackForm').style.display='none';
   document.getElementById('feedbackSuccess').style.display='block';
   setTimeout(closeFeedback,3000);
@@ -1545,8 +1470,9 @@ document.addEventListener('DOMContentLoaded', () => {
   closeModal();
   initializeCells();
   updatePlaysCounter();
+  updateNavStatus();
+  initHtp();
   displayLeaderboard();
-  initNav();
   restoreSurveyOnLoad();
   initDedicationBox();
   document.querySelectorAll('.feedback-star').forEach((s,i)=>{
