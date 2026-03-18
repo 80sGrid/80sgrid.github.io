@@ -48,7 +48,7 @@ box-sizing: border-box;
 .tagline-sub {
 text-align: center;
 font-family: 'Georgia', serif;
-font-size: 1.05em;
+font-size: 1.35em;
 font-style: italic;
 color: #6a0dad;
 letter-spacing: 1px;
@@ -515,6 +515,8 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
   <div class="tagline-line"></div>
 </div>
+<div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:2px; margin:6px 0 4px; font-family:Georgia, serif; font-style:italic;">Free to play &nbsp;&middot;&nbsp; 100+ quizzes and growing</div>
+<div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:1px; margin:0 0 14px; font-family:Georgia, serif; font-style:italic;">In Pat Benatar We Trust</div>
 <div class="group-tabs" id="groupTabs"></div>
 <div class="quiz-grid-nav" id="quizGridNav"></div>
 <div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
@@ -540,6 +542,23 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </div>
 </div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
+<!-- WELCOME BANNER (first visit only) -->
+<div class="welcome-banner" id="welcomeBanner" style="display:none;">
+  <div class="welcome-banner-header">
+    <span>🎸 Welcome to Len's 80sGrid!</span>
+    <button class="welcome-dismiss" onclick="dismissWelcome()" title="Got it!">Got it ✕</button>
+  </div>
+  <div class="welcome-banner-body">
+    You're playing <strong>1 of 70 quizzes</strong> — with more on the way. Each quiz is a 3×3 grid where you match artists to categories.
+    <div class="welcome-banner-pills">
+      <span class="welcome-pill">🎯 2 free plays per day</span>
+      <span class="welcome-pill">🔓 Unlock more with a code or email</span>
+      <span class="welcome-pill">💡 3 lifelines per quiz</span>
+      <span class="welcome-pill">🟢 Easy &nbsp;🟠 Medium &nbsp;🔴 Hard</span>
+      <span class="welcome-pill">🏆 Leaderboard on every quiz</span>
+    </div>
+  </div>
+</div>
 <div class="subtitle">Synth-Pop, New Wave & Everything Between</div>
 <div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">From Basildon to Brooklyn</div>
 <div class="difficulty-badge" style="--badge-color:#dc3545; --badge-glow:rgba(220,53,69,0.5);">
@@ -552,7 +571,13 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
 <div class="how-to-play">
 <button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
-<div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any box to type your answer. Multiple answers may work — get creative!</div>
+<div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any answer box to type your answer — or use a Lifeline for multiple choice hints. Multiple answers may work, so get creative! You get 2 free plays per day. Want more? Unlock a bonus play three ways:
+<ul style="margin:8px 0 8px 18px; padding:0; line-height:1.9;">
+  <li>🔐 <strong>Secret Code</strong> — look on our FB or IG <em>(wink wink)</em></li>
+  <li>📧 <strong>Email Address</strong> — quick &amp; easy, we won't spam you</li>
+  <li>😄 <strong>Take a Fun Survey</strong> — your prom, your favorite mall stores, the important stuff</li>
+</ul>
+Completed quizzes can always be replayed for free.</div>
 </div>
 
 <div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
@@ -645,7 +670,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <a href="quiz21.html" class="replay-btn">&#128260; Play Quiz 20 Again <span class="hint">(doesn't count toward daily limit)</span></a>
 </div>
 <div id="postNextQuiz">
-<a href="quiz13.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; PLAY QUIZ 21 &#8594; &#127928; &#8594; &#127928;</a>
+<a href="quiz13.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; Like, Oh My God — Keep Going! &#8594;</a>
 </div>
 <div class="post-quiz-wrap" id="postWrapBox" style="display:none;">
 <div style="font-size:1.5em; margin-bottom:6px;">&#127926;</div>
@@ -760,6 +785,68 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .feedback-success { text-align:center; padding:20px 0; display:none; }
 .feedback-success .big { font-size:2.5em; display:block; margin-bottom:10px; }
 .feedback-success p { color:#00ff88; font-size:0.95em; line-height:1.6; margin:0; }
+
+/* ===== WELCOME BANNER ===== */
+.welcome-banner {
+  background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
+  padding: 0;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  color: white;
+  box-shadow: 0 0 20px rgba(255,20,147,.4);
+  border: 3px solid rgba(255,255,255,.3);
+  overflow: hidden;
+}
+.welcome-banner-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-family: Arial, sans-serif;
+  color: white;
+  cursor: pointer;
+}
+.welcome-banner-body {
+  display: block;
+  padding: 12px 20px 16px;
+  line-height: 1.7;
+  font-size: 0.95em;
+  background: #f8f0ff;
+  color: #333;
+  text-shadow: none;
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+.welcome-banner-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.welcome-pill {
+  background: rgba(139,0,255,0.1);
+  border: 1px solid rgba(139,0,255,0.25);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.82em;
+  color: #555;
+  white-space: nowrap;
+}
+.welcome-dismiss {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 1em;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.2s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.welcome-dismiss:hover { color: white; }
 </style>
 <div class="feedback-modal-overlay" id="feedbackOverlay" onclick="if(event.target===this)closeFeedback()">
   <div class="feedback-modal">
@@ -1551,6 +1638,18 @@ document.addEventListener('DOMContentLoaded', () => {
     s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
   });
 });
+// ===== WELCOME BANNER =====
+function dismissWelcome() {
+  document.getElementById('welcomeBanner').style.display = 'none';
+  localStorage.setItem('welcomeSeen', '1');
+}
+(function() {
+  if (!localStorage.getItem('welcomeSeen')) {
+    var b = document.getElementById('welcomeBanner');
+    if (b) b.style.display = 'block';
+  }
+})();
+
 </script>
 </body>
 </html>
