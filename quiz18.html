@@ -517,9 +517,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:2px; margin:6px 0 4px; font-family:Georgia, serif; font-style:italic;">Free to play &nbsp;&middot;&nbsp; 100+ quizzes and growing</div>
 <div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:1px; margin:0 0 14px; font-family:Georgia, serif; font-style:italic;">In Pat Benatar We Trust</div>
-<div class="group-tabs" id="groupTabs"></div>
-<div class="quiz-grid-nav" id="quizGridNav"></div>
-<div class="nav-legend2">&#129001; Easy &nbsp;|&nbsp; &#128992; Medium &nbsp;|&nbsp; &#128308; Hard &nbsp;|&nbsp; &#9745; Completed</div>
 <div class="nav-status-bar" id="navStatusBar"></div>
 <div class="unlock-panel" id="unlockPanel">
   <h3>&#128275; Want to keep playing?</h3>
@@ -586,6 +583,14 @@ Completed quizzes can always be replayed for free.</div>
 <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
 <span style="color:#ccc;">·</span>
 <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
+<span style="color:#ccc;">·</span>
+<span class="mcq-wrapper" id="mcqWrapper">
+  <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
+  <div class="mcq-dropdown" id="mcqDropdown">
+    <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
+    <div id="mcqList"></div>
+  </div>
+</span>
 </div>
 
 <!-- PERSISTENT SHARE + SOCIAL ROW -->
@@ -847,6 +852,55 @@ Completed quizzes can always be replayed for free.</div>
   flex-shrink: 0;
 }
 .welcome-dismiss:hover { color: white; }
+
+/* ===== MY COMPLETED QUIZZES ===== */
+.mcq-wrapper { position:relative; display:inline-block; }
+.mcq-link { color:#667eea; text-decoration:none; font-weight:bold; font-size:.9em; cursor:pointer; }
+.mcq-link.disabled { color:#ccc; cursor:default; pointer-events:none; }
+.mcq-dropdown {
+  display:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  border:2px solid #c084fc;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(102,126,234,0.25);
+  min-width:260px;
+  max-width:320px;
+  z-index:500;
+  padding:10px 0;
+  max-height:320px;
+  overflow-y:auto;
+}
+.mcq-dropdown.open { display:block; }
+.mcq-dropdown-title {
+  font-size:0.75em;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#9333ea;
+  text-transform:uppercase;
+  padding:4px 16px 8px;
+  border-bottom:1px solid #f0e6ff;
+  margin-bottom:4px;
+}
+.mcq-item {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:7px 16px;
+  text-decoration:none;
+  color:#333;
+  font-size:0.85em;
+  transition:background 0.15s;
+  gap:8px;
+}
+.mcq-item:hover { background:#f8f0ff; }
+.mcq-item-name { flex:1; font-weight:600; color:#333; }
+.mcq-item-score { color:#667eea; font-weight:bold; font-size:0.85em; white-space:nowrap; }
+.mcq-item-replay { font-size:0.75em; color:#9333ea; white-space:nowrap; }
+.mcq-empty { padding:12px 16px; color:#999; font-size:0.85em; text-align:center; }
 </style>
 <div class="feedback-modal-overlay" id="feedbackOverlay" onclick="if(event.target===this)closeFeedback()">
   <div class="feedback-modal">
@@ -1674,6 +1728,86 @@ function dismissWelcome() {
     if (b) b.style.display = 'block';
   }
 })();
+
+
+// ===== MY COMPLETED QUIZZES =====
+const QUIZ_NAMES = {
+  1:'80s Pop Giants',2:'New Wave Around the World',3:'Dark Side of the 80s',
+  4:'Royalty, Rock & the Obscure',5:'Reggae, Roots & Art Rock',
+  6:'Clever Pop & New Wave Crossovers',7:'Arena Rock Meets Pop Soul',
+  8:'Reinvention & Rock Royalty',9:'Pop, Hip-Hop & New Wave Collide',
+  10:'Cyndy, Boy George, & Mr Hutchenson, we still miss you.',
+  11:'New Wave Meets Pop Rock',12:'From Birmingham With Love',
+  13:'Hard Rock, Blues & Attitude',14:'Three Eras, One Wild Ride',
+  15:'Grooves That Defined the Decade',16:'These Gals Rocked the 80s!',
+  17:'Beyond the Mainstream',18:'Bigger Stages, Bigger Hair',
+  19:'You Watched It on MTV',20:'Synth-Pop, New Wave & Everything Between',
+  21:'Boomer Stars Reaching GenXers',22:'Singer-Songwriter Royalty',
+  23:'Pop, Rock & Hip-Hop Walk Into a Bar',24:"Do They Know It's a Quiz?",
+  25:'Three Icons, Zero Overlap',26:'Post-Punk, Goth-Pop & Folk New Wave',
+  27:'Soundtracks, Power Pop & Passion',28:'American Rock Across Three Styles',
+  29:'Fictional Bands Only True Fans Know',30:'Three Very Different Pop Stories',
+  31:'Big Hair, Bigger Anthems',32:'AOR Giants Meet the Queen of Pop',
+  33:'Three Bands, Forty Years of Hits',34:'Imagine playing on softball team with these people!!',
+  35:'Hard Rock Holy Trinity',36:'Prog, AOR & Down Under Cool',
+  37:'The Year Everyone Had a Number One',38:'Rock, Piano & Rocket Man',
+  39:'Rock Legends on Both Sides of the Atlantic',40:'The Voices Behind the Bands',
+  41:'Hard Rock Holy Trinity Vol. 2',42:'Prog, AOR & Down Under Cool Vol. 2',
+  43:'The Year Everyone Had a Number One Vol. 2',44:'Rock, Piano & Rocket Man Vol. 2',
+  45:'Pure Pop Royalty',46:'The Voices Behind the Bands Vol. 2',
+  47:'Reggae Royalty',48:'Gothic Beauty',49:"Voices Don't Get Better Than This",
+  50:'Female-Fronted Rock Power',51:'Pure Pop Perfection',
+  52:'Power Women of New Wave',53:'The Bands Your Friends Thought Were Weird',
+  54:"Cult Classics You Won't Admit You Know",55:'All-British AOR',
+  56:'80s Megastars Up Close',57:'New Wave Oddballs from Three Continents',
+  58:'Wow, What a Trio We Have Here',59:'UK Synth-Pop Royalty',
+  60:'Post-Punk Sophisticates',61:'Eclectic Trio of New Romanticism',
+  62:'Pop, R&B & Hip-Hop Royalty',63:'Imagine The Hair Spray These Bands used!',
+  64:'Three Continents, One Era',65:'Songs With a Color in the Title',
+  66:'Three people would never have coffee together',67:'MTV Video of the Year Winners',
+  68:'Born and Raised in New York',69:'Born in LA',70:'80s Legends Who Never Quit'
+};
+function getQuizUrl(n){ return n===1?'index.html':'quiz'+n+'.html'; }
+function initMcq(){
+  var completed=[];
+  for(var i=1;i<=70;i++){
+    var score=parseInt(localStorage.getItem('quiz'+i+'Score')||'0');
+    if(score>0) completed.push({num:i,score:score});
+  }
+  var link=document.getElementById('mcqLink');
+  var list=document.getElementById('mcqList');
+  if(!link||!list)return;
+  if(completed.length===0){
+    link.classList.add('disabled');
+    link.textContent='\u{1F4CB} My Completed Quizzes';
+    link.title='Complete a quiz to unlock your history';
+    return;
+  }
+  link.classList.remove('disabled');
+  link.innerHTML='\u{1F4CB} My Completed Quizzes ('+completed.length+')';
+  list.innerHTML='';
+  completed.forEach(function(q){
+    var a=document.createElement('a');
+    a.href=getQuizUrl(q.num);
+    a.className='mcq-item';
+    a.innerHTML='<span class="mcq-item-name">'+(QUIZ_NAMES[q.num]||'Quiz '+q.num)+'</span>'+
+      '<span class="mcq-item-score">'+q.score+'/9</span>'+
+      '<span class="mcq-item-replay">&#128260; Replay</span>';
+    list.appendChild(a);
+  });
+}
+function toggleMcqDropdown(e){
+  e.preventDefault();
+  var d=document.getElementById('mcqDropdown');
+  if(d) d.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  var w=document.getElementById('mcqWrapper');
+  if(w&&!w.contains(e.target)){
+    var d=document.getElementById('mcqDropdown');
+    if(d) d.classList.remove('open');
+  }
+});
 
 </script>
 </body>
