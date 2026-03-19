@@ -1487,7 +1487,7 @@ function checkAnswers(){
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
-  maybeShowSurvey();
+  maybeShowSurvey(_isFirstPlayToday);
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START);document.getElementById('playsCounter').innerHTML='&#127918; '+plays.toLocaleString()+' plays';}
