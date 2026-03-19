@@ -1218,7 +1218,7 @@ function checkAnswers() {
   updatePostQuizUI();
   if(correct>=8&&total===9) setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
-  maybeShowSurvey(_isFirstPlayToday);
+  maybeShowSurvey();
 }
 function updatePlaysCounter() { let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START); document.getElementById('playsCounter').textContent='&#127918; '+plays.toLocaleString()+' plays'; }
 function showLeaderboard() { displayLeaderboard(); document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'}); }
@@ -1687,11 +1687,8 @@ function revealSurveyResults(surveyId,chosen){
     card.style.cursor='default';card.onclick=null;
   });
 }
-function maybeShowSurvey(isFirstPlay){
-  if(!isFirstPlay)return;
-  if(hasShownSurveyToday())return;
+function maybeShowSurvey(){
   const nextId=getNextSurvey();if(!nextId)return;
-  markSurveyShownToday();
   renderSurvey(nextId);
 }
 function restoreSurveyOnLoad(){
@@ -1711,6 +1708,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     s.addEventListener('mouseenter',()=>updateStars(i+1));
     s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
   });
+  initMcq();
 });
 
 /* ===== SPONSOR BOX ===== */
