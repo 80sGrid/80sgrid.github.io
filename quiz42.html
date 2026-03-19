@@ -1700,6 +1700,7 @@ document.addEventListener('DOMContentLoaded', () => {
     s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
   });
   initMcq();
+  initNextQuizBtn();
 });
 // ===== WELCOME BANNER =====
 function dismissWelcome() {
@@ -1792,6 +1793,32 @@ document.addEventListener('click',function(e){
     if(d) d.classList.remove('open');
   }
 });
+
+
+// ===== SMART NEXT QUIZ BUTTON =====
+function initNextQuizBtn() {
+  var btn = document.getElementById('postNextQuizBtn');
+  if (!btn) return;
+  // Find first unplayed quiz
+  var next = null;
+  for (var i = 0; i < ALL_NAV_QUIZZES.length; i++) {
+    var q = ALL_NAV_QUIZZES[i];
+    var score = parseInt(localStorage.getItem('quiz' + q.n + 'Score') || '0');
+    if (score === 0 && q.n !== QUIZ_NUM) {
+      next = q;
+      break;
+    }
+  }
+  if (next) {
+    btn.href = next.f;
+    btn.style.display = 'inline-block';
+  } else {
+    // All quizzes completed - wrap around to first
+    btn.href = 'index.html';
+    btn.innerHTML = "&#127928; You've played them all — start over! &#8594;";
+    btn.style.display = 'inline-block';
+  }
+}
 
 </script>
 </body>
