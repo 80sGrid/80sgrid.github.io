@@ -1429,7 +1429,7 @@ function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').repl
 function checkAnswers(){
   let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');const isThisAReplay=previousScore>0;
-  if(!isThisAReplay&&!hasNewPlaysLeft()){document.getElementById('limitModal').classList.add('show');return;}
+  if(!isThisAReplay&&!hasNewPlaysLeft()&&!localStorage.getItem('__admin_unlimited')){document.getElementById('limitModal').classList.add('show');return;}
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
