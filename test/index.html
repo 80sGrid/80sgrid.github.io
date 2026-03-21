@@ -1239,7 +1239,7 @@ function buildShareCard(score,text){
   overlay.appendChild(box);
   overlay.onclick=(e)=>{if(e.target===overlay)overlay.remove();};
   document.body.appendChild(overlay);
-  setTimeout(()=>drawCassetteCard(score),40);
+  setTimeout(()=>{drawCassetteCard(score);drawGridOnCassette();},40);
 }
 
 function rrShare(c,x,y,w,h,r,fill,stroke){
@@ -1904,6 +1904,58 @@ function hubInit(){
     const sn=document.getElementById('streak-num');if(sn)sn.textContent=str;
     const is2=document.getElementById('istat-streak');if(is2)is2.textContent=str;
   };
+}
+
+
+/* ===== CASSETTE GRID OVERLAY ===== */
+function drawGridOnCassette(ctx, W, H) {
+  const cells = document.querySelectorAll('.cell');
+  const states = [];
+  cells.forEach(cell => {
+    if (cell.classList.contains('correct')) states.push('correct');
+    else if (cell.classList.contains('incorrect')) states.push('incorrect');
+    else if (cell.classList.contains('lifeline-used')) states.push('lifeline');
+    else states.push('empty');
+  });
+  if (states.every(s => s === 'empty')) return; // not played yet
+
+  const correct = states.filter(s => s === 'correct').length;
+  const total = states.length;
+  const gridW = 84, gridH = 84;
+  const cellW = gridW / 3, cellH = gridH / 3;
+  const startX = (W - gridW) / 2;
+  const startY = (H / 2) - (gridH / 2) - 8;
+  const colors = { correct:'#28a745', incorrect:'#dc3545', lifeline:'#FFA500', empty:'#888' };
+
+  // Dark backing
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  ctx.beginPath();
+  ctx.roundRect(startX - 8, startY - 8, gridW + 16, gridH + 32, 8);
+  ctx.fill();
+
+  // Cells
+  states.forEach((state, i) => {
+    const col = i % 3, row = Math.floor(i / 3);
+    const x = startX + col * cellW + 1.5;
+    const y = startY + row * cellH + 1.5;
+    const w = cellW - 3, h = cellH - 3;
+    ctx.fillStyle = colors[state] || '#888';
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 4);
+    ctx.fill();
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold ' + Math.floor(h * 0.5) + 'px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(state==='correct'?'✓':state==='incorrect'?'✗':state==='lifeline'?'★':'·', x+w/2, y+h/2);
+  });
+
+  // Score label
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 12px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText(correct + '/' + total + ' \u00b7 80sGrid.com', W/2, startY + gridH + 5);
 }
 
 </script>

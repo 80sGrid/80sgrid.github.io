@@ -677,6 +677,12 @@ Completed quizzes can always be replayed for free.</div>
 </div>
 
 
+
+<!-- ===== RECENT ARCHIVE ===== -->
+<div style="text-align:center;font-size:0.68em;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin:14px 0 8px;font-weight:900;">Recent Archive</div>
+<div id="archive-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;"></div>
+<div style="text-align:center;padding:12px;background:#f8f9fa;border-radius:10px;font-size:0.78em;color:#aaa;border:2px dashed #dee2e6;margin-bottom:16px;">&#128274; Only the last 3 grids are in the free archive. A new grid drops every day at midnight.</div>
+
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
 <div class="post-quiz-progress" id="postQuizProgress">
@@ -1230,7 +1236,7 @@ function buildShareCard(score,text){
   overlay.appendChild(box);
   overlay.onclick=(e)=>{if(e.target===overlay)overlay.remove();};
   document.body.appendChild(overlay);
-  setTimeout(()=>drawCassetteCard(score),40);
+  setTimeout(()=>{drawCassetteCard(score);drawGridOnCassette();},40);
 }
 
 function rrShare(c,x,y,w,h,r,fill,stroke){
@@ -1632,6 +1638,7 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
+  renderArchive();
   renderStreakAndStats();
   closeModal();
   initializeCells();
@@ -1786,6 +1793,92 @@ function renderStreakAndStats(){
   const p=document.getElementById('istat-played');if(p)p.textContent=scores.length;
   const a=document.getElementById('istat-avg');if(a)a.textContent=avg;
   const b=document.getElementById('istat-best');if(b)b.textContent=best;
+}
+
+
+/* ===== RECENT ARCHIVE ===== */
+const _LAUNCH = new Date('2026-04-08T00:00:00');
+const _QUIZ_FILES = ['index.html','quiz2.html','quiz3.html','quiz4.html','quiz5.html','quiz6.html','quiz7.html','quiz8.html','quiz9.html','quiz10.html'];
+const _QUIZ_TITLES = ['80s Pop Giants','New Wave Around the World','Dark Side of the 80s','Royalty, Rock & the Obscure','Reggae, Roots & Art Rock','Clever Pop & New Wave Crossovers','Arena Rock Meets Pop Soul','Reinvention & Rock Royalty','Pop, Hip-Hop & New Wave Collide','Cyndi, Boy George & Mr. Hutchence'];
+
+function renderArchive(){
+  const ag = document.getElementById('archive-grid');
+  if(!ag) return;
+  const dayIdx = Math.max(0, Math.floor((new Date() - _LAUNCH) / 86400000));
+  ag.innerHTML = '';
+  if(dayIdx === 0){
+    ag.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#aaa;font-size:0.8em;padding:12px;">Archive available starting Day 2.</div>';
+    return;
+  }
+  for(let i = Math.max(0, dayIdx-3); i < dayIdx; i++){
+    const qFile = _QUIZ_FILES[Math.min(i, _QUIZ_FILES.length-1)];
+    const qTitle = _QUIZ_TITLES[Math.min(i, _QUIZ_TITLES.length-1)];
+    const d = new Date(_LAUNCH.getTime() + i * 86400000);
+    const score = localStorage.getItem('80sg_score_day_' + i);
+    const num = i + 1;
+    const card = document.createElement('a');
+    card.href = qFile;
+    card.style.cssText = 'border:2px solid #dee2e6;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;text-decoration:none;color:inherit;display:block;transition:all 0.2s;';
+    card.onmouseover = function(){this.style.borderColor='#667eea';};
+    card.onmouseout = function(){this.style.borderColor='#dee2e6';};
+    card.innerHTML =
+      '<div style="font-family:\'Oxanium\',\'Arial Black\',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">#' + String(num).padStart(3,'0') + '</div>' +
+      '<div style="font-size:0.68em;color:#999;margin-top:2px;">' + d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}) + '</div>' +
+      '<div style="font-size:0.72em;font-weight:700;margin-top:4px;color:' + (score ? '#28a745' : '#aaa') + '">' + (score ? '&#10003; ' + score + '/9' : 'Not played') + '</div>';
+    ag.appendChild(card);
+  }
+}
+
+
+/* ===== CASSETTE GRID OVERLAY ===== */
+function drawGridOnCassette(ctx, W, H) {
+  const cells = document.querySelectorAll('.cell');
+  const states = [];
+  cells.forEach(cell => {
+    if (cell.classList.contains('correct')) states.push('correct');
+    else if (cell.classList.contains('incorrect')) states.push('incorrect');
+    else if (cell.classList.contains('lifeline-used')) states.push('lifeline');
+    else states.push('empty');
+  });
+  if (states.every(s => s === 'empty')) return; // not played yet
+
+  const correct = states.filter(s => s === 'correct').length;
+  const total = states.length;
+  const gridW = 84, gridH = 84;
+  const cellW = gridW / 3, cellH = gridH / 3;
+  const startX = (W - gridW) / 2;
+  const startY = (H / 2) - (gridH / 2) - 8;
+  const colors = { correct:'#28a745', incorrect:'#dc3545', lifeline:'#FFA500', empty:'#888' };
+
+  // Dark backing
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  ctx.beginPath();
+  ctx.roundRect(startX - 8, startY - 8, gridW + 16, gridH + 32, 8);
+  ctx.fill();
+
+  // Cells
+  states.forEach((state, i) => {
+    const col = i % 3, row = Math.floor(i / 3);
+    const x = startX + col * cellW + 1.5;
+    const y = startY + row * cellH + 1.5;
+    const w = cellW - 3, h = cellH - 3;
+    ctx.fillStyle = colors[state] || '#888';
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 4);
+    ctx.fill();
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold ' + Math.floor(h * 0.5) + 'px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(state==='correct'?'✓':state==='incorrect'?'✗':state==='lifeline'?'★':'·', x+w/2, y+h/2);
+  });
+
+  // Score label
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 12px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText(correct + '/' + total + ' \u00b7 80sGrid.com', W/2, startY + gridH + 5);
 }
 
 </script>
