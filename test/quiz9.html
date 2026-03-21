@@ -635,13 +635,48 @@ Completed quizzes can always be replayed for free.</div>
 <div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
 
 </div>
+<!-- DEDICATION BOX -->
+<div id="dedicationAnchor"></div>
 <div class="button-container">
 <button onclick="checkAnswers()">Check Answers</button>
 <button onclick="resetGrid()">Reset Grid</button>
 </div>
 
-<!-- DEDICATION BOX - randomly rotated on every page load -->
-<div id="dedicationAnchor"></div>
+<!-- STREAK + STATS SECTION -->
+<div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
+<div style="display:flex;align-items:center;gap:10px;">
+<div id="streak-flame" style="font-size:1.5em;line-height:1;">&#128293;</div>
+<div>
+<div style="font-size:0.68em;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#ffb347;margin-bottom:1px;">Day Streak</div>
+<div id="streak-sub" style="font-size:0.7em;color:#888;">Play daily to keep it alive</div>
+</div>
+</div>
+<div id="streak-num" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:2em;font-weight:700;color:#FF1493;line-height:1;min-width:40px;text-align:center;">0</div>
+<div style="text-align:right;">
+<div id="streak-msg" style="font-size:0.78em;color:#FF1493;font-weight:700;">Start your streak today!</div>
+<div style="font-size:0.68em;color:#aaa;margin-top:2px;" id="streak-tomorrow">Play today = Day 1 &#128293;</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;">
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-streak" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#FF1493;">0</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">&#128293; Streak</div>
+</div>
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-played" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">0</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Played</div>
+</div>
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-avg" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">—</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Avg Score</div>
+</div>
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-best" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#FFA500;">—</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Best</div>
+</div>
+</div>
+
+
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
 <div class="post-quiz-progress" id="postQuizProgress">
@@ -1597,6 +1632,7 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
+  renderStreakAndStats();
   closeModal();
   initializeCells();
   updatePlaysCounter();
@@ -1716,6 +1752,40 @@ function initNextQuizBtn() {
     btn.innerHTML = "&#127928; You've played them all — start over! &#8594;";
     btn.style.display = 'inline-block';
   }
+}
+
+
+/* ===== STREAK + STATS ===== */
+function renderStreakAndStats(){
+  const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
+  const scores=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('80sg_score_day_')){const v=parseInt(localStorage.getItem(k));if(!isNaN(v))scores.push(v);}}
+  const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'—';
+  const best=scores.length?Math.max(...scores)+'/9':'—';
+  const num=document.getElementById('streak-num');if(num)num.textContent=streak;
+  const flame=document.getElementById('streak-flame');
+  const sub=document.getElementById('streak-sub');
+  const msg=document.getElementById('streak-msg');
+  const tom=document.getElementById('streak-tomorrow');
+  const strip=document.getElementById('streak-strip');
+  if(streak===0){
+    if(strip)strip.style.borderColor='#c084fc';
+    if(strip)strip.style.background='#f8f9ff';
+    if(num)num.style.color='#8B00FF';
+    if(flame)flame.textContent='🎸';
+    if(sub)sub.textContent='Play today to start your streak';
+    if(msg){msg.textContent='Start your streak today!';msg.style.color='#8B00FF';}
+    if(tom)tom.textContent='First play = Day 1 🔥';
+  } else {
+    if(flame)flame.textContent='🔥';
+    if(sub)sub.textContent='Play daily to keep it alive';
+    if(msg)msg.textContent='Keep it going!';
+    if(tom)tom.textContent='Play today to reach '+(streak+1)+' 🔥';
+  }
+  const s=document.getElementById('istat-streak');if(s)s.textContent=streak;
+  const p=document.getElementById('istat-played');if(p)p.textContent=scores.length;
+  const a=document.getElementById('istat-avg');if(a)a.textContent=avg;
+  const b=document.getElementById('istat-best');if(b)b.textContent=best;
 }
 
 </script>
