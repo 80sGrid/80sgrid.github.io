@@ -6,73 +6,75 @@
 <title>80sGrid Test Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:#0a0a0f;color:#00ff88;font-family:'Courier New',monospace;min-height:100vh;padding:20px;}
-h1{font-size:1.4em;color:#FF1493;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;text-shadow:0 0 20px rgba(255,20,147,0.8);}
-.subtitle{font-size:0.72em;color:#666;letter-spacing:2px;margin-bottom:24px;}
-.gate{max-width:400px;margin:80px auto;background:#111;border:2px solid #FF1493;border-radius:12px;padding:30px;text-align:center;box-shadow:0 0 40px rgba(255,20,147,0.3);}
-.gate input{width:100%;padding:12px;background:#000;border:2px solid #333;border-radius:8px;color:#00ff88;font-family:'Courier New',monospace;font-size:1em;margin:16px 0;text-align:center;letter-spacing:2px;}
+body{background:#f5f5f5;color:#111;font-family:Arial,sans-serif;min-height:100vh;padding:24px;font-size:16px;}
+h1{font-size:1.8em;color:#FF1493;font-weight:900;letter-spacing:2px;margin-bottom:4px;}
+.subtitle{font-size:0.85em;color:#888;margin-bottom:24px;letter-spacing:1px;}
+.gate{max-width:420px;margin:100px auto;background:white;border:2px solid #FF1493;border-radius:16px;padding:36px;text-align:center;box-shadow:0 4px 24px rgba(255,20,147,0.15);}
+.gate .icon{font-size:2.5em;margin-bottom:12px;}
+.gate h1{margin-bottom:6px;}
+.gate input{width:100%;padding:14px;background:#f9f9f9;border:2px solid #ddd;border-radius:10px;color:#111;font-size:1em;margin:16px 0;text-align:center;letter-spacing:2px;}
 .gate input:focus{outline:none;border-color:#FF1493;}
-.gate button{width:100%;padding:12px;background:#FF1493;color:#000;border:none;border-radius:8px;font-family:'Courier New',monospace;font-size:0.9em;font-weight:900;letter-spacing:2px;cursor:pointer;text-transform:uppercase;}
-.gate button:hover{background:#ff69b4;}
-.dashboard{display:none;max-width:800px;margin:0 auto;}
-.section{background:#111;border:1px solid #222;border-radius:10px;padding:20px;margin-bottom:16px;}
-.section-title{font-size:0.7em;color:#FF1493;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;border-bottom:1px solid #222;padding-bottom:8px;}
-.quiz-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
-.quiz-btn{background:#0a0a0f;border:1px solid #333;border-radius:8px;padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;display:block;}
-.quiz-btn:hover{border-color:#FF1493;background:#1a0010;}
-.quiz-btn .num{font-size:1.1em;font-weight:700;color:#FF1493;}
-.quiz-btn .name{font-size:0.58em;color:#888;margin-top:3px;line-height:1.3;}
-.quiz-btn .diff{font-size:0.55em;margin-top:2px;}
-.diff-easy{color:#28a745;}
-.diff-medium{color:#fd7e14;}
-.diff-hard{color:#dc3545;}
-.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.action-btn{padding:12px;border:1px solid #333;border-radius:8px;background:#0a0a0f;color:#00ff88;font-family:'Courier New',monospace;font-size:0.78em;cursor:pointer;text-align:left;transition:all 0.2s;}
-.action-btn:hover{border-color:#00ff88;background:#001a0a;}
-.action-btn.danger{color:#dc3545;}
-.action-btn.danger:hover{border-color:#dc3545;background:#1a0000;}
+.gate button{width:100%;padding:14px;background:#FF1493;color:white;border:none;border-radius:10px;font-size:1em;font-weight:900;letter-spacing:1px;cursor:pointer;}
+.gate button:hover{background:#e0107a;}
+.dashboard{display:none;max-width:860px;margin:0 auto;}
+.section{background:white;border:1px solid #e0e0e0;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.section-title{font-size:0.8em;color:#FF1493;font-weight:900;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;border-bottom:2px solid #f5f5f5;padding-bottom:10px;}
+.status-bar{background:white;border:1px solid #e0e0e0;border-radius:12px;padding:16px 20px;margin-bottom:18px;display:flex;gap:24px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.stat .stat-label{font-size:0.72em;color:#999;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:3px;}
+.stat .stat-val{font-size:1em;font-weight:700;color:#111;}
+.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.action-btn{padding:14px 16px;border:2px solid #e0e0e0;border-radius:10px;background:white;color:#111;font-size:0.92em;font-weight:700;cursor:pointer;text-align:left;transition:all 0.15s;}
+.action-btn:hover{border-color:#667eea;background:#f8f8ff;}
+.action-btn.danger:hover{border-color:#dc3545;background:#fff5f5;}
 .action-btn .icon{font-size:1.2em;margin-right:6px;}
-.action-btn .desc{font-size:0.72em;color:#555;margin-top:3px;display:block;}
-.status-bar{background:#0a0a0f;border:1px solid #222;border-radius:8px;padding:12px 14px;margin-bottom:16px;display:flex;gap:20px;flex-wrap:wrap;}
-.stat{font-size:0.72em;}
-.stat-label{color:#555;display:block;margin-bottom:2px;}
-.stat-val{color:#00ff88;font-weight:700;}
-.schedule-list{font-size:0.72em;}
-.schedule-row{display:grid;grid-template-columns:60px 80px 1fr 60px;gap:8px;padding:6px 0;border-bottom:1px solid #1a1a1a;align-items:center;}
-.schedule-row:last-child{border-bottom:none;}
-.schedule-row.today{background:rgba(255,20,147,0.1);border-radius:6px;padding:6px 8px;}
-.schedule-row .day-num{color:#FF1493;font-weight:700;}
-.schedule-row .date{color:#555;}
-.schedule-row .title{color:#00ff88;}
-.schedule-row .diff-badge{font-size:0.85em;text-align:right;}
-.day-sim{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-.day-sim input{background:#000;border:1px solid #333;border-radius:6px;color:#00ff88;font-family:'Courier New',monospace;padding:6px 10px;font-size:0.78em;width:140px;}
-.day-sim button{padding:6px 14px;background:#333;border:1px solid #555;border-radius:6px;color:#00ff88;font-family:'Courier New',monospace;font-size:0.72em;cursor:pointer;}
-.day-sim button:hover{background:#444;}
-.toast{position:fixed;bottom:20px;right:20px;background:#00ff88;color:#000;padding:10px 18px;border-radius:8px;font-size:0.78em;font-weight:700;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:9999;}
+.action-btn .desc{font-size:0.76em;color:#888;font-weight:400;margin-top:4px;display:block;}
+.day-sim{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;}
+.day-sim label{font-size:0.85em;color:#555;font-weight:700;}
+.day-sim input{padding:9px 12px;border:2px solid #ddd;border-radius:8px;color:#111;font-size:0.92em;width:80px;text-align:center;}
+.day-sim input:focus{outline:none;border-color:#FF1493;}
+.day-sim button{padding:9px 16px;background:#667eea;color:white;border:none;border-radius:8px;font-size:0.85em;font-weight:700;cursor:pointer;}
+.day-sim button:hover{background:#5a6fd8;}
+.day-sim button.clear-btn{background:#f5f5f5;color:#555;border:2px solid #ddd;}
+.day-sim button.clear-btn:hover{background:#eee;}
+#simStatus{font-size:0.8em;color:#FF1493;font-weight:700;}
+.quiz-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.quiz-btn{border:2px solid #e0e0e0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.15s;text-decoration:none;display:block;background:white;}
+.quiz-btn:hover{border-color:#FF1493;background:#fff5f9;}
+.quiz-btn.is-today{border-color:#FF1493;background:#fff0f6;}
+.quiz-btn .num{font-size:1.1em;font-weight:900;color:#FF1493;}
+.quiz-btn .name{font-size:0.63em;color:#555;margin-top:3px;line-height:1.3;}
+.quiz-btn .diff{font-size:0.62em;margin-top:4px;font-weight:700;}
+.quiz-btn .score{font-size:0.62em;color:#28a745;margin-top:2px;font-weight:700;}
+.quiz-btn .today-badge{font-size:0.6em;background:#FF1493;color:white;border-radius:4px;padding:2px 5px;margin-top:3px;display:inline-block;}
+.diff-easy{color:#28a745;} .diff-medium{color:#fd7e14;} .diff-hard{color:#dc3545;}
+.schedule-table{width:100%;border-collapse:collapse;font-size:0.9em;}
+.schedule-table th{text-align:left;padding:9px 12px;border-bottom:2px solid #f0f0f0;font-size:0.75em;color:#999;text-transform:uppercase;letter-spacing:1px;}
+.schedule-table td{padding:9px 12px;border-bottom:1px solid #f5f5f5;color:#333;}
+.schedule-table tr.is-today td{background:#fff0f6;font-weight:700;}
+.schedule-table tr.is-today td:first-child{color:#FF1493;}
+.schedule-table tr.is-past td{color:#bbb;}
+#lsViewer{font-size:0.84em;line-height:2.1;max-height:280px;overflow-y:auto;background:#f9f9f9;border-radius:8px;padding:14px;}
+.ls-key{color:#667eea;font-weight:700;}
+.toast{position:fixed;bottom:24px;right:24px;background:#111;color:white;padding:12px 20px;border-radius:10px;font-size:0.88em;font-weight:700;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.2);}
 .toast.show{opacity:1;}
 </style>
 </head>
 <body>
 
-<!-- GATE -->
 <div class="gate" id="gate">
-  <div style="font-size:2em;margin-bottom:8px;">🎸</div>
+  <div class="icon">🎸</div>
   <h1>80sGrid Admin</h1>
   <div class="subtitle">TEST FOLDER · AUTHORIZED ACCESS ONLY</div>
   <input type="password" id="passInput" placeholder="Enter passphrase" onkeydown="if(event.key==='Enter')checkPass()">
-  <button onclick="checkPass()">ACCESS SYSTEM</button>
+  <button onclick="checkPass()">Access System</button>
 </div>
 
-<!-- DASHBOARD -->
 <div class="dashboard" id="dashboard">
   <h1>🎸 80sGrid Test Admin</h1>
-  <div class="subtitle">TEST FOLDER DASHBOARD · ALL LIMITS BYPASSED</div>
+  <div class="subtitle">TEST FOLDER DASHBOARD · LIMITS BYPASSED ON LOGIN</div>
 
-  <!-- STATUS -->
   <div class="status-bar" id="statusBar"></div>
 
-  <!-- QUICK ACTIONS -->
   <div class="section">
     <div class="section-title">⚡ Quick Actions</div>
     <div class="action-grid">
@@ -80,66 +82,61 @@ h1{font-size:1.4em;color:#FF1493;letter-spacing:3px;text-transform:uppercase;mar
         <span class="icon">🔓</span> Bypass All Limits
         <span class="desc">Sets unlimited plays for today's session</span>
       </button>
-      <button class="action-btn" onclick="goToHub()">
-        <span class="icon">🏠</span> Open Hub (index.html)
-        <span class="desc">Today's daily quiz page</span>
-      </button>
-      <button class="action-btn" onclick="simulateDay()">
-        <span class="icon">📅</span> Simulate Day
-        <span class="desc">Jump to a specific launch day to test</span>
+      <button class="action-btn" onclick="window.open('index.html','_blank')">
+        <span class="icon">🏠</span> Open Hub Page
+        <span class="desc">Today's daily quiz — index.html</span>
       </button>
       <button class="action-btn" onclick="resetStreak()">
         <span class="icon">🔥</span> Reset Streak to 0
-        <span class="desc">Clear streak for clean testing</span>
+        <span class="desc">Clear streak counter for clean testing</span>
       </button>
-      <button class="action-btn danger" onclick="clearTodayPlays()">
-        <span class="icon">🗑</span> Clear Today's Play Count
+      <button class="action-btn" onclick="clearTodayPlays()">
+        <span class="icon">🗑️</span> Clear Today's Play Count
         <span class="desc">Reset daily limit counter only</span>
       </button>
       <button class="action-btn danger" onclick="nukeAll()">
-        <span class="icon">💣</span> Nuke All localStorage
-        <span class="desc">Full reset — fresh player state</span>
+        <span class="icon">💣</span> Nuke All Data
+        <span class="desc">Full reset — completely fresh player state</span>
+      </button>
+      <button class="action-btn" onclick="refreshAll()">
+        <span class="icon">🔄</span> Refresh Dashboard
+        <span class="desc">Reload all stats and localStorage view</span>
       </button>
     </div>
-
-    <!-- Day simulator -->
-    <div style="margin-top:14px;padding-top:14px;border-top:1px solid #222;">
-      <div style="font-size:0.68em;color:#555;letter-spacing:2px;margin-bottom:8px;">SIMULATE LAUNCH DAY</div>
-      <div class="day-sim">
-        <input type="number" id="dayInput" min="1" max="70" value="1" placeholder="Day #">
-        <button onclick="setSimDay()">Set Day</button>
-        <button onclick="clearSimDay()">Clear Override</button>
-        <span id="simStatus" style="font-size:0.68em;color:#555;"></span>
-      </div>
+    <div class="day-sim">
+      <label>Simulate Launch Day:</label>
+      <input type="number" id="dayInput" min="1" max="10" value="1">
+      <button onclick="setSimDay()">Set Day</button>
+      <button class="clear-btn" onclick="clearSimDay()">Clear Override</button>
+      <span id="simStatus"></span>
     </div>
   </div>
 
-  <!-- QUIZ NAVIGATOR -->
   <div class="section">
-    <div class="section-title">🎮 Quiz Navigator — Click to Open (No Limits)</div>
+    <div class="section-title">🎮 Quiz Navigator — Opens Each Quiz in New Tab (No Limits)</div>
     <div class="quiz-grid" id="quizGrid"></div>
   </div>
 
-  <!-- SCHEDULE -->
   <div class="section">
-    <div class="section-title">📅 Launch Schedule (April 8, 2026)</div>
-    <div class="schedule-list" id="scheduleList"></div>
+    <div class="section-title">📅 Launch Schedule — April 8, 2026</div>
+    <table class="schedule-table">
+      <thead><tr><th>Day</th><th>Date</th><th>Quiz Title</th><th>Difficulty</th><th>Your Score</th></tr></thead>
+      <tbody id="scheduleBody"></tbody>
+    </table>
   </div>
 
-  <!-- localStorage VIEWER -->
   <div class="section">
-    <div class="section-title">💾 localStorage State</div>
-    <div id="lsViewer" style="font-size:0.68em;color:#555;line-height:2;max-height:300px;overflow-y:auto;"></div>
+    <div class="section-title">💾 localStorage State <span style="font-weight:400;color:#bbb;font-size:0.85em;">(auto-refreshes every 3s)</span></div>
+    <div id="lsViewer"></div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const PASS = 'patbenatar80s';
-const LAUNCH = new Date('2026-04-08T00:00:00');
-
-const QUIZZES = [
+const PASS='patbenatar80s';
+const LAUNCH=new Date('2026-04-08T00:00:00');
+const QUIZZES=[
   {n:1,f:'index.html',t:'80s Pop Giants',d:'medium'},
   {n:2,f:'quiz2.html',t:'New Wave Around the World',d:'medium'},
   {n:3,f:'quiz3.html',t:'Dark Side of the 80s',d:'hard'},
@@ -149,204 +146,141 @@ const QUIZZES = [
   {n:7,f:'quiz7.html',t:'Arena Rock Meets Pop Soul',d:'medium'},
   {n:8,f:'quiz8.html',t:'Reinvention & Rock Royalty',d:'hard'},
   {n:9,f:'quiz9.html',t:'Pop, Hip-Hop & New Wave Collide',d:'hard'},
-  {n:10,f:'quiz10.html',t:'Cyndi, Boy George & Mr. Hutchence',d:'easy'},
+  {n:10,f:'quiz10.html',t:'Cyndi, Boy George & Hutchence',d:'easy'},
 ];
 
 function checkPass(){
-  const val = document.getElementById('passInput').value;
-  if(val === PASS){
+  if(document.getElementById('passInput').value===PASS){
     document.getElementById('gate').style.display='none';
     document.getElementById('dashboard').style.display='block';
     init();
   } else {
-    document.getElementById('passInput').style.borderColor='#dc3545';
-    document.getElementById('passInput').value='';
-    document.getElementById('passInput').placeholder='Wrong passphrase';
-    setTimeout(()=>{
-      document.getElementById('passInput').style.borderColor='#333';
-      document.getElementById('passInput').placeholder='Enter passphrase';
-    },2000);
+    const inp=document.getElementById('passInput');
+    inp.style.borderColor='#dc3545';inp.value='';inp.placeholder='Wrong passphrase — try again';
+    setTimeout(()=>{inp.style.borderColor='#ddd';inp.placeholder='Enter passphrase';},2000);
   }
 }
 
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
-function getDayIdx(){
-  const override=localStorage.getItem('__admin_day_override');
-  if(override!==null) return parseInt(override);
-  return Math.max(0,Math.floor((new Date()-LAUNCH)/86400000));
-}
+function getDayIdx(){const ov=localStorage.getItem('__admin_day_override');if(ov!==null)return parseInt(ov);return Math.max(0,Math.floor((new Date()-LAUNCH)/86400000));}
 
-function init(){
-  renderStatus();
-  renderQuizGrid();
-  renderSchedule();
-  renderLS();
-  checkSimDay();
-  bypassLimits(); // auto-bypass on admin load
-}
+function init(){bypassLimits();renderStatus();renderQuizGrid();renderSchedule();renderLS();checkSimDay();}
 
 function renderStatus(){
   const streak=localStorage.getItem('80sg_streak')||'0';
-  const last=localStorage.getItem('80sg_last_played')||'never';
+  const last=localStorage.getItem('80sg_last_played')||'Never';
   const dayIdx=getDayIdx();
   const today=new Date().toISOString().slice(0,10);
   const playsToday=parseInt(localStorage.getItem('80sGridQuizzesPlayedToday')||'0');
   const playDate=localStorage.getItem('80sGridQuizzesPlayedTodayDate')||'';
-  const totalPlayed=localStorage.getItem('totalQuizzesPlayed')||'0';
-  const override=localStorage.getItem('__admin_day_override');
-
+  const total=localStorage.getItem('totalQuizzesPlayed')||'0';
+  const ov=localStorage.getItem('__admin_day_override');
+  const unlimited=localStorage.getItem('__admin_unlimited');
   document.getElementById('statusBar').innerHTML=`
-    <div class="stat"><span class="stat-label">CURRENT DAY</span><span class="stat-val">${override!==null?'DAY '+override+' (SIMULATED)':'DAY '+(dayIdx+1)+' ('+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})+')'}</span></div>
-    <div class="stat"><span class="stat-label">STREAK</span><span class="stat-val">${streak} 🔥</span></div>
-    <div class="stat"><span class="stat-label">LAST PLAYED</span><span class="stat-val">${last}</span></div>
-    <div class="stat"><span class="stat-label">PLAYS TODAY</span><span class="stat-val">${playDate===today?playsToday:0}</span></div>
-    <div class="stat"><span class="stat-label">TOTAL PLAYED</span><span class="stat-val">${totalPlayed}</span></div>
-    <div class="stat"><span class="stat-label">LIMITS</span><span class="stat-val" style="color:${localStorage.getItem('__admin_unlimited')?'#28a745':'#dc3545'}">${localStorage.getItem('__admin_unlimited')?'BYPASSED ✓':'ACTIVE'}</span></div>
-  `;
+    <div class="stat"><span class="stat-label">Active Day</span><span class="stat-val" style="color:#FF1493">${ov!==null?'Day '+(parseInt(ov)+1)+' (SIMULATED)':'Day '+(dayIdx+1)+' — Today'}</span></div>
+    <div class="stat"><span class="stat-label">Streak</span><span class="stat-val">${streak} 🔥</span></div>
+    <div class="stat"><span class="stat-label">Last Played</span><span class="stat-val">${last}</span></div>
+    <div class="stat"><span class="stat-label">Plays Today</span><span class="stat-val">${playDate===today?playsToday:0}</span></div>
+    <div class="stat"><span class="stat-label">Total Played</span><span class="stat-val">${total}</span></div>
+    <div class="stat"><span class="stat-label">Limits</span><span class="stat-val" style="color:${unlimited?'#28a745':'#dc3545'}">${unlimited?'Bypassed ✓':'Active'}</span></div>`;
 }
 
 function renderQuizGrid(){
-  const grid=document.getElementById('quizGrid');
   const dayIdx=getDayIdx();
-  grid.innerHTML=QUIZZES.map(q=>{
+  const dc={easy:'diff-easy',medium:'diff-medium',hard:'diff-hard'};
+  document.getElementById('quizGrid').innerHTML=QUIZZES.map(q=>{
     const score=localStorage.getItem('80sg_score_day_'+(q.n-1));
     const isToday=(q.n-1)===dayIdx;
-    const diffColor={easy:'diff-easy',medium:'diff-medium',hard:'diff-hard'};
-    return `<a class="quiz-btn${isToday?' today-quiz':''}" href="${q.f}" style="${isToday?'border-color:#FF1493;background:#1a0010;':''}">
+    return `<a class="quiz-btn${isToday?' is-today':''}" href="${q.f}" target="_blank">
       <div class="num">#${String(q.n).padStart(2,'0')}</div>
       <div class="name">${q.t}</div>
-      <div class="diff ${diffColor[q.d]}">${q.d.toUpperCase()}${score?' · ✓'+score+'/9':''}</div>
-      ${isToday?'<div style="font-size:0.55em;color:#FF1493;margin-top:2px;">TODAY</div>':''}
+      <div class="diff ${dc[q.d]}">${q.d.charAt(0).toUpperCase()+q.d.slice(1)}</div>
+      ${score?`<div class="score">✓ ${score}/9`:''}
+      ${isToday?'<div class="today-badge">TODAY</div>':''}
     </a>`;
   }).join('');
 }
 
 function renderSchedule(){
   const dayIdx=getDayIdx();
-  const today=new Date();
-  document.getElementById('scheduleList').innerHTML=`
-    <div class="schedule-row" style="color:#555;font-size:0.9em;border-bottom:1px solid #333;padding-bottom:6px;margin-bottom:4px;">
-      <div>DAY</div><div>DATE</div><div>QUIZ</div><div>DIFF</div>
-    </div>
-    ${QUIZZES.map((q,i)=>{
-      const d=new Date(LAUNCH.getTime()+i*86400000);
-      const isToday=i===dayIdx;
-      const isPast=i<dayIdx;
-      const score=localStorage.getItem('80sg_score_day_'+i);
-      const diffColor={easy:'diff-easy',medium:'diff-medium',hard:'diff-hard'};
-      return `<div class="schedule-row${isToday?' today':''}">
-        <div class="day-num">${isToday?'▶ ':''}Day ${i+1}</div>
-        <div class="date" style="color:${isPast?'#444':isToday?'#FF1493':'#555'}">${d.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
-        <div class="title" style="color:${isPast?'#444':isToday?'#00ff88':'#666'}">${q.t}${score?' ✓':''}  </div>
-        <div class="diff-badge ${diffColor[q.d]}">${q.d}</div>
-      </div>`;
-    }).join('')}
-  `;
+  const dc={easy:'#28a745',medium:'#fd7e14',hard:'#dc3545'};
+  document.getElementById('scheduleBody').innerHTML=QUIZZES.map((q,i)=>{
+    const d=new Date(LAUNCH.getTime()+i*86400000);
+    const isToday=i===dayIdx;const isPast=i<dayIdx;
+    const score=localStorage.getItem('80sg_score_day_'+i);
+    return `<tr class="${isToday?'is-today':isPast?'is-past':''}">
+      <td>${isToday?'▶ ':''}Day ${i+1}</td>
+      <td>${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</td>
+      <td>${q.t}</td>
+      <td style="color:${dc[q.d]};font-weight:700;">${q.d.charAt(0).toUpperCase()+q.d.slice(1)}</td>
+      <td style="color:#28a745;">${score?'✓ '+score+'/9':'—'}</td>
+    </tr>`;
+  }).join('');
 }
 
 function renderLS(){
   const keys=[];
-  for(let i=0;i<localStorage.length;i++){
-    const k=localStorage.key(i);
-    if(k&&(k.includes('80sg')||k.includes('80sGrid')||k.includes('quiz')||k.includes('__admin'))){
-      keys.push(k);
-    }
-  }
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(k.includes('80sg')||k.includes('80sGrid')||k.includes('quiz')||k.includes('__admin')||k.includes('survey')||k.includes('Survey')||k.includes('tribe')||k.includes('prom')||k.includes('mall')))keys.push(k);}
   keys.sort();
-  document.getElementById('lsViewer').innerHTML=keys.length?
-    keys.map(k=>`<div><span style="color:#FF1493">${k}</span> = <span style="color:#00ff88">${localStorage.getItem(k)}</span></div>`).join('')
-    :'<div style="color:#333">No relevant keys found</div>';
+  document.getElementById('lsViewer').innerHTML=keys.length
+    ?keys.map(k=>`<div><span class="ls-key">${k}</span> = ${localStorage.getItem(k)}</div>`).join('')
+    :'<div style="color:#bbb">No relevant keys found</div>';
 }
 
 function bypassLimits(){
-  // Set unlimited plays flag
   localStorage.setItem('__admin_unlimited','1');
-  // Set today's quiz count to 0 with today's date so counter starts fresh
   const today=new Date().toISOString().slice(0,10);
   localStorage.setItem('80sGridQuizzesPlayedTodayDate',today);
   localStorage.setItem('80sGridQuizzesPlayedToday','0');
-  // Also set a high effective limit
   localStorage.setItem('__admin_daily_limit','999');
   renderStatus();renderLS();
   toast('✓ Limits bypassed — unlimited plays active');
 }
 
-function goToHub(){
-  window.open('index.html','_blank');
-}
-
-function simulateDay(){
-  const d=document.getElementById('dayInput');
-  d.focus();d.select();
-  document.querySelector('.day-sim').scrollIntoView({behavior:'smooth'});
-}
-
 function setSimDay(){
   const day=parseInt(document.getElementById('dayInput').value);
   if(isNaN(day)||day<1||day>70){toast('⚠ Enter a day between 1 and 70');return;}
-  localStorage.setItem('__admin_day_override',day-1); // 0-indexed
+  localStorage.setItem('__admin_day_override',day-1);
   document.getElementById('simStatus').textContent='Day '+day+' active — open any quiz to test';
-  document.getElementById('simStatus').style.color='#FF1493';
   renderStatus();renderQuizGrid();renderSchedule();
-  toast('📅 Simulating Day '+day+' — quiz pages will load that day\'s content');
+  toast('📅 Simulating Day '+day);
 }
 
 function clearSimDay(){
   localStorage.removeItem('__admin_day_override');
   document.getElementById('simStatus').textContent='Override cleared — using real date';
-  document.getElementById('simStatus').style.color='#555';
   renderStatus();renderQuizGrid();renderSchedule();
   toast('✓ Day override cleared');
 }
 
 function checkSimDay(){
-  const override=localStorage.getItem('__admin_day_override');
-  if(override!==null){
-    document.getElementById('dayInput').value=parseInt(override)+1;
-    document.getElementById('simStatus').textContent='Day '+(parseInt(override)+1)+' active';
-    document.getElementById('simStatus').style.color='#FF1493';
-  }
+  const ov=localStorage.getItem('__admin_day_override');
+  if(ov!==null){document.getElementById('dayInput').value=parseInt(ov)+1;document.getElementById('simStatus').textContent='Day '+(parseInt(ov)+1)+' currently active';}
 }
 
-function resetStreak(){
-  localStorage.setItem('80sg_streak','0');
-  localStorage.removeItem('80sg_last_played');
-  renderStatus();renderLS();
-  toast('🔥 Streak reset to 0');
-}
+function resetStreak(){localStorage.setItem('80sg_streak','0');localStorage.removeItem('80sg_last_played');renderStatus();renderLS();toast('🔥 Streak reset to 0');}
 
 function clearTodayPlays(){
   const today=new Date().toISOString().slice(0,10);
   localStorage.setItem('80sGridQuizzesPlayedToday','0');
   localStorage.setItem('80sGridQuizzesPlayedTodayDate',today);
-  // Also clear session keys
   Object.keys(sessionStorage).forEach(k=>{if(k.startsWith('hasPlayed'))sessionStorage.removeItem(k);});
-  renderStatus();renderLS();
-  toast('🗑 Today\'s play count cleared');
+  renderStatus();renderLS();toast('🗑 Today\'s play count cleared');
 }
 
 function nukeAll(){
-  if(!confirm('Wipe ALL 80sGrid localStorage? This resets everything to fresh player state.')) return;
-  const toDelete=[];
-  for(let i=0;i<localStorage.length;i++){
-    const k=localStorage.key(i);
-    if(k&&(k.includes('80sg')||k.includes('80sGrid')||k.includes('quiz')||k.includes('__admin')||k.includes('tribe')||k.includes('survey')||k.includes('Survey'))){
-      toDelete.push(k);
-    }
-  }
-  toDelete.forEach(k=>localStorage.removeItem(k));
-  sessionStorage.clear();
+  if(!confirm('Wipe ALL 80sGrid data? This resets to a completely fresh player state.'))return;
+  const del=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(k.includes('80sg')||k.includes('80sGrid')||k.includes('quiz')||k.includes('__admin')||k.includes('survey')||k.includes('Survey')||k.includes('tribe')||k.includes('prom')||k.includes('mall')))del.push(k);}
+  del.forEach(k=>localStorage.removeItem(k));sessionStorage.clear();
   renderStatus();renderLS();renderQuizGrid();
-  toast('💣 All data nuked — fresh player state');
-  setTimeout(()=>bypassLimits(),500); // re-apply bypass after nuke
+  toast('💣 All data cleared — fresh player state');
+  setTimeout(()=>bypassLimits(),300);
 }
 
-// Refresh LS view every 3 seconds
+function refreshAll(){renderStatus();renderQuizGrid();renderSchedule();renderLS();toast('🔄 Dashboard refreshed');}
+
 setInterval(()=>{if(document.getElementById('dashboard').style.display!=='none'){renderLS();renderStatus();}},3000);
 </script>
 </body>
