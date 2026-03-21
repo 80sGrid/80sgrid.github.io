@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Len's 80sGrid.com — Daily Music Trivia</title>
+<meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap" rel="stylesheet">
+<style>
+html{font-size:16px;}
+body{font-family:Arial,sans-serif;font-size:16px;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;margin:0;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:20px;overflow-x:hidden;box-sizing:border-box;}
+.container{background:white;padding:30px;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.3);max-width:700px;width:100%;box-sizing:border-box;}
+.logo-img{display:block;width:100%;height:auto;object-fit:cover;object-position:center top;}
+@media(max-width:540px){body{min-height:unset;height:auto;align-items:flex-start;}.logo-img{max-height:130px;object-position:center bottom;}picture{display:block;margin:-15px -15px 10px -15px;width:calc(100% + 30px);}}
+.tagline-sub{text-align:center;font-family:'Georgia',serif;font-size:22px;font-style:italic;color:#6a0dad;letter-spacing:1px;margin:0;}
+.tagline-wrap{display:flex;align-items:center;gap:10px;margin:0 0 12px;}
+.tagline-line{flex:1;height:1px;background:#c084fc;opacity:0.5;}
+.subtitle{text-align:center;margin-bottom:8px;font-size:45px;font-weight:700;color:#ff006e;font-family:'Oxanium','Arial Black',Arial,sans-serif;letter-spacing:3px;}
+.how-to-play{background:linear-gradient(135deg,#FF1493 0%,#8B00FF 50%,#00CED1 100%);padding:0;border-radius:12px;margin-bottom:16px;color:white;box-shadow:0 0 20px rgba(255,20,147,.4);border:3px solid rgba(255,255,255,.3);overflow:hidden;}
+.htp-toggle-btn{width:100%;background:none;border:none;color:white;font-weight:bold;font-size:18px;padding:14px 18px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:Arial,sans-serif;}
+.htp-toggle-btn:hover{opacity:0.9;}
+.htp-body{display:none;padding:0 20px 16px;line-height:1.6;font-size:16px;text-shadow:1px 1px 2px rgba(0,0,0,.5);}
+.htp-body.open{display:block;}
+.mini-grid{display:grid;grid-template-columns:80px repeat(3,1fr);grid-template-rows:60px repeat(3,90px);gap:6px;margin-bottom:16px;}
+.mg-corner{background:transparent;}
+.mg-col{display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:bold;color:white;padding:6px;border-radius:8px;line-height:1.3;word-break:break-word;}
+.mg-col.c1{background:linear-gradient(135deg,#FF1493,#FF69B4);box-shadow:0 0 12px rgba(255,20,147,.5);border:2px solid #FF1493;}
+.mg-col.c2{background:linear-gradient(135deg,#00CED1,#1E90FF);box-shadow:0 0 12px rgba(0,206,209,.5);border:2px solid #00CED1;}
+.mg-col.c3{background:linear-gradient(135deg,#FFD700,#FFA500);box-shadow:0 0 12px rgba(255,215,0,.5);border:2px solid #FFD700;color:#000;font-weight:900;}
+.mg-row{background:linear-gradient(135deg,#8B00FF,#DA70D6);box-shadow:0 0 12px rgba(139,0,255,.5);border:2px solid #8B00FF;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;font-weight:bold;color:white;padding:6px;border-radius:8px;line-height:1.3;}
+.mg-cell{background:#f8f9fa;border:2px solid #dee2e6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.mg-cell.correct{background:#d4edda;border-color:#28a745;}
+.mg-cell.correct::after{content:'✓';color:#28a745;}
+.mg-cell.lifeline{background:#fff8e1;border-color:#FFD700;}
+.mg-cell.lifeline::after{content:'★';color:#FFA500;}
+.mg-cell.wrong{background:#f8d7da;border-color:#dc3545;}
+.mg-cell.wrong::after{content:'✗';color:#dc3545;}
+.difficulty-badge{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 16px;padding:14px 20px;border-radius:12px;border:2px solid var(--badge-color);background:color-mix(in srgb,var(--badge-color) 10%,white);box-shadow:0 0 20px var(--badge-glow);}
+.badge-left{text-align:left;}
+.badge-label{font-size:15px;font-weight:bold;color:var(--badge-color);}
+.badge-stars{font-size:24px;color:var(--badge-color);letter-spacing:2px;}
+.badge-desc{font-size:12px;color:#888;font-style:italic;margin-top:2px;}
+.play-btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:12px;font-size:21px;font-weight:900;font-family:'Arial Black',sans-serif;letter-spacing:2px;cursor:pointer;text-align:center;text-decoration:none;transition:transform 0.15s;box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3);animation:pulse 1.5s infinite;margin-bottom:10px;}
+.play-btn:hover{transform:scale(1.02);}
+.play-btn.played{background:linear-gradient(135deg,#28a745,#20913b);box-shadow:0 4px 15px rgba(40,167,69,0.3);animation:none;font-size:16px;letter-spacing:0.5px;padding:16px;}
+@keyframes pulse{0%,100%{box-shadow:0 0 25px rgba(255,20,147,0.7),0 5px 15px rgba(0,0,0,0.3);}50%{box-shadow:0 0 45px rgba(255,20,147,1),0 5px 20px rgba(0,0,0,0.4);}}
+.countdown-row{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;background:#f8f9ff;border-radius:8px;border:1.5px solid #dee2e6;margin-bottom:10px;}
+.streak-strip{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;}
+.streak-strip.cold{background:#f8f9ff;border-color:#c084fc;}
+.streak-left{display:flex;align-items:center;gap:10px;}
+.streak-flame{font-size:24px;line-height:1;flex-shrink:0;}
+.streak-num{font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:32px;font-weight:700;color:#FF1493;line-height:1;min-width:40px;text-align:center;}
+.streak-strip.cold .streak-num{color:#8B00FF;}
+.streak-meta{display:flex;flex-direction:column;}
+.streak-label{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#ffb347;margin-bottom:1px;}
+.streak-strip.cold .streak-label{color:#8B00FF;}
+.streak-sub{font-size:11px;color:#888;}
+.streak-right{text-align:right;}
+.streak-msg{font-size:12px;color:#FF1493;font-weight:700;}
+.streak-strip.cold .streak-msg{color:#8B00FF;}
+.streak-tomorrow{font-size:11px;color:#aaa;margin-top:2px;}
+.inline-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.istat-box{background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;}
+.istat-val{font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:21px;font-weight:700;color:#8B00FF;}
+.istat-val.streak{color:#FF1493;}
+.istat-val.gold{color:#FFA500;}
+.istat-label{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+@media(max-width:400px){.inline-stats{grid-template-columns:repeat(2,1fr);}}
+.countdown-label{font-size:12px;color:#888;}
+.countdown-time{font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:16px;font-weight:700;color:#8B00FF;}
+.plays-row{text-align:center;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;font-size:.9em;}
+.plays-row a{color:#667eea;text-decoration:none;font-weight:bold;}
+.plays-row a:hover{color:#FF1493;}
+.grid{display:grid;grid-template-columns:100px repeat(3,1fr);grid-template-rows:70px repeat(3,110px);gap:8px;margin-bottom:20px;}
+.header{background:#667eea;color:white;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;border-radius:8px;font-weight:bold;font-size:16px;line-height:1.3;word-wrap:break-word;hyphens:auto;}
+.header.col-header:nth-child(2){background:linear-gradient(135deg,#FF1493,#FF69B4);box-shadow:0 0 15px rgba(255,20,147,.6);border:2px solid #FF1493;}
+.header.col-header:nth-child(3){background:linear-gradient(135deg,#00CED1,#1E90FF);box-shadow:0 0 15px rgba(0,206,209,.6);border:2px solid #00CED1;}
+.header.col-header:nth-child(4){background:linear-gradient(135deg,#FFD700,#FFA500);box-shadow:0 0 15px rgba(255,215,0,.6);border:2px solid #FFD700;color:#000;font-weight:900;}
+.header.row-header{background:linear-gradient(135deg,#8B00FF,#DA70D6);box-shadow:0 0 15px rgba(139,0,255,.6);border:2px solid #8B00FF;font-size:14px;}
+.col-header{grid-row:1;}
+.row-header{grid-column:1;}
+.cell{background:#f8f9fa;border:2px solid #dee2e6;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:14px 8px;cursor:pointer;}
+.cell input{width:100%;padding:10px 8px;border:none;background:transparent;text-align:center;font-size:14px;font-weight:bold;outline:none;cursor:pointer;pointer-events:none;line-height:1.8;}
+.cell input::placeholder{color:#8B00FF;font-style:italic;font-size:14px;opacity:0.6;}
+.cell.correct{background:#d4edda;border-color:#28a745;}
+.cell.incorrect{background:#f8d7da;border-color:#dc3545;}
+.button-container{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;}
+button{background:#667eea;color:white;border:none;padding:12px 25px;border-radius:8px;cursor:pointer;font-size:16px;transition:background 0.3s;}
+button:hover{background:#5568d3;}
+.lifeline-bar{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 16px;padding:10px 18px;background:linear-gradient(135deg,#fff0f8,#f0f0ff);border:2px solid rgba(139,0,255,0.25);border-radius:10px;font-family:'Arial Black',sans-serif;}
+.lifeline-label{font-size:13px;font-weight:900;color:#555;letter-spacing:1px;text-transform:uppercase;}
+.lifeline-pips{display:flex;gap:5px;}
+.lifeline-pip{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:21px;transition:all 0.3s;}
+.lifeline-pip.used{background:#dee2e6;}
+.lifeline-count{font-size:13px;color:#888;font-style:italic;}
+.lifeline-count.empty{color:#dc3545;font-weight:bold;font-style:normal;}
+.survey-question{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:25px 18px;border-radius:12px;margin-top:20px;color:white;box-shadow:0 0 20px rgba(102,126,234,.4);border:3px solid rgba(255,255,255,.3);}
+.survey-question h3{text-align:center;margin-top:0;margin-bottom:14px;font-size:18px;}
+.survey-options{display:flex;flex-direction:column;gap:8px;}
+.survey-option{padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left;border-radius:10px;cursor:pointer;transition:all .3s;border:2px solid transparent;}
+.survey-option:hover{transform:scale(1.02);filter:brightness(1.15);}
+.survey-option.selected{box-shadow:0 0 25px rgba(0,255,0,0.6),inset 0 0 15px rgba(0,255,0,0.1);border-color:#00ff00!important;transform:scale(1.03);}
+@media(max-width:768px){.grid{grid-template-columns:80px repeat(3,1fr);grid-template-rows:60px repeat(3,100px);gap:6px;}.header{font-size:13px;padding:6px;}.header.row-header{font-size:12px;}}
+.bonus-card{border:2px solid #dee2e6;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;transition:all 0.4s;margin-bottom:14px;}
+.bonus-card.unlocked{border-color:#FFD700;background:#fffdf0;box-shadow:0 0 15px rgba(255,215,0,0.2);}
+.bonus-icon{font-size:29px;}
+.bonus-info{flex:1;}
+.bonus-title{font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:14px;font-weight:700;color:#333;margin-bottom:2px;}
+.bonus-title.unlocked{color:#8B00FF;}
+.bonus-desc{font-size:12px;color:#888;line-height:1.4;}
+.bonus-req{font-size:12px;color:#FFA500;margin-top:3px;font-weight:700;}
+.bonus-req.earned{color:#28a745;}
+.bonus-play-btn{padding:10px 18px;background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;border:none;border-radius:8px;font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;display:block;}
+.share-box{border:2px solid #dee2e6;border-radius:12px;padding:16px;margin-bottom:16px;}
+.share-sq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:220px;margin:0 auto 12px;}
+.share-sq{aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:32px;background:#e9ecef;font-style:normal;}
+.share-sq.correct{background:#28a745;color:white;}
+.share-sq.lifeline{background:#FFD700;color:#7a5200;}
+.share-sq.wrong{background:#dc3545;color:white;}
+.share-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.share-btn{padding:10px;border:1.5px solid #dee2e6;border-radius:8px;background:white;font-size:12px;cursor:pointer;text-align:center;transition:all 0.2s;color:#555;}
+.share-btn:hover{border-color:#667eea;color:#667eea;background:#f8f9ff;}
+.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+.archive-card{border:2px solid #dee2e6;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;color:inherit;display:block;}
+.archive-card:hover{border-color:#667eea;transform:translateY(-2px);box-shadow:0 4px 12px rgba(102,126,234,0.2);}
+.archive-num{font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:21px;font-weight:700;color:#8B00FF;}
+.archive-date{font-size:11px;color:#999;margin-top:2px;}
+.archive-score{font-size:12px;font-weight:700;margin-top:4px;}
+.archive-score.played{color:#28a745;}
+.archive-score.unplayed{color:#aaa;font-style:italic;}
+.persona-box{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);border-radius:12px;padding:14px 16px;text-align:center;color:white;margin-bottom:14px;}
+.persona-title{font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:18px;font-weight:700;color:#FF1493;text-shadow:0 0 10px rgba(255,20,147,0.5);margin-bottom:4px;}
+.persona-sub{font-size:12px;color:#aaa;}
+.footnote-box{background:#f8f0ff;border-left:4px solid #8B00FF;padding:14px 16px;border-radius:8px;margin-bottom:20px;font-size:14px;line-height:1.7;color:#444;}
+.footnote-box strong{color:#6a0dad;}
+.footnote-box ul{margin-top:6px;padding-left:1.8em;}
+.footnote-box li{margin-bottom:4px;}
+.high-score-entry{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;color:#00ff00;padding:40px;border-radius:10px;border:4px solid #00ff00;box-shadow:0 0 30px rgba(0,255,0,.5);text-align:center;z-index:1000;font-family:'Courier New',monospace;width:90%;max-width:340px;box-sizing:border-box;display:none;}
+.high-score-entry h2{color:#ffff00;text-shadow:0 0 10px #ffff00;margin-bottom:20px;}
+.initials-input{display:flex;gap:15px;justify-content:center;margin:20px 0;}
+.initials-input input{width:60px;height:80px;font-size:48px;text-align:center;background:#000;border:3px solid #00ff00;color:#00ff00;text-transform:uppercase;font-family:'Courier New',monospace;}
+.arcade-button{background:#00ff00;color:#000;border:none;padding:15px 40px;font-size:19px;font-weight:bold;cursor:pointer;font-family:'Courier New',monospace;box-shadow:0 0 20px rgba(0,255,0,.5);}
+.leaderboard{margin-top:20px;background:#000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top/contain no-repeat;color:#00ff00;padding:15px;border-radius:10px;border:3px solid #00ff00;font-family:'Courier New',monospace;box-shadow:0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1);min-height:300px;width:100%;box-sizing:border-box;display:none;}
+.leaderboard-scores-wrap{margin-top:160px;background:rgba(0,0,0,0.75);border-radius:8px;padding:15px 10px 10px;}
+.leaderboard-subtitle{text-align:center;color:#00ffff;margin-bottom:15px;font-size:14px;letter-spacing:3px;}
+.leaderboard-item{display:grid;grid-template-columns:40px 70px 1fr 80px;padding:8px 5px;border-bottom:1px solid rgba(0,255,0,.3);font-size:16px;letter-spacing:2px;}
+.leaderboard-item:last-child{border-bottom:none;}
+.leaderboard-rank{color:#ffff00;text-shadow:0 0 5px #ffff00;}
+.leaderboard-initials{color:#00ff00;font-weight:bold;text-shadow:0 0 5px #00ff00;}
+.leaderboard-score{color:#ff00ff;text-shadow:0 0 5px #ff00ff;}
+.leaderboard-date{color:#00ffff;text-align:right;font-size:13px;}
+.stats-modal{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;}
+.stats-modal.show{display:flex;}
+.stats-box{background:#000;border:3px solid #FF1493;border-radius:12px;padding:35px 30px;width:90%;max-width:320px;font-family:'Courier New',monospace;box-shadow:0 0 40px rgba(255,20,147,0.6);}
+.stats-box h2{color:#FF1493;text-shadow:0 0 10px #FF1493;font-size:21px;letter-spacing:3px;margin:0 0 5px;text-align:center;}
+.stats-sub{color:#00ffff;text-align:center;font-size:12px;letter-spacing:2px;margin-bottom:20px;}
+.stat-row{border-bottom:1px solid rgba(255,20,147,0.3);padding:12px 0;display:flex;justify-content:space-between;align-items:center;}
+.stat-label{color:#aaa;font-size:14px;letter-spacing:1px;}
+.stat-value{color:#ffff00;font-size:19px;font-weight:bold;text-shadow:0 0 8px #ffff00;}
+.stats-close{display:block;margin:25px auto 0;background:#FF1493;color:#000;border:none;padding:10px 30px;font-family:'Courier New',monospace;font-weight:bold;font-size:16px;cursor:pointer;letter-spacing:2px;border-radius:4px;}
+.feedback-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:4000;display:none;align-items:center;justify-content:center;}
+.feedback-modal-overlay.active{display:flex;}
+.feedback-modal{background:#000;border:3px solid #FF1493;border-radius:15px;padding:35px 30px;width:90%;max-width:400px;box-shadow:0 0 40px rgba(255,20,147,0.6);font-family:'Courier New',monospace;position:relative;box-sizing:border-box;}
+.feedback-modal h2{color:#FF1493;text-shadow:0 0 10px #FF1493;font-size:19px;letter-spacing:3px;margin:0 0 6px;text-align:center;}
+.feedback-modal-sub{color:#00ffff;text-align:center;font-size:12px;letter-spacing:2px;margin-bottom:20px;}
+.feedback-stars{display:flex;justify-content:center;gap:10px;margin-bottom:18px;}
+.feedback-star{font-size:32px;cursor:pointer;color:#333;transition:color 0.15s,transform 0.15s;user-select:none;}
+.feedback-star.lit{color:#FFD700;text-shadow:0 0 10px rgba(255,215,0,0.7);}
+.feedback-star:hover{transform:scale(1.2);}
+.feedback-label{color:#aaa;font-size:12px;letter-spacing:1px;margin-bottom:6px;display:block;}
+.feedback-textarea{width:100%;background:rgba(255,255,255,0.05);border:2px solid rgba(255,20,147,0.4);border-radius:8px;padding:12px;color:#00ff88;font-family:'Courier New',monospace;font-size:14px;resize:vertical;min-height:80px;box-sizing:border-box;outline:none;margin-bottom:14px;}
+.feedback-textarea::placeholder{color:rgba(0,255,136,0.3);}
+.feedback-textarea:focus{border-color:#FF1493;}
+.feedback-quiz-tag{background:rgba(102,126,234,0.15);border:1px solid rgba(102,126,234,0.4);border-radius:6px;padding:6px 12px;color:#667eea;font-size:12px;letter-spacing:1px;margin-bottom:16px;text-align:center;display:block;}
+.feedback-submit{width:100%;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;padding:13px;border-radius:8px;font-family:'Courier New',monospace;font-weight:bold;font-size:16px;cursor:pointer;letter-spacing:2px;}
+.feedback-close{position:absolute;top:14px;right:18px;background:none;border:none;color:#555;font-size:22px;cursor:pointer;line-height:1;padding:0;}
+.feedback-close:hover{color:#FF1493;}
+.feedback-success{text-align:center;padding:20px 0;display:none;}
+.feedback-success .big{font-size:40px;display:block;margin-bottom:10px;}
+.feedback-success p{color:#00ff88;font-size:15px;line-height:1.6;margin:0;}
+.mini-nav{text-align:center;margin:8px 0 16px;font-size:14px;}
+.mini-nav a{color:#8B00FF;font-weight:bold;text-decoration:none;margin:0 12px;}
+.mini-nav a:hover{color:#FF1493;}
+.mini-nav span{color:#ccc;}
+.yn-toast{position:fixed;top:20%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;padding:16px 28px;border-radius:12px;font-family:'Arial Black',sans-serif;font-size:16px;font-weight:900;letter-spacing:1px;box-shadow:0 0 30px rgba(255,215,0,0.7);z-index:5000;opacity:0;transition:opacity 0.3s;pointer-events:none;text-align:center;}
+.yn-toast.show{opacity:1;}
+.input-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:30px;border-radius:15px;box-shadow:0 10px 50px rgba(0,0,0,0.5);z-index:3500;display:none;min-width:300px;max-width:90%;box-sizing:border-box;}
+.input-modal.active{display:block;}
+.input-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:3499;display:none;}
+.input-modal-overlay.active{display:block;}
+.input-modal h3{margin-top:0;margin-bottom:20px;color:#333;font-size:19px;text-align:center;}
+.input-modal input{width:100%;padding:15px;font-size:19px;border:2px solid #667eea;border-radius:8px;margin-bottom:15px;box-sizing:border-box;}
+.input-modal-buttons{display:flex;gap:10px;}
+.input-modal-buttons button{flex:1;padding:12px;font-size:16px;}
+.mc-toggle-btn{display:block;width:100%;margin-top:12px;padding:11px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer;letter-spacing:0.5px;transition:opacity 0.2s;}
+.mc-toggle-btn:hover{opacity:0.88;}
+.mc-toggle-btn:disabled{opacity:0.35;cursor:not-allowed;}
+.mc-section{display:none;margin-top:8px;}
+.mc-section.visible{display:block;}
+.mc-option{display:block;width:100%;margin-bottom:10px;padding:14px 12px;background:#f8f0ff;border:2px solid #8B00FF;border-radius:10px;font-size:15px;font-weight:bold;color:#4a0080;cursor:pointer;text-align:center;transition:background 0.15s,transform 0.1s;box-sizing:border-box;}
+.mc-option:hover{background:#e8c8ff;transform:scale(1.02);}
+.text-section.hidden{display:none;}
+.sdiv{border:none;border-top:1px solid;border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1;margin:8px 0 14px;opacity:0.5;}
+.slabel{text-align:center;font-size:11px;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;font-weight:900;}
+@media(max-width:768px){.container{padding:15px;}.subtitle{font-size:35px;letter-spacing:2px;}.mini-grid{grid-template-columns:70px repeat(3,1fr);grid-template-rows:50px repeat(3,80px);gap:4px;}}
+.site-footer{margin-top:30px;padding-top:24px;border-top:2px solid rgba(102,126,234,0.2);}
+.social-bar{display:flex;justify-content:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.social-btn{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:25px;text-decoration:none;font-size:13px;font-weight:900;letter-spacing:0.5px;color:white;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
+.social-btn:hover{transform:scale(1.07);}
+.social-btn svg{width:18px;height:18px;fill:white;flex-shrink:0;}
+.social-btn.facebook{background:#1877f2;box-shadow:0 3px 12px rgba(24,119,242,0.35);}
+.social-btn.instagram{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);box-shadow:0 3px 12px rgba(188,24,136,0.35);}
+.social-btn.tiktok{background:#000;box-shadow:0 3px 12px rgba(0,0,0,0.35);border:1px solid #333;}
+.social-btn.twitter{background:#000;box-shadow:0 3px 12px rgba(0,0,0,0.25);border:1px solid #333;}
+@media(max-width:480px){.social-btn{padding:9px 12px;}.social-label{display:none;}}
+.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;}
+.footer-links a{color:#8B00FF;text-decoration:none;font-weight:bold;}
+.footer-links a:hover{color:#FF1493;text-decoration:underline;}
+.footer-links span{color:#ccc;}
+.footer-copy{text-align:center;font-size:12px;color:#aaa;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<!-- STATS MODAL -->
+<div class="stats-modal" id="statsModal" onclick="if(event.target===this)toggleStats()">
+<div class="stats-box">
+<h2>&#9733; MY STATS &#9733;</h2>
+<div class="stats-sub">PLAYER PROFILE</div>
+<div class="stat-row"><span class="stat-label">GRIDS TODAY</span><span class="stat-value" id="statToday">0</span></div>
+<div class="stat-row"><span class="stat-label">TOTAL PLAYED</span><span class="stat-value" id="statTotal">0</span></div>
+<div class="stat-row"><span class="stat-label">BEST SCORE</span><span class="stat-value" id="statBest">—</span></div>
+<div class="stat-row"><span class="stat-label">AVG SCORE</span><span class="stat-value" id="statAvg">—</span></div>
+<div class="stat-row"><span class="stat-label">&#128293; DAY STREAK</span><span class="stat-value" id="statStreak">0</span></div>
+<button class="stats-close" onclick="toggleStats()">CLOSE</button>
+</div>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="feedback-modal-overlay" id="feedbackOverlay" onclick="if(event.target===this)closeFeedback()">
+<div class="feedback-modal">
+<button class="feedback-close" onclick="closeFeedback()">&#10005;</button>
+<div id="feedbackForm">
+<h2>&#127926; FEEDBACK &#127926;</h2>
+<div class="feedback-modal-sub">TELL US WHAT YOU THINK</div>
+<span class="feedback-quiz-tag">&#127918; 80sGrid Daily Hub</span>
+<div class="feedback-stars">
+<span class="feedback-star" onclick="setRating(1)">&#9733;</span>
+<span class="feedback-star" onclick="setRating(2)">&#9733;</span>
+<span class="feedback-star" onclick="setRating(3)">&#9733;</span>
+<span class="feedback-star" onclick="setRating(4)">&#9733;</span>
+<span class="feedback-star" onclick="setRating(5)">&#9733;</span>
+</div>
+<span class="feedback-label">WHAT'S ON YOUR MIND?</span>
+<textarea class="feedback-textarea" id="feedbackText" placeholder="Wrong answer? Great quiz? Idea for a new one? Tell us..."></textarea>
+<button class="feedback-submit" onclick="submitFeedback()">SUBMIT FEEDBACK</button>
+</div>
+<div class="feedback-success" id="feedbackSuccess">
+<span class="big">&#127775;</span>
+<p>Thanks for the feedback!<br><br><span style="color:#FFD700;">Your input helps make 80sGrid better for everyone.</span><br><br><span style="color:#aaa;font-size:0.85em;">— Len</span></p>
+</div>
+</div>
+</div>
+
+<div class="yn-toast" id="ynToast">It's Yes or No — no lifeline needed! &#127928;</div>
+<div class="input-modal-overlay" id="inputOverlay"></div>
+<div class="input-modal" id="inputModal">
+<h3 id="modalTitle">Enter Answer</h3>
+<div class="text-section" id="textSection">
+<input type="text" id="modalInput" placeholder="Type your answer..." />
+<div class="input-modal-buttons">
+<button onclick="saveModalAnswer()">Save</button>
+<button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
+</div>
+<button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Lifeline: Multiple Choice (<span id="mcRemaining">3</span> left)</button>
+</div>
+<div class="mc-section" id="mcSection">
+<div id="mcOptions"></div>
+<button onclick="showTextEntry()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">&#9999;&#65039; Type My Own Answer</button>
+</div>
+</div>
+
+<div class="container">
+
+<!-- HEADER IMAGE -->
+<picture style="display:block;width:100%;margin-bottom:10px;">
+<source media="(max-width:540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/moblle80s.jpg">
+<img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%;display:block;margin:0;">
+</picture>
+
+<!-- MINI NAV -->
+<div class="mini-nav">
+<a href="about.html">About</a><span>|</span>
+<a href="sponsors.html">Our Sponsors</a><span>|</span>
+<a href="collaborate.html">Collaborate</a><span>|</span>
+<a href="#" onclick="openFeedback();return false;">Feedback</a>
+</div>
+
+<!-- TAGLINE -->
+<div class="tagline-wrap">
+<div class="tagline-line"></div>
+<div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+<div class="tagline-line"></div>
+</div>
+<div style="text-align:center;font-size:0.82em;color:#a78bfa;letter-spacing:2px;margin:4px 0 4px;font-family:Georgia,serif;font-style:italic;">Free to play &nbsp;&middot;&nbsp; A new grid every day</div>
+<div style="text-align:center;font-size:1em;font-weight:bold;color:#667eea;letter-spacing:1px;margin:0 0 14px;font-family:Georgia,serif;font-style:italic;">In Pat Benatar We Trust</div>
+
+<!-- HOW TO PLAY -->
+<div class="how-to-play">
+<button class="htp-toggle-btn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
+<div class="htp-body" id="htpBody">A new 3&times;3 music trivia grid drops every day at midnight. Match the artist (column) with the category (row). Click any answer box to type your answer. Score <strong>6+</strong> to unlock a bonus second grid. You get <strong>3 lifelines</strong> per quiz. Completed grids can always be replayed for free!<ul style="margin:8px 0 8px 18px;padding:0;line-height:1.9;"><li>&#128274; <strong>Secret Code</strong> — look on our FB or IG <em>(wink wink)</em></li><li>&#128231; <strong>Email Address</strong> — quick &amp; easy, we won't spam you</li><li>&#128516; <strong>Take a Fun Survey</strong> — your prom, your favorite mall stores, the important stuff</li></ul></div>
+</div>
+
+<hr class="sdiv">
+
+<!-- TODAY LABEL + TITLE -->
+<div class="slabel" id="today-label">Today's Grid · Loading...</div>
+<div class="subtitle" id="today-title">Loading...</div>
+<div style="text-align:center;margin-top:-12px;margin-bottom:20px;font-size:1.2em;color:#667eea;font-family:Georgia,serif;font-style:italic;font-weight:bold;letter-spacing:1px;" id="today-artists">—</div>
+
+<!-- DIFFICULTY BADGE -->
+<div class="difficulty-badge" id="diff-badge" style="--badge-color:#fd7e14;--badge-glow:rgba(253,126,20,0.4);">
+<div class="badge-stars" id="diff-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+<div class="badge-left"><div class="badge-label" id="diff-label">Medium</div><div class="badge-desc" id="diff-desc">Loading...</div></div>
+</div>
+
+<hr class="sdiv">
+
+<!-- PLAYS ROW -->
+<div class="plays-row">
+<span id="playsCounter" style="color:#667eea;font-weight:bold;">&#127918; Loading plays...</span>
+<span style="color:#ccc;">·</span>
+<a href="#" onclick="showLeaderboard();return false;">&#127942; Leaderboard</a>
+<span style="color:#ccc;">·</span>
+<a href="#" onclick="toggleStats();return false;">&#128202; My Stats</a>
+</div>
+
+<!-- LIFELINE BAR -->
+<div class="lifeline-bar" id="lifelineBar">
+<span class="lifeline-label">&#128703; Lifelines</span>
+<div class="lifeline-pips">
+<div class="lifeline-pip" id="pip1">&#127951;</div>
+<div class="lifeline-pip" id="pip2">&#127951;</div>
+<div class="lifeline-pip" id="pip3">&#127951;</div>
+</div>
+<span class="lifeline-count" id="lifelineCount">3 remaining</span>
+</div>
+
+<!-- FULL PLAYABLE GRID -->
+<div class="grid" id="main-grid">
+<div class="header" style="grid-row:1;grid-column:1;background:transparent;"></div>
+<div class="header col-header" id="col1" style="grid-column:2;">—</div>
+<div class="header col-header" id="col2" style="grid-column:3;">—</div>
+<div class="header col-header" id="col3" style="grid-column:4;">—</div>
+<div class="header row-header" id="row1" style="grid-row:2;">—</div>
+<div class="header row-header" id="row2" style="grid-row:3;">—</div>
+<div class="header row-header" id="row3" style="grid-row:4;">—</div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div>
+<div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+</div>
+
+<!-- CHECK / RESET BUTTONS -->
+<div class="button-container">
+<button onclick="checkAnswers()">Check Answers</button>
+<button onclick="resetGrid()" style="background:#6c757d;">Reset Grid</button>
+</div>
+
+<!-- RESULTS -->
+<div id="results" style="display:none;">
+<div id="score" style="font-size:1.3em;font-weight:bold;color:#333;margin-bottom:15px;text-align:center;"></div>
+<div class="survey-question" id="surveyQuestion" style="display:none;">
+<h3 id="surveyTitle" style="font-family:'Arial Black',sans-serif;letter-spacing:3px;font-size:1.1em;text-shadow:0 0 20px rgba(255,20,147,0.5);margin-bottom:14px;"></h3>
+<div class="survey-options" id="surveyOptions" style="gap:8px;"></div>
+</div>
+<div style="display:flex;gap:10px;margin-top:10px;margin-bottom:10px;">
+<button onclick="shareLink()" style="flex:1;background:#FF1493;color:white;border:none;padding:12px 8px;border-radius:10px;cursor:pointer;font-size:0.88em;font-weight:bold;">&#128242; Share with a Friend<br><span style="font-size:0.75em;font-weight:400;opacity:0.9;">iMessage &middot; WhatsApp &middot; Facebook</span></button>
+<button onclick="shareBrag()" style="flex:1;background:linear-gradient(135deg,#8B00FF,#4B0082);color:white;border:none;padding:12px 8px;border-radius:10px;cursor:pointer;font-size:0.88em;font-weight:bold;">&#128248; Brag About It<br><span style="font-size:0.75em;font-weight:400;opacity:0.9;">Instagram &middot; TikTok &middot; Twitter</span></button>
+</div>
+</div>
+
+<!-- DEDICATION BOX - right under the grid -->
+<div id="dedicationAnchor"></div>
+
+<!-- STREAK STRIP - always visible -->
+<div class="streak-strip" id="streak-strip">
+<div class="streak-left">
+<div class="streak-flame" id="streak-flame">&#128293;</div>
+<div class="streak-meta">
+<div class="streak-label" id="streak-label">Day Streak</div>
+<div class="streak-sub" id="streak-sub">Play daily to keep it alive</div>
+</div>
+</div>
+<div class="streak-num" id="streak-num">0</div>
+<div class="streak-right">
+<div class="streak-msg" id="streak-msg">Start your streak today!</div>
+<div class="streak-tomorrow" id="streak-tomorrow">Play today = Day 1 &#128293;</div>
+</div>
+</div>
+
+<!-- INLINE STATS — always visible -->
+<div class="inline-stats">
+<div class="istat-box">
+<div class="istat-val streak" id="istat-streak">0</div>
+<div class="istat-label">&#128293; Streak</div>
+</div>
+<div class="istat-box">
+<div class="istat-val" id="istat-played">0</div>
+<div class="istat-label">Played</div>
+</div>
+<div class="istat-box">
+<div class="istat-val" id="istat-avg">—</div>
+<div class="istat-label">Avg Score</div>
+</div>
+<div class="istat-box">
+<div class="istat-val gold" id="istat-best">—</div>
+<div class="istat-label">Best</div>
+</div>
+</div>
+<div class="countdown-row">
+<span class="countdown-label">Next grid drops in</span>
+<span class="countdown-time" id="countdown">—:—:—</span>
+</div>
+
+<hr class="sdiv" style="margin-top:12px;">
+
+<!-- PERSONA (after playing) -->
+<div id="persona-section" style="display:none;">
+<div class="persona-box">
+<div class="persona-title" id="persona-title"></div>
+<div class="persona-sub" id="persona-sub"></div>
+</div>
+</div>
+
+<!-- SHARE (after playing) -->
+<div id="share-section" style="display:none;">
+<div class="slabel">Share Your Score</div>
+<div class="share-box">
+<div style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1em;font-weight:700;color:#8B00FF;margin-bottom:10px;text-align:center;" id="share-score-label"></div>
+<div class="share-sq-grid">
+<div class="share-sq" id="sq0"></div><div class="share-sq" id="sq1"></div><div class="share-sq" id="sq2"></div>
+<div class="share-sq" id="sq3"></div><div class="share-sq" id="sq4"></div><div class="share-sq" id="sq5"></div>
+<div class="share-sq" id="sq6"></div><div class="share-sq" id="sq7"></div><div class="share-sq" id="sq8"></div>
+</div>
+<div style="display:flex;gap:14px;justify-content:center;margin-bottom:10px;font-size:0.72em;color:#666;">
+<span><span style="display:inline-block;width:10px;height:10px;background:#28a745;border-radius:2px;margin-right:3px;vertical-align:middle;"></span>Correct</span>
+<span><span style="display:inline-block;width:10px;height:10px;background:#FFD700;border-radius:2px;margin-right:3px;vertical-align:middle;"></span>Lifeline</span>
+<span><span style="display:inline-block;width:10px;height:10px;background:#dc3545;border-radius:2px;margin-right:3px;vertical-align:middle;"></span>Missed</span>
+</div>
+<div style="text-align:center;font-size:0.75em;color:#888;margin-bottom:10px;" id="share-meta"></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;">
+<button onclick="shareLink()" style="flex:1;background:#FF1493;color:white;border:none;padding:12px 8px;border-radius:10px;cursor:pointer;font-size:0.88em;font-weight:bold;box-shadow:0 4px 15px rgba(255,20,147,0.3);">&#128242; Share with a Friend<br><span style="font-size:0.78em;font-weight:400;opacity:0.9;">iMessage &middot; WhatsApp &middot; Facebook</span></button>
+<button onclick="shareBrag()" style="flex:1;background:linear-gradient(135deg,#8B00FF,#4B0082);color:white;border:none;padding:12px 8px;border-radius:10px;cursor:pointer;font-size:0.88em;font-weight:bold;box-shadow:0 4px 15px rgba(139,0,255,0.3);">&#128248; Brag About It<br><span style="font-size:0.78em;font-weight:400;opacity:0.9;">Instagram &middot; TikTok &middot; Twitter</span></button>
+</div>
+<button onclick="copyShare()" style="width:100%;padding:10px;border:1.5px solid #dee2e6;border-radius:8px;background:white;font-size:0.82em;cursor:pointer;color:#555;transition:all 0.2s;">&#128203; Copy result to clipboard</button>
+</div>
+</div>
+
+<!-- BONUS GRID -->
+<div class="slabel">Bonus Grid</div>
+<div class="bonus-card" id="bonus-card">
+<div class="bonus-icon" id="bonus-icon">&#128274;</div>
+<div class="bonus-info">
+<div class="bonus-title" id="bonus-title">Bonus Grid Locked</div>
+<div class="bonus-desc" id="bonus-desc">Score 6 or more on today's grid to unlock a bonus quiz</div>
+<div class="bonus-req" id="bonus-req">&#11088; Score 6+ to unlock</div>
+</div>
+</div>
+
+<hr class="sdiv">
+
+<!-- ARCHIVE -->
+<div class="slabel">Recent Archive</div>
+<div class="archive-grid" id="archive-grid"></div>
+<div style="text-align:center;padding:12px;background:#f8f9fa;border-radius:10px;font-size:0.78em;color:#aaa;border:2px dashed #dee2e6;margin-bottom:16px;">&#128274; Only the last 3 grids are in the free archive. A new grid drops every day at midnight.</div>
+
+<hr class="sdiv">
+
+<!-- NOTES -->
+<div class="footnote-box" id="notes-box" style="display:none;"><strong>&#128221; Notes</strong><ul id="notes-list"></ul></div>
+
+<!-- BETA -->
+<div style="background:#e3f2fd;border:1px solid #2196f3;padding:12px;border-radius:8px;margin-bottom:20px;text-align:center;font-size:.9em;"><strong>&#128679; Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!</div>
+
+<!-- HIGH SCORE ENTRY -->
+<div id="highScoreEntry" class="high-score-entry">
+<h2>&#9733; HIGH SCORE &#9733;</h2>
+<p style="color:#00ff00;text-align:center;font-size:1.2em;margin-bottom:20px;">ENTER YOUR INITIALS</p>
+<div class="initials-input">
+<input type="text" maxlength="1" id="initial1" oninput="this.value=this.value.toUpperCase();document.getElementById('initial2').focus();" />
+<input type="text" maxlength="1" id="initial2" oninput="this.value=this.value.toUpperCase();document.getElementById('initial3').focus();" />
+<input type="text" maxlength="1" id="initial3" oninput="this.value=this.value.toUpperCase();" />
+</div>
+<div style="text-align:center;margin-top:20px;"><button class="arcade-button" onclick="saveHighScore()">SAVE</button></div>
+</div>
+
+<!-- LEADERBOARD -->
+<div id="leaderboard" class="leaderboard">
+<div class="leaderboard-scores-wrap">
+<div class="leaderboard-subtitle"></div>
+<div id="leaderboardList"></div>
+</div>
+</div>
+
+<!-- SITE FOOTER -->
+<div class="site-footer">
+<div class="social-bar">
+<a class="social-btn facebook" href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg><span class="social-label">Facebook</span></a>
+<a class="social-btn instagram" href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span class="social-label">Instagram</span></a>
+<a class="social-btn tiktok" href="https://tiktok.com/@80sGrid" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z" fill="white"/></svg><span class="social-label">TikTok</span></a>
+<a class="social-btn twitter" href="https://x.com/80sGrid" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="social-label">X / Twitter</span></a>
+</div>
+<div class="footer-links">
+<a href="about.html">About</a><span>|</span><a href="sponsors.html">Sponsors</a><span>|</span><a href="collaborate.html">Collaborate</a><span>|</span><a href="privacy.html">Privacy Policy</a><span>|</span><a href="#" onclick="openFeedback();return false;">Feedback</a>
+</div>
+<div class="footer-copy">&copy; 2025&ndash;2026 Len's 80sGrid.com &mdash; All Rights Reserved.<br><span style="font-size:0.9em;">80sGrid is an independent fan project celebrating the music of the 1980s. Not affiliated with any artist or record label.</span></div>
+</div>
+
+</div><!-- end .container -->
+
+<script>
+const LAUNCH_DATE=new Date('2026-04-08T00:00:00');
+const PLAYS_START=1986;
+const FAKE_SCORES=[
+{initials:'ACE',score:9,date:'4/8/26'},{initials:'MAX',score:9,date:'4/8/26'},
+{initials:'ROX',score:8,date:'4/8/26'},{initials:'JAX',score:8,date:'4/9/26'},
+{initials:'ZEN',score:8,date:'4/9/26'},{initials:'VIX',score:7,date:'4/10/26'},
+{initials:'RAD',score:7,date:'4/10/26'},{initials:'SKY',score:7,date:'4/11/26'},
+{initials:'NEO',score:6,date:'4/11/26'},{initials:'LUX',score:6,date:'4/12/26'}
+];
+const PERSONAS={
+9:['The Ultimate New Romantic 🌹','Pure 80s perfection. You were probably there.'],
+8:['Totally Awesome 🎸','You know your stuff. One more and you\'re legendary.'],
+7:['Mall Rat 🛍️','Spent a lot of Saturdays at Sam Goody, didn\'t you?'],
+6:['One-Hit Wonder 🎤','You know the hits. Time to dig deeper.'],
+5:['B-Side 📼','You\'ve got the basics. Keep playing.'],
+4:['B-Side 📼','Somewhere between a fan and a casual listener.'],
+3:['Stuck in the 70s 📺','The 80s were calling. You missed the call.'],
+2:['Stuck in the 70s 📺','Were you even born yet?'],
+1:['Stuck in the 70s 📺','We\'ll need to have a serious talk.'],
+0:['Stuck in the 70s 📺','Please hand in your cassette collection.']
+};
+const DEDICATIONS=[
+{bg:'linear-gradient(135deg,#fff8f0,#fff0f8)',border:'#ffb347',accent:'#FF1493',icon:'❤️',label:'A Personal Note from Len',body:'To my folks and sister: thanks for the 80s memories. To my daughter: keep blasting that Meat Loaf, Journey, and Taylor. Right on!',link:null},
+{bg:'linear-gradient(135deg,#fff0f5,#ffe0ec)',border:'#e91e8c',accent:'#e91e8c',icon:'🎗️',label:'Play With Purpose',body:"This quiz is dedicated to the fighters, the survivors, and the hope for a cure. We're standing together to beat breast cancer.",link:null},
+{bg:'linear-gradient(135deg,#f0f8ff,#e8f4f8)',border:'#4a90d9',accent:'#4a90d9',icon:'🏠',label:'Play With Purpose',body:'This quiz is dedicated to <strong>Family Promise</strong>, a top-rated four-star charity helping homeless families stay together and find home.',link:{url:'https://familypromise.org',text:'Visit FamilyPromise.org →'}},
+{bg:'linear-gradient(135deg,#fff0f5,#ffe0ec)',border:'#e91e8c',accent:'#e91e8c',icon:'🎗️',label:'Play With Purpose',body:"This quiz is dedicated to <strong>Susan G. Komen</strong>, the world's leading breast cancer awareness organization. Play with purpose!",link:{url:'https://komen.org',text:'Visit Komen.org →'}},
+{bg:'linear-gradient(135deg,#f0f0ff,#e8e8ff)',border:'#5c6bc0',accent:'#5c6bc0',icon:'🛑',label:'Play With Purpose',body:"This quiz is dedicated to <strong>STOMP Out Bullying</strong>, a premier four-star charity and the leading national nonprofit working to end digital abuse and school bullying.",link:{url:'https://stompoutbullying.org',text:'Visit StompOutBullying.org →'}},
+{bg:'linear-gradient(135deg,#f0fff4,#e8f5e9)',border:'#43a047',accent:'#43a047',icon:'💼',label:'For the Gen X Pros',body:"If you're Gen X and need a fresh r&eacute;sum&eacute; or a LinkedIn glow-up, <strong>Donna Serdula and Vision Board Media</strong> are the masters of the rebrand.",link:{url:'https://visionboardmedia.com',text:'Visit VisionBoardMedia.com →'}},
+{bg:'linear-gradient(135deg,#fff8e1,#fff3e0)',border:'#ff8f00',accent:'#ff8f00',icon:'✈️',label:'Hit the Road',body:"Dedicated to the legends at <strong>SheBuysTravel.com</strong>. Their travel tips and money-saving strategies are totally choice!",link:{url:'https://shebuystravel.com',text:'Visit SheBuysTravel.com →'}}
+];
+
+// ── QUIZ SCHEDULE ─────────────────────────────────────────────────
+// One entry per day starting April 8, 2026
+const SCHEDULE=[
+// DAY 1 — index.html (Quiz 1)
+{quizFile:'index.html',title:'80s Pop Giants',
+ artists:['Duran Duran','Madonna','Michael Jackson'],
+ rows:['Top 10 Hit in 1984','Song with "Girl" in Title','Song from 1987 Album'],
+ difficulty:'medium',theme:'MTV era · synth pop · mega stars',
+ yesNoKeys:[],
+ answers:{'0-0':['the reflex','reflex','new moon on monday'],'1-0':['girls on film'],'2-0':['notorious','skin trade','meet el presidente'],'0-1':['like a virgin','material girl','borderline'],'1-1':['material girl','whos that girl'],'2-1':['whos that girl','causing a commotion','the look of love'],'0-2':['thriller','billie jean','beat it','pyt'],'1-2':['the girl is mine','girl is mine'],'2-2':['bad','the way you make me feel','man in the mirror','dirty diana','smooth criminal','i just cant stop loving you']},
+ mcOptions:{'0-0':['The Reflex','New Moon on Monday','Girls on Film'],'1-0':['Girls on Film',"Jesse's Girl",'Uptown Girl'],'2-0':['Notorious','Skin Trade','A View to a Kill'],'0-1':['Like a Virgin','Material Girl','Borderline'],'1-1':['Material Girl',"Who's That Girl",'Cover Girl'],'2-1':["Who's That Girl",'Causing a Commotion','The Look of Love'],'0-2':['Thriller','Billie Jean','Beat It'],'1-2':['The Girl Is Mine',"Girl You Know It's True",'My Girl'],'2-2':['Bad','The Way You Make Me Feel','Man in the Mirror']},
+ notes:['Duran Duran ruled the MTV era — their polished videos and synth-driven sound made them one of the biggest bands of 1984.','Madonna released three studio albums in the 80s, each bigger than the last. Her 1987 record came with a blockbuster concert film.','Michael Jackson's Bad (1987) produced five consecutive #1 singles — a record at the time. Every cell in the bottom row connects to that album.']},
+// DAY 2 — quiz2.html
+{quizFile:'quiz2.html',title:'New Wave Around the World',
+ artists:['Simple Minds','OMD','INXS'],
+ rows:['Song from John Hughes Film','Top 5 Hit in the 1980s','Song Title with One Word'],
+ difficulty:'medium',theme:'New wave · post-punk · international',
+ yesNoKeys:[],
+ answers:{'0-0':["dont you forget about me"],'0-1':["if you leave"],'0-2':["do wot you do"],'1-0':["dont you forget about me"],'1-1':["if you leave"],'1-2':["need you tonight","devil inside","new sensation"],'2-0':["waterfront","theme","changeling","celebrate","premonition","ghostdancing","hypnotised","factory","travel","utopia"],'2-1':["electricity","dreaming","secret","souvenir"],'2-2':["mystify","disappear","searching","sometimes","scratch","shine","sway","swing","viking","kick"]},
+ mcOptions:{'0-0':["Don't You Forget About Me","Alive and Kicking","Sanctify Yourself"],'0-1':["If You Leave","Souvenir","Enola Gay"],'0-2':["Do Wot You Do","Need You Tonight","Mystify"],'1-0':["Don't You Forget About Me","Alive and Kicking","Don't You (Forget About Me)"],'1-1':["If You Leave","Enola Gay","So in Love"],'1-2':["Need You Tonight","Devil Inside","New Sensation"],'2-0':["Waterfront","Theme","Changeling"],'2-1':["Electricity","Dreaming","Secret"],'2-2':["Mystify","Disappear","Searching"]},
+ notes:["Simple Minds' "Don't You (Forget About Me)" was recorded reluctantly — the band nearly turned it down but it became their biggest hit.","OMD pioneered synth-pop from Liverpool, blending electronic sound with surprisingly emotional songwriting.","INXS hailed from Sydney and became one of the biggest rock bands of the decade, led by the charismatic Michael Hutchence."]},
+// DAY 3 — quiz3.html
+{quizFile:'quiz3.html',title:'Dark Side of the 80s',
+ artists:['The Police','The Cure','Depeche Mode'],
+ rows:['Lead Singer's First Name','Song with "Night" in Title','Played Sold Out Concert at Rose Bowl'],
+ difficulty:'hard',theme:'Post-punk · new wave · synth',
+ yesNoKeys:['2-0','2-1','2-2'],
+ answers:{'0-0':['sting','gordon'],'0-1':['robert'],'0-2':['dave'],'1-0':['bring on the night'],'1-1':['1015 saturday night','10 15 saturday night','saturday night'],'1-2':['waiting for the night to fall'],'2-0':['no'],'2-1':['yes'],'2-2':['yes']},
+ mcOptions:{'0-0':['Sting','Stewart','Andy'],'0-1':['Robert','Roger','Roland'],'0-2':['Dave','Stephen','Philip'],'1-0':['Bring on the Night','In the Air Tonight','All Night Long'],'1-1':['10:15 Saturday Night','All Through the Night','Into the Night'],'1-2':['Waiting for the Night to Fall','Nightshift','Tonight She Comes']},
+ notes:['The Police, The Cure, and Depeche Mode each pioneered a distinct sound that still echoes through music today.','All three brought something completely different: reggae-influenced tension, gothic romance, and cold electronic pulse.','Stadium shows were once unlikely for alternative acts — by the late 80s, all three were filling arenas worldwide.']},
+// DAY 4 — quiz4.html
+{quizFile:'quiz4.html',title:'Royalty, Rock & the Obscure',
+ artists:['Prince','Queen','Flesh for Lulu'],
+ rows:['Hit Song with "Crazy" in the Title','First U.S. Top 40 Song','Grammy? (Yes or No)'],
+ difficulty:'hard',theme:'Rock royalty · new wave obscure',
+ yesNoKeys:['2-0','2-1','2-2'],
+ answers:{'0-0':["lets go crazy","go crazy"],'0-1':["crazy little thing called love"],'0-2':["i go crazy","go crazy"],'1-0':["i wanna be your lover","wanna be your lover"],'1-1':["killer queen"],'1-2':["i go crazy","go crazy"],'2-0':["yes"],'2-1':["no"],'2-2':["no"]},
+ mcOptions:{'0-0':["Let's Go Crazy","Crazy for You","She Drives Me Crazy"],'0-1':["Crazy Little Thing Called Love","Crazy Train","Crazy Crazy Nights"],'0-2':["I Go Crazy","Crazy for You","Crazy Train"],'1-0':["I Wanna Be Your Lover","Soft and Wet","For You"],'1-1':["Killer Queen","Bohemian Rhapsody","We Will Rock You"],'1-2':["I Go Crazy","Roman Candle","Postcards from Paradise"]},
+ notes:["Prince's "Let's Go Crazy" opened the Purple Rain album — one of the best-selling soundtracks in history.",'Queen broke into the U.S. market with "Killer Queen" in 1974, long before they became stadium legends.','Flesh for Lulu were a British goth-rock band who scored a minor hit with "I Go Crazy" — a deep cut that rewards real 80s fans.']},
+// DAY 5 — quiz5.html
+{quizFile:'quiz5.html',title:'Reggae, Roots & Art Rock',
+ artists:['UB40','Eddy Grant','Peter Gabriel'],
+ rows:['Top 5 U.S. Hit','Anti-Apartheid Song','Hit Song with "Don't" in the Title'],
+ difficulty:'medium',theme:'Reggae · world music · art rock',
+ yesNoKeys:[],
+ answers:{'0-0':["red red wine","i cant help falling in love with you","cant help falling in love"],'0-1':["electric avenue"],'0-2':["sledgehammer"],'1-0':["sing our own song"],'1-1':["gimme hope joanna","gimme hope jo anna"],'1-2':["biko"],'2-0':["dont break my heart"],'2-1':["i dont wanna dance","dont wanna dance"],'2-2':["dont give up"]},
+ mcOptions:{'0-0':["Red Red Wine","Kingston Town","Cherry Oh Baby"],'0-1':["Electric Avenue","Romancing the Stone","Living on the Front Line"],'0-2':["Sledgehammer","In Your Eyes","Big Time"],'1-0':["Sing Our Own Song","Red Red Wine","Kingston Town"],'1-1':["Gimme Hope Jo'Anna","Electric Avenue","War Party"],'1-2':["Biko","Games Without Frontiers","Shock the Monkey"],'2-0':["Don't Break My Heart","Red Red Wine","Rat in Mi Kitchen"],'2-1':["I Don't Wanna Dance","Electric Avenue","Give Me Hope Joanna"],'2-2':["Don't Give Up","Don't You Want Me","Don't Stop Me Now"]},
+ notes:["UB40's "Red Red Wine" was originally a Neil Diamond song from 1967 — UB40's reggae cover hit #1 in the U.S. in 1988, five years after release.","Eddy Grant wrote "Electric Avenue" about the 1981 Brixton riots in London — one of the first hits to directly address inner-city poverty.","Peter Gabriel left Genesis in 1975 to pursue a solo career that became increasingly adventurous, culminating in his landmark 1986 album So."]},
+// DAY 6 — quiz6.html
+{quizFile:'quiz6.html',title:'Clever Pop & New Wave Crossovers',
+ artists:['Elvis Costello','ABC','Huey Lewis and the News'],
+ rows:['Hit Song with "Love" in the Title','Best Selling Studio Album','First Song with Video on MTV'],
+ difficulty:'medium',theme:'New wave · sophisti-pop · American rock',
+ yesNoKeys:[],
+ answers:{'0-0':["whats so funny bout peace love and understanding","peace love and understanding","i wanna be loved"],'0-1':["the look of love","look of love"],'0-2':["do you believe in love","the power of love","power of love"],'1-0':["my aim is true"],'1-1':["the lexicon of love","lexicon of love"],'1-2':["sports"],'2-0':["olivers army"],'2-1':["poison arrow"],'2-2':["do you believe in love"]},
+ mcOptions:{'0-0':["What's So Funny 'Bout Peace Love and Understanding","Tainted Love","Higher Love"],'0-1':["The Look of Love","Addicted to Love","Is This Love"],'0-2':["The Power of Love","Love Is a Battlefield","Greatest Love of All"],'1-0':["My Aim Is True","Imperial Bedroom","Armed Forces"],'1-1':["The Lexicon of Love","Beauty Stab","How to Be a Zillionaire"],'1-2':["Sports","Fore!","Small World"],'2-0':["Oliver's Army","Watching the Detectives","Pump It Up"],'2-1':["Poison Arrow","The Look of Love","All of My Heart"],'2-2':["Do You Believe in Love","The Heart of Rock & Roll","If This Is It"]},
+ notes:["Elvis Costello recorded "What's So Funny 'Bout Peace Love and Understanding" as a Nick Lowe cover — it became one of his signature songs.","ABC's The Lexicon of Love was recorded with a full orchestra and remains one of the most opulent-sounding albums of the 80s.","Huey Lewis and the News appeared on MTV before their massive mainstream breakthrough — "Do You Believe in Love" was their calling card."]},
+// DAY 7 — quiz7.html
+{quizFile:'quiz7.html',title:'Arena Rock Meets Pop Soul',
+ artists:['Van Halen','Heart','Billy Ocean'],
+ rows:['Hit Song with "Dream" in Title','U.S. Billboard Hot 100 #1 Song','Toured in 1986? (Yes or No)'],
+ difficulty:'medium',theme:'Arena rock · AOR · pop soul',
+ yesNoKeys:['2-0','2-1','2-2'],
+ answers:{'0-0':["dreams"],'0-1':["these dreams"],'0-2':["get outta my dreams get into my car","get outta my dreams"],'1-0':["jump"],'1-1':["these dreams","alone"],'1-2':["get outta my dreams","caribbean queen","therell be sad songs","therell be sad songs to make you cry"],'2-0':["yes"],'2-1':["yes"],'2-2':["yes"]},
+ mcOptions:{'0-0':["Dreams","Sweet Dreams (Are Made of This)","Electric Dreams"],'0-1':["These Dreams","Don't Dream It's Over","Dream Police"],'0-2':["Get Outta My Dreams, Get Into My Car","Dreaming","In Your Wildest Dreams"],'1-0':["Jump","Hot for Teacher","Panama"],'1-1':["Alone","These Dreams","Barracuda"],'1-2':["Caribbean Queen","Loverboy","Suddenly"]},
+ notes:["Van Halen's "Jump" was their only #1 hit — ironically, the guitar virtuosos' biggest song was built around a keyboard riff.","Heart's "These Dreams" was the first #1 hit written by Bernie Taupin (Elton John's lyricist) for another artist.","Billy Ocean scored three Top 5 hits in 1984-85 alone, making him one of the most commercially successful R&B artists of the decade."]},
+// DAY 8 — quiz8.html
+{quizFile:'quiz8.html',title:'Reinvention & Rock Royalty',
+ artists:['Peter Gabriel','Cher','Lita Ford'],
+ rows:['Hit Song with "Kiss" in Title','Prior Group / Band','Famous Duet With'],
+ difficulty:'hard',theme:'Reinvention · rock · duets',
+ yesNoKeys:[],
+ answers:{'0-0':["kiss of life","kiss that frog"],'0-1':["the shoop shoop song","shoop shoop song","its in his kiss"],'0-2':["kiss me deadly"],'1-0':["genesis"],'1-1':["sonny and cher","sonny cher"],'1-2':["the runaways","runaways"],'2-0':["kate bush"],'2-1':["peter cetera","cetera"],'2-2':["ozzy osbourne","ozzy"]},
+ mcOptions:{'0-0':["Kiss of Life","Kiss on My List","Kiss the Bride"],'0-1':["The Shoop Shoop Song (It's in His Kiss)","Kiss","Kisses on the Wind"],'0-2':["Kiss Me Deadly","Kiss on My List","Kiss the Bride"],'1-0':["Genesis","The Lamb Lies Down on Broadway","Peter Gabriel Band"],'1-1':["Sonny & Cher","The Wreckers","Gregg Allman Band"],'1-2':["The Runaways","The Bangles","The Go-Go's"],'2-0':["Kate Bush","Sinead O'Connor","Annie Lennox"],'2-1':["Peter Cetera","David Bowie","Meat Loaf"],'2-2':["Ozzy Osbourne","Jon Bon Jovi","Dee Snider"]},
+ notes:["Peter Gabriel co-wrote "Don't Give Up" with Kate Bush — their 1986 duet is considered one of the most emotionally powerful songs of the decade.","Cher reinvented herself multiple times in the 80s, shifting from pop to hard rock with a string of arena rock albums produced by Desmond Child.","Lita Ford was a founding member of The Runaways at age 16 — one of the first all-female hard rock bands to achieve commercial success."]},
+// DAY 9 — quiz9.html
+{quizFile:'quiz9.html',title:'Pop, Hip-Hop & New Wave Collide',
+ artists:['Phil Collins','Run DMC','Duran Duran'],
+ rows:['Performed at Live Aid 1985 – London? (Y/N)','Performed at Live Aid 1985 – Philadelphia? (Y/N)','Biggest Hit 1985'],
+ difficulty:'hard',theme:'Live Aid · hip-hop · new wave',
+ yesNoKeys:['0-0','0-1','0-2','1-0','1-1','1-2'],
+ answers:{'0-0':["yes"],'0-1':["no"],'0-2':["no"],'1-0':["yes"],'1-1':["yes"],'1-2':["yes"],'2-0':["one more night","sussudio","separate lives","against all odds"],'2-1':["king of rock"],'2-2':["a view to a kill"]},
+ mcOptions:{'2-0':["One More Night","Invisible Touch","Easy Lover"],'2-1':["King of Rock","Rock Box","Walk This Way"],'2-2':["A View to a Kill","The Reflex","Wild Boys"]},
+ notes:["Phil Collins famously performed at BOTH Live Aid venues on the same day — playing London, then flying Concorde to perform in Philadelphia.","Run DMC did not perform at Live Aid but dominated 1985 with King of Rock, helping bring hip-hop to mainstream rock audiences.","Duran Duran performed at the Philadelphia concert and contributed the James Bond theme A View to a Kill that same year."]},
+// DAY 10 — quiz10.html
+{quizFile:'quiz10.html',title:'Cyndi, Boy George & Mr. Hutchence',
+ artists:['Culture Club','Cyndi Lauper','INXS'],
+ rows:['Famous Song with "Time" in the Title','First Album','Country of Origin'],
+ difficulty:'easy',theme:'New wave · pop · international',
+ yesNoKeys:[],
+ answers:{'0-0':["time clock of the heart","clock of the heart","time"],'0-1':["time after time"],'0-2':["this time"],'1-0':["kissing to be clever"],'1-1':["shes so unusual","she is so unusual"],'1-2':["inxs"],'2-0':["united kingdom","uk","england","britain"],'2-1':["united states","usa","us","america"],'2-2':["australia"]},
+ mcOptions:{'0-0':["Time (Clock of the Heart)","The Time of My Life","Party All the Time"],'0-1':["Time After Time","Time Stand Still","Time for Me to Fly"],'0-2':["This Time","Nick of Time","Sign o' the Times"],'1-0':["Kissing to Be Clever","Colour by Numbers","Waking Up with the House on Fire"],'1-1':["She's So Unusual","True Colors","A Night to Remember"],'1-2':["INXS","Shabooh Shoobah","The Swing"],'2-0':["United Kingdom","United States","Australia"],'2-1':["United States","United Kingdom","Canada"],'2-2':["Australia","New Zealand","United Kingdom"]},
+ notes:["Culture Club's Boy George became one of the most recognizable faces of the 80s — gender-bending fashion and soulful vocals in equal measure.","Cyndi Lauper's debut She's So Unusual produced four top-five singles — a record for a debut album at the time.","INXS built their following through relentless touring before Michael Hutchence became one of rock's great frontmen."]}
+];
+
+// ── GAME STATE ────────────────────────────────────────────────────
+let currentCell=null;
+let lifelinesRemaining=3;
+let feedbackRating=0;
+let _currentQuiz=null;
+
+// ── HELPERS ───────────────────────────────────────────────────────
+function getDayIndex(){return Math.max(0,Math.floor((new Date()-LAUNCH_DATE)/86400000));}
+function getScoreKey(i){return '80sg_score_day_'+i;}
+function getCellKey(i){return '80sg_cells_day_'+i;}
+function getBonusKey(i){return '80sg_bonus_day_'+i;}
+function formatDate(d){return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});}
+function getAllScores(){const s=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('80sg_score_day_')){const v=parseInt(localStorage.getItem(k));if(!isNaN(v))s.push(v);}}return s;}
+function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();}
+
+// ── COUNTDOWN ─────────────────────────────────────────────────────
+function updateCountdown(){
+  const now=new Date(),mid=new Date(now);mid.setHours(24,0,0,0);
+  const diff=mid-now;
+  const h=String(Math.floor(diff/3600000)).padStart(2,'0');
+  const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  const el=document.getElementById('countdown');if(el)el.textContent=h+':'+m+':'+s;
+}
+
+// ── PLAYS COUNTER ─────────────────────────────────────────────────
+function updatePlaysCounter(){
+  const total=getAllScores().length;
+  const el=document.getElementById('playsCounter');
+  if(el)el.innerHTML='&#127918; '+(PLAYS_START+total)+' plays and counting';
+}
+
+// ── RENDER TODAY ──────────────────────────────────────────────────
+function renderToday(){
+  const dayIdx=getDayIndex();
+  const quiz=SCHEDULE[Math.min(dayIdx,SCHEDULE.length-1)];
+  _currentQuiz=quiz;
+  const gridNum=dayIdx+1;
+  document.getElementById('today-label').textContent='Today\'s Grid · '+formatDate(new Date());
+  document.getElementById('today-title').textContent=quiz.title;
+  document.getElementById('today-artists').textContent=quiz.artists.join(', ');
+  const dc={easy:'--badge-color:#28a745;--badge-glow:rgba(40,167,69,0.4)',medium:'--badge-color:#fd7e14;--badge-glow:rgba(253,126,20,0.4)',hard:'--badge-color:#dc3545;--badge-glow:rgba(220,53,69,0.4)'};
+  const ds={easy:'&#9733;&#9733;&#9734;&#9734;&#9734;',medium:'&#9733;&#9733;&#9733;&#9734;&#9734;',hard:'&#9733;&#9733;&#9733;&#9733;&#9734;'};
+  document.getElementById('diff-badge').style.cssText=dc[quiz.difficulty]||dc.medium;
+  document.getElementById('diff-stars').innerHTML=ds[quiz.difficulty]||ds.medium;
+  document.getElementById('diff-label').textContent=(quiz.difficulty||'medium').charAt(0).toUpperCase()+(quiz.difficulty||'medium').slice(1);
+  document.getElementById('diff-desc').textContent=quiz.theme||'';
+  // Grid headers
+  document.getElementById('col1').textContent=quiz.artists[0];
+  document.getElementById('col2').textContent=quiz.artists[1];
+  document.getElementById('col3').textContent=quiz.artists[2];
+  document.getElementById('row1').textContent=quiz.rows[0];
+  document.getElementById('row2').textContent=quiz.rows[1];
+  document.getElementById('row3').textContent=quiz.rows[2];
+  // Cell placeholders for Y/N rows
+  document.querySelectorAll('.cell').forEach(cell=>{
+    const key=cell.dataset.row+'-'+cell.dataset.col;
+    cell.querySelector('input').placeholder=(quiz.yesNoKeys||[]).includes(key)?'Y/N':'Answer';
+  });
+  // Notes
+  if(quiz.notes&&quiz.notes.length){document.getElementById('notes-list').innerHTML=quiz.notes.map(n=>'<li>'+n+'</li>').join('');document.getElementById('notes-box').style.display='block';}
+  renderBonus(dayIdx,null,quiz);
+}
+
+// ── GRID / MODAL ──────────────────────────────────────────────────
+function initializeCells(){
+  document.querySelectorAll('.cell').forEach(cell=>{
+    cell.addEventListener('click',()=>openModal(cell));
+  });
+}
+function openModal(cell){
+  currentCell=cell;
+  const quiz=_currentQuiz;
+  if(!quiz)return;
+  const colHeaders=document.querySelectorAll('.col-header');
+  const rowHeaders=document.querySelectorAll('.row-header');
+  const colH=Array.from(colHeaders).map(el=>el.innerText.replace(/\n/g,' ').trim());
+  const rowH=Array.from(rowHeaders).map(el=>el.innerText.replace(/\n/g,' ').trim());
+  document.getElementById('modalTitle').textContent=(colH[parseInt(cell.dataset.col)]||'')+' — '+(rowH[parseInt(cell.dataset.row)]||'');
+  document.getElementById('modalInput').value=cell.querySelector('input').value;
+  showTextEntry();
+  const mcBtn=document.getElementById('mcToggleBtn');
+  const key=cell.dataset.row+'-'+cell.dataset.col;
+  if(mcBtn)mcBtn.style.display=(quiz.yesNoKeys||[]).includes(key)?'none':'block';
+  document.getElementById('inputModal').classList.add('active');
+  document.getElementById('inputOverlay').classList.add('active');
+  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+}
+function closeModal(){
+  document.getElementById('inputModal').classList.remove('active');
+  document.getElementById('inputOverlay').classList.remove('active');
+  currentCell=null;
+  document.getElementById('modalInput').value='';
+  const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';
+  document.getElementById('textSection').classList.remove('hidden');
+  document.getElementById('mcSection').classList.remove('visible');
+}
+function saveModalAnswer(){
+  if(currentCell){currentCell.querySelector('input').value=document.getElementById('modalInput').value;closeModal();}
+}
+function showMultipleChoice(){
+  if(lifelinesRemaining<=0)return;
+  const quiz=_currentQuiz;if(!quiz)return;
+  const key=currentCell.dataset.row+'-'+currentCell.dataset.col;
+  if((quiz.yesNoKeys||[]).includes(key)){const t=document.getElementById('ynToast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);return;}
+  if(!quiz.mcOptions[key]||quiz.mcOptions[key].length===0)return;
+  const opts=[...quiz.mcOptions[key]];for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+  const container=document.getElementById('mcOptions');container.innerHTML='';
+  opts.forEach(opt=>{const btn=document.createElement('button');btn.className='mc-option';btn.textContent=opt;btn.onclick=()=>selectMCOption(opt);container.appendChild(btn);});
+  document.getElementById('textSection').classList.add('hidden');
+  document.getElementById('mcSection').classList.add('visible');
+}
+function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');setTimeout(()=>document.getElementById('modalInput').focus(),60);}
+function selectMCOption(value){
+  if(currentCell){currentCell.querySelector('input').value=value;lifelinesRemaining=Math.max(0,lifelinesRemaining-1);updateLifelineUI();closeModal();}
+}
+function updateLifelineUI(){
+  for(let i=1;i<=3;i++){const pip=document.getElementById('pip'+i);if(i<=lifelinesRemaining){pip.classList.remove('used');pip.textContent='🛟';}else{pip.classList.add('used');pip.textContent='';}}
+  const countEl=document.getElementById('lifelineCount');const btnEl=document.getElementById('mcToggleBtn');const remainEl=document.getElementById('mcRemaining');
+  if(remainEl)remainEl.textContent=lifelinesRemaining;
+  if(lifelinesRemaining===0){countEl.textContent='None left!';countEl.classList.add('empty');if(btnEl){btnEl.disabled=true;btnEl.style.display='none';}}
+  else{countEl.textContent=lifelinesRemaining+' remaining';countEl.classList.remove('empty');if(btnEl){btnEl.disabled=false;btnEl.style.display='block';}}
+}
+
+// ── SURVEY SYSTEM ────────────────────────────────────────────────
+const SURVEY_FORMSPREE='https://formspree.io/f/xeelpozw';
+const SURVEYS={
+  tribe:{id:'tribe',title:'&#127926; WHAT TYPE OF 80s FAN ARE YOU? &#127926;',options:[{value:'New Wave',icon:'&#127929;',label:'NEW WAVE',sub:'Depeche Mode &bull; The Cure &bull; Tears for Fears',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:26},{value:'Hair Metal',icon:'&#127928;',label:'HAIR METAL',sub:'M&ouml;tley Cr&uuml;e &bull; Def Leppard &bull; Bon Jovi',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:15},{value:'Pop Royalty',icon:'&#128081;',label:'POP ROYALTY',sub:'Madonna &bull; Michael Jackson &bull; Prince',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:28},{value:'Goth Dark Wave',icon:'&#128420;',label:'GOTH / DARK WAVE',sub:'Siouxsie &bull; Bauhaus &bull; The Smiths',color:'#888',bg:'linear-gradient(135deg,#1a1a1a,#333333)',border:'#666',pct:14},{value:'Heartland Rock',icon:'&#127482;&#127480;',label:'HEARTLAND ROCK',sub:'Springsteen &bull; Petty &bull; Mellencamp',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:17}]},
+  prom:{id:'prom',title:'&#127891; DID YOU GO TO YOUR PROM? &#127891;',options:[{value:'Yes - married prom date',icon:'&#128141;',label:'YES &mdash; AND I LATER MARRIED MY PROM DATE',sub:'',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:8},{value:'Yes - blast',icon:'&#128378;',label:'YES &mdash; HAD AN ABSOLUTE BLAST',sub:'',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:42},{value:'Yes - hated it',icon:'&#128543;',label:'YES &mdash; HATED EVERY SECOND OF IT',sub:'',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:19},{value:'No - not saying',icon:'&#129296;',label:"NO&hellip; AND THAT'S ALL I'M SAYING ABOUT THAT",sub:'',color:'#555',bg:'linear-gradient(135deg,#333,#555)',border:'#777',pct:31}]},
+  mall:{id:'mall',title:'&#128722; WHAT WAS YOUR FAVORITE MALL STORE? &#128722;',options:[{value:'Esprit',icon:'&#128084;',label:'ESPRIT',sub:'The colorblock queen of the mall',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:22},{value:'The Limited',icon:'&#128717;',label:'THE LIMITED',sub:'Power suits and shoulder pads',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:31},{value:'Benetton',icon:'&#127757;',label:'BENETTON',sub:'United Colors and bold statements',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:18},{value:'Chess King',icon:'&#9820;',label:'CHESS KING',sub:'Where the cool guys shopped',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:14},{value:'Sam Goody',icon:'&#127925;',label:'SAM GOODY',sub:'Your cassette tape headquarters',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:15}]},
+  sat:{id:'sat',title:'&#128221; WHAT DID YOU GET ON YOUR SATs? &#128221;',options:[{value:'Over 1400',icon:'&#127891;',label:'OVER 1400 &mdash; CRUSHED IT',sub:'',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:18},{value:'1000-1399',icon:'&#128218;',label:'1000&ndash;1399 &mdash; SOLID',sub:'',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:39},{value:'800-999',icon:'&#128517;',label:'800&ndash;999 &mdash; GOT IN ANYWAY',sub:'',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:28},{value:'Ask Mr Hand',icon:'&#127940;',label:'ASK MR. HAND&hellip;',sub:'Fast Times reference — you know who you are',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:15}]},
+  coffee:{id:'coffee',title:'&#9749; COFFEE WITH ONE PERSON &mdash; WHO? &#9749;',options:[{value:'Prince',icon:'&#127880;',label:'PRINCE',sub:"If he'd even show up",color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:29},{value:'Madonna',icon:'&#128132;',label:'MADONNA',sub:"She'd do all the talking",color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:24},{value:'Bono',icon:'&#127758;',label:'BONO',sub:'Bring earplugs',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:13},{value:'Sade',icon:'&#127801;',label:'SAD&Eacute;',sub:'The most mysterious conversation ever',color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:34}]},
+  generation:{id:'generation',title:'&#127914; WHICH GENERATION CLAIMS YOU? &#127914;',options:[{value:'Boomer',icon:'&#128116;',label:'BOOMER',sub:"I was a grown-up when this played. Still love it!",color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:18},{value:'Gen X',icon:'&#127928;',label:'GEN X',sub:'THIS IS MY MUSIC. I lived every second of it.',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:41},{value:'Millennial',icon:'&#128190;',label:'MILLENNIAL',sub:"I grew up on the tail end. Close enough!",color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:28},{value:'Gen Z',icon:'&#128247;',label:'GEN Z',sub:"I only know this from Stranger Things but I'm obsessed",color:'#28a745',bg:'linear-gradient(135deg,#155724,#28a745)',border:'#c3e6cb',pct:13}]}
+};
+const SURVEY_ORDER=['tribe','prom','mall','sat','coffee','generation'];
+const SURVEY_DONE_KEY='80sGrid_surveysCompleted';
+const SURVEY_SHOWN_TODAY_KEY='80sGrid_surveyShownDate';
+function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY)||'[]');}catch(e){return[];}}
+function markSurveyCompleted(id){const done=getSurveysCompleted();if(!done.includes(id)){done.push(id);localStorage.setItem(SURVEY_DONE_KEY,JSON.stringify(done));}}
+function hasShownSurveyToday(){const today=new Date().toISOString().slice(0,10);return localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)===today;}
+function markSurveyShownToday(){localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,new Date().toISOString().slice(0,10));}
+function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[Math.floor(Math.random()*rem.length)];}
+function renderSurvey(surveyId){
+  const survey=SURVEYS[surveyId];if(!survey)return;
+  const el=document.getElementById('surveyQuestion');const titleEl=document.getElementById('surveyTitle');const optionsEl=document.getElementById('surveyOptions');
+  if(!el||!titleEl||!optionsEl)return;
+  titleEl.innerHTML=survey.title;optionsEl.innerHTML='';
+  survey.options.forEach(opt=>{
+    const div=document.createElement('div');div.className='survey-option';
+    div.style.cssText='background:'+opt.bg+';border:2px solid '+opt.border+';padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left;border-radius:10px;cursor:pointer;transition:all 0.3s;';
+    div.dataset.surveyId=surveyId;div.dataset.value=opt.value;div.dataset.pct=opt.pct;div.dataset.color=opt.color;
+    div.innerHTML='<div style="min-width:40px;height:40px;background:rgba(0,0,0,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4em;border:2px solid rgba(255,255,255,0.2);">'+opt.icon+'</div><div style="flex:1;"><div style="font-size:0.9em;font-weight:900;letter-spacing:1px;color:white;">'+opt.label+'</div>'+(opt.sub?'<div style="font-size:0.72em;opacity:0.85;margin-top:2px;color:white;">'+opt.sub+'</div>':'')+'<div class="tribe-bar" style="display:none;margin-top:6px;background:rgba(0,0,0,0.3);border-radius:4px;height:8px;overflow:hidden;"><div class="tribe-fill" style="height:100%;border-radius:4px;transition:width 0.8s ease;"></div></div></div><div class="tribe-pct" style="display:none;font-size:1.1em;font-weight:900;min-width:42px;text-align:right;color:white;"></div>';
+    div.onclick=()=>handleSurveyClick(div,surveyId,opt.value);optionsEl.appendChild(div);
+  });
+  el.style.display='block';
+  const saved=localStorage.getItem('80sGrid_surveyAnswer_'+surveyId);if(saved)revealSurveyResults(surveyId,saved);
+}
+function handleSurveyClick(el,surveyId,value){
+  if(document.getElementById('surveyOptions').classList.contains('survey-voted'))return;
+  localStorage.setItem('80sGrid_surveyAnswer_'+surveyId,value);markSurveyCompleted(surveyId);
+  try{fetch(SURVEY_FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'survey',survey_id:surveyId,answer:value,date:new Date().toISOString()})});}catch(e){}
+  revealSurveyResults(surveyId,value);
+}
+function revealSurveyResults(surveyId,chosen){
+  const survey=SURVEYS[surveyId];if(!survey)return;
+  const optionsEl=document.getElementById('surveyOptions');optionsEl.classList.add('survey-voted');
+  optionsEl.querySelectorAll('.survey-option').forEach(card=>{
+    const val=card.dataset.value;const pct=parseInt(card.dataset.pct);const color=card.dataset.color;const isChosen=val===chosen;
+    const bar=card.querySelector('.tribe-bar');if(bar)bar.style.display='block';
+    const fill=card.querySelector('.tribe-fill');if(fill){fill.style.background=isChosen?'linear-gradient(135deg,'+color+',#fff)':color;setTimeout(()=>{fill.style.width=pct+'%';},50);}
+    const pctEl=card.querySelector('.tribe-pct');if(pctEl){pctEl.style.display='block';pctEl.textContent=pct+'%';}
+    if(isChosen){card.classList.add('selected');card.style.boxShadow='0 0 20px '+color+',inset 0 0 10px rgba(255,255,255,0.1)';}
+    else{card.style.opacity='0.65';}
+    card.style.cursor='default';card.onclick=null;
+  });
+}
+function maybeShowSurvey(){
+  if(hasShownSurveyToday())return;
+  const nextId=getNextSurvey();if(!nextId)return;
+  markSurveyShownToday();renderSurvey(nextId);
+}
+function restoreSurveyOnLoad(){
+  if(!hasShownSurveyToday())return;
+  for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}
+}
+
+// ── CHECK ANSWERS ─────────────────────────────────────────────────
+function checkAnswers(){
+  const quiz=_currentQuiz;if(!quiz){alert('Loading quiz...');return;}
+  const cells=document.querySelectorAll('.cell');let correct=0,total=0;
+  const cellStates=[];
+  cells.forEach(cell=>{
+    const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
+    if(userAnswer){
+      total++;
+      const valid=(quiz.answers[key]||[]).map(a=>normalizeString(a));
+      const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer));
+      if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellStates.push('correct');}
+      else{cell.classList.add('incorrect');cell.classList.remove('correct');cellStates.push('wrong');}
+    } else {
+      cellStates.push('empty');
+    }
+  });
+  // Check if lifeline was used for this cell
+  // (simplified: mark answered cells that are correct with lifeline class if lifelines were used)
+  if(total===0){alert('Fill in some answers first!');return;}
+  // Save score + cell states
+  const dayIdx=getDayIndex();
+  const oldScore=parseInt(localStorage.getItem(getScoreKey(dayIdx))||'0');
+  if(correct>oldScore){
+    localStorage.setItem(getScoreKey(dayIdx),correct);
+    localStorage.setItem(getCellKey(dayIdx),cellStates.join(','));
+  }
+  // Update streak
+  const today=new Date().toISOString().slice(0,10);
+  const lastPlayed=localStorage.getItem('80sg_last_played');
+  let streak=parseInt(localStorage.getItem('80sg_streak')||'0');
+  if(lastPlayed!==today){
+    const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+    streak=(lastPlayed===yesterday)?streak+1:1;
+    localStorage.setItem('80sg_streak',streak);
+    localStorage.setItem('80sg_last_played',today);
+  }
+  document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
+  document.getElementById('results').style.display='block';
+  renderStreakStrip();renderInlineStats();updatePlaysCounter();
+  // Bonus unlock
+  if(correct>=6)renderBonus(dayIdx,correct,quiz);
+  // Share grid
+  const emojiMap={correct:'🟩',wrong:'🟥',empty:'⬜'};
+  window._shareEmoji=cellStates.reduce((acc,s,i)=>{acc+=emojiMap[s]||'⬜';if(i%3===2&&i<8)acc+='\n';return acc;},'');
+  window._shareGridNum=dayIdx+1;window._shareScore=correct;window._shareLifelines=3-lifelinesRemaining;
+  // High score prompt
+  if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
+  displayLeaderboard();
+  document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'});
+  maybeShowSurvey();
+}
+
+function resetGrid(){
+  document.querySelectorAll('.cell input').forEach(i=>{i.value='';i.parentElement.classList.remove('correct','incorrect');});
+  document.getElementById('results').style.display='none';
+  document.getElementById('highScoreEntry').style.display='none';
+  lifelinesRemaining=3;updateLifelineUI();
+}
+
+// ── BONUS ─────────────────────────────────────────────────────────
+function renderBonus(dayIdx,score,quiz){
+  const bonusQuiz=SCHEDULE[Math.min(dayIdx+1,SCHEDULE.length-1)];
+  const unlocked=localStorage.getItem(getBonusKey(dayIdx))==='unlocked'||(score!==null&&score>=6);
+  const card=document.getElementById('bonus-card');
+  if(unlocked&&bonusQuiz&&bonusQuiz!==quiz){
+    card.className='bonus-card unlocked';
+    document.getElementById('bonus-icon').textContent='🎸';
+    const t=document.getElementById('bonus-title');t.textContent='Bonus Grid Unlocked!';t.className='bonus-title unlocked';
+    document.getElementById('bonus-desc').textContent=bonusQuiz.title+' · '+bonusQuiz.artists.join(', ');
+    document.getElementById('bonus-req').textContent='🏆 Earned with a score of '+score+'/9';
+    document.getElementById('bonus-req').className='bonus-req earned';
+    if(!card.querySelector('.bonus-play-btn')){const a=document.createElement('a');a.className='bonus-play-btn';a.href=bonusQuiz.quizFile;a.textContent='Play →';card.appendChild(a);}
+    if(score>=6)localStorage.setItem(getBonusKey(dayIdx),'unlocked');
+  }
+}
+
+// ── ARCHIVE ───────────────────────────────────────────────────────
+function renderArchive(){
+  const dayIdx=getDayIndex();const grid=document.getElementById('archive-grid');grid.innerHTML='';
+  if(dayIdx===0){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;color:#aaa;font-size:0.8em;padding:12px;">Archive available starting Day 2.</div>';return;}
+  for(let i=Math.max(0,dayIdx-3);i<dayIdx;i++){
+    const q=SCHEDULE[Math.min(i,SCHEDULE.length-1)];
+    const d=new Date(LAUNCH_DATE.getTime()+i*86400000);
+    const score=localStorage.getItem(getScoreKey(i));
+    const card=document.createElement('a');card.className='archive-card';card.href=q.quizFile;
+    card.innerHTML='<div class="archive-num">#'+String(i+1).padStart(3,'0')+'</div><div class="archive-date">'+formatDate(d)+'</div><div class="archive-score '+(score!==null?'played':'unplayed')+'">'+(score!==null?'&#10003; '+score+'/9':'Not played')+'</div>';
+    grid.appendChild(card);
+  }
+}
+
+// ── DEDICATION BOX ────────────────────────────────────────────────
+function initDedicationBox(){
+  const anchor=document.getElementById('dedicationAnchor');if(!anchor)return;
+  const d=DEDICATIONS[Math.floor(Math.random()*DEDICATIONS.length)];
+  anchor.innerHTML='<div style="background:'+d.bg+';border:2px solid '+d.border+';border-left:5px solid '+d.accent+';border-radius:10px;padding:12px 16px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.06);"><div style="font-size:0.68em;font-weight:900;letter-spacing:2px;color:'+d.accent+';text-transform:uppercase;margin-bottom:4px;">'+d.icon+' &nbsp;'+d.label+'</div><div style="font-size:0.88em;color:#111;line-height:1.6;">'+d.body+'</div>'+(d.link?'<a href="'+d.link.url+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:0.8em;font-weight:900;color:'+d.accent+';text-decoration:none;">'+d.link.text+'</a>':'')+'</div>';
+}
+
+// ── STREAK ────────────────────────────────────────────────────────
+function renderStreakStrip(){
+  const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
+  const strip=document.getElementById('streak-strip');
+  const num=document.getElementById('streak-num');
+  const flame=document.getElementById('streak-flame');
+  const sub=document.getElementById('streak-sub');
+  const msg=document.getElementById('streak-msg');
+  const tom=document.getElementById('streak-tomorrow');
+  num.textContent=streak;
+  if(streak===0){strip.className='streak-strip cold';flame.textContent='🎸';sub.textContent='Play today to start your streak';msg.textContent='Start your streak today!';tom.textContent='First play = Day 1 🔥';}
+  else if(streak>=30){strip.className='streak-strip';flame.textContent='🔥';sub.textContent='You\'re on fire — legend status';msg.textContent='LEGEND STATUS 🏆';tom.textContent='Play today to reach '+(streak+1)+' days!';}
+  else{strip.className='streak-strip';flame.textContent='🔥';sub.textContent='Play daily to keep it alive';msg.textContent='Keep it going!';tom.textContent='Play today to reach '+(streak+1)+' 🔥';}
+}
+
+// ── INLINE STATS ──────────────────────────────────────────────────
+function renderInlineStats(){
+  const scores=getAllScores();
+  const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
+  const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'—';
+  const best=scores.length?Math.max(...scores)+'/9':'—';
+  document.getElementById('istat-streak').textContent=streak;
+  document.getElementById('istat-played').textContent=scores.length;
+  document.getElementById('istat-avg').textContent=avg;
+  document.getElementById('istat-best').textContent=best;
+}
+
+// ── STATS MODAL ───────────────────────────────────────────────────
+function toggleStats(){
+  const scores=getAllScores();
+  const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
+  const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'—';
+  const best=scores.length?Math.max(...scores)+'/9':'—';
+  const todayKey='80sg_played_today_'+new Date().toISOString().slice(0,10);
+  document.getElementById('statToday').textContent=localStorage.getItem(todayKey)||'0';
+  document.getElementById('statTotal').textContent=scores.length;
+  document.getElementById('statBest').textContent=best;
+  document.getElementById('statAvg').textContent=avg;
+  document.getElementById('statStreak').textContent=streak;
+  document.getElementById('statsModal').classList.toggle('show');
+}
+
+// ── LEADERBOARD ───────────────────────────────────────────────────
+function showLeaderboard(){
+  const lb=document.getElementById('leaderboard');
+  lb.style.display=lb.style.display==='none'?'block':'none';
+  if(lb.style.display==='block')displayLeaderboard();
+}
+function displayLeaderboard(){
+  const stored=JSON.parse(localStorage.getItem('80sg_leaderboard')||'[]');
+  const all=[...stored,...FAKE_SCORES].sort((a,b)=>b.score-a.score).slice(0,10);
+  document.getElementById('leaderboardList').innerHTML=all.map((e,i)=>'<div class="leaderboard-item"><span class="leaderboard-rank">'+(i+1)+'.</span><span class="leaderboard-initials">'+(e.initials||'???')+'</span><span class="leaderboard-score">'+(e.score||0)+'/9</span><span class="leaderboard-date">'+(e.date||'—')+'</span></div>').join('');
+}
+function saveHighScore(){
+  const initials=(document.getElementById('initial1').value+document.getElementById('initial2').value+document.getElementById('initial3').value).toUpperCase().trim();
+  if(!initials)return;
+  const dayIdx=getDayIndex();const score=parseInt(localStorage.getItem(getScoreKey(dayIdx))||'0');
+  const stored=JSON.parse(localStorage.getItem('80sg_leaderboard')||'[]');
+  stored.push({initials,score,date:new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'})});
+  localStorage.setItem('80sg_leaderboard',JSON.stringify(stored));
+  document.getElementById('highScoreEntry').style.display='none';
+  displayLeaderboard();document.getElementById('leaderboard').style.display='block';
+}
+
+// ── SHARE ─────────────────────────────────────────────────────────
+function copyShare(){
+  const num=String(window._shareGridNum||1).padStart(3,'0');
+  const score=window._shareScore||0;const ll=window._shareLifelines||0;const emoji=window._shareEmoji||'';
+  const text='80sGrid #'+num+' · '+score+'/9'+(ll?' · '+ll+' lifeline'+(ll>1?'s':'')+' used':' · No lifelines!')+'\n'+emoji+'\n80sgrid.com';
+  navigator.clipboard&&navigator.clipboard.writeText(text);
+  const btn=event.target.closest('button');const orig=btn.innerHTML;btn.innerHTML='&#10003; Copied!';setTimeout(()=>btn.innerHTML=orig,2000);
+}
+function shareLink(){
+  if(navigator.share){navigator.share({title:'80sGrid — Daily 80s Music Trivia',text:'Can you beat today\'s 80sGrid? 🎸',url:'https://80sgrid.com'}).catch(()=>{});}
+  else{navigator.clipboard&&navigator.clipboard.writeText('https://80sgrid.com');alert('Link copied!');}
+}
+function shareBrag(){
+  const num=String(window._shareGridNum||1).padStart(3,'0');const score=window._shareScore||0;const ll=window._shareLifelines||0;const emoji=window._shareEmoji||'';
+  const text='80sGrid #'+num+' · '+score+'/9'+(ll?' · '+ll+' lifeline'+(ll>1?'s':'')+' used':' · No lifelines!')+'\n'+emoji+'\nPlay at 80sgrid.com';
+  if(navigator.share){navigator.share({title:'80sGrid #'+num+' · '+score+'/9',text,url:'https://80sgrid.com'}).catch(()=>{});}
+  else{navigator.clipboard&&navigator.clipboard.writeText(text);alert('Score copied! Paste it anywhere.');}
+}
+
+// ── FEEDBACK ──────────────────────────────────────────────────────
+function openFeedback(){document.getElementById('feedbackOverlay').classList.add('active');document.getElementById('feedbackForm').style.display='block';document.getElementById('feedbackSuccess').style.display='none';feedbackRating=0;updateStars(0);document.getElementById('feedbackText').value='';}
+function closeFeedback(){document.getElementById('feedbackOverlay').classList.remove('active');}
+function setRating(n){feedbackRating=n;updateStars(n);}
+function updateStars(n){document.querySelectorAll('.feedback-star').forEach((s,i)=>s.classList.toggle('lit',i<n));}
+function submitFeedback(){const text=document.getElementById('feedbackText').value.trim();if(!feedbackRating&&!text){document.getElementById('feedbackText').style.borderColor='#FF1493';return;}document.getElementById('feedbackForm').style.display='none';document.getElementById('feedbackSuccess').style.display='block';setTimeout(closeFeedback,3000);}
+
+// ── INIT ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  renderToday();
+  initializeCells();
+  renderArchive();
+  updatePlaysCounter();
+  initDedicationBox();
+  displayLeaderboard();
+  renderStreakStrip();
+  renderInlineStats();
+  updateLifelineUI();
+  restoreSurveyOnLoad();
+  updateCountdown();
+  setInterval(updateCountdown,1000);
+  // Wire modal events after DOM ready
+  document.addEventListener('keypress',(e)=>{if(e.key==='Enter'&&document.getElementById('inputModal').classList.contains('active'))saveModalAnswer();});
+  document.getElementById('inputOverlay').addEventListener('click',closeModal);
+  document.querySelectorAll('.feedback-star').forEach((s,i)=>{
+    s.addEventListener('mouseenter',()=>updateStars(i+1));
+    s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
+  });
+});
+</script>
+</body>
+</html>
