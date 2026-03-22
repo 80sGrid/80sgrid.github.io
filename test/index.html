@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/favicon-512.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
 <script src="analytics.js"></script>
@@ -105,10 +108,13 @@ font-family: Arial, sans-serif;
 .htp-toggle-btn:hover { opacity: 0.9; }
 .htp-body {
 display: none;
-padding: 0 20px 16px;
-line-height: 1.6;
+padding: 14px 20px 18px;
+line-height: 1.7;
 font-size: 0.97em;
-text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+background: white;
+color: #222;
+text-shadow: none;
+border-top: 1px solid rgba(255,255,255,0.2);
 }
 .htp-body.open { display: block; }
 .grid {
@@ -561,13 +567,8 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
 <div class="how-to-play">
 <button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
-<div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any answer box to type your answer — or use a Lifeline for multiple choice hints. Multiple answers may work, so get creative! You get 2 free plays per day. Want more? Unlock a bonus play three ways:
-<ul style="margin:8px 0 8px 18px; padding:0; line-height:1.9;">
-  <li>🔐 <strong>Secret Code</strong> — look on our FB or IG <em>(wink wink)</em></li>
-  <li>📧 <strong>Email Address</strong> — quick &amp; easy, we won't spam you</li>
-  <li>😄 <strong>Take a Fun Survey</strong> — your prom, your favorite mall stores, the important stuff</li>
-</ul>
-Completed quizzes can always be replayed for free.</div>
+<div class="htp-body" id="htpBody">Match each artist (column) to the right category (row). Click any box to type your answer — there's often more than one that works!
+<div style="margin-top:8px;"><strong>Want bonus plays?</strong> &nbsp;🔐 Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey</div></div>
 </div>
 
 <div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
