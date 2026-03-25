@@ -507,8 +507,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <picture style="display:block; width:100%; margin-bottom:10px;">
   <source media="(max-width: 540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/mobile-header.jpg">
   <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0; object-fit:cover; object-position:center center;">
-</picture></div>
-
+</picture>
 <div style="text-align:center; font-size:1em; font-family:Georgia, serif; font-style:italic; color:#667eea; letter-spacing:1px; margin:6px 0 14px;">
   Free to play &nbsp;&middot;&nbsp; No Sign-Up
 </div>
@@ -545,55 +544,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </div>
 </div>
 <div class="subtitle">Reggae, Roots &amp; Art Rock</div>
-<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">UB40, Eddy Grant &amp; Peter Gabriel</div>
-<div class="badge-left">
-<div class="badge-label">Score: 6/10 &mdash; Medium</div>
-<div class="badge-desc">Reggae, protest, and art rock collide</div>
-</div>
-</div>
-<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
-<div class="how-to-play">
-<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
-<div class="htp-body" id="htpBody">Click any box to type your answer and match each artist (column) to the right category (row). Often more than one that works!</div></div>
-</div>
-
-<div style="text-align:center; margin-bottom:10px; font-size:.9em;">
-<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
-<span style="color:#ccc;">&nbsp;&middot;&nbsp;</span>
-<span style="color:#667eea; font-weight:bold;">In Pat Benatar We Trust</span>
-</div>
-
-<!-- PERSISTENT SHARE + SOCIAL ROW -->
-
-<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
-<div class="lifeline-bar" id="lifelineBar">
-<span class="lifeline-label">🛟 Lifelines</span>
-<div class="lifeline-pips">
-<div class="lifeline-pip" id="pip1">🛟</div>
-<div class="lifeline-pip" id="pip2">🛟</div>
-<div class="lifeline-pip" id="pip3">🛟</div>
-</div>
-<span class="lifeline-count" id="lifelineCount">3 remaining</span>
-</div>
-<button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()">&#128273; Have a Secret Code?</button>
-<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
-  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
-</div>
-<div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
-<div class="grid">
-<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" style="grid-column:2;">UB40</div><div class="header col-header" style="grid-column:3;">Eddy Grant</div><div class="header col-header" style="grid-column:4;">Peter Gabriel</div>
-<div class="header row-header" style="grid-row:2;">Top 5 U.S. Hit</div><div class="header row-header" style="grid-row:3;">Anti-Apartheid Song</div><div class="header row-header" style="grid-row:4;">Hit Song with &ldquo;Don't&rdquo; in the Title</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
-
-</div>
-<!-- DEDICATION BOX -->
-<div id="dedicationAnchor"></div>
-<div class="button-container">
-<button onclick="checkAnswers()">Check Answers</button>
-<button onclick="resetGrid()">Reset Grid</button>
-<button onclick="shareQuizEmoji()" style="background:linear-gradient(135deg,#FF1493,#8B00FF);">&#128242; Share</button>
-</div>
 
 <!-- STREAK + STATS SECTION -->
 <div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
@@ -629,7 +579,55 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 </div>
 
+<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
+<div class="how-to-play">
+<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
+<div class="htp-body" id="htpBody">Click any box to type your answer and match each artist (column) to the right category (row). Often more than one that works!</div></div>
 
+<div style="text-align:center; margin-bottom:10px; font-size:.9em;">
+<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
+<span style="color:#ccc;">&nbsp;&middot;&nbsp;</span>
+<span style="color:#667eea; font-weight:bold;">In Pat Benatar We Trust</span>
+</div>
+
+
+<div class="grid">
+<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
+<div class="header col-header" style="grid-column:2;">UB40</div><div class="header col-header" style="grid-column:3;">Eddy Grant</div><div class="header col-header" style="grid-column:4;">Peter Gabriel</div>
+<div class="header row-header" style="grid-row:2;">Top 5 U.S. Hit</div><div class="header row-header" style="grid-row:3;">Anti-Apartheid Song</div><div class="header row-header" style="grid-row:4;">Hit Song with &ldquo;Don't&rdquo; in the Title</div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+
+</div>
+<!-- DEDICATION BOX -->
+<!-- DIFFICULTY + LIFELINE ROW -->
+<div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
+  <div id="diff-badge" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.5);">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
+    <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+    <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
+  </div>
+  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0; flex-direction:column; gap:4px; padding:10px 14px;">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#555; margin-bottom:2px;">Use a Lifeline if you're stuck?</div>
+    <div class="lifeline-pips">
+      <div class="lifeline-pip" id="pip1">🛟</div>
+      <div class="lifeline-pip" id="pip2">🛟</div>
+      <div class="lifeline-pip" id="pip3">🛟</div>
+    </div>
+    <span class="lifeline-count" id="lifelineCount">3 remaining</span>
+  </div>
+</div>
+<button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()">&#128273; Have a Secret Code?</button>
+<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
+  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
+</div>
+<div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
+
+<div id="dedicationAnchor"></div>
+<div class="button-container">
+<button onclick="checkAnswers()">Check Answers</button>
+<button onclick="resetGrid()">Reset Grid</button>
+<button onclick="shareQuizEmoji()" style="background:linear-gradient(135deg,#FF1493,#8B00FF);">&#128242; Share</button>
+</div>
 
 <!-- ===== RECENT ARCHIVE ===== -->
 <div style="text-align:center;font-size:0.68em;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin:14px 0 8px;font-weight:900;">Recent Archive</div>
@@ -637,7 +635,23 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div style="text-align:center;padding:12px;background:#f8f9fa;border-radius:10px;font-size:0.78em;color:#aaa;border:2px dashed #dee2e6;margin-bottom:16px;">&#128274; Only the last 3 grids are in the free archive. A new grid drops every day at midnight.</div>
 
 <div id="results" style="display:none;">
-<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:10px;"></div>
+<div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:10px;">
+  🔐 Want bonus plays? &nbsp;·&nbsp; Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey
+</div>
+<div style="display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em; margin-bottom:14px; padding:10px 14px; background:#f8f9ff; border-radius:10px; border:1.5px solid #dee2e6;">
+  <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
+  <span style="color:#ccc;">·</span>
+  <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
+  <span style="color:#ccc;">·</span>
+  <span class="mcq-wrapper" id="mcqWrapper">
+    <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
+    <div class="mcq-dropdown" id="mcqDropdown">
+      <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
+      <div id="mcqList"></div>
+    </div>
+  </span>
+</div>
 <div class="post-quiz-progress" id="postQuizProgress">
 <div class="progress-pips" id="postProgressPips"></div>
 <div class="progress-text" id="postProgressText"></div>
@@ -706,26 +720,18 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 <!-- ===== SITE FOOTER ===== -->
 <div class="site-footer">
-
-    <!-- Social Icons (compact) -->
-  <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
-    <button onclick="shareQuizEmoji()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
-    <span style="color:#ddd; margin:0 2px;">|</span>
-    <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-    </a>
-    <a href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;text-decoration:none;flex-shrink:0;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-    </a>
-    <a href="https://www.reddit.com/r/80smusic/" target="_blank" rel="noopener" title="Reddit" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#FF4500;color:white;text-decoration:none;flex-shrink:0;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-    </a>
+  <!-- Big Hair tagline -->
+  <div class="tagline-wrap" style="margin:6px 0 10px;">
+    <div class="tagline-line"></div>
+    <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+    <div class="tagline-line"></div>
   </div>
-<!-- Footer Links -->
+
+  <!-- Footer Links -->
   <div class="footer-links">
     <a href="about.html">About</a>
     <span>|</span>
-    <a href="sponsors.html">Sponsors</a>
+    <a href="sponsors.html">Our Sponsors</a>
     <span>|</span>
     <a href="collaborate.html">Collaborate</a>
     <span>|</span>
@@ -734,7 +740,14 @@ min-height: 300px; width: 100%; box-sizing: border-box;
     <a href="#" onclick="openFeedback(); return false;">Feedback</a>
   </div>
 
-  <!-- Copyright -->
+  <!-- Social Icons (compact) -->
+  <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+    <button onclick="shareQuizEmoji()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
+    <span style="color:#ddd; margin:0 2px;">|</span>
+    <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+    <a href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;text-decoration:none;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="https://www.reddit.com/r/80smusic/" target="_blank" rel="noopener" title="Reddit" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#FF4500;color:white;text-decoration:none;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+  </div><!-- Copyright -->
   <div class="footer-copy">
     &copy; 2025&ndash;2026 Len's 80sGrid.com &mdash; All Rights Reserved.<br>
     <span style="font-size:0.9em;">80sGrid is an independent fan project celebrating the music of the 1980s. Not affiliated with any artist or record label.</span>
@@ -1169,7 +1182,7 @@ function getStarRating(score){
 }
 function shareQuizEmoji(){
   const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;
-  const titleEl=document.getElementById('today-title');
+  const titleEl=document.querySelector('.subtitle');
   const quizTitle=titleEl?titleEl.textContent.trim():'80sGrid';
   const grid=buildEmojiGrid();
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
@@ -1188,7 +1201,7 @@ Can you beat me? 👉 80sgrid.com';
 👉 80sgrid.com';
   }
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if(isMobile&&navigator.share){navigator.share({title:"Len's 80sGrid",text:text}).catch(()=>{});}
+  if(isMobile&&navigator.share){navigator.share({title:"Len\'s 80sGrid",text:text}).catch(()=>{});}
   else{navigator.clipboard.writeText(text).then(()=>{showShareToast(hasPlayed?'Copied! Paste it anywhere 🎸':'Link copied! 🎸');}).catch(()=>alert(text));}
   try{gtag('event','share_emoji_grid',{quiz_number:QUIZ_NUM,score:score,has_played:hasPlayed});}catch(e){}
 }
