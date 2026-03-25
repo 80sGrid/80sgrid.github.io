@@ -508,21 +508,11 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <source media="(max-width: 540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/mobile-header.jpg">
   <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0;">
 </picture>
-<div class="mini-nav">
-  <a href="about.html">About</a>
-  <span>|</span>
-  <a href="sponsors.html">Our Sponsors</a>
-  <span>|</span>
-  <a href="collaborate.html">Collaborate</a>
-  <span>|</span>
-  <a href="#" onclick="openFeedback(); return false;">Feedback</a>
+
+<div style="text-align:center; font-size:1em; font-family:Georgia, serif; font-style:italic; color:#667eea; letter-spacing:1px; margin:6px 0 14px;">
+  Free to play &nbsp;&middot;&nbsp; No Sign-Up &nbsp;&middot;&nbsp; In Pat Benatar We Trust
 </div>
-<div class="tagline-wrap">
-  <div class="tagline-line"></div>
-  <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
-  <div class="tagline-line"></div>
-</div>
-<div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:2px; margin:6px 0 14px; font-family:Georgia, serif; font-style:italic;">Free to play &nbsp;&middot;&nbsp; In Pat Benatar We Trust &nbsp;&middot;&nbsp; No Sign-Up</div>
+
 <div class="nav-status-bar" id="navStatusBar"></div>
 <div class="unlock-panel" id="unlockPanel">
   <h3>&#128275; Want to keep playing?</h3>
@@ -555,70 +545,9 @@ min-height: 300px; width: 100%; box-sizing: border-box;
     </div>
   </div>
 </div>
-<div id="today-label" style="text-align:center;font-size:0.72em;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;font-family:Georgia,serif;">Today's Grid</div>
+<div id="today-label" style="text-align:center;font-size:0.95em;color:#8B00FF;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;font-family:Georgia,serif;font-weight:bold;">Today's Grid</div>
 <div class="subtitle" id="today-title">Loading...</div>
-<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;"><span id="today-artists">Loading...</span></div>
-<div class="difficulty-badge" id="diff-badge" style="--badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
-<div class="badge-stars" id="diff-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
-<div class="badge-left">
-<div class="badge-label" id="diff-label">Medium</div>
-<div class="badge-desc" id="diff-desc">Loading...</div>
-</div>
-</div>
-<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
-<div class="how-to-play">
-<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
-<div class="htp-body" id="htpBody">Match each artist (column) to the right category (row). Click any box to type your answer — there's often more than one that works!
-<div style="margin-top:8px;"><strong>Want bonus plays?</strong> &nbsp;🔐 Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey</div></div>
-</div>
-
-<div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
-<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
-<span style="color:#ccc;">·</span>
-<span class="mcq-wrapper" id="mcqWrapper">
-  <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
-  <div class="mcq-dropdown" id="mcqDropdown">
-    <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
-    <div id="mcqList"></div>
-  </div>
-</span>
-</div>
-
-<!-- PERSISTENT SHARE + SOCIAL ROW -->
-
-<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
-<div class="lifeline-bar" id="lifelineBar">
-<span class="lifeline-label">🛟 Lifelines</span>
-<div class="lifeline-pips">
-<div class="lifeline-pip" id="pip1">🛟</div>
-<div class="lifeline-pip" id="pip2">🛟</div>
-<div class="lifeline-pip" id="pip3">🛟</div>
-</div>
-<span class="lifeline-count" id="lifelineCount">3 remaining</span>
-</div>
-<button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()">&#128273; Have a Secret Code?</button>
-<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
-  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
-</div>
-<div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
-<div class="grid">
-<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" id="col1" style="grid-column:2;">—</div><div class="header col-header" id="col2" style="grid-column:3;">—</div><div class="header col-header" id="col3" style="grid-column:4;">—</div>
-<div class="header row-header" id="row1" style="grid-row:2;">—</div><div class="header row-header" id="row2" style="grid-row:3;">—</div><div class="header row-header" id="row3" style="grid-row:4;">—</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div>
-
-</div>
-<!-- DEDICATION BOX -->
-<div id="dedicationAnchor"></div>
-<div class="button-container">
-<button onclick="checkAnswers()">Check Answers</button>
-<button onclick="resetGrid()">Reset Grid</button>
-</div>
-
+<div style="text-align:center; margin-top:4px; margin-bottom:28px; font-size:1.35em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;"><span id="today-artists">Loading...</span></div>
 <!-- ===== STREAK STRIP ===== -->
 <div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
 <div style="display:flex;align-items:center;gap:10px;">
@@ -642,10 +571,74 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;"><div id="istat-best" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#FFA500;">—</div><div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Best</div></div>
 </div>
 <!-- ===== COUNTDOWN ===== -->
-<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;background:#f8f9ff;border-radius:8px;border:1.5px solid #dee2e6;margin-bottom:10px;">
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;background:#f8f9ff;border-radius:8px;border:1.5px solid #dee2e6;margin-bottom:14px;">
 <span style="font-size:0.75em;color:#888;">Next grid drops in</span>
 <span id="countdown" style="font-family:'Oxanium','Arial Black',Arial,sans-serif;font-size:1em;font-weight:700;color:#8B00FF;">—:—:—</span>
 </div>
+
+<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
+<div class="how-to-play">
+<button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
+<div class="htp-body" id="htpBody">Click any box to type your answer and match each artist (column) to the right category (row). Often more than one that works!</div>
+</div>
+
+
+
+<div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
+<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
+<span style="color:#ccc;">·</span>
+<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
+<span style="color:#ccc;">·</span>
+<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
+<span style="color:#ccc;">·</span>
+<span class="mcq-wrapper" id="mcqWrapper">
+  <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
+  <div class="mcq-dropdown" id="mcqDropdown">
+    <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
+    <div id="mcqList"></div>
+  </div>
+</span>
+</div>
+
+<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
+<div class="grid">
+<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
+<div class="header col-header" id="col1" style="grid-column:2;">—</div><div class="header col-header" id="col2" style="grid-column:3;">—</div><div class="header col-header" id="col3" style="grid-column:4;">—</div>
+<div class="header row-header" id="row1" style="grid-row:2;">—</div><div class="header row-header" id="row2" style="grid-row:3;">—</div><div class="header row-header" id="row3" style="grid-row:4;">—</div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div>
+
+</div>
+<!-- DEDICATION BOX -->
+<div id="dedicationAnchor"></div>
+<div class="button-container">
+<button onclick="checkAnswers()">Check Answers</button>
+<button onclick="resetGrid()">Reset Grid</button>
+</div>
+
+<!-- DIFFICULTY + LIFELINE ROW -->
+<div style="display:flex; gap:10px; margin:12px 0 16px; align-items:stretch;">
+  <!-- Difficulty pill -->
+  <div id="diff-badge" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
+    <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+    <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
+  </div>
+  <!-- Lifeline pill -->
+  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0;">
+    <div class="lifeline-pips">
+      <div class="lifeline-pip" id="pip1">🛟</div>
+      <div class="lifeline-pip" id="pip2">🛟</div>
+      <div class="lifeline-pip" id="pip3">🛟</div>
+    </div>
+    <span class="lifeline-count" id="lifelineCount">3 remaining</span>
+  </div>
+</div>
+<button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()">&#128273; Have a Secret Code?</button>
+<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
+  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
+</div>
+<div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
+
+
 <!-- ===== BONUS GRID ===== -->
 <div style="text-align:center;font-size:0.68em;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;font-weight:900;">Bonus Grid</div>
 <div id="bonus-card" style="border:2px solid #dee2e6;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin-bottom:14px;">
@@ -663,7 +656,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 
 <div id="results" style="display:none;">
-<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:10px;"></div>
+<div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:14px;">
+  🔐 Want bonus plays? &nbsp;·&nbsp; Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey
+</div>
 <div class="post-quiz-progress" id="postQuizProgress">
 <div class="progress-pips" id="postProgressPips"></div>
 <div class="progress-text" id="postProgressText"></div>
@@ -760,13 +756,20 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <div class="footer-links">
     <a href="about.html">About</a>
     <span>|</span>
-    <a href="sponsors.html">Sponsors</a>
+    <a href="sponsors.html">Our Sponsors</a>
     <span>|</span>
     <a href="collaborate.html">Collaborate</a>
     <span>|</span>
     <a href="privacy.html">Privacy Policy</a>
     <span>|</span>
     <a href="#" onclick="openFeedback(); return false;">Feedback</a>
+  </div>
+
+  <!-- Big Hair tagline -->
+  <div class="tagline-wrap" style="margin:6px 0 10px;">
+    <div class="tagline-line"></div>
+    <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+    <div class="tagline-line"></div>
   </div>
 
   <!-- Copyright -->
@@ -1831,7 +1834,7 @@ function hubInit(){
   const dname={easy:'Easy',medium:'Medium',hard:'Hard'};
   const db=document.getElementById('diff-badge'); if(db) db.style.cssText=dc[q.d]||dc.medium;
   const dsr=document.getElementById('diff-stars'); if(dsr) dsr.innerHTML=dstar[q.d]||dstar.medium;
-  const dlbl=document.getElementById('diff-label'); if(dlbl) dlbl.textContent='Today \u2014 '+dname[q.d];
+  const dlbl=document.getElementById('diff-label'); if(dlbl) dlbl.textContent=dname[q.d];
   const dde=document.getElementById('diff-desc'); if(dde) dde.textContent=q.a.join(' \u00b7 ');
   
   const c1=document.getElementById('col1');const c2=document.getElementById('col2');const c3=document.getElementById('col3');
