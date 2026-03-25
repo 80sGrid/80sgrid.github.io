@@ -152,6 +152,7 @@ hyphens: auto;
 .cell.correct { background:#d4edda; border-color:#28a745; }
 .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
 .button-container { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+.button-container button { flex:1; }
 button { background:#667eea; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:1em; transition:background 0.3s; }
 button:hover { background:#5568d3; }
 #results { margin-top:20px; padding:20px; background:#e7f3ff; border:2px solid #667eea; border-radius:8px; text-align:center; }
@@ -547,7 +548,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 </div>
 <div id="today-label" style="text-align:center;font-size:0.95em;color:#8B00FF;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;font-family:Georgia,serif;font-weight:bold;">Today's Grid</div>
 <div class="subtitle" id="today-title">Loading...</div>
-<div style="text-align:center; margin-top:4px; margin-bottom:28px; font-size:1.35em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;"><span id="today-artists">Loading...</span></div>
 <!-- ===== STREAK STRIP ===== -->
 <div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
 <div style="display:flex;align-items:center;gap:10px;">
@@ -613,17 +613,20 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="button-container">
 <button onclick="checkAnswers()">Check Answers</button>
 <button onclick="resetGrid()">Reset Grid</button>
+<button onclick="shareQuizEmoji()" style="background:linear-gradient(135deg,#FF1493,#8B00FF);">&#128242; Share</button>
 </div>
 
 <!-- DIFFICULTY + LIFELINE ROW -->
-<div style="display:flex; gap:10px; margin:12px 0 16px; align-items:stretch;">
+<div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
   <!-- Difficulty pill -->
-  <div id="diff-badge" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
+  <div id="diff-badge" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
     <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
     <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
   </div>
   <!-- Lifeline pill -->
-  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0;">
+  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0; flex-direction:column; gap:4px; padding:10px 14px;">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#555; margin-bottom:2px;">Use a Lifeline if you're stuck?</div>
     <div class="lifeline-pips">
       <div class="lifeline-pip" id="pip1">🛟</div>
       <div class="lifeline-pip" id="pip2">🛟</div>
@@ -672,13 +675,10 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div class="survey-options" id="surveyOptions" style="gap:8px;"></div>
 </div>
 
-<!-- TWO SHARE BUTTONS (quiz11 style) -->
-<div style="display:flex; gap:10px; margin-bottom:10px;">
-  <button onclick="shareLink()" style="flex:1; background:#FF1493; color:white; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-size:0.95em; font-weight:bold; box-shadow:0 4px 15px rgba(255,20,147,0.3);">
-    &#128242; Share with a Friend<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">iMessage &middot; WhatsApp &middot; Facebook</span>
-  </button>
-  <button onclick="shareScore()" style="flex:1; background:linear-gradient(135deg,#8B00FF,#4B0082); color:white; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-size:0.95em; font-weight:bold; box-shadow:0 4px 15px rgba(139,0,255,0.3);">
-    &#128248; Brag About It<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">Instagram &middot; TikTok &middot; Twitter</span>
+<!-- SHARE BUTTON -->
+<div style="margin-bottom:10px;">
+  <button onclick="shareQuizEmoji()" style="width:100%; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; padding:14px 16px; border-radius:10px; cursor:pointer; font-size:1em; font-weight:900; box-shadow:0 4px 15px rgba(255,20,147,0.3); letter-spacing:1px;">
+    &#128242; Share Your Score<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">Copies emoji grid — paste anywhere!</span>
   </button>
 </div>
 <div style="margin-bottom:10px;">
@@ -1202,23 +1202,75 @@ function showBonusGrantedToast(isUnlimited){
 }
 
 /* ===== SHARE ===== */
-function shareLink(){
-  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||null;
-  const text=score?"\uD83C\uDFB8 I scored "+score+"/9 on Len's 80sGrid Quiz "+QUIZ_NUM+"! Can you beat me?":"\uD83C\uDFB8 Think you know your 80s music? Try Len's 80sGrid Quiz "+QUIZ_NUM+"!";
-  const url='https://80sgrid.com/quiz'+QUIZ_NUM+'.html';
+function buildEmojiGrid(){
+  const cells=document.querySelectorAll('.cell');
+  const rows=[[],[],[]];
+  cells.forEach(cell=>{
+    const r=parseInt(cell.dataset.row);
+    const emoji=cell.classList.contains('correct')?'✅':cell.classList.contains('incorrect')?'❌':'⬜';
+    rows[r].push(emoji);
+  });
+  return rows.map(r=>r.join(' ')).join('\n');
+}
+
+function getStarRating(score){
+  const stars=Math.round((score/9)*5);
+  return '⭐'.repeat(stars)+'☆'.repeat(5-stars);
+}
+
+function shareQuizEmoji(){
+  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;
+  const titleEl=document.getElementById('today-title');
+  const quizTitle=titleEl?titleEl.textContent.trim():'80sGrid';
+  const grid=buildEmojiGrid();
+  const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
+
+  let text;
+  if(hasPlayed){
+    text='🎸 80sGrid — '+quizTitle+'\n'
+      +score+'/9 '+getStarRating(score)+'\n\n'
+      +grid+'\n\n'
+      +'Can you beat me? 👉 80sgrid.com';
+  } else {
+    text='🎸 Think you know your 80s music?\n'
+      +quizTitle+' — play now!\n\n'
+      +'👉 80sgrid.com';
+  }
+
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if(isMobile&&navigator.share){navigator.share({title:"Len's 80sGrid",text:text,url:url}).catch(()=>{});}
-  else{navigator.clipboard.writeText(text+' '+url).then(()=>{const toast=document.createElement('div');toast.textContent='\u2705 Link copied! Paste it anywhere.';toast.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 22px;border-radius:10px;font-size:0.95em;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);';document.body.appendChild(toast);setTimeout(()=>toast.remove(),3000);}).catch(()=>alert(text+' '+url));}
+  if(isMobile&&navigator.share){
+    navigator.share({title:"Len's 80sGrid",text:text}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text).then(()=>{
+      showShareToast(hasPlayed?'Copied! Paste it anywhere 🎸':'Link copied! 🎸');
+    }).catch(()=>alert(text));
+  }
+  try{gtag('event','share_emoji_grid',{quiz_number:QUIZ_NUM,score:score,has_played:hasPlayed});}catch(e){}
 }
+
+function showShareToast(msg){
+  let toast=document.getElementById('shareToast');
+  if(!toast){
+    toast=document.createElement('div');
+    toast.id='shareToast';
+    toast.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;padding:14px 28px;border-radius:12px;font-family:"Arial Black",Arial;font-size:1em;font-weight:900;letter-spacing:1px;box-shadow:0 0 30px rgba(255,20,147,0.5);z-index:9999;opacity:0;transition:opacity 0.3s;text-align:center;pointer-events:none;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent=msg;
+  toast.style.opacity='1';
+  setTimeout(()=>{toast.style.opacity='0';},2800);
+}
+
+// Keep these as aliases so existing buttons still work
+function shareLink(){shareQuizEmoji();}
+function shareScore(){shareQuizEmoji();}
+function persistentShareQuiz(){shareQuizEmoji();}
+function doShareLink(){shareQuizEmoji();}
+function doShareScore(){shareQuizEmoji();}
 function getLastScore(){return parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;}
-function getShareText(score){
-  const artistLine=document.querySelector('[style*="margin-top:-15px"]');
-  const artists=artistLine?artistLine.textContent.trim():'';
-  return score
-    ?'\uD83C\uDFB8 I scored '+score+'/9 on Len\'s 80sGrid Quiz '+QUIZ_NUM+(artists?' ('+artists+')':'')+'! Can you beat me? \u{1F449} https://80sgrid.com/quiz'+QUIZ_NUM+'.html'
-    :'\uD83C\uDFB8 Test your 80s music knowledge! Play Len\'s 80sGrid.com: https://80sgrid.com/quiz'+QUIZ_NUM+'.html';
-}
-function shareScore(){try{gtag('event','brag_score',{quiz_number:QUIZ_NUM,score:getLastScore()});}catch(e){}buildShareCard(getLastScore(),getShareText(getLastScore()));}
+function getShareText(score){return '';}
+function copyShareText(){shareQuizEmoji();}
+function closePersistentShareModal(){const m=document.getElementById('persistentShareModal');if(m)m.style.display='none';}
 
 function buildShareCard(score,text){
   const existing=document.getElementById('shareCardOverlay');if(existing)existing.remove();
