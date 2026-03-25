@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -584,20 +585,8 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 
 
-<div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
+<div style="text-align:center; margin-bottom:10px; font-size:.9em;">
 <span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
-<span style="color:#ccc;">·</span>
-<span class="mcq-wrapper" id="mcqWrapper">
-  <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
-  <div class="mcq-dropdown" id="mcqDropdown">
-    <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
-    <div id="mcqList"></div>
-  </div>
-</span>
 </div>
 
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
@@ -660,8 +649,23 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:10px;"></div>
-<div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:14px;">
+<div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:10px;">
   🔐 Want bonus plays? &nbsp;·&nbsp; Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey
+</div>
+
+<!-- POST-GAME NAV ROW -->
+<div style="display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em; margin-bottom:14px; padding:10px 14px; background:#f8f9ff; border-radius:10px; border:1.5px solid #dee2e6;">
+  <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
+  <span style="color:#ccc;">·</span>
+  <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
+  <span style="color:#ccc;">·</span>
+  <span class="mcq-wrapper" id="mcqWrapper">
+    <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
+    <div class="mcq-dropdown" id="mcqDropdown">
+      <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
+      <div id="mcqList"></div>
+    </div>
+  </span>
 </div>
 <div class="post-quiz-progress" id="postQuizProgress">
 <div class="progress-pips" id="postProgressPips"></div>
