@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/favicon-512.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
 <script src="analytics.js"></script>
@@ -9,12 +12,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://80sgrid.com/quiz9.html">
 <meta property="og:title" content="Len's 80sGrid.com Music Edition - Quiz 9">
-<meta property="og:description" content="Can you match Phil Collins, Run DMC, and Duran Duran to their songs, hits, and chart history? Play Quiz 9 on 80sGrid.com!">
+<meta property="og:description" content="Can you match Phil Collins, Run DMC, and Duran Duran to their 1985 moments? Play Quiz 9 on 80sGrid.com!">
 <meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://80sgrid.com/quiz9.html">
 <meta property="twitter:title" content="Len's 80sGrid.com Music Edition - Quiz 9">
-<meta property="twitter:description" content="Can you match Phil Collins, Run DMC, and Duran Duran to their songs, hits, and chart history? Play Quiz 9 on 80sGrid.com!">
+<meta property="twitter:description" content="Can you match Phil Collins, Run DMC, and Duran Duran to their 1985 moments? Play Quiz 9 on 80sGrid.com!">
 <meta property="twitter:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -42,8 +45,8 @@ box-sizing: border-box;
 .logo-img { display:block; width:100%; height:auto; object-fit:cover; object-position:center top; }
 @media (max-width: 540px) {
   body { min-height: unset; height: auto; align-items: flex-start; }
-  .logo-img { max-height:130px; object-position:center bottom; }
-  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); }
+  .logo-img { max-height:130px; object-fit:cover; object-position:center center; width:100%; }
+  picture { display:block; margin:-15px -15px 10px -15px; width:calc(100% + 30px); overflow:hidden; text-align:center; }
 }
 .tagline-sub {
 text-align: center;
@@ -105,10 +108,13 @@ font-family: Arial, sans-serif;
 .htp-toggle-btn:hover { opacity: 0.9; }
 .htp-body {
 display: none;
-padding: 0 20px 16px;
-line-height: 1.6;
+padding: 14px 20px 18px;
+line-height: 1.7;
 font-size: 0.97em;
-text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+background: white;
+color: #222;
+text-shadow: none;
+border-top: 1px solid rgba(255,255,255,0.2);
 }
 .htp-body.open { display: block; }
 .grid {
@@ -145,6 +151,7 @@ hyphens: auto;
 .cell.correct { background:#d4edda; border-color:#28a745; }
 .cell.incorrect { background:#f8d7da; border-color:#dc3545; }
 .button-container { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+.button-container button { flex:1; }
 button { background:#667eea; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:1em; transition:background 0.3s; }
 button:hover { background:#5568d3; }
 #results { margin-top:20px; padding:20px; background:#e7f3ff; border:2px solid #667eea; border-radius:8px; text-align:center; }
@@ -170,7 +177,7 @@ border-radius: 8px; margin-bottom: 15px; box-sizing: border-box;
 display: inline-block; margin: 15px auto;
 background: linear-gradient(135deg, #FF1493, #8B00FF); color: white;
 text-decoration: none; padding: 18px 40px; border-radius: 12px;
-font-size: 1.3em; font-weight: 900; font-family: 'Arial Black', sans-serif;
+font-size: 1.3em; font-weight: 900; font-family: Arial, sans-serif;
 letter-spacing: 2px; box-shadow: 0 0 25px rgba(255,20,147,0.7), 0 5px 15px rgba(0,0,0,0.3);
 animation: pulse 1.5s infinite;
 }
@@ -194,29 +201,29 @@ text-align:left; border-radius:10px; cursor:pointer; transition:all .3s; border:
 .survey-option.selected { box-shadow:0 0 25px rgba(0,255,0,0.6),inset 0 0 15px rgba(0,255,0,0.1); border-color:#00ff00 !important; transform:scale(1.03); }
 .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
 .stats-modal.show { display:flex; }
-.stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Courier New',monospace; box-shadow:0 0 40px rgba(255,20,147,0.6); }
+.stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Oxanium',Arial,sans-serif; box-shadow:0 0 40px rgba(255,20,147,0.6); }
 .stats-box h2 { color:#FF1493; text-shadow:0 0 10px #FF1493; font-size:1.3em; letter-spacing:3px; margin:0 0 5px; text-align:center; }
 .stats-sub { color:#00ffff; text-align:center; font-size:0.75em; letter-spacing:2px; margin-bottom:20px; }
 .stat-row { border-bottom:1px solid rgba(255,20,147,0.3); padding:12px 0; display:flex; justify-content:space-between; align-items:center; }
 .stat-label { color:#aaa; font-size:0.85em; letter-spacing:1px; }
 .stat-value { color:#ffff00; font-size:1.2em; font-weight:bold; text-shadow:0 0 8px #ffff00; }
-.stats-close { display:block; margin:25px auto 0; background:#FF1493; color:#000; border:none; padding:10px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; border-radius:4px; }
+.stats-close { display:block; margin:25px auto 0; background:#FF1493; color:#000; border:none; padding:10px 30px; font-family:'Oxanium',Arial,sans-serif; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; border-radius:4px; }
 .limit-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
 .limit-modal.show { display:flex; }
-.limit-box { background:#000; border:4px solid #FF1493; border-radius:12px; padding:40px 30px; text-align:center; font-family:'Courier New',monospace; max-width:320px; width:90%; box-shadow:0 0 40px rgba(255,20,147,0.7); }
+.limit-box { background:#000; border:4px solid #FF1493; border-radius:12px; padding:40px 30px; text-align:center; font-family:'Oxanium',Arial,sans-serif; max-width:320px; width:90%; box-shadow:0 0 40px rgba(255,20,147,0.7); }
 .limit-box h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; font-size:1.4em; letter-spacing:3px; margin-bottom:15px; }
 .limit-box p { color:#00ff00; line-height:1.7; margin-bottom:20px; }
-.limit-box button { background:#FF1493; color:#000; border:none; padding:12px 30px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; border-radius:4px; }
-.high-score-entry { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#000; color:#00ff00; padding:40px; border-radius:10px; border:4px solid #00ff00; box-shadow:0 0 30px rgba(0,255,0,.5); text-align:center; z-index:1000; font-family:'Courier New',monospace; width:90%; max-width:340px; box-sizing:border-box; }
+.limit-box button { background:#FF1493; color:#000; border:none; padding:12px 30px; font-family:'Oxanium',Arial,sans-serif; font-weight:bold; font-size:1em; cursor:pointer; border-radius:4px; }
+.high-score-entry { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#000; color:#00ff00; padding:40px; border-radius:10px; border:4px solid #00ff00; box-shadow:0 0 30px rgba(0,255,0,.5); text-align:center; z-index:1000; font-family:'Oxanium',Arial,sans-serif; width:90%; max-width:340px; box-sizing:border-box; }
 .high-score-entry h2 { color:#ffff00; text-shadow:0 0 10px #ffff00; margin-bottom:20px; }
 .initials-input { display:flex; gap:15px; justify-content:center; margin:20px 0; }
-.initials-input input { width:60px; height:80px; font-size:3em; text-align:center; background:#000; border:3px solid #00ff00; color:#00ff00; text-transform:uppercase; font-family:'Courier New',monospace; }
-.arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Courier New',monospace; box-shadow:0 0 20px rgba(0,255,0,.5); }
+.initials-input input { width:60px; height:80px; font-size:3em; text-align:center; background:#000; border:3px solid #00ff00; color:#00ff00; text-transform:uppercase; font-family:'Oxanium',Arial,sans-serif; }
+.arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Oxanium',Arial,sans-serif; box-shadow:0 0 20px rgba(0,255,0,.5); }
 .leaderboard {
 margin-top: 30px;
 background: #000 url('https://www.dropbox.com/scl/fi/awkqv845s9slzs58wbz12/highscores.png?rlkey=r7n3hyq795099jgavqyk5xe1t&st=4rsy91bk&raw=1') center top / contain no-repeat;
 color: #00ff00; padding: 15px; border-radius: 10px; border: 3px solid #00ff00;
-font-family: 'Courier New', monospace; box-shadow: 0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1);
+font-family: 'Oxanium', Arial, sans-serif; box-shadow: 0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1);
 min-height: 300px; width: 100%; box-sizing: border-box;
 }
 .leaderboard-scores-wrap { margin-top:160px; background:rgba(0,0,0,0.75); border-radius:8px; padding:15px 10px 10px; }
@@ -227,7 +234,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .leaderboard-initials { color:#00ff00; font-weight:bold; text-shadow:0 0 5px #00ff00; }
 .leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
 .leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
-.lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:'Arial Black',sans-serif; }
+.lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:Arial,sans-serif; }
 .lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
 .lifeline-pips { display:flex; gap:5px; }
 .lifeline-pip { width:28px; height:28px; border-radius:50%; background:none; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:1.3em; transition:all 0.3s; }
@@ -248,7 +255,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .group-tab:hover { border-color:#667eea; color:#667eea; background:#f0f0ff; }
 .group-tab.active { border-color:#667eea; color:white; background:#667eea; box-shadow:0 3px 10px rgba(102,126,234,0.4); }
 .quiz-grid-nav { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:10px; }
-.quiz-grid-nav a { display:flex; align-items:center; justify-content:center; aspect-ratio:1.2; border-radius:10px; font-family:'Arial Black',sans-serif; font-size:1.1em; font-weight:900; letter-spacing:1px; color:white; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; position:relative; }
+.quiz-grid-nav a { display:flex; align-items:center; justify-content:center; aspect-ratio:1.2; border-radius:10px; font-family:Arial,sans-serif; font-size:1.1em; font-weight:900; letter-spacing:1px; color:white; cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; position:relative; }
 .quiz-grid-nav a:hover { transform:scale(1.08); }
 .quiz-grid-nav a.easy { background:linear-gradient(135deg,#28a745,#20913b); box-shadow:0 3px 10px rgba(40,167,69,0.4); }
 .quiz-grid-nav a.easy:hover { box-shadow:0 5px 18px rgba(40,167,69,0.6); }
@@ -275,7 +282,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .footnote-box strong { color:#6a0dad; display:inline; margin-bottom:0; font-size:1em; }
 .footnote-box ul { margin-top:6px; padding-left:1.8em; }
 .footnote-box li { margin-left:0; margin-bottom:4px; }
-.yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
+.yn-toast { position:fixed; top:20%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; padding:16px 28px; border-radius:12px; font-family:Arial,sans-serif; font-size:1em; font-weight:900; letter-spacing:1px; box-shadow:0 0 30px rgba(255,215,0,0.7); z-index:5000; opacity:0; transition:opacity 0.3s; pointer-events:none; text-align:center; }
 .yn-toast.show { opacity:1; }
 .post-quiz-progress { background:linear-gradient(135deg,#f0f0ff,#fff0f8); border:2px solid rgba(102,126,234,0.3); border-radius:12px; padding:16px 20px; margin:20px 0; text-align:center; }
 .progress-pips { display:flex; justify-content:center; gap:8px; margin-bottom:10px; }
@@ -284,17 +291,17 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .progress-pip.empty { background:#dee2e6; }
 .progress-text { font-size:0.9em; color:#555; }
 .post-quiz-wrap { background:linear-gradient(135deg,#f8f0ff,#fff8f0); border:2px solid rgba(255,165,0,0.3); border-radius:14px; padding:24px 20px; margin:20px 0; text-align:center; }
-.wrap-title { font-size:1.2em; font-weight:900; color:#8B00FF; margin-bottom:8px; font-family:'Arial Black',sans-serif; }
+.wrap-title { font-size:1.2em; font-weight:900; color:#8B00FF; margin-bottom:8px; font-family:Arial,sans-serif; }
 .wrap-text { font-size:0.95em; color:#555; line-height:1.6; margin-bottom:16px; }
 .bonus-code-box { background:linear-gradient(135deg,rgba(0,30,15,0.9),rgba(0,20,40,0.9)); border-radius:12px; padding:22px; border:2px solid rgba(0,255,136,0.4); box-shadow:0 0 30px rgba(0,255,136,0.15),inset 0 0 30px rgba(0,255,136,0.05); text-align:center; }
-.bonus-prompt { font-family:'Courier New',monospace; font-size:1.05em; color:#00ff88; margin-bottom:8px; font-weight:700; text-shadow:0 0 10px rgba(0,255,136,0.4); }
+.bonus-prompt { font-family:'Oxanium',Arial,sans-serif; font-size:1.05em; color:#00ff88; margin-bottom:8px; font-weight:700; text-shadow:0 0 10px rgba(0,255,136,0.4); }
 .bonus-prompt .gold { color:#ffd700; text-shadow:0 0 12px rgba(255,215,0,0.5); }
 .bonus-desc { font-size:0.9em; color:#ccc; margin-bottom:12px; line-height:1.5; }
 .bonus-desc strong { color:#fff; }
 .bonus-row { display:flex; gap:8px; }
-.bonus-input { flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(0,255,136,0.3); border-radius:6px; padding:10px 12px; color:#00ff88; font-family:'Courier New',monospace; font-size:1em; outline:none; }
+.bonus-input { flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(0,255,136,0.3); border-radius:6px; padding:10px 12px; color:#00ff88; font-family:'Oxanium',Arial,sans-serif; font-size:1em; outline:none; }
 .bonus-input::placeholder { color:rgba(0,255,136,0.4); }
-.bonus-submit { background:linear-gradient(135deg,#00c853,#00e676); color:#000; border:none; padding:10px 18px; border-radius:6px; cursor:pointer; font-weight:800; font-size:0.9em; font-family:'Courier New',monospace; }
+.bonus-submit { background:linear-gradient(135deg,#00c853,#00e676); color:#000; border:none; padding:10px 18px; border-radius:6px; cursor:pointer; font-weight:800; font-size:0.9em; font-family:'Oxanium',Arial,sans-serif; }
 .bonus-error { color:#ff6b6b; font-size:0.8em; margin-top:8px; display:none; }
 .bonus-hint { font-size:0.75em; color:rgba(255,255,255,0.35); margin-top:10px; }
 .bonus-success { border-radius:10px; padding:16px; text-align:center; display:none; }
@@ -303,7 +310,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 .replay-btn { display:inline-block; margin:10px auto; padding:12px 30px; background:rgba(102,126,234,0.1); border:2px solid rgba(102,126,234,0.3); border-radius:10px; color:#667eea; text-decoration:none; font-weight:700; font-size:0.95em; cursor:pointer; transition:all 0.2s; }
 .replay-btn:hover { background:rgba(102,126,234,0.2); }
 .replay-btn .hint { font-size:0.8em; color:#999; font-weight:normal; }
-.unlimited-banner { background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:10px; padding:14px 20px; margin:15px 0; text-align:center; font-family:'Arial Black',sans-serif; font-size:1em; color:#000; letter-spacing:2px; box-shadow:0 0 20px rgba(255,215,0,0.5); display:none; }
+.unlimited-banner { background:linear-gradient(135deg,#FFD700,#FFA500); border-radius:10px; padding:14px 20px; margin:15px 0; text-align:center; font-family:Arial,sans-serif; font-size:1em; color:#000; letter-spacing:2px; box-shadow:0 0 20px rgba(255,215,0,0.5); display:none; }
 @media (max-width:768px) {
 .container { padding:15px; }
 .subtitle { font-size:2.5em; letter-spacing:3px; text-shadow:none; }
@@ -472,14 +479,14 @@ min-height: 300px; width: 100%; box-sizing: border-box;
       <button id="tabCodeBtn" onclick="switchBonusTab('code')" style="flex:1; padding:8px 6px; border-radius:8px; border:2px solid #ddd; background:#f5f5f5; color:#888; font-weight:900; font-size:0.78em; cursor:pointer; letter-spacing:0.5px;">&#128273; Have a Code?</button>
     </div>
     <div id="bonusTabSurvey">
-      <div style="font-family:'Arial Black',sans-serif; font-size:1.05em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; text-align:center;">&#127873; EARN A BONUS LIFELINE</div>
+      <div style="font-family:Arial,sans-serif; font-size:1.05em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; text-align:center;">&#127873; EARN A BONUS LIFELINE</div>
       <div style="font-size:0.78em; color:#FF1493; font-weight:700; letter-spacing:1px; text-align:center; margin-bottom:16px;">Quick question — answer &amp; play on!</div>
       <div style="font-size:0.97em; font-weight:800; color:#222; margin-bottom:14px; text-align:center;">&#127930; Which of these do you still own?</div>
       <div id="bonusSurveyOptions2" style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;"></div>
       <button id="bonusSurveyBtn2" onclick="claimBonusLifeline()" disabled style="width:100%; padding:13px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:10px; font-size:1em; font-weight:900; cursor:pointer; opacity:0.4; transition:opacity 0.2s; letter-spacing:1px;">&#127919; CLAIM MY LIFELINE</button>
     </div>
     <div id="bonusTabCode" style="display:none;">
-      <div style="font-family:'Arial Black',sans-serif; font-size:1.05em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; text-align:center;">&#128273; ENTER YOUR CODE</div>
+      <div style="font-family:Arial,sans-serif; font-size:1.05em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; text-align:center;">&#128273; ENTER YOUR CODE</div>
       <div style="font-size:0.78em; color:#666; text-align:center; margin-bottom:18px; line-height:1.5;">Codes drop on our social media &amp; the<br><strong>Arrive Alive Podcast</strong></div>
       <input id="secretCodeInput" type="text" placeholder="Type code here..."
         style="width:100%; padding:13px 14px; border:2px solid #dee2e6; border-radius:10px; font-size:1.05em; font-weight:700; text-align:center; letter-spacing:3px; text-transform:uppercase; box-sizing:border-box; outline:none; transition:border-color 0.2s;"
@@ -498,25 +505,12 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 <div class="container">
 <picture style="display:block; width:100%; margin-bottom:10px;">
-  <source media="(max-width: 540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/moblle80s.jpg">
-  <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0;">
+  <source media="(max-width: 540px)" srcset="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/mobile-header.jpg">
+  <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0; object-fit:cover; object-position:center center;">
 </picture>
-<div class="mini-nav">
-  <a href="about.html">About</a>
-  <span>|</span>
-  <a href="sponsors.html">Our Sponsors</a>
-  <span>|</span>
-  <a href="collaborate.html">Collaborate</a>
-  <span>|</span>
-  <a href="#" onclick="openFeedback(); return false;">Feedback</a>
+<div style="text-align:center; font-size:1em; font-family:Georgia, serif; font-style:italic; color:#667eea; letter-spacing:1px; margin:6px 0 14px;">
+  Free to play &nbsp;&middot;&nbsp; No Sign-Up
 </div>
-<div class="tagline-wrap">
-  <div class="tagline-line"></div>
-  <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
-  <div class="tagline-line"></div>
-</div>
-<div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:2px; margin:6px 0 4px; font-family:Georgia, serif; font-style:italic;">Free to play &nbsp;&middot;&nbsp; 100+ quizzes and growing</div>
-<div style="text-align:center; font-size:1em; font-weight:bold; color:#667eea; letter-spacing:1px; margin:0 0 14px; font-family:Georgia, serif; font-style:italic;">In Pat Benatar We Trust</div>
 <div class="nav-status-bar" id="navStatusBar"></div>
 <div class="unlock-panel" id="unlockPanel">
   <h3>&#128275; Want to keep playing?</h3>
@@ -537,14 +531,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
     <span class="big" id="unlockSuccessEmoji">&#127881;</span><br>
     <strong id="unlockSuccessText">Bonus quiz unlocked!</strong>
   </div>
-</div>
 <div class="nav-replay-note">&#10003; Completed quizzes can be replayed anytime &mdash; they won&rsquo;t use a play.</div>
-<!-- WELCOME BANNER (first visit only) -->
-<div class="welcome-banner" id="welcomeBanner" style="display:none;">
-  <div class="welcome-banner-header">
-    <span>🎸 Welcome to Len's 80sGrid!</span>
-    <button class="welcome-dismiss" onclick="dismissWelcome()" title="Got it!">Got it ✕</button>
-  </div>
   <div class="welcome-banner-body">
     You're playing <strong>1 of 70 quizzes</strong> — with more on the way. Each quiz is a 3×3 grid where you match artists to categories.
     <div class="welcome-banner-pills">
@@ -556,100 +543,117 @@ min-height: 300px; width: 100%; box-sizing: border-box;
     </div>
   </div>
 </div>
-<div class="subtitle">Pop, Hip-Hop & New Wave Collide</div>
-<div style="text-align:center; margin-top:-15px; margin-bottom:25px; font-size:1.3em; color:#667eea; font-family:Georgia, serif; font-style:italic; font-weight:bold; letter-spacing:1px;">Phil Collins, Run DMC &amp; Duran Duran</div>
-<div class="difficulty-badge" style="--badge-color:#17a2b8; --badge-glow:rgba(23,162,184,0.5);">
-<div class="badge-stars">&#9733;&#9734;&#9734;&#9734;&#9734;</div>
-<div class="badge-left">
-<div class="badge-label">Score: 6/10 — Medium</div>
-<div class="badge-desc">Ska-punk family tree knowledge required</div>
+<div class="subtitle">Pop, Hip-Hop &amp; New Wave Collide</div>
+<!-- STREAK + STATS SECTION -->
+<div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
+<div style="display:flex;align-items:center;gap:10px;">
+<div id="streak-flame" style="font-size:1.5em;line-height:1;">&#128293;</div>
+<div>
+<div style="font-size:0.68em;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#ffb347;margin-bottom:1px;">Day Streak</div>
+<div id="streak-sub" style="font-size:0.7em;color:#888;">Play daily to keep it alive</div>
 </div>
 </div>
+<div id="streak-num" style="font-family:'Oxanium',Arial,sans-serif;font-size:2em;font-weight:700;color:#FF1493;line-height:1;min-width:40px;text-align:center;">0</div>
+<div style="text-align:right;">
+<div id="streak-msg" style="font-size:0.78em;color:#FF1493;font-weight:700;">Start your streak today!</div>
+<div style="font-size:0.68em;color:#aaa;margin-top:2px;" id="streak-tomorrow">Play today = Day 1 &#128293;</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;">
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-streak" style="font-family:'Oxanium',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#FF1493;">0</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">&#128293; Streak</div>
+</div>
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-played" style="font-family:'Oxanium',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">0</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Played</div>
+</div>
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-avg" style="font-family:'Oxanium',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">—</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Avg Score</div>
+</div>
+<div style="background:#f8f9ff;border:1.5px solid #dee2e6;border-radius:10px;padding:10px 6px;text-align:center;">
+<div id="istat-best" style="font-family:'Oxanium',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#FFA500;">—</div>
+<div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Best</div>
+</div>
+</div>
+
+
+
+
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
 <div class="how-to-play">
 <button class="htp-toggle-btn" id="htpBtn" onclick="(function(){var b=document.getElementById('htpBody');var a=document.getElementById('htpArrow');var open=b.classList.contains('open');b.classList.toggle('open');a.textContent=open?'▾':'▴';})()"><span>How to Play</span><span id="htpArrow">▾</span></button>
-<div class="htp-body" id="htpBody">Match the artist (column) with the category (row). Click any answer box to type your answer — or use a Lifeline for multiple choice hints. Multiple answers may work, so get creative! You get 2 free plays per day. Want more? Unlock a bonus play three ways:
-<ul style="margin:8px 0 8px 18px; padding:0; line-height:1.9;">
-  <li>🔐 <strong>Secret Code</strong> — look on our FB or IG <em>(wink wink)</em></li>
-  <li>📧 <strong>Email Address</strong> — quick &amp; easy, we won't spam you</li>
-  <li>😄 <strong>Take a Fun Survey</strong> — your prom, your favorite mall stores, the important stuff</li>
-</ul>
-Completed quizzes can always be replayed for free.</div>
-</div>
+<div class="htp-body" id="htpBody">Click any box to type your answer and match each artist (column) to the right category (row). Often more than one that works!</div></div>
 
-<div style="text-align:center; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em;">
+<div style="text-align:center; margin-bottom:10px; font-size:.9em;">
 <span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
-<span style="color:#ccc;">·</span>
-<a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
-<span style="color:#ccc;">·</span>
-<span class="mcq-wrapper" id="mcqWrapper">
-  <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
-  <div class="mcq-dropdown" id="mcqDropdown">
-    <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
-    <div id="mcqList"></div>
+<span style="color:#ccc;">&nbsp;&middot;&nbsp;</span>
+<span style="color:#667eea; font-weight:bold;">In Pat Benatar We Trust</span>
+</div>
+
+
+<div class="grid">
+<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
+<div class="header col-header" style="grid-column:2;">Phil Collins</div><div class="header col-header" style="grid-column:3;">Run DMC</div><div class="header col-header" style="grid-column:4;">Duran Duran</div>
+<div class="header row-header" style="grid-row:2;">Performed at Live Aid &ndash; London? (Y/N)</div><div class="header row-header" style="grid-row:3;">Performed at Live Aid &ndash; Philadelphia? (Y/N)</div><div class="header row-header" style="grid-row:4;">Biggest Hit 1985</div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Answer" readonly /></div>
+
+</div>
+<!-- DEDICATION BOX -->
+<!-- DIFFICULTY + LIFELINE ROW -->
+<div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
+  <div id="diff-badge" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#dc3545; --badge-glow:rgba(220,53,69,0.5);">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
+    <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+    <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Hard</div>
   </div>
-</span>
-</div>
-
-<!-- PERSISTENT SHARE + SOCIAL ROW -->
-<div id="persistentShareRow" style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:0 0 18px; padding:10px 14px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border-radius:12px; border:1px solid #e8d5f5;">
-  <button onclick="persistentShareQuiz()" style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.78em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
-  <span style="color:#ddd; font-size:0.9em; margin:0 2px;">|</span>
-  <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-  </a>
-  <a href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;text-decoration:none;flex-shrink:0;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-  </a>
-
-
-</div>
-
-<!-- PERSISTENT SHARE CHOICE MODAL -->
-<div id="persistentShareModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:7500; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
-  <div style="background:white; border-radius:16px; padding:24px 20px; max-width:340px; width:100%; box-shadow:0 0 40px rgba(139,0,255,0.3); border:2px solid #8B00FF; text-align:center;">
-    <div style="font-family:'Arial Black',sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:6px;" id="persistentShareTitle">📤 SHARE 80SGRID</div>
-    <div style="font-size:0.8em; color:#888; margin-bottom:20px;" id="persistentShareSubtitle">What would you like to share?</div>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-      <button onclick="doShareLink(); closePersistentShareModal();" style="padding:13px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:10px; font-size:0.9em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">&#128242; Share the Quiz<br><span style="font-size:0.72em; font-weight:400; opacity:0.9;">Send the link — challenge a friend!</span></button>
-      <button id="persistentBragBtn" onclick="doShareScore(); closePersistentShareModal();" style="padding:13px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:10px; font-size:0.9em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">&#127942; Brag About My Score<br><span style="font-size:0.72em; font-weight:400; opacity:0.9;" id="persistentBragSub">Post your score on social!</span></button>
+  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0; flex-direction:column; gap:4px; padding:10px 14px;">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#555; margin-bottom:2px;">Use a Lifeline if you're stuck?</div>
+    <div class="lifeline-pips">
+      <div class="lifeline-pip" id="pip1">🛟</div>
+      <div class="lifeline-pip" id="pip2">🛟</div>
+      <div class="lifeline-pip" id="pip3">🛟</div>
     </div>
-    <button onclick="closePersistentShareModal()" style="margin-top:14px; background:none; border:none; color:#bbb; font-size:0.8em; cursor:pointer;">Cancel</button>
+    <span class="lifeline-count" id="lifelineCount">3 remaining</span>
   </div>
-</div>
-<hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
-<div class="lifeline-bar" id="lifelineBar">
-<span class="lifeline-label">🛟 Lifelines</span>
-<div class="lifeline-pips">
-<div class="lifeline-pip" id="pip1">🛟</div>
-<div class="lifeline-pip" id="pip2">🛟</div>
-<div class="lifeline-pip" id="pip3">🛟</div>
-</div>
-<span class="lifeline-count" id="lifelineCount">3 remaining</span>
 </div>
 <button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()">&#128273; Have a Secret Code?</button>
 <div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
   <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
 </div>
 <div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
-<div class="grid">
-<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" style="grid-column:2;">Phil Collins</div><div class="header col-header" style="grid-column:3;">Run DMC</div><div class="header col-header" style="grid-column:4;">Duran Duran</div>
-<div class="header row-header" style="grid-row:2;">Performed at Live Aid<br>1985 &ndash; London? (Y/N)</div><div class="header row-header" style="grid-row:3;">Performed at Live Aid<br>1985 &ndash; Philadelphia? (Y/N)</div><div class="header row-header" style="grid-row:4;">Biggest Hit 1985</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div>
 
-</div>
+<div id="dedicationAnchor"></div>
 <div class="button-container">
 <button onclick="checkAnswers()">Check Answers</button>
 <button onclick="resetGrid()">Reset Grid</button>
+<button onclick="shareQuizEmoji()" style="background:linear-gradient(135deg,#FF1493,#8B00FF);">&#128242; Share</button>
 </div>
 
-<!-- DEDICATION BOX - randomly rotated on every page load -->
-<div id="dedicationAnchor"></div>
+<!-- ===== RECENT ARCHIVE ===== -->
+<div style="text-align:center;font-size:0.68em;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin:14px 0 8px;font-weight:900;">Recent Archive</div>
+<div id="archive-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;"></div>
+<div style="text-align:center;padding:12px;background:#f8f9fa;border-radius:10px;font-size:0.78em;color:#aaa;border:2px dashed #dee2e6;margin-bottom:16px;">&#128274; Only the last 3 grids are in the free archive. A new grid drops every day at midnight.</div>
+
 <div id="results" style="display:none;">
-<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+<div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:10px;"></div>
+<div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:10px;">
+  🔐 Want bonus plays? &nbsp;·&nbsp; Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey
+</div>
+<div style="display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em; margin-bottom:14px; padding:10px 14px; background:#f8f9ff; border-radius:10px; border:1.5px solid #dee2e6;">
+  <a href="#" onclick="showLeaderboard(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">🏆 Leaderboard</a>
+  <span style="color:#ccc;">·</span>
+  <a href="#" onclick="toggleStats(); return false;" style="color:#667eea; text-decoration:none; font-weight:bold;">&#128202; My Stats</a>
+  <span style="color:#ccc;">·</span>
+  <span class="mcq-wrapper" id="mcqWrapper">
+    <a href="#" class="mcq-link disabled" id="mcqLink" onclick="toggleMcqDropdown(event)">&#128203; My Completed Quizzes</a>
+    <div class="mcq-dropdown" id="mcqDropdown">
+      <div class="mcq-dropdown-title">&#127918; Your Completed Quizzes</div>
+      <div id="mcqList"></div>
+    </div>
+  </span>
+</div>
 <div class="post-quiz-progress" id="postQuizProgress">
 <div class="progress-pips" id="postProgressPips"></div>
 <div class="progress-text" id="postProgressText"></div>
@@ -658,24 +662,21 @@ Completed quizzes can always be replayed for free.</div>
 
 <!-- SURVEY - shown immediately after score -->
 <div id="surveyQuestion" class="survey-question" style="display:none;">
-<h3 id="surveyTitle" style="font-family:'Arial Black',sans-serif; letter-spacing:3px; font-size:1.1em; text-shadow:0 0 20px rgba(255,20,147,0.5); margin-bottom:14px;"></h3>
+<h3 id="surveyTitle" style="font-family:Arial,sans-serif; letter-spacing:3px; font-size:1.1em; text-shadow:0 0 20px rgba(255,20,147,0.5); margin-bottom:14px;"></h3>
 <div class="survey-options" id="surveyOptions" style="gap:8px;"></div>
 </div>
 
-<!-- TWO SHARE BUTTONS (quiz11 style) -->
-<div style="display:flex; gap:10px; margin-bottom:10px;">
-  <button onclick="shareLink()" style="flex:1; background:#FF1493; color:white; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-size:0.95em; font-weight:bold; box-shadow:0 4px 15px rgba(255,20,147,0.3);">
-    &#128242; Share with a Friend<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">iMessage &middot; WhatsApp &middot; Facebook</span>
-  </button>
-  <button onclick="shareScore()" style="flex:1; background:linear-gradient(135deg,#8B00FF,#4B0082); color:white; border:none; padding:12px 16px; border-radius:10px; cursor:pointer; font-size:0.95em; font-weight:bold; box-shadow:0 4px 15px rgba(139,0,255,0.3);">
-    &#128248; Brag About It<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">Instagram &middot; TikTok &middot; Twitter</span>
+<!-- SHARE BUTTON -->
+<div style="margin-bottom:10px;">
+  <button onclick="shareQuizEmoji()" style="width:100%; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; padding:14px 16px; border-radius:10px; cursor:pointer; font-size:1em; font-weight:900; box-shadow:0 4px 15px rgba(255,20,147,0.3); letter-spacing:1px;">
+    &#128242; Share Your Score<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">Copies emoji grid — paste anywhere!</span>
   </button>
 </div>
 <div style="margin-bottom:10px;">
-<a href="quiz10.html" class="replay-btn">&#128260; Play Quiz 9 Again <span class="hint">(doesn't count toward daily limit)</span></a>
+<a href="quiz9.html" class="replay-btn">&#128260; Play Quiz 3 Again <span class="hint">(doesn't count toward daily limit)</span></a>
 </div>
 <div id="postNextQuiz">
-<a href="quiz13.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; Like, Oh My God — Keep Going! &#8594;</a>
+<a href="quiz10.html" class="next-quiz-btn" id="postNextQuizBtn">&#127928; Like, Oh My God — Keep Going! &#8594;</a>
 </div>
 <div class="post-quiz-wrap" id="postWrapBox" style="display:none;">
 <div style="font-size:1.5em; margin-bottom:6px;">&#127926;</div>
@@ -701,7 +702,7 @@ Completed quizzes can always be replayed for free.</div>
 <div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
 <strong>&#128679; Beta Version</strong> — This game is still in testing. Please forgive any mistakes or inconsistencies. Your feedback is appreciated!
 </div>
-<div class="footnote-box"><strong>&#128221; Notes</strong><ul><li>Live Aid in July 1985 was one of the most watched television events in history — and the performances that day launched and relaunched careers overnight on both sides of the Atlantic.</li><li>One artist in this quiz pulled off a logistics feat that became the stuff of legend — performing on the same day at venues thousands of miles apart. Look it up if you don't know the story.</li><li>Run DMC and Duran Duran represent two very different corners of 1985's musical landscape — hip-hop on the verge of mainstream explosion and new wave at the height of its MTV dominance.</li></ul></div>
+<div class="footnote-box"><strong>&#128221; Notes</strong><ul><li>The Police, The Cure, and Depeche Mode are three of the most influential bands to emerge from the UK in the late 70s and early 80s — each pioneering a distinct sound that still echoes through music today.</li><li>All three brought something completely different to their sound: reggae-influenced tension, gothic romance, and cold electronic pulse.</li><li>Stadium shows were once considered unlikely for alternative acts. By the late 80s, all three were filling arenas and outdoor venues worldwide.</li></ul></div>
 <div id="highScoreEntry" class="high-score-entry" style="display:none;">
 <h2>&#9733; HIGH SCORE &#9733;</h2>
 <p style="color:#00ff00; text-align:center; font-size:1.2em; margin-bottom:20px;">ENTER YOUR INITIALS</p>
@@ -721,32 +722,18 @@ Completed quizzes can always be replayed for free.</div>
 
 <!-- ===== SITE FOOTER ===== -->
 <div class="site-footer">
-
-  <!-- Social Icons -->
-  <div class="social-bar">
-    <a class="social-btn facebook" href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" aria-label="Facebook">
-      <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-      <span class="social-label">Facebook</span>
-    </a>
-    <a class="social-btn instagram" href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      <span class="social-label">Instagram</span>
-    </a>
-    <a class="social-btn tiktok" href="https://tiktok.com/@80sGrid" target="_blank" rel="noopener" aria-label="TikTok">
-      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z" fill="white"/></svg>
-      <span class="social-label">TikTok</span>
-    </a>
-    <a class="social-btn twitter" href="https://x.com/80sGrid" target="_blank" rel="noopener" aria-label="X / Twitter">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      <span class="social-label">X / Twitter</span>
-    </a>
+  <!-- Big Hair tagline -->
+  <div class="tagline-wrap" style="margin:6px 0 10px;">
+    <div class="tagline-line"></div>
+    <div class="tagline-sub">Big Hair. Bigger Hits. Better Quizzes.</div>
+    <div class="tagline-line"></div>
   </div>
 
   <!-- Footer Links -->
   <div class="footer-links">
     <a href="about.html">About</a>
     <span>|</span>
-    <a href="sponsors.html">Sponsors</a>
+    <a href="sponsors.html">Our Sponsors</a>
     <span>|</span>
     <a href="collaborate.html">Collaborate</a>
     <span>|</span>
@@ -755,7 +742,14 @@ Completed quizzes can always be replayed for free.</div>
     <a href="#" onclick="openFeedback(); return false;">Feedback</a>
   </div>
 
-  <!-- Copyright -->
+  <!-- Social Icons (compact) -->
+  <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
+    <button onclick="shareQuizEmoji()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
+    <span style="color:#ddd; margin:0 2px;">|</span>
+    <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+    <a href="https://www.instagram.com/80sgrid" target="_blank" rel="noopener" title="Instagram" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;text-decoration:none;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="https://www.reddit.com/r/80smusic/" target="_blank" rel="noopener" title="Reddit" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#FF4500;color:white;text-decoration:none;flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+  </div><!-- Copyright -->
   <div class="footer-copy">
     &copy; 2025&ndash;2026 Len's 80sGrid.com &mdash; All Rights Reserved.<br>
     <span style="font-size:0.9em;">80sGrid is an independent fan project celebrating the music of the 1980s. Not affiliated with any artist or record label.</span>
@@ -763,13 +757,26 @@ Completed quizzes can always be replayed for free.</div>
 
 </div><!-- end .site-footer -->
 
+
+<!-- PERSISTENT SHARE CHOICE MODAL -->
+<div id="persistentShareModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:7500; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
+  <div style="background:white; border-radius:16px; padding:24px 20px; max-width:340px; width:100%; box-shadow:0 0 40px rgba(139,0,255,0.3); border:2px solid #8B00FF; text-align:center;">
+    <div style="font-family:Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:6px;" id="persistentShareTitle">📤 SHARE 80SGRID</div>
+    <div style="font-size:0.8em; color:#888; margin-bottom:20px;" id="persistentShareSubtitle">What would you like to share?</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <button onclick="doShareLink(); closePersistentShareModal();" style="padding:13px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:10px; font-size:0.9em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">&#128242; Share the Quiz<br><span style="font-size:0.72em; font-weight:400; opacity:0.9;">Send the link — challenge a friend!</span></button>
+      <button id="persistentBragBtn" onclick="doShareScore(); closePersistentShareModal();" style="padding:13px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:10px; font-size:0.9em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">&#127942; Brag About My Score<br><span style="font-size:0.72em; font-weight:400; opacity:0.9;" id="persistentBragSub">Post your score on social!</span></button>
+    </div>
+    <button onclick="closePersistentShareModal()" style="margin-top:14px; background:none; border:none; color:#bbb; font-size:0.8em; cursor:pointer;">Cancel</button>
+  </div>
+</div>
 </div><!-- end .container -->
 
 <!-- ===== FEEDBACK MODAL ===== -->
 <style>
 .feedback-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:4000; display:none; align-items:center; justify-content:center; }
 .feedback-modal-overlay.active { display:flex; }
-.feedback-modal { background:#000; border:3px solid #FF1493; border-radius:15px; padding:35px 30px; width:90%; max-width:400px; box-shadow:0 0 40px rgba(255,20,147,0.6); font-family:'Courier New',monospace; position:relative; box-sizing:border-box; }
+.feedback-modal { background:#000; border:3px solid #FF1493; border-radius:15px; padding:35px 30px; width:90%; max-width:400px; box-shadow:0 0 40px rgba(255,20,147,0.6); font-family:'Oxanium',Arial,sans-serif; position:relative; box-sizing:border-box; }
 .feedback-modal h2 { color:#FF1493; text-shadow:0 0 10px #FF1493; font-size:1.2em; letter-spacing:3px; margin:0 0 6px; text-align:center; }
 .feedback-modal-sub { color:#00ffff; text-align:center; font-size:0.72em; letter-spacing:2px; margin-bottom:20px; }
 .feedback-stars { display:flex; justify-content:center; gap:10px; margin-bottom:18px; }
@@ -777,78 +784,17 @@ Completed quizzes can always be replayed for free.</div>
 .feedback-star.lit { color:#FFD700; text-shadow:0 0 10px rgba(255,215,0,0.7); }
 .feedback-star:hover { transform:scale(1.2); }
 .feedback-label { color:#aaa; font-size:0.72em; letter-spacing:1px; margin-bottom:6px; display:block; }
-.feedback-textarea { width:100%; background:rgba(255,255,255,0.05); border:2px solid rgba(255,20,147,0.4); border-radius:8px; padding:12px; color:#00ff88; font-family:'Courier New',monospace; font-size:0.9em; resize:vertical; min-height:80px; box-sizing:border-box; outline:none; margin-bottom:14px; }
+.feedback-textarea { width:100%; background:rgba(255,255,255,0.05); border:2px solid rgba(255,20,147,0.4); border-radius:8px; padding:12px; color:#00ff88; font-family:'Oxanium',Arial,sans-serif; font-size:0.9em; resize:vertical; min-height:80px; box-sizing:border-box; outline:none; margin-bottom:14px; }
 .feedback-textarea::placeholder { color:rgba(0,255,136,0.3); }
 .feedback-textarea:focus { border-color:#FF1493; }
 .feedback-quiz-tag { background:rgba(102,126,234,0.15); border:1px solid rgba(102,126,234,0.4); border-radius:6px; padding:6px 12px; color:#667eea; font-size:0.72em; letter-spacing:1px; margin-bottom:16px; text-align:center; display:block; }
-.feedback-submit { width:100%; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; padding:13px; border-radius:8px; font-family:'Courier New',monospace; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; }
+.feedback-submit { width:100%; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; padding:13px; border-radius:8px; font-family:'Oxanium',Arial,sans-serif; font-weight:bold; font-size:1em; cursor:pointer; letter-spacing:2px; }
 .feedback-close { position:absolute; top:14px; right:18px; background:none; border:none; color:#555; font-size:1.4em; cursor:pointer; line-height:1; padding:0; }
 .feedback-close:hover { color:#FF1493; }
 .feedback-success { text-align:center; padding:20px 0; display:none; }
 .feedback-success .big { font-size:2.5em; display:block; margin-bottom:10px; }
 .feedback-success p { color:#00ff88; font-size:0.95em; line-height:1.6; margin:0; }
 
-/* ===== WELCOME BANNER ===== */
-.welcome-banner {
-  background: linear-gradient(135deg, #FF1493 0%, #8B00FF 50%, #00CED1 100%);
-  padding: 0;
-  border-radius: 12px;
-  margin-bottom: 16px;
-  color: white;
-  box-shadow: 0 0 20px rgba(255,20,147,.4);
-  border: 3px solid rgba(255,255,255,.3);
-  overflow: hidden;
-}
-.welcome-banner-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 18px;
-  font-weight: bold;
-  font-size: 1.1em;
-  font-family: Arial, sans-serif;
-  color: white;
-  cursor: pointer;
-}
-.welcome-banner-body {
-  display: block;
-  padding: 12px 20px 16px;
-  line-height: 1.7;
-  font-size: 0.95em;
-  background: #f8f0ff;
-  color: #333;
-  text-shadow: none;
-  border-top: 1px solid rgba(255,255,255,0.25);
-}
-.welcome-banner-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-.welcome-pill {
-  background: rgba(139,0,255,0.1);
-  border: 1px solid rgba(139,0,255,0.25);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 0.82em;
-  color: #555;
-  white-space: nowrap;
-}
-.welcome-dismiss {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.8);
-  font-size: 1em;
-  cursor: pointer;
-  padding: 2px 6px;
-  border-radius: 4px;
-  transition: color 0.2s;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.welcome-dismiss:hover { color: white; }
 
 /* ===== MY COMPLETED QUIZZES ===== */
 .mcq-wrapper { position:relative; display:inline-block; }
@@ -944,18 +890,8 @@ const FAKE_SCORES = [
 ];
 const PLAYS_START = 1986;
 const yesNoKeys = ["0-0", "0-1", "0-2", "1-0", "1-1", "1-2"];
-const answers = {'0-0': ['yes'],
-'0-1': ['no'],
-'0-2': ['no'],
-'1-0': ['yes'],
-'1-1': ['yes'],
-'1-2': ['yes'],
-'2-0': ['one more night', 'sussudio', 'separate lives', 'against all odds'],
-'2-1': ['king of rock'],
-'2-2': ['a view to a kill']};
-const mcOptions = {'2-0': ['One More Night', 'Invisible Touch', 'Easy Lover'],
-'2-1': ['King of Rock', 'Rock Box', 'Walk This Way'],
-'2-2': ['A View to a Kill', 'The Reflex', 'Wild Boys']};
+const answers = {'0-0':["yes"],'0-1':["no"],'0-2':["no"],'1-0':["yes"],'1-1':["yes"],'1-2':["yes"],'2-0':["one more night","sussudio","separate lives","against all odds"],'2-1':["king of rock"],'2-2':["a view to a kill"]};
+const mcOptions = {'2-0':["One More Night","Invisible Touch","Easy Lover"],'2-1':["King of Rock","Rock Box","Walk This Way"],'2-2':["A View to a Kill","The Reflex","Wild Boys"]};
 let currentCell = null;
 let lifelinesRemaining = 3;
 let radBonusUsed = false;
@@ -1086,7 +1022,8 @@ function openModal(cell){
   if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  try{document.getElementById('modalInput').focus();}catch(e){}
+  setTimeout(()=>{try{document.getElementById('modalInput').focus();}catch(e){}},150);
 }
 function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');}
 function saveModalAnswer(){
@@ -1225,29 +1162,57 @@ function claimBonusLifeline(){
 }
 function showBonusGrantedToast(isUnlimited){
   let toast=document.getElementById('bonusGrantedToast');
-  if(!toast){toast=document.createElement('div');toast.id='bonusGrantedToast';toast.style.cssText='position:fixed;top:18%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;padding:14px 28px;border-radius:14px;font-family:"Arial Black",Arial;font-size:1em;font-weight:900;letter-spacing:1px;box-shadow:0 0 30px rgba(139,0,255,0.5);z-index:8000;opacity:0;transition:opacity 0.3s;text-align:center;pointer-events:none;';document.body.appendChild(toast);}
+  if(!toast){toast=document.createElement('div');toast.id='bonusGrantedToast';toast.style.cssText='position:fixed;top:18%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;padding:14px 28px;border-radius:14px;font-family:Arial;font-size:1em;font-weight:900;letter-spacing:1px;box-shadow:0 0 30px rgba(139,0,255,0.5);z-index:8000;opacity:0;transition:opacity 0.3s;text-align:center;pointer-events:none;';document.body.appendChild(toast);}
   toast.innerHTML=isUnlimited?'&#9854;&#65039; Unlimited Mode Activated!<br><span style="font-size:0.7em;font-weight:400;opacity:0.9;">All lifelines unlocked!</span>':'&#127919; Bonus Lifeline Unlocked!<br><span style="font-size:0.7em;font-weight:400;opacity:0.9;">Use it wisely!</span>';
   toast.style.opacity='1';setTimeout(()=>{toast.style.opacity='0';},2800);
 }
 
 /* ===== SHARE ===== */
-function shareLink(){
-  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||null;
-  const text=score?"\uD83C\uDFB8 I scored "+score+"/9 on Len's 80sGrid Quiz "+QUIZ_NUM+"! Can you beat me?":"\uD83C\uDFB8 Think you know your 80s music? Try Len's 80sGrid Quiz "+QUIZ_NUM+"!";
-  const url='https://80sgrid.com/quiz'+QUIZ_NUM+'.html';
+function buildEmojiGrid(){
+  const cells=document.querySelectorAll('.cell');
+  const rows=[[],[],[]];
+  cells.forEach(cell=>{
+    const r=parseInt(cell.dataset.row);
+    const emoji=cell.classList.contains('correct')?'✅':cell.classList.contains('incorrect')?'❌':'⬜';
+    rows[r].push(emoji);
+  });
+  return rows.map(r=>r.join(' ')).join('\n');
+}
+function getStarRating(score){
+  const stars=Math.round((score/9)*5);
+  return '⭐'.repeat(stars)+'☆'.repeat(5-stars);
+}
+function shareQuizEmoji(){
+  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;
+  const titleEl=document.querySelector('.subtitle');
+  const quizTitle=titleEl?titleEl.textContent.trim():'80sGrid';
+  const grid=buildEmojiGrid();
+  const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
+  let text;
+  if(hasPlayed){
+    text='🎸 80sGrid — '+quizTitle+'\n'+score+'/9 '+getStarRating(score)+'\n\n'+grid+'\n\nCan you beat me? 👉 80sgrid.com';
+  } else {
+    text='🎸 Think you know your 80s music?\n'+quizTitle+' — play now!\n\n👉 80sgrid.com';
+  }
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if(isMobile&&navigator.share){navigator.share({title:"Len's 80sGrid",text:text,url:url}).catch(()=>{});}
-  else{navigator.clipboard.writeText(text+' '+url).then(()=>{const toast=document.createElement('div');toast.textContent='\u2705 Link copied! Paste it anywhere.';toast.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:12px 22px;border-radius:10px;font-size:0.95em;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);';document.body.appendChild(toast);setTimeout(()=>toast.remove(),3000);}).catch(()=>alert(text+' '+url));}
+  if(isMobile&&navigator.share){navigator.share({title:"Len\'s 80sGrid",text:text}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text).then(()=>{showShareToast(hasPlayed?'Copied! Paste it anywhere 🎸':'Link copied! 🎸');}).catch(()=>alert(text));}
+  try{gtag('event','share_emoji_grid',{quiz_number:QUIZ_NUM,score:score,has_played:hasPlayed});}catch(e){}
 }
+function showShareToast(msg){
+  let toast=document.getElementById('shareToast');
+  if(!toast){toast=document.createElement('div');toast.id='shareToast';toast.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;padding:14px 28px;border-radius:12px;font-family:Arial;font-size:1em;font-weight:900;letter-spacing:1px;box-shadow:0 0 30px rgba(255,20,147,0.5);z-index:9999;opacity:0;transition:opacity 0.3s;text-align:center;pointer-events:none;';document.body.appendChild(toast);}
+  toast.textContent=msg;toast.style.opacity='1';setTimeout(()=>{toast.style.opacity='0';},2800);
+}
+function shareLink(){shareQuizEmoji();}
+function shareScore(){shareQuizEmoji();}
+function persistentShareQuiz(){shareQuizEmoji();}
+function doShareLink(){shareQuizEmoji();}
+function doShareScore(){shareQuizEmoji();}
 function getLastScore(){return parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;}
-function getShareText(score){
-  const artistLine=document.querySelector('[style*="margin-top:-15px"]');
-  const artists=artistLine?artistLine.textContent.trim():'';
-  return score
-    ?'\uD83C\uDFB8 I scored '+score+'/9 on Len\'s 80sGrid Quiz '+QUIZ_NUM+(artists?' ('+artists+')':'')+'! Can you beat me? \u{1F449} https://80sgrid.com/quiz'+QUIZ_NUM+'.html'
-    :'\uD83C\uDFB8 Test your 80s music knowledge! Play Len\'s 80sGrid.com: https://80sgrid.com/quiz'+QUIZ_NUM+'.html';
-}
-function shareScore(){try{gtag('event','brag_score',{quiz_number:QUIZ_NUM,score:getLastScore()});}catch(e){}buildShareCard(getLastScore(),getShareText(getLastScore()));}
+function getShareText(score){return '';}
+function copyShareText(){shareQuizEmoji();}
+function closePersistentShareModal(){const m=document.getElementById('persistentShareModal');if(m)m.style.display='none';}
 
 function buildShareCard(score,text){
   const existing=document.getElementById('shareCardOverlay');if(existing)existing.remove();
@@ -1272,7 +1237,7 @@ function buildShareCard(score,text){
   overlay.appendChild(box);
   overlay.onclick=(e)=>{if(e.target===overlay)overlay.remove();};
   document.body.appendChild(overlay);
-  setTimeout(()=>drawCassetteCard(score),40);
+  setTimeout(()=>{drawCassetteCard(score);drawGridOnCassette();},40);
 }
 
 function rrShare(c,x,y,w,h,r,fill,stroke){
@@ -1352,11 +1317,11 @@ function drawCassetteCard(score){
   // Star + LEN.
   const starX=lx+lw-95,starY2=bsy+bsh/2+1;
   drawStar4Card(c,starX,starY2,11,'#FF1493');
-  c.textAlign='left';c.font='bold 20px Arial Black,Arial';c.fillStyle='#fff';
+  c.textAlign='left';c.font='bold 20px Arial';c.fillStyle='#fff';
   c.fillText('LEN.',starX+17,bsy+bsh-7);
   c.font='6px Arial';c.fillStyle='rgba(255,20,147,0.8)';c.fillText('80sGRID.COM',starX+17,bsy+9);
   // Quiz-N bottom left
-  c.textAlign='left';c.font='bold 15px Arial Black,Arial';c.fillStyle='#fff';
+  c.textAlign='left';c.font='bold 15px Arial';c.fillStyle='#fff';
   c.fillText('Quiz-',lx+8,bsy+bsh-7);c.fillStyle='#8B00FF';
   c.fillText(String(QUIZ_NUM),lx+8+c.measureText('Quiz-').width,bsy+bsh-7);
   // Stars
@@ -1393,7 +1358,7 @@ function drawCassetteCard(score){
   drawWhiteReelCard(c,reelLX,midY,reelR);drawWhiteReelCard(c,reelRX,midY,reelR);
   // Score
   c.textAlign='center';c.font='bold 8px Arial';c.fillStyle='rgba(139,0,255,0.7)';c.fillText('I  SCORED',W/2,midY-20);
-  c.font='900 48px Arial Black,Arial';c.fillStyle='#8B00FF';
+  c.font='900 48px Arial';c.fillStyle='#8B00FF';
   c.shadowColor='rgba(139,0,255,0.8)';c.shadowBlur=18;c.fillText(`${score||'?'}/9`,W/2,midY+18);c.shadowBlur=0;
   // Guide pins
   [[W/2-48,sy+sh-14],[W/2,sy+sh-14],[W/2+48,sy+sh-14]].forEach(([px,py])=>{
@@ -1466,7 +1431,7 @@ function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').repl
 function checkAnswers(){
   let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');const isThisAReplay=previousScore>0;
-  if(!isThisAReplay&&!hasNewPlaysLeft()){document.getElementById('limitModal').classList.add('show');return;}
+  if(!isThisAReplay&&!hasNewPlaysLeft()&&!localStorage.getItem('__admin_unlimited')){document.getElementById('limitModal').classList.add('show');return;}
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
@@ -1483,6 +1448,15 @@ function checkAnswers(){
   const oldScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');if(correct>oldScore)localStorage.setItem(QUIZ_KEY,correct);
   document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
   document.getElementById('results').style.display='block';
+  // Lock cells after grading — no changing answers after Check Answers
+  document.querySelectorAll('.cell').forEach(cell=>{
+    cell.style.pointerEvents='none';
+    cell.style.cursor='default';
+    const inp=cell.querySelector('input');
+    if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+  });
+  const checkBtn=document.querySelector('.button-container button');
+  if(checkBtn){checkBtn.disabled=true;checkBtn.style.opacity='0.5';checkBtn.title='Answers already submitted';}
   try{gtag('event','check_answers',{quiz_number:QUIZ_NUM,score:correct,total:total,is_replay:isThisAReplay});}catch(e){}
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
@@ -1492,7 +1466,18 @@ function checkAnswers(){
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START);document.getElementById('playsCounter').innerHTML='&#127918; '+plays.toLocaleString()+' plays';}
 function showLeaderboard(){displayLeaderboard();document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'});}
-function resetGrid(){document.querySelectorAll('.cell input').forEach(i=>{i.value='';i.parentElement.classList.remove('correct','incorrect');});document.getElementById('results').style.display='none';document.getElementById('highScoreEntry').style.display='none';}
+function resetGrid(){
+  document.querySelectorAll('.cell').forEach(cell=>{
+    const inp=cell.querySelector('input');
+    if(inp){inp.value='';inp.style.pointerEvents='none';inp.style.cursor='default';}
+    cell.classList.remove('correct','incorrect');
+    cell.style.pointerEvents='';cell.style.cursor='';
+  });
+  const checkBtn=document.querySelector('.button-container button');
+  if(checkBtn){checkBtn.disabled=false;checkBtn.style.opacity='';checkBtn.title='';}
+  document.getElementById('results').style.display='none';
+  document.getElementById('highScoreEntry').style.display='none';
+}
 function saveHighScore(){
   const i1=document.getElementById('initial1').value.toUpperCase();const i2=document.getElementById('initial2').value.toUpperCase();const i3=document.getElementById('initial3').value.toUpperCase();
   if(!i1||!i2||!i3){alert('Please enter all 3 initials!');return;}
@@ -1674,6 +1659,8 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
+  try { renderArchive(); } catch(e) { console.warn('renderArchive:', e); }
+  try { renderStreakAndStats(); } catch(e) { console.warn('renderStreakAndStats:', e); }
   closeModal();
   initializeCells();
   updatePlaysCounter();
@@ -1688,17 +1675,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMcq();
   initNextQuizBtn();
 });
-// ===== WELCOME BANNER =====
-function dismissWelcome() {
-  document.getElementById('welcomeBanner').style.display = 'none';
-  localStorage.setItem('welcomeSeen', '1');
-}
-(function() {
-  if (!localStorage.getItem('welcomeSeen')) {
-    var b = document.getElementById('welcomeBanner');
-    if (b) b.style.display = 'block';
-  }
-})();
 
 
 // ===== MY COMPLETED QUIZZES =====
@@ -1804,6 +1780,126 @@ function initNextQuizBtn() {
     btn.innerHTML = "&#127928; You've played them all — start over! &#8594;";
     btn.style.display = 'inline-block';
   }
+}
+
+
+/* ===== STREAK + STATS ===== */
+function renderStreakAndStats(){
+  const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
+  const scores=[];
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('80sg_score_day_')){const v=parseInt(localStorage.getItem(k));if(!isNaN(v))scores.push(v);}}
+  const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'—';
+  const best=scores.length?Math.max(...scores)+'/9':'—';
+  const num=document.getElementById('streak-num');if(num)num.textContent=streak;
+  const flame=document.getElementById('streak-flame');
+  const sub=document.getElementById('streak-sub');
+  const msg=document.getElementById('streak-msg');
+  const tom=document.getElementById('streak-tomorrow');
+  const strip=document.getElementById('streak-strip');
+  if(streak===0){
+    if(strip)strip.style.borderColor='#c084fc';
+    if(strip)strip.style.background='#f8f9ff';
+    if(num)num.style.color='#8B00FF';
+    if(flame)flame.textContent='🎸';
+    if(sub)sub.textContent='Play today to start your streak';
+    if(msg){msg.textContent='Start your streak today!';msg.style.color='#8B00FF';}
+    if(tom)tom.textContent='First play = Day 1 🔥';
+  } else {
+    if(flame)flame.textContent='🔥';
+    if(sub)sub.textContent='Play daily to keep it alive';
+    if(msg)msg.textContent='Keep it going!';
+    if(tom)tom.textContent='Play today to reach '+(streak+1)+' 🔥';
+  }
+  const s=document.getElementById('istat-streak');if(s)s.textContent=streak;
+  const p=document.getElementById('istat-played');if(p)p.textContent=scores.length;
+  const a=document.getElementById('istat-avg');if(a)a.textContent=avg;
+  const b=document.getElementById('istat-best');if(b)b.textContent=best;
+}
+
+
+/* ===== RECENT ARCHIVE ===== */
+const _LAUNCH = new Date('2026-04-08T00:00:00');
+const _QUIZ_FILES = ['index.html','quiz2.html','quiz3.html','quiz4.html','quiz5.html','quiz6.html','quiz7.html','quiz8.html','quiz9.html','quiz10.html'];
+const _QUIZ_TITLES = ['80s Pop Giants','New Wave Around the World','Dark Side of the 80s','Royalty, Rock & the Obscure','Reggae, Roots & Art Rock','Clever Pop & New Wave Crossovers','Arena Rock Meets Pop Soul','Reinvention & Rock Royalty','Pop, Hip-Hop & New Wave Collide','Cyndi, Boy George & Mr. Hutchence'];
+
+function renderArchive(){
+  const ag = document.getElementById('archive-grid');
+  if(!ag) return;
+  const dayIdx = Math.max(0, Math.floor((new Date() - _LAUNCH) / 86400000));
+  ag.innerHTML = '';
+  if(dayIdx === 0){
+    ag.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#aaa;font-size:0.8em;padding:12px;">Archive available starting Day 2.</div>';
+    return;
+  }
+  for(let i = Math.max(0, dayIdx-3); i < dayIdx; i++){
+    const qFile = _QUIZ_FILES[Math.min(i, _QUIZ_FILES.length-1)];
+    const qTitle = _QUIZ_TITLES[Math.min(i, _QUIZ_TITLES.length-1)];
+    const d = new Date(_LAUNCH.getTime() + i * 86400000);
+    const score = localStorage.getItem('80sg_score_day_' + i);
+    const num = i + 1;
+    const card = document.createElement('a');
+    card.href = qFile;
+    card.style.cssText = 'border:2px solid #dee2e6;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;text-decoration:none;color:inherit;display:block;transition:all 0.2s;';
+    card.onmouseover = function(){this.style.borderColor='#667eea';};
+    card.onmouseout = function(){this.style.borderColor='#dee2e6';};
+    card.innerHTML =
+      '<div style="font-family:\'Oxanium\',Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">#' + String(num).padStart(3,'0') + '</div>' +
+      '<div style="font-size:0.68em;color:#999;margin-top:2px;">' + d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}) + '</div>' +
+      '<div style="font-size:0.72em;font-weight:700;margin-top:4px;color:' + (score ? '#28a745' : '#aaa') + '">' + (score ? '&#10003; ' + score + '/9' : 'Not played') + '</div>';
+    ag.appendChild(card);
+  }
+}
+
+
+/* ===== CASSETTE GRID OVERLAY ===== */
+function drawGridOnCassette(ctx, W, H) {
+  const cells = document.querySelectorAll('.cell');
+  const states = [];
+  cells.forEach(cell => {
+    if (cell.classList.contains('correct')) states.push('correct');
+    else if (cell.classList.contains('incorrect')) states.push('incorrect');
+    else if (cell.classList.contains('lifeline-used')) states.push('lifeline');
+    else states.push('empty');
+  });
+  if (states.every(s => s === 'empty')) return; // not played yet
+
+  const correct = states.filter(s => s === 'correct').length;
+  const total = states.length;
+  const gridW = 84, gridH = 84;
+  const cellW = gridW / 3, cellH = gridH / 3;
+  const startX = (W - gridW) / 2;
+  const startY = (H / 2) - (gridH / 2) - 8;
+  const colors = { correct:'#28a745', incorrect:'#dc3545', lifeline:'#FFA500', empty:'#888' };
+
+  // Dark backing
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  ctx.beginPath();
+  ctx.roundRect(startX - 8, startY - 8, gridW + 16, gridH + 32, 8);
+  ctx.fill();
+
+  // Cells
+  states.forEach((state, i) => {
+    const col = i % 3, row = Math.floor(i / 3);
+    const x = startX + col * cellW + 1.5;
+    const y = startY + row * cellH + 1.5;
+    const w = cellW - 3, h = cellH - 3;
+    ctx.fillStyle = colors[state] || '#888';
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 4);
+    ctx.fill();
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold ' + Math.floor(h * 0.5) + 'px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(state==='correct'?'✓':state==='incorrect'?'✗':state==='lifeline'?'★':'·', x+w/2, y+h/2);
+  });
+
+  // Score label
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 12px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText(correct + '/' + total + ' \u00b7 80sGrid.com', W/2, startY + gridH + 5);
 }
 
 </script>
