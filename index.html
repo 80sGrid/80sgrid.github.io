@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -658,6 +657,15 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:10px;"></div>
+
+<!-- BONUS QUIZ UNLOCK BANNER — shown when score >= 6 -->
+<div id="bonusUnlockBanner" style="display:none; margin-bottom:14px; padding:16px 18px; background:linear-gradient(135deg,#fff8d6,#fff0f8); border:2px solid #FFD700; border-radius:12px; text-align:center; box-shadow:0 0 18px rgba(255,215,0,0.4);">
+  <div style="font-size:1.5em; margin-bottom:4px;">🎸</div>
+  <div style="font-family:'Oxanium',Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px;">BONUS QUIZ UNLOCKED!</div>
+  <div style="font-size:0.8em; color:#555; margin-bottom:10px;">You scored 6+ — you've earned a bonus round featuring Whitney, Marvin &amp; Enya!</div>
+  <a href="quiz49.html" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Bonus Quiz 49 →</a>
+</div>
+
 <div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:10px;">
   🔐 Want bonus plays? &nbsp;·&nbsp; Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey
 </div>
@@ -1924,20 +1932,19 @@ function hubInit(){
   function tick(){const now=new Date(),mid=new Date(now);mid.setHours(24,0,0,0);const diff=mid-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');const el=document.getElementById('countdown');if(el)el.textContent=h+':'+m+':'+s;}
   tick(); setInterval(tick,1000);
   
-  // Bonus grid
-  const bonusQ=SCHEDULE[Math.min(dayIdx+1,SCHEDULE.length-1)];
+  // Bonus grid — always quiz49 when score >= 6
   const savedScore=parseInt(localStorage.getItem(_getScoreKey(dayIdx))||'0');
   const unlocked=localStorage.getItem(_getBonusKey(dayIdx))==='unlocked'||(savedScore>=6&&savedScore>0);
-  if(unlocked&&bonusQ!==q){
+  function _showBonusCard(score){
     const bc=document.getElementById('bonus-card');
-    if(bc){bc.style.borderColor='#FFD700';bc.style.background='#fffdf0';}
+    if(bc){bc.style.borderColor='#FFD700';bc.style.background='linear-gradient(135deg,#fffdf0,#fff8f0)';}
     const bi=document.getElementById('bonus-icon');if(bi)bi.textContent='🎸';
     const bt=document.getElementById('bonus-title');if(bt){bt.textContent='Bonus Grid Unlocked!';bt.style.color='#8B00FF';}
-    const bd2=document.getElementById('bonus-desc');if(bd2)bd2.textContent=bonusQ.t+' \u00b7 '+bonusQ.a.join(', ');
-    const br=document.getElementById('bonus-req');if(br){br.textContent='🏆 Earned with score of '+savedScore+'/9';br.style.color='#28a745';}
-    const bc2=document.getElementById('bonus-card');
-    if(bc2&&!bc2.querySelector('a')){const a=document.createElement('a');a.href='quiz49.html';a.textContent='Play this bonus quiz featuring Whitney, Marvin and Enya';a.style.cssText='display:inline-block;margin-top:8px;color:#8B00FF;font-weight:700;font-size:0.85em;text-decoration:underline;';bc2.appendChild(a);}
+    const bd2=document.getElementById('bonus-desc');if(bd2)bd2.textContent='Whitney Houston \u00b7 Marvin Gaye \u00b7 Enya';
+    const br=document.getElementById('bonus-req');if(br){br.textContent='\uD83C\uDFC6 Earned with score of '+score+'/9';br.style.color='#28a745';}
+    if(bc&&!bc.querySelector('a')){const a=document.createElement('a');a.href='quiz49.html';a.textContent='\uD83C\uDFB5 Play Bonus Quiz 49 \u2192';a.style.cssText='display:inline-block;margin-top:10px;padding:10px 22px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border-radius:8px;font-weight:900;font-size:0.85em;text-decoration:none;letter-spacing:0.5px;box-shadow:0 3px 10px rgba(255,20,147,0.35);';bc.appendChild(a);}
   }
+  if(unlocked){ _showBonusCard(savedScore); }
   
   // Archive
   const ag=document.getElementById('archive-grid');
@@ -1964,7 +1971,11 @@ function hubInit(){
   checkAnswers=function(){
     origCheck();
     const newScore=parseInt(localStorage.getItem(_getScoreKey(dayIdx))||'0');
-    if(newScore>=6) localStorage.setItem(_getBonusKey(dayIdx),'unlocked');
+    if(newScore>=6){
+      localStorage.setItem(_getBonusKey(dayIdx),'unlocked');
+      var bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
+      var bc2=document.getElementById('bonus-card');if(bc2&&!bc2.querySelector('a'))_showBonusCard(newScore);
+    }
     const today=new Date().toISOString().slice(0,10);
     const last=localStorage.getItem('80sg_last_played');
     let str=parseInt(localStorage.getItem('80sg_streak')||'0');
