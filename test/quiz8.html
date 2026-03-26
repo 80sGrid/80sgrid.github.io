@@ -544,7 +544,6 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </div>
 </div>
 <div class="subtitle">Reinvention &amp; Rock Royalty</div>
-
 <!-- STREAK + STATS SECTION -->
 <div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
 <div style="display:flex;align-items:center;gap:10px;">
@@ -578,6 +577,9 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 <div style="font-size:0.62em;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Best</div>
 </div>
 </div>
+
+
+
 
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
 <div class="how-to-play">
@@ -1020,7 +1022,8 @@ function openModal(cell){
   if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  try{document.getElementById('modalInput').focus();}catch(e){}
+  setTimeout(()=>{try{document.getElementById('modalInput').focus();}catch(e){}},150);
 }
 function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');}
 function saveModalAnswer(){
@@ -1173,8 +1176,7 @@ function buildEmojiGrid(){
     const emoji=cell.classList.contains('correct')?'✅':cell.classList.contains('incorrect')?'❌':'⬜';
     rows[r].push(emoji);
   });
-  return rows.map(r=>r.join(' ')).join('
-');
+  return rows.map(r=>r.join(' ')).join('\n');
 }
 function getStarRating(score){
   const stars=Math.round((score/9)*5);
@@ -1188,17 +1190,9 @@ function shareQuizEmoji(){
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
   let text;
   if(hasPlayed){
-    text='🎸 80sGrid — '+quizTitle+'
-'+score+'/9 '+getStarRating(score)+'
-
-'+grid+'
-
-Can you beat me? 👉 80sgrid.com';
+    text='🎸 80sGrid — '+quizTitle+'\n'+score+'/9 '+getStarRating(score)+'\n\n'+grid+'\n\nCan you beat me? 👉 80sgrid.com';
   } else {
-    text='🎸 Think you know your 80s music?
-'+quizTitle+' — play now!
-
-👉 80sgrid.com';
+    text='🎸 Think you know your 80s music?\n'+quizTitle+' — play now!\n\n👉 80sgrid.com';
   }
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   if(isMobile&&navigator.share){navigator.share({title:"Len\'s 80sGrid",text:text}).catch(()=>{});}
@@ -1218,7 +1212,7 @@ function doShareScore(){shareQuizEmoji();}
 function getLastScore(){return parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;}
 function getShareText(score){return '';}
 function copyShareText(){shareQuizEmoji();}
-function closePersistentShareModal(){const m=document.getElementById('persistentShareModal');if(m)m.style.display='none';});}catch(e){}buildShareCard(getLastScore(),getShareText(getLastScore()));}
+function closePersistentShareModal(){const m=document.getElementById('persistentShareModal');if(m)m.style.display='none';}
 
 function buildShareCard(score,text){
   const existing=document.getElementById('shareCardOverlay');if(existing)existing.remove();
@@ -1665,8 +1659,8 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
-  renderArchive();
-  renderStreakAndStats();
+  try { renderArchive(); } catch(e) { console.warn('renderArchive:', e); }
+  try { renderStreakAndStats(); } catch(e) { console.warn('renderStreakAndStats:', e); }
   closeModal();
   initializeCells();
   updatePlaysCounter();
