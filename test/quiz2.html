@@ -1020,7 +1020,8 @@ function openModal(cell){
   if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  try { document.getElementById('modalInput').focus(); } catch(e) {}
+  setTimeout(()=>{ try { document.getElementById('modalInput').focus(); } catch(e) {} },150);
 }
 function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');}
 function saveModalAnswer(){
@@ -1665,8 +1666,8 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
-  renderArchive();
-  renderStreakAndStats();
+  try { renderArchive(); } catch(e) { console.warn('renderArchive error:', e); }
+  try { renderStreakAndStats(); } catch(e) { console.warn('renderStreakAndStats error:', e); }
   closeModal();
   initializeCells();
   updatePlaysCounter();
