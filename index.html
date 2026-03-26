@@ -1933,7 +1933,7 @@ function hubInit(){
   tick(); setInterval(tick,1000);
   
   // Bonus grid — always quiz49 when score >= 6
-  const savedScore=parseInt(localStorage.getItem(_getScoreKey(dayIdx))||'0');
+  const savedScore=parseInt(localStorage.getItem('hubScore')||'0');
   const unlocked=localStorage.getItem(_getBonusKey(dayIdx))==='unlocked'||(savedScore>=6&&savedScore>0);
   function _showBonusCard(score){
     const bc=document.getElementById('bonus-card');
@@ -1970,7 +1970,7 @@ function hubInit(){
   const origCheck=checkAnswers;
   checkAnswers=function(){
     origCheck();
-    const newScore=parseInt(localStorage.getItem(_getScoreKey(dayIdx))||'0');
+    const newScore=parseInt(localStorage.getItem('hubScore')||'0');
     if(newScore>=6){
       localStorage.setItem(_getBonusKey(dayIdx),'unlocked');
       var bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
