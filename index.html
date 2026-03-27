@@ -674,7 +674,7 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   <div style="font-size:1.5em; margin-bottom:4px;">🎸</div>
   <div style="font-family:'Oxanium',Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px;">BONUS QUIZ UNLOCKED!</div>
   <div style="font-size:0.8em; color:#555; margin-bottom:10px;">You scored 6+ — you've earned a bonus round featuring Whitney, Marvin &amp; Enya!</div>
-  <a href="quiz49.html" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Bonus Quiz 49 →</a>
+  <a id="bonusBannerLink" href="quiz49.html" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Your Bonus Quiz →</a>
 </div>
 
 <div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:10px;">
@@ -1993,13 +1993,17 @@ function hubInit(){
   const savedScore=parseInt(localStorage.getItem('hubScore')||'0');
   const unlocked=localStorage.getItem(_getBonusKey(dayIdx))==='unlocked'||(savedScore>=6&&savedScore>0);
   function _showBonusCard(score){
+    const bonusQ=SCHEDULE.find(function(s){return s.f==='quiz49.html';});
+    const bonusTitle=bonusQ?bonusQ.t:'Your Bonus Quiz';
+    const bonusFile=bonusQ?bonusQ.f:'quiz49.html';
     const bc=document.getElementById('bonus-card');
     if(bc){bc.style.borderColor='#FFD700';bc.style.background='linear-gradient(135deg,#fffdf0,#fff8f0)';}
     const bi=document.getElementById('bonus-icon');if(bi)bi.textContent='🎸';
     const bt=document.getElementById('bonus-title');if(bt){bt.textContent='Bonus Grid Unlocked!';bt.style.color='#8B00FF';}
-    const bd2=document.getElementById('bonus-desc');if(bd2)bd2.textContent='Whitney Houston \u00b7 Marvin Gaye \u00b7 Enya';
+    const bd2=document.getElementById('bonus-desc');if(bd2)bd2.textContent=bonusQ?bonusQ.a.join(' \u00b7 '):'';
     const br=document.getElementById('bonus-req');if(br){br.textContent='\uD83C\uDFC6 Earned with score of '+score+'/9';br.style.color='#28a745';}
-    if(bc&&!bc.querySelector('a')){const a=document.createElement('a');a.href='quiz49.html';a.textContent='\uD83C\uDFB5 Play Bonus Quiz 49 \u2192';a.style.cssText='display:inline-block;margin-top:10px;padding:10px 22px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border-radius:8px;font-weight:900;font-size:0.85em;text-decoration:none;letter-spacing:0.5px;box-shadow:0 3px 10px rgba(255,20,147,0.35);';bc.appendChild(a);}
+    if(bc&&!bc.querySelector('a')){const a=document.createElement('a');a.href=bonusFile;a.textContent='\uD83C\uDFB5 Play Your Bonus Quiz: '+bonusTitle+' \u2192';a.style.cssText='display:inline-block;margin-top:10px;padding:10px 22px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border-radius:8px;font-weight:900;font-size:0.85em;text-decoration:none;letter-spacing:0.5px;box-shadow:0 3px 10px rgba(255,20,147,0.35);';bc.appendChild(a);}
+    const bl=document.getElementById('bonusBannerLink');if(bl){bl.href=bonusFile;bl.textContent='\uD83C\uDFB5 Play Your Bonus Quiz: '+bonusTitle+' \u2192';}
   }
   if(unlocked){ _showBonusCard(savedScore); }
   
