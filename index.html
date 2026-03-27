@@ -229,12 +229,23 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 }
 .leaderboard-scores-wrap { margin-top:160px; background:rgba(0,0,0,0.75); border-radius:8px; padding:15px 10px 10px; }
 .leaderboard-subtitle { text-align:center; color:#00ffff; margin-bottom:15px; font-size:0.85em; letter-spacing:3px; }
-.leaderboard-item { display:grid; grid-template-columns:40px 70px 1fr 80px; padding:8px 5px; border-bottom:1px solid rgba(0,255,0,.3); font-size:1em; letter-spacing:2px; }
+.leaderboard-item { display:grid; grid-template-columns:36px 60px 1fr 70px 60px; align-items:center; padding:8px 4px; border-bottom:1px solid rgba(0,255,0,.3); font-size:0.92em; letter-spacing:1.5px; }
 .leaderboard-item:last-child { border-bottom:none; }
-.leaderboard-rank { color:#ffff00; text-shadow:0 0 5px #ffff00; }
+.leaderboard-rank { color:#ffff00; text-shadow:0 0 5px #ffff00; font-weight:700; }
 .leaderboard-initials { color:#00ff00; font-weight:bold; text-shadow:0 0 5px #00ff00; }
-.leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; }
-.leaderboard-date { color:#00ffff; text-align:right; font-size:0.8em; }
+.leaderboard-score { color:#ff00ff; text-shadow:0 0 5px #ff00ff; font-weight:700; }
+.leaderboard-date { color:#00ffff; text-align:right; font-size:0.75em; }
+.lifeline-dots { display:flex; gap:4px; justify-content:center; }
+.dot { width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); background:transparent; display:inline-block; }
+.dot.used { background:#ff6b35; border-color:#ff6b35; box-shadow:0 0 4px rgba(255,107,53,0.7); }
+.clean-badge { font-size:0.68em; color:#ffd700; text-shadow:0 0 6px rgba(255,215,0,0.6); letter-spacing:1px; text-align:center; display:block; }
+.your-rank-divider { display:flex; align-items:center; gap:8px; margin:10px 4px 6px; font-size:0.62em; color:rgba(0,255,255,0.4); letter-spacing:2px; text-transform:uppercase; }
+.your-rank-divider::before,.your-rank-divider::after { content:''; flex:1; height:1px; background:rgba(0,255,255,0.2); }
+.your-rank-row { display:grid; grid-template-columns:36px 60px 1fr 70px 60px; align-items:center; padding:9px 4px; border-radius:6px; background:rgba(139,0,255,0.15); border:1px solid rgba(139,0,255,0.4); font-size:0.92em; letter-spacing:1.5px; }
+.your-rank-number { color:#c084fc; font-weight:700; }
+.your-initials { color:#fff; font-weight:900; text-shadow:0 0 8px rgba(255,255,255,0.4); }
+.your-score { color:#ff00ff; font-weight:700; text-shadow:0 0 5px #ff00ff; }
+.your-time { color:#00ffff; text-align:right; font-size:0.75em; }
 .lifeline-bar { display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 16px; padding:10px 18px; background:linear-gradient(135deg,#fff0f8,#f0f0ff); border:2px solid rgba(139,0,255,0.25); border-radius:10px; font-family:Arial,sans-serif; }
 .lifeline-label { font-size:0.8em; font-weight:900; color:#555; letter-spacing:1px; text-transform:uppercase; }
 .lifeline-pips { display:flex; gap:5px; }
@@ -912,21 +923,25 @@ min-height: 300px; width: 100%; box-sizing: border-box;
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+/* ===== SUPABASE CONFIG ===== */
+const SB_URL  = 'https://owxtsagmzbwudxrnphmi.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93eHRzYWdtemJ3dWR4cm5waG1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1Njk4OTgsImV4cCI6MjA5MDE0NTg5OH0.s2vTqhIE0OwpCj_GjTjeM4VDO2Hm2GhiJavXAfvum_A';
+const sbClient = supabase.createClient(SB_URL, SB_ANON);
+
 const QUIZ_NUM = 1; // Updated by hub init
 const PLAYS_KEY = '80sGridPlaysHub';
 const SESSION_KEY = 'hasPlayedHub';
 const QUIZ_KEY = 'hubScore';
 const DAILY_LIMIT = 2;
-const FORMSPREE_URL = 'https://formspree.io/f/xqedyjjd';
-const FEEDBACK_FORMSPREE = 'https://formspree.io/f/xeelpozw';
 const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited', RAD: 'bonus' };
 const FAKE_SCORES = [
-{initials:'ACE',pct:100,quizzes:9,date:'2/1/26'},{initials:'MAX',pct:96,quizzes:9,date:'2/3/26'},
-{initials:'ROX',pct:93,quizzes:9,date:'2/5/26'},{initials:'JAX',pct:89,quizzes:9,date:'2/8/26'},
-{initials:'ZEN',pct:89,quizzes:5,date:'2/10/26'},{initials:'VIX',pct:85,quizzes:9,date:'2/12/26'},
-{initials:'RAD',pct:85,quizzes:4,date:'2/14/26'},{initials:'SKY',pct:82,quizzes:9,date:'2/15/26'},
-{initials:'NEO',pct:81,quizzes:5,date:'2/16/26'},{initials:'LUX',pct:80,quizzes:9,date:'2/16/26'}
+{initials:'ACE',score:9,pct:100,lifelines_used:0,played_at:null,date:'4/8/26'},{initials:'MAX',score:9,pct:100,lifelines_used:1,played_at:null,date:'4/8/26'},
+{initials:'ROX',score:8,pct:89,lifelines_used:0,played_at:null,date:'4/8/26'},{initials:'JAX',score:8,pct:89,lifelines_used:2,played_at:null,date:'4/8/26'},
+{initials:'ZEN',score:7,pct:78,lifelines_used:0,played_at:null,date:'4/8/26'},{initials:'VIX',score:7,pct:78,lifelines_used:1,played_at:null,date:'4/8/26'},
+{initials:'RAD',score:6,pct:67,lifelines_used:0,played_at:null,date:'4/8/26'},{initials:'SKY',score:6,pct:67,lifelines_used:2,played_at:null,date:'4/8/26'},
+{initials:'NEO',score:5,pct:56,lifelines_used:1,played_at:null,date:'4/8/26'},{initials:'LUX',score:4,pct:44,lifelines_used:0,played_at:null,date:'4/8/26'}
 ];
 const PLAYS_START = 1986;
 let yesNoKeys = []; // Set by hub
@@ -993,7 +1008,7 @@ function updatePostQuizUI(){
 /* ===== EMAIL / CODE HELPERS ===== */
 function isEmail(str){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str.trim());}
 async function submitEmailToFormspree(email){
-  try{await fetch(FORMSPREE_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email.trim(),quiz:'Quiz '+QUIZ_NUM,date:new Date().toISOString()})});}catch(e){}
+  try{await sbClient.from('emails').insert({email:email.trim(),quiz_num:String(QUIZ_NUM)});}catch(e){}
 }
 function showBonusSuccess(type){
   const el=document.getElementById('bonusSuccess');const titleEl=document.getElementById('bonusSuccessTitle');const textEl=document.getElementById('bonusSuccessText');
@@ -1196,7 +1211,7 @@ function toggleBonusSurveyOption(btn,value){
 function claimBonusLifeline(){
   if(bonusSurveyAnswers.length===0)return;
   localStorage.setItem(BONUS_SURVEY_KEY,JSON.stringify(bonusSurveyAnswers));
-  try{fetch('https://formspree.io/f/xeelpozw',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'bonus_lifeline_survey',answers:bonusSurveyAnswers.join(', '),quiz:'Quiz 12',date:new Date().toISOString()})});}catch(e){}
+  try{sbClient.from('survey_responses').insert({survey_id:'bonus_lifeline',answer:bonusSurveyAnswers.join(', '),quiz_num:String(QUIZ_NUM)});}catch(e){}
   bonusLifelineUsed=true;lifelinesRemaining=1;updateLifelineUI();closeBonusSurveyModal();showBonusGrantedToast(false);
 }
 function showBonusGrantedToast(isUnlimited){
@@ -1541,21 +1556,63 @@ function resetGrid(){
   document.getElementById('results').style.display='none';
   document.getElementById('highScoreEntry').style.display='none';
 }
-function saveHighScore(){
+async function saveHighScore(){
   const i1=document.getElementById('initial1').value.toUpperCase();const i2=document.getElementById('initial2').value.toUpperCase();const i3=document.getElementById('initial3').value.toUpperCase();
   if(!i1||!i2||!i3){alert('Please enter all 3 initials!');return;}
-  let totalCorrect=0;let quizzesPlayed=0;
-  for(let i=1;i<=40;i++){const s=parseInt(localStorage.getItem('quiz'+i+'Score')||0);totalCorrect+=s;if(s>0)quizzesPlayed++;}
-  const possible=quizzesPlayed*9;const pct=possible>0?Math.round((totalCorrect/possible)*100):0;
-  if(pct>=80){let scores=JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');scores.push({initials:i1+i2+i3,pct:pct,quizzes:quizzesPlayed,date:new Date().toLocaleDateString('en-US',{month:'numeric',day:'numeric',year:'2-digit'})});scores.sort((a,b)=>b.pct-a.pct);scores=scores.slice(0,10);localStorage.setItem('80sGridScoresCombined',JSON.stringify(scores));}
-  document.getElementById('highScoreEntry').style.display='none';displayLeaderboard();
+  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0');
+  const pct=Math.round((score/9)*100);
+  const lifelinesUsed=3-lifelinesRemaining;
+  const dayIdx=_getDayIdx();
+  const quizId='hub_day_'+dayIdx;
+  const myEntry={initials:i1+i2+i3,score,pct,lifelines_used:lifelinesUsed,quiz_id:quizId};
+  localStorage.setItem('_myLastEntry',JSON.stringify(myEntry));
+  try{await sbClient.from('leaderboard').insert({quiz_id:quizId,initials:i1+i2+i3,score,pct,lifelines_used:lifelinesUsed});}catch(e){}
+  document.getElementById('highScoreEntry').style.display='none';
+  displayLeaderboard();
 }
-function displayLeaderboard(){
-  let scores=JSON.parse(localStorage.getItem('80sGridScoresCombined')||'[]');
-  if(scores.length<10)scores=[...scores,...FAKE_SCORES].slice(0,10);
-  scores.sort((a,b)=>b.pct-a.pct);
-  const html=scores.map((s,i)=>'<div class="leaderboard-item"><span class="leaderboard-rank">'+String(i+1).padStart(2,'0')+'.</span><span class="leaderboard-initials">'+s.initials+'</span><span class="leaderboard-score">'+s.pct+'%</span><span class="leaderboard-date">'+s.date+'</span></div>').join('');
-  document.getElementById('leaderboardList').innerHTML=html;document.getElementById('leaderboard').style.display='block';
+function _lifelineHTML(used){
+  if(used===0)return '<span class="clean-badge">\u2605 CLEAN</span>';
+  let d='';for(let i=0;i<3;i++)d+='<span class="dot'+(i<used?' used':'')+'"></span>';
+  return '<span class="lifeline-dots">'+d+'</span>';
+}
+function _timeStr(ts){
+  if(!ts)return '';
+  return new Date(ts).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+}
+async function displayLeaderboard(){
+  const dayIdx=_getDayIdx();
+  const quizId='hub_day_'+dayIdx;
+  const today=new Date().toISOString().slice(0,10);
+  let scores=[];
+  try{
+    const {data}=await sbClient.from('leaderboard').select('*')
+      .eq('quiz_id',quizId)
+      .gte('played_at',today+'T00:00:00')
+      .order('score',{ascending:false})
+      .order('lifelines_used',{ascending:true})
+      .order('played_at',{ascending:true})
+      .limit(10);
+    if(data&&data.length>0)scores=data;
+  }catch(e){}
+  if(scores.length<10)scores=[...scores,...FAKE_SCORES.slice(0,10-scores.length)];
+  const html=scores.map((s,i)=>'<div class="leaderboard-item"><span class="leaderboard-rank">'+String(i+1).padStart(2,'0')+'.</span><span class="leaderboard-initials">'+s.initials+'</span><span class="leaderboard-score">'+s.score+'/9</span>'+_lifelineHTML(s.lifelines_used||0)+'<span class="leaderboard-date">'+_timeStr(s.played_at)+'</span></div>').join('');
+  // Personal rank row
+  let personalRow='';
+  const myEntry=JSON.parse(localStorage.getItem('_myLastEntry')||'null');
+  if(myEntry&&myEntry.quiz_id===quizId){
+    try{
+      const {count}=await sbClient.from('leaderboard').select('*',{count:'exact',head:true})
+        .eq('quiz_id',quizId).gte('played_at',today+'T00:00:00')
+        .or('score.gt.'+myEntry.score+',and(score.eq.'+myEntry.score+',lifelines_used.lt.'+myEntry.lifelines_used+')');
+      const myRank=(count||0)+1;
+      if(myRank>10){
+        const ahead=myRank-1;
+        personalRow='<div class="your-rank-divider">Your rank</div><div class="your-rank-row"><span class="your-rank-number">#'+myRank+'</span><span class="your-initials">'+myEntry.initials+'</span><span class="your-score">'+myEntry.score+'/9</span>'+_lifelineHTML(myEntry.lifelines_used||0)+'<span class="your-time">Today</span></div><p style="text-align:center;font-size:0.68em;color:#666;margin-top:8px;letter-spacing:1px;">'+ahead+' '+(ahead===1?'person':'people')+' ranked ahead of you — play earlier tomorrow! \uD83D\uDD53</p>';
+      }
+    }catch(e){}
+  }
+  document.getElementById('leaderboardList').innerHTML=html+personalRow;
+  document.getElementById('leaderboard').style.display='block';
 }
 document.getElementById('initial1').addEventListener('input',function(){if(this.value)document.getElementById('initial2').focus();});
 document.getElementById('initial2').addEventListener('input',function(){if(this.value)document.getElementById('initial3').focus();});
@@ -1587,7 +1644,7 @@ function updateNavStatus(){
 function initNav(){renderNavGrid();}
 
 /* ===== SURVEY SYSTEM ===== */
-const SURVEY_FORMSPREE='https://formspree.io/f/xeelpozw';
+/* SURVEY_FORMSPREE replaced by Supabase */
 const SURVEYS={
   tribe:{id:'tribe',title:'&#127926; WHAT TYPE OF 80s FAN ARE YOU? &#127926;',options:[{value:'New Wave',icon:'&#127929;',label:'NEW WAVE',sub:'Depeche Mode &bull; The Cure &bull; Tears for Fears',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:26},{value:'Hair Metal',icon:'&#127928;',label:'HAIR METAL',sub:'M&ouml;tley Cr&uuml;e &bull; Def Leppard &bull; Bon Jovi',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:15},{value:'Pop Royalty',icon:'&#128081;',label:'POP ROYALTY',sub:'Madonna &bull; Michael Jackson &bull; Prince',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:28},{value:'Goth Dark Wave',icon:'&#128420;',label:'GOTH / DARK WAVE',sub:'Siouxsie &bull; Bauhaus &bull; The Smiths',color:'#888',bg:'linear-gradient(135deg,#1a1a1a,#333333)',border:'#666',pct:14},{value:'Heartland Rock',icon:'&#127482;&#127480;',label:'HEARTLAND ROCK',sub:'Springsteen &bull; Petty &bull; Mellencamp',color:'#d97706',bg:'linear-gradient(135deg,#b45309,#d97706)',border:'#fbbf24',pct:17}]},
   prom:{id:'prom',title:'&#127891; DID YOU GO TO YOUR PROM? &#127891;',options:[{value:'Yes - married prom date',icon:'&#128141;',label:'YES &mdash; AND I LATER MARRIED MY PROM DATE',sub:'',color:'#FF1493',bg:'linear-gradient(135deg,#FF1493,#ff69b4)',border:'#ffb6c1',pct:8},{value:'Yes - blast',icon:'&#128378;',label:'YES &mdash; HAD AN ABSOLUTE BLAST',sub:'',color:'#9d4edd',bg:'linear-gradient(135deg,#6a0dad,#9d4edd)',border:'#b388ff',pct:42},{value:'Yes - hated it',icon:'&#128543;',label:'YES &mdash; HATED EVERY SECOND OF IT',sub:'',color:'#dc2626',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',border:'#f87171',pct:19},{value:'No - not saying',icon:'&#129296;',label:"NO&hellip; AND THAT'S ALL I'M SAYING ABOUT THAT",sub:'',color:'#555',bg:'linear-gradient(135deg,#333,#555)',border:'#777',pct:31}]},
@@ -1622,7 +1679,7 @@ function renderSurvey(surveyId){
 function handleSurveyClick(el,surveyId,value){
   if(document.getElementById('surveyOptions').classList.contains('survey-voted'))return;
   localStorage.setItem('80sGrid_surveyAnswer_'+surveyId,value);markSurveyCompleted(surveyId);
-  try{fetch(SURVEY_FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'survey',survey_id:surveyId,answer:value,quiz:'Quiz '+QUIZ_NUM,date:new Date().toISOString()})});}catch(e){}
+  try{sbClient.from('survey_responses').insert({survey_id:surveyId,answer:value,quiz_num:String(QUIZ_NUM)});}catch(e){}
   revealSurveyResults(surveyId,value);
 }
 function revealSurveyResults(surveyId,chosen){
@@ -1714,7 +1771,7 @@ function updateStars(n){document.querySelectorAll('.feedback-star').forEach((s,i
 function submitFeedback(){
   const text=document.getElementById('feedbackText').value.trim();
   if(!feedbackRating&&!text){document.getElementById('feedbackText').style.borderColor='#FF1493';return;}
-  try{fetch(FEEDBACK_FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({type:'feedback',quiz:'Quiz 12',rating:feedbackRating,comment:text,date:new Date().toISOString()})});}catch(e){}
+  try{sbClient.from('feedback').insert({quiz_num:String(QUIZ_NUM),rating:feedbackRating,comment:text});}catch(e){}
   document.getElementById('feedbackForm').style.display='none';
   document.getElementById('feedbackSuccess').style.display='block';
   setTimeout(closeFeedback,3000);
