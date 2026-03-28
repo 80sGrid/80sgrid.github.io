@@ -20,7 +20,7 @@
      social — share copy  { fb, ig, tt, tw, url }
    ============================================================ */
 
-const QUIZ_DATA = [
+var QUIZ_DATA = [
 
   /* ─── Quiz 1: 80s Pop Giants ─── */
   {
@@ -2377,4 +2377,4 @@ function buildShareText(quiz, score, emojiGrid, platform) {
 }
 
 /* NAV LIST — auto-generated, no duplicate maintenance needed */
-const ALL_NAV_QUIZZES = QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
+var ALL_NAV_QUIZZES = QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
