@@ -222,7 +222,7 @@ text-align:left; border-radius:10px; cursor:pointer; transition:all .3s; border:
 .arcade-button { background:#00ff00; color:#000; border:none; padding:15px 40px; font-size:1.2em; font-weight:bold; cursor:pointer; font-family:'Oxanium',Arial,sans-serif; box-shadow:0 0 20px rgba(0,255,0,.5); }
 .leaderboard {
 margin-top: 30px;
-background: #000 url('/images/highscores.png') center top / 100% auto no-repeat;
+background: #000 url('/images/highscores.jpg') center top / 100% auto no-repeat;
 color: #00ff00; padding: 15px; border-radius: 10px; border: 3px solid #00ff00;
 font-family: 'Oxanium', Arial, sans-serif; box-shadow: 0 0 30px rgba(0,255,0,.5),inset 0 0 20px rgba(0,255,0,.1);
 min-height: 400px; width: 100%; box-sizing: border-box;
@@ -755,7 +755,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 </div>
 <div style="text-align:center; margin-top:20px;"><button class="arcade-button" onclick="saveHighScore()">SAVE</button></div>
 </div>
-<div id="leaderboard" class="leaderboard" style="display:none;">
+<div id="leaderboard" class="leaderboard" style="display:block;">
 <div class="leaderboard-scores-wrap">
 <div class="leaderboard-subtitle"></div>
 <div id="leaderboardList"></div>
@@ -2021,6 +2021,13 @@ function quizInit(){
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
   window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score';
+  // Show fake scores immediately so leaderboard is never blank
+  if(typeof FAKE_SCORES !== 'undefined' && document.getElementById('leaderboardList')){
+    const sub=document.getElementById('leaderboard-subtitle')||document.querySelector('.leaderboard-subtitle');
+    if(sub) sub.textContent="TODAY'S TOP SCORES";
+    const fakeHtml=FAKE_SCORES.slice(0,10).map((s,i)=>'<div class="leaderboard-item"><span class="leaderboard-rank">'+String(i+1).padStart(2,'0')+'.</span><span class="leaderboard-initials">'+s.initials+'</span><span class="leaderboard-score">'+s.score+'/9</span>'+_lifelineHTML(s.lifelines_used||0)+'<span class="leaderboard-date">'+( s.date||'today')+'</span></div>').join('');
+    document.getElementById('leaderboardList').innerHTML=fakeHtml;
+  }
   if(typeof displayLeaderboard==='function') displayLeaderboard();
   const savedScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
   if(savedScore>=6){ _showBonusCard(savedScore); }
