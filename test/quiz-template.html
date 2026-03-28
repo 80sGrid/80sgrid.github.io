@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1905,11 +1904,6 @@ function initNextQuizBtn() {
 
 /* ===== HUB SCHEDULE & DYNAMIC LOGIC ===== */
 const LAUNCH_DATE=new Date('2026-04-08T00:00:00');
-/* ===================================================================
-   quiz-data.js loaded at end of body — provides QUIZ_DATA + helpers.
-   quizInit() replaces hubInit(). Reads ?id= from URL.
-   =================================================================== */
-
 function _getAllScores(){
   const s=[];
   for(let i=0;i<localStorage.length;i++){
@@ -1918,35 +1912,25 @@ function _getAllScores(){
   }
   return s;
 }
-
 function quizInit(){
   const params=new URLSearchParams(window.location.search);
   const n=parseInt(params.get('id')||'1',10);
-  const q=(typeof getQuizByNum==='function')?getQuizByNum(n):null;
+  const q=(typeof QUIZ_DATA!=='undefined')?QUIZ_DATA.find(x=>x.n===n):null;
   if(!q){
-    document.title='Quiz Not Found — 80sGrid.com';
+    document.title='Quiz '+n+' Not Found';
     const c=document.querySelector('.container');
-    if(c)c.innerHTML='<div style="text-align:center;padding:60px;font-family:Arial;"><h2>Quiz '+n+' not found</h2><p><a href="../index.html">← Back to 80sGrid</a></p></div>';
+    if(c)c.innerHTML='<div style="text-align:center;padding:60px;font-family:Arial;"><h2>Quiz '+n+' not found</h2><p><a href="/">Back to 80sGrid</a></p></div>';
     return;
   }
-
-  // Answer engine
   answers=q.ans; mcOptions=q.mc||{}; yesNoKeys=q.yn||[];
-
-  // Cell placeholders
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
     const inp=cell.querySelector('input');
     if(inp) inp.placeholder=yesNoKeys.includes(key)?'Y/N':'Answer';
   });
-
-  // Labels
-  const dl=document.getElementById('today-label');
-  if(dl) dl.textContent='Quiz '+n+' · '+q.t;
+  const dl=document.getElementById('today-label'); if(dl) dl.textContent='Quiz '+n+' · '+q.t;
   const dt=document.getElementById('today-title'); if(dt) dt.textContent=q.t;
   const da=document.getElementById('today-artists'); if(da) da.textContent=q.a.join(', ');
-
-  // Difficulty badge
   const dc={easy:'--badge-color:#28a745;--badge-glow:rgba(40,167,69,0.4)',medium:'--badge-color:#fd7e14;--badge-glow:rgba(253,126,20,0.4)',hard:'--badge-color:#dc3545;--badge-glow:rgba(220,53,69,0.4)'};
   const dstar={easy:'&#9733;&#9733;&#9734;&#9734;&#9734;',medium:'&#9733;&#9733;&#9733;&#9734;&#9734;',hard:'&#9733;&#9733;&#9733;&#9733;&#9734;'};
   const dname={easy:'Easy',medium:'Medium',hard:'Hard'};
@@ -1954,116 +1938,44 @@ function quizInit(){
   const dsr=document.getElementById('diff-stars'); if(dsr) dsr.innerHTML=dstar[q.d]||dstar.medium;
   const dlbl=document.getElementById('diff-label'); if(dlbl) dlbl.textContent=dname[q.d];
   const dde=document.getElementById('diff-desc'); if(dde) dde.textContent=q.a.join(' · ');
-
-  // Grid headers
   const c1=document.getElementById('col1');const c2=document.getElementById('col2');const c3=document.getElementById('col3');
   if(c1)c1.textContent=q.a[0];if(c2)c2.textContent=q.a[1];if(c3)c3.textContent=q.a[2];
   const r1=document.getElementById('row1');const r2=document.getElementById('row2');const r3=document.getElementById('row3');
   if(r1)r1.textContent=q.r[0];if(r2)r2.textContent=q.r[1];if(r3)r3.textContent=q.r[2];
-
-  // Streak + stats
   const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
   const scores=_getAllScores();
   const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'—';
   const best=scores.length?Math.max(...scores)+'/9':'—';
   const snum=document.getElementById('streak-num'); if(snum) snum.textContent=streak;
-  const sf=document.getElementById('streak-flame');
-  const ssub=document.getElementById('streak-sub');
-  const smsg=document.getElementById('streak-msg');
-  const stom=document.getElementById('streak-tomorrow');
-  const sstrip=document.getElementById('streak-strip');
-  if(streak===0){
-    if(sstrip){sstrip.style.borderColor='#c084fc';sstrip.style.background='#f8f9ff';}
-    if(snum)snum.style.color='#8B00FF';
-    if(sf)sf.textContent='&#127928;';
-    if(ssub)ssub.textContent='Play today to start your streak';
-    if(smsg){smsg.textContent='Start your streak today!';smsg.style.color='#8B00FF';}
-    if(stom)stom.textContent='First play = Day 1 &#128293;';
-  } else {
-    if(sf)sf.textContent='&#128293;';
-    if(ssub)ssub.textContent='Play daily to keep it alive';
-    if(smsg){smsg.textContent='Keep it going!';smsg.style.color='#FF1493';}
-    if(stom)stom.textContent='Play today to reach '+(streak+1)+' &#128293;';
-  }
   const is=document.getElementById('istat-streak');if(is)is.textContent=streak;
   const ip=document.getElementById('istat-played');if(ip)ip.textContent=scores.length;
   const ia=document.getElementById('istat-avg');if(ia)ia.textContent=avg;
   const ib=document.getElementById('istat-best');if(ib)ib.textContent=best;
-
-  // Meta tags
   document.title=q.og.title||"Len's 80sGrid.com — "+q.t;
   document.querySelectorAll('meta[property="og:title"],meta[property="twitter:title"]').forEach(m=>m.setAttribute('content',q.og.title||document.title));
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
-
-  // QUIZ_NUM + QUIZ_KEY for engine
-  window.QUIZ_NUM=n;
-  window.QUIZ_KEY='quiz'+n+'Score';
-
-  // Prev/Next navigation replaces countdown
+  window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score';
+  const nextN=n<70?n+1:1; const prevN=n>1?n-1:70;
   const cdEl=document.getElementById('countdown');
   if(cdEl){
-    const nextN=n<70?n+1:1;
-    const prevN=n>1?n-1:70;
     const wrap=cdEl.closest('div');
-    if(wrap) wrap.innerHTML=
-      '<a href="?id='+prevN+'" style="color:#8B00FF;text-decoration:none;font-weight:bold;">← Quiz '+prevN+'</a>'
-      +'&nbsp;&nbsp;·&nbsp;&nbsp;'
-      +'<span style="font-family:Oxanium,Arial,sans-serif;font-weight:700;color:#8B00FF;">'+n+' / 70</span>'
-      +'&nbsp;&nbsp;·&nbsp;&nbsp;'
-      +'<a href="?id='+nextN+'" style="color:#8B00FF;text-decoration:none;font-weight:bold;">Quiz '+nextN+' →</a>';
+    if(wrap) wrap.innerHTML='<a href="?id='+prevN+'" style="color:#8B00FF;text-decoration:none;font-weight:bold;">← Quiz '+prevN+'</a>&nbsp;·&nbsp;<span style="font-family:Oxanium,Arial,sans-serif;font-weight:700;color:#8B00FF;">'+n+' / 70</span>&nbsp;·&nbsp;<a href="?id='+nextN+'" style="color:#8B00FF;text-decoration:none;font-weight:bold;">Quiz '+nextN+' →</a>';
   }
-
-  // Archive grid shows adjacent quizzes
   const ag=document.getElementById('archive-grid');
   if(ag){
     ag.innerHTML='';
-    const start=Math.max(1,n-3);
-    const end=Math.min(70,start+5);
+    const start=Math.max(1,n-3),end=Math.min(70,start+5);
     for(let i=start;i<=end;i++){
       if(i===n) continue;
-      const aq=getQuizByNum(i);
-      if(!aq) continue;
+      const aq=QUIZ_DATA.find(x=>x.n===i); if(!aq) continue;
       const sc=localStorage.getItem('quiz'+i+'Score');
       const card=document.createElement('a');
       card.href='?id='+i;
       card.style.cssText='border:2px solid #dee2e6;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;text-decoration:none;color:inherit;display:block;';
-      card.innerHTML='<div style="font-family:Oxanium,Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">#'+String(i).padStart(3,'0')+'</div>'
-        +'<div style="font-size:0.68em;color:#999;margin-top:2px;">'+aq.t+'</div>'
-        +'<div style="font-size:0.72em;font-weight:700;margin-top:4px;color:'+(sc?'#28a745':'#aaa')+'">'+(sc?'&#10003; '+sc+'/9':'Not played')+'</div>';
+      card.innerHTML='<div style="font-family:Oxanium,Arial,sans-serif;font-size:1.3em;font-weight:700;color:#8B00FF;">#'+String(i).padStart(3,'0')+'</div><div style="font-size:0.68em;color:#999;margin-top:2px;">'+aq.t+'</div><div style="font-size:0.72em;font-weight:700;margin-top:4px;color:'+(sc?'#28a745':'#aaa')+'">'+(sc?'&#10003; '+sc+'/9':'Not played')+'</div>';
       ag.appendChild(card);
     }
-  }
-
-  // Bonus card unlock
-  const savedScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
-  if(savedScore>=6){ _showBonusCard(savedScore); }
-
-  // Wrap checkAnswers for streak + bonus tracking
-  const origCheck=window.checkAnswers;
-  if(origCheck&&!window.__checkWrapped){
-    window.__checkWrapped=true;
-    window.checkAnswers=function(){
-      origCheck();
-      const newScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
-      localStorage.setItem('hubScore',newScore);
-      if(newScore>=6){
-        const bc2=document.getElementById('bonus-card');
-        if(bc2&&!bc2.querySelector('a'))_showBonusCard(newScore);
-        const bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
-      }
-      const today=new Date().toISOString().slice(0,10);
-      const last=localStorage.getItem('80sg_last_played');
-      let str=parseInt(localStorage.getItem('80sg_streak')||'0');
-      if(last!==today){
-        const yest=new Date(Date.now()-86400000).toISOString().slice(0,10);
-        str=(last===yest)?str+1:1;
-        localStorage.setItem('80sg_streak',str);
-        localStorage.setItem('80sg_last_played',today);
-      }
-      const sn=document.getElementById('streak-num');if(sn)sn.textContent=str;
-      const is2=document.getElementById('istat-streak');if(is2)is2.textContent=str;
-    };
   }
 }
 
