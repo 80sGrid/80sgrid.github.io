@@ -1917,13 +1917,34 @@ function _getScoreKey(i){return '80sg_score_day_'+i;}
 function _getBonusKey(i){return '80sg_bonus_day_'+i;}
 function _getDayIdx(){return (window.QUIZ_NUM||1)-1;}
 
+function _showBonusCard(score){
+  const QDATA=window.QUIZ_DATA||[];
+  const bonusQ=QDATA.find(function(s){return s.f==='quiz49.html';});
+  const bonusTitle=bonusQ?bonusQ.t:'Your Bonus Quiz';
+  const bonusFile=bonusQ?bonusQ.f:'quiz49.html';
+  const bc=document.getElementById('bonus-card');
+  if(bc){bc.style.borderColor='#FFD700';bc.style.background='linear-gradient(135deg,#fffdf0,#fff8f0)';}
+  const bi=document.getElementById('bonus-icon');if(bi)bi.textContent='\uD83C\uDFB8';
+  const bt=document.getElementById('bonus-title');if(bt){bt.textContent='Bonus Grid Unlocked!';bt.style.color='#8B00FF';}
+  const bd2=document.getElementById('bonus-desc');if(bd2)bd2.textContent=bonusQ?bonusQ.a.join(' \u00b7 '):'';
+  const br=document.getElementById('bonus-req');if(br){br.textContent='\uD83C\uDFC6 Earned with score of '+score+'/9';br.style.color='#28a745';}
+  if(bc&&!bc.querySelector('a')){
+    const a=document.createElement('a');a.href=bonusFile;
+    a.textContent='\uD83C\uDFB5 Play Your Bonus Quiz: '+bonusTitle+' \u2192';
+    a.style.cssText='display:inline-block;margin-top:10px;padding:10px 22px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border-radius:8px;font-weight:900;font-size:0.85em;text-decoration:none;';
+    bc.appendChild(a);
+  }
+  const bl=document.getElementById('bonusBannerLink');
+  if(bl){bl.href=bonusFile;bl.textContent='\uD83C\uDFB5 Play Your Bonus Quiz: '+bonusTitle+' \u2192';}
+}
+
 function quizInit(){
   const params=new URLSearchParams(window.location.search);
   const n=parseInt(params.get('id')||'1',10);
   const QDATA=window.QUIZ_DATA||[];
   const q=QDATA.find(x=>x.n===n);
   if(!q){
-    document.title='Quiz Not Found — 80sGrid.com';
+    document.title='Quiz Not Found \u2014 80sGrid.com';
     const c=document.querySelector('.container');
     if(c)c.innerHTML='<div style="text-align:center;padding:60px;font-family:Arial;"><h2>Quiz '+n+' not found</h2><p><a href="/">Back to 80sGrid</a></p></div>';
     return;
@@ -1935,7 +1956,7 @@ function quizInit(){
     if(inp) inp.placeholder=yesNoKeys.includes(key)?'Y/N':'Answer';
   });
   const dl=document.getElementById('today-label');
-  if(dl) dl.textContent='Today\'s Grid · '+new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+  if(dl) dl.textContent='Today\'s Grid \u00b7 '+new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
   const dt=document.getElementById('today-title'); if(dt) dt.textContent=q.t;
   const da=document.getElementById('today-artists'); if(da) da.textContent=q.a.join(', ');
   const dc={easy:'--badge-color:#28a745;--badge-glow:rgba(40,167,69,0.4)',medium:'--badge-color:#fd7e14;--badge-glow:rgba(253,126,20,0.4)',hard:'--badge-color:#dc3545;--badge-glow:rgba(220,53,69,0.4)'};
@@ -1944,15 +1965,15 @@ function quizInit(){
   const db=document.getElementById('diff-badge'); if(db) db.style.cssText=dc[q.d]||dc.medium;
   const dsr=document.getElementById('diff-stars'); if(dsr) dsr.innerHTML=dstar[q.d]||dstar.medium;
   const dlbl=document.getElementById('diff-label'); if(dlbl) dlbl.textContent=dname[q.d];
-  const dde=document.getElementById('diff-desc'); if(dde) dde.textContent=q.a.join(' · ');
+  const dde=document.getElementById('diff-desc'); if(dde) dde.textContent=q.a.join(' \u00b7 ');
   const c1=document.getElementById('col1');const c2=document.getElementById('col2');const c3=document.getElementById('col3');
   if(c1)c1.textContent=q.a[0];if(c2)c2.textContent=q.a[1];if(c3)c3.textContent=q.a[2];
   const r1=document.getElementById('row1');const r2=document.getElementById('row2');const r3=document.getElementById('row3');
   if(r1)r1.textContent=q.r[0];if(r2)r2.textContent=q.r[1];if(r3)r3.textContent=q.r[2];
   const streak=parseInt(localStorage.getItem('80sg_streak')||'0');
   const scores=_getAllScores();
-  const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'—';
-  const best=scores.length?Math.max(...scores)+'/9':'—';
+  const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):'\u2014';
+  const best=scores.length?Math.max(...scores)+'/9':'\u2014';
   const snum=document.getElementById('streak-num'); if(snum) snum.textContent=streak;
   const sf=document.getElementById('streak-flame');
   const ssub=document.getElementById('streak-sub');
@@ -1962,15 +1983,15 @@ function quizInit(){
   if(streak===0){
     if(sstrip){sstrip.style.borderColor='#c084fc';sstrip.style.background='#f8f9ff';}
     if(snum)snum.style.color='#8B00FF';
-    if(sf)sf.textContent='🎸';
+    if(sf)sf.textContent='\uD83C\uDFB8';
     if(ssub)ssub.textContent='Play today to start your streak';
     if(smsg){smsg.textContent='Start your streak today!';smsg.style.color='#8B00FF';}
-    if(stom)stom.textContent='First play = Day 1 🔥';
+    if(stom)stom.textContent='First play = Day 1 \uD83D\uDD25';
   } else {
-    if(sf)sf.textContent='🔥';
+    if(sf)sf.textContent='\uD83D\uDD25';
     if(ssub)ssub.textContent='Play daily to keep it alive';
     if(smsg){smsg.textContent='Keep it going!';smsg.style.color='#FF1493';}
-    if(stom)stom.textContent='Play today to reach '+(streak+1)+' 🔥';
+    if(stom)stom.textContent='Play today to reach '+(streak+1)+' \uD83D\uDD25';
   }
   const is=document.getElementById('istat-streak');if(is)is.textContent=streak;
   const ip=document.getElementById('istat-played');if(ip)ip.textContent=scores.length;
@@ -1978,7 +1999,7 @@ function quizInit(){
   const ib=document.getElementById('istat-best');if(ib)ib.textContent=best;
   function tick(){const now=new Date(),mid=new Date(now);mid.setHours(24,0,0,0);const diff=mid-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');const el=document.getElementById('countdown');if(el)el.textContent=h+':'+m+':'+s;}
   tick(); setInterval(tick,1000);
-  document.title=q.og.title||"Len's 80sGrid.com — "+q.t;
+  document.title=q.og.title||"Len's 80sGrid.com \u2014 "+q.t;
   document.querySelectorAll('meta[property="og:title"],meta[property="twitter:title"]').forEach(m=>m.setAttribute('content',q.og.title||document.title));
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
@@ -2024,7 +2045,7 @@ function quizInit(){
           const hint=document.createElement('div');
           hint.className='answer-reveal';
           hint.style.cssText='font-size:0.7em;color:#28a745;font-weight:700;margin-top:4px;letter-spacing:0.5px;';
-          hint.textContent='✓ '+correct[0].split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+          hint.textContent='\u2713 '+correct[0].split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
           cell.appendChild(hint);
         }
       });
@@ -4443,7 +4464,7 @@ function getQuizByNum(n)     { return window.QUIZ_DATA.find(q => q.n === n) || n
 function getQuizByFile(f)    { return window.QUIZ_DATA.find(q => q.f === f) || null; }
 function getQuizzesByDiff(d) { return window.QUIZ_DATA.filter(q => q.d === d); }
 function getRandomQuiz(d)    { const p=d?getQuizzesByDiff(d):window.QUIZ_DATA; return p[Math.floor(Math.random()*p.length)]; }
-/* buildEmojiGrid defined by engine above */
+/* buildEmojiGrid: use engine version above */
 
 window.ALL_NAV_QUIZZES = window.QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
 
