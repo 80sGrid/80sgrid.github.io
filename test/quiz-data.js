@@ -2378,3 +2378,13 @@ function buildShareText(quiz, score, emojiGrid, platform) {
 
 /* NAV LIST — auto-generated, no duplicate maintenance needed */
 var ALL_NAV_QUIZZES = QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
+
+/* Explicitly attach to window for cross-script access */
+window.QUIZ_DATA = QUIZ_DATA;
+window.ALL_NAV_QUIZZES = ALL_NAV_QUIZZES;
+window.getQuizByNum = getQuizByNum;
+window.getQuizByFile = getQuizByFile;
+window.getQuizzesByDiff = getQuizzesByDiff;
+window.getRandomQuiz = getRandomQuiz;
+window.buildEmojiGrid = buildEmojiGrid;
+window.buildShareText = buildShareText;
