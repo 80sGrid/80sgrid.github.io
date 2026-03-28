@@ -7,7 +7,7 @@
 <link rel="apple-touch-icon" sizes="512x512" href="/favicon-512.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
-<script src="analytics.js"></script>
+<script src="/analytics.js"></script>
 <title>Len's 80sGrid.com — Daily Music Trivia</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://80sgrid.com/">
@@ -1565,7 +1565,7 @@ async function saveHighScore(){
   const pct=Math.round((score/9)*100);
   const lifelinesUsed=3-lifelinesRemaining;
   const dayIdx=_getDayIdx();
-  const quizId='hub_day_'+dayIdx;
+  const quizId='quiz'+(window.QUIZ_NUM||1);
   const myEntry={initials:i1+i2+i3,score,pct,lifelines_used:lifelinesUsed,quiz_id:quizId};
   localStorage.setItem('_myLastEntry',JSON.stringify(myEntry));
   try{await sbClient.from('leaderboard').insert({quiz_id:quizId,initials:i1+i2+i3,score,pct,lifelines_used:lifelinesUsed});}catch(e){}
@@ -1583,7 +1583,7 @@ function _timeStr(ts){
 }
 async function displayLeaderboard(){
   const dayIdx=_getDayIdx();
-  const quizId='hub_day_'+dayIdx;
+  const quizId='quiz'+(window.QUIZ_NUM||1);
   const today=new Date().toISOString().slice(0,10);
   let scores=[];
   try{
@@ -1784,7 +1784,6 @@ document.addEventListener('DOMContentLoaded', () => {
   closeModal();
   initializeCells();
   updatePlaysCounter();
-  displayLeaderboard();
   initNav();
   restoreSurveyOnLoad();
   initDedicationBox();
@@ -1983,6 +1982,7 @@ function quizInit(){
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
   window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score';
+  if(typeof displayLeaderboard==='function') displayLeaderboard();
   const savedScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
   if(savedScore>=6){ _showBonusCard(savedScore); }
   const origCheck=window.checkAnswers;
