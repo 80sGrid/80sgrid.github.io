@@ -775,6 +775,8 @@ min-height: 300px; width: 100%; box-sizing: border-box;
 
   <!-- Footer Links -->
   <div class="footer-links">
+    <a href="/" style="font-weight:900;">🏠 Home</a>
+    <span>|</span>
     <a href="about.html">About</a>
     <span>|</span>
     <a href="sponsors.html">Our Sponsors</a>
@@ -2033,8 +2035,7 @@ function quizInit(){
     }
   }
   const origCheck=window.checkAnswers;
-  if(origCheck&&!window.__checkWrapped){
-    window.__checkWrapped=true;
+  if(origCheck){
     window.checkAnswers=function(){
       origCheck();
       document.querySelectorAll('.cell.incorrect').forEach(cell=>{
