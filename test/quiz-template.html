@@ -1253,11 +1253,11 @@ function shareQuizEmoji(){
     text='🎸 80sGrid — '+quizTitle+'\n'
       +score+'/9 '+getStarRating(score)+'\n\n'
       +grid+'\n\n'
-      +'Can you beat me? 👉 80sgrid.com';
+      +'Can you beat me? 👉 80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'\n';
   } else {
     text='🎸 Think you know your 80s music?\n'
       +quizTitle+' — play now!\n\n'
-      +'👉 80sgrid.com';
+      +'👉 80sgrid.com/quiz'+(window.QUIZ_NUM||'');
   }
 
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
