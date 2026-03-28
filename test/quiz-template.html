@@ -190,7 +190,8 @@ animation: pulse 1.5s infinite;
 .survey-question {
 background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 padding: 25px 18px; border-radius: 12px; margin-top: 20px; color: white;
-box-shadow: 0 0 20px rgba(102,126,234,.4); border: 3px solid rgba(255,255,255,.3);
+border: 2px solid #FF1493;
+box-shadow: 0 0 30px rgba(255,20,147,0.4), 0 0 20px rgba(102,126,234,.4); border: 3px solid rgba(255,255,255,.3);
 }
 .survey-question h3 { text-align:center; margin-top:0; margin-bottom:14px; font-size:1.1em; }
 .survey-options { display:flex; flex-direction:column; gap:8px; }
@@ -442,6 +443,14 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   font-size: 0.72em;
   color: #aaa;
   line-height: 1.6;
+}
+
+@keyframes surveyPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(255,20,147,0.4), 0 0 20px rgba(102,126,234,0.3); }
+  50% { box-shadow: 0 0 50px rgba(255,20,147,0.7), 0 0 30px rgba(102,126,234,0.5); }
+}
+#surveyQuestion {
+  animation: surveyPulse 2s ease-in-out infinite;
 }
 </style>
 </head>
@@ -2075,6 +2084,13 @@ function quizInit(){
       });
       const newScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
       localStorage.setItem('hubScore',newScore);
+      // Auto-scroll to survey if it shows
+      setTimeout(()=>{
+        const sq=document.getElementById('surveyQuestion');
+        if(sq&&sq.style.display!=='none'&&sq.offsetHeight>0){
+          sq.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      }, 400);
       if(newScore>=6){
         const bc2=document.getElementById('bonus-card');
         if(bc2&&!bc2.querySelector('a'))_showBonusCard(newScore);
