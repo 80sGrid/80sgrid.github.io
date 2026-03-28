@@ -1915,7 +1915,8 @@ function _getAllScores(){
 function quizInit(){
   const params=new URLSearchParams(window.location.search);
   const n=parseInt(params.get('id')||'1',10);
-  const q=(typeof QUIZ_DATA!=='undefined')?QUIZ_DATA.find(x=>x.n===n):null;
+  const QDATA=window.QUIZ_DATA;
+  const q=QDATA?QDATA.find(x=>x.n===n):null;
   if(!q){
     document.title='Quiz '+n+' Not Found';
     const c=document.querySelector('.container');
@@ -1965,10 +1966,11 @@ function quizInit(){
   const ag=document.getElementById('archive-grid');
   if(ag){
     ag.innerHTML='';
+    const QDATA2=window.QUIZ_DATA||[];
     const start=Math.max(1,n-3),end=Math.min(70,start+5);
     for(let i=start;i<=end;i++){
       if(i===n) continue;
-      const aq=QUIZ_DATA.find(x=>x.n===i); if(!aq) continue;
+      const aq=QDATA2.find(x=>x.n===i); if(!aq) continue;
       const sc=localStorage.getItem('quiz'+i+'Score');
       const card=document.createElement('a');
       card.href='?id='+i;
@@ -2055,7 +2057,7 @@ function drawGridOnCassette(ctx, W, H) {
      social — share copy  { fb, ig, tt, tw, url }
    ============================================================ */
 
-var QUIZ_DATA = [
+window.QUIZ_DATA = [
 
   /* ─── Quiz 1: 80s Pop Giants ─── */
   {
@@ -4384,11 +4386,11 @@ var QUIZ_DATA = [
    LOOKUP HELPERS
    ───────────────────────────────────────────── */
 
-function getQuizByNum(n)        { return QUIZ_DATA.find(q => q.n === n) || null; }
-function getQuizByFile(f)       { return QUIZ_DATA.find(q => q.f === f) || null; }
-function getQuizById(id)        { return QUIZ_DATA.find(q => q.f === id + '.html' || q.f === id) || null; }
-function getQuizzesByDiff(d)    { return QUIZ_DATA.filter(q => q.d === d); }
-function getRandomQuiz(d)       { const pool = d ? getQuizzesByDiff(d) : QUIZ_DATA; return pool[Math.floor(Math.random()*pool.length)]; }
+function getQuizByNum(n)        { return window.QUIZ_DATA.find(q => q.n === n) || null; }
+function getQuizByFile(f)       { return window.QUIZ_DATA.find(q => q.f === f) || null; }
+function getQuizById(id)        { return window.QUIZ_DATA.find(q => q.f === id + '.html' || q.f === id) || null; }
+function getQuizzesByDiff(d)    { return window.QUIZ_DATA.filter(q => q.d === d); }
+function getRandomQuiz(d)       { const pool = d ? getQuizzesByDiff(d) : window.QUIZ_DATA; return pool[Math.floor(Math.random()*pool.length)]; }
 
 /** Build Wordle-style emoji grid from 9-cell state array.
  *  states: array of 'correct'|'incorrect'|'lifeline'|'empty' */
@@ -4412,17 +4414,7 @@ function buildShareText(quiz, score, emojiGrid, platform) {
 }
 
 /* NAV LIST — auto-generated, no duplicate maintenance needed */
-var ALL_NAV_QUIZZES = QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
-
-/* Explicitly attach to window for cross-script access */
-window.QUIZ_DATA = QUIZ_DATA;
-window.ALL_NAV_QUIZZES = ALL_NAV_QUIZZES;
-window.getQuizByNum = getQuizByNum;
-window.getQuizByFile = getQuizByFile;
-window.getQuizzesByDiff = getQuizzesByDiff;
-window.getRandomQuiz = getRandomQuiz;
-window.buildEmojiGrid = buildEmojiGrid;
-window.buildShareText = buildShareText;
+window.ALL_NAV_QUIZZES = window.QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
 
 quizInit();
 </script>
