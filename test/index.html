@@ -1023,8 +1023,8 @@ function updatePostQuizUI(){
     document.getElementById('postProgressText').innerHTML=text;
   }
   const nextQuizEl=document.getElementById('postNextQuiz');const wrapEl=document.getElementById('postWrapBox');
-  if(playsLeft>0||isUnlimited){nextQuizEl.style.display='block';wrapEl.style.display='none';}
-  else{nextQuizEl.style.display='none';wrapEl.style.display='block';if(unlock){document.getElementById('bonusCodeBox').style.display='none';showBonusSuccess(unlock);}}
+  if(playsLeft>0||isUnlimited){if(nextQuizEl)nextQuizEl.style.display='block';if(wrapEl)wrapEl.style.display='none';}
+  else{if(nextQuizEl)nextQuizEl.style.display='none';if(wrapEl)wrapEl.style.display='block';if(unlock){document.getElementById('bonusCodeBox').style.display='none';showBonusSuccess(unlock);}}
 }
 
 /* ===== EMAIL / CODE HELPERS ===== */
@@ -1692,9 +1692,9 @@ const SURVEY_DONE_KEY='80sGrid_surveysCompleted';
 const SURVEY_SHOWN_TODAY_KEY='80sGrid_surveyShownDate';
 function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY)||'[]');}catch(e){return[];}}
 function markSurveyCompleted(id){const done=getSurveysCompleted();if(!done.includes(id)){done.push(id);localStorage.setItem(SURVEY_DONE_KEY,JSON.stringify(done));}}
-function hasShownSurveyToday(){const today=new Date().toISOString().slice(0,10);return localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)===today;}
-function markSurveyShownToday(){localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,new Date().toISOString().slice(0,10));}
-function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[Math.floor(Math.random()*rem.length)];}
+function getSurveysShownToday(){const today=new Date().toISOString().slice(0,10);const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
+function markSurveyShownToday(){const today=new Date().toISOString().slice(0,10);const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
+function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[0];}
 function renderSurvey(surveyId){
   const survey=SURVEYS[surveyId];if(!survey)return;
   const el=document.getElementById('surveyQuestion');const titleEl=document.getElementById('surveyTitle');const optionsEl=document.getElementById('surveyOptions');
@@ -1729,8 +1729,16 @@ function revealSurveyResults(surveyId,chosen){
     card.style.cursor='default';card.onclick=null;
   });
 }
-function maybeShowSurvey(isFirstPlay){if(!isFirstPlay)return;if(hasShownSurveyToday())return;const nextId=getNextSurvey();if(!nextId)return;markSurveyShownToday();renderSurvey(nextId);}
-function restoreSurveyOnLoad(){if(!hasShownSurveyToday())return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
+function maybeShowSurvey(isFirstPlay){
+  // Show survey on 1st and 2nd completed quiz of the day — never a 3rd, never already-completed surveys
+  if(!isFirstPlay)return;
+  if(getSurveysShownToday()>=2)return;
+  const nextId=getNextSurvey();
+  if(!nextId)return;
+  markSurveyShownToday();
+  renderSurvey(nextId);
+}
+function restoreSurveyOnLoad(){if(getSurveysShownToday()===0)return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
 
 /* ===== DEDICATION BOX ===== */
 const DEDICATIONS = [
