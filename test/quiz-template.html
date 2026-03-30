@@ -1023,8 +1023,8 @@ function updatePostQuizUI(){
     document.getElementById('postProgressText').innerHTML=text;
   }
   const nextQuizEl=document.getElementById('postNextQuiz');const wrapEl=document.getElementById('postWrapBox');
-  if(playsLeft>0||isUnlimited){nextQuizEl.style.display='block';wrapEl.style.display='none';}
-  else{nextQuizEl.style.display='none';wrapEl.style.display='block';if(unlock){document.getElementById('bonusCodeBox').style.display='none';showBonusSuccess(unlock);}}
+  if(playsLeft>0||isUnlimited){if(nextQuizEl)nextQuizEl.style.display='block';if(wrapEl)wrapEl.style.display='none';}
+  else{if(nextQuizEl)nextQuizEl.style.display='none';if(wrapEl)wrapEl.style.display='block';if(unlock){document.getElementById('bonusCodeBox').style.display='none';showBonusSuccess(unlock);}}
 }
 
 /* ===== EMAIL / CODE HELPERS ===== */
@@ -1548,15 +1548,27 @@ function checkAnswers(){
   const oldScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');if(correct>oldScore)localStorage.setItem(QUIZ_KEY,correct);
   document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
   document.getElementById('results').style.display='block';
-  // Lock cells after grading — no changing answers after Check Answers
+  // Lock only answered cells — leave empty cells playable
   document.querySelectorAll('.cell').forEach(cell=>{
-    cell.style.pointerEvents='none';
-    cell.style.cursor='default';
     const inp=cell.querySelector('input');
-    if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+    const hasAnswer=inp&&inp.value.trim().length>0;
+    if(hasAnswer){
+      cell.style.pointerEvents='none';
+      cell.style.cursor='default';
+      if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+    }
   });
+  // Re-enable Check Answers if there are still empty cells
+  const emptyCells=document.querySelectorAll('.cell input');
+  const hasEmpty=[...emptyCells].some(inp=>inp.value.trim()===''&&inp.style.pointerEvents!=='none');
   const checkBtn=document.querySelector('.button-container button');
-  if(checkBtn){checkBtn.disabled=true;checkBtn.style.opacity='0.5';checkBtn.title='Answers already submitted';}
+  if(checkBtn){
+    if(hasEmpty){
+      checkBtn.disabled=false;checkBtn.style.opacity='1';checkBtn.title='';
+    } else {
+      checkBtn.disabled=true;checkBtn.style.opacity='0.5';checkBtn.title='All answers submitted';
+    }
+  }
   try{gtag('event','check_answers',{quiz_number:QUIZ_NUM,score:correct,total:total,is_replay:isThisAReplay});}catch(e){}
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
@@ -1680,9 +1692,9 @@ const SURVEY_DONE_KEY='80sGrid_surveysCompleted';
 const SURVEY_SHOWN_TODAY_KEY='80sGrid_surveyShownDate';
 function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY)||'[]');}catch(e){return[];}}
 function markSurveyCompleted(id){const done=getSurveysCompleted();if(!done.includes(id)){done.push(id);localStorage.setItem(SURVEY_DONE_KEY,JSON.stringify(done));}}
-function hasShownSurveyToday(){const today=new Date().toISOString().slice(0,10);return localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)===today;}
-function markSurveyShownToday(){localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,new Date().toISOString().slice(0,10));}
-function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[Math.floor(Math.random()*rem.length)];}
+function getSurveysShownToday(){const today=new Date().toISOString().slice(0,10);const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
+function markSurveyShownToday(){const today=new Date().toISOString().slice(0,10);const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
+function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[0];}
 function renderSurvey(surveyId){
   const survey=SURVEYS[surveyId];if(!survey)return;
   const el=document.getElementById('surveyQuestion');const titleEl=document.getElementById('surveyTitle');const optionsEl=document.getElementById('surveyOptions');
@@ -1717,8 +1729,16 @@ function revealSurveyResults(surveyId,chosen){
     card.style.cursor='default';card.onclick=null;
   });
 }
-function maybeShowSurvey(isFirstPlay){if(!isFirstPlay)return;if(hasShownSurveyToday())return;const nextId=getNextSurvey();if(!nextId)return;markSurveyShownToday();renderSurvey(nextId);}
-function restoreSurveyOnLoad(){if(!hasShownSurveyToday())return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
+function maybeShowSurvey(isFirstPlay){
+  // Show survey on 1st and 2nd completed quiz of the day — never a 3rd, never already-completed surveys
+  if(!isFirstPlay)return;
+  if(getSurveysShownToday()>=2)return;
+  const nextId=getNextSurvey();
+  if(!nextId)return;
+  markSurveyShownToday();
+  renderSurvey(nextId);
+}
+function restoreSurveyOnLoad(){if(getSurveysShownToday()===0)return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
 
 /* ===== DEDICATION BOX ===== */
 const DEDICATIONS = [
@@ -1974,9 +1994,17 @@ function _renderNotes(q){
   fb.innerHTML='<strong>\uD83D\uDCDD Notes</strong><ul>'+notes.map(n=>'<li>'+n+'</li>').join('')+'</ul>';
 }
 
+function getDailyQuizId(){
+  // Soft launch starts March 30 2026 = Quiz 1, rolls forward daily at midnight ET
+  var launch=new Date('2026-03-30T00:00:00-05:00');
+  var now=new Date();
+  var daysSince=Math.floor((now-launch)/86400000);
+  if(daysSince<0) daysSince=0;
+  return (daysSince % 70)+1;
+}
 function quizInit(){
   const params=new URLSearchParams(window.location.search);
-  const n=parseInt(params.get('id')||'1',10);
+  const n=parseInt(params.get('id')||String(getDailyQuizId()),10);
   const QDATA=window.QUIZ_DATA||[];
   const q=QDATA.find(x=>x.n===n);
   if(!q){
