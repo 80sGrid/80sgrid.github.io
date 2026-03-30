@@ -2120,8 +2120,12 @@ function quizInit(){
           cell.appendChild(hint);
         }
       });
-      const newScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
+      const newScore=Math.max(
+        parseInt(localStorage.getItem('quiz'+n+'Score')||'0'),
+        document.querySelectorAll('.cell.correct').length
+      );
       localStorage.setItem('hubScore',newScore);
+      if(newScore>0) localStorage.setItem('quiz'+n+'Score', newScore);
       // Auto-scroll to survey if it shows
       setTimeout(()=>{
         const sq=document.getElementById('surveyQuestion');
