@@ -954,7 +954,7 @@ const sbClient = supabase.createClient(SB_URL, SB_ANON);
 
 const QUIZ_NUM = 1; // Updated by hub init
 const PLAYS_KEY = '80sGridPlaysHub';
-const SESSION_KEY = 'hasPlayedHub';
+const SESSION_KEY = 'hasPlayed_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
 const QUIZ_KEY = 'hubScore';
 const DAILY_LIMIT = 2;
 const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited', RAD: 'bonus' };
