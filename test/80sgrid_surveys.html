@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Len's 80sGrid.com — The Fun Surveys</title>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700;900&family=Archivo+Black&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #8B00FF;
+    --pink: #FF1493;
+    --gold: #FFD700;
+    --green: #28a745;
+    --orange: #fd7e14;
+    --red: #dc3545;
+    --dark: #0a0a0f;
+    --card: #13131f;
+    --border: rgba(139,0,255,0.3);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: white;
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Animated grid background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(139,0,255,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,0,255,0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px 60px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 50px 0 30px;
+  }
+
+  .header-eyebrow {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.7em;
+    letter-spacing: 6px;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    animation: flicker 4s infinite;
+  }
+
+  @keyframes flicker {
+    0%,95%,100% { opacity: 1; }
+    96% { opacity: 0.4; }
+    97% { opacity: 1; }
+    98% { opacity: 0.2; }
+    99% { opacity: 1; }
+  }
+
+  .header-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2em, 7vw, 3.5em);
+    line-height: 1;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 40%, var(--pink) 70%, var(--purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+
+  .header-sub {
+    font-size: 0.75em;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+
+  .header-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    margin: 20px auto;
+    border-radius: 2px;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 14px 20px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .progress-label {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.7em;
+    color: var(--pink);
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    border-radius: 3px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+  .progress-count {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.75em;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+  }
+
+  /* SURVEY CARD */
+  .survey-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .survey-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .survey-card.answered {
+    border-color: rgba(139,0,255,0.5);
+  }
+  .survey-card.answered::before { opacity: 1; }
+
+  .survey-num {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.65em;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+  }
+
+  .survey-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(0.9em, 3vw, 1.1em);
+    line-height: 1.3;
+    margin-bottom: 20px;
+    padding-right: 50px;
+    color: white;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option {
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.15s, box-shadow 0.15s;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option:hover {
+    transform: scale(1.02);
+    filter: brightness(1.15);
+  }
+
+  .option.voted { cursor: default; }
+  .option.voted:hover { transform: none; filter: none; }
+
+  .option-icon {
+    font-size: 1.4em;
+    min-width: 36px;
+    height: 36px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+
+  .option-text { flex: 1; }
+  .option-label {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.78em;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: white;
+  }
+  .option-sub {
+    font-size: 0.68em;
+    opacity: 0.8;
+    margin-top: 2px;
+    color: white;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Bar reveal */
+  .option-bar-wrap {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    min-width: 52px;
+  }
+  .option-pct {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.85em;
+    font-weight: 900;
+    color: white;
+  }
+  .option-bar-track {
+    width: 52px;
+    height: 5px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .option-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.8s ease;
+  }
+
+  .option.selected {
+    box-shadow: 0 0 20px rgba(255,20,147,0.5), inset 0 0 12px rgba(255,255,255,0.05);
+  }
+  .option.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 8px; right: 10px;
+    font-size: 0.85em;
+    color: white;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 900;
+  }
+
+  /* COMPLETION BADGE */
+  .completion-badge {
+    display: none;
+    text-align: center;
+    padding: 14px;
+    margin-top: 14px;
+    background: rgba(40,167,69,0.1);
+    border: 1px solid rgba(40,167,69,0.3);
+    border-radius: 10px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 0.75em;
+    color: #28a745;
+    letter-spacing: 2px;
+  }
+
+  /* ALL DONE */
+  .all-done {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+  }
+  .all-done-emoji { font-size: 3em; margin-bottom: 16px; }
+  .all-done-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.5em;
+    background: linear-gradient(135deg, var(--gold), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+  .all-done-sub {
+    font-size: 0.75em;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 30px 0 10px;
+    font-size: 0.65em;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+    font-family: 'Oxanium', sans-serif;
+  }
+  .footer a { color: var(--pink); text-decoration: none; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .survey-card { animation: cardIn 0.4s ease both; }
+  .survey-card:nth-child(1)  { animation-delay: 0.05s; }
+  .survey-card:nth-child(2)  { animation-delay: 0.1s; }
+  .survey-card:nth-child(3)  { animation-delay: 0.15s; }
+  .survey-card:nth-child(4)  { animation-delay: 0.2s; }
+  .survey-card:nth-child(5)  { animation-delay: 0.25s; }
+  .survey-card:nth-child(6)  { animation-delay: 0.3s; }
+  .survey-card:nth-child(7)  { animation-delay: 0.35s; }
+  .survey-card:nth-child(8)  { animation-delay: 0.4s; }
+  .survey-card:nth-child(9)  { animation-delay: 0.45s; }
+  .survey-card:nth-child(10) { animation-delay: 0.5s; }
+  .survey-card:nth-child(11) { animation-delay: 0.55s; }
+  .survey-card:nth-child(12) { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-eyebrow">🎸 Len's 80sGrid.com</div>
+    <div class="header-title">The Fun Surveys</div>
+    <div class="header-divider"></div>
+    <div class="header-sub">12 questions about your 80s life<br>Pick your answer — see how everyone else voted</div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-label">ANSWERED</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-count" id="progressCount">0 / 12</div>
+  </div>
+
+  <div id="surveyList"></div>
+  <div class="all-done" id="allDone">
+    <div class="all-done-emoji">🎸</div>
+    <div class="all-done-title">You're a True 80s Fan!</div>
+    <div class="all-done-sub">All 12 surveys answered.<br>Come play the daily quiz at<br><a href="https://80sgrid.com" target="_blank">80sgrid.com</a></div>
+  </div>
+
+  <div class="footer">© 2025–2026 Len's 80sGrid.com — All Rights Reserved &nbsp;·&nbsp; <a href="https://80sgrid.com">Play the Daily Quiz →</a></div>
+</div>
+
+<script>
+const SURVEYS = [
+  {
+    id: 'tribe',
+    title: '🎶 WHAT TYPE OF 80s FAN ARE YOU?',
+    options: [
+      { value: 'New Wave',      icon: '🎹', label: 'NEW WAVE',         sub: 'Depeche Mode · The Cure · Tears for Fears',         color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 26 },
+      { value: 'Hair Metal',    icon: '🎸', label: 'HAIR METAL',        sub: 'Mötley Crüe · Def Leppard · Bon Jovi',              color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
+      { value: 'Pop Royalty',   icon: '👑', label: 'POP ROYALTY',       sub: 'Madonna · Michael Jackson · Prince',                color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 28 },
+      { value: 'Goth',          icon: '🪦', label: 'GOTH / DARK WAVE',  sub: 'Siouxsie · Bauhaus · The Smiths',                   color: '#888',    bg: 'linear-gradient(135deg,#1a1a1a,#333333)', border: '#666',    pct: 14 },
+      { value: 'Heartland Rock',icon: '🇺🇸', label: 'HEARTLAND ROCK',   sub: 'Springsteen · Petty · Mellencamp',                  color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 17 },
+    ]
+  },
+  {
+    id: 'prom',
+    title: '🎓 DID YOU GO TO YOUR PROM?',
+    options: [
+      { value: 'Married',    icon: '💍', label: 'YES — AND I LATER MARRIED MY PROM DATE', sub: '',                                   color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 8  },
+      { value: 'Blast',      icon: '🌠', label: 'YES — HAD AN ABSOLUTE BLAST',            sub: '',                                   color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 42 },
+      { value: 'Hated it',   icon: '😣', label: 'YES — HATED EVERY SECOND OF IT',        sub: '',                                   color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 19 },
+      { value: 'No',         icon: '🤫', label: "NO… AND THAT'S ALL I'M SAYING",          sub: '',                                   color: '#555',    bg: 'linear-gradient(135deg,#333,#555)',       border: '#777',    pct: 31 },
+    ]
+  },
+  {
+    id: 'mall',
+    title: '🛍️ WHAT WAS YOUR FAVORITE MALL STORE?',
+    options: [
+      { value: 'Esprit',       icon: '👔', label: 'ESPRIT',        sub: 'The colorblock queen of the mall',        color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 22 },
+      { value: 'The Limited',  icon: '🛒', label: 'THE LIMITED',   sub: 'Power suits and shoulder pads',           color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 31 },
+      { value: 'Benetton',     icon: '🌍', label: 'BENETTON',      sub: 'United Colors and bold statements',       color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 18 },
+      { value: 'Chess King',   icon: '♟️', label: 'CHESS KING',    sub: 'Where the cool guys shopped',             color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 14 },
+      { value: 'Sam Goody',    icon: '🎵', label: 'SAM GOODY',     sub: 'Your cassette tape headquarters',         color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
+    ]
+  },
+  {
+    id: 'sat',
+    title: '📝 WHAT DID YOU GET ON YOUR SATs?',
+    options: [
+      { value: 'Over 1400', icon: '🎓', label: 'OVER 1400 — CRUSHED IT',        sub: '',                                              color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 18 },
+      { value: '1000-1399', icon: '📚', label: '1000–1399 — SOLID',              sub: '',                                              color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 39 },
+      { value: '800-999',   icon: '😅', label: '800–999 — GOT IN ANYWAY',        sub: '',                                              color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 28 },
+      { value: 'Mr Hand',   icon: '🎬', label: 'ASK MR. HAND…',                  sub: 'Fast Times reference — you know who you are',   color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
+    ]
+  },
+  {
+    id: 'coffee',
+    title: '☕ COFFEE WITH ONE PERSON — WHO?',
+    options: [
+      { value: 'Prince',   icon: '🎉', label: 'PRINCE',   sub: "If he'd even show up",              color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 29 },
+      { value: 'Madonna',  icon: '💄', label: 'MADONNA',  sub: "She'd do all the talking",           color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 24 },
+      { value: 'Bono',     icon: '🌎', label: 'BONO',     sub: 'Bring earplugs',                     color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 13 },
+      { value: 'Sade',     icon: '🌹', label: 'SADÉ',     sub: 'The most mysterious conversation ever', color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 34 },
+    ]
+  },
+  {
+    id: 'generation',
+    title: '🎭 WHICH GENERATION CLAIMS YOU?',
+    options: [
+      { value: 'Boomer',    icon: '👴', label: 'BOOMER',     sub: "I was a grown-up when this played. Still love it!",       color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 18 },
+      { value: 'Gen X',     icon: '🎸', label: 'GEN X',      sub: 'THIS IS MY MUSIC. I lived every second of it.',           color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 41 },
+      { value: 'Millennial',icon: '💾', label: 'MILLENNIAL', sub: "I grew up on the tail end. Close enough!",                color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 28 },
+      { value: 'Gen Z',     icon: '📱', label: 'GEN Z',      sub: "I only know this from Stranger Things but I'm obsessed",  color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 13 },
+    ]
+  },
+  {
+    id: 'roadtest',
+    title: '🚗 DID YOU PASS YOUR ROAD TEST FIRST TRY?',
+    options: [
+      { value: 'First try',  icon: '🥇', label: 'DUDE, OF COURSE',          sub: 'Parallel parked like a legend too',       color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 34 },
+      { value: 'Two tries',  icon: '😅', label: 'TOOK ME TWO TRIES',         sub: 'The cones had it coming',                 color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 29 },
+      { value: 'Three+',     icon: '😬', label: 'THREE OR MORE TRIES',       sub: 'I prefer not to discuss it',              color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 14 },
+      { value: 'Dad taught', icon: '🚙', label: 'MY FATHER TAUGHT ME TO DRIVE', sub: "'Nuff said",                           color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 15 },
+      { value: 'Pat Benatar',icon: '🎤', label: 'I LOVE PAT BENATAR',        sub: "Not sure how that's relevant but same",   color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 8  },
+    ]
+  },
+  {
+    id: 'bedroom',
+    title: '🏠 WHAT WAS YOUR TEENAGE BEDROOM LIKE?',
+    options: [
+      { value: 'Spotless',         icon: '✨', label: 'SPOTLESS — MY MOM INSPECTED IT', sub: 'Hospital corners on the bed and everything',     color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 12 },
+      { value: 'Organized chaos',  icon: '📚', label: 'ORGANIZED CHAOS',                sub: 'I knew exactly where everything was',             color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 38 },
+      { value: 'Disaster zone',    icon: '💥', label: 'CERTIFIED DISASTER ZONE',        sub: 'The floor was just a second closet',              color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 31 },
+      { value: 'Posters',          icon: '🎭', label: 'WALL-TO-WALL POSTERS',           sub: "Couldn't see the paint. Duran Duran approved.",   color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 19 },
+    ]
+  },
+  {
+    id: 'mixtape',
+    title: '📼 WHAT WAS ON YOUR FIRST MIXTAPE?',
+    options: [
+      { value: 'Love songs',    icon: '❤️', label: 'PURE LOVE SONGS',       sub: 'Made for someone who never knew it existed',          color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 27 },
+      { value: 'Pump up',       icon: '💪', label: 'PUMP-UP JAMS ONLY',     sub: 'Side A: Rocky IV. Side B: more Rocky IV.',             color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 22 },
+      { value: 'Deep cuts',     icon: '🎙️', label: 'DEEP CUTS & B-SIDES',   sub: "Nobody else had heard these. That was the point.",     color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 19 },
+      { value: 'MTV',           icon: '📺', label: 'WHATEVER WAS ON MTV',   sub: 'Hold record and pray for no DJ chatter',               color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 32 },
+    ]
+  },
+  {
+    id: 'detention',
+    title: '✏️ DID YOU EVER GET DETENTION?',
+    options: [
+      { value: 'Never',          icon: '😇', label: "NEVER — I WAS AN ANGEL",   sub: "Teacher's pet and proud of it",                     color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 21 },
+      { value: 'Once or twice',  icon: '😂', label: 'ONCE OR TWICE',             sub: 'Totally worth it both times',                       color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 35 },
+      { value: 'Regular',        icon: '😎', label: 'REGULAR CUSTOMER',          sub: 'Had my own seat. Mr. Johnson knew my name.',         color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 28 },
+      { value: 'Breakfast Club', icon: '🎬', label: 'I BASICALLY LIVED THERE',   sub: 'The Breakfast Club was a documentary about me',     color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 16 },
+    ]
+  },
+  {
+    id: 'mtvshow',
+    title: '📺 WHAT WAS YOUR FAVORITE MTV SHOW?',
+    options: [
+      { value: 'Behind the Music', icon: '🎵', label: 'BEHIND THE MUSIC', sub: 'The rise, the fall, the comeback',          color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 31 },
+      { value: 'Yo! MTV Raps',     icon: '🎤', label: 'YO! MTV RAPS',     sub: 'Fab 5 Freddy changed everything',           color: '#dc2626', bg: 'linear-gradient(135deg,#b91c1c,#dc2626)', border: '#f87171', pct: 24 },
+      { value: 'Remote Control',   icon: '📺', label: 'REMOTE CONTROL',   sub: 'Ken Ober for president',                    color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 18 },
+      { value: '120 Minutes',      icon: '🕛', label: '120 MINUTES',      sub: 'Stayed up till 2am for this. Worth it.',    color: '#28a745', bg: 'linear-gradient(135deg,#155724,#28a745)', border: '#c3e6cb', pct: 19 },
+      { value: 'They had shows?',  icon: '🤔', label: 'THEY HAD SHOWS?',  sub: 'I thought it was just music videos',        color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 8  },
+    ]
+  },
+  {
+    id: 'briansong',
+    title: "😢 DID YOU CRY WHEN YOU SAW BRIAN'S SONG?",
+    options: [
+      { value: 'Nah',       icon: '😐', label: "NAH...",                         sub: 'Stone cold. Not a tear. Totally fine.',             color: '#555',    bg: 'linear-gradient(135deg,#333,#555)',       border: '#777',    pct: 11 },
+      { value: 'Balled',    icon: '😭', label: 'I BALLED LIKE A NEWBORN BABY',   sub: 'Ugly crying. Full body sobs. No regrets.',          color: '#9d4edd', bg: 'linear-gradient(135deg,#6a0dad,#9d4edd)', border: '#b388ff', pct: 38 },
+      { value: 'Old Yeller',icon: '🐕', label: 'YES AND EVEN MORE FOR OLD YELLER',sub: 'Animals hit different. I stand by this.',           color: '#d97706', bg: 'linear-gradient(135deg,#b45309,#d97706)', border: '#fbbf24', pct: 29 },
+      { value: 'Still cry', icon: '❤️', label: 'YES, STILL TEAR UP WHEN I SEE IT',sub: "Some things never get easier. This is one.",       color: '#FF1493', bg: 'linear-gradient(135deg,#FF1493,#ff69b4)', border: '#ffb6c1', pct: 22 },
+    ]
+  },
+];
+
+let answered = 0;
+const STORAGE_KEY = '80sgrid_surveys_preview';
+
+function getAnswered() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+}
+function saveAnswer(id, value) {
+  const a = getAnswered(); a[id] = value;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(a));
+}
+
+function updateProgress() {
+  const pct = (answered / SURVEYS.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = answered + ' / ' + SURVEYS.length;
+  if (answered === SURVEYS.length) {
+    setTimeout(() => { document.getElementById('allDone').style.display = 'block'; }, 600);
+  }
+}
+
+function revealResults(card, survey, chosen) {
+  card.classList.add('answered');
+  card.querySelectorAll('.option').forEach(opt => {
+    opt.classList.add('voted');
+    opt.style.cursor = 'default';
+    const val = opt.dataset.value;
+    const pct = parseInt(opt.dataset.pct);
+    const isChosen = val === chosen;
+    if (isChosen) opt.classList.add('selected');
+    else opt.style.opacity = '0.6';
+    const barWrap = opt.querySelector('.option-bar-wrap');
+    if (barWrap) {
+      barWrap.style.display = 'flex';
+      const fill = barWrap.querySelector('.option-bar-fill');
+      barWrap.querySelector('.option-pct').textContent = pct + '%';
+      setTimeout(() => { if(fill) fill.style.width = pct + '%'; }, 80);
+    }
+  });
+  const badge = card.querySelector('.completion-badge');
+  if (badge) badge.style.display = 'block';
+}
+
+function handleVote(card, survey, value) {
+  saveAnswer(survey.id, value);
+  answered++;
+  updateProgress();
+  revealResults(card, survey, value);
+}
+
+function buildCard(survey, savedAnswer) {
+  const card = document.createElement('div');
+  card.className = 'survey-card';
+  card.innerHTML = `
+    <div class="survey-num">${(SURVEYS.indexOf(survey)+1).toString().padStart(2,'0')} / ${SURVEYS.length}</div>
+    <div class="survey-title">${survey.title}</div>
+    <div class="options">
+      ${survey.options.map(opt => `
+        <div class="option" data-value="${opt.value}" data-pct="${opt.pct}"
+          style="background:${opt.bg}; border-color:${opt.border};">
+          <div class="option-icon">${opt.icon}</div>
+          <div class="option-text">
+            <div class="option-label">${opt.label}</div>
+            ${opt.sub ? `<div class="option-sub">${opt.sub}</div>` : ''}
+          </div>
+          <div class="option-bar-wrap">
+            <div class="option-pct">0%</div>
+            <div class="option-bar-track">
+              <div class="option-bar-fill" style="background:${opt.color};"></div>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="completion-badge">✓ ANSWERED — THANKS FOR PLAYING!</div>
+  `;
+
+  if (savedAnswer) {
+    answered++;
+    revealResults(card, survey, savedAnswer);
+  } else {
+    card.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (card.classList.contains('answered')) return;
+        handleVote(card, survey, opt.dataset.value);
+      });
+    });
+  }
+  return card;
+}
+
+function init() {
+  const saved = getAnswered();
+  const list = document.getElementById('surveyList');
+  SURVEYS.forEach(s => list.appendChild(buildCard(s, saved[s.id] || null)));
+  updateProgress();
+}
+
+init();
+</script>
+</body>
+</html>
