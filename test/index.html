@@ -695,6 +695,11 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <div id="results" style="display:none;">
 <div id="score" style="font-size:1.3em; font-weight:bold; color:#333; margin-bottom:10px;"></div>
 
+<!-- SURVEY TRIGGER BUTTON — appears after results, player clicks when ready -->
+<div id="surveyTriggerWrap" style="display:none; text-align:center; margin-bottom:14px;">
+  <button id="surveyTriggerBtn" onclick="openSurveyFromBtn()" style="padding:10px 22px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:10px; font-size:0.88em; font-weight:900; cursor:pointer; letter-spacing:0.5px; box-shadow:0 4px 14px rgba(139,0,255,0.35); animation:bonusPulse 2s ease-in-out infinite;">🎵 Quick Question For You →</button>
+</div>
+
 <!-- BONUS QUIZ UNLOCK BANNER — shown when score >= 6 -->
 <div id="bonusUnlockBanner" style="display:none; margin-bottom:14px; padding:16px 18px; background:linear-gradient(135deg,#fff8d6,#fff0f8); border:2px solid #FFD700; border-radius:12px; text-align:center; box-shadow:0 0 18px rgba(255,215,0,0.4);">
   <div style="font-size:1.5em; margin-bottom:4px;">🎸</div>
@@ -1730,13 +1735,21 @@ function revealSurveyResults(surveyId,chosen){
   });
 }
 function maybeShowSurvey(isFirstPlay){
-  // Show survey on 1st and 2nd completed quiz of the day — never a 3rd, never already-completed surveys
-  if(!isFirstPlay)return;
-  if(getSurveysShownToday()>=2)return;
+  // Button handles actual display — this is now a no-op kept for compatibility
+  // Survey button visibility is handled in the checkAnswers wrapper timeout
+}
+function openSurveyFromBtn(){
+  // Player clicked the survey button — show survey and scroll to it
+  const wrap=document.getElementById('surveyTriggerWrap');
+  if(wrap)wrap.style.display='none';
   const nextId=getNextSurvey();
   if(!nextId)return;
   markSurveyShownToday();
   renderSurvey(nextId);
+  setTimeout(()=>{
+    const sq=document.getElementById('surveyQuestion');
+    if(sq)sq.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
 }
 function restoreSurveyOnLoad(){if(getSurveysShownToday()===0)return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
 
@@ -2126,13 +2139,13 @@ function quizInit(){
       );
       localStorage.setItem('hubScore',newScore);
       if(newScore>0) localStorage.setItem('quiz'+n+'Score', newScore);
-      // Auto-scroll to survey if it shows
+      // Show survey trigger button instead of auto-scrolling
       setTimeout(()=>{
-        const sq=document.getElementById('surveyQuestion');
-        if(sq&&sq.style.display!=='none'&&sq.offsetHeight>0){
-          sq.scrollIntoView({behavior:'smooth',block:'center'});
+        const wrap=document.getElementById('surveyTriggerWrap');
+        if(wrap && typeof getNextSurvey==='function' && getNextSurvey() && getSurveysShownToday()<2){
+          wrap.style.display='block';
         }
-      }, 400);
+      }, 800);
       if(newScore>=6){
         const bc2=document.getElementById('bonus-card');
         if(bc2&&!bc2.querySelector('a'))_showBonusCard(newScore);
