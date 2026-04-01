@@ -1767,7 +1767,13 @@ function showSurveyModal(){
   if(!nextId)return; // no surveys left
   if(getSurveysShownToday()>=2)return; // max 2 per day
   const m=document.getElementById('surveyModal');
-  if(m){m.style.display='flex';}
+  if(m){
+    m.style.display='flex';
+    // Prevent click-bleed from initials entry — disable buttons briefly
+    const btns=m.querySelectorAll('button');
+    btns.forEach(b=>{b.style.pointerEvents='none';});
+    setTimeout(()=>{btns.forEach(b=>{b.style.pointerEvents='';});}, 600);
+  }
 }
 function restoreSurveyOnLoad(){if(getSurveysShownToday()===0)return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
 
