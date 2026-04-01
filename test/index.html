@@ -487,27 +487,8 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <button class="stats-close" onclick="toggleStats()">CLOSE</button>
 </div>
 </div>
-<div class="limit-modal" id="limitModal">
-<div class="limit-box">
-<h2>&#9889; GAME OVER &#9889;</h2>
-<p>You've maxed out your quizzes for today!<br><br>&#127928; Come back tomorrow for more 80s glory! &#127928;</p>
-
-<div id="limitEmailWrap" style="margin:18px 0 14px;">
-  <p style="font-size:0.82em;color:#00ff00;margin-bottom:10px;letter-spacing:1px;">&#127925; SHOUT, SHOUT — LET IT ALL OUT!<br><span style="font-size:0.9em;color:#aaa;font-weight:400;">Drop your email and we'll remind you when tomorrow's quiz drops.</span></p>
-  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;">
-    <input type="email" id="limitEmailInput" placeholder="your@email.com" 
-      style="background:#111;border:2px solid #00ff00;border-radius:8px;color:#00ff00;font-family:Oxanium,Arial,sans-serif;font-size:0.85em;padding:10px 14px;outline:none;flex:1;min-width:180px;max-width:260px;">
-    <button onclick="submitLimitEmail()" id="limitEmailBtn"
-      style="background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:8px;padding:10px 18px;font-family:Oxanium,Arial,sans-serif;font-weight:900;font-size:0.82em;letter-spacing:1px;cursor:pointer;white-space:nowrap;">
-      REMIND ME &#127925;
-    </button>
-  </div>
-  <div id="limitEmailMsg" style="display:none;margin-top:10px;font-size:0.78em;font-weight:700;letter-spacing:1px;"></div>
-</div>
-
-<button onclick="document.getElementById('limitModal').classList.remove('show')">OK, SEE YOU TOMORROW!</button>
-</div>
-</div>
+<!-- limit modal removed - no lockouts -->
+<div class="limit-modal" id="limitModal" style="display:none!important">
 <!-- ===== BONUS LIFELINE MODAL ===== -->
 <div id="bonusSurveyOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:7000; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
   <div style="background:#fff; border-radius:18px; padding:26px 22px 22px; max-width:400px; width:100%; box-shadow:0 0 60px rgba(139,0,255,0.4); border:3px solid #8B00FF; position:relative;">
@@ -555,8 +536,8 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <div class="htp-body" id="htpBody">Click any box to type your answer and match each artist (column) to the right category (row). Often more than one that works! (Put on your raspberry beret and start typing!)</div>
 </div>
 
-<div class="nav-status-bar" id="navStatusBar"></div>
-<div class="unlock-panel" id="unlockPanel">
+<!-- nav status bar removed -->
+<div class="unlock-panel" id="unlockPanel" style="display:none!important">
   <h3>&#128275; Want to keep playing?</h3>
   <div class="code-row">
     <label>Have a secret code?</label>
@@ -621,8 +602,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 
 
 <div style="text-align:center; margin-bottom:10px; font-size:.9em;">
-<span id="playsCounter" style="color:#667eea; font-weight:bold;">&#127918; Loading plays...</span>
-<span style="color:#ccc;">&nbsp;&middot;&nbsp;</span>
+<span id="playsCounter" style="color:#667eea; font-weight:bold;"></span>
 <span style="color:#667eea; font-weight:bold;">In Pat Benatar We Trust</span>
 </div>
 
@@ -654,7 +634,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
     <span class="lifeline-count" id="lifelineCount">3 remaining</span>
   </div>
 </div>
-<button class="secret-code-btn" id="secretCodeBtn" onclick="openSecretCodeModal()">&#128273; Have a Secret Code?</button>
+<!-- secret code btn removed -->
 <div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
   <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
 </div>
@@ -685,12 +665,8 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <div id="completed-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px;"></div>
 <div id="no-completed" style="text-align:center;font-size:0.8em;color:#aaa;margin-bottom:10px;">No completed quizzes yet — play one to see it here!</div>
 <div style="text-align:center;font-size:0.68em;color:#8B00FF;letter-spacing:2px;text-transform:uppercase;margin:10px 0 8px;font-weight:900;">&#127926; Three Weekly Themed Quizzes</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;">
-  <a href="quiz-template.html?id=28" style="display:block;padding:10px 8px;background:#f3eeff;border:2px solid #c9b0ff;border-radius:10px;text-align:center;text-decoration:none;color:#5a00cc;font-size:0.78em;font-weight:700;line-height:1.3;">American Rock Across Three Styles</a>
-  <a href="quiz-template.html?id=32" style="display:block;padding:10px 8px;background:#f3eeff;border:2px solid #c9b0ff;border-radius:10px;text-align:center;text-decoration:none;color:#5a00cc;font-size:0.78em;font-weight:700;line-height:1.3;">AOR Giants Meet the Queen of Pop</a>
-  <a href="quiz-template.html?id=56" style="display:block;padding:10px 8px;background:#f3eeff;border:2px solid #c9b0ff;border-radius:10px;text-align:center;text-decoration:none;color:#5a00cc;font-size:0.78em;font-weight:700;line-height:1.3;">80s Megastars Up Close</a>
-</div>
-<div style="text-align:center;font-size:0.75em;color:#999;margin-bottom:16px;">Weekly classics — always available to replay for free!</div>
+<div id="classicQuizzesGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;"></div>
+<div style="text-align:center;font-size:0.75em;color:#999;margin-bottom:16px;">Free every week — new classics drop every Monday!</div>
 
 
 <div id="results" style="display:none;">
@@ -716,9 +692,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <a id="bonusBannerLink" href="quiz-template.html?id=49" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Your Bonus Quiz →</a>
 </div>
 
-<div style="text-align:center; font-size:0.82em; color:#8B00FF; font-style:italic; margin-bottom:10px;">
-  🔐 Want bonus plays? &nbsp;·&nbsp; Secret code &nbsp;·&nbsp; 📧 Email signup &nbsp;·&nbsp; 😄 Quick survey
-</div>
+<!-- bonus unlock hint removed -->
 
 <!-- POST-GAME NAV ROW -->
 <div style="display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; font-size:.9em; margin-bottom:14px; padding:10px 14px; background:#f8f9ff; border-radius:10px; border:1.5px solid #dee2e6;">
@@ -734,11 +708,34 @@ min-height: 400px; width: 100%; box-sizing: border-box;
     </div>
   </span>
 </div>
-<div class="post-quiz-progress" id="postQuizProgress">
-<div class="progress-pips" id="postProgressPips"></div>
-<div class="progress-text" id="postProgressText"></div>
+<div class="post-quiz-progress" id="postQuizProgress" style="display:none"></div>
+<div class="unlimited-banner" id="postUnlimitedBanner" style="display:none!important"></div>
+
+<!-- BONUS QUIZ UNLOCK — score < 6, earn it via survey or email -->
+<div id="bonusEarnBox" style="display:none; margin:14px 0; padding:20px 18px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border:2px solid #8B00FF; border-radius:14px; text-align:center;">
+  <div style="font-size:1.4em; margin-bottom:6px;">🎸</div>
+  <div style="font-family:'Oxanium',Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px;">UNLOCK YOUR BONUS QUIZ</div>
+  <div style="font-size:0.82em; color:#555; margin-bottom:16px;">Score was under 6 — but you can still earn it! Answer a quick 80s survey <em>or</em> drop your email.</div>
+  <button onclick="openBonusEarnSurvey()" style="width:100%; margin-bottom:10px; padding:12px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:10px; font-size:0.92em; font-weight:900; cursor:pointer; letter-spacing:0.5px;">😄 Answer a Quick 80s Question</button>
+  <div style="font-size:0.78em; color:#aaa; margin:6px 0 10px;">— or —</div>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <input type="email" id="bonusEarnEmail" placeholder="your@email.com" style="flex:1; padding:10px 12px; border:2px solid #c084fc; border-radius:8px; font-size:0.88em; outline:none;">
+    <button onclick="submitBonusEarnEmail()" style="padding:10px 16px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; border-radius:8px; font-size:0.88em; font-weight:900; cursor:pointer; white-space:nowrap;">Unlock 🎵</button>
+  </div>
+  <div id="bonusEarnMsg" style="display:none; margin-top:8px; font-size:0.8em; font-weight:700;"></div>
 </div>
-<div class="unlimited-banner" id="postUnlimitedBanner">&#128377;&#65039; UNLIMITED MODE ACTIVATED &#128377;&#65039;</div>
+
+<!-- POST-WRAP: remind me tomorrow -->
+<div id="remindMeBox" style="margin:14px 0; padding:20px 18px; background:linear-gradient(135deg,#f0f8ff,#f8f0ff); border:2px solid rgba(102,126,234,0.3); border-radius:14px; text-align:center;">
+  <div style="font-size:1.3em; margin-bottom:4px;">⏰</div>
+  <div style="font-family:'Oxanium',Arial,sans-serif; font-size:0.95em; font-weight:900; color:#667eea; letter-spacing:1px; margin-bottom:4px;">REMIND ME TOMORROW</div>
+  <div style="font-size:0.78em; color:#666; margin-bottom:12px; line-height:1.5;">Get a nudge when tomorrow's daily quiz drops.<br><em style="color:#aaa; font-size:0.9em;">✋ Right hand on a George Michael album — we will never spam, sell or rent your email.</em></div>
+  <div style="display:flex; gap:8px; align-items:center;">
+    <input type="email" id="remindEmail" placeholder="your@email.com" style="flex:1; padding:10px 12px; border:2px solid #c084fc; border-radius:8px; font-size:0.88em; outline:none;">
+    <button onclick="submitRemindEmail()" id="remindBtn" style="padding:10px 16px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:8px; font-size:0.88em; font-weight:900; cursor:pointer; white-space:nowrap;">Remind Me 🎵</button>
+  </div>
+  <div id="remindMsg" style="display:none; margin-top:8px; font-size:0.8em; font-weight:700;"></div>
+</div>
 
 <!-- SURVEY - shown immediately after score -->
 <div id="surveyQuestion" class="survey-question" style="display:none;">
@@ -751,27 +748,6 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <button onclick="shareQuizEmoji()" style="width:100%; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border:none; padding:14px 16px; border-radius:10px; cursor:pointer; font-size:1em; font-weight:900; box-shadow:0 4px 15px rgba(255,20,147,0.3); letter-spacing:1px;">
     &#128242; Share Your Score<br><span style="font-size:0.75em; font-weight:400; opacity:0.9;">Copies emoji grid — paste anywhere!</span>
   </button>
-</div>
-
-<div class="post-quiz-wrap" id="postWrapBox" style="display:none;">
-<div style="font-size:1.5em; margin-bottom:6px;">&#127926;</div>
-<div class="wrap-title">That's a wrap for today!</div>
-<div class="wrap-text">Come back tomorrow to unlock <strong style="color:#28a745;">2 more new quizzes</strong>. In the meantime, replay any quiz you've already completed — replays are always free!</div>
-<div class="bonus-code-box" id="bonusCodeBox">
-<div class="bonus-prompt">&gt; WANT A <span class="gold">BONUS QUIZ</span>? _</div>
-<div class="bonus-desc">Enter a <strong>secret code</strong> <em>or</em> <strong>your email</strong> to unlock one more quiz today</div>
-<div class="bonus-row">
-<input type="text" class="bonus-input" id="bonusInput" placeholder="Code or email..." onkeydown="if(event.key==='Enter')submitWrapCode()">
-<button class="bonus-submit" id="bonusSubmitBtn" onclick="submitWrapCode()">ENTER</button>
-</div>
-<div class="bonus-error" id="bonusError">Hmm, that doesn't look like a valid code or email. Try again!</div>
-<div class="bonus-hint">&#128274; We'll never spam you. Email just unlocks one bonus quiz.</div>
-</div>
-<div class="bonus-success" id="bonusSuccess">
-<div style="font-size:1.3em; margin-bottom:4px;">&#128377;&#65039;</div>
-<div id="bonusSuccessTitle" style="font-size:1.1em; font-weight:700; margin-bottom:4px;"></div>
-<div id="bonusSuccessText" style="font-size:0.9em; color:#555;"></div>
-</div>
 </div>
 </div>
 <div style="background:#e3f2fd; border:1px solid #2196f3; padding:12px; border-radius:8px; margin-bottom:20px; text-align:center; font-size:.9em;">
@@ -1023,27 +999,60 @@ function updateStreak(){
 
 /* ===== POST-QUIZ UI ===== */
 function updatePostQuizUI(){
-  const played=getQuizzesPlayedToday();const unlock=getUnlockType();const limit=getEffectiveDailyLimit();
-  const isUnlimited=unlock==='unlimited';const playsLeft=isUnlimited?999:limit-played;
-  const progressEl=document.getElementById('postQuizProgress');const unlimitedEl=document.getElementById('postUnlimitedBanner');
-  if(isUnlimited){progressEl.style.display='none';unlimitedEl.style.display='block';}
-  else{
-    progressEl.style.display='block';unlimitedEl.style.display='none';
-    let pipsHTML='';for(let i=0;i<limit;i++)pipsHTML+='<div class="progress-pip '+(i<played?'filled':'empty')+'"></div>';
-    document.getElementById('postProgressPips').innerHTML=pipsHTML;
-    let text;if(playsLeft>0){text='You\'ve played <strong style="color:#8B00FF;">'+played+'</strong> of your <strong style="color:#FF1493;">'+limit+'</strong> new quizzes today.';text+=playsLeft===1?' You\'ve got <strong style="color:#28a745;">1 new quiz</strong> left!':' You\'ve got <strong style="color:#28a745;">'+playsLeft+' new quizzes</strong> left!';}
-    else{text='You\'ve played all <strong style="color:#FF1493;">'+limit+'</strong> new quizzes for today! &#127881;';}
-    document.getElementById('postProgressText').innerHTML=text;
+  // No play limits — just show/hide bonus earn box based on score
+  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0');
+  const bonusEarnBox=document.getElementById('bonusEarnBox');
+  const bonusUnlockBanner=document.getElementById('bonusUnlockBanner');
+  // If score >= 6, bonus is auto-unlocked (handled in quizInit override)
+  // If score < 6 and bonus not yet earned today, show earn box
+  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusAlreadyEarned=localStorage.getItem(bonusEarnedKey);
+  if(bonusEarnBox){
+    bonusEarnBox.style.display=(score<6&&!bonusAlreadyEarned)?'block':'none';
   }
-  const nextQuizEl=document.getElementById('postNextQuiz');const wrapEl=document.getElementById('postWrapBox');
-  if(playsLeft>0||isUnlimited){if(nextQuizEl)nextQuizEl.style.display='block';if(wrapEl)wrapEl.style.display='none';}
-  else{if(nextQuizEl)nextQuizEl.style.display='none';if(wrapEl)wrapEl.style.display='block';if(unlock){document.getElementById('bonusCodeBox').style.display='none';showBonusSuccess(unlock);}}
 }
 
 /* ===== EMAIL / CODE HELPERS ===== */
 function isEmail(str){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str.trim());}
 async function submitEmailToFormspree(email){
   try{await sbClient.from('emails').insert({email:email.trim(),quiz_num:String(QUIZ_NUM)});}catch(e){}
+}
+
+/* ===== BONUS EARN (under-6 players) ===== */
+function openBonusEarnSurvey(){
+  // Reuse the existing bonus survey modal
+  openBonusSurveyModal();
+}
+async function submitBonusEarnEmail(){
+  const input=document.getElementById('bonusEarnEmail');
+  const msg=document.getElementById('bonusEarnMsg');
+  const email=input?input.value.trim():'';
+  if(!isEmail(email)){if(msg){msg.style.display='block';msg.style.color='#dc3545';msg.textContent='Please enter a valid email address';}return;}
+  await submitEmailToFormspree(email);
+  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  localStorage.setItem(bonusEarnedKey,'email');
+  if(msg){msg.style.display='block';msg.style.color='#28a745';msg.textContent='🎉 Bonus quiz unlocked!';}
+  setTimeout(()=>{
+    document.getElementById('bonusEarnBox').style.display='none';
+    const bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
+  },1200);
+  try{gtag('event','bonus_unlocked',{quiz_number:QUIZ_NUM,method:'email',score:'under6'});}catch(e){}
+}
+
+/* ===== REMIND ME TOMORROW EMAIL ===== */
+async function submitRemindEmail(){
+  const input=document.getElementById('remindEmail');
+  const msg=document.getElementById('remindMsg');
+  const btn=document.getElementById('remindBtn');
+  const email=input?input.value.trim():'';
+  if(!isEmail(email)){if(msg){msg.style.display='block';msg.style.color='#dc3545';msg.textContent='Please enter a valid email address';}return;}
+  btn.disabled=true;btn.textContent='Saving...';
+  try{
+    await sbClient.from('emails').insert({email:email.trim(),quiz_num:String(QUIZ_NUM),source:'remind_tomorrow'});
+  }catch(e){}
+  if(msg){msg.style.display='block';msg.style.color='#28a745';msg.textContent="✅ You're on the list! See you tomorrow 🎵";}
+  btn.textContent='✓ Saved!';
+  if(input)input.style.display='none';
 }
 function showBonusSuccess(type){
   const el=document.getElementById('bonusSuccess');const titleEl=document.getElementById('bonusSuccessTitle');const textEl=document.getElementById('bonusSuccessText');
@@ -1098,8 +1107,6 @@ function initializeCells(){
   });
 }
 function openModal(cell){
-  const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');
-  if(previousScore===0&&!hasNewPlaysLeft()){document.getElementById('limitModal').classList.add('show');return;}
   currentCell=cell;
   const colHeaders=document.querySelectorAll('.col-header');
   const rowHeaders=document.querySelectorAll('.row-header');
@@ -1248,6 +1255,11 @@ function claimBonusLifeline(){
   localStorage.setItem(BONUS_SURVEY_KEY,JSON.stringify(bonusSurveyAnswers));
   try{sbClient.from('survey_responses').insert({survey_id:'bonus_lifeline',answer:bonusSurveyAnswers.join(', '),quiz_num:String(QUIZ_NUM)});}catch(e){}
   bonusLifelineUsed=true;lifelinesRemaining=1;updateLifelineUI();closeBonusSurveyModal();showBonusGrantedToast(false);
+  // Also mark bonus quiz as earned if this came from the earn flow
+  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  localStorage.setItem(bonusEarnedKey,'survey');
+  const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='none';
+  const bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
 }
 function showBonusGrantedToast(isUnlimited){
   let toast=document.getElementById('bonusGrantedToast');
@@ -1544,7 +1556,6 @@ function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').repl
 function checkAnswers(){
   let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');const isThisAReplay=previousScore>0;
-  if(!isThisAReplay&&!hasNewPlaysLeft()&&!localStorage.getItem('__admin_unlimited')){document.getElementById('limitModal').classList.add('show');return;}
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
@@ -1589,7 +1600,11 @@ function checkAnswers(){
   maybeShowSurvey(_isFirstPlayToday);
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
-function updatePlaysCounter(){let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START);document.getElementById('playsCounter').innerHTML='&#127918; '+plays.toLocaleString()+' plays';}
+function updatePlaysCounter(){
+  let plays=(parseInt(localStorage.getItem(PLAYS_KEY))||PLAYS_START);
+  const el=document.getElementById('playsCounter');
+  if(el) el.innerHTML='&#127918; '+plays.toLocaleString()+' plays &nbsp;&middot;&nbsp;';
+}
 function showLeaderboard(){displayLeaderboard();document.getElementById('leaderboard').scrollIntoView({behavior:'smooth'});}
 function resetGrid(){
   document.querySelectorAll('.cell').forEach(cell=>{
@@ -1681,12 +1696,9 @@ function renderNavGrid(){
   updateNavStatus();
 }
 function updateNavStatus(){
-  var bar=document.getElementById("navStatusBar");if(!bar)return;
-  var played=getQuizzesPlayedToday();var limit=getEffectiveDailyLimit();var isUnlimited=getUnlockType()==="unlimited";
-  var panel=document.getElementById("unlockPanel");
-  if(isUnlimited){bar.innerHTML="\u267e\ufe0f Unlimited mode active!";bar.className="nav-status-bar unlimited";if(panel)panel.classList.remove("show");}
-  else if(played>=limit){bar.innerHTML="\uD83D\uDEAB Daily limit reached \u2014 replay completed quizzes or unlock more below!";bar.className="nav-status-bar limit-reached";if(panel)panel.classList.add("show");}
-  else{bar.innerHTML="\uD83D\uDD79\ufe0f "+(limit-played)+" of "+limit+" plays remaining today";bar.className="nav-status-bar";if(panel)panel.classList.remove("show");}
+  // No play limits to display — nav status bar hidden
+  var bar=document.getElementById("navStatusBar");if(bar)bar.style.display='none';
+  var panel=document.getElementById("unlockPanel");if(panel)panel.style.display='none';
 }
 function initNav(){renderNavGrid();}
 
@@ -1864,6 +1876,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   restoreSurveyOnLoad();
   initDedicationBox();
+  renderClassicQuizzes();
   document.querySelectorAll('.feedback-star').forEach((s,i)=>{
     s.addEventListener('mouseenter',()=>updateStars(i+1));
     s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
@@ -2171,6 +2184,14 @@ function quizInit(){
         const bc2=document.getElementById('bonus-card');
         if(bc2&&!bc2.querySelector('a'))_showBonusCard(newScore);
         const bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
+        // Hide earn box if score now qualifies
+        const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='none';
+      } else {
+        // Score under 6 — show earn box if bonus not already earned today
+        const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+        if(!localStorage.getItem(bonusEarnedKey)){
+          const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='block';
+        }
       }
       const today=new Date().toISOString().slice(0,10);
       const last=localStorage.getItem('80sg_last_played');
@@ -4657,45 +4678,34 @@ window.ALL_NAV_QUIZZES = window.QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }))
 
 quizInit();
 
-function submitLimitEmail(){
-  const email = document.getElementById('limitEmailInput')?.value?.trim();
-  const msg = document.getElementById('limitEmailMsg');
-  const btn = document.getElementById('limitEmailBtn');
-  if(!email || !email.includes('@')){
-    if(msg){ msg.style.display='block'; msg.style.color='#ff4444'; msg.textContent='Please enter a valid email address'; }
-    return;
-  }
-  btn.disabled=true; btn.textContent='Saving...';
-  const data = {
-    email: email,
-    quiz_num: String(window.QUIZ_NUM||''),
-    source: 'game_over_reminder'
-  };
-  fetch('https://owxtsagmzbwudxrnphmi.supabase.co/rest/v1/emails', {
-    method: 'POST',
-    headers: {
-      'apikey': SB_ANON,
-      'Authorization': 'Bearer ' + SB_ANON,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(r => {
-    if(r.ok || r.status === 201){
-      if(msg){ msg.style.display='block'; msg.style.color='#00ff00'; msg.textContent="\uD83C\uDFB5 You're on the list! See you tomorrow!"; }
-      btn.textContent='\u2713 SAVED!';
-      document.getElementById('limitEmailInput').style.display='none';
+
+/* ===== CLASSIC QUIZZES — grey out completed ones ===== */
+const CLASSIC_QUIZZES = [
+  { id: 28, title: 'American Rock Across Three Styles' },
+  { id: 32, title: 'AOR Giants Meet the Queen of Pop' },
+  { id: 56, title: '80s Megastars Up Close' }
+];
+function renderClassicQuizzes(){
+  const grid = document.getElementById('classicQuizzesGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  CLASSIC_QUIZZES.forEach(q => {
+    const played = parseInt(localStorage.getItem('quiz'+q.id+'Score')||'0') > 0;
+    const a = document.createElement('a');
+    a.href = played ? '#' : 'quiz-template.html?id='+q.id;
+    if(played){
+      a.style.cssText = 'display:block;padding:10px 8px;background:#f0f0f0;border:2px solid #ccc;border-radius:10px;text-align:center;text-decoration:none;color:#aaa;font-size:0.78em;font-weight:700;line-height:1.3;cursor:default;position:relative;';
+      a.innerHTML = q.title + '<div style="font-size:0.85em;margin-top:4px;color:#bbb;">✓ Completed</div>';
+      a.onclick = e => e.preventDefault();
     } else {
-      if(msg){ msg.style.display='block'; msg.style.color='#ff4444'; msg.textContent='Something went wrong — try again'; }
-      btn.disabled=false; btn.textContent='REMIND ME \uD83C\uDFB5';
+      a.style.cssText = 'display:block;padding:10px 8px;background:#f3eeff;border:2px solid #c9b0ff;border-radius:10px;text-align:center;text-decoration:none;color:#5a00cc;font-size:0.78em;font-weight:700;line-height:1.3;';
+      a.textContent = q.title;
     }
-  })
-  .catch(()=>{
-    if(msg){ msg.style.display='block'; msg.style.color='#ff4444'; msg.textContent='Connection error — try again'; }
-    btn.disabled=false; btn.textContent='REMIND ME \uD83C\uDFB5';
+    grid.appendChild(a);
   });
 }
+
+
 
 </script>
 </body>
