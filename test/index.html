@@ -1349,7 +1349,7 @@ function buildShareCard(score,text){
   const box=document.createElement('div');
   box.style.cssText='background:#fff;border:3px solid #FF1493;border-radius:18px;padding:22px 20px 18px;max-width:460px;width:100%;text-align:center;box-shadow:0 0 60px rgba(255,20,147,0.45);box-sizing:border-box;';
   box.innerHTML=`
-    <div style="font-weight:900;color:#111;font-size:1.05em;letter-spacing:2px;margin-bottom:2px;">Blondie, Bryan Adams &amp; Stevie Wonder</div>
+    <div style="font-weight:900;color:#111;font-size:1.05em;letter-spacing:2px;margin-bottom:2px;">${(document.getElementById('today-title')||{}).textContent||'80sGrid'}</div>
     <div style="font-size:0.7em;font-weight:700;color:#FF1493;letter-spacing:2px;margin-bottom:14px;">LEN'S 80sGRID.COM</div>
     <canvas id="shareCassette" width="420" height="290" style="display:block;margin:0 auto 14px;border-radius:10px;max-width:100%;box-shadow:0 4px 24px rgba(0,0,0,0.35);"></canvas>
     <div style="font-size:0.8em;color:#555;margin-bottom:12px;line-height:1.5;padding:0 4px;">
@@ -1417,22 +1417,25 @@ function drawCassetteCard(score){
   const gg=c.createLinearGradient(0,stripeY+7,0,stripeY+13);
   gg.addColorStop(0,'#d4a020');gg.addColorStop(1,'#a07010');
   c.fillStyle=gg;c.fillRect(lx,stripeY+7,lw,6);
-  // Quiz title — dynamic
-  const artistLine=document.querySelector('[style*="margin-top:-15px"]');
-  const artistText=artistLine?artistLine.textContent.trim().toUpperCase():'';
-  c.textAlign='center';c.font='bold 17px Arial';c.fillStyle='#1a1a1a';
-  c.fillText('QUIZ '+QUIZ_NUM,W/2,ly+26);
-  c.font='bold 9px Arial';c.fillStyle='#222';
+  // Quiz title — dynamic from today-title and QUIZ_NUM
+  const titleEl2=document.getElementById('today-title');
+  const quizTitleText=(titleEl2?titleEl2.textContent.trim():'').toUpperCase();
+  const artistsEl=document.querySelector('.quiz-artists, [id*="artists"], .subtitle-artists');
+  c.textAlign='center';c.font='bold 13px Arial';c.fillStyle='#1a1a1a';
+  // Quiz number line
+  c.fillText('QUIZ '+window.QUIZ_NUM,W/2,ly+22);
+  // Quiz title — clamp to fit
+  c.font='bold 9px Arial';c.fillStyle='#333';
   const maxW=lw-20;
-  c.save();if(c.measureText(artistText).width>maxW){c.scale(maxW/c.measureText(artistText).width,1);}
-  c.fillText(artistText,W/2*(maxW/Math.max(c.measureText(artistText).width,maxW))||W/2,ly+40);
+  c.save();
+  c.beginPath();c.rect(lx+4,ly+24,lw-8,22);c.clip();
+  if(c.measureText(quizTitleText).width>maxW){
+    c.scale(maxW/c.measureText(quizTitleText).width,1);
+    c.fillText(quizTitleText,(W/2)*(maxW/Math.max(c.measureText(quizTitleText).width,1)),ly+38);
+  } else {
+    c.fillText(quizTitleText,W/2,ly+38);
+  }
   c.restore();
-  c.font='bold 9px Arial';c.fillStyle='#222';c.textAlign='center';
-  // Clamp artist text width
-  if(c.measureText(artistText).width>lw-16){
-    c.save();c.beginPath();c.rect(lx+4,ly,lw-8,50);c.clip();
-    c.fillText(artistText,W/2,ly+40);c.restore();
-  } else {c.fillText(artistText,W/2,ly+40);}
   // Small label info
   c.textAlign='left';c.font='6px Arial';c.fillStyle='#555';
   c.fillText('Normal Bias',lx+8,stripeY-16);c.fillText('EQ-120μs',lx+8,stripeY-8);
