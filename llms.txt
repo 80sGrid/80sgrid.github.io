@@ -1,0 +1,17 @@
+# 80s Grid
+
+> A daily interactive trivia game challenging fans of 1980s music, pop culture, and movies.
+
+## About
+80s Grid (80sgrid.com) is a daily puzzle where users match artists, movies, and cultural icons across a 3x3 grid. It focuses on the New Wave, Synth-pop, and Post-punk eras, featuring bands like Depeche Mode, The Cure, and Duran Duran.
+
+## Key Features
+- **Daily Grid:** A new trivia challenge every 24 hours.
+- **Niche Categories:** Specifically curated for Gen X and 80s aficionados.
+- **Mobile Optimized:** Designed for quick, daily play on any device.
+
+## Target Entities
+- 1980s Music (New Wave, Synth-pop, Hair Metal)
+- 1980s Cinema (Brat Pack, Cult Classics)
+- Trivia & Interactive Puzzles
+- 80sgrid.com Game Mechanics
