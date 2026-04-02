@@ -490,6 +490,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 </div>
 <!-- limit modal removed - no lockouts -->
 <div class="limit-modal" id="limitModal" style="display:none!important">
+</div><!-- /limit-modal -->
 <!-- ===== BONUS LIFELINE MODAL ===== -->
 <div id="bonusSurveyOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:7000; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
   <div style="background:#fff; border-radius:18px; padding:26px 22px 22px; max-width:400px; width:100%; box-shadow:0 0 60px rgba(139,0,255,0.4); border:3px solid #8B00FF; position:relative;">
@@ -521,7 +522,6 @@ min-height: 400px; width: 100%; box-sizing: border-box;
     <button onclick="closeBonusSurveyModal()" style="display:block; width:100%; margin-top:12px; padding:8px; background:none; border:none; color:#bbb; font-size:0.8em; cursor:pointer;">No thanks, I'll skip</button>
   </div>
 </div>
-</div><!-- /limit-modal -->
 
 <div class="container">
 <picture style="display:block; width:100%; margin-bottom:10px;">
@@ -1135,9 +1135,10 @@ document.addEventListener('keypress',(e)=>{if(e.key==='Enter'&&document.getEleme
 document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 /* ===== LIFELINES ===== */
-let bonusLifelineUsed = false;
 let bonusSurveyAnswers = [];
 const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3';
+// Initialize from localStorage — if already claimed today, don't offer again
+let bonusLifelineUsed = !!localStorage.getItem(BONUS_SURVEY_KEY);
 const BONUS_SURVEY = {
   options: [
     { value:'Record Player', emoji:'🎵', label:'Record Player / Turntable' },
