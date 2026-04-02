@@ -468,6 +468,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
 </div>
 <button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Lifeline: Multiple Choice (<span id="mcRemaining">3</span> left)</button>
+<div style="font-size:0.72em;color:#888;text-align:center;margin-top:5px;font-style:italic;">Righteous! You got 3 lifelines to get this. Don't trip, just use them carefully! &#128157;</div>
 <button id="modalBonusBtn" onclick="closeModal(); openBonusSurveyModal();" style="display:none; width:100%; margin-top:10px; padding:11px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:8px; font-size:0.92em; font-weight:900; cursor:pointer; letter-spacing:0.5px; animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
 </div>
 <div class="mc-section" id="mcSection">
@@ -1171,13 +1172,17 @@ function showMultipleChoice(){
   const key=currentCell.dataset.row+'-'+currentCell.dataset.col;
   if(yesNoKeys.includes(key)){const toast=document.getElementById('ynToast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000);return;}
   if(!mcOptions[key]||mcOptions[key].length===0)return;
+  // Charge lifeline on open — seeing the choices IS using the lifeline
+  lifelinesRemaining=Math.max(0,lifelinesRemaining-1);
+  updateLifelineUI();
+  try{gtag('event','lifeline_opened',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}
   const opts=[...mcOptions[key]];for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
   const container=document.getElementById('mcOptions');container.innerHTML='';
   opts.forEach(opt=>{const btn=document.createElement('button');btn.className='mc-option';btn.textContent=opt;btn.onclick=()=>selectMCOption(opt);container.appendChild(btn);});
   document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.add('visible');
 }
 function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');setTimeout(()=>document.getElementById('modalInput').focus(),60);}
-function selectMCOption(value){if(currentCell){currentCell.querySelector('input').value=value;lifelinesRemaining=Math.max(0,lifelinesRemaining-1);updateLifelineUI();try{gtag('event','lifeline_used',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}closeModal();}}
+function selectMCOption(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','lifeline_selected',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}closeModal();}}
 
 /* ===== BONUS LIFELINE MODAL ===== */
 function openBonusSurveyModal(){
@@ -1368,7 +1373,9 @@ function buildShareCard(score,text){
   overlay.appendChild(box);
   overlay.onclick=(e)=>{if(e.target===overlay)overlay.remove();};
   document.body.appendChild(overlay);
-  setTimeout(()=>{drawCassetteCard(score);drawGridOnCassette();},40);
+  setTimeout(()=>{
+    drawCassetteCard(score);
+  },40);
 }
 
 function rrShare(c,x,y,w,h,r,fill,stroke){
