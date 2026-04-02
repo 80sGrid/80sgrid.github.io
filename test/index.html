@@ -1294,15 +1294,16 @@ function shareQuizEmoji(){
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
 
   let text;
+  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
   if(hasPlayed){
-    text='🎸 80sGrid — '+quizTitle+'\n'
-      +score+'/9 '+getStarRating(score)+'\n\n'
+    text='I got '+score+'/9 on \''+quizTitle+'\' 🎸\n'
+      +getStarRating(score)+'\n\n'
       +grid+'\n\n'
-      +'Can you beat me? 👉 80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'\n';
+      +'Can you beat me? 👉 '+challengeUrl;
   } else {
     text='🎸 Think you know your 80s music?\n'
-      +quizTitle+' — play now!\n\n'
-      +'👉 80sgrid.com/quiz'+(window.QUIZ_NUM||'');
+      +'Try \''+quizTitle+'\' on Len\'s 80sGrid — play free!\n\n'
+      +'👉 '+challengeUrl;
   }
 
   const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -1356,7 +1357,11 @@ function buildShareCard(score,text){
     </div>
     <div style="display:flex;gap:10px;margin-bottom:10px;">
       <button onclick="downloadShareCard()" style="flex:1;padding:13px 8px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">⬇️ Save Image<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Post to Instagram or TikTok</span></button>
-      <button onclick="copyShareText()" style="flex:1;padding:13px 8px;background:linear-gradient(135deg,#8B00FF,#4B0082);color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">📋 Copy Text<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Share on Facebook or text</span></button>
+      <button onclick="copyShareText()" style="flex:1;padding:13px 8px;background:linear-gradient(135deg,#8B00FF,#4B0082);color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">📋 Copy Text<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Copy to clipboard</span></button>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <button onclick="shareToFacebook()" style="flex:1;padding:11px 8px;background:#1877F2;color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">👍 Share on Facebook<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Opens Facebook share dialog</span></button>
+      <button onclick="copyChallengeLink()" style="flex:1;padding:11px 8px;background:linear-gradient(135deg,#28a745,#20c997);color:white;border:none;border-radius:9px;font-size:0.82em;font-weight:900;cursor:pointer;line-height:1.3;">🔗 Challenge a Friend<br><span style="font-weight:400;font-size:0.85em;opacity:0.9;">Copy challenge link</span></button>
     </div>
     <button onclick="document.getElementById('shareCardOverlay').remove()" style="background:none;border:none;color:#bbb;font-size:0.82em;cursor:pointer;width:100%;">✕ Close</button>
   `;
@@ -1526,11 +1531,35 @@ function downloadShareCard(){
   link.href=canvas.toDataURL('image/png');link.click();
 }
 
+function shareToFacebook(){
+  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const fbUrl='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(challengeUrl);
+  window.open(fbUrl,'_blank','width=600,height=460,scrollbars=yes');
+  try{gtag('event','share_facebook',{quiz_number:window.QUIZ_NUM});}catch(e){}
+}
+
+function copyChallengeLink(){
+  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  navigator.clipboard.writeText(challengeUrl).then(()=>{
+    showShareToast('Challenge link copied! 🔗 Dare someone to beat you!');
+  }).catch(()=>alert(challengeUrl));
+  try{gtag('event','copy_challenge_link',{quiz_number:window.QUIZ_NUM});}catch(e){}
+}
+
 function copyShareText(){
-  const score=getLastScore();const text=getShareText(score);
+  const score=parseInt(localStorage.getItem(QUIZ_KEY)||'0')||0;
+  const titleEl=document.getElementById('today-title');
+  const quizTitle=titleEl?titleEl.textContent.trim():'80sGrid';
+  const grid=buildEmojiGrid();
+  const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
+  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const text=hasPlayed
+    ?'I got '+score+'/9 on \''+quizTitle+'\' 🎸\n'+getStarRating(score)+'\n\n'+grid+'\n\nCan you beat me? 👉 '+challengeUrl
+    :'🎸 Try \''+quizTitle+'\' on Len\'s 80sGrid — free!\n👉 '+challengeUrl;
   navigator.clipboard.writeText(text).then(()=>{
-    const btn=event.target.closest('button');const orig=btn.innerHTML;
-    btn.innerHTML='✅ Copied!';setTimeout(()=>btn.innerHTML=orig,2000);
+    try{const btn=event.target.closest('button');const orig=btn.innerHTML;
+    btn.innerHTML='✅ Copied!';setTimeout(()=>btn.innerHTML=orig,2000);}catch(e){}
+    showShareToast('Copied! Paste it anywhere 🎸');
   }).catch(()=>alert(text));
 }
 
