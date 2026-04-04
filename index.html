@@ -1794,7 +1794,7 @@ function renderNavGrid(){
   var tabs=document.getElementById('groupTabs');
   if(tabs&&!tabs.hasChildNodes()){GROUP_LABELS.forEach(function(label,i){var d=document.createElement('div');d.className='group-tab'+(i===navActiveGroup?' active':'');d.textContent=label;d.onclick=function(){showNavGroup(i);};tabs.appendChild(d);});}
   var quizzes=NAV_GROUPS[navActiveGroup]||[];
-  quizzes.forEach(function(q){var a=document.createElement('a');var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');a.textContent=q.n;a.href=q.f;grid.appendChild(a);});
+  quizzes.forEach(function(q){var a=document.createElement('a');var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');a.textContent=q.n;a.href=(q.n===1?'index.html':'index.html?id='+q.n);grid.appendChild(a);});
   updateNavStatus();
 }
 function updateNavStatus(){
@@ -2043,7 +2043,7 @@ const QUIZ_NAMES = {
   66:'Three people would never have coffee together',67:'MTV Video of the Year Winners',
   68:'Born and Raised in New York',69:'Born in LA',70:'80s Legends Who Never Quit'
 };
-function getQuizUrl(n){ return n===1?'index.html':'quiz'+n+'.html'; }
+function getQuizUrl(n){ return 'index.html?id='+n; }
 function initMcq(){
   var completed=[];
   for(var i=1;i<=70;i++){
@@ -2267,7 +2267,7 @@ function quizInit(){
       completed.slice(0,6).forEach(({num,sc})=>{
         const aq=QDATA.find(x=>x.n===num); if(!aq) return;
         const card=document.createElement('a');
-        card.href=(num===1?'/index.html':'/quiz'+num+'.html');
+        card.href='/?id='+num;
         card.style.cssText='border:2px solid #28a745;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;text-decoration:none;color:inherit;display:block;background:#f0fff4;';
         card.innerHTML='<div style="font-family:Oxanium,Arial,sans-serif;font-size:1.1em;font-weight:700;color:#28a745;">&#10003; '+sc+'/9</div><div style="font-size:0.68em;color:#555;margin-top:3px;line-height:1.3;">'+aq.t+'</div>';
         cg.appendChild(card);
