@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2397,7 +2398,7 @@ function renderGrid(d) {
   const filtered = d === 'all' ? data : data.filter(q => q.d === d);
   document.getElementById('count').textContent = 'Showing ' + filtered.length + ' quizzes';
   document.getElementById('grid').innerHTML = filtered.map(q =>
-    '<a class="quiz-card ' + q.d + '" href="quiz-template.html?id=' + q.n + '">' +
+    '<a class="quiz-card ' + q.d + '" href="index.html?id=' + q.n + '">' +
     '<div class="quiz-num">#' + String(q.n).padStart(3,'0') + '</div>' +
     '<div class="quiz-title">' + q.t + '</div>' +
     '<div class="quiz-artists">' + q.a.join(' · ') + '</div>' +
