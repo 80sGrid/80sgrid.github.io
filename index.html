@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1604,12 +1605,13 @@ function checkAnswers(){
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
     if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
       // Show their correct answer
-      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:0.62em;margin-top:4px;line-height:1.3;color:rgba(255,255,255,0.85);text-align:center;';reveal.textContent=input.value;cell.appendChild(reveal);
+      input.style.display='none';
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:1.6em;text-align:center;line-height:1;';reveal.textContent='✓';cell.appendChild(reveal);
     }else{cell.classList.add('incorrect');cell.classList.remove('correct');
-      // Show their wrong answer crossed out + correct answer in orange
       const bestAnswer=answers[key][0];
-      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:0.62em;margin-top:4px;line-height:1.4;text-align:center;';
-      reveal.innerHTML='<span style="text-decoration:line-through;color:rgba(255,180,180,0.9);">'+input.value+'</span><br><span style="color:#ffd6a0;">→ '+bestAnswer+'</span>';
+      input.style.display='none';
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.4;';
+      reveal.innerHTML='<div style="font-size:1.4em;color:#fff;">✕</div><div style="font-size:0.62em;color:#ffffff;font-weight:900;margin-top:3px;">'+bestAnswer+'</div>';
       cell.appendChild(reveal);
     }}
   });
