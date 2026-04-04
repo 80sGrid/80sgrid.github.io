@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -691,7 +692,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <div style="font-size:1.5em; margin-bottom:4px;">🎸</div>
   <div style="font-family:'Oxanium',Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px;">BONUS QUIZ UNLOCKED!</div>
   <div style="font-size:0.8em; color:#555; margin-bottom:10px;">You scored 6+ — you've earned a bonus round featuring Whitney, Marvin &amp; Enya!</div>
-  <a id="bonusBannerLink" href="quiz-template.html?id=49" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Your Bonus Quiz →</a>
+  <a id="bonusBannerLink" href="index.html?id=49" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Your Bonus Quiz →</a>
 </div>
 
 <!-- bonus unlock hint removed -->
@@ -1722,7 +1723,7 @@ document.getElementById('initial2').addEventListener('input',function(){if(this.
 document.getElementById('initial3').addEventListener('keypress',function(e){if(e.key==='Enter')saveHighScore();});
 
 /* ===== NAV ===== */
-const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz-template.html?id=2',c:'medium'},{n:3,f:'quiz-template.html?id=3',c:'medium'},{n:4,f:'quiz-template.html?id=4',c:'hard'},{n:5,f:'quiz-template.html?id=5',c:'medium'},{n:6,f:'quiz-template.html?id=6',c:'medium'},{n:7,f:'quiz-template.html?id=7',c:'easy'},{n:8,f:'quiz-template.html?id=8',c:'medium'},{n:9,f:'quiz-template.html?id=9',c:'medium'},{n:10,f:'quiz-template.html?id=10',c:'medium'},{n:11,f:'quiz-template.html?id=11',c:'hard'},{n:12,f:'quiz-template.html?id=12',c:'medium'},{n:13,f:'quiz-template.html?id=13',c:'hard'},{n:14,f:'quiz-template.html?id=14',c:'hard'},{n:15,f:'quiz-template.html?id=15',c:'medium'},{n:16,f:'quiz-template.html?id=16',c:'easy'},{n:17,f:'quiz-template.html?id=17',c:'hard'},{n:18,f:'quiz-template.html?id=18',c:'easy'},{n:19,f:'quiz-template.html?id=19',c:'medium'},{n:20,f:'quiz-template.html?id=20',c:'hard'},{n:21,f:'quiz-template.html?id=21',c:'medium'},{n:22,f:'quiz-template.html?id=22',c:'medium'},{n:23,f:'quiz-template.html?id=23',c:'medium'},{n:24,f:'quiz-template.html?id=24',c:'hard'},{n:25,f:'quiz-template.html?id=25',c:'hard'},{n:26,f:'quiz-template.html?id=26',c:'hard'},{n:27,f:'quiz-template.html?id=27',c:'medium'},{n:28,f:'quiz-template.html?id=28',c:'hard'},{n:29,f:'quiz-template.html?id=29',c:'hard'},{n:30,f:'quiz-template.html?id=30',c:'medium'},{n:31,f:'quiz-template.html?id=31',c:'easy'},{n:32,f:'quiz-template.html?id=32',c:'medium'},{n:33,f:'quiz-template.html?id=33',c:'easy'},{n:34,f:'quiz-template.html?id=34',c:'medium'},{n:35,f:'quiz-template.html?id=35',c:'medium'},{n:36,f:'quiz-template.html?id=36',c:'hard'},{n:37,f:'quiz-template.html?id=37',c:'medium'},{n:38,f:'quiz-template.html?id=38',c:'hard'},{n:39,f:'quiz-template.html?id=39',c:'hard'},{n:40,f:'quiz-template.html?id=40',c:'hard'},{n:41,f:'quiz-template.html?id=41',c:'easy'},{n:42,f:'quiz-template.html?id=42',c:'medium'},{n:43,f:'quiz-template.html?id=43',c:'easy'},{n:44,f:'quiz-template.html?id=44',c:'easy'},{n:45,f:'quiz-template.html?id=45',c:'easy'},{n:46,f:'quiz-template.html?id=46',c:'medium'},{n:47,f:'quiz-template.html?id=47',c:'easy'},{n:48,f:'quiz-template.html?id=48',c:'medium'},{n:49,f:'quiz-template.html?id=49',c:'easy'},{n:50,f:'quiz-template.html?id=50',c:'easy'},{n:51,f:'quiz-template.html?id=51',c:'easy'},{n:52,f:'quiz-template.html?id=52',c:'medium'},{n:53,f:'quiz-template.html?id=53',c:'medium'},{n:54,f:'quiz-template.html?id=54',c:'medium'},{n:55,f:'quiz-template.html?id=55',c:'medium'},{n:56,f:'quiz-template.html?id=56',c:'easy'},{n:57,f:'quiz-template.html?id=57',c:'medium'},{n:58,f:'quiz-template.html?id=58',c:'easy'},{n:59,f:'quiz-template.html?id=59',c:'medium'},{n:60,f:'quiz-template.html?id=60',c:'medium'},{n:61,f:'quiz-template.html?id=61',c:'medium'},{n:62,f:'quiz-template.html?id=62',c:'easy'},{n:63,f:'quiz-template.html?id=63',c:'medium'},{n:64,f:'quiz-template.html?id=64',c:'easy'},{n:65,f:'quiz-template.html?id=65',c:'medium'},{n:66,f:'quiz-template.html?id=66',c:'easy'},{n:67,f:'quiz-template.html?id=67',c:'medium'},{n:68,f:'quiz-template.html?id=68',c:'easy'},{n:69,f:'quiz-template.html?id=69',c:'easy'},{n:70,f:'quiz-template.html?id=70',c:'easy'}];
+const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'index.html?id=2',c:'medium'},{n:3,f:'index.html?id=3',c:'medium'},{n:4,f:'index.html?id=4',c:'hard'},{n:5,f:'index.html?id=5',c:'medium'},{n:6,f:'index.html?id=6',c:'medium'},{n:7,f:'index.html?id=7',c:'easy'},{n:8,f:'index.html?id=8',c:'medium'},{n:9,f:'index.html?id=9',c:'medium'},{n:10,f:'index.html?id=10',c:'medium'},{n:11,f:'index.html?id=11',c:'hard'},{n:12,f:'index.html?id=12',c:'medium'},{n:13,f:'index.html?id=13',c:'hard'},{n:14,f:'index.html?id=14',c:'hard'},{n:15,f:'index.html?id=15',c:'medium'},{n:16,f:'index.html?id=16',c:'easy'},{n:17,f:'index.html?id=17',c:'hard'},{n:18,f:'index.html?id=18',c:'easy'},{n:19,f:'index.html?id=19',c:'medium'},{n:20,f:'index.html?id=20',c:'hard'},{n:21,f:'index.html?id=21',c:'medium'},{n:22,f:'index.html?id=22',c:'medium'},{n:23,f:'index.html?id=23',c:'medium'},{n:24,f:'index.html?id=24',c:'hard'},{n:25,f:'index.html?id=25',c:'hard'},{n:26,f:'index.html?id=26',c:'hard'},{n:27,f:'index.html?id=27',c:'medium'},{n:28,f:'index.html?id=28',c:'hard'},{n:29,f:'index.html?id=29',c:'hard'},{n:30,f:'index.html?id=30',c:'medium'},{n:31,f:'index.html?id=31',c:'easy'},{n:32,f:'index.html?id=32',c:'medium'},{n:33,f:'index.html?id=33',c:'easy'},{n:34,f:'index.html?id=34',c:'medium'},{n:35,f:'index.html?id=35',c:'medium'},{n:36,f:'index.html?id=36',c:'hard'},{n:37,f:'index.html?id=37',c:'medium'},{n:38,f:'index.html?id=38',c:'hard'},{n:39,f:'index.html?id=39',c:'hard'},{n:40,f:'index.html?id=40',c:'hard'},{n:41,f:'index.html?id=41',c:'easy'},{n:42,f:'index.html?id=42',c:'medium'},{n:43,f:'index.html?id=43',c:'easy'},{n:44,f:'index.html?id=44',c:'easy'},{n:45,f:'index.html?id=45',c:'easy'},{n:46,f:'index.html?id=46',c:'medium'},{n:47,f:'index.html?id=47',c:'easy'},{n:48,f:'index.html?id=48',c:'medium'},{n:49,f:'index.html?id=49',c:'easy'},{n:50,f:'index.html?id=50',c:'easy'},{n:51,f:'index.html?id=51',c:'easy'},{n:52,f:'index.html?id=52',c:'medium'},{n:53,f:'index.html?id=53',c:'medium'},{n:54,f:'index.html?id=54',c:'medium'},{n:55,f:'index.html?id=55',c:'medium'},{n:56,f:'index.html?id=56',c:'easy'},{n:57,f:'index.html?id=57',c:'medium'},{n:58,f:'index.html?id=58',c:'easy'},{n:59,f:'index.html?id=59',c:'medium'},{n:60,f:'index.html?id=60',c:'medium'},{n:61,f:'index.html?id=61',c:'medium'},{n:62,f:'index.html?id=62',c:'easy'},{n:63,f:'index.html?id=63',c:'medium'},{n:64,f:'index.html?id=64',c:'easy'},{n:65,f:'index.html?id=65',c:'medium'},{n:66,f:'index.html?id=66',c:'easy'},{n:67,f:'index.html?id=67',c:'medium'},{n:68,f:'index.html?id=68',c:'easy'},{n:69,f:'index.html?id=69',c:'easy'},{n:70,f:'index.html?id=70',c:'easy'}];
 const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30,40),ALL_NAV_QUIZZES.slice(40,50),ALL_NAV_QUIZZES.slice(50,60),ALL_NAV_QUIZZES.slice(60)];
 const GROUP_LABELS=['1 – 10','11 – 20','21 – 30','31 – 40','41 – 50','51 – 60','61 – 70'];
 let navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:QUIZ_NUM<=40?3:QUIZ_NUM<=50?4:QUIZ_NUM<=60?5:6;
@@ -2052,7 +2053,7 @@ function _showBonusCard(score){
   const QDATA=window.QUIZ_DATA||[];
   const bonusQ=QDATA.find(function(s){return s.n===49;});
   const bonusTitle=bonusQ?bonusQ.t:'Your Bonus Quiz';
-  const bonusFile=bonusQ?'quiz-template.html?id='+bonusQ.n:'quiz-template.html?id=49';
+  const bonusFile=bonusQ?'index.html?id='+bonusQ.n:'index.html?id=49';
   const bc=document.getElementById('bonus-card');
   if(bc){bc.style.borderColor='#FFD700';bc.style.background='linear-gradient(135deg,#fffdf0,#fff8f0)';}
   const bi=document.getElementById('bonus-icon');if(bi)bi.textContent='\uD83C\uDFB8';
@@ -2348,7 +2349,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 2: New Wave Around the World ─── */
   {
-    n: 2, f: "quiz-template.html?id=2",
+    n: 2, f: "index.html?id=2",
     t: "New Wave Around the World",
     sub: "Simple Minds, OMD & INXS",
     a: ["Simple Minds", "OMD", "INXS"],
@@ -2384,7 +2385,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 3: Dark Side of the 80s ─── */
   {
-    n: 3, f: "quiz-template.html?id=3",
+    n: 3, f: "index.html?id=3",
     t: "Dark Side of the 80s",
     sub: "The Police, The Cure & Depeche Mode",
     a: ["The Police", "The Cure", "Depeche Mode"],
@@ -2417,7 +2418,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 4: Royalty, Rock & the Obscure ─── */
   {
-    n: 4, f: "quiz-template.html?id=4",
+    n: 4, f: "index.html?id=4",
     t: "Royalty, Rock & the Obscure",
     sub: "Prince, Queen & Flesh for Lulu",
     a: ["Prince", "Queen", "Flesh for Lulu"],
@@ -2450,7 +2451,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 5: Reggae, Roots & Art Rock ─── */
   {
-    n: 5, f: "quiz-template.html?id=5",
+    n: 5, f: "index.html?id=5",
     t: "Reggae, Roots & Art Rock",
     sub: "UB40, Eddy Grant & Peter Gabriel",
     a: ["UB40", "Eddy Grant", "Peter Gabriel"],
@@ -2486,7 +2487,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 6: Clever Pop & New Wave Crossovers ─── */
   {
-    n: 6, f: "quiz-template.html?id=6",
+    n: 6, f: "index.html?id=6",
     t: "Clever Pop & New Wave Crossovers",
     sub: "Elvis Costello, ABC & Huey Lewis and the News",
     a: ["Elvis Costello", "ABC", "Huey Lewis and the News"],
@@ -2522,7 +2523,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 7: Arena Rock Meets Pop Soul ─── */
   {
-    n: 7, f: "quiz-template.html?id=7",
+    n: 7, f: "index.html?id=7",
     t: "Arena Rock Meets Pop Soul",
     sub: "Van Halen, Heart & Billy Ocean",
     a: ["Van Halen", "Heart", "Billy Ocean"],
@@ -2555,7 +2556,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 8: Reinvention & Rock Royalty ─── */
   {
-    n: 8, f: "quiz-template.html?id=8",
+    n: 8, f: "index.html?id=8",
     t: "Reinvention & Rock Royalty",
     sub: "Peter Gabriel, Cher & Lita Ford",
     a: ["Peter Gabriel", "Cher", "Lita Ford"],
@@ -2591,7 +2592,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 9: Pop, Hip-Hop & New Wave Collide ─── */
   {
-    n: 9, f: "quiz-template.html?id=9",
+    n: 9, f: "index.html?id=9",
     t: "Pop, Hip-Hop & New Wave Collide",
     sub: "Phil Collins, Run DMC & Duran Duran",
     a: ["Phil Collins", "Run DMC", "Duran Duran"],
@@ -2621,7 +2622,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 10: Cyndi, Boy George & Mr. Hutchence ─── */
   {
-    n: 10, f: "quiz-template.html?id=10",
+    n: 10, f: "index.html?id=10",
     t: "Cyndi, Boy George & Mr. Hutchence",
     sub: "Culture Club, Cyndi Lauper & INXS",
     a: ["Culture Club", "Cyndi Lauper", "INXS"],
@@ -2657,7 +2658,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 11: New Wave Meets Pop Rock ─── */
   {
-    n: 11, f: "quiz-template.html?id=11",
+    n: 11, f: "index.html?id=11",
     t: "New Wave Meets Pop Rock",
     sub: "Huey Lewis and the News, Elvis Costello & The Police",
     a: ["Huey Lewis and the News", "Elvis Costello", "The Police"],
@@ -2693,7 +2694,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 12: From Birmingham With Love ─── */
   {
-    n: 12, f: "quiz-template.html?id=12",
+    n: 12, f: "index.html?id=12",
     t: "From Birmingham With Love",
     sub: "The English Beat, General Public & Fine Young Cannibals",
     a: ["The English Beat", "General Public", "Fine Young Cannibals"],
@@ -2729,7 +2730,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 13: Hard Rock, Blues & Attitude ─── */
   {
-    n: 13, f: "quiz-template.html?id=13",
+    n: 13, f: "index.html?id=13",
     t: "Hard Rock, Blues & Attitude",
     sub: "Bon Jovi, George Thorogood & the Destroyers & Joan Jett",
     a: ["Bon Jovi", "George Thorogood & the Destroyers", "Joan Jett"],
@@ -2759,7 +2760,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 14: Three Eras, One Wild Ride ─── */
   {
-    n: 14, f: "quiz-template.html?id=14",
+    n: 14, f: "index.html?id=14",
     t: "Three Eras, One Wild Ride",
     sub: "The Monkees, The Grateful Dead & Cher",
     a: ["The Monkees", "The Grateful Dead", "Cher"],
@@ -2792,7 +2793,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 15: Grooves That Defined the Decade ─── */
   {
-    n: 15, f: "quiz-template.html?id=15",
+    n: 15, f: "index.html?id=15",
     t: "Grooves That Defined the Decade",
     sub: "Luther Vandross, Lionel Richie & Rick James",
     a: ["Luther Vandross", "Lionel Richie", "Rick James"],
@@ -2825,7 +2826,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 16: These Gals Rocked the 80s! ─── */
   {
-    n: 16, f: "quiz-template.html?id=16",
+    n: 16, f: "index.html?id=16",
     t: "These Gals Rocked the 80s!",
     sub: "The Go-Go's, The Bangles & Bananarama",
     a: ["The Go-Go's", "The Bangles", "Bananarama"],
@@ -2858,7 +2859,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 17: Beyond the Mainstream ─── */
   {
-    n: 17, f: "quiz-template.html?id=17",
+    n: 17, f: "index.html?id=17",
     t: "Beyond the Mainstream",
     sub: "The Motels, Romeo Void & EBN-OZN",
     a: ["The Motels", "Romeo Void", "EBN-OZN"],
@@ -2894,7 +2895,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 18: Bigger Stages, Bigger Hair ─── */
   {
-    n: 18, f: "quiz-template.html?id=18",
+    n: 18, f: "index.html?id=18",
     t: "Bigger Stages, Bigger Hair",
     sub: "Journey, Foreigner & REO Speedwagon",
     a: ["Journey", "Foreigner", "REO Speedwagon"],
@@ -2930,7 +2931,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 19: You Watched It on MTV ─── */
   {
-    n: 19, f: "quiz-template.html?id=19",
+    n: 19, f: "index.html?id=19",
     t: "You Watched It on MTV",
     sub: "Remote Control, Yo! MTV Raps & Headbangers Ball",
     a: ["Remote Control", "Yo! MTV Raps", "Headbangers Ball"],
@@ -2966,7 +2967,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 20: Synth-Pop, New Wave & Everything Between ─── */
   {
-    n: 20, f: "quiz-template.html?id=20",
+    n: 20, f: "index.html?id=20",
     t: "Synth-Pop, New Wave & Everything Between",
     sub: "Yazoo, Devo & They Might Be Giants",
     a: ["Yazoo", "Devo", "They Might Be Giants"],
@@ -2999,7 +3000,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 21: Boomer Stars Reaching GenXers ─── */
   {
-    n: 21, f: "quiz-template.html?id=21",
+    n: 21, f: "index.html?id=21",
     t: "Boomer Stars Reaching GenXers",
     sub: "Blondie, Bryan Adams & Stevie Wonder",
     a: ["Blondie", "Bryan Adams", "Stevie Wonder"],
@@ -3032,7 +3033,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 22: Singer-Songwriter Royalty ─── */
   {
-    n: 22, f: "quiz-template.html?id=22",
+    n: 22, f: "index.html?id=22",
     t: "Singer-Songwriter Royalty",
     sub: "Phil Collins, Paul McCartney & Jackson Browne",
     a: ["Phil Collins", "Paul McCartney", "Jackson Browne"],
@@ -3062,7 +3063,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 23: Pop, Rock & Hip-Hop Walk Into a Bar ─── */
   {
-    n: 23, f: "quiz-template.html?id=23",
+    n: 23, f: "index.html?id=23",
     t: "Pop, Rock & Hip-Hop Walk Into a Bar",
     sub: "Wham!, Bruce Springsteen & The E Street Band & Run-DMC",
     a: ["Wham!", "Bruce Springsteen & The E Street Band", "Run-DMC"],
@@ -3092,7 +3093,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 24: Do They Know It's a Quiz? ─── */
   {
-    n: 24, f: "quiz-template.html?id=24",
+    n: 24, f: "index.html?id=24",
     t: "Do They Know It's a Quiz?",
     sub: "Bob Geldof, Kool & the Gang & Prince",
     a: ["Bob Geldof", "Kool & the Gang", "Prince"],
@@ -3120,7 +3121,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 25: Three Icons, Zero Overlap ─── */
   {
-    n: 25, f: "quiz-template.html?id=25",
+    n: 25, f: "index.html?id=25",
     t: "Three Icons, Zero Overlap",
     sub: "Jimmy Cliff, Dusty Springfield & Neil Diamond",
     a: ["Jimmy Cliff", "Dusty Springfield", "Neil Diamond"],
@@ -3153,7 +3154,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 26: Post-Punk, Goth-Pop & Folk New Wave ─── */
   {
-    n: 26, f: "quiz-template.html?id=26",
+    n: 26, f: "index.html?id=26",
     t: "Post-Punk, Goth-Pop & Folk New Wave",
     sub: "New Order, The Psychedelic Furs & Suzanne Vega",
     a: ["New Order", "The Psychedelic Furs", "Suzanne Vega"],
@@ -3186,7 +3187,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 27: Soundtracks, Power Pop & Passion ─── */
   {
-    n: 27, f: "quiz-template.html?id=27",
+    n: 27, f: "index.html?id=27",
     t: "Soundtracks, Power Pop & Passion",
     sub: "Loverboy, Kenny Loggins & Berlin",
     a: ["Loverboy", "Kenny Loggins", "Berlin"],
@@ -3219,7 +3220,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 28: American Rock Across Three Styles ─── */
   {
-    n: 28, f: "quiz-template.html?id=28",
+    n: 28, f: "index.html?id=28",
     t: "American Rock Across Three Styles",
     sub: "Jackson Browne, Tom Petty & Go-Go's",
     a: ["Jackson Browne", "Tom Petty", "Go-Go's"],
@@ -3249,7 +3250,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 29: Fictional Bands Only True Fans Know ─── */
   {
-    n: 29, f: "quiz-template.html?id=29",
+    n: 29, f: "index.html?id=29",
     t: "Fictional Bands Only True Fans Know",
     sub: "Marvin Berry and the Starlighters, Morris Day and the Time & The Sorels",
     a: ["Marvin Berry and the Starlighters", "Morris Day and the Time", "The Sorels"],
@@ -3285,7 +3286,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 30: Three Very Different Pop Stories ─── */
   {
-    n: 30, f: "quiz-template.html?id=30",
+    n: 30, f: "index.html?id=30",
     t: "Three Very Different Pop Stories",
     sub: "Boy George, Phil Collins & Andy Gibb",
     a: ["Boy George", "Phil Collins", "Andy Gibb"],
@@ -3321,7 +3322,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 31: Big Hair, Bigger Anthems ─── */
   {
-    n: 31, f: "quiz-template.html?id=31",
+    n: 31, f: "index.html?id=31",
     t: "Big Hair, Bigger Anthems",
     sub: "Poison, Bon Jovi & Mötley Crüe",
     a: ["Poison", "Bon Jovi", "Mötley Crüe"],
@@ -3357,7 +3358,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 32: AOR Giants Meet the Queen of Pop ─── */
   {
-    n: 32, f: "quiz-template.html?id=32",
+    n: 32, f: "index.html?id=32",
     t: "AOR Giants Meet the Queen of Pop",
     sub: "Foreigner, Journey & Madonna",
     a: ["Foreigner", "Journey", "Madonna"],
@@ -3390,7 +3391,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 33: Three Bands, Forty Years of Hits ─── */
   {
-    n: 33, f: "quiz-template.html?id=33",
+    n: 33, f: "index.html?id=33",
     t: "Three Bands, Forty Years of Hits",
     sub: "The Police, Genesis & Duran Duran",
     a: ["The Police", "Genesis", "Duran Duran"],
@@ -3426,7 +3427,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 34: Imagine playing on softball team with these people!! ─── */
   {
-    n: 34, f: "quiz-template.html?id=34",
+    n: 34, f: "index.html?id=34",
     t: "Imagine playing on softball team with these people!!",
     sub: "Bryan Adams, Wham! & Bon Jovi",
     a: ["Bryan Adams", "Wham!", "Bon Jovi"],
@@ -3459,7 +3460,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 35: Hard Rock Holy Trinity ─── */
   {
-    n: 35, f: "quiz-template.html?id=35",
+    n: 35, f: "index.html?id=35",
     t: "Hard Rock Holy Trinity",
     sub: "Van Halen, Def Leppard & AC/DC",
     a: ["Van Halen", "Def Leppard", "AC/DC"],
@@ -3492,7 +3493,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 36: Prog, AOR & Down Under Cool ─── */
   {
-    n: 36, f: "quiz-template.html?id=36",
+    n: 36, f: "index.html?id=36",
     t: "Prog, AOR & Down Under Cool",
     sub: "Rush, Journey & INXS",
     a: ["Rush", "Journey", "INXS"],
@@ -3528,7 +3529,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 37: The Year Everyone Had a Number One ─── */
   {
-    n: 37, f: "quiz-template.html?id=37",
+    n: 37, f: "index.html?id=37",
     t: "The Year Everyone Had a Number One",
     sub: "U2, Michael Jackson & Huey Lewis and the News",
     a: ["U2", "Michael Jackson", "Huey Lewis and the News"],
@@ -3558,7 +3559,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 38: Rock, Piano & Rocket Man ─── */
   {
-    n: 38, f: "quiz-template.html?id=38",
+    n: 38, f: "index.html?id=38",
     t: "Rock, Piano & Rocket Man",
     sub: "Pat Benatar, Billy Joel & Elton John",
     a: ["Pat Benatar", "Billy Joel", "Elton John"],
@@ -3586,7 +3587,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 39: Rock Legends on Both Sides of the Atlantic ─── */
   {
-    n: 39, f: "quiz-template.html?id=39",
+    n: 39, f: "index.html?id=39",
     t: "Rock Legends on Both Sides of the Atlantic",
     sub: "Aerosmith, Queen & Dire Straits",
     a: ["Aerosmith", "Queen", "Dire Straits"],
@@ -3622,7 +3623,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 40: The Voices Behind the Bands ─── */
   {
-    n: 40, f: "quiz-template.html?id=40",
+    n: 40, f: "index.html?id=40",
     t: "The Voices Behind the Bands",
     sub: "Dennis DeYoung, Phil Collins & Lou Gramm",
     a: ["Dennis DeYoung", "Phil Collins", "Lou Gramm"],
@@ -3655,7 +3656,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 41: Hard Rock Holy Trinity Vol. 2 ─── */
   {
-    n: 41, f: "quiz-template.html?id=41",
+    n: 41, f: "index.html?id=41",
     t: "Hard Rock Holy Trinity Vol. 2",
     sub: "Van Halen, Def Leppard & AC/DC",
     a: ["Van Halen", "Def Leppard", "AC/DC"],
@@ -3688,7 +3689,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 42: Prog, AOR & Down Under Cool Vol. 2 ─── */
   {
-    n: 42, f: "quiz-template.html?id=42",
+    n: 42, f: "index.html?id=42",
     t: "Prog, AOR & Down Under Cool Vol. 2",
     sub: "Rush, Journey & INXS",
     a: ["Rush", "Journey", "INXS"],
@@ -3724,7 +3725,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 43: The Year Everyone Had a Number One Vol. 2 ─── */
   {
-    n: 43, f: "quiz-template.html?id=43",
+    n: 43, f: "index.html?id=43",
     t: "The Year Everyone Had a Number One Vol. 2",
     sub: "U2, Michael Jackson & Huey Lewis and the News",
     a: ["U2", "Michael Jackson", "Huey Lewis and the News"],
@@ -3754,7 +3755,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 44: Rock, Piano & Rocket Man Vol. 2 ─── */
   {
-    n: 44, f: "quiz-template.html?id=44",
+    n: 44, f: "index.html?id=44",
     t: "Rock, Piano & Rocket Man Vol. 2",
     sub: "Pat Benatar, Billy Joel & Elton John",
     a: ["Pat Benatar", "Billy Joel", "Elton John"],
@@ -3782,7 +3783,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 45: Pure Pop Royalty ─── */
   {
-    n: 45, f: "quiz-template.html?id=45",
+    n: 45, f: "index.html?id=45",
     t: "Pure Pop Royalty",
     sub: "Cyndi Lauper, Madonna & Whitney Houston",
     a: ["Cyndi Lauper", "Madonna", "Whitney Houston"],
@@ -3818,7 +3819,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 46: The Voices Behind the Bands Vol. 2 ─── */
   {
-    n: 46, f: "quiz-template.html?id=46",
+    n: 46, f: "index.html?id=46",
     t: "The Voices Behind the Bands Vol. 2",
     sub: "Dennis DeYoung, Phil Collins & Lou Gramm",
     a: ["Dennis DeYoung", "Phil Collins", "Lou Gramm"],
@@ -3851,7 +3852,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 47: Reggae Royalty ─── */
   {
-    n: 47, f: "quiz-template.html?id=47",
+    n: 47, f: "index.html?id=47",
     t: "Reggae Royalty",
     sub: "Bob Marley, Third World & Musical Youth",
     a: ["Bob Marley", "Third World", "Musical Youth"],
@@ -3884,7 +3885,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 48: Gothic Beauty ─── */
   {
-    n: 48, f: "quiz-template.html?id=48",
+    n: 48, f: "index.html?id=48",
     t: "Gothic Beauty",
     sub: "Bauhaus, Peter Murphy & Gene Loves Jezebel",
     a: ["Bauhaus", "Peter Murphy", "Gene Loves Jezebel"],
@@ -3920,7 +3921,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 49: Voices Don't Get Better Than This ─── */
   {
-    n: 49, f: "quiz-template.html?id=49",
+    n: 49, f: "index.html?id=49",
     t: "Voices Don't Get Better Than This",
     sub: "Whitney Houston, Marvin Gaye & Enya",
     a: ["Whitney Houston", "Marvin Gaye", "Enya"],
@@ -3956,7 +3957,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 50: Female-Fronted Rock Power ─── */
   {
-    n: 50, f: "quiz-template.html?id=50",
+    n: 50, f: "index.html?id=50",
     t: "Female-Fronted Rock Power",
     sub: "Pat Benatar, Heart & Romeo Void",
     a: ["Pat Benatar", "Heart", "Romeo Void"],
@@ -3989,7 +3990,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 51: Pure Pop Perfection ─── */
   {
-    n: 51, f: "quiz-template.html?id=51",
+    n: 51, f: "index.html?id=51",
     t: "Pure Pop Perfection",
     sub: "Rick Astley, Debbie Gibson & ABC",
     a: ["Rick Astley", "Debbie Gibson", "ABC"],
@@ -4025,7 +4026,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 52: Power Women of New Wave ─── */
   {
-    n: 52, f: "quiz-template.html?id=52",
+    n: 52, f: "index.html?id=52",
     t: "Power Women of New Wave",
     sub: "Swing Out Sister, Till Tuesday & Scandal",
     a: ["Swing Out Sister", "Till Tuesday", "Scandal"],
@@ -4061,7 +4062,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 53: The Bands Your Friends Thought Were Weird ─── */
   {
-    n: 53, f: "quiz-template.html?id=53",
+    n: 53, f: "index.html?id=53",
     t: "The Bands Your Friends Thought Were Weird",
     sub: "Modern English, Flock of Seagulls & Missing Persons",
     a: ["Modern English", "Flock of Seagulls", "Missing Persons"],
@@ -4097,7 +4098,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 54: Cult Classics You Won't Admit You Know ─── */
   {
-    n: 54, f: "quiz-template.html?id=54",
+    n: 54, f: "index.html?id=54",
     t: "Cult Classics You Won't Admit You Know",
     sub: "Dominatrix, Romeo Void & Modern English",
     a: ["Dominatrix", "Romeo Void", "Modern English"],
@@ -4133,7 +4134,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 55: All-British AOR ─── */
   {
-    n: 55, f: "quiz-template.html?id=55",
+    n: 55, f: "index.html?id=55",
     t: "All-British AOR",
     sub: "Steve Winwood, Asia & Supertramp",
     a: ["Steve Winwood", "Asia", "Supertramp"],
@@ -4169,7 +4170,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 56: 80s Megastars Up Close ─── */
   {
-    n: 56, f: "quiz-template.html?id=56",
+    n: 56, f: "index.html?id=56",
     t: "80s Megastars Up Close",
     sub: "Hall & Oates, Phil Collins & Stevie Nicks",
     a: ["Hall & Oates", "Phil Collins", "Stevie Nicks"],
@@ -4205,7 +4206,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 57: New Wave Oddballs from Three Continents ─── */
   {
-    n: 57, f: "quiz-template.html?id=57",
+    n: 57, f: "index.html?id=57",
     t: "New Wave Oddballs from Three Continents",
     sub: "J. Geils Band, Waitresses & Split Enz",
     a: ["J. Geils Band", "Waitresses", "Split Enz"],
@@ -4241,7 +4242,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 58: Wow, What a Trio We Have Here ─── */
   {
-    n: 58, f: "quiz-template.html?id=58",
+    n: 58, f: "index.html?id=58",
     t: "Wow, What a Trio We Have Here",
     sub: "Toto, Kim Wilde & Big Country",
     a: ["Toto", "Kim Wilde", "Big Country"],
@@ -4277,7 +4278,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 59: UK Synth-Pop Royalty ─── */
   {
-    n: 59, f: "quiz-template.html?id=59",
+    n: 59, f: "index.html?id=59",
     t: "UK Synth-Pop Royalty",
     sub: "Heaven 17, Yazoo & Erasure",
     a: ["Heaven 17", "Yazoo", "Erasure"],
@@ -4313,7 +4314,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 60: Post-Punk Sophisticates ─── */
   {
-    n: 60, f: "quiz-template.html?id=60",
+    n: 60, f: "index.html?id=60",
     t: "Post-Punk Sophisticates",
     sub: "Talk Talk, Roxy Music & Big Audio Dynamite",
     a: ["Talk Talk", "Roxy Music", "Big Audio Dynamite"],
@@ -4349,7 +4350,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 61: Eclectic Trio of New Romanticism ─── */
   {
-    n: 61, f: "quiz-template.html?id=61",
+    n: 61, f: "index.html?id=61",
     t: "Eclectic Trio of New Romanticism",
     sub: "Paul Weller, Paul Young & Elvis Costello",
     a: ["Paul Weller", "Paul Young", "Elvis Costello"],
@@ -4385,7 +4386,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 62: Pop, R&B & Hip-Hop Royalty ─── */
   {
-    n: 62, f: "quiz-template.html?id=62",
+    n: 62, f: "index.html?id=62",
     t: "Pop, R&B & Hip-Hop Royalty",
     sub: "George Michael, Janet Jackson & MC Hammer",
     a: ["George Michael", "Janet Jackson", "MC Hammer"],
@@ -4421,7 +4422,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 63: Imagine The Hair Spray These Bands used! ─── */
   {
-    n: 63, f: "quiz-template.html?id=63",
+    n: 63, f: "index.html?id=63",
     t: "Imagine The Hair Spray These Bands used!",
     sub: "B-52s, Devo & Kajagoogoo",
     a: ["B-52s", "Devo", "Kajagoogoo"],
@@ -4457,7 +4458,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 64: Three Continents, One Era ─── */
   {
-    n: 64, f: "quiz-template.html?id=64",
+    n: 64, f: "index.html?id=64",
     t: "Three Continents, One Era",
     sub: "Eurythmics, Midnight Oil & Michael Jackson",
     a: ["Eurythmics", "Midnight Oil", "Michael Jackson"],
@@ -4493,7 +4494,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 65: Songs With a Color in the Title ─── */
   {
-    n: 65, f: "quiz-template.html?id=65",
+    n: 65, f: "index.html?id=65",
     t: "Songs With a Color in the Title",
     sub: "New Order, Psychedelic Furs & Chris de Burgh",
     a: ["New Order", "Psychedelic Furs", "Chris de Burgh"],
@@ -4529,7 +4530,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 66: Three people would never have coffee together ─── */
   {
-    n: 66, f: "quiz-template.html?id=66",
+    n: 66, f: "index.html?id=66",
     t: "Three people would never have coffee together",
     sub: "Prince, Nena & Tommy Tutone",
     a: ["Prince", "Nena", "Tommy Tutone"],
@@ -4565,7 +4566,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 67: MTV Video of the Year Winners ─── */
   {
-    n: 67, f: "quiz-template.html?id=67",
+    n: 67, f: "index.html?id=67",
     t: "MTV Video of the Year Winners",
     sub: "A-ha, Peter Gabriel & INXS",
     a: ["A-ha", "Peter Gabriel", "INXS"],
@@ -4601,7 +4602,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 68: Born and Raised in New York ─── */
   {
-    n: 68, f: "quiz-template.html?id=68",
+    n: 68, f: "index.html?id=68",
     t: "Born and Raised in New York",
     sub: "Blondie, Cyndi Lauper & Billy Joel",
     a: ["Blondie", "Cyndi Lauper", "Billy Joel"],
@@ -4637,7 +4638,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 69: Born in LA ─── */
   {
-    n: 69, f: "quiz-template.html?id=69",
+    n: 69, f: "index.html?id=69",
     t: "Born in LA",
     sub: "Van Halen, The Go-Gos & The Bangles",
     a: ["Van Halen", "The Go-Gos", "The Bangles"],
@@ -4673,7 +4674,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 70: 80s Legends Who Never Quit ─── */
   {
-    n: 70, f: "quiz-template.html?id=70",
+    n: 70, f: "index.html?id=70",
     t: "80s Legends Who Never Quit",
     sub: "Bon Jovi, U2 & Sting",
     a: ["Bon Jovi", "U2", "Sting"],
@@ -4733,7 +4734,7 @@ function renderClassicQuizzes(){
   CLASSIC_QUIZZES.forEach(q => {
     const played = parseInt(localStorage.getItem('quiz'+q.id+'Score')||'0') > 0;
     const a = document.createElement('a');
-    a.href = played ? '#' : 'quiz-template.html?id='+q.id;
+    a.href = played ? '#' : 'index.html?id='+q.id;
     if(played){
       a.style.cssText = 'display:block;padding:10px 8px;background:#f0f0f0;border:2px solid #ccc;border-radius:10px;text-align:center;text-decoration:none;color:#aaa;font-size:0.78em;font-weight:700;line-height:1.3;cursor:default;position:relative;';
       a.innerHTML = q.title + '<div style="font-size:0.85em;margin-top:4px;color:#bbb;">✓ Completed</div>';
