@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1613,7 +1614,32 @@ function doShareScore(){shareScore();}
 function closePersistentShareModal(){document.getElementById('persistentShareModal').style.display='none';}
 
 /* ===== MAIN GAME LOGIC ===== */
-function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();}
+function normalizeString(str){
+  return str.toLowerCase()
+    .replace(/['''`]/g,'')
+    .replace(/&/g,' and ')
+    .replace(/\bw\//g,'with ')
+    .replace(/\+/g,' and ')
+    .replace(/\bwithout\b/g,'without')
+    .replace(/[^a-z0-9\s]/g,' ')
+    .replace(/\b(a|an|the)\b/g,' ')
+    .replace(/\bbout\b/g,'about')
+    .replace(/\bgonna\b/g,'going to')
+    .replace(/\bwanna\b/g,'want to')
+    .replace(/\bgotta\b/g,'got to')
+    .replace(/\bcuz\b/g,'because')
+    .replace(/\s+/g,' ').trim();
+}
+function wordOverlap(user, answer){
+  const stopWords=new Set(['the','and','a','an','of','in','to','is','it','my','me','you','your','we','our','i']);
+  const uWords=new Set(user.split(' ').filter(w=>w.length>1&&!stopWords.has(w)));
+  const aWords=answer.split(' ').filter(w=>w.length>1&&!stopWords.has(w));
+  if(aWords.length===0)return false;
+  // For short answers (1-2 key words), just check if user contains them all
+  if(aWords.length<=2)return aWords.every(w=>uWords.has(w)||user.includes(w));
+  const matches=aWords.filter(w=>uWords.has(w)).length;
+  return matches/aWords.length>=0.65;
+}
 function checkAnswers(){
   let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');const isThisAReplay=previousScore>0;
@@ -1621,7 +1647,7 @@ function checkAnswers(){
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
-    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
+    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:1.6em;text-align:center;line-height:1;color:#000;';reveal.textContent='\u2713';cell.appendChild(reveal);
     }else{cell.classList.add('incorrect');cell.classList.remove('correct');
