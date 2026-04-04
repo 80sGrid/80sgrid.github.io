@@ -638,9 +638,9 @@ min-height: 400px; width: 100%; box-sizing: border-box;
     </div>
     <span class="lifeline-count" id="lifelineCount">3 remaining</span>
   </div>
-  <!-- Survey pill — replaces lifeline bar after Check Answers -->
+  <!-- Survey pill replaces lifeline bar after Check Answers -->
   <div id="surveyPill" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:10px 14px; border-radius:10px; border:2px solid rgba(255,20,147,0.4); background:linear-gradient(135deg,rgba(139,0,255,0.08),rgba(255,20,147,0.08)); cursor:pointer;" onclick="openSurveyFromModal()">
-    <div style="font-size:1.4em;">📼</div>
+    <div style="font-size:1.4em;">&#128252;</div>
     <div style="font-size:0.72em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#8B00FF; text-align:center; line-height:1.3;">Be Kind, Rewind&hellip;<br>answer one question!</div>
   </div>
 </div>
@@ -1159,6 +1159,17 @@ const BONUS_SURVEY = {
 };
 
 function updateLifelineUI(){
+  const _passActive=window.hasDayPass&&window.hasDayPass();
+  if(_passActive){
+    for(let i=1;i<=3;i++){const p=document.getElementById('pip'+i);if(p){p.classList.remove('used');p.textContent='\uD83C\uDFAF';}}
+    const cEl=document.getElementById('lifelineCount');if(cEl){cEl.textContent='Unlimited \uD83C\uDF9F\uFE0F';cEl.classList.remove('empty');}
+    const bEl=document.getElementById('mcToggleBtn');if(bEl){bEl.disabled=false;bEl.style.display='block';}
+    const bo=document.getElementById('bonusLifelineOffer');if(bo)bo.style.display='none';
+    const mb=document.getElementById('modalBonusBtn');if(mb)mb.style.display='none';
+    return;
+  }
+  // original logic below:
+  {
   for(let i=1;i<=3;i++){const pip=document.getElementById('pip'+i);if(i<=lifelinesRemaining){pip.classList.remove('used');pip.textContent='\uD83C\uDFAF';}else{pip.classList.add('used');pip.textContent='';}}
   const countEl=document.getElementById('lifelineCount');const btnEl=document.getElementById('mcToggleBtn');const remainEl=document.getElementById('mcRemaining');
   const bonusOffer=document.getElementById('bonusLifelineOffer');const modalBonusBtn=document.getElementById('modalBonusBtn');
@@ -1177,13 +1188,14 @@ function updateLifelineUI(){
     if(modalBonusBtn)modalBonusBtn.style.display='none';
   }
 }
+}
 function showMultipleChoice(){
   if(lifelinesRemaining<=0)return;
   const key=currentCell.dataset.row+'-'+currentCell.dataset.col;
   if(yesNoKeys.includes(key)){const toast=document.getElementById('ynToast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000);return;}
   if(!mcOptions[key]||mcOptions[key].length===0)return;
-  // Charge lifeline on open — seeing the choices IS using the lifeline
-  lifelinesRemaining=Math.max(0,lifelinesRemaining-1);
+  // Charge lifeline — unless day pass is active
+  if(!window.hasDayPass||!window.hasDayPass()){lifelinesRemaining=Math.max(0,lifelinesRemaining-1);}
   updateLifelineUI();
   try{gtag('event','lifeline_opened',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}
   const opts=[...mcOptions[key]];for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
@@ -1609,17 +1621,15 @@ function checkAnswers(){
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
-    // Remove any previous reveal
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
     if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
-      // Show their correct answer
       input.style.display='none';
-      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:1.6em;text-align:center;line-height:1;';reveal.textContent='✓';cell.appendChild(reveal);
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:1.6em;text-align:center;line-height:1;color:#000;';reveal.textContent='\u2713';cell.appendChild(reveal);
     }else{cell.classList.add('incorrect');cell.classList.remove('correct');
       const bestAnswer=answers[key][0];
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.4;';
-      reveal.innerHTML='<div style="font-size:1.4em;color:#fff;">✕</div><div style="font-size:0.62em;color:#ffffff;font-weight:900;margin-top:3px;">'+bestAnswer+'</div>';
+      reveal.innerHTML='<div style="font-size:1.4em;color:#fff;">\u2715</div><div style="font-size:0.62em;color:#000;font-weight:900;margin-top:3px;">'+bestAnswer+'</div>';
       cell.appendChild(reveal);
     }}
   });
@@ -1659,13 +1669,12 @@ function checkAnswers(){
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
-  // Show funny score message
-  const msgs={0:'Dude... go see Mr. Hand. 🖐️',1:'Dude... go see Mr. Hand. 🖐️',2:'Dude... go see Mr. Hand. 🖐️',3:'Dude... go see Mr. Hand. 🖐️',4:'Dude... go see Mr. Hand. 🖐️',5:"Hey, not bad — you'll rock out tomorrow! 🎸",6:"That's a C+ — we still love you ❤️",7:'Good... you Smooth Operator you! 😎',8:'Yes, I will be your Father Figure 🎤',9:'Wow! George Michael would be proud 🙏'};
-  const msgEl=document.getElementById('scoreMessage');if(msgEl){msgEl.textContent=msgs[correct]||'';msgEl.style.display='block';}
+  // Funny score message
+  const _msgs={1:'1/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 — Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 — That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 — Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 — Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
+  const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[correct]||'';_msgEl.style.display='block';}
   // Swap lifeline bar for survey pill
-  const lb=document.getElementById('lifelineBar');const sp=document.getElementById('surveyPill');
-  if(lb)lb.style.display='none';if(sp)sp.style.display='flex';
-  // survey shown via button in results — no auto popup
+  const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
+  if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){
@@ -1938,6 +1947,24 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
+  // Secret day pass via URL ?code=
+  (function(){
+    const urlCode=(new URLSearchParams(window.location.search).get('code')||'').toUpperCase().trim();
+    const passes={SADE:48,SQUEEZE:24};
+    if(passes[urlCode]){
+      const hours=passes[urlCode];
+      localStorage.setItem('lifelinePass',Date.now()+(hours*60*60*1000));
+      const clean=window.location.pathname+(window.location.search.replace(/[?&]code=[^&]*/,'').replace(/^\?$/,''));
+      window.history.replaceState({},'',clean||window.location.pathname);
+      setTimeout(()=>{
+        const t=document.createElement('div');
+        t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;padding:12px 24px;border-radius:24px;font-family:Oxanium,Arial,sans-serif;font-weight:900;font-size:0.88em;letter-spacing:0.5px;z-index:9999;box-shadow:0 4px 20px rgba(139,0,255,0.4);white-space:nowrap;';
+        t.textContent='\uD83C\uDF9F\uFE0F '+hours+'hr Lifeline Pass activated!';
+        document.body.appendChild(t);setTimeout(()=>t.remove(),4000);
+      },800);
+    }
+    window.hasDayPass=function(){return Date.now()<parseInt(localStorage.getItem('lifelinePass')||'0');};
+  })();
   closeModal();
   initializeCells();
   updatePlaysCounter();
@@ -2246,7 +2273,7 @@ function quizInit(){
       if(newScore>0) localStorage.setItem('quiz'+n+'Score', newScore);
       // Show survey modal after a delay — player has time to admire their score first
       setTimeout(()=>{
-        // survey popup removed — button in results section instead
+        // survey popup removed — button replaces lifeline box after answers
       }, 2500);
       if(newScore>=6){
         const bc2=document.getElementById('bonus-card');
