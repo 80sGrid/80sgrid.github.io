@@ -799,6 +799,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <!-- Social Icons (compact) -->
   <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
     <button onclick="shareQuizEmoji()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
+    <button onclick="openSurveyFromModal()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128252; Be Kind, Rewind&hellip; answer one question!</button>
     <span style="color:#ddd; margin:0 2px;">|</span>
     <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -1648,7 +1649,7 @@ function checkAnswers(){
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
-  maybeShowSurvey(_isFirstPlayToday);
+  // survey shown via button in results — no auto popup
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){
@@ -2229,7 +2230,7 @@ function quizInit(){
       if(newScore>0) localStorage.setItem('quiz'+n+'Score', newScore);
       // Show survey modal after a delay — player has time to admire their score first
       setTimeout(()=>{
-        if(typeof showSurveyModal==='function') showSurveyModal();
+        // survey popup removed — button in results section instead
       }, 2500);
       if(newScore>=6){
         const bc2=document.getElementById('bonus-card');
