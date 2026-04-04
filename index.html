@@ -617,6 +617,9 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 
 </div>
 
+<!-- SCORE MESSAGE -->
+<div id="scoreMessage" style="display:none; text-align:center; margin:8px 0 10px; padding:10px 16px; border-radius:10px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border:2px solid rgba(139,0,255,0.2); font-family:'Oxanium',Arial,sans-serif; font-size:0.95em; font-weight:900; color:#8B00FF; letter-spacing:0.5px;"></div>
+
 <!-- DIFFICULTY + LIFELINE ROW -->
 <div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
   <!-- Difficulty pill -->
@@ -634,6 +637,11 @@ min-height: 400px; width: 100%; box-sizing: border-box;
       <div class="lifeline-pip" id="pip3">🛟</div>
     </div>
     <span class="lifeline-count" id="lifelineCount">3 remaining</span>
+  </div>
+  <!-- Survey pill — replaces lifeline bar after Check Answers -->
+  <div id="surveyPill" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:10px 14px; border-radius:10px; border:2px solid rgba(255,20,147,0.4); background:linear-gradient(135deg,rgba(139,0,255,0.08),rgba(255,20,147,0.08)); cursor:pointer;" onclick="openSurveyFromModal()">
+    <div style="font-size:1.4em;">📼</div>
+    <div style="font-size:0.72em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#8B00FF; text-align:center; line-height:1.3;">Be Kind, Rewind&hellip;<br>answer one question!</div>
   </div>
 </div>
 <!-- secret code btn removed -->
@@ -1651,6 +1659,12 @@ function checkAnswers(){
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
+  // Show funny score message
+  const msgs={0:'Dude... go see Mr. Hand. 🖐️',1:'Dude... go see Mr. Hand. 🖐️',2:'Dude... go see Mr. Hand. 🖐️',3:'Dude... go see Mr. Hand. 🖐️',4:'Dude... go see Mr. Hand. 🖐️',5:"Hey, not bad — you'll rock out tomorrow! 🎸",6:"That's a C+ — we still love you ❤️",7:'Good... you Smooth Operator you! 😎',8:'Yes, I will be your Father Figure 🎤',9:'Wow! George Michael would be proud 🙏'};
+  const msgEl=document.getElementById('scoreMessage');if(msgEl){msgEl.textContent=msgs[correct]||'';msgEl.style.display='block';}
+  // Swap lifeline bar for survey pill
+  const lb=document.getElementById('lifelineBar');const sp=document.getElementById('surveyPill');
+  if(lb)lb.style.display='none';if(sp)sp.style.display='flex';
   // survey shown via button in results — no auto popup
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
