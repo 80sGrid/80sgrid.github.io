@@ -146,7 +146,7 @@ hyphens: auto;
 .header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; font-size:0.88em; }
 .col-header { grid-row: 1; }
 .row-header { grid-column: 1; }
-.cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
+.cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
 .cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.7em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.8; }
 .cell input::placeholder { color:#8B00FF; font-style:italic; font-size:1.15em; opacity:0.6; white-space:normal; word-spacing:100vw; }
 .cell.correct { background:#d4edda; border-color:#28a745; }
@@ -1599,7 +1599,18 @@ function checkAnswers(){
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
-    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));if(valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer))){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;}else{cell.classList.add('incorrect');cell.classList.remove('correct');}}
+    // Remove any previous reveal
+    const old=cell.querySelector('.answer-reveal');if(old)old.remove();
+    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
+      // Show their correct answer
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:0.62em;margin-top:4px;line-height:1.3;color:rgba(255,255,255,0.85);text-align:center;';reveal.textContent=input.value;cell.appendChild(reveal);
+    }else{cell.classList.add('incorrect');cell.classList.remove('correct');
+      // Show their wrong answer crossed out + correct answer in orange
+      const bestAnswer=answers[key][0];
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:0.62em;margin-top:4px;line-height:1.4;text-align:center;';
+      reveal.innerHTML='<span style="text-decoration:line-through;color:rgba(255,180,180,0.9);">'+input.value+'</span><br><span style="color:#ffd6a0;">→ '+bestAnswer+'</span>';
+      cell.appendChild(reveal);
+    }}
   });
   if(total===0){alert('Fill in some answers first!');return;}
   if(!sessionStorage.getItem(SESSION_KEY)){
