@@ -1669,6 +1669,19 @@ function checkAnswers(){
     const best=parseInt(localStorage.getItem('bestQuizScore')||'0');if(correct>best)localStorage.setItem('bestQuizScore',correct);
   }
   const oldScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');if(correct>oldScore)localStorage.setItem(QUIZ_KEY,correct);
+  // Save grid state so it can be restored on refresh
+  const _gridState={};
+  document.querySelectorAll('.cell').forEach(function(cell){
+    const k=cell.dataset.row+'-'+cell.dataset.col;
+    const inp=cell.querySelector('input');
+    const reveal=cell.querySelector('.answer-reveal');
+    _gridState[k]={
+      val: inp?inp.value:'',
+      correct: cell.classList.contains('correct'),
+      incorrect: cell.classList.contains('incorrect')
+    };
+  });
+  localStorage.setItem('gridState_quiz'+n,JSON.stringify(_gridState));
   document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
   document.getElementById('results').style.display='block';
   // Lock only answered cells — leave empty cells playable
@@ -2242,6 +2255,64 @@ function quizInit(){
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
   window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score';
+
+  // ── REFRESH RESTORE: if this quiz was already completed, rebuild the grid ──
+  const _savedGridState=localStorage.getItem('gridState_quiz'+n);
+  const _savedScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
+  if(_savedGridState&&_savedScore>0){
+    try{
+      const _gs=JSON.parse(_savedGridState);
+      document.querySelectorAll('.cell').forEach(function(cell){
+        const k=cell.dataset.row+'-'+cell.dataset.col;
+        const st=_gs[k];if(!st)return;
+        const inp=cell.querySelector('input');
+        if(st.correct){
+          cell.classList.add('correct');cell.classList.remove('incorrect');
+          if(inp){inp.value=st.val;inp.style.display='none';}
+          if(!cell.querySelector('.answer-reveal')){
+            const rv=document.createElement('div');rv.className='answer-reveal';
+            rv.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+            rv.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+st.val+'</div>';
+            cell.appendChild(rv);
+          }
+          cell.style.pointerEvents='none';cell.style.cursor='default';
+          if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+        } else if(st.incorrect){
+          cell.classList.add('incorrect');cell.classList.remove('correct');
+          if(inp){inp.value=st.val;inp.style.display='none';}
+          const bestAnswer=(q.ans[k]||[])[0]||'';
+          if(!cell.querySelector('.answer-reveal')){
+            const rv=document.createElement('div');rv.className='answer-reveal';
+            rv.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+            rv.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.55em;color:#721c24;font-weight:700;margin-top:1px;word-break:break-word;text-decoration:line-through;opacity:0.7;">'+st.val+'</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">'+bestAnswer+'</div>';
+            cell.appendChild(rv);
+          }
+          cell.style.pointerEvents='none';cell.style.cursor='default';
+          if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+        }
+      });
+      // Restore results panel
+      const _correct=document.querySelectorAll('.cell.correct').length;
+      const _total=document.querySelectorAll('.cell.correct, .cell.incorrect').length;
+      if(_total>0){
+        const scoreEl=document.getElementById('score');
+        if(scoreEl)scoreEl.textContent='You got '+_correct+' out of '+_total+' correct!';
+        const resEl=document.getElementById('results');if(resEl)resEl.style.display='block';
+        // Disable check button — all answered
+        const checkBtn=document.querySelector('.button-container button');
+        if(checkBtn){checkBtn.disabled=true;checkBtn.style.opacity='0.5';checkBtn.title='All answers submitted';}
+        // Swap lifeline bar for survey pill (already completed)
+        const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
+        if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
+        // Restore score message
+        const _msgs={1:'1/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 \u2014 Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 \u2014 That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 \u2014 Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 \u2014 Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
+        const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[_correct]||'';_msgEl.style.display='block';}
+        // Re-mark session so play limit isn't double-counted
+        sessionStorage.setItem(SESSION_KEY,'true');
+      }
+    }catch(e){}
+  }
+  // ── END REFRESH RESTORE ──
   // Show fake scores immediately so leaderboard is never blank
   if(typeof FAKE_SCORES !== 'undefined' && document.getElementById('leaderboardList')){
     const sub=document.getElementById('leaderboard-subtitle')||document.querySelector('.leaderboard-subtitle');
