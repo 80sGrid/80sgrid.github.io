@@ -1681,7 +1681,7 @@ function checkAnswers(){
       incorrect: cell.classList.contains('incorrect')
     };
   });
-  localStorage.setItem('gridState_quiz'+n,JSON.stringify(_gridState));
+  localStorage.setItem('gridState_quiz'+(window.QUIZ_NUM||n),JSON.stringify(_gridState));
   document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
   document.getElementById('results').style.display='block';
   // Lock only answered cells — leave empty cells playable
