@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1321,7 +1322,7 @@ function shareQuizEmoji(){
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
 
   let text;
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   if(hasPlayed){
     text='I got '+score+'/9 on \''+quizTitle+'\' 🎸\n'
       +getStarRating(score)+'\n\n'
@@ -1564,14 +1565,14 @@ function downloadShareCard(){
 }
 
 function shareToFacebook(){
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   const fbUrl='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(challengeUrl);
   window.open(fbUrl,'_blank','width=600,height=460,scrollbars=yes');
   try{gtag('event','share_facebook',{quiz_number:window.QUIZ_NUM});}catch(e){}
 }
 
 function copyChallengeLink(){
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   navigator.clipboard.writeText(challengeUrl).then(()=>{
     showShareToast('Challenge link copied! 🔗 Dare someone to beat you!');
   }).catch(()=>alert(challengeUrl));
@@ -1584,7 +1585,7 @@ function copyShareText(){
   const quizTitle=titleEl?titleEl.textContent.trim():'80sGrid';
   const grid=buildEmojiGrid();
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   const text=hasPlayed
     ?'I got '+score+'/9 on \''+quizTitle+'\' 🎸\n'+getStarRating(score)+'\n\n'+grid+'\n\nCan you beat me? 👉 '+challengeUrl
     :'🎸 Try \''+quizTitle+'\' on Len\'s 80sGrid — free!\n👉 '+challengeUrl;
@@ -1649,12 +1650,14 @@ function checkAnswers(){
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
     if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
       input.style.display='none';
-      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='font-size:1.6em;text-align:center;line-height:1;color:#000;';reveal.textContent='\u2713';cell.appendChild(reveal);
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+      reveal.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+input.value+'</div>';
+      cell.appendChild(reveal);
     }else{cell.classList.add('incorrect');cell.classList.remove('correct');
       const bestAnswer=answers[key][0];
       input.style.display='none';
-      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.4;';
-      reveal.innerHTML='<div style="font-size:1.4em;color:#fff;">\u2715</div><div style="font-size:0.62em;color:#000;font-weight:900;margin-top:3px;">'+bestAnswer+'</div>';
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+      reveal.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.6em;color:#721c24;font-weight:700;margin-top:2px;word-break:break-word;">'+bestAnswer+'</div>';
       cell.appendChild(reveal);
     }}
   });
