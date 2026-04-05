@@ -1692,6 +1692,8 @@ function checkAnswers(){
     }
   }
   try{gtag('event','check_answers',{quiz_number:QUIZ_NUM,score:correct,total:total,is_replay:isThisAReplay});}catch(e){}
+  // Silent score tracking — records every Check Answers to quiz_scores table
+  if(!isThisAReplay){try{sbClient.from('quiz_scores').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct});}catch(e){}}
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
