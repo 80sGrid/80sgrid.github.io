@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,6 +203,7 @@ text-align:left; border-radius:10px; cursor:pointer; transition:all .3s; border:
 .survey-option.selected { box-shadow:0 0 25px rgba(0,255,0,0.6),inset 0 0 15px rgba(0,255,0,0.1); border-color:#00ff00 !important; transform:scale(1.03); }
 .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
 .stats-modal.show { display:flex; }
+#surveyModal.show { display:flex; }
 .stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Oxanium',Arial,sans-serif; box-shadow:0 0 40px rgba(255,20,147,0.6); }
 .stats-box h2 { color:#FF1493; text-shadow:0 0 10px #FF1493; font-size:1.3em; letter-spacing:3px; margin:0 0 5px; text-align:center; }
 .stats-sub { color:#00ffff; text-align:center; font-size:0.75em; letter-spacing:2px; margin-bottom:20px; }
@@ -468,7 +468,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
 </div>
 <button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Lifeline: Multiple Choice (<span id="mcRemaining">3</span> left)</button>
-<div style="font-size:0.72em;color:#888;text-align:center;margin-top:5px;font-style:italic;">Righteous! You got 3 lifelines to get this. Don't trip, just use them carefully! &#128157;</div>
+<div id="lifelineHintText" style="font-size:0.72em;color:#888;text-align:center;margin-top:5px;font-style:italic;">Righteous! You got 3 lifelines to get this. Don't trip, just use them carefully! &#128157;</div>
 <button id="modalBonusBtn" onclick="closeModal(); openBonusSurveyModal();" style="display:none; width:100%; margin-top:10px; padding:11px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:8px; font-size:0.92em; font-weight:900; cursor:pointer; letter-spacing:0.5px; animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
 </div>
 <div class="mc-section" id="mcSection">
@@ -955,7 +955,7 @@ const sbClient = supabase.createClient(SB_URL, SB_ANON);
 const QUIZ_NUM = 1; // Updated by hub init
 const PLAYS_KEY = '80sGridPlaysHub';
 const SESSION_KEY = 'hasPlayed_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
-const QUIZ_KEY = 'hubScore';
+let QUIZ_KEY = 'quiz'+(new URLSearchParams(window.location.search).get('id')||'1')+'Score';
 const DAILY_LIMIT = 2;
 const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited', RAD: 'bonus' };
 const FAKE_SCORES = [
@@ -1145,7 +1145,7 @@ document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 /* ===== LIFELINES ===== */
 let bonusSurveyAnswers = [];
-const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3';
+const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
 // Initialize from localStorage — if already claimed today, don't offer again
 let bonusLifelineUsed = !!localStorage.getItem(BONUS_SURVEY_KEY);
 const BONUS_SURVEY = {
@@ -1174,16 +1174,20 @@ function updateLifelineUI(){
   const countEl=document.getElementById('lifelineCount');const btnEl=document.getElementById('mcToggleBtn');const remainEl=document.getElementById('mcRemaining');
   const bonusOffer=document.getElementById('bonusLifelineOffer');const modalBonusBtn=document.getElementById('modalBonusBtn');
   if(remainEl)remainEl.textContent=lifelinesRemaining;
+  const hintEl=document.getElementById('lifelineHintText');
   if(lifelinesRemaining===0){
     countEl.textContent='None left!';countEl.classList.add('empty');
     var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block';
     if(btnEl){btnEl.disabled=true;btnEl.style.display='none';}
+    if(hintEl){hintEl.style.display='none';}
     if(bonusOffer&&!bonusLifelineUsed)bonusOffer.style.display='block';
-    if(modalBonusBtn&&!bonusLifelineUsed)modalBonusBtn.style.display='block';
+    if(modalBonusBtn&&!bonusLifelineUsed){modalBonusBtn.style.display='block';}
+    else if(modalBonusBtn){modalBonusBtn.style.display='none';}
   } else {
     countEl.textContent=lifelinesRemaining+' remaining';countEl.classList.remove('empty');
     var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none';
     if(btnEl){btnEl.disabled=false;btnEl.style.display='block';}
+    if(hintEl){hintEl.style.display='block';}
     if(bonusOffer)bonusOffer.style.display='none';
     if(modalBonusBtn)modalBonusBtn.style.display='none';
   }
@@ -1866,7 +1870,7 @@ function revealSurveyResults(surveyId,chosen){
   optionsEl.querySelectorAll('.survey-option').forEach(card=>{
     const val=card.dataset.value;const pct=parseInt(card.dataset.pct);const color=card.dataset.color;const isChosen=val===chosen;
     const bar=card.querySelector('.tribe-bar');if(bar)bar.style.display='block';
-    const fill=card.querySelector('.tribe-fill');if(fill){fill.style.background=isChosen?'linear-gradient(135deg,'+color+',#fff)':color;setTimeout(()=>{fill.style.width=pct+'%';},50);}
+    const fill=card.querySelector('.tribe-fill');if(fill){fill.style.background=isChosen?'linear-gradient(135deg,'+color+',#fff)':color;fill.style.width='0%';setTimeout(()=>{fill.style.width=pct+'%';},120);}
     const pctEl=card.querySelector('.tribe-pct');if(pctEl){pctEl.style.display='block';pctEl.textContent=pct+'%';}
     if(isChosen){card.classList.add('selected');card.style.boxShadow='0 0 20px '+color+',inset 0 0 10px rgba(255,255,255,0.1)';}
     else{card.style.opacity='0.65';}
@@ -1891,7 +1895,7 @@ function openSurveyFromModal(){
 }
 function closeSurveyModal(){
   const m=document.getElementById('surveyModal');
-  if(m)m.style.display='none';
+  if(m){m.classList.remove('show');m.style.display='none';}
 }
 function showSurveyModal(){
   const nextId=getNextSurvey();
@@ -1899,7 +1903,8 @@ function showSurveyModal(){
   if(getSurveysShownToday()>=2)return; // max 2 per day
   const m=document.getElementById('surveyModal');
   if(m){
-    m.style.display='flex';
+    m.style.display=''; // clear any inline style
+    m.classList.add('show');
     // Prevent click-bleed from initials entry — disable buttons briefly
     const btns=m.querySelectorAll('button');
     btns.forEach(b=>{b.style.pointerEvents='none';});
