@@ -1648,21 +1648,22 @@ function checkAnswers(){
   let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');const isThisAReplay=previousScore>0;
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
+  const cellResults=[];
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
-    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;
+    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellResults.push(true);
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
       reveal.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+input.value+'</div>';
       cell.appendChild(reveal);
-    }else{cell.classList.add('incorrect');cell.classList.remove('correct');
+    }else{cell.classList.add('incorrect');cell.classList.remove('correct');cellResults.push(false);
       const bestAnswer=answers[key][0];
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
       reveal.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.55em;color:#721c24;font-weight:700;margin-top:1px;word-break:break-word;text-decoration:line-through;opacity:0.7;">'+input.value+'</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">'+bestAnswer+'</div>';
       cell.appendChild(reveal);
-    }}
+    }}else{cellResults.push(null);}
   });
   if(total===0){alert('Fill in some answers first!');return;}
   if(!sessionStorage.getItem(SESSION_KEY)){
@@ -1711,7 +1712,8 @@ function checkAnswers(){
   }
   try{gtag('event','check_answers',{quiz_number:QUIZ_NUM,score:correct,total:total,is_replay:isThisAReplay});}catch(e){}
   // Silent score tracking — records every Check Answers to quiz_scores table
-  try{sbClient.from('quiz_scores').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct});}catch(e){}
+  // cell_results: array of 9 values — true=correct, false=incorrect, null=skipped
+  try{sbClient.from('quiz_scores').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,cell_results:cellResults});}catch(e){}
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
