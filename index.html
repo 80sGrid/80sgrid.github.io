@@ -1004,10 +1004,10 @@ let radBonusUsed = false;
 let feedbackRating = 0;
 
 /* ===== PLAY LIMIT ===== */
-function getTodayKey(){return 'quizzesPlayed_'+new Date().toISOString().slice(0,10);}
+function getTodayKey(){return 'quizzesPlayed_'+getLocalDateStr();}
 function getQuizzesPlayedToday(){return parseInt(localStorage.getItem(getTodayKey())||'0');}
 function incrementQuizzesPlayedToday(){const k=getTodayKey();const n=getQuizzesPlayedToday()+1;localStorage.setItem(k,n);return n;}
-function getBonusKey(){return 'bonusUnlock_'+new Date().toISOString().slice(0,10);}
+function getBonusKey(){return 'bonusUnlock_'+getLocalDateStr();}
 function getUnlockType(){return localStorage.getItem(getBonusKey())||null;}
 function setUnlockType(type){localStorage.setItem(getBonusKey(),type);}
 function getEffectiveDailyLimit(){const u=getUnlockType();if(u==='unlimited')return 999;if(u==='bonus')return DAILY_LIMIT+1;return DAILY_LIMIT;}
@@ -1028,11 +1028,11 @@ function loadStats(){
 }
 function toggleStats(){loadStats();document.getElementById('statsModal').classList.toggle('show');}
 function updateStreak(){
-  const today=new Date().toISOString().slice(0,10);
+  const today=getLocalDateStr();
   const lastPlayed=localStorage.getItem('lastPlayedDate');
   let streak=parseInt(localStorage.getItem('playStreak')||'0');
   if(lastPlayed===today)return;
-  const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+  const yesterday=getLocalDateStr(new Date(Date.now()-86400000));
   streak=(lastPlayed===yesterday)?streak+1:1;
   localStorage.setItem('playStreak',streak);localStorage.setItem('lastPlayedDate',today);
 }
@@ -1045,7 +1045,7 @@ function updatePostQuizUI(){
   const bonusUnlockBanner=document.getElementById('bonusUnlockBanner');
   // If score >= 6, bonus is auto-unlocked (handled in quizInit override)
   // If score < 6 and bonus not yet earned today, show earn box
-  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
   const bonusAlreadyEarned=localStorage.getItem(bonusEarnedKey);
   if(bonusEarnBox){
     bonusEarnBox.style.display=(score<6&&!bonusAlreadyEarned)?'block':'none';
@@ -1069,7 +1069,7 @@ async function submitBonusEarnEmail(){
   const email=input?input.value.trim():'';
   if(!isEmail(email)){if(msg){msg.style.display='block';msg.style.color='#dc3545';msg.textContent='Please enter a valid email address';}return;}
   await submitEmailToFormspree(email);
-  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
   localStorage.setItem(bonusEarnedKey,'email');
   if(msg){msg.style.display='block';msg.style.color='#28a745';msg.textContent='🎉 Bonus quiz unlocked!';}
   setTimeout(()=>{
@@ -1317,7 +1317,7 @@ function claimBonusLifeline(){
   try{sbClient.from('survey_responses').insert({survey_id:'bonus_lifeline',answer:bonusSurveyAnswers.join(', '),quiz_num:String(QUIZ_NUM)});}catch(e){}
   bonusLifelineUsed=true;lifelinesRemaining=1;updateLifelineUI();closeBonusSurveyModal();showBonusGrantedToast(false);
   // Also mark bonus quiz as earned if this came from the earn flow
-  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
   localStorage.setItem(bonusEarnedKey,'survey');
   const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='none';
   const bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
@@ -1803,7 +1803,7 @@ function _timeStr(ts){
 async function displayLeaderboard(){
   const dayIdx=_getDayIdx();
   const quizId='quiz'+(window.QUIZ_NUM||1);
-  const today=new Date().toISOString().slice(0,10);
+  const today=getLocalDateStr();
   let scores=[];
   try{
     const {data}=await sbClient.from('leaderboard').select('*')
@@ -1876,8 +1876,8 @@ const SURVEY_DONE_KEY='80sGrid_surveysCompleted';
 const SURVEY_SHOWN_TODAY_KEY='80sGrid_surveyShownDate';
 function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY)||'[]');}catch(e){return[];}}
 function markSurveyCompleted(id){const done=getSurveysCompleted();if(!done.includes(id)){done.push(id);localStorage.setItem(SURVEY_DONE_KEY,JSON.stringify(done));}}
-function getSurveysShownToday(){const today=new Date().toISOString().slice(0,10);const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
-function markSurveyShownToday(){const today=new Date().toISOString().slice(0,10);const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
+function getSurveysShownToday(){const today=getLocalDateStr();const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
+function markSurveyShownToday(){const today=getLocalDateStr();const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
 function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[0];}
 function renderSurvey(surveyId){
   const survey=SURVEYS[surveyId];if(!survey)return;
@@ -2222,11 +2222,19 @@ function _renderNotes(q){
   fb.innerHTML='<strong>\uD83D\uDCDD Notes</strong><ul>'+notes.map(n=>'<li>'+n+'</li>').join('')+'</ul>';
 }
 
+function getLocalDateStr(d){
+  d=d||new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
 function getDailyQuizId(){
-  // Soft launch starts March 30 2026 = Quiz 1, rolls forward daily at midnight ET
-  var launch=new Date('2026-03-30T00:00:00-05:00');
+  // Soft launch starts March 30 2026 = Quiz 1, rolls forward daily at local midnight
+  // Use local date strings to avoid UTC/timezone offset issues (EST vs EDT, etc.)
+  var launchStr='2026-03-30';
   var now=new Date();
-  var daysSince=Math.floor((now-launch)/86400000);
+  var todayStr=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  var launch=new Date(launchStr+'T00:00:00');
+  var today=new Date(todayStr+'T00:00:00');
+  var daysSince=Math.round((today-launch)/86400000);
   if(daysSince<0) daysSince=0;
   return (daysSince % 70)+1;
 }
@@ -2424,16 +2432,16 @@ function quizInit(){
         const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='none';
       } else {
         // Score under 6 — show earn box if bonus not already earned today
-        const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+        const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
         if(!localStorage.getItem(bonusEarnedKey)){
           const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='block';
         }
       }
-      const today=new Date().toISOString().slice(0,10);
+      const today=getLocalDateStr();
       const last=localStorage.getItem('80sg_last_played');
       let str=parseInt(localStorage.getItem('80sg_streak')||'0');
       if(last!==today){
-        const yest=new Date(Date.now()-86400000).toISOString().slice(0,10);
+        const yest=getLocalDateStr(new Date(Date.now()-86400000));
         str=(last===yest)?str+1:1;
         localStorage.setItem('80sg_streak',str);
         localStorage.setItem('80sg_last_played',today);
