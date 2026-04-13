@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -473,6 +474,14 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
 <h3 id="modalTitle">Enter Answer</h3>
+<div class="yn-section" id="ynSection" style="display:none;">
+<div style="text-align:center;margin-bottom:8px;font-size:0.85em;color:#888;font-style:italic;">It's a Yes or No question!</div>
+<div style="display:flex;gap:12px;justify-content:center;">
+<button id="ynYesBtn" onclick="selectYesNo('Yes')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#00b894,#00cec9);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(0,184,148,0.4);">✅ YES</button>
+<button id="ynNoBtn" onclick="selectYesNo('No')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#d63031,#e17055);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(214,48,49,0.4);">❌ NO</button>
+</div>
+<button onclick="closeModal()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">Cancel</button>
+</div>
 <div class="text-section" id="textSection">
 <input type="text" id="modalInput" placeholder="Type your answer..." />
 <div class="input-modal-buttons">
@@ -1153,15 +1162,21 @@ function openModal(cell){
   const colH=Array.from(colHeaders).map(el=>el.innerText.replace(/\n/g,' ').trim());
   const rowH=Array.from(rowHeaders).map(el=>el.innerText.replace(/\n/g,' ').trim());
   document.getElementById('modalTitle').textContent=(colH[parseInt(cell.dataset.col)]||'')+' — '+(rowH[parseInt(cell.dataset.row)]||'');
-  document.getElementById('modalInput').value=cell.querySelector('input').value;
-  showTextEntry();
-  const mcBtn=document.getElementById('mcToggleBtn');
-  if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
+  const key=cell.dataset.row+'-'+cell.dataset.col;
+  const isYN=yesNoKeys.includes(key);
+  if(isYN){
+    showYesNoEntry();
+  } else {
+    document.getElementById('modalInput').value=cell.querySelector('input').value;
+    showTextEntry();
+    const mcBtn=document.getElementById('mcToggleBtn');
+    if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
+  }
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  if(!isYN) setTimeout(()=>document.getElementById('modalInput').focus(),100);
 }
-function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');}
+function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';}
 function saveModalAnswer(){
   if(currentCell){
     const val=document.getElementById('modalInput').value;
@@ -1236,7 +1251,9 @@ function showMultipleChoice(){
   opts.forEach(opt=>{const btn=document.createElement('button');btn.className='mc-option';btn.textContent=opt;btn.onclick=()=>selectMCOption(opt);container.appendChild(btn);});
   document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.add('visible');
 }
-function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');setTimeout(()=>document.getElementById('modalInput').focus(),60);}
+function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';setTimeout(()=>document.getElementById('modalInput').focus(),60);}
+function showYesNoEntry(){const yn=document.getElementById('ynSection');if(yn)yn.style.display='block';document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.remove('visible');}
+function selectYesNo(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','yesno_selected',{quiz_number:QUIZ_NUM,answer:value});}catch(e){}closeModal();}}
 function selectMCOption(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','lifeline_selected',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}closeModal();}}
 
 /* ===== BONUS LIFELINE MODAL ===== */
