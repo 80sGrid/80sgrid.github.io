@@ -2523,5 +2523,26 @@ function drawGridOnCassette(ctx, W, H) {
 
 </script>
 <script src="/quiz-data.js"></script>
+<script>
+function renderClassicQuizzes(){
+  const grid = document.getElementById('classicQuizzesGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  CLASSIC_QUIZZES.forEach(q => {
+    const played = parseInt(localStorage.getItem('quiz'+q.id+'Score')||'0') > 0;
+    const a = document.createElement('a');
+    a.href = played ? '#' : 'index.html?id='+q.id;
+    if(played){
+      a.style.cssText = 'display:block;padding:10px 8px;background:#f0f0f0;border:2px solid #ccc;border-radius:10px;text-align:center;text-decoration:none;color:#aaa;font-size:0.78em;font-weight:700;line-height:1.3;cursor:default;position:relative;';
+      a.innerHTML = q.title + '<div style="font-size:0.85em;margin-top:4px;color:#bbb;">✓ Completed</div>';
+      a.onclick = e => e.preventDefault();
+    } else {
+      a.style.cssText = 'display:block;padding:10px 8px;background:#f3eeff;border:2px solid #c9b0ff;border-radius:10px;text-align:center;text-decoration:none;color:#5a00cc;font-size:0.78em;font-weight:700;line-height:1.3;';
+      a.textContent = q.title;
+    }
+    grid.appendChild(a);
+  });
+}
+</script>
 </body>
 </html>
