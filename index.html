@@ -1761,10 +1761,10 @@ function checkAnswers(){
   const _isMobile=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const _deviceType=_isMobile?'mobile':'desktop';
   const _screenW=window.screen?window.screen.width:null;
-  try{sbClient.from('check_answers_log').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,total_answered:total,is_replay:isThisAReplay,device_type:_deviceType,screen_width:_screenW});}catch(e){}
+  if(sbClient){sbClient.from('check_answers_log').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,total_answered:total,is_replay:isThisAReplay,device_type:_deviceType,screen_width:_screenW}).then(()=>{}).catch(()=>{});}
   // Silent score tracking — records every Check Answers to quiz_scores table
   // cell_results: array of 9 values — true=correct, false=incorrect, null=skipped
-  try{sbClient.from('quiz_scores').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,cell_results:cellResults,device_type:_deviceType});}catch(e){}
+  if(sbClient){sbClient.from('quiz_scores').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,cell_results:cellResults,device_type:_deviceType}).then(()=>{}).catch(()=>{});}
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
