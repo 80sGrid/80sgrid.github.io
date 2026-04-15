@@ -501,7 +501,7 @@
     a: ["The Motels","Romeo Void","EBN-OZN"],
     r: ["Signature Hit","City They Formed In","Albums Released in the 80s"],
     d: "medium",
-    yn: ["2-0","2-1","2-2"],
+    yn: [],
     ans: {
       "0-0": ["only the lonely"],
       "0-1": ["never say never"],
