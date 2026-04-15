@@ -4936,11 +4936,85 @@ function getRandomQuiz(d)    { const p=d?getQuizzesByDiff(d):window.QUIZ_DATA; r
 
 window.ALL_NAV_QUIZZES = window.QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
 
-
-
 quizInit();
-</script>
-<script>
+
+/* ===== CHALLENGE BANNER ===== */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const isChallenge = params.get('ref') === 'challenge';
+  const quizId = params.get('id');
+
+  // Preserve ref=challenge in URL without triggering a reload
+  if(isChallenge && quizId && !window.location.search.includes('ref=challenge')){
+    const newUrl = window.location.pathname + '?id=' + quizId + '&ref=challenge';
+    window.history.replaceState(null, '', newUrl);
+  }
+
+  if(isChallenge){
+    const banner = document.getElementById('challengeBanner');
+    if(banner) banner.style.display = 'block';
+    // Update today-label to say Bonus Quiz instead of Today's Grid
+    const lbl = document.getElementById('today-label');
+    if(lbl) lbl.textContent = "Bonus Quiz — Shared by a Friend";
+  }
+})();
+
+/* ===== STUCK PROMPT + REVEAL ALL ANSWERS ===== */
+function revealAllAnswers(){
+  document.getElementById('stuckPrompt').style.display = 'none';
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach(cell => {
+    const key = cell.dataset.row + '-' + cell.dataset.col;
+    const inp = cell.querySelector('input');
+    if(!inp || inp.value.trim() !== '') return; // skip answered cells
+    const bestAnswer = (answers[key]||[])[0];
+    if(!bestAnswer) return;
+    cell.classList.add('incorrect');
+    inp.style.display = 'none';
+    const old = cell.querySelector('.answer-reveal'); if(old) old.remove();
+    const reveal = document.createElement('div');
+    reveal.className = 'answer-reveal';
+    reveal.style.cssText = 'text-align:center;line-height:1.3;padding:2px 0;';
+    const formatted = bestAnswer.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+    reveal.innerHTML = '<div style="font-size:1.2em;color:#8B00FF;font-weight:900;">💡</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">' + formatted + '</div>';
+    cell.appendChild(reveal);
+    cell.style.pointerEvents = 'none';
+    cell.style.cursor = 'default';
+  });
+  // Update score display
+  const correct = document.querySelectorAll('.cell.correct').length;
+  const total = 9;
+  document.getElementById('score').textContent = 'You got ' + correct + ' out of ' + total + ' correct!';
+  document.getElementById('results').style.display = 'block';
+  try{ gtag('event','reveal_all_answers',{quiz_number:QUIZ_NUM,score:correct}); }catch(e){}
+}
+
+// Hook into checkAnswers to show stuck prompt when 0 lifelines + empty cells remain
+(function(){
+  const _origCA = window.checkAnswers;
+  if(!_origCA) return;
+  window.checkAnswers = function(){
+    _origCA();
+    // After check, see if there are still empty cells and 0 lifelines
+    setTimeout(function(){
+      const hasEmpty = [...document.querySelectorAll('.cell input')]
+        .some(inp => inp.value.trim() === '' && inp.style.pointerEvents !== 'none');
+      if(hasEmpty && lifelinesRemaining === 0 && !bonusLifelineUsed){
+        document.getElementById('stuckPrompt').style.display = 'block';
+      } else if(hasEmpty && lifelinesRemaining === 0){
+        document.getElementById('stuckPrompt').style.display = 'block';
+      }
+    }, 400);
+  };
+})();
+
+
+/* ===== CLASSIC QUIZZES — grey out completed ones ===== */
+const CLASSIC_QUIZZES = [
+  { id: 28, title: 'American Rock Across Three Styles' },
+  { id: 32, title: 'AOR Giants Meet the Queen of Pop' },
+  { id: 56, title: '80s Megastars Up Close' }
+];
 function renderClassicQuizzes(){
   const grid = document.getElementById('classicQuizzesGrid');
   if(!grid) return;
@@ -4960,6 +5034,9 @@ function renderClassicQuizzes(){
     grid.appendChild(a);
   });
 }
+
+
+
 </script>
 </body>
 </html>
