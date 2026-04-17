@@ -1899,7 +1899,7 @@ function renderSurvey(surveyId){
   const survey=SURVEYS[surveyId];if(!survey)return;
   const el=document.getElementById('surveyQuestion');const titleEl=document.getElementById('surveyTitle');const optionsEl=document.getElementById('surveyOptions');
   if(!el||!titleEl||!optionsEl)return;
-  titleEl.innerHTML=survey.title;optionsEl.innerHTML='';
+  titleEl.innerHTML=survey.title;optionsEl.innerHTML='';optionsEl.classList.remove('survey-voted');
   survey.options.forEach(opt=>{
     const div=document.createElement('div');div.className='survey-option';
     div.style.cssText='background:'+opt.bg+';border:2px solid '+opt.border+';padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left;border-radius:10px;cursor:pointer;transition:all 0.3s;';
