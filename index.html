@@ -989,10 +989,11 @@ const SB_URL  = 'https://owxtsagmzbwudxrnphmi.supabase.co';
 const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93eHRzYWdtemJ3dWR4cm5waG1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1Njk4OTgsImV4cCI6MjA5MDE0NTg5OH0.s2vTqhIE0OwpCj_GjTjeM4VDO2Hm2GhiJavXAfvum_A';
 const sbClient = supabase.createClient(SB_URL, SB_ANON);
 
-const QUIZ_NUM = 1; // Updated by hub init
+const _INIT_QUIZ_ID = parseInt(new URLSearchParams(window.location.search).get('id')||'0',10)||0;
+let QUIZ_NUM = _INIT_QUIZ_ID||1; // will be corrected by quizInit once QUIZ_DATA is ready
 const PLAYS_KEY = '80sGridPlaysHub';
-const SESSION_KEY = 'hasPlayed_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
-let QUIZ_KEY = 'quiz'+(new URLSearchParams(window.location.search).get('id')||'1')+'Score';
+let SESSION_KEY = 'hasPlayed_quiz'+(_INIT_QUIZ_ID||'1');
+let QUIZ_KEY = 'quiz'+(_INIT_QUIZ_ID||'1')+'Score';
 const DAILY_LIMIT = 2;
 const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited', RAD: 'bonus' };
 const FAKE_SCORES = [
@@ -2319,7 +2320,7 @@ function quizInit(){
   document.querySelectorAll('meta[property="og:title"],meta[property="twitter:title"]').forEach(m=>m.setAttribute('content',q.og.title||document.title));
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
-  window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score';
+  window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score'; QUIZ_NUM=n; QUIZ_KEY='quiz'+n+'Score'; SESSION_KEY='hasPlayed_quiz'+n;
 
   // ── REFRESH RESTORE: if this quiz was already completed, rebuild the grid ──
   const _savedGridState=localStorage.getItem('gridState_quiz'+n);
