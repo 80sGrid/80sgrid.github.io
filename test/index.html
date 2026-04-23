@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,7 +146,7 @@ hyphens: auto;
 .header.row-header { background:linear-gradient(135deg,#8B00FF,#DA70D6); box-shadow:0 0 15px rgba(139,0,255,.6); border:2px solid #8B00FF; font-size:0.88em; }
 .col-header { grid-row: 1; }
 .row-header { grid-column: 1; }
-.cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
+.cell { background:#f8f9fa; border:2px solid #dee2e6; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px 8px; cursor:pointer; }
 .cell input { width:100%; padding:10px 8px; border:none; background:transparent; text-align:center; font-size:0.7em; font-weight:bold; outline:none; cursor:pointer; pointer-events:none; line-height:1.8; }
 .cell input::placeholder { color:#8B00FF; font-style:italic; font-size:1.15em; opacity:0.6; white-space:normal; word-spacing:100vw; }
 .cell.correct { background:#d4edda; border-color:#28a745; }
@@ -204,6 +203,7 @@ text-align:left; border-radius:10px; cursor:pointer; transition:all .3s; border:
 .survey-option.selected { box-shadow:0 0 25px rgba(0,255,0,0.6),inset 0 0 15px rgba(0,255,0,0.1); border-color:#00ff00 !important; transform:scale(1.03); }
 .stats-modal { display:none; position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
 .stats-modal.show { display:flex; }
+#surveyModal.show { display:flex; }
 .stats-box { background:#000; border:3px solid #FF1493; border-radius:12px; padding:35px 30px; width:90%; max-width:320px; font-family:'Oxanium',Arial,sans-serif; box-shadow:0 0 40px rgba(255,20,147,0.6); }
 .stats-box h2 { color:#FF1493; text-shadow:0 0 10px #FF1493; font-size:1.3em; letter-spacing:3px; margin:0 0 5px; text-align:center; }
 .stats-sub { color:#00ffff; text-align:center; font-size:0.75em; letter-spacing:2px; margin-bottom:20px; }
@@ -374,6 +374,18 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 .mini-nav a { color:#8B00FF; font-weight:bold; text-decoration:none; margin:0 12px; }
 .mini-nav a:hover { color:#FF1493; }
 .mini-nav span { color:#ccc; }
+/* ===== CHALLENGE BANNER ===== */
+#challengeBanner { display:none; margin-bottom:16px; padding:16px 18px; background:linear-gradient(135deg,#fff8d6,#fff0f8); border:2px solid #FFD700; border-radius:12px; text-align:center; box-shadow:0 0 18px rgba(255,215,0,0.35); }
+#challengeBanner .cb-emoji { font-size:1.6em; margin-bottom:4px; }
+#challengeBanner .cb-title { font-family:'Oxanium',Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px; }
+#challengeBanner .cb-body { font-size:0.82em; color:#555; line-height:1.5; margin-bottom:12px; }
+#challengeBanner .cb-btn { display:inline-block; padding:11px 26px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.92em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.35); }
+/* ===== STUCK PROMPT ===== */
+#stuckPrompt { display:none; margin:12px 0 6px; padding:14px 16px; background:linear-gradient(135deg,#fff0f8,#f8f0ff); border:2px solid #c084fc; border-radius:12px; text-align:center; }
+#stuckPrompt p { margin:0 0 10px; font-size:0.88em; color:#555; line-height:1.5; }
+#stuckPrompt .sp-btns { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+#stuckPrompt .sp-keep { padding:10px 20px; background:#f0f0f0; border:none; border-radius:8px; font-size:0.88em; font-weight:700; color:#555; cursor:pointer; }
+#stuckPrompt .sp-show { padding:10px 20px; background:linear-gradient(135deg,#FF1493,#8B00FF); border:none; border-radius:8px; font-size:0.88em; font-weight:700; color:white; cursor:pointer; }
 
 /* ===== DEDICATION BOX ===== */
 .dedication-box {
@@ -461,6 +473,14 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <div class="input-modal-overlay" id="inputOverlay"></div>
 <div class="input-modal" id="inputModal">
 <h3 id="modalTitle">Enter Answer</h3>
+<div class="yn-section" id="ynSection" style="display:none;">
+<div style="text-align:center;margin-bottom:8px;font-size:0.85em;color:#888;font-style:italic;">It's a Yes or No question!</div>
+<div style="display:flex;gap:12px;justify-content:center;">
+<button id="ynYesBtn" onclick="selectYesNo('Yes')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#00b894,#00cec9);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(0,184,148,0.4);">✅ YES</button>
+<button id="ynNoBtn" onclick="selectYesNo('No')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#d63031,#e17055);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(214,48,49,0.4);">❌ NO</button>
+</div>
+<button onclick="closeModal()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">Cancel</button>
+</div>
 <div class="text-section" id="textSection">
 <input type="text" id="modalInput" placeholder="Type your answer..." />
 <div class="input-modal-buttons">
@@ -468,7 +488,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <button onclick="closeModal()" style="background:#6c757d;">Cancel</button>
 </div>
 <button class="mc-toggle-btn" id="mcToggleBtn" onclick="showMultipleChoice()">&#127919; Lifeline: Multiple Choice (<span id="mcRemaining">3</span> left)</button>
-<div style="font-size:0.72em;color:#888;text-align:center;margin-top:5px;font-style:italic;">Righteous! You got 3 lifelines to get this. Don't trip, just use them carefully! &#128157;</div>
+<div id="lifelineHintText" style="font-size:0.72em;color:#888;text-align:center;margin-top:5px;font-style:italic;">Righteous! You got 3 lifelines to get this. Don't trip, just use them carefully! &#128157;</div>
 <button id="modalBonusBtn" onclick="closeModal(); openBonusSurveyModal();" style="display:none; width:100%; margin-top:10px; padding:11px; background:linear-gradient(135deg,#8B00FF,#FF1493); color:white; border:none; border-radius:8px; font-size:0.92em; font-weight:900; cursor:pointer; letter-spacing:0.5px; animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
 </div>
 <div class="mc-section" id="mcSection">
@@ -529,7 +549,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <img src="/images/header26.jpg" alt="80s Grid Header" class="logo-img" style="width:100%; display:block; margin:0; object-fit:cover; object-position:center center;">
 </picture>
 
-<div style="text-align:center; font-size:1em; font-family:Georgia, serif; font-style:italic; color:#667eea; letter-spacing:1px; margin:6px 0 14px;">
+<div style="text-align:center; font-size:1em; font-family:Georgia, serif; font-style:italic; color:#667eea; letter-spacing:1px; margin:6px 0 14px; font-weight:bold;">
   Free to play &nbsp;&middot;&nbsp; No Sign-Up
 </div>
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:8px 0 4px; opacity:0.5;">
@@ -570,8 +590,72 @@ min-height: 400px; width: 100%; box-sizing: border-box;
     </div>
   </div>
 </div>
+<!-- ===== CHALLENGE BANNER (shown when ?ref=challenge) ===== -->
+<div id="challengeBanner">
+  <div class="cb-emoji">🎯</div>
+  <div class="cb-title">YOU'VE BEEN CHALLENGED!</div>
+  <div class="cb-body">A friend shared their bonus quiz with you. Give it a shot — then play <strong>today's daily quiz</strong> to get on the leaderboard!</div>
+  <a id="challengeDailyLink" href="https://80sgrid.com/" class="cb-btn">▶ Play Today's Quiz →</a>
+</div>
 <div id="today-label" style="text-align:center;font-size:0.95em;color:#8B00FF;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;font-family:Georgia,serif;font-weight:bold;">Today's Grid</div>
 <div class="subtitle" id="today-title">Loading...</div>
+<div class="grid">
+<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
+<div class="header col-header" id="col1" style="grid-column:2;">—</div><div class="header col-header" id="col2" style="grid-column:3;">—</div><div class="header col-header" id="col3" style="grid-column:4;">—</div>
+<div class="header row-header" id="row1" style="grid-row:2;">—</div><div class="header row-header" id="row2" style="grid-row:3;">—</div><div class="header row-header" id="row3" style="grid-row:4;">—</div>
+<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div>
+
+</div>
+
+<!-- SCORE MESSAGE -->
+<div id="scoreMessage" style="display:none; text-align:center; margin:8px 0 10px; padding:10px 16px; border-radius:10px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border:2px solid rgba(139,0,255,0.2); font-family:'Oxanium',Arial,sans-serif; font-size:0.95em; font-weight:900; color:#8B00FF; letter-spacing:0.5px;"></div>
+
+<!-- DIFFICULTY + LIFELINE ROW -->
+<div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
+  <!-- Difficulty pill -->
+  <div id="diff-badge" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
+    <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+    <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
+  </div>
+  <!-- Lifeline pill -->
+  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0; flex-direction:column; gap:4px; padding:8px 14px;">
+    <div style="font-size:0.68em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#555; margin-bottom:3px;">Use a Lifeline if you're stuck?</div>
+    <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+      <div class="lifeline-pips">
+        <div class="lifeline-pip" id="pip1">🛟</div>
+        <div class="lifeline-pip" id="pip2">🛟</div>
+        <div class="lifeline-pip" id="pip3">🛟</div>
+      </div>
+      <span class="lifeline-count" id="lifelineCount">3 remaining</span>
+    </div>
+  </div>
+  <!-- Survey pill replaces lifeline bar after Check Answers -->
+  <div id="surveyPill" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:10px 14px; border-radius:10px; border:2px solid rgba(255,20,147,0.4); background:linear-gradient(135deg,rgba(139,0,255,0.08),rgba(255,20,147,0.08)); cursor:pointer;" onclick="openSurveyFromModal()">
+    <div style="font-size:1.4em;">&#128252;</div>
+    <div style="font-size:0.72em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#8B00FF; text-align:center; line-height:1.3;">Be Kind, Rewind&hellip;<br>answer one question!</div>
+  </div>
+</div>
+<!-- secret code btn removed -->
+<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
+  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
+</div>
+<div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
+
+<div class="button-container">
+<button onclick="checkAnswers()">Check Answers</button>
+<button onclick="resetGrid()">Reset Grid</button>
+<button onclick="shareQuizEmoji()" style="background:linear-gradient(135deg,#FF1493,#8B00FF);">&#128242; Share</button>
+</div>
+<!-- ===== STUCK PROMPT (shown when 0 lifelines + incomplete grid) ===== -->
+<div id="stuckPrompt">
+  <p>🤔 Out of lifelines and still stuck? You can keep thinking — or we can show you the answers.</p>
+  <div class="sp-btns">
+    <button class="sp-keep" onclick="document.getElementById('stuckPrompt').style.display='none'">🎸 Keep Trying</button>
+    <button class="sp-show" onclick="revealAllAnswers()">👀 Show Answers</button>
+  </div>
+</div>
+
 <!-- ===== STREAK STRIP ===== -->
 <div id="streak-strip" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,#fff8f0,#fff0f8);border:2px solid #ffb347;border-radius:10px;margin-bottom:10px;">
 <div style="display:flex;align-items:center;gap:10px;">
@@ -609,45 +693,6 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 </div>
 
 <hr style="border:none; border-top:1px solid; border-image:linear-gradient(to right,transparent,#c084fc 20%,#c084fc 80%,transparent) 1; margin:4px 0 10px; opacity:0.5;">
-<div class="grid">
-<div class="header" style="grid-row:1; grid-column:1; background:transparent;"></div>
-<div class="header col-header" id="col1" style="grid-column:2;">—</div><div class="header col-header" id="col2" style="grid-column:3;">—</div><div class="header col-header" id="col3" style="grid-column:4;">—</div>
-<div class="header row-header" id="row1" style="grid-row:2;">—</div><div class="header row-header" id="row2" style="grid-row:3;">—</div><div class="header row-header" id="row3" style="grid-row:4;">—</div>
-<div class="cell" data-row="0" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="0" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="0"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="1"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="1" data-col="2"><input type="text" placeholder="Answer" readonly /></div><div class="cell" data-row="2" data-col="0"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="1"><input type="text" placeholder="Yes or No?" readonly /></div><div class="cell" data-row="2" data-col="2"><input type="text" placeholder="Yes or No?" readonly /></div>
-
-</div>
-
-<!-- DIFFICULTY + LIFELINE ROW -->
-<div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
-  <!-- Difficulty pill -->
-  <div id="diff-badge" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
-    <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
-    <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
-    <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
-  </div>
-  <!-- Lifeline pill -->
-  <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0; flex-direction:column; gap:4px; padding:10px 14px;">
-    <div style="font-size:0.68em; font-weight:900; letter-spacing:1px; text-transform:uppercase; color:#555; margin-bottom:2px;">Use a Lifeline if you're stuck?</div>
-    <div class="lifeline-pips">
-      <div class="lifeline-pip" id="pip1">🛟</div>
-      <div class="lifeline-pip" id="pip2">🛟</div>
-      <div class="lifeline-pip" id="pip3">🛟</div>
-    </div>
-    <span class="lifeline-count" id="lifelineCount">3 remaining</span>
-  </div>
-</div>
-<!-- secret code btn removed -->
-<div id="bonusLifelineOffer" style="display:none; text-align:center; margin:6px 0 8px;">
-  <button onclick="openBonusSurveyModal()" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:9px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);animation:bonusPulse 2s ease-in-out infinite;">&#127873; Get a Bonus Lifeline</button>
-</div>
-<div class="no-lifeline-badge" id="noLifelineBadge">&#127942; No Lifelines Used — Pure 80s Knowledge!</div>
-
-<div class="button-container">
-<button onclick="checkAnswers()">Check Answers</button>
-<button onclick="resetGrid()">Reset Grid</button>
-<button onclick="shareQuizEmoji()" style="background:linear-gradient(135deg,#FF1493,#8B00FF);">&#128242; Share</button>
-</div>
-
 <!-- DEDICATION / SPONSOR BOX -->
 <div id="dedicationAnchor"></div>
 
@@ -691,7 +736,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <div style="font-size:1.5em; margin-bottom:4px;">🎸</div>
   <div style="font-family:'Oxanium',Arial,sans-serif; font-size:1em; font-weight:900; color:#8B00FF; letter-spacing:1px; margin-bottom:4px;">BONUS QUIZ UNLOCKED!</div>
   <div style="font-size:0.8em; color:#555; margin-bottom:10px;">You scored 6+ — you've earned a bonus round featuring Whitney, Marvin &amp; Enya!</div>
-  <a id="bonusBannerLink" href="quiz-template.html?id=49" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Your Bonus Quiz →</a>
+  <a id="bonusBannerLink" href="index.html?id=49" style="display:inline-block; padding:12px 28px; background:linear-gradient(135deg,#FF1493,#8B00FF); color:white; border-radius:10px; font-weight:900; font-size:0.95em; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 14px rgba(255,20,147,0.4);">🎵 Play Your Bonus Quiz →</a>
 </div>
 
 <!-- bonus unlock hint removed -->
@@ -800,6 +845,7 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   <!-- Social Icons (compact) -->
   <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;">
     <button onclick="shareQuizEmoji()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128242; Share Quiz</button>
+    <button onclick="openSurveyFromModal()" style="display:flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#FF1493,#8B00FF);color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:900;cursor:pointer;letter-spacing:0.3px;white-space:nowrap;">&#128252; Be Kind, Rewind&hellip; answer one question!</button>
     <span style="color:#ddd; margin:0 2px;">|</span>
     <a href="https://www.facebook.com/profile.php?id=61586466117052" target="_blank" rel="noopener" title="Facebook" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#1877F2;color:white;text-decoration:none;flex-shrink:0;">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
@@ -943,10 +989,11 @@ const SB_URL  = 'https://owxtsagmzbwudxrnphmi.supabase.co';
 const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93eHRzYWdtemJ3dWR4cm5waG1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1Njk4OTgsImV4cCI6MjA5MDE0NTg5OH0.s2vTqhIE0OwpCj_GjTjeM4VDO2Hm2GhiJavXAfvum_A';
 const sbClient = supabase.createClient(SB_URL, SB_ANON);
 
-const QUIZ_NUM = 1; // Updated by hub init
+const _INIT_QUIZ_ID = parseInt(new URLSearchParams(window.location.search).get('id')||'0',10)||0;
+let QUIZ_NUM = _INIT_QUIZ_ID||1; // will be corrected by quizInit once QUIZ_DATA is ready
 const PLAYS_KEY = '80sGridPlaysHub';
-const SESSION_KEY = 'hasPlayed_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
-const QUIZ_KEY = 'hubScore';
+let SESSION_KEY = 'hasPlayed_quiz'+(_INIT_QUIZ_ID||'1');
+let QUIZ_KEY = 'quiz'+(_INIT_QUIZ_ID||'1')+'Score';
 const DAILY_LIMIT = 2;
 const SECRET_CODES = { LEN: 'bonus', MAGIC: 'unlimited', RAD: 'bonus' };
 const FAKE_SCORES = [
@@ -966,10 +1013,10 @@ let radBonusUsed = false;
 let feedbackRating = 0;
 
 /* ===== PLAY LIMIT ===== */
-function getTodayKey(){return 'quizzesPlayed_'+new Date().toISOString().slice(0,10);}
+function getTodayKey(){return 'quizzesPlayed_'+getLocalDateStr();}
 function getQuizzesPlayedToday(){return parseInt(localStorage.getItem(getTodayKey())||'0');}
 function incrementQuizzesPlayedToday(){const k=getTodayKey();const n=getQuizzesPlayedToday()+1;localStorage.setItem(k,n);return n;}
-function getBonusKey(){return 'bonusUnlock_'+new Date().toISOString().slice(0,10);}
+function getBonusKey(){return 'bonusUnlock_'+getLocalDateStr();}
 function getUnlockType(){return localStorage.getItem(getBonusKey())||null;}
 function setUnlockType(type){localStorage.setItem(getBonusKey(),type);}
 function getEffectiveDailyLimit(){const u=getUnlockType();if(u==='unlimited')return 999;if(u==='bonus')return DAILY_LIMIT+1;return DAILY_LIMIT;}
@@ -990,11 +1037,11 @@ function loadStats(){
 }
 function toggleStats(){loadStats();document.getElementById('statsModal').classList.toggle('show');}
 function updateStreak(){
-  const today=new Date().toISOString().slice(0,10);
+  const today=getLocalDateStr();
   const lastPlayed=localStorage.getItem('lastPlayedDate');
   let streak=parseInt(localStorage.getItem('playStreak')||'0');
   if(lastPlayed===today)return;
-  const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+  const yesterday=getLocalDateStr(new Date(Date.now()-86400000));
   streak=(lastPlayed===yesterday)?streak+1:1;
   localStorage.setItem('playStreak',streak);localStorage.setItem('lastPlayedDate',today);
 }
@@ -1007,7 +1054,7 @@ function updatePostQuizUI(){
   const bonusUnlockBanner=document.getElementById('bonusUnlockBanner');
   // If score >= 6, bonus is auto-unlocked (handled in quizInit override)
   // If score < 6 and bonus not yet earned today, show earn box
-  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
   const bonusAlreadyEarned=localStorage.getItem(bonusEarnedKey);
   if(bonusEarnBox){
     bonusEarnBox.style.display=(score<6&&!bonusAlreadyEarned)?'block':'none';
@@ -1031,7 +1078,7 @@ async function submitBonusEarnEmail(){
   const email=input?input.value.trim():'';
   if(!isEmail(email)){if(msg){msg.style.display='block';msg.style.color='#dc3545';msg.textContent='Please enter a valid email address';}return;}
   await submitEmailToFormspree(email);
-  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
   localStorage.setItem(bonusEarnedKey,'email');
   if(msg){msg.style.display='block';msg.style.color='#28a745';msg.textContent='🎉 Bonus quiz unlocked!';}
   setTimeout(()=>{
@@ -1115,15 +1162,21 @@ function openModal(cell){
   const colH=Array.from(colHeaders).map(el=>el.innerText.replace(/\n/g,' ').trim());
   const rowH=Array.from(rowHeaders).map(el=>el.innerText.replace(/\n/g,' ').trim());
   document.getElementById('modalTitle').textContent=(colH[parseInt(cell.dataset.col)]||'')+' — '+(rowH[parseInt(cell.dataset.row)]||'');
-  document.getElementById('modalInput').value=cell.querySelector('input').value;
-  showTextEntry();
-  const mcBtn=document.getElementById('mcToggleBtn');
-  if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
+  const key=cell.dataset.row+'-'+cell.dataset.col;
+  const isYN=yesNoKeys.includes(key);
+  if(isYN){
+    showYesNoEntry();
+  } else {
+    document.getElementById('modalInput').value=cell.querySelector('input').value;
+    showTextEntry();
+    const mcBtn=document.getElementById('mcToggleBtn');
+    if(mcBtn)mcBtn.style.display=(Object.keys(mcOptions).length===0)?'none':'block';
+  }
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  if(!isYN) setTimeout(()=>document.getElementById('modalInput').focus(),100);
 }
-function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');}
+function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';setTimeout(updateLifelineUI,80);}
 function saveModalAnswer(){
   if(currentCell){
     const val=document.getElementById('modalInput').value;
@@ -1136,7 +1189,7 @@ document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 /* ===== LIFELINES ===== */
 let bonusSurveyAnswers = [];
-const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3';
+const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
 // Initialize from localStorage — if already claimed today, don't offer again
 let bonusLifelineUsed = !!localStorage.getItem(BONUS_SURVEY_KEY);
 const BONUS_SURVEY = {
@@ -1150,31 +1203,47 @@ const BONUS_SURVEY = {
 };
 
 function updateLifelineUI(){
+  const _passActive=window.hasDayPass&&window.hasDayPass();
+  if(_passActive){
+    for(let i=1;i<=3;i++){const p=document.getElementById('pip'+i);if(p){p.classList.remove('used');p.textContent='\uD83C\uDFAF';}}
+    const cEl=document.getElementById('lifelineCount');if(cEl){cEl.textContent='Unlimited \uD83C\uDF9F\uFE0F';cEl.classList.remove('empty');}
+    const bEl=document.getElementById('mcToggleBtn');if(bEl){bEl.disabled=false;bEl.style.display='block';}
+    const bo=document.getElementById('bonusLifelineOffer');if(bo)bo.style.display='none';
+    const mb=document.getElementById('modalBonusBtn');if(mb)mb.style.display='none';
+    return;
+  }
+  // original logic below:
+  {
   for(let i=1;i<=3;i++){const pip=document.getElementById('pip'+i);if(i<=lifelinesRemaining){pip.classList.remove('used');pip.textContent='\uD83C\uDFAF';}else{pip.classList.add('used');pip.textContent='';}}
   const countEl=document.getElementById('lifelineCount');const btnEl=document.getElementById('mcToggleBtn');const remainEl=document.getElementById('mcRemaining');
   const bonusOffer=document.getElementById('bonusLifelineOffer');const modalBonusBtn=document.getElementById('modalBonusBtn');
   if(remainEl)remainEl.textContent=lifelinesRemaining;
+  const hintEl=document.getElementById('lifelineHintText');
   if(lifelinesRemaining===0){
     countEl.textContent='None left!';countEl.classList.add('empty');
     var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='block';
     if(btnEl){btnEl.disabled=true;btnEl.style.display='none';}
+    if(hintEl){hintEl.style.display='none';}
     if(bonusOffer&&!bonusLifelineUsed)bonusOffer.style.display='block';
-    if(modalBonusBtn&&!bonusLifelineUsed)modalBonusBtn.style.display='block';
+    if(modalBonusBtn&&!bonusLifelineUsed){modalBonusBtn.style.display='block';}
+    else if(modalBonusBtn){modalBonusBtn.style.display='none';}
   } else {
     countEl.textContent=lifelinesRemaining+' remaining';countEl.classList.remove('empty');
     var scb=document.getElementById('secretCodeBtn');if(scb)scb.style.display='none';
     if(btnEl){btnEl.disabled=false;btnEl.style.display='block';}
+    if(hintEl){hintEl.style.display='block';}
     if(bonusOffer)bonusOffer.style.display='none';
     if(modalBonusBtn)modalBonusBtn.style.display='none';
   }
+}
 }
 function showMultipleChoice(){
   if(lifelinesRemaining<=0)return;
   const key=currentCell.dataset.row+'-'+currentCell.dataset.col;
   if(yesNoKeys.includes(key)){const toast=document.getElementById('ynToast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000);return;}
   if(!mcOptions[key]||mcOptions[key].length===0)return;
-  // Charge lifeline on open — seeing the choices IS using the lifeline
-  lifelinesRemaining=Math.max(0,lifelinesRemaining-1);
+  // Charge lifeline — unless day pass is active
+  if(!window.hasDayPass||!window.hasDayPass()){lifelinesRemaining=Math.max(0,lifelinesRemaining-1);}
   updateLifelineUI();
   try{gtag('event','lifeline_opened',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}
   const opts=[...mcOptions[key]];for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
@@ -1182,7 +1251,9 @@ function showMultipleChoice(){
   opts.forEach(opt=>{const btn=document.createElement('button');btn.className='mc-option';btn.textContent=opt;btn.onclick=()=>selectMCOption(opt);container.appendChild(btn);});
   document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.add('visible');
 }
-function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');setTimeout(()=>document.getElementById('modalInput').focus(),60);}
+function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';setTimeout(()=>document.getElementById('modalInput').focus(),60);}
+function showYesNoEntry(){const yn=document.getElementById('ynSection');if(yn)yn.style.display='block';document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.remove('visible');}
+function selectYesNo(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','yesno_selected',{quiz_number:QUIZ_NUM,answer:value});}catch(e){}closeModal();}}
 function selectMCOption(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','lifeline_selected',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}closeModal();}}
 
 /* ===== BONUS LIFELINE MODAL ===== */
@@ -1263,7 +1334,7 @@ function claimBonusLifeline(){
   try{sbClient.from('survey_responses').insert({survey_id:'bonus_lifeline',answer:bonusSurveyAnswers.join(', '),quiz_num:String(QUIZ_NUM)});}catch(e){}
   bonusLifelineUsed=true;lifelinesRemaining=1;updateLifelineUI();closeBonusSurveyModal();showBonusGrantedToast(false);
   // Also mark bonus quiz as earned if this came from the earn flow
-  const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+  const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
   localStorage.setItem(bonusEarnedKey,'survey');
   const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='none';
   const bub=document.getElementById('bonusUnlockBanner');if(bub)bub.style.display='block';
@@ -1300,7 +1371,7 @@ function shareQuizEmoji(){
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
 
   let text;
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   if(hasPlayed){
     text='I got '+score+'/9 on \''+quizTitle+'\' 🎸\n'
       +getStarRating(score)+'\n\n'
@@ -1543,14 +1614,14 @@ function downloadShareCard(){
 }
 
 function shareToFacebook(){
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   const fbUrl='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(challengeUrl);
   window.open(fbUrl,'_blank','width=600,height=460,scrollbars=yes');
   try{gtag('event','share_facebook',{quiz_number:window.QUIZ_NUM});}catch(e){}
 }
 
 function copyChallengeLink(){
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   navigator.clipboard.writeText(challengeUrl).then(()=>{
     showShareToast('Challenge link copied! 🔗 Dare someone to beat you!');
   }).catch(()=>alert(challengeUrl));
@@ -1563,7 +1634,7 @@ function copyShareText(){
   const quizTitle=titleEl?titleEl.textContent.trim():'80sGrid';
   const grid=buildEmojiGrid();
   const hasPlayed=document.querySelectorAll('.cell.correct, .cell.incorrect').length>0;
-  const challengeUrl='https://80sgrid.com/quiz'+(window.QUIZ_NUM||'')+'?ref=challenge';
+  const challengeUrl='https://80sgrid.com/index.html?id='+(window.QUIZ_NUM||'')+'&ref=challenge';
   const text=hasPlayed
     ?'I got '+score+'/9 on \''+quizTitle+'\' 🎸\n'+getStarRating(score)+'\n\n'+grid+'\n\nCan you beat me? 👉 '+challengeUrl
     :'🎸 Try \''+quizTitle+'\' on Len\'s 80sGrid — free!\n👉 '+challengeUrl;
@@ -1593,14 +1664,57 @@ function doShareScore(){shareScore();}
 function closePersistentShareModal(){document.getElementById('persistentShareModal').style.display='none';}
 
 /* ===== MAIN GAME LOGIC ===== */
-function normalizeString(str){return str.toLowerCase().replace(/[''']/g,'').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim();}
+function normalizeString(str){
+  return str.toLowerCase()
+    .replace(/['''`]/g,'')
+    .replace(/&/g,' and ')
+    .replace(/\bw\//g,'with ')
+    .replace(/\+/g,' and ')
+    .replace(/\bwithout\b/g,'without')
+    .replace(/[^a-z0-9\s]/g,' ')
+    .replace(/\b(a|an|the)\b/g,' ')
+    .replace(/\bbout\b/g,'about')
+    .replace(/\bgonna\b/g,'going to')
+    .replace(/\bwanna\b/g,'want to')
+    .replace(/\bgotta\b/g,'got to')
+    .replace(/\bcuz\b/g,'because')
+    .replace(/\s+/g,' ').trim();
+}
+function wordOverlap(user, answer){
+  const stopWords=new Set(['the','and','a','an','of','in','to','is','it','my','me','you','your','we','our','i']);
+  const uWords=new Set(user.split(' ').filter(w=>w.length>1&&!stopWords.has(w)));
+  const aWords=answer.split(' ').filter(w=>w.length>1&&!stopWords.has(w));
+  if(aWords.length===0)return false;
+  // For short answers (1-2 key words), just check if user contains them all
+  if(aWords.length<=2)return aWords.every(w=>uWords.has(w)||user.includes(w));
+  const matches=aWords.filter(w=>uWords.has(w)).length;
+  return matches/aWords.length>=0.65;
+}
 function checkAnswers(){
   let _isFirstPlayToday=false;
   const previousScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');const isThisAReplay=previousScore>0;
   const cells=document.querySelectorAll('.cell');let correct=0,total=0;
+  const cellResults=[];
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
-    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));if(valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer))){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;}else{cell.classList.add('incorrect');cell.classList.remove('correct');}}
+    const old=cell.querySelector('.answer-reveal');if(old)old.remove();
+    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellResults.push(true);
+      input.style.display='none';
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+      reveal.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+input.value+'</div>';
+      cell.appendChild(reveal);
+    }else{cell.classList.add('incorrect');cell.classList.remove('correct');cellResults.push(false);
+      const bestAnswer=answers[key][0];
+      input.style.display='none';
+      const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+      const _isYNCell=yesNoKeys.includes(key);
+      if(_isYNCell){
+        reveal.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.6em;color:#721c24;font-weight:700;margin-top:1px;word-break:break-word;">You said: '+input.value+'</div><div style="font-size:0.6em;color:#155724;font-weight:900;margin-top:3px;word-break:break-word;">Answer: '+(bestAnswer.charAt(0).toUpperCase()+bestAnswer.slice(1))+'</div>';
+      }else{
+        reveal.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.55em;color:#721c24;font-weight:700;margin-top:1px;word-break:break-word;text-decoration:line-through;opacity:0.7;">'+input.value+'</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">'+bestAnswer+'</div>';
+      }
+      cell.appendChild(reveal);
+    }}else{cellResults.push(null);}
   });
   if(total===0){alert('Fill in some answers first!');return;}
   if(!sessionStorage.getItem(SESSION_KEY)){
@@ -1611,6 +1725,19 @@ function checkAnswers(){
     const best=parseInt(localStorage.getItem('bestQuizScore')||'0');if(correct>best)localStorage.setItem('bestQuizScore',correct);
   }
   const oldScore=parseInt(localStorage.getItem(QUIZ_KEY)||'0');if(correct>oldScore)localStorage.setItem(QUIZ_KEY,correct);
+  // Save grid state so it can be restored on refresh
+  const _gridState={};
+  document.querySelectorAll('.cell').forEach(function(cell){
+    const k=cell.dataset.row+'-'+cell.dataset.col;
+    const inp=cell.querySelector('input');
+    const reveal=cell.querySelector('.answer-reveal');
+    _gridState[k]={
+      val: inp?inp.value:'',
+      correct: cell.classList.contains('correct'),
+      incorrect: cell.classList.contains('incorrect')
+    };
+  });
+  localStorage.setItem('gridState_quiz'+(window.QUIZ_NUM||n),JSON.stringify(_gridState));
   document.getElementById('score').textContent='You got '+correct+' out of '+total+' correct!';
   document.getElementById('results').style.display='block';
   // Lock only answered cells — leave empty cells playable
@@ -1635,10 +1762,23 @@ function checkAnswers(){
     }
   }
   try{gtag('event','check_answers',{quiz_number:QUIZ_NUM,score:correct,total:total,is_replay:isThisAReplay});}catch(e){}
+  // Log every Check Answers tap to check_answers_log table
+  const _isMobile=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const _deviceType=_isMobile?'mobile':'desktop';
+  const _screenW=window.screen?window.screen.width:null;
+  if(sbClient){sbClient.from('check_answers_log').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,total_answered:total,is_replay:isThisAReplay,device_type:_deviceType,screen_width:_screenW}).then(()=>{}).catch(()=>{});}
+  // Silent score tracking — records every Check Answers to quiz_scores table
+  // cell_results: array of 9 values — true=correct, false=incorrect, null=skipped
+  if(sbClient){sbClient.from('quiz_scores').insert({quiz_id:'quiz'+(window.QUIZ_NUM||1),score:correct,cell_results:cellResults,device_type:_deviceType}).then(()=>{}).catch(()=>{});}
   updatePostQuizUI();
   if(correct>=8&&total===9)setTimeout(()=>{document.getElementById('highScoreEntry').style.display='block';document.getElementById('initial1').focus();},1000);
   displayLeaderboard();
-  maybeShowSurvey(_isFirstPlayToday);
+  // Funny score message
+  const _msgs={1:'1/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 — Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 — That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 — Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 — Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
+  const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[correct]||'';_msgEl.style.display='block';}
+  // Swap lifeline bar for survey pill
+  const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
+  if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){
@@ -1685,7 +1825,7 @@ function _timeStr(ts){
 async function displayLeaderboard(){
   const dayIdx=_getDayIdx();
   const quizId='quiz'+(window.QUIZ_NUM||1);
-  const today=new Date().toISOString().slice(0,10);
+  const today=getLocalDateStr();
   let scores=[];
   try{
     const {data}=await sbClient.from('leaderboard').select('*')
@@ -1722,7 +1862,7 @@ document.getElementById('initial2').addEventListener('input',function(){if(this.
 document.getElementById('initial3').addEventListener('keypress',function(e){if(e.key==='Enter')saveHighScore();});
 
 /* ===== NAV ===== */
-const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'quiz-template.html?id=2',c:'medium'},{n:3,f:'quiz-template.html?id=3',c:'medium'},{n:4,f:'quiz-template.html?id=4',c:'hard'},{n:5,f:'quiz-template.html?id=5',c:'medium'},{n:6,f:'quiz-template.html?id=6',c:'medium'},{n:7,f:'quiz-template.html?id=7',c:'easy'},{n:8,f:'quiz-template.html?id=8',c:'medium'},{n:9,f:'quiz-template.html?id=9',c:'medium'},{n:10,f:'quiz-template.html?id=10',c:'medium'},{n:11,f:'quiz-template.html?id=11',c:'hard'},{n:12,f:'quiz-template.html?id=12',c:'medium'},{n:13,f:'quiz-template.html?id=13',c:'hard'},{n:14,f:'quiz-template.html?id=14',c:'hard'},{n:15,f:'quiz-template.html?id=15',c:'medium'},{n:16,f:'quiz-template.html?id=16',c:'easy'},{n:17,f:'quiz-template.html?id=17',c:'hard'},{n:18,f:'quiz-template.html?id=18',c:'easy'},{n:19,f:'quiz-template.html?id=19',c:'medium'},{n:20,f:'quiz-template.html?id=20',c:'hard'},{n:21,f:'quiz-template.html?id=21',c:'medium'},{n:22,f:'quiz-template.html?id=22',c:'medium'},{n:23,f:'quiz-template.html?id=23',c:'medium'},{n:24,f:'quiz-template.html?id=24',c:'hard'},{n:25,f:'quiz-template.html?id=25',c:'hard'},{n:26,f:'quiz-template.html?id=26',c:'hard'},{n:27,f:'quiz-template.html?id=27',c:'medium'},{n:28,f:'quiz-template.html?id=28',c:'hard'},{n:29,f:'quiz-template.html?id=29',c:'hard'},{n:30,f:'quiz-template.html?id=30',c:'medium'},{n:31,f:'quiz-template.html?id=31',c:'easy'},{n:32,f:'quiz-template.html?id=32',c:'medium'},{n:33,f:'quiz-template.html?id=33',c:'easy'},{n:34,f:'quiz-template.html?id=34',c:'medium'},{n:35,f:'quiz-template.html?id=35',c:'medium'},{n:36,f:'quiz-template.html?id=36',c:'hard'},{n:37,f:'quiz-template.html?id=37',c:'medium'},{n:38,f:'quiz-template.html?id=38',c:'hard'},{n:39,f:'quiz-template.html?id=39',c:'hard'},{n:40,f:'quiz-template.html?id=40',c:'hard'},{n:41,f:'quiz-template.html?id=41',c:'easy'},{n:42,f:'quiz-template.html?id=42',c:'medium'},{n:43,f:'quiz-template.html?id=43',c:'easy'},{n:44,f:'quiz-template.html?id=44',c:'easy'},{n:45,f:'quiz-template.html?id=45',c:'easy'},{n:46,f:'quiz-template.html?id=46',c:'medium'},{n:47,f:'quiz-template.html?id=47',c:'easy'},{n:48,f:'quiz-template.html?id=48',c:'medium'},{n:49,f:'quiz-template.html?id=49',c:'easy'},{n:50,f:'quiz-template.html?id=50',c:'easy'},{n:51,f:'quiz-template.html?id=51',c:'easy'},{n:52,f:'quiz-template.html?id=52',c:'medium'},{n:53,f:'quiz-template.html?id=53',c:'medium'},{n:54,f:'quiz-template.html?id=54',c:'medium'},{n:55,f:'quiz-template.html?id=55',c:'medium'},{n:56,f:'quiz-template.html?id=56',c:'easy'},{n:57,f:'quiz-template.html?id=57',c:'medium'},{n:58,f:'quiz-template.html?id=58',c:'easy'},{n:59,f:'quiz-template.html?id=59',c:'medium'},{n:60,f:'quiz-template.html?id=60',c:'medium'},{n:61,f:'quiz-template.html?id=61',c:'medium'},{n:62,f:'quiz-template.html?id=62',c:'easy'},{n:63,f:'quiz-template.html?id=63',c:'medium'},{n:64,f:'quiz-template.html?id=64',c:'easy'},{n:65,f:'quiz-template.html?id=65',c:'medium'},{n:66,f:'quiz-template.html?id=66',c:'easy'},{n:67,f:'quiz-template.html?id=67',c:'medium'},{n:68,f:'quiz-template.html?id=68',c:'easy'},{n:69,f:'quiz-template.html?id=69',c:'easy'},{n:70,f:'quiz-template.html?id=70',c:'easy'}];
+const ALL_NAV_QUIZZES=[{n:1,f:'index.html',c:'easy'},{n:2,f:'index.html?id=2',c:'medium'},{n:3,f:'index.html?id=3',c:'medium'},{n:4,f:'index.html?id=4',c:'hard'},{n:5,f:'index.html?id=5',c:'medium'},{n:6,f:'index.html?id=6',c:'medium'},{n:7,f:'index.html?id=7',c:'easy'},{n:8,f:'index.html?id=8',c:'medium'},{n:9,f:'index.html?id=9',c:'medium'},{n:10,f:'index.html?id=10',c:'medium'},{n:11,f:'index.html?id=11',c:'hard'},{n:12,f:'index.html?id=12',c:'medium'},{n:13,f:'index.html?id=13',c:'hard'},{n:14,f:'index.html?id=14',c:'hard'},{n:15,f:'index.html?id=15',c:'medium'},{n:16,f:'index.html?id=16',c:'easy'},{n:17,f:'index.html?id=17',c:'hard'},{n:18,f:'index.html?id=18',c:'easy'},{n:19,f:'index.html?id=19',c:'medium'},{n:20,f:'index.html?id=20',c:'hard'},{n:21,f:'index.html?id=21',c:'medium'},{n:22,f:'index.html?id=22',c:'medium'},{n:23,f:'index.html?id=23',c:'medium'},{n:24,f:'index.html?id=24',c:'hard'},{n:25,f:'index.html?id=25',c:'hard'},{n:26,f:'index.html?id=26',c:'hard'},{n:27,f:'index.html?id=27',c:'medium'},{n:28,f:'index.html?id=28',c:'hard'},{n:29,f:'index.html?id=29',c:'hard'},{n:30,f:'index.html?id=30',c:'medium'},{n:31,f:'index.html?id=31',c:'easy'},{n:32,f:'index.html?id=32',c:'medium'},{n:33,f:'index.html?id=33',c:'easy'},{n:34,f:'index.html?id=34',c:'medium'},{n:35,f:'index.html?id=35',c:'medium'},{n:36,f:'index.html?id=36',c:'hard'},{n:37,f:'index.html?id=37',c:'medium'},{n:38,f:'index.html?id=38',c:'hard'},{n:39,f:'index.html?id=39',c:'hard'},{n:40,f:'index.html?id=40',c:'hard'},{n:41,f:'index.html?id=41',c:'easy'},{n:42,f:'index.html?id=42',c:'medium'},{n:43,f:'index.html?id=43',c:'easy'},{n:44,f:'index.html?id=44',c:'easy'},{n:45,f:'index.html?id=45',c:'easy'},{n:46,f:'index.html?id=46',c:'medium'},{n:47,f:'index.html?id=47',c:'easy'},{n:48,f:'index.html?id=48',c:'medium'},{n:49,f:'index.html?id=49',c:'easy'},{n:50,f:'index.html?id=50',c:'easy'},{n:51,f:'index.html?id=51',c:'easy'},{n:52,f:'index.html?id=52',c:'medium'},{n:53,f:'index.html?id=53',c:'medium'},{n:54,f:'index.html?id=54',c:'medium'},{n:55,f:'index.html?id=55',c:'medium'},{n:56,f:'index.html?id=56',c:'easy'},{n:57,f:'index.html?id=57',c:'medium'},{n:58,f:'index.html?id=58',c:'easy'},{n:59,f:'index.html?id=59',c:'medium'},{n:60,f:'index.html?id=60',c:'medium'},{n:61,f:'index.html?id=61',c:'medium'},{n:62,f:'index.html?id=62',c:'easy'},{n:63,f:'index.html?id=63',c:'medium'},{n:64,f:'index.html?id=64',c:'easy'},{n:65,f:'index.html?id=65',c:'medium'},{n:66,f:'index.html?id=66',c:'easy'},{n:67,f:'index.html?id=67',c:'medium'},{n:68,f:'index.html?id=68',c:'easy'},{n:69,f:'index.html?id=69',c:'easy'},{n:70,f:'index.html?id=70',c:'easy'}];
 const NAV_GROUPS=[ALL_NAV_QUIZZES.slice(0,10),ALL_NAV_QUIZZES.slice(10,20),ALL_NAV_QUIZZES.slice(20,30),ALL_NAV_QUIZZES.slice(30,40),ALL_NAV_QUIZZES.slice(40,50),ALL_NAV_QUIZZES.slice(50,60),ALL_NAV_QUIZZES.slice(60)];
 const GROUP_LABELS=['1 – 10','11 – 20','21 – 30','31 – 40','41 – 50','51 – 60','61 – 70'];
 let navActiveGroup=QUIZ_NUM<=10?0:QUIZ_NUM<=20?1:QUIZ_NUM<=30?2:QUIZ_NUM<=40?3:QUIZ_NUM<=50?4:QUIZ_NUM<=60?5:6;
@@ -1733,7 +1873,7 @@ function renderNavGrid(){
   var tabs=document.getElementById('groupTabs');
   if(tabs&&!tabs.hasChildNodes()){GROUP_LABELS.forEach(function(label,i){var d=document.createElement('div');d.className='group-tab'+(i===navActiveGroup?' active':'');d.textContent=label;d.onclick=function(){showNavGroup(i);};tabs.appendChild(d);});}
   var quizzes=NAV_GROUPS[navActiveGroup]||[];
-  quizzes.forEach(function(q){var a=document.createElement('a');var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');a.textContent=q.n;a.href=q.f;grid.appendChild(a);});
+  quizzes.forEach(function(q){var a=document.createElement('a');var played=hasPlayedQuiz(q.n);var isCurrent=q.n===QUIZ_NUM;a.className=played?'played'+(isCurrent?' current':''):q.c+(isCurrent?' current':'');a.textContent=q.n;a.href=(q.n===1?'index.html':'index.html?id='+q.n);grid.appendChild(a);});
   updateNavStatus();
 }
 function updateNavStatus(){
@@ -1758,14 +1898,14 @@ const SURVEY_DONE_KEY='80sGrid_surveysCompleted';
 const SURVEY_SHOWN_TODAY_KEY='80sGrid_surveyShownDate';
 function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY_DONE_KEY)||'[]');}catch(e){return[];}}
 function markSurveyCompleted(id){const done=getSurveysCompleted();if(!done.includes(id)){done.push(id);localStorage.setItem(SURVEY_DONE_KEY,JSON.stringify(done));}}
-function getSurveysShownToday(){const today=new Date().toISOString().slice(0,10);const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
-function markSurveyShownToday(){const today=new Date().toISOString().slice(0,10);const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
+function getSurveysShownToday(){const today=getLocalDateStr();const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
+function markSurveyShownToday(){const today=getLocalDateStr();const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
 function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[0];}
 function renderSurvey(surveyId){
   const survey=SURVEYS[surveyId];if(!survey)return;
   const el=document.getElementById('surveyQuestion');const titleEl=document.getElementById('surveyTitle');const optionsEl=document.getElementById('surveyOptions');
   if(!el||!titleEl||!optionsEl)return;
-  titleEl.innerHTML=survey.title;optionsEl.innerHTML='';
+  titleEl.innerHTML=survey.title;optionsEl.innerHTML='';optionsEl.classList.remove('survey-voted');
   survey.options.forEach(opt=>{
     const div=document.createElement('div');div.className='survey-option';
     div.style.cssText='background:'+opt.bg+';border:2px solid '+opt.border+';padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left;border-radius:10px;cursor:pointer;transition:all 0.3s;';
@@ -1788,7 +1928,7 @@ function revealSurveyResults(surveyId,chosen){
   optionsEl.querySelectorAll('.survey-option').forEach(card=>{
     const val=card.dataset.value;const pct=parseInt(card.dataset.pct);const color=card.dataset.color;const isChosen=val===chosen;
     const bar=card.querySelector('.tribe-bar');if(bar)bar.style.display='block';
-    const fill=card.querySelector('.tribe-fill');if(fill){fill.style.background=isChosen?'linear-gradient(135deg,'+color+',#fff)':color;setTimeout(()=>{fill.style.width=pct+'%';},50);}
+    const fill=card.querySelector('.tribe-fill');if(fill){fill.style.background=isChosen?'linear-gradient(135deg,'+color+',#fff)':color;fill.style.width='0%';setTimeout(()=>{fill.style.width=pct+'%';},120);}
     const pctEl=card.querySelector('.tribe-pct');if(pctEl){pctEl.style.display='block';pctEl.textContent=pct+'%';}
     if(isChosen){card.classList.add('selected');card.style.boxShadow='0 0 20px '+color+',inset 0 0 10px rgba(255,255,255,0.1)';}
     else{card.style.opacity='0.65';}
@@ -1813,7 +1953,7 @@ function openSurveyFromModal(){
 }
 function closeSurveyModal(){
   const m=document.getElementById('surveyModal');
-  if(m)m.style.display='none';
+  if(m){m.classList.remove('show');m.style.display='none';}
 }
 function showSurveyModal(){
   const nextId=getNextSurvey();
@@ -1821,7 +1961,8 @@ function showSurveyModal(){
   if(getSurveysShownToday()>=2)return; // max 2 per day
   const m=document.getElementById('surveyModal');
   if(m){
-    m.style.display='flex';
+    m.style.display=''; // clear any inline style
+    m.classList.add('show');
     // Prevent click-bleed from initials entry — disable buttons briefly
     const btns=m.querySelectorAll('button');
     btns.forEach(b=>{b.style.pointerEvents='none';});
@@ -1911,6 +2052,24 @@ function submitFeedback(){
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
+  // Secret day pass via URL ?code=
+  (function(){
+    const urlCode=(new URLSearchParams(window.location.search).get('code')||'').toUpperCase().trim();
+    const passes={SADE:48,SQUEEZE:24};
+    if(passes[urlCode]){
+      const hours=passes[urlCode];
+      localStorage.setItem('lifelinePass',Date.now()+(hours*60*60*1000));
+      const clean=window.location.pathname+(window.location.search.replace(/[?&]code=[^&]*/,'').replace(/^\?$/,''));
+      window.history.replaceState({},'',clean||window.location.pathname);
+      setTimeout(()=>{
+        const t=document.createElement('div');
+        t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;padding:12px 24px;border-radius:24px;font-family:Oxanium,Arial,sans-serif;font-weight:900;font-size:0.88em;letter-spacing:0.5px;z-index:9999;box-shadow:0 4px 20px rgba(139,0,255,0.4);white-space:nowrap;';
+        t.textContent='\uD83C\uDF9F\uFE0F '+hours+'hr Lifeline Pass activated!';
+        document.body.appendChild(t);setTimeout(()=>t.remove(),4000);
+      },800);
+    }
+    window.hasDayPass=function(){return Date.now()<parseInt(localStorage.getItem('lifelinePass')||'0');};
+  })();
   closeModal();
   initializeCells();
   updatePlaysCounter();
@@ -1964,7 +2123,7 @@ const QUIZ_NAMES = {
   66:'Three people would never have coffee together',67:'MTV Video of the Year Winners',
   68:'Born and Raised in New York',69:'Born in LA',70:'80s Legends Who Never Quit'
 };
-function getQuizUrl(n){ return n===1?'index.html':'quiz'+n+'.html'; }
+function getQuizUrl(n){ return 'index.html?id='+n; }
 function initMcq(){
   var completed=[];
   for(var i=1;i<=70;i++){
@@ -2052,7 +2211,7 @@ function _showBonusCard(score){
   const QDATA=window.QUIZ_DATA||[];
   const bonusQ=QDATA.find(function(s){return s.n===49;});
   const bonusTitle=bonusQ?bonusQ.t:'Your Bonus Quiz';
-  const bonusFile=bonusQ?'quiz-template.html?id='+bonusQ.n:'quiz-template.html?id=49';
+  const bonusFile=bonusQ?'index.html?id='+bonusQ.n:'index.html?id=49';
   const bc=document.getElementById('bonus-card');
   if(bc){bc.style.borderColor='#FFD700';bc.style.background='linear-gradient(135deg,#fffdf0,#fff8f0)';}
   const bi=document.getElementById('bonus-icon');if(bi)bi.textContent='\uD83C\uDFB8';
@@ -2085,11 +2244,19 @@ function _renderNotes(q){
   fb.innerHTML='<strong>\uD83D\uDCDD Notes</strong><ul>'+notes.map(n=>'<li>'+n+'</li>').join('')+'</ul>';
 }
 
+function getLocalDateStr(d){
+  d=d||new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
 function getDailyQuizId(){
-  // Soft launch starts March 30 2026 = Quiz 1, rolls forward daily at midnight ET
-  var launch=new Date('2026-03-30T00:00:00-05:00');
+  // Soft launch starts March 30 2026 = Quiz 1, rolls forward daily at local midnight
+  // Use local date strings to avoid UTC/timezone offset issues (EST vs EDT, etc.)
+  var launchStr='2026-03-30';
   var now=new Date();
-  var daysSince=Math.floor((now-launch)/86400000);
+  var todayStr=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  var launch=new Date(launchStr+'T00:00:00');
+  var today=new Date(todayStr+'T00:00:00');
+  var daysSince=Math.round((today-launch)/86400000);
   if(daysSince<0) daysSince=0;
   return (daysSince % 70)+1;
 }
@@ -2158,7 +2325,65 @@ function quizInit(){
   document.querySelectorAll('meta[property="og:title"],meta[property="twitter:title"]').forEach(m=>m.setAttribute('content',q.og.title||document.title));
   document.querySelectorAll('meta[property="og:description"],meta[property="twitter:description"]').forEach(m=>m.setAttribute('content',q.og.desc||''));
   document.querySelectorAll('meta[property="og:url"],meta[property="twitter:url"]').forEach(m=>m.setAttribute('content',q.og.url||window.location.href));
-  window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score';
+  window.QUIZ_NUM=n; window.QUIZ_KEY='quiz'+n+'Score'; QUIZ_NUM=n; QUIZ_KEY='quiz'+n+'Score'; SESSION_KEY='hasPlayed_quiz'+n;
+
+  // ── REFRESH RESTORE: if this quiz was already completed, rebuild the grid ──
+  const _savedGridState=localStorage.getItem('gridState_quiz'+n);
+  const _savedScore=parseInt(localStorage.getItem('quiz'+n+'Score')||'0');
+  if(_savedGridState&&_savedScore>0){
+    try{
+      const _gs=JSON.parse(_savedGridState);
+      document.querySelectorAll('.cell').forEach(function(cell){
+        const k=cell.dataset.row+'-'+cell.dataset.col;
+        const st=_gs[k];if(!st)return;
+        const inp=cell.querySelector('input');
+        if(st.correct){
+          cell.classList.add('correct');cell.classList.remove('incorrect');
+          if(inp){inp.value=st.val;inp.style.display='none';}
+          if(!cell.querySelector('.answer-reveal')){
+            const rv=document.createElement('div');rv.className='answer-reveal';
+            rv.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+            rv.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+st.val+'</div>';
+            cell.appendChild(rv);
+          }
+          cell.style.pointerEvents='none';cell.style.cursor='default';
+          if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+        } else if(st.incorrect){
+          cell.classList.add('incorrect');cell.classList.remove('correct');
+          if(inp){inp.value=st.val;inp.style.display='none';}
+          const bestAnswer=(q.ans[k]||[])[0]||'';
+          if(!cell.querySelector('.answer-reveal')){
+            const rv=document.createElement('div');rv.className='answer-reveal';
+            rv.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
+            rv.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.55em;color:#721c24;font-weight:700;margin-top:1px;word-break:break-word;text-decoration:line-through;opacity:0.7;">'+st.val+'</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">'+bestAnswer+'</div>';
+            cell.appendChild(rv);
+          }
+          cell.style.pointerEvents='none';cell.style.cursor='default';
+          if(inp){inp.style.pointerEvents='none';inp.style.cursor='default';}
+        }
+      });
+      // Restore results panel
+      const _correct=document.querySelectorAll('.cell.correct').length;
+      const _total=document.querySelectorAll('.cell.correct, .cell.incorrect').length;
+      if(_total>0){
+        const scoreEl=document.getElementById('score');
+        if(scoreEl)scoreEl.textContent='You got '+_correct+' out of '+_total+' correct!';
+        const resEl=document.getElementById('results');if(resEl)resEl.style.display='block';
+        // Disable check button — all answered
+        const checkBtn=document.querySelector('.button-container button');
+        if(checkBtn){checkBtn.disabled=true;checkBtn.style.opacity='0.5';checkBtn.title='All answers submitted';}
+        // Swap lifeline bar for survey pill (already completed)
+        const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
+        if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
+        // Restore score message
+        const _msgs={1:'1/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 \u2014 Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 \u2014 That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 \u2014 Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 \u2014 Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
+        const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[_correct]||'';_msgEl.style.display='block';}
+        // Re-mark session so play limit isn't double-counted
+        sessionStorage.setItem(SESSION_KEY,'true');
+      }
+    }catch(e){}
+  }
+  // ── END REFRESH RESTORE ──
   // Show fake scores immediately so leaderboard is never blank
   if(typeof FAKE_SCORES !== 'undefined' && document.getElementById('leaderboardList')){
     const sub=document.getElementById('leaderboard-subtitle')||document.querySelector('.leaderboard-subtitle');
@@ -2188,7 +2413,7 @@ function quizInit(){
       completed.slice(0,6).forEach(({num,sc})=>{
         const aq=QDATA.find(x=>x.n===num); if(!aq) return;
         const card=document.createElement('a');
-        card.href=(num===1?'/index.html':'/quiz'+num+'.html');
+        card.href='/?id='+num;
         card.style.cssText='border:2px solid #28a745;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;text-decoration:none;color:inherit;display:block;background:#f0fff4;';
         card.innerHTML='<div style="font-family:Oxanium,Arial,sans-serif;font-size:1.1em;font-weight:700;color:#28a745;">&#10003; '+sc+'/9</div><div style="font-size:0.68em;color:#555;margin-top:3px;line-height:1.3;">'+aq.t+'</div>';
         cg.appendChild(card);
@@ -2219,7 +2444,7 @@ function quizInit(){
       if(newScore>0) localStorage.setItem('quiz'+n+'Score', newScore);
       // Show survey modal after a delay — player has time to admire their score first
       setTimeout(()=>{
-        if(typeof showSurveyModal==='function') showSurveyModal();
+        // survey popup removed — button replaces lifeline box after answers
       }, 2500);
       if(newScore>=6){
         const bc2=document.getElementById('bonus-card');
@@ -2229,16 +2454,16 @@ function quizInit(){
         const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='none';
       } else {
         // Score under 6 — show earn box if bonus not already earned today
-        const bonusEarnedKey='bonusEarned_'+new Date().toISOString().slice(0,10);
+        const bonusEarnedKey='bonusEarned_'+getLocalDateStr();
         if(!localStorage.getItem(bonusEarnedKey)){
           const beb=document.getElementById('bonusEarnBox');if(beb)beb.style.display='block';
         }
       }
-      const today=new Date().toISOString().slice(0,10);
+      const today=getLocalDateStr();
       const last=localStorage.getItem('80sg_last_played');
       let str=parseInt(localStorage.getItem('80sg_streak')||'0');
       if(last!==today){
-        const yest=new Date(Date.now()-86400000).toISOString().slice(0,10);
+        const yest=getLocalDateStr(new Date(Date.now()-86400000));
         str=(last===yest)?str+1:1;
         localStorage.setItem('80sg_streak',str);
         localStorage.setItem('80sg_last_played',today);
@@ -2348,7 +2573,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 2: New Wave Around the World ─── */
   {
-    n: 2, f: "quiz-template.html?id=2",
+    n: 2, f: "index.html?id=2",
     t: "New Wave Around the World",
     sub: "Simple Minds, OMD & INXS",
     a: ["Simple Minds", "OMD", "INXS"],
@@ -2384,7 +2609,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 3: Dark Side of the 80s ─── */
   {
-    n: 3, f: "quiz-template.html?id=3",
+    n: 3, f: "index.html?id=3",
     t: "Dark Side of the 80s",
     sub: "The Police, The Cure & Depeche Mode",
     a: ["The Police", "The Cure", "Depeche Mode"],
@@ -2417,7 +2642,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 4: Royalty, Rock & the Obscure ─── */
   {
-    n: 4, f: "quiz-template.html?id=4",
+    n: 4, f: "index.html?id=4",
     t: "Royalty, Rock & the Obscure",
     sub: "Prince, Queen & Flesh for Lulu",
     a: ["Prince", "Queen", "Flesh for Lulu"],
@@ -2450,7 +2675,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 5: Reggae, Roots & Art Rock ─── */
   {
-    n: 5, f: "quiz-template.html?id=5",
+    n: 5, f: "index.html?id=5",
     t: "Reggae, Roots & Art Rock",
     sub: "UB40, Eddy Grant & Peter Gabriel",
     a: ["UB40", "Eddy Grant", "Peter Gabriel"],
@@ -2486,7 +2711,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 6: Clever Pop & New Wave Crossovers ─── */
   {
-    n: 6, f: "quiz-template.html?id=6",
+    n: 6, f: "index.html?id=6",
     t: "Clever Pop & New Wave Crossovers",
     sub: "Elvis Costello, ABC & Huey Lewis and the News",
     a: ["Elvis Costello", "ABC", "Huey Lewis and the News"],
@@ -2522,7 +2747,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 7: Arena Rock Meets Pop Soul ─── */
   {
-    n: 7, f: "quiz-template.html?id=7",
+    n: 7, f: "index.html?id=7",
     t: "Arena Rock Meets Pop Soul",
     sub: "Van Halen, Heart & Billy Ocean",
     a: ["Van Halen", "Heart", "Billy Ocean"],
@@ -2542,20 +2767,20 @@ window.QUIZ_DATA = [
       "2-2": ["yes"]
     },
     mc: {
-      "0-0": ["Dreams", "Sweet Dreams (Are Made of This)", "Electric Dreams"],
+      "0-0": ["Dreams", "Electric Dreams", "In Your Wildest Dreams"],
       "0-1": ["These Dreams", "Don't Dream It's Over", "Dream Police"],
       "0-2": ["Get Outta My Dreams, Get Into My Car", "Dreaming", "In Your Wildest Dreams"],
       "1-0": ["Jump", "Hot for Teacher", "Panama"],
       "1-1": ["Alone", "Magic Man", "Crazy on You"],
       "1-2": ["Caribbean Queen", "Loverboy", "Suddenly"]
     },
-    og: { title: "Len's 80sGrid.com Music Edition - Quiz 7", desc: "Can you match Van Halen, Heart, and Billy Ocean to their hits? Play Quiz 7 on 80sGrid.com!", url: "https://80sgrid.com/quiz7.html", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
-    social: { fb: "I just played Arena Rock Meets Pop Soul on 80sGrid.com! Van Halen, Heart & Billy Ocean — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 7 • Arena Rock Meets Pop Soul\nVan Halen, Heart & Billy Ocean\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Van Halen, Heart & Billy Ocean — do you know ALL their hits? Quiz 7 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Arena Rock Meets Pop Soul on 80sGrid.com 🎸 Van Halen, Heart & Billy Ocean. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/quiz7.html" }
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 7", desc: "Can you match Van Halen, Heart, and Billy Ocean to their hits? Play Quiz 7 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=7", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Arena Rock Meets Pop Soul on 80sGrid.com! Van Halen, Heart & Billy Ocean — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 7 • Arena Rock Meets Pop Soul\nVan Halen, Heart & Billy Ocean\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Van Halen, Heart & Billy Ocean — do you know ALL their hits? Quiz 7 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Arena Rock Meets Pop Soul on 80sGrid.com 🎸 Van Halen, Heart & Billy Ocean. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=7" }
   },
 
   /* ─── Quiz 8: Reinvention & Rock Royalty ─── */
   {
-    n: 8, f: "quiz-template.html?id=8",
+    n: 8, f: "index.html?id=8",
     t: "Reinvention & Rock Royalty",
     sub: "Peter Gabriel, Cher & Lita Ford",
     a: ["Peter Gabriel", "Cher", "Lita Ford"],
@@ -2591,7 +2816,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 9: Pop, Hip-Hop & New Wave Collide ─── */
   {
-    n: 9, f: "quiz-template.html?id=9",
+    n: 9, f: "index.html?id=9",
     t: "Pop, Hip-Hop & New Wave Collide",
     sub: "Phil Collins, Run DMC & Duran Duran",
     a: ["Phil Collins", "Run DMC", "Duran Duran"],
@@ -2621,7 +2846,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 10: Cyndi, Boy George & Mr. Hutchence ─── */
   {
-    n: 10, f: "quiz-template.html?id=10",
+    n: 10, f: "index.html?id=10",
     t: "Cyndi, Boy George & Mr. Hutchence",
     sub: "Culture Club, Cyndi Lauper & INXS",
     a: ["Culture Club", "Cyndi Lauper", "INXS"],
@@ -2657,7 +2882,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 11: New Wave Meets Pop Rock ─── */
   {
-    n: 11, f: "quiz-template.html?id=11",
+    n: 11, f: "index.html?id=11",
     t: "New Wave Meets Pop Rock",
     sub: "Huey Lewis and the News, Elvis Costello & The Police",
     a: ["Huey Lewis and the News", "Elvis Costello", "The Police"],
@@ -2693,7 +2918,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 12: From Birmingham With Love ─── */
   {
-    n: 12, f: "quiz-template.html?id=12",
+    n: 12, f: "index.html?id=12",
     t: "From Birmingham With Love",
     sub: "The English Beat, General Public & Fine Young Cannibals",
     a: ["The English Beat", "General Public", "Fine Young Cannibals"],
@@ -2729,7 +2954,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 13: Hard Rock, Blues & Attitude ─── */
   {
-    n: 13, f: "quiz-template.html?id=13",
+    n: 13, f: "index.html?id=13",
     t: "Hard Rock, Blues & Attitude",
     sub: "Bon Jovi, George Thorogood & the Destroyers & Joan Jett",
     a: ["Bon Jovi", "George Thorogood & the Destroyers", "Joan Jett"],
@@ -2759,7 +2984,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 14: Three Eras, One Wild Ride ─── */
   {
-    n: 14, f: "quiz-template.html?id=14",
+    n: 14, f: "index.html?id=14",
     t: "Three Eras, One Wild Ride",
     sub: "The Monkees, The Grateful Dead & Cher",
     a: ["The Monkees", "The Grateful Dead", "Cher"],
@@ -2792,7 +3017,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 15: Grooves That Defined the Decade ─── */
   {
-    n: 15, f: "quiz-template.html?id=15",
+    n: 15, f: "index.html?id=15",
     t: "Grooves That Defined the Decade",
     sub: "Luther Vandross, Lionel Richie & Rick James",
     a: ["Luther Vandross", "Lionel Richie", "Rick James"],
@@ -2825,7 +3050,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 16: These Gals Rocked the 80s! ─── */
   {
-    n: 16, f: "quiz-template.html?id=16",
+    n: 16, f: "index.html?id=16",
     t: "These Gals Rocked the 80s!",
     sub: "The Go-Go's, The Bangles & Bananarama",
     a: ["The Go-Go's", "The Bangles", "Bananarama"],
@@ -2858,13 +3083,13 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 17: Beyond the Mainstream ─── */
   {
-    n: 17, f: "quiz-template.html?id=17",
+    n: 17, f: "index.html?id=17",
     t: "Beyond the Mainstream",
     sub: "The Motels, Romeo Void & EBN-OZN",
     a: ["The Motels", "Romeo Void", "EBN-OZN"],
     r: ["Signature Hit", "City They Formed In", "Albums Released in the 80s"],
     d: "hard",
-    yn: ["2-0", "2-1", "2-2"],
+    yn: [],
     notes: ["The Motels, Romeo Void, and EBN-OZN are three of the more underappreciated acts of the early 80s new wave scene — each with a sound distinctly their own and a cult following that never quite faded.", "All three formed on the West Coast, where a thriving underground scene was producing some of the most interesting alternative music of the era largely under the mainstream radar.", "If you know all three of these bands without looking them up, you were paying very close attention to college radio and MTV late nights in the early 80s. Respect."],
     ans: {
       "0-0": ["only the lonely"],
@@ -2894,7 +3119,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 18: Bigger Stages, Bigger Hair ─── */
   {
-    n: 18, f: "quiz-template.html?id=18",
+    n: 18, f: "index.html?id=18",
     t: "Bigger Stages, Bigger Hair",
     sub: "Journey, Foreigner & REO Speedwagon",
     a: ["Journey", "Foreigner", "REO Speedwagon"],
@@ -2930,13 +3155,13 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 19: You Watched It on MTV ─── */
   {
-    n: 19, f: "quiz-template.html?id=19",
+    n: 19, f: "index.html?id=19",
     t: "You Watched It on MTV",
     sub: "Remote Control, Yo! MTV Raps & Headbangers Ball",
     a: ["Remote Control", "Yo! MTV Raps", "Headbangers Ball"],
     r: ["Year It Premiered", "Host's Name", "Famous Guest Before They Were Famous"],
     d: "medium",
-    yn: ["2-0", "2-1", "2-2"],
+    yn: [],
     notes: ["MTV didn't just play music videos — it launched original shows that became cultural landmarks of the decade.", "Each show in this grid had a very different audience and a very different vibe — but all three defined what MTV meant to an entire generation.", "Think you remember when they aired, who hosted, and what made each one iconic?"],
     ans: {
       "0-0": ["1987"],
@@ -2957,8 +3182,8 @@ window.QUIZ_DATA = [
       "1-1": ["Fab 5 Freddy", "Ed Lover", "Doctor Dre"],
       "1-2": ["Riki Rachtman", "Dee Snider", "Lemmy Kilmister"],
       "2-0": ["Adam Sandler", "Ben Stiller", "Jim Carrey"],
-      "2-1": ["Tupac", "Don't Stop Believin'", "Jump"],
-      "2-2": ["Nirvana", "Pearl Jam", "Soundgarden"]
+      "2-1": ["Tupac", "Biggie Smalls", "LL Cool J"],
+      "2-2": ["Nirvana", "Metallica", "Guns N' Roses"]
     },
     og: { title: "Len's 80sGrid.com Music Edition - Quiz 19", desc: "Test your MTV show knowledge — Remote Control, Yo! MTV Raps, and Headbangers Ball!", url: "https://80sgrid.com/quiz19.html", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
     social: { fb: "I just played You Watched It on MTV on 80sGrid.com! Remote Control, Yo! MTV Raps & Headbangers Ball — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 19 • You Watched It on MTV\nRemote Control, Yo! MTV Raps & Headbangers Ball\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Remote Control, Yo! MTV Raps & Headbangers Ball — do you know ALL their hits? Quiz 19 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played You Watched It on MTV on 80sGrid.com 🎸 Remote Control, Yo! MTV Raps & Headbangers Ball. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/quiz19.html" }
@@ -2966,7 +3191,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 20: Synth-Pop, New Wave & Everything Between ─── */
   {
-    n: 20, f: "quiz-template.html?id=20",
+    n: 20, f: "index.html?id=20",
     t: "Synth-Pop, New Wave & Everything Between",
     sub: "Yazoo, Devo & They Might Be Giants",
     a: ["Yazoo", "Devo", "They Might Be Giants"],
@@ -2999,7 +3224,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 21: Boomer Stars Reaching GenXers ─── */
   {
-    n: 21, f: "quiz-template.html?id=21",
+    n: 21, f: "index.html?id=21",
     t: "Boomer Stars Reaching GenXers",
     sub: "Blondie, Bryan Adams & Stevie Wonder",
     a: ["Blondie", "Bryan Adams", "Stevie Wonder"],
@@ -3032,7 +3257,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 22: Singer-Songwriter Royalty ─── */
   {
-    n: 22, f: "quiz-template.html?id=22",
+    n: 22, f: "index.html?id=22",
     t: "Singer-Songwriter Royalty",
     sub: "Phil Collins, Paul McCartney & Jackson Browne",
     a: ["Phil Collins", "Paul McCartney", "Jackson Browne"],
@@ -3062,13 +3287,13 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 23: Pop, Rock & Hip-Hop Walk Into a Bar ─── */
   {
-    n: 23, f: "quiz-template.html?id=23",
+    n: 23, f: "index.html?id=23",
     t: "Pop, Rock & Hip-Hop Walk Into a Bar",
     sub: "Wham!, Bruce Springsteen & The E Street Band & Run-DMC",
     a: ["Wham!", "Bruce Springsteen & The E Street Band", "Run-DMC"],
-    r: ["Hit Christmas Song", "On 'A Very Special Christmas' Album?", "Deceased Band Member?"],
+    r: ["Hit Christmas Song", "On 'A Very Special Christmas' Album? (Yes/No)", "Deceased Band Member? (Yes/No)"],
     d: "medium",
-    yn: [],
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
     notes: ["The mid-80s was a golden era of pop, rock, and hip-hop colliding in ways nobody expected — and these three acts were right at the center of it.", "Each one came from a completely different world, but all three were impossible to ignore.", "Think you know your 80s icons across every genre?"],
     ans: {
       "0-0": ["last christmas"],
@@ -3092,13 +3317,13 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 24: Do They Know It's a Quiz? ─── */
   {
-    n: 24, f: "quiz-template.html?id=24",
+    n: 24, f: "index.html?id=24",
     t: "Do They Know It's a Quiz?",
     sub: "Bob Geldof, Kool & the Gang & Prince",
     a: ["Bob Geldof", "Kool & the Gang", "Prince"],
     r: ["Sang on 'Do They Know It's Christmas?' (1984)", "Sang on 'We Are the World' (1985)", "Performed at Live Aid (1985)?"],
     d: "hard",
-    yn: ["2-0", "2-1", "2-2"],
+    yn: ["0-0", "0-1", "0-2", "1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
     notes: ["The 80s had artists who were bigger than music — who used their platform to change the world, throw the best parties, or simply make you feel alive.", "These three acts each left a mark on the decade that went far beyond just the charts.", "Think you know your 80s legends?"],
     ans: {
       "0-0": ["yes"],
@@ -3120,7 +3345,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 25: Three Icons, Zero Overlap ─── */
   {
-    n: 25, f: "quiz-template.html?id=25",
+    n: 25, f: "index.html?id=25",
     t: "Three Icons, Zero Overlap",
     sub: "Jimmy Cliff, Dusty Springfield & Neil Diamond",
     a: ["Jimmy Cliff", "Dusty Springfield", "Neil Diamond"],
@@ -3153,7 +3378,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 26: Post-Punk, Goth-Pop & Folk New Wave ─── */
   {
-    n: 26, f: "quiz-template.html?id=26",
+    n: 26, f: "index.html?id=26",
     t: "Post-Punk, Goth-Pop & Folk New Wave",
     sub: "New Order, The Psychedelic Furs & Suzanne Vega",
     a: ["New Order", "The Psychedelic Furs", "Suzanne Vega"],
@@ -3186,7 +3411,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 27: Soundtracks, Power Pop & Passion ─── */
   {
-    n: 27, f: "quiz-template.html?id=27",
+    n: 27, f: "index.html?id=27",
     t: "Soundtracks, Power Pop & Passion",
     sub: "Loverboy, Kenny Loggins & Berlin",
     a: ["Loverboy", "Kenny Loggins", "Berlin"],
@@ -3219,7 +3444,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 28: American Rock Across Three Styles ─── */
   {
-    n: 28, f: "quiz-template.html?id=28",
+    n: 28, f: "index.html?id=28",
     t: "American Rock Across Three Styles",
     sub: "Jackson Browne, Tom Petty & Go-Go's",
     a: ["Jackson Browne", "Tom Petty", "Go-Go's"],
@@ -3249,7 +3474,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 29: Fictional Bands Only True Fans Know ─── */
   {
-    n: 29, f: "quiz-template.html?id=29",
+    n: 29, f: "index.html?id=29",
     t: "Fictional Bands Only True Fans Know",
     sub: "Marvin Berry and the Starlighters, Morris Day and the Time & The Sorels",
     a: ["Marvin Berry and the Starlighters", "Morris Day and the Time", "The Sorels"],
@@ -3285,7 +3510,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 30: Three Very Different Pop Stories ─── */
   {
-    n: 30, f: "quiz-template.html?id=30",
+    n: 30, f: "index.html?id=30",
     t: "Three Very Different Pop Stories",
     sub: "Boy George, Phil Collins & Andy Gibb",
     a: ["Boy George", "Phil Collins", "Andy Gibb"],
@@ -3321,7 +3546,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 31: Big Hair, Bigger Anthems ─── */
   {
-    n: 31, f: "quiz-template.html?id=31",
+    n: 31, f: "index.html?id=31",
     t: "Big Hair, Bigger Anthems",
     sub: "Poison, Bon Jovi & Mötley Crüe",
     a: ["Poison", "Bon Jovi", "Mötley Crüe"],
@@ -3357,7 +3582,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 32: AOR Giants Meet the Queen of Pop ─── */
   {
-    n: 32, f: "quiz-template.html?id=32",
+    n: 32, f: "index.html?id=32",
     t: "AOR Giants Meet the Queen of Pop",
     sub: "Foreigner, Journey & Madonna",
     a: ["Foreigner", "Journey", "Madonna"],
@@ -3390,7 +3615,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 33: Three Bands, Forty Years of Hits ─── */
   {
-    n: 33, f: "quiz-template.html?id=33",
+    n: 33, f: "index.html?id=33",
     t: "Three Bands, Forty Years of Hits",
     sub: "The Police, Genesis & Duran Duran",
     a: ["The Police", "Genesis", "Duran Duran"],
@@ -3426,7 +3651,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 34: Imagine playing on softball team with these people!! ─── */
   {
-    n: 34, f: "quiz-template.html?id=34",
+    n: 34, f: "index.html?id=34",
     t: "Imagine playing on softball team with these people!!",
     sub: "Bryan Adams, Wham! & Bon Jovi",
     a: ["Bryan Adams", "Wham!", "Bon Jovi"],
@@ -3459,7 +3684,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 35: Hard Rock Holy Trinity ─── */
   {
-    n: 35, f: "quiz-template.html?id=35",
+    n: 35, f: "index.html?id=35",
     t: "Hard Rock Holy Trinity",
     sub: "Van Halen, Def Leppard & AC/DC",
     a: ["Van Halen", "Def Leppard", "AC/DC"],
@@ -3492,7 +3717,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 36: Prog, AOR & Down Under Cool ─── */
   {
-    n: 36, f: "quiz-template.html?id=36",
+    n: 36, f: "index.html?id=36",
     t: "Prog, AOR & Down Under Cool",
     sub: "Rush, Journey & INXS",
     a: ["Rush", "Journey", "INXS"],
@@ -3528,7 +3753,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 37: The Year Everyone Had a Number One ─── */
   {
-    n: 37, f: "quiz-template.html?id=37",
+    n: 37, f: "index.html?id=37",
     t: "The Year Everyone Had a Number One",
     sub: "U2, Michael Jackson & Huey Lewis and the News",
     a: ["U2", "Michael Jackson", "Huey Lewis and the News"],
@@ -3558,7 +3783,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 38: Rock, Piano & Rocket Man ─── */
   {
-    n: 38, f: "quiz-template.html?id=38",
+    n: 38, f: "index.html?id=38",
     t: "Rock, Piano & Rocket Man",
     sub: "Pat Benatar, Billy Joel & Elton John",
     a: ["Pat Benatar", "Billy Joel", "Elton John"],
@@ -3586,7 +3811,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 39: Rock Legends on Both Sides of the Atlantic ─── */
   {
-    n: 39, f: "quiz-template.html?id=39",
+    n: 39, f: "index.html?id=39",
     t: "Rock Legends on Both Sides of the Atlantic",
     sub: "Aerosmith, Queen & Dire Straits",
     a: ["Aerosmith", "Queen", "Dire Straits"],
@@ -3622,7 +3847,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 40: The Voices Behind the Bands ─── */
   {
-    n: 40, f: "quiz-template.html?id=40",
+    n: 40, f: "index.html?id=40",
     t: "The Voices Behind the Bands",
     sub: "Dennis DeYoung, Phil Collins & Lou Gramm",
     a: ["Dennis DeYoung", "Phil Collins", "Lou Gramm"],
@@ -3655,7 +3880,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 41: Hard Rock Holy Trinity Vol. 2 ─── */
   {
-    n: 41, f: "quiz-template.html?id=41",
+    n: 41, f: "index.html?id=41",
     t: "Hard Rock Holy Trinity Vol. 2",
     sub: "Van Halen, Def Leppard & AC/DC",
     a: ["Van Halen", "Def Leppard", "AC/DC"],
@@ -3688,7 +3913,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 42: Prog, AOR & Down Under Cool Vol. 2 ─── */
   {
-    n: 42, f: "quiz-template.html?id=42",
+    n: 42, f: "index.html?id=42",
     t: "Prog, AOR & Down Under Cool Vol. 2",
     sub: "Rush, Journey & INXS",
     a: ["Rush", "Journey", "INXS"],
@@ -3724,7 +3949,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 43: The Year Everyone Had a Number One Vol. 2 ─── */
   {
-    n: 43, f: "quiz-template.html?id=43",
+    n: 43, f: "index.html?id=43",
     t: "The Year Everyone Had a Number One Vol. 2",
     sub: "U2, Michael Jackson & Huey Lewis and the News",
     a: ["U2", "Michael Jackson", "Huey Lewis and the News"],
@@ -3754,7 +3979,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 44: Rock, Piano & Rocket Man Vol. 2 ─── */
   {
-    n: 44, f: "quiz-template.html?id=44",
+    n: 44, f: "index.html?id=44",
     t: "Rock, Piano & Rocket Man Vol. 2",
     sub: "Pat Benatar, Billy Joel & Elton John",
     a: ["Pat Benatar", "Billy Joel", "Elton John"],
@@ -3782,7 +4007,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 45: Pure Pop Royalty ─── */
   {
-    n: 45, f: "quiz-template.html?id=45",
+    n: 45, f: "index.html?id=45",
     t: "Pure Pop Royalty",
     sub: "Cyndi Lauper, Madonna & Whitney Houston",
     a: ["Cyndi Lauper", "Madonna", "Whitney Houston"],
@@ -3818,7 +4043,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 46: The Voices Behind the Bands Vol. 2 ─── */
   {
-    n: 46, f: "quiz-template.html?id=46",
+    n: 46, f: "index.html?id=46",
     t: "The Voices Behind the Bands Vol. 2",
     sub: "Dennis DeYoung, Phil Collins & Lou Gramm",
     a: ["Dennis DeYoung", "Phil Collins", "Lou Gramm"],
@@ -3851,7 +4076,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 47: Reggae Royalty ─── */
   {
-    n: 47, f: "quiz-template.html?id=47",
+    n: 47, f: "index.html?id=47",
     t: "Reggae Royalty",
     sub: "Bob Marley, Third World & Musical Youth",
     a: ["Bob Marley", "Third World", "Musical Youth"],
@@ -3884,7 +4109,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 48: Gothic Beauty ─── */
   {
-    n: 48, f: "quiz-template.html?id=48",
+    n: 48, f: "index.html?id=48",
     t: "Gothic Beauty",
     sub: "Bauhaus, Peter Murphy & Gene Loves Jezebel",
     a: ["Bauhaus", "Peter Murphy", "Gene Loves Jezebel"],
@@ -3920,7 +4145,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 49: Voices Don't Get Better Than This ─── */
   {
-    n: 49, f: "quiz-template.html?id=49",
+    n: 49, f: "index.html?id=49",
     t: "Voices Don't Get Better Than This",
     sub: "Whitney Houston, Marvin Gaye & Enya",
     a: ["Whitney Houston", "Marvin Gaye", "Enya"],
@@ -3956,7 +4181,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 50: Female-Fronted Rock Power ─── */
   {
-    n: 50, f: "quiz-template.html?id=50",
+    n: 50, f: "index.html?id=50",
     t: "Female-Fronted Rock Power",
     sub: "Pat Benatar, Heart & Romeo Void",
     a: ["Pat Benatar", "Heart", "Romeo Void"],
@@ -3989,7 +4214,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 51: Pure Pop Perfection ─── */
   {
-    n: 51, f: "quiz-template.html?id=51",
+    n: 51, f: "index.html?id=51",
     t: "Pure Pop Perfection",
     sub: "Rick Astley, Debbie Gibson & ABC",
     a: ["Rick Astley", "Debbie Gibson", "ABC"],
@@ -4025,7 +4250,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 52: Power Women of New Wave ─── */
   {
-    n: 52, f: "quiz-template.html?id=52",
+    n: 52, f: "index.html?id=52",
     t: "Power Women of New Wave",
     sub: "Swing Out Sister, Till Tuesday & Scandal",
     a: ["Swing Out Sister", "Till Tuesday", "Scandal"],
@@ -4061,7 +4286,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 53: The Bands Your Friends Thought Were Weird ─── */
   {
-    n: 53, f: "quiz-template.html?id=53",
+    n: 53, f: "index.html?id=53",
     t: "The Bands Your Friends Thought Were Weird",
     sub: "Modern English, Flock of Seagulls & Missing Persons",
     a: ["Modern English", "Flock of Seagulls", "Missing Persons"],
@@ -4097,7 +4322,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 54: Cult Classics You Won't Admit You Know ─── */
   {
-    n: 54, f: "quiz-template.html?id=54",
+    n: 54, f: "index.html?id=54",
     t: "Cult Classics You Won't Admit You Know",
     sub: "Dominatrix, Romeo Void & Modern English",
     a: ["Dominatrix", "Romeo Void", "Modern English"],
@@ -4133,7 +4358,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 55: All-British AOR ─── */
   {
-    n: 55, f: "quiz-template.html?id=55",
+    n: 55, f: "index.html?id=55",
     t: "All-British AOR",
     sub: "Steve Winwood, Asia & Supertramp",
     a: ["Steve Winwood", "Asia", "Supertramp"],
@@ -4169,7 +4394,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 56: 80s Megastars Up Close ─── */
   {
-    n: 56, f: "quiz-template.html?id=56",
+    n: 56, f: "index.html?id=56",
     t: "80s Megastars Up Close",
     sub: "Hall & Oates, Phil Collins & Stevie Nicks",
     a: ["Hall & Oates", "Phil Collins", "Stevie Nicks"],
@@ -4205,7 +4430,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 57: New Wave Oddballs from Three Continents ─── */
   {
-    n: 57, f: "quiz-template.html?id=57",
+    n: 57, f: "index.html?id=57",
     t: "New Wave Oddballs from Three Continents",
     sub: "J. Geils Band, Waitresses & Split Enz",
     a: ["J. Geils Band", "Waitresses", "Split Enz"],
@@ -4241,7 +4466,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 58: Wow, What a Trio We Have Here ─── */
   {
-    n: 58, f: "quiz-template.html?id=58",
+    n: 58, f: "index.html?id=58",
     t: "Wow, What a Trio We Have Here",
     sub: "Toto, Kim Wilde & Big Country",
     a: ["Toto", "Kim Wilde", "Big Country"],
@@ -4277,7 +4502,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 59: UK Synth-Pop Royalty ─── */
   {
-    n: 59, f: "quiz-template.html?id=59",
+    n: 59, f: "index.html?id=59",
     t: "UK Synth-Pop Royalty",
     sub: "Heaven 17, Yazoo & Erasure",
     a: ["Heaven 17", "Yazoo", "Erasure"],
@@ -4313,7 +4538,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 60: Post-Punk Sophisticates ─── */
   {
-    n: 60, f: "quiz-template.html?id=60",
+    n: 60, f: "index.html?id=60",
     t: "Post-Punk Sophisticates",
     sub: "Talk Talk, Roxy Music & Big Audio Dynamite",
     a: ["Talk Talk", "Roxy Music", "Big Audio Dynamite"],
@@ -4349,7 +4574,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 61: Eclectic Trio of New Romanticism ─── */
   {
-    n: 61, f: "quiz-template.html?id=61",
+    n: 61, f: "index.html?id=61",
     t: "Eclectic Trio of New Romanticism",
     sub: "Paul Weller, Paul Young & Elvis Costello",
     a: ["Paul Weller", "Paul Young", "Elvis Costello"],
@@ -4385,7 +4610,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 62: Pop, R&B & Hip-Hop Royalty ─── */
   {
-    n: 62, f: "quiz-template.html?id=62",
+    n: 62, f: "index.html?id=62",
     t: "Pop, R&B & Hip-Hop Royalty",
     sub: "George Michael, Janet Jackson & MC Hammer",
     a: ["George Michael", "Janet Jackson", "MC Hammer"],
@@ -4421,7 +4646,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 63: Imagine The Hair Spray These Bands used! ─── */
   {
-    n: 63, f: "quiz-template.html?id=63",
+    n: 63, f: "index.html?id=63",
     t: "Imagine The Hair Spray These Bands used!",
     sub: "B-52s, Devo & Kajagoogoo",
     a: ["B-52s", "Devo", "Kajagoogoo"],
@@ -4457,7 +4682,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 64: Three Continents, One Era ─── */
   {
-    n: 64, f: "quiz-template.html?id=64",
+    n: 64, f: "index.html?id=64",
     t: "Three Continents, One Era",
     sub: "Eurythmics, Midnight Oil & Michael Jackson",
     a: ["Eurythmics", "Midnight Oil", "Michael Jackson"],
@@ -4493,7 +4718,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 65: Songs With a Color in the Title ─── */
   {
-    n: 65, f: "quiz-template.html?id=65",
+    n: 65, f: "index.html?id=65",
     t: "Songs With a Color in the Title",
     sub: "New Order, Psychedelic Furs & Chris de Burgh",
     a: ["New Order", "Psychedelic Furs", "Chris de Burgh"],
@@ -4529,7 +4754,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 66: Three people would never have coffee together ─── */
   {
-    n: 66, f: "quiz-template.html?id=66",
+    n: 66, f: "index.html?id=66",
     t: "Three people would never have coffee together",
     sub: "Prince, Nena & Tommy Tutone",
     a: ["Prince", "Nena", "Tommy Tutone"],
@@ -4565,7 +4790,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 67: MTV Video of the Year Winners ─── */
   {
-    n: 67, f: "quiz-template.html?id=67",
+    n: 67, f: "index.html?id=67",
     t: "MTV Video of the Year Winners",
     sub: "A-ha, Peter Gabriel & INXS",
     a: ["A-ha", "Peter Gabriel", "INXS"],
@@ -4601,7 +4826,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 68: Born and Raised in New York ─── */
   {
-    n: 68, f: "quiz-template.html?id=68",
+    n: 68, f: "index.html?id=68",
     t: "Born and Raised in New York",
     sub: "Blondie, Cyndi Lauper & Billy Joel",
     a: ["Blondie", "Cyndi Lauper", "Billy Joel"],
@@ -4637,7 +4862,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 69: Born in LA ─── */
   {
-    n: 69, f: "quiz-template.html?id=69",
+    n: 69, f: "index.html?id=69",
     t: "Born in LA",
     sub: "Van Halen, The Go-Gos & The Bangles",
     a: ["Van Halen", "The Go-Gos", "The Bangles"],
@@ -4673,7 +4898,7 @@ window.QUIZ_DATA = [
 
   /* ─── Quiz 70: 80s Legends Who Never Quit ─── */
   {
-    n: 70, f: "quiz-template.html?id=70",
+    n: 70, f: "index.html?id=70",
     t: "80s Legends Who Never Quit",
     sub: "Bon Jovi, U2 & Sting",
     a: ["Bon Jovi", "U2", "Sting"],
@@ -4719,6 +4944,76 @@ window.ALL_NAV_QUIZZES = window.QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }))
 
 quizInit();
 
+/* ===== CHALLENGE BANNER ===== */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const isChallenge = params.get('ref') === 'challenge';
+  const quizId = params.get('id');
+
+  // Preserve ref=challenge in URL without triggering a reload
+  if(isChallenge && quizId && !window.location.search.includes('ref=challenge')){
+    const newUrl = window.location.pathname + '?id=' + quizId + '&ref=challenge';
+    window.history.replaceState(null, '', newUrl);
+  }
+
+  if(isChallenge){
+    const banner = document.getElementById('challengeBanner');
+    if(banner) banner.style.display = 'block';
+    // Update today-label to say Bonus Quiz instead of Today's Grid
+    const lbl = document.getElementById('today-label');
+    if(lbl) lbl.textContent = "Bonus Quiz — Shared by a Friend";
+  }
+})();
+
+/* ===== STUCK PROMPT + REVEAL ALL ANSWERS ===== */
+function revealAllAnswers(){
+  document.getElementById('stuckPrompt').style.display = 'none';
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach(cell => {
+    const key = cell.dataset.row + '-' + cell.dataset.col;
+    const inp = cell.querySelector('input');
+    if(!inp || inp.value.trim() !== '') return; // skip answered cells
+    const bestAnswer = (answers[key]||[])[0];
+    if(!bestAnswer) return;
+    cell.classList.add('incorrect');
+    inp.style.display = 'none';
+    const old = cell.querySelector('.answer-reveal'); if(old) old.remove();
+    const reveal = document.createElement('div');
+    reveal.className = 'answer-reveal';
+    reveal.style.cssText = 'text-align:center;line-height:1.3;padding:2px 0;';
+    const formatted = bestAnswer.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+    reveal.innerHTML = '<div style="font-size:1.2em;color:#8B00FF;font-weight:900;">💡</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">' + formatted + '</div>';
+    cell.appendChild(reveal);
+    cell.style.pointerEvents = 'none';
+    cell.style.cursor = 'default';
+  });
+  // Update score display
+  const correct = document.querySelectorAll('.cell.correct').length;
+  const total = 9;
+  document.getElementById('score').textContent = 'You got ' + correct + ' out of ' + total + ' correct!';
+  document.getElementById('results').style.display = 'block';
+  try{ gtag('event','reveal_all_answers',{quiz_number:QUIZ_NUM,score:correct}); }catch(e){}
+}
+
+// Hook into checkAnswers to show stuck prompt when 0 lifelines + empty cells remain
+(function(){
+  const _origCA = window.checkAnswers;
+  if(!_origCA) return;
+  window.checkAnswers = function(){
+    _origCA();
+    // After check, see if there are still empty cells and 0 lifelines
+    setTimeout(function(){
+      const hasEmpty = [...document.querySelectorAll('.cell input')]
+        .some(inp => inp.value.trim() === '' && inp.style.pointerEvents !== 'none');
+      if(hasEmpty && lifelinesRemaining === 0 && !bonusLifelineUsed){
+        document.getElementById('stuckPrompt').style.display = 'block';
+      } else if(hasEmpty && lifelinesRemaining === 0){
+        document.getElementById('stuckPrompt').style.display = 'block';
+      }
+    }, 400);
+  };
+})();
+
 
 /* ===== CLASSIC QUIZZES — grey out completed ones ===== */
 const CLASSIC_QUIZZES = [
@@ -4733,7 +5028,7 @@ function renderClassicQuizzes(){
   CLASSIC_QUIZZES.forEach(q => {
     const played = parseInt(localStorage.getItem('quiz'+q.id+'Score')||'0') > 0;
     const a = document.createElement('a');
-    a.href = played ? '#' : 'quiz-template.html?id='+q.id;
+    a.href = played ? '#' : 'index.html?id='+q.id;
     if(played){
       a.style.cssText = 'display:block;padding:10px 8px;background:#f0f0f0;border:2px solid #ccc;border-radius:10px;text-align:center;text-decoration:none;color:#aaa;font-size:0.78em;font-weight:700;line-height:1.3;cursor:default;position:relative;';
       a.innerHTML = q.title + '<div style="font-size:0.85em;margin-top:4px;color:#bbb;">✓ Completed</div>';
