@@ -1176,7 +1176,7 @@ function openModal(cell){
   document.getElementById('inputOverlay').classList.add('active');
   if(!isYN) setTimeout(()=>document.getElementById('modalInput').focus(),100);
 }
-function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';}
+function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';setTimeout(updateLifelineUI,80);}
 function saveModalAnswer(){
   if(currentCell){
     const val=document.getElementById('modalInput').value;
