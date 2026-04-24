@@ -1777,6 +1777,8 @@ function checkAnswers(){
   // Funny score message
   const _msgs={1:'1/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 — Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 — That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 — Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 — Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
   const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[correct]||'';_msgEl.style.display='block';}
+  // Trigger Kit email modal after results — only if not already subscribed
+  if(!localStorage.getItem('kitSubscribed')){setTimeout(()=>{const _kt=document.getElementById('kit-trigger');if(_kt)_kt.click();},3000);}
   // Swap lifeline bar for survey pill
   const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
   if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
@@ -5045,5 +5047,6 @@ function renderClassicQuizzes(){
 
 
 </script>
+<a id="kit-trigger" data-formkit-toggle="0d3f60d5a6" href="https://80sgrid-com.kit.com/0d3f60d5a6" style="display:none;">Subscribe</a>
 </body>
 </html>
