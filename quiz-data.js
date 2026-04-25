@@ -906,7 +906,10 @@ window.QUIZ_DATA = [
       "0-2": ["Take My Breath Away", "No More Words", "Metro"],
       "1-0": ["No", "Yes", "Not Sure"],
       "1-1": ["Yes", "No", "Not Sure"],
-      "1-2": ["Yes", "No", "Not Sure"]
+      "1-2": ["Yes", "No", "Not Sure"],
+      "2-0": ["Turn Me Loose", "Working for the Weekend", "Hot Girls in Love"],
+      "2-1": ["Take My Breath Away", "Danger Zone", "Footloose"],
+      "2-2": ["Take My Breath Away", "No More Words", "Metro"]
     },
     og: { title: "Len's 80sGrid.com Music Edition - Quiz 27", desc: "Can you match Loverboy, Kenny Loggins, and Berlin to their songs, hits, and chart history? Play Quiz 27 on 80sGrid.com!", url: "https://80sgrid.com/quiz27.html", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
     social: { fb: "I just played Soundtracks, Power Pop & Passion on 80sGrid.com! Loverboy, Kenny Loggins & Berlin — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 27 • Soundtracks, Power Pop & Passion\nLoverboy, Kenny Loggins & Berlin\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Loverboy, Kenny Loggins & Berlin — do you know ALL their hits? Quiz 27 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Soundtracks, Power Pop & Passion on 80sGrid.com 🎸 Loverboy, Kenny Loggins & Berlin. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/quiz27.html" }
