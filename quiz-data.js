@@ -631,7 +631,7 @@ window.QUIZ_DATA = [
     a: ["Remote Control", "Yo! MTV Raps", "Headbangers Ball"],
     r: ["Year It Premiered", "Host's Name", "Famous Guest Before They Were Famous"],
     d: "medium",
-    yn: ["2-0", "2-1", "2-2"],
+    yn: [],
     notes: ["MTV didn't just play music videos — it launched original shows that became cultural landmarks of the decade.", "Each show in this grid had a very different audience and a very different vibe — but all three defined what MTV meant to an entire generation.", "Think you remember when they aired, who hosted, and what made each one iconic?"],
     ans: {
       "0-0": ["1987"],
@@ -652,8 +652,8 @@ window.QUIZ_DATA = [
       "1-1": ["Fab 5 Freddy", "Ed Lover", "Doctor Dre"],
       "1-2": ["Riki Rachtman", "Dee Snider", "Lemmy Kilmister"],
       "2-0": ["Adam Sandler", "Ben Stiller", "Jim Carrey"],
-      "2-1": ["Tupac", "Don't Stop Believin'", "Jump"],
-      "2-2": ["Nirvana", "Pearl Jam", "Soundgarden"]
+      "2-1": ["Tupac", "Biggie Smalls", "LL Cool J"],
+      "2-2": ["Nirvana", "Metallica", "Guns N' Roses"]
     },
     og: { title: "Len's 80sGrid.com Music Edition - Quiz 19", desc: "Test your MTV show knowledge — Remote Control, Yo! MTV Raps, and Headbangers Ball!", url: "https://80sgrid.com/quiz19.html", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
     social: { fb: "I just played You Watched It on MTV on 80sGrid.com! Remote Control, Yo! MTV Raps & Headbangers Ball — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 19 • You Watched It on MTV\nRemote Control, Yo! MTV Raps & Headbangers Ball\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Remote Control, Yo! MTV Raps & Headbangers Ball — do you know ALL their hits? Quiz 19 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played You Watched It on MTV on 80sGrid.com 🎸 Remote Control, Yo! MTV Raps & Headbangers Ball. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/quiz19.html" }
@@ -761,9 +761,9 @@ window.QUIZ_DATA = [
     t: "Pop, Rock & Hip-Hop Walk Into a Bar",
     sub: "Wham!, Bruce Springsteen & The E Street Band & Run-DMC",
     a: ["Wham!", "Bruce Springsteen & The E Street Band", "Run-DMC"],
-    r: ["Hit Christmas Song", "On 'A Very Special Christmas' Album?", "Deceased Band Member?"],
+    r: ["Hit Christmas Song", "On 'A Very Special Christmas' Album? (Yes/No)", "Deceased Band Member? (Yes/No)"],
     d: "medium",
-    yn: [],
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
     notes: ["The mid-80s was a golden era of pop, rock, and hip-hop colliding in ways nobody expected — and these three acts were right at the center of it.", "Each one came from a completely different world, but all three were impossible to ignore.", "Think you know your 80s icons across every genre?"],
     ans: {
       "0-0": ["last christmas"],
@@ -793,7 +793,7 @@ window.QUIZ_DATA = [
     a: ["Bob Geldof", "Kool & the Gang", "Prince"],
     r: ["Sang on 'Do They Know It's Christmas?' (1984)", "Sang on 'We Are the World' (1985)", "Performed at Live Aid (1985)?"],
     d: "hard",
-    yn: ["2-0", "2-1", "2-2"],
+    yn: ["0-0", "0-1", "0-2", "1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
     notes: ["The 80s had artists who were bigger than music — who used their platform to change the world, throw the best parties, or simply make you feel alive.", "These three acts each left a mark on the decade that went far beyond just the charts.", "Think you know your 80s legends?"],
     ans: {
       "0-0": ["yes"],
@@ -2411,4 +2411,105 @@ function getRandomQuiz(d)    { const p=d?getQuizzesByDiff(d):window.QUIZ_DATA; r
 /* buildEmojiGrid: engine version used */
 
 window.ALL_NAV_QUIZZES = window.QUIZ_DATA.map(q => ({ n: q.n, f: q.f, c: q.d }));
+
+quizInit();
+
+/* ===== CHALLENGE BANNER ===== */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const isChallenge = params.get('ref') === 'challenge';
+  const quizId = params.get('id');
+
+  // Preserve ref=challenge in URL without triggering a reload
+  if(isChallenge && quizId && !window.location.search.includes('ref=challenge')){
+    const newUrl = window.location.pathname + '?id=' + quizId + '&ref=challenge';
+    window.history.replaceState(null, '', newUrl);
+  }
+
+  if(isChallenge){
+    const banner = document.getElementById('challengeBanner');
+    if(banner) banner.style.display = 'block';
+    // Update today-label to say Bonus Quiz instead of Today's Grid
+    const lbl = document.getElementById('today-label');
+    if(lbl) lbl.textContent = "Bonus Quiz — Shared by a Friend";
+  }
+})();
+
+/* ===== STUCK PROMPT + REVEAL ALL ANSWERS ===== */
+function revealAllAnswers(){
+  document.getElementById('stuckPrompt').style.display = 'none';
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach(cell => {
+    const key = cell.dataset.row + '-' + cell.dataset.col;
+    const inp = cell.querySelector('input');
+    if(!inp || inp.value.trim() !== '') return; // skip answered cells
+    const bestAnswer = (answers[key]||[])[0];
+    if(!bestAnswer) return;
+    cell.classList.add('incorrect');
+    inp.style.display = 'none';
+    const old = cell.querySelector('.answer-reveal'); if(old) old.remove();
+    const reveal = document.createElement('div');
+    reveal.className = 'answer-reveal';
+    reveal.style.cssText = 'text-align:center;line-height:1.3;padding:2px 0;';
+    const formatted = bestAnswer.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+    reveal.innerHTML = '<div style="font-size:1.2em;color:#8B00FF;font-weight:900;">💡</div><div style="font-size:0.55em;color:#155724;font-weight:900;margin-top:2px;word-break:break-word;">' + formatted + '</div>';
+    cell.appendChild(reveal);
+    cell.style.pointerEvents = 'none';
+    cell.style.cursor = 'default';
+  });
+  // Update score display
+  const correct = document.querySelectorAll('.cell.correct').length;
+  const total = 9;
+  document.getElementById('score').textContent = 'You got ' + correct + ' out of ' + total + ' correct!';
+  document.getElementById('results').style.display = 'block';
+  try{ gtag('event','reveal_all_answers',{quiz_number:QUIZ_NUM,score:correct}); }catch(e){}
+}
+
+// Hook into checkAnswers to show stuck prompt when 0 lifelines + empty cells remain
+(function(){
+  const _origCA = window.checkAnswers;
+  if(!_origCA) return;
+  window.checkAnswers = function(){
+    _origCA();
+    // After check, see if there are still empty cells and 0 lifelines
+    setTimeout(function(){
+      const hasEmpty = [...document.querySelectorAll('.cell input')]
+        .some(inp => inp.value.trim() === '' && inp.style.pointerEvents !== 'none');
+      if(hasEmpty && lifelinesRemaining === 0 && !bonusLifelineUsed){
+        document.getElementById('stuckPrompt').style.display = 'block';
+      } else if(hasEmpty && lifelinesRemaining === 0){
+        document.getElementById('stuckPrompt').style.display = 'block';
+      }
+    }, 400);
+  };
+})();
+
+
+/* ===== CLASSIC QUIZZES — grey out completed ones ===== */
+const CLASSIC_QUIZZES = [
+  { id: 28, title: 'American Rock Across Three Styles' },
+  { id: 32, title: 'AOR Giants Meet the Queen of Pop' },
+  { id: 56, title: '80s Megastars Up Close' }
+];
+function renderClassicQuizzes(){
+  const grid = document.getElementById('classicQuizzesGrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  CLASSIC_QUIZZES.forEach(q => {
+    const played = parseInt(localStorage.getItem('quiz'+q.id+'Score')||'0') > 0;
+    const a = document.createElement('a');
+    a.href = played ? '#' : 'index.html?id='+q.id;
+    if(played){
+      a.style.cssText = 'display:block;padding:10px 8px;background:#f0f0f0;border:2px solid #ccc;border-radius:10px;text-align:center;text-decoration:none;color:#aaa;font-size:0.78em;font-weight:700;line-height:1.3;cursor:default;position:relative;';
+      a.innerHTML = q.title + '<div style="font-size:0.85em;margin-top:4px;color:#bbb;">✓ Completed</div>';
+      a.onclick = e => e.preventDefault();
+    } else {
+      a.style.cssText = 'display:block;padding:10px 8px;background:#f3eeff;border:2px solid #c9b0ff;border-radius:10px;text-align:center;text-decoration:none;color:#5a00cc;font-size:0.78em;font-weight:700;line-height:1.3;';
+      a.textContent = q.title;
+    }
+    grid.appendChild(a);
+  });
+}
+
+
 
