@@ -3,43 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ad Lingo — The Advertising Bingo Game</title>
+<title>Prohaska Consulting Lingo — Free to Play!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --orange: #D85A30;
-    --orange-light: #F2E0D8;
-    --orange-dark: #993C1D;
-    --bg: #F7F4EF;
-    --surface: #FFFFFF;
-    --border: rgba(0,0,0,0.1);
-    --border-strong: rgba(0,0,0,0.18);
-    --text: #1A1714;
-    --text-mid: #5A5550;
-    --text-light: #8A8480;
-    --daubed-bg: #D85A30;
+    --blue:        #1D6FD4;
+    --blue-light:  #E5F0FB;
+    --blue-dark:   #1450A0;
+    --navy:        #1B2D8F;
+    --cyan:        #29ABE2;
+    --bg:          #F4F7FC;
+    --surface:     #FFFFFF;
+    --border:      rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+    --text:        #151C2E;
+    --text-mid:    #4A5470;
+    --text-light:  #8A92AA;
+    --daubed-bg:   #1D6FD4;
     --daubed-text: #fff;
-    --called-bg: #F2E0D8;
-    --called-text: #7A3418;
-    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --called-bg:   #E5F0FB;
+    --called-text: #1450A0;
+    --shadow:      0 2px 12px rgba(0,0,0,0.07);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #18150F;
-      --surface: #231F18;
-      --border: rgba(255,255,255,0.1);
-      --border-strong: rgba(255,255,255,0.18);
-      --text: #F0EDE8;
-      --text-mid: #A09890;
-      --text-light: #6A6460;
-      --orange-light: #3A1F10;
-      --called-bg: #3A1F10;
-      --called-text: #F2A070;
-      --shadow: 0 2px 12px rgba(0,0,0,0.3);
+      --bg:          #0F1623;
+      --surface:     #182035;
+      --border:      rgba(255,255,255,0.09);
+      --border-strong: rgba(255,255,255,0.16);
+      --text:        #EEF1F8;
+      --text-mid:    #9AA3BF;
+      --text-light:  #5A6280;
+      --blue-light:  #1A2B4A;
+      --called-bg:   #1A2B4A;
+      --called-text: #6FB3F0;
+      --shadow:      0 2px 12px rgba(0,0,0,0.3);
     }
   }
 
@@ -48,16 +50,149 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    padding: 0;
   }
+
+  /* ── Confetti Canvas ── */
+  #confettiCanvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    display: none;
+  }
+
+  /* ── Email Gate ── */
+  #emailGate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    transition: opacity 0.4s ease;
+  }
+  #emailGate.hiding { opacity: 0; pointer-events: none; }
+
+  .gate-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 48px 44px 44px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    text-align: center;
+  }
+
+  .gate-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+
+  .gate-logo-text { text-align: left; line-height: 1.1; }
+  .gate-logo-prohaska {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #1B2D8F;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .gate-logo-consulting {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #29ABE2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .gate-game-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 5px;
+    color: var(--text);
+    margin: 12px 0 4px;
+    line-height: 1;
+  }
+  .gate-game-title span { color: var(--blue); }
+
+  .gate-tagline {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+  }
+
+  .gate-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-align: left;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .gate-input {
+    width: 100%;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.15s;
+    margin-bottom: 14px;
+  }
+  .gate-input:focus { border-color: var(--blue); }
+  .gate-input::placeholder { color: var(--text-light); }
+
+  .gate-submit {
+    width: 100%;
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.2px;
+  }
+  .gate-submit:hover { background: var(--blue-dark); }
+  .gate-submit:active { transform: scale(0.98); }
+  .gate-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .gate-privacy {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  .gate-error {
+    font-size: 12px;
+    color: #c0392b;
+    margin-bottom: 10px;
+    display: none;
+  }
+  .gate-error.show { display: block; }
 
   /* ── Header ── */
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 20px 24px 16px;
+    padding: 16px 24px 14px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 16px;
     flex-wrap: wrap;
     position: sticky;
@@ -66,38 +201,68 @@
     box-shadow: var(--shadow);
   }
 
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-brand-text { line-height: 1.15; }
+  .header-prohaska {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1B2D8F;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .header-consulting {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #29ABE2;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border-strong);
+    margin: 0 4px;
+  }
+
   .logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
+    font-size: 40px;
     letter-spacing: 4px;
     line-height: 1;
     color: var(--text);
   }
-  .logo span { color: var(--orange); }
+  .logo span { color: var(--blue); }
 
   .tagline {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-light);
-    padding-bottom: 6px;
+    margin-top: 2px;
   }
 
   .header-stats {
     margin-left: auto;
     display: flex;
     gap: 24px;
-    align-items: flex-end;
-    padding-bottom: 4px;
+    align-items: center;
   }
 
   .stat { text-align: center; }
   .stat-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--orange);
+    font-size: 30px;
+    color: var(--blue);
     line-height: 1;
   }
   .stat-label {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -106,7 +271,7 @@
 
   /* ── Layout ── */
   .main {
-    max-width: 900px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 28px 20px 60px;
     display: grid;
@@ -118,9 +283,12 @@
   @media (max-width: 720px) {
     .main { grid-template-columns: 1fr; }
     .sidebar { order: -1; }
-    header { padding: 14px 16px 12px; }
-    .logo { font-size: 36px; }
+    header { padding: 12px 16px; }
+    .logo { font-size: 32px; }
     .header-stats { gap: 16px; }
+    .gate-card { padding: 32px 20px 28px; }
+    .gate-game-title { font-size: 42px; }
+    .header-divider { display: none; }
   }
 
   /* ── Card ── */
@@ -140,7 +308,7 @@
   }
 
   .adlin-letter {
-    background: var(--orange);
+    background: linear-gradient(135deg, var(--cyan), var(--navy));
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
@@ -176,34 +344,31 @@
     user-select: none;
   }
 
-  .cell.uncalled { opacity: 0.55; }
+  .cell.uncalled { opacity: 0.5; }
 
   .cell.called {
     background: var(--called-bg);
     color: var(--called-text);
-    border-color: var(--orange);
+    border-color: var(--blue);
     cursor: pointer;
     opacity: 1;
   }
-  .cell.called:hover {
-    transform: scale(1.04);
-    border-color: var(--orange-dark);
-  }
+  .cell.called:hover { transform: scale(1.04); border-color: var(--blue-dark); }
   .cell.called:hover .tooltip { display: block; }
 
   .cell.daubed {
-    background: var(--orange);
+    background: var(--blue);
     color: white;
-    border-color: var(--orange-dark);
+    border-color: var(--blue-dark);
     cursor: default;
     opacity: 1;
   }
   .cell.daubed:hover .tooltip { display: none; }
 
   .cell.free {
-    background: var(--orange);
+    background: linear-gradient(135deg, var(--cyan), var(--navy));
     color: white;
-    border-color: var(--orange-dark);
+    border-color: var(--navy);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 15px;
     letter-spacing: 1px;
@@ -213,7 +378,7 @@
   .cell.winning { animation: pulse 0.6s ease 3; }
   @keyframes pulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); box-shadow: 0 0 0 3px rgba(216,90,48,0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 0 0 3px rgba(29,111,212,0.4); }
   }
 
   /* Tooltip */
@@ -267,10 +432,9 @@
     margin-bottom: 14px;
   }
 
-  /* Daily draw */
   .draw-btn {
     width: 100%;
-    background: var(--orange);
+    background: var(--blue);
     color: white;
     border: none;
     border-radius: 10px;
@@ -282,7 +446,7 @@
     transition: background 0.15s, transform 0.1s;
     letter-spacing: 0.2px;
   }
-  .draw-btn:hover { background: var(--orange-dark); }
+  .draw-btn:hover { background: var(--blue-dark); }
   .draw-btn:active { transform: scale(0.98); }
   .draw-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
@@ -309,7 +473,6 @@
     min-height: 18px;
   }
 
-  /* Called words */
   .called-list {
     display: flex;
     flex-direction: column;
@@ -330,7 +493,7 @@
     align-items: center;
     gap: 8px;
   }
-  .called-pill.on-card { border-left: 3px solid var(--orange); }
+  .called-pill.on-card { border-left: 3px solid var(--blue); }
   .called-pill-day {
     font-size: 10px;
     color: var(--text-light);
@@ -354,7 +517,7 @@
   /* Win banner */
   .win-banner {
     display: none;
-    background: var(--orange);
+    background: linear-gradient(135deg, var(--blue), var(--navy));
     color: white;
     border-radius: 12px;
     padding: 18px 20px;
@@ -368,10 +531,7 @@
     line-height: 1;
     margin-bottom: 4px;
   }
-  .win-banner-sub {
-    font-size: 13px;
-    opacity: 0.85;
-  }
+  .win-banner-sub { font-size: 13px; opacity: 0.88; }
 
   /* How to play */
   .how-list {
@@ -389,9 +549,9 @@
     align-items: flex-start;
   }
   .how-num {
-    background: var(--orange-light);
-    color: var(--orange);
-    font-weight: 600;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-weight: 700;
     font-size: 11px;
     width: 20px;
     height: 20px;
@@ -403,7 +563,6 @@
     margin-top: 1px;
   }
 
-  /* Scrollbar */
   .called-list::-webkit-scrollbar { width: 4px; }
   .called-list::-webkit-scrollbar-track { background: transparent; }
   .called-list::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
@@ -411,11 +570,79 @@
 </head>
 <body>
 
-<header>
-  <div>
-    <div class="logo">AD <span>LINGO</span></div>
-    <div class="tagline">The advertising industry bingo game</div>
+<!-- Confetti canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ══════════════════════════════════════
+     EMAIL GATE
+════════════════════════════════════════ -->
+<div id="emailGate">
+  <div class="gate-card">
+
+    <!-- Prohaska Logo (SVG — no external file needed) -->
+    <div class="gate-logo-wrap">
+      <svg width="52" height="72" viewBox="0 0 52 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gGate" x1="26" y1="0" x2="26" y2="72" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#29ABE2"/>
+            <stop offset="100%" stop-color="#1B2D8F"/>
+          </linearGradient>
+        </defs>
+        <!-- Stem -->
+        <rect x="4" y="4" width="16" height="64" rx="8" fill="url(#gGate)"/>
+        <!-- Outer bowl -->
+        <path d="M20 10 C20 10 48 10 48 30 C48 50 20 50 20 50" stroke="url(#gGate)" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <!-- Inner ring (magnifying glass effect) -->
+        <circle cx="34" cy="30" r="9" stroke="white" stroke-width="4.5" fill="none" opacity="0.75"/>
+      </svg>
+      <div class="gate-logo-text">
+        <div class="gate-logo-prohaska">Prohaska</div>
+        <div class="gate-logo-consulting">Consulting</div>
+      </div>
+    </div>
+
+    <div class="gate-game-title">LINGO</div>
+    <div class="gate-tagline">The advertising industry bingo game &nbsp;·&nbsp; Free to Play!</div>
+
+    <label class="gate-label" for="gateEmail">Enter your email to play</label>
+    <input type="email" id="gateEmail" class="gate-input" placeholder="you@example.com"
+           autocomplete="email" spellcheck="false"/>
+    <div class="gate-error" id="gateError">Please enter a valid email address.</div>
+    <button class="gate-submit" id="gateSubmit" onclick="submitGate()">Start Playing →</button>
+    <p class="gate-privacy">We only use your email to notify winners. No spam, ever.</p>
   </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GAME
+════════════════════════════════════════ -->
+<header>
+  <div class="header-brand">
+    <!-- Prohaska Logo (compact) -->
+    <svg width="30" height="42" viewBox="0 0 52 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gHeader" x1="26" y1="0" x2="26" y2="72" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#29ABE2"/>
+          <stop offset="100%" stop-color="#1B2D8F"/>
+        </linearGradient>
+      </defs>
+      <rect x="4" y="4" width="16" height="64" rx="8" fill="url(#gHeader)"/>
+      <path d="M20 10 C20 10 48 10 48 30 C48 50 20 50 20 50" stroke="url(#gHeader)" stroke-width="16" stroke-linecap="round" fill="none"/>
+      <circle cx="34" cy="30" r="9" stroke="white" stroke-width="4.5" fill="none" opacity="0.75"/>
+    </svg>
+    <div class="header-brand-text">
+      <div class="header-prohaska">Prohaska</div>
+      <div class="header-consulting">Consulting</div>
+    </div>
+  </div>
+
+  <div class="header-divider"></div>
+
+  <div>
+    <div class="logo">LINGO</div>
+    <div class="tagline">Free to Play!</div>
+  </div>
+
   <div class="header-stats">
     <div class="stat">
       <div class="stat-num" id="statDay">—</div>
@@ -438,11 +665,11 @@
   <div>
     <div class="card-wrap">
       <div class="adlin-header">
-        <div class="adlin-letter">A</div>
-        <div class="adlin-letter">D</div>
         <div class="adlin-letter">L</div>
         <div class="adlin-letter">I</div>
         <div class="adlin-letter">N</div>
+        <div class="adlin-letter">G</div>
+        <div class="adlin-letter">O</div>
       </div>
       <div class="card-grid" id="cardGrid"></div>
     </div>
@@ -454,13 +681,11 @@
   <!-- Sidebar -->
   <div class="sidebar">
 
-    <!-- Win banner -->
     <div class="win-banner" id="winBanner">
-      <div class="win-banner-title">🎉 BINGO!</div>
-      <div class="win-banner-sub">You completed a line!</div>
+      <div class="win-banner-title">🎉 LINGO!</div>
+      <div class="win-banner-sub" id="winBannerSub">You completed a line!</div>
     </div>
 
-    <!-- Draw panel -->
     <div class="panel">
       <div class="panel-title">Daily draw</div>
       <button class="draw-btn" id="drawBtn" onclick="drawDay()">Draw today's 3 words</button>
@@ -468,7 +693,6 @@
       <div class="day-label" id="dayLabel">Hit draw to start playing</div>
     </div>
 
-    <!-- Called words -->
     <div class="panel">
       <div class="panel-title">Words called</div>
       <div class="called-list" id="calledList">
@@ -476,13 +700,12 @@
       </div>
     </div>
 
-    <!-- How to play -->
     <div class="panel">
       <div class="panel-title">How to play</div>
       <ul class="how-list">
         <li><span class="how-num">1</span>You have a unique randomized card drawn from 300+ ad industry terms.</li>
         <li><span class="how-num">2</span>Each day, 3 words are called — everyone gets the same words.</li>
-        <li><span class="how-num">3</span>If a called word appears on your card, tap it to daub (it turns orange).</li>
+        <li><span class="how-num">3</span>If a called word is on your card, tap it to daub (it turns blue).</li>
         <li><span class="how-num">4</span>Complete any row, column, or diagonal to win — LINGO!</li>
       </ul>
     </div>
@@ -491,13 +714,112 @@
 </div>
 
 <script>
-const ALL_WORDS = [{"term":"A/B Testing","def":"A method of comparing two versions of a webpage or app against each other to determine which one performs better."},{"term":"Account Executive","def":"A business professional who manages the relationship between an advertising agency and its clients."},{"term":"Account Planning","def":"The process of using market research and consumer insights to guide the creative development of advertising."},{"term":"Ad Exchange","def":"A digital marketplace that facilitates the automated auction of ad inventory."},{"term":"Advertorial","def":"An advertisement in the form of editorial content."},{"term":"Affiliate Marketing","def":"A marketing arrangement by which an online retailer pays commission to an external website for traffic or sales generated from its referrals."},{"term":"Agency Trading Desk (ATD)","def":"A centralized management platform used by agencies to manage programmatic media buying."},{"term":"Agency of Record (AOR)","def":"An advertising agency authorized by an advertiser to purchase advertising space and/or time on its behalf."},{"term":"Algorithm","def":"A set of rules or calculations used by platforms to determine which ads are shown to which users."},{"term":"Allowlist","def":"A list of approved websites or apps where an advertiser is comfortable appearing."},{"term":"Alt Text","def":"The descriptive text that appears in place of an image on a webpage if the image fails to load."},{"term":"Ambient Advertising","def":"Advertising placed in unusual or unexpected places (e.g., floor graphics, bus handles)."},{"term":"Analytics","def":"The systematic computational analysis of data or statistics, used to track campaign performance."},{"term":"Animatic","def":"A preliminary form of a television commercial, consisting of a series of drawings or frames from the storyboard."},{"term":"Art Director","def":"The person responsible for the visual style and images in ads, publications, and productions."},{"term":"Attention Metrics","def":"Measurement beyond viewability that tracks how long or how intensely a user actually focused on an ad."},{"term":"Attribution","def":"The process of identifying which touchpoint led to a conversion."},{"term":"Attribution Modeling","def":"The rule or set of rules that determines how credit for sales and conversions is assigned to touchpoints."},{"term":"Audience Segmentation","def":"The process of dividing a broad market into sub-groups based on shared characteristics."},{"term":"Awareness","def":"The level of consumer familiarity with a brand or product."},{"term":"B2B","def":"Advertising or marketing directed at other businesses rather than individual consumers."},{"term":"B2C","def":"Advertising or marketing directed at individual consumers."},{"term":"Banner Ad","def":"A rectangular graphic display that stretches across the top, bottom, or sides of a website."},{"term":"Below-the-Line","def":"Advertising that uses less conventional methods than usual media, e.g., direct mail or trade shows."},{"term":"Benchmarking","def":"Comparing a business's performance metrics to industry bests or best practices from other companies."},{"term":"Bid Request","def":"The signal sent from an exchange to a DSP asking for a bid on an impression."},{"term":"Bid Shading","def":"An AI-driven technique used in first-price auctions to help buyers find the ideal price to win."},{"term":"Big Idea","def":"A creative concept intended to grab consumer attention and leave a lasting impression."},{"term":"Billboard","def":"A large outdoor board for displaying advertisements."},{"term":"Billings","def":"The total amount of money charged to clients by an advertising agency."},{"term":"Blocklist","def":"A list of websites or apps where an advertiser does not want their ads to appear."},{"term":"Body Copy","def":"The main text of an advertisement, distinct from the headline and slogans."},{"term":"Bounce Rate","def":"The percentage of visitors who navigate away after viewing only one page."},{"term":"Brand Activation","def":"The process of making a brand known through experiences or interactions."},{"term":"Brand Equity","def":"The commercial value that derives from consumer perception of a brand name."},{"term":"Brand Essence","def":"The heart and soul of a brand — its fundamental nature or quality."},{"term":"Brand Identity","def":"The visible elements of a brand (color, design, logo) that distinguish it in consumers' minds."},{"term":"Brand Loyalty","def":"The tendency of consumers to continue buying the same brand rather than competing brands."},{"term":"Brand Positioning","def":"The place a brand occupies in the minds of customers vs. competitors."},{"term":"Brand Safety","def":"Tools and practices used to ensure an ad does not appear next to inappropriate content."},{"term":"Brand Suitability","def":"A more nuanced version of brand safety that aligns ads with a brand's specific values."},{"term":"Brand Voice","def":"The distinct personality a brand takes on in its communications."},{"term":"Brief","def":"A document used in advertising to clarify the objectives and scope of a project."},{"term":"Call to Action (CTA)","def":"An instruction designed to provoke an immediate response, e.g., 'Buy Now'."},{"term":"Campaign","def":"A coordinated series of ad messages that share a single idea and theme."},{"term":"Churn Rate","def":"The rate at which customers stop doing business with an entity."},{"term":"Click-Through Rate (CTR)","def":"The ratio of clicks to total ad views, expressed as a percentage."},{"term":"Connected TV (CTV)","def":"Advertising on any TV that connects to the internet to access content beyond basic cable."},{"term":"Content Marketing","def":"Creating and sharing online material (videos, blogs, posts) to attract an audience."},{"term":"Contextual Targeting","def":"Placing ads based on the semantic content of a page rather than user cookies."},{"term":"Conversion","def":"A desired action taken by a user, such as a purchase or sign-up."},{"term":"Conversion Rate","def":"The percentage of users who take a desired action."},{"term":"Cookie","def":"A small piece of data stored on the user's computer used for tracking and targeting."},{"term":"Copywriter","def":"A person who writes the text of advertisements or publicity material."},{"term":"Cost Per Acquisition (CPA)","def":"The total cost to acquire one paying customer on a campaign or channel level."},{"term":"Cost Per Click (CPC)","def":"An internet advertising model where an advertiser pays each time their ad is clicked."},{"term":"Cost Per Mille (CPM)","def":"The cost of serving 1,000 ad impressions."},{"term":"Creative Brief","def":"A document produced by the client and creative team to explain the project goals."},{"term":"Creative Director","def":"The person in charge of the creative department in an advertising agency."},{"term":"Cross-Device Tracking","def":"Technology used to identify a user across multiple devices (phone, laptop, TV)."},{"term":"Customer Data Platform (CDP)","def":"Systems that unify first-party data to create durable, person-level customer profiles."},{"term":"Customer Journey","def":"The complete sum of experiences a customer has with a brand over time."},{"term":"Customer Persona","def":"A semi-fictional representation of your ideal customer based on market research and real data."},{"term":"Dark Post","def":"A targeted social media ad that does not appear on the advertiser's timeline."},{"term":"Data Clean Room (DCR)","def":"Secure environments where parties can match data without sharing personally identifiable info."},{"term":"Data Management Platform (DMP)","def":"A warehouse used to collect, house, and sort audience data (1st, 2nd, and 3rd party)."},{"term":"Dayparting","def":"Scheduling ads to run only during certain times of the day or days of the week."},{"term":"Deal ID","def":"A unique numerical code identifying specific negotiated terms in a programmatic transaction."},{"term":"Demand-Side Platform (DSP)","def":"Software used by advertisers to buy mobile, search, and video ads in an automated fashion."},{"term":"Demographics","def":"Statistical data relating to the population and particular groups within it."},{"term":"Digital Out-of-Home (DOOH)","def":"Automated ad delivery on public digital screens based on triggers like time or weather."},{"term":"Direct Mail","def":"Advertising messages sent directly to potential customers through the mail."},{"term":"Direct Response","def":"Marketing designed to elicit an instant response by encouraging a specific action."},{"term":"Display Advertising","def":"Advertising on websites or apps through banners or other visual ad formats."},{"term":"Dynamic Creative Optimization (DCO)","def":"Ad tech that creates personalized ads in real-time based on user data."},{"term":"Earned Media","def":"Publicity gained through promotional efforts other than paid advertising (word of mouth, reviews)."},{"term":"Engagement Rate","def":"How actively users interact with your content (likes, shares, comments)."},{"term":"Experiential Marketing","def":"A marketing strategy that directly engages consumers in the evolution of a brand."},{"term":"Fill Rate","def":"The percentage of ad requests that were actually filled with an ad."},{"term":"First-Party Data","def":"Data collected directly by the company, e.g., registration info and site behavior."},{"term":"First-Price Auction","def":"An auction model where the highest bidder pays exactly what they bid."},{"term":"Frequency","def":"The number of times the average person is exposed to an ad in a specific period."},{"term":"Frequency Capping","def":"Limiting the number of times a specific user sees the same ad in a given period."},{"term":"Geofencing","def":"Using GPS to create a virtual boundary, triggering a response when a device enters or leaves it."},{"term":"Gross Rating Point (GRP)","def":"A standard measure in advertising used to measure audience size reached by a media vehicle."},{"term":"Guerrilla Marketing","def":"An ad strategy using surprise or unconventional interactions to promote a product or service."},{"term":"Header Bidding","def":"A technique where publishers allow multiple demand sources to bid on inventory simultaneously."},{"term":"Headline","def":"The text of an advertisement designed to catch the eye and be read first."},{"term":"Heatmap","def":"A graphical representation showing where users click on a webpage, depicted by color."},{"term":"Identity Graph","def":"A database that links various user identifiers to create a unified profile."},{"term":"Impression","def":"A single instance of an ad being displayed to a user."},{"term":"In-App Advertising","def":"The placement of advertisements within mobile applications."},{"term":"In-Housing","def":"The trend of brands bringing programmatic buying and ad strategy in-house."},{"term":"In-Stream Video","def":"Ads that play within a video player (pre-roll, mid-roll, post-roll)."},{"term":"Inbound Marketing","def":"Drawing customers via content marketing, social media, and SEO rather than outbound ads."},{"term":"Influencer Marketing","def":"A form of social media marketing involving endorsements from influencers."},{"term":"Insight","def":"A deep understanding of the 'why' behind consumer behavior."},{"term":"Integrated Marketing Communications","def":"The practice of unifying all marketing tools to send a consistent message."},{"term":"Inventory","def":"The total ad space available on a publisher's site or app."},{"term":"Jingle","def":"A short slogan or tune designed to be easily remembered, used in advertising."},{"term":"Key Performance Indicator (KPI)","def":"A quantifiable measure used to evaluate the success of a campaign or activity."},{"term":"Keyword","def":"A particular word or phrase used as a search term, describing the contents of a web page."},{"term":"Landing Page","def":"A web page linked from an ad where users arrive after clicking."},{"term":"Last-Click Attribution","def":"A legacy model that gives 100% of credit to the very last ad clicked before conversion."},{"term":"Lead","def":"A person who has shown interest in a brand's products or services."},{"term":"Lookalike Modeling","def":"Using a brand's existing customers to find similar users based on behavioral patterns."},{"term":"Lookback Window","def":"The period after an ad is seen or clicked during which a conversion can be credited."},{"term":"Managed Service","def":"When an ad tech vendor or agency handles all aspects of a campaign for a brand."},{"term":"Market Research","def":"The activity of gathering information about consumers' needs and preferences."},{"term":"Marketing Mix","def":"The combination of factors (Product, Price, Place, Promotion) to influence consumer purchases."},{"term":"Media Buying","def":"The procurement of media space and time for displaying ad creative."},{"term":"Media Mix","def":"The combination of communication channels used to meet marketing objectives."},{"term":"Media Planning","def":"The process of determining which media to use for an advertising campaign."},{"term":"Mobile Marketing","def":"A multi-channel strategy aimed at reaching a target audience on their smartphones and devices."},{"term":"Mood Board","def":"An arrangement of images and text intended to evoke or project a particular style or concept."},{"term":"Multi-Touch Attribution (MTA)","def":"A model that gives credit to multiple ads seen by a user before they purchased."},{"term":"Native Advertising","def":"The use of paid ads that match the look, feel, and function of the surrounding media format."},{"term":"Niche Marketing","def":"Advertising to a small, specialized section of the population."},{"term":"Omnichannel","def":"A strategy that provides a seamless shopping experience across all channels."},{"term":"Open Exchange","def":"An open digital marketplace where any advertiser or publisher can trade ad inventory."},{"term":"Out-of-Home (OOH)","def":"Advertising that reaches consumers while they are outside their homes (billboards, transit)."},{"term":"Owned Media","def":"Any web property you can control, unique to your brand (website, blog, social channels)."},{"term":"Paid Media","def":"External marketing efforts that involve a paid placement, e.g., PPC or display ads."},{"term":"Performance Marketing","def":"Online advertising where advertisers pay only when a specific action is completed."},{"term":"Personalization","def":"Tailoring a message or experience to a specific individual based on their data."},{"term":"Pitch","def":"A presentation by an advertising agency to a prospective client to win their business."},{"term":"Pixel","def":"A small piece of code on a webpage used for tracking and retargeting."},{"term":"Pre-bid","def":"Technology that allows buyers to evaluate an impression for quality or safety before bidding."},{"term":"Pre-roll Ad","def":"A video advertisement that plays before the content the user has selected."},{"term":"Preferred Deal","def":"A 1:1 deal where a buyer gets first look at inventory at a pre-negotiated fixed price."},{"term":"Price Floor","def":"The minimum net CPM a publisher is willing to accept for their ad inventory."},{"term":"Private Marketplace (PMP)","def":"An invitation-only auction where premium publishers offer inventory to select buyers."},{"term":"Probabilistic Identity","def":"Using non-definitive signals (IP, device type) to guess if devices belong to the same user."},{"term":"Product Placement","def":"Paying to feature products in movies and television programs for exposure."},{"term":"Programmatic Advertising","def":"The automated buying and selling of online advertising."},{"term":"Programmatic Guaranteed (PG)","def":"A programmatic deal where a specific amount of inventory is reserved at a fixed price."},{"term":"Psychographics","def":"The study and classification of people according to their attitudes, aspirations, and other psychological criteria."},{"term":"Public Relations (PR)","def":"The professional maintenance of a favorable public image by a company or organization."},{"term":"Reach","def":"The total number of different people exposed to a medium during a given period."},{"term":"Real-Time Bidding (RTB)","def":"The automated, millisecond-long auction process where an impression is sold to the highest bidder."},{"term":"Remarketing","def":"A way to reconnect with people who previously interacted with your website or mobile app."},{"term":"Response Rate","def":"The number of people who responded to an offer as a percentage of all who saw it."},{"term":"Retail Media Network (RMN)","def":"A retailer's programmatic platform (e.g., Amazon, Walmart) using their first-party shopper data."},{"term":"Retargeting","def":"Serving ads to users who have previously visited your site or interacted with your brand."},{"term":"Return on Investment (ROI)","def":"A performance measure evaluating the efficiency of an investment."},{"term":"Rewarded Video","def":"A mobile ad format where users watch a video in exchange for an in-app reward."},{"term":"Sales Funnel","def":"A model illustrating the theoretical customer journey towards the purchase of a product."},{"term":"Search Engine Marketing (SEM)","def":"Promoting websites by increasing their visibility in search engine results pages."},{"term":"Search Engine Optimization (SEO)","def":"The process of increasing website visibility to users of a web search engine."},{"term":"Second-Price Auction","def":"An auction model where the winner pays one cent more than the second-highest bid."},{"term":"Segmentation","def":"Dividing a market of potential customers into groups based on different characteristics."},{"term":"Share of Voice (SOV)","def":"A measure of the market your brand owns compared to your competitors."},{"term":"Slogan","def":"A short, striking phrase used in advertising."},{"term":"Social Media Marketing","def":"The use of social media platforms to promote a product or service."},{"term":"Sponsorship","def":"Advertising in which a company pays to be associated with a specific event, team, or individual."},{"term":"Storyboarding","def":"A sequence of drawings representing the shots planned for a commercial or production."},{"term":"Supply-Side Platform (SSP)","def":"Technology that allows publishers to manage their ad space and connect to multiple exchanges."},{"term":"Tag","def":"A snippet of code used to request an ad from a server."},{"term":"Tagline","def":"A catchphrase or slogan associated with a brand, often the punchline of a campaign."},{"term":"Target Audience","def":"The specific group at which an advertising campaign is aimed."},{"term":"Testimonial","def":"A formal statement from a customer or celebrity testifying to a product's value."},{"term":"Third-Party Data","def":"Audience data purchased from outside brokers who have no direct relationship with the user."},{"term":"Thought Leadership","def":"The expression of ideas that demonstrate expertise in a particular field or channel."},{"term":"Top-of-Mind Awareness","def":"A brand being the first in customers' minds when thinking of a particular category."},{"term":"Universal ID","def":"A cross-site identity solution designed to replace third-party cookies."},{"term":"Unique Selling Proposition (USP)","def":"The factor that makes one product or service different from and better than the competition."},{"term":"User Experience (UX)","def":"The overall experience of a person using a product, especially how easy or pleasing it is."},{"term":"User-Generated Content (UGC)","def":"Any content (images, videos, text) posted by users on online platforms."},{"term":"Value Proposition","def":"A service or feature intended to make a company or product attractive to customers."},{"term":"Vanity Metric","def":"A metric that looks good but doesn't necessarily inform future strategies."},{"term":"Viewability","def":"A metric that tracks whether an ad was actually visible to a user on their screen."},{"term":"Viral Marketing","def":"A method where consumers are encouraged to share information about a company's goods via the internet."},{"term":"Waterfall","def":"The legacy process of calling ad networks in sequence to sell inventory."},{"term":"Wear-Out","def":"The point at which an advertisement is no longer effective because it has been seen too many times."},{"term":"White Paper","def":"An authoritative report that informs readers concisely about a complex issue."},{"term":"Win Rate","def":"The percentage of bids that an advertiser won in an auction."},{"term":"Word of Mouth (WOM)","def":"The passing of information from person to person, a powerful form of earned media."},{"term":"Yield","def":"The amount of revenue generated by a specific advertisement or campaign."},{"term":"Zero-Party Data","def":"Data that a customer intentionally and proactively shares with a brand."},{"term":"Zapping","def":"Changing the channel during a commercial break."},{"term":"Zipping","def":"Fast-forwarding through commercials on a recorded program."},{"term":"Programmatic Audio","def":"Automated ad insertion into podcasts and music streaming services."},{"term":"Supply Path Optimization (SPO)","def":"Strategies used by buyers to find the most efficient path to purchase publisher inventory."},{"term":"Contextual Intelligence","def":"Using AI to understand the meaning and sentiment of page content for ad placement."},{"term":"Generative AI Creative","def":"Using AI models to produce thousands of ad variants tailored to specific audience segments."},{"term":"Customer Relationship Management (CRM)","def":"Technologies and strategies used to manage and analyze customer interactions and data."},{"term":"Full-Service Agency","def":"An agency that provides a wide range of services including research, strategy, creative, and media buying."},{"term":"Lifestyle Marketing","def":"Marketing based on the interests, opinions, and activities of the target audience."},{"term":"Drip Campaign","def":"A communication strategy that sends pre-written messages to customers over time."},{"term":"Integrated Campaign","def":"A campaign that uses multiple channels in a unified, consistent strategy."},{"term":"Loss Leader","def":"A product sold at a loss to attract customers into a store or to a service."},{"term":"Loyalty Program","def":"A rewards program offered by a company to customers who frequently make purchases."},{"term":"Greenwashing","def":"Conveying a false impression that a company's products are more environmentally sound than they are."},{"term":"Subliminal Advertising","def":"Using images and sounds to influence consumers without them being consciously aware of it."}];
+// ══════════════════════════════════════════════════════════
+//  ⚙️  CONFIGURATION
+//  Replace with your Formspree form URL.
+//  Sign up free at https://formspree.io → New Form → copy URL.
+// ══════════════════════════════════════════════════════════
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
 
-let card = [];
-let calledWords = new Set();
-let daubed = new Set();
-let day = 0;
-let calledLog = [];
+// ── Confetti ─────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+
+  const colors = [
+    '#1D6FD4','#29ABE2','#1B2D8F',
+    '#FFD700','#FF6B6B','#4ECDC4',
+    '#A8E6CF','#FFEAA7','#DDA0DD'
+  ];
+
+  const pieces = Array.from({ length: 200 }, () => ({
+    x:     Math.random() * canvas.width,
+    y:     -20 - Math.random() * 120,
+    w:     Math.random() * 13 + 6,
+    h:     Math.random() * 7  + 3,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    rot:   Math.random() * Math.PI * 2,
+    rotV:  (Math.random() - 0.5) * 0.18,
+    vx:    (Math.random() - 0.5) * 5,
+    vy:    Math.random() * 4 + 2,
+    g:     0.09,
+    alpha: 1
+  }));
+
+  let frame = 0;
+  const MAX = 260;
+
+  (function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.x   += p.vx;
+      p.y   += p.vy;
+      p.vy  += p.g;
+      p.rot += p.rotV;
+      if (frame > MAX * 0.55) p.alpha = Math.max(0, p.alpha - 0.012);
+
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    frame++;
+    if (frame < MAX) requestAnimationFrame(animate);
+    else canvas.style.display = 'none';
+  })();
+}
+
+// ── Email Gate ───────────────────────────────────────────
+let playerEmail  = '';
+let winnerReported = false;
+
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim()); }
+
+async function submitGate() {
+  const input = document.getElementById('gateEmail');
+  const btn   = document.getElementById('gateSubmit');
+  const err   = document.getElementById('gateError');
+  const email = input.value.trim();
+  err.classList.remove('show');
+
+  if (!isValidEmail(email)) { err.classList.add('show'); input.focus(); return; }
+
+  playerEmail = email;
+  btn.disabled = true;
+  btn.textContent = 'One moment…';
+
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '🎮 New Prohaska Lingo Player',
+        type: 'Registration',
+        email: playerEmail,
+        time: new Date().toLocaleString()
+      })
+    });
+  } catch (e) { console.warn('Email send failed:', e); }
+
+  const gate = document.getElementById('emailGate');
+  gate.classList.add('hiding');
+  setTimeout(() => { gate.style.display = 'none'; }, 420);
+}
+
+document.getElementById('gateEmail').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitGate();
+});
+
+// ── Game Logic ───────────────────────────────────────────
+const ALL_WORDS = [{"term":"A/B Testing","def":"A method of comparing two versions of a webpage or app against each other to determine which one performs better."},{"term":"Account Executive","def":"A business professional who manages the relationship between an advertising agency and its clients."},{"term":"Account Planning","def":"The process of using market research and consumer insights to guide the creative development of advertising."},{"term":"Ad Exchange","def":"A digital marketplace that facilitates the automated auction of ad inventory."},{"term":"Advertorial","def":"An advertisement in the form of editorial content."},{"term":"Affiliate Marketing","def":"A marketing arrangement by which an online retailer pays commission to an external website for traffic or sales generated from its referrals."},{"term":"Agency Trading Desk (ATD)","def":"A centralized management platform used by agencies to manage programmatic media buying."},{"term":"Agency of Record (AOR)","def":"An advertising agency authorized by an advertiser to purchase advertising space and/or time on its behalf."},{"term":"Algorithm","def":"A set of rules or calculations used by platforms to determine which ads are shown to which users."},{"term":"Allowlist","def":"A list of approved websites or apps where an advertiser is comfortable appearing."},{"term":"Alt Text","def":"The descriptive text that appears in place of an image on a webpage if the image fails to load."},{"term":"Ambient Advertising","def":"Advertising placed in unusual or unexpected places (e.g., floor graphics, bus handles)."},{"term":"Analytics","def":"The systematic computational analysis of data or statistics, used to track campaign performance."},{"term":"Animatic","def":"A preliminary form of a television commercial, consisting of a series of drawings or frames from the storyboard."},{"term":"Art Director","def":"The person responsible for the visual style and images in ads, publications, and productions."},{"term":"Attention Metrics","def":"Measurement beyond viewability that tracks how long or how intensely a user actually focused on an ad."},{"term":"Attribution","def":"The process of identifying which touchpoint led to a conversion."},{"term":"Attribution Modeling","def":"The rule or set of rules that determines how credit for sales and conversions is assigned to touchpoints."},{"term":"Audience Segmentation","def":"The process of dividing a broad market into sub-groups based on shared characteristics."},{"term":"Awareness","def":"The level of consumer familiarity with a brand or product."},{"term":"B2B","def":"Advertising or marketing directed at other businesses rather than individual consumers."},{"term":"B2C","def":"Advertising or marketing directed at individual consumers."},{"term":"Banner Ad","def":"A rectangular graphic display that stretches across the top, bottom, or sides of a website."},{"term":"Below-the-Line","def":"Advertising that uses less conventional methods than usual media, e.g., direct mail or trade shows."},{"term":"Benchmarking","def":"Comparing a business's performance metrics to industry bests or best practices from other companies."},{"term":"Bid Request","def":"The signal sent from an exchange to a DSP asking for a bid on an impression."},{"term":"Bid Shading","def":"An AI-driven technique used in first-price auctions to help buyers find the ideal price to win."},{"term":"Big Idea","def":"A creative concept intended to grab consumer attention and leave a lasting impression."},{"term":"Billboard","def":"A large outdoor board for displaying advertisements."},{"term":"Billings","def":"The total amount of money charged to clients by an advertising agency."},{"term":"Blocklist","def":"A list of websites or apps where an advertiser does not want their ads to appear."},{"term":"Body Copy","def":"The main text of an advertisement, distinct from the headline and slogans."},{"term":"Bounce Rate","def":"The percentage of visitors who navigate away after viewing only one page."},{"term":"Brand Activation","def":"The process of making a brand known through experiences or interactions."},{"term":"Brand Equity","def":"The commercial value that derives from consumer perception of a brand name."},{"term":"Brand Essence","def":"The heart and soul of a brand — its fundamental nature or quality."},{"term":"Brand Identity","def":"The visible elements of a brand (color, design, logo) that distinguish it in consumers' minds."},{"term":"Brand Loyalty","def":"The tendency of consumers to continue buying the same brand rather than competing brands."},{"term":"Brand Positioning","def":"The place a brand occupies in the minds of customers vs. competitors."},{"term":"Brand Safety","def":"Tools and practices used to ensure an ad does not appear next to inappropriate content."},{"term":"Brand Suitability","def":"A more nuanced version of brand safety that aligns ads with a brand's specific values."},{"term":"Brand Voice","def":"The distinct personality a brand takes on in its communications."},{"term":"Brief","def":"A document used in advertising to clarify the objectives and scope of a project."},{"term":"Call to Action (CTA)","def":"An instruction designed to provoke an immediate response, e.g., 'Buy Now'."},{"term":"Campaign","def":"A coordinated series of ad messages that share a single idea and theme."},{"term":"Churn Rate","def":"The rate at which customers stop doing business with an entity."},{"term":"Click-Through Rate (CTR)","def":"The ratio of clicks to total ad views, expressed as a percentage."},{"term":"Connected TV (CTV)","def":"Advertising on any TV that connects to the internet to access content beyond basic cable."},{"term":"Content Marketing","def":"Creating and sharing online material (videos, blogs, posts) to attract an audience."},{"term":"Contextual Targeting","def":"Placing ads based on the semantic content of a page rather than user cookies."},{"term":"Conversion","def":"A desired action taken by a user, such as a purchase or sign-up."},{"term":"Conversion Rate","def":"The percentage of users who take a desired action."},{"term":"Cookie","def":"A small piece of data stored on the user's computer used for tracking and targeting."},{"term":"Copywriter","def":"A person who writes the text of advertisements or publicity material."},{"term":"Cost Per Acquisition (CPA)","def":"The total cost to acquire one paying customer on a campaign or channel level."},{"term":"Cost Per Click (CPC)","def":"An internet advertising model where an advertiser pays each time their ad is clicked."},{"term":"Cost Per Mille (CPM)","def":"The cost of serving 1,000 ad impressions."},{"term":"Creative Brief","def":"A document produced by the client and creative team to explain the project goals."},{"term":"Creative Director","def":"The person in charge of the creative department in an advertising agency."},{"term":"Cross-Device Tracking","def":"Technology used to identify a user across multiple devices (phone, laptop, TV)."},{"term":"Customer Data Platform (CDP)","def":"Systems that unify first-party data to create durable, person-level customer profiles."},{"term":"Customer Journey","def":"The complete sum of experiences a customer has with a brand over time."},{"term":"Customer Persona","def":"A semi-fictional representation of your ideal customer based on market research and real data."},{"term":"Dark Post","def":"A targeted social media ad that does not appear on the advertiser's timeline."},{"term":"Data Clean Room (DCR)","def":"Secure environments where parties can match data without sharing personally identifiable info."},{"term":"Data Management Platform (DMP)","def":"A warehouse used to collect, house, and sort audience data (1st, 2nd, and 3rd party)."},{"term":"Dayparting","def":"Scheduling ads to run only during certain times of the day or days of the week."},{"term":"Deal ID","def":"A unique numerical code identifying specific negotiated terms in a programmatic transaction."},{"term":"Demand-Side Platform (DSP)","def":"Software used by advertisers to buy mobile, search, and video ads in an automated fashion."},{"term":"Demographics","def":"Statistical data relating to the population and particular groups within it."},{"term":"Digital Out-of-Home (DOOH)","def":"Automated ad delivery on public digital screens based on triggers like time or weather."},{"term":"Direct Mail","def":"Advertising messages sent directly to potential customers through the mail."},{"term":"Direct Response","def":"Marketing designed to elicit an instant response by encouraging a specific action."},{"term":"Display Advertising","def":"Advertising on websites or apps through banners or other visual ad formats."},{"term":"Dynamic Creative Optimization (DCO)","def":"Ad tech that creates personalized ads in real-time based on user data."},{"term":"Earned Media","def":"Publicity gained through promotional efforts other than paid advertising (word of mouth, reviews)."},{"term":"Engagement Rate","def":"How actively users interact with your content (likes, shares, comments)."},{"term":"Experiential Marketing","def":"A marketing strategy that directly engages consumers in the evolution of a brand."},{"term":"Fill Rate","def":"The percentage of ad requests that were actually filled with an ad."},{"term":"First-Party Data","def":"Data collected directly by the company, e.g., registration info and site behavior."},{"term":"First-Price Auction","def":"An auction model where the highest bidder pays exactly what they bid."},{"term":"Frequency","def":"The number of times the average person is exposed to an ad in a specific period."},{"term":"Frequency Capping","def":"Limiting the number of times a specific user sees the same ad in a given period."},{"term":"Geofencing","def":"Using GPS to create a virtual boundary, triggering a response when a device enters or leaves it."},{"term":"Gross Rating Point (GRP)","def":"A standard measure in advertising used to measure audience size reached by a given media vehicle."},{"term":"Guerrilla Marketing","def":"An ad strategy using surprise or unconventional interactions to promote a product or service."},{"term":"Header Bidding","def":"A technique where publishers allow multiple demand sources to bid on inventory simultaneously."},{"term":"Headline","def":"The text of an advertisement designed to catch the eye and be read first."},{"term":"Heatmap","def":"A graphical representation showing where users click on a webpage, depicted by color."},{"term":"Identity Graph","def":"A database that links various user identifiers to create a unified profile."},{"term":"Impression","def":"A single instance of an ad being displayed to a user."},{"term":"In-App Advertising","def":"The placement of advertisements within mobile applications."},{"term":"In-Housing","def":"The trend of brands bringing programmatic buying and ad strategy in-house."},{"term":"In-Stream Video","def":"Ads that play within a video player (pre-roll, mid-roll, post-roll)."},{"term":"Inbound Marketing","def":"Drawing customers via content marketing, social media, and SEO rather than outbound ads."},{"term":"Influencer Marketing","def":"A form of social media marketing involving endorsements from influencers."},{"term":"Insight","def":"A deep understanding of the 'why' behind consumer behavior."},{"term":"Integrated Marketing Communications","def":"The practice of unifying all marketing tools to send a consistent message."},{"term":"Inventory","def":"The total ad space available on a publisher's site or app."},{"term":"Jingle","def":"A short slogan or tune designed to be easily remembered, used in advertising."},{"term":"Key Performance Indicator (KPI)","def":"A quantifiable measure used to evaluate the success of a campaign or activity."},{"term":"Keyword","def":"A particular word or phrase used as a search term, describing the contents of a web page."},{"term":"Landing Page","def":"A web page linked from an ad where users arrive after clicking."},{"term":"Last-Click Attribution","def":"A legacy model that gives 100% of credit to the very last ad clicked before conversion."},{"term":"Lead","def":"A person who has shown interest in a brand's products or services."},{"term":"Lookalike Modeling","def":"Using a brand's existing customers to find similar users based on behavioral patterns."},{"term":"Lookback Window","def":"The period after an ad is seen or clicked during which a conversion can be credited."},{"term":"Managed Service","def":"When an ad tech vendor or agency handles all aspects of a campaign for a brand."},{"term":"Market Research","def":"The activity of gathering information about consumers' needs and preferences."},{"term":"Marketing Mix","def":"The combination of factors (Product, Price, Place, Promotion) to influence consumer purchases."},{"term":"Media Buying","def":"The procurement of media space and time for displaying ad creative."},{"term":"Media Mix","def":"The combination of communication channels used to meet marketing objectives."},{"term":"Media Planning","def":"The process of determining which media to use for an advertising campaign."},{"term":"Mobile Marketing","def":"A multi-channel strategy aimed at reaching a target audience on their smartphones and devices."},{"term":"Mood Board","def":"An arrangement of images and text intended to evoke or project a particular style or concept."},{"term":"Multi-Touch Attribution (MTA)","def":"A model that gives credit to multiple ads seen by a user before they purchased."},{"term":"Native Advertising","def":"The use of paid ads that match the look, feel, and function of the surrounding media format."},{"term":"Niche Marketing","def":"Advertising to a small, specialized section of the population."},{"term":"Omnichannel","def":"A strategy that provides a seamless shopping experience across all channels."},{"term":"Open Exchange","def":"An open digital marketplace where any advertiser or publisher can trade ad inventory."},{"term":"Out-of-Home (OOH)","def":"Advertising that reaches consumers while they are outside their homes (billboards, transit)."},{"term":"Owned Media","def":"Any web property you can control, unique to your brand (website, blog, social channels)."},{"term":"Paid Media","def":"External marketing efforts that involve a paid placement, e.g., PPC or display ads."},{"term":"Performance Marketing","def":"Online advertising where advertisers pay only when a specific action is completed."},{"term":"Personalization","def":"Tailoring a message or experience to a specific individual based on their data."},{"term":"Pitch","def":"A presentation by an advertising agency to a prospective client to win their business."},{"term":"Pixel","def":"A small piece of code on a webpage used for tracking and retargeting."},{"term":"Pre-bid","def":"Technology that allows buyers to evaluate an impression for quality or safety before bidding."},{"term":"Pre-roll Ad","def":"A video advertisement that plays before the content the user has selected."},{"term":"Preferred Deal","def":"A 1:1 deal where a buyer gets first look at inventory at a pre-negotiated fixed price."},{"term":"Price Floor","def":"The minimum net CPM a publisher is willing to accept for their ad inventory."},{"term":"Private Marketplace (PMP)","def":"An invitation-only auction where premium publishers offer inventory to select buyers."},{"term":"Probabilistic Identity","def":"Using non-definitive signals (IP, device type) to guess if devices belong to the same user."},{"term":"Product Placement","def":"Paying to feature products in movies and television programs for exposure."},{"term":"Programmatic Advertising","def":"The automated buying and selling of online advertising."},{"term":"Programmatic Guaranteed (PG)","def":"A programmatic deal where a specific amount of inventory is reserved at a fixed price."},{"term":"Psychographics","def":"The study and classification of people according to their attitudes, aspirations, and other psychological criteria."},{"term":"Public Relations (PR)","def":"The professional maintenance of a favorable public image by a company or organization."},{"term":"Reach","def":"The total number of different people exposed to a medium during a given period."},{"term":"Real-Time Bidding (RTB)","def":"The automated, millisecond-long auction process where an impression is sold to the highest bidder."},{"term":"Remarketing","def":"A way to reconnect with people who previously interacted with your website or mobile app."},{"term":"Response Rate","def":"The number of people who responded to an offer as a percentage of all who saw it."},{"term":"Retail Media Network (RMN)","def":"A retailer's programmatic platform (e.g., Amazon, Walmart) using their first-party shopper data."},{"term":"Retargeting","def":"Serving ads to users who have previously visited your site or interacted with your brand."},{"term":"Return on Investment (ROI)","def":"A performance measure evaluating the efficiency of an investment."},{"term":"Rewarded Video","def":"A mobile ad format where users watch a video in exchange for an in-app reward."},{"term":"Sales Funnel","def":"A model illustrating the theoretical customer journey towards the purchase of a product."},{"term":"Search Engine Marketing (SEM)","def":"Promoting websites by increasing their visibility in search engine results pages."},{"term":"Search Engine Optimization (SEO)","def":"The process of increasing website visibility to users of a web search engine."},{"term":"Second-Price Auction","def":"An auction model where the winner pays one cent more than the second-highest bid."},{"term":"Segmentation","def":"Dividing a market of potential customers into groups based on different characteristics."},{"term":"Share of Voice (SOV)","def":"A measure of the market your brand owns compared to your competitors."},{"term":"Slogan","def":"A short, striking phrase used in advertising."},{"term":"Social Media Marketing","def":"The use of social media platforms to promote a product or service."},{"term":"Sponsorship","def":"Advertising in which a company pays to be associated with a specific event, team, or individual."},{"term":"Storyboarding","def":"A sequence of drawings representing the shots planned for a commercial or production."},{"term":"Supply-Side Platform (SSP)","def":"Technology that allows publishers to manage their ad space and connect to multiple exchanges."},{"term":"Tag","def":"A snippet of code used to request an ad from a server."},{"term":"Tagline","def":"A catchphrase or slogan associated with a brand, often the punchline of a campaign."},{"term":"Target Audience","def":"The specific group at which an advertising campaign is aimed."},{"term":"Testimonial","def":"A formal statement from a customer or celebrity testifying to a product's value."},{"term":"Third-Party Data","def":"Audience data purchased from outside brokers who have no direct relationship with the user."},{"term":"Thought Leadership","def":"The expression of ideas that demonstrate expertise in a particular field or channel."},{"term":"Top-of-Mind Awareness","def":"A brand being the first in customers' minds when thinking of a particular category."},{"term":"Universal ID","def":"A cross-site identity solution designed to replace third-party cookies."},{"term":"Unique Selling Proposition (USP)","def":"The factor that makes one product or service different from and better than the competition."},{"term":"User Experience (UX)","def":"The overall experience of a person using a product, especially how easy or pleasing it is."},{"term":"User-Generated Content (UGC)","def":"Any content (images, videos, text) posted by users on online platforms."},{"term":"Value Proposition","def":"A service or feature intended to make a company or product attractive to customers."},{"term":"Vanity Metric","def":"A metric that looks good but doesn't necessarily inform future strategies."},{"term":"Viewability","def":"A metric that tracks whether an ad was actually visible to a user on their screen."},{"term":"Viral Marketing","def":"A method where consumers are encouraged to share information about a company's goods via the internet."},{"term":"Waterfall","def":"The legacy process of calling ad networks in sequence to sell inventory."},{"term":"Wear-Out","def":"The point at which an advertisement is no longer effective because it has been seen too many times."},{"term":"White Paper","def":"An authoritative report that informs readers concisely about a complex issue."},{"term":"Win Rate","def":"The percentage of bids that an advertiser won in an auction."},{"term":"Word of Mouth (WOM)","def":"The passing of information from person to person, a powerful form of earned media."},{"term":"Yield","def":"The amount of revenue generated by a specific advertisement or campaign."},{"term":"Zero-Party Data","def":"Data that a customer intentionally and proactively shares with a brand."},{"term":"Zapping","def":"Changing the channel during a commercial break."},{"term":"Zipping","def":"Fast-forwarding through commercials on a recorded program."},{"term":"Programmatic Audio","def":"Automated ad insertion into podcasts and music streaming services."},{"term":"Supply Path Optimization (SPO)","def":"Strategies used by buyers to find the most efficient path to purchase publisher inventory."},{"term":"Contextual Intelligence","def":"Using AI to understand the meaning and sentiment of page content for ad placement."},{"term":"Generative AI Creative","def":"Using AI models to produce thousands of ad variants tailored to specific audience segments."},{"term":"Customer Relationship Management (CRM)","def":"Technologies and strategies used to manage and analyze customer interactions and data."},{"term":"Full-Service Agency","def":"An agency that provides a wide range of services including research, strategy, creative, and media buying."},{"term":"Lifestyle Marketing","def":"Marketing based on the interests, opinions, and activities of the target audience."},{"term":"Drip Campaign","def":"A communication strategy that sends pre-written messages to customers over time."},{"term":"Integrated Campaign","def":"A campaign that uses multiple channels in a unified, consistent strategy."},{"term":"Loss Leader","def":"A product sold at a loss to attract customers into a store or to a service."},{"term":"Loyalty Program","def":"A rewards program offered by a company to customers who frequently make purchases."},{"term":"Greenwashing","def":"Conveying a false impression that a company's products are more environmentally sound than they are."},{"term":"Subliminal Advertising","def":"Using images and sounds to influence consumers without them being consciously aware of it."}];
+
+let card = [], calledWords = new Set(), daubed = new Set(), day = 0, calledLog = [];
 
 function shuffle(arr) {
   const a = [...arr];
@@ -517,7 +839,7 @@ function generateCard() {
 function renderGrid() {
   const grid = document.getElementById('cardGrid');
   grid.innerHTML = '';
-  card.forEach((item, i) => {
+  card.forEach(item => {
     const cell = document.createElement('div');
     cell.className = 'cell';
 
@@ -528,18 +850,13 @@ function renderGrid() {
       return;
     }
 
-    const term = item.term;
+    const term     = item.term;
     const isCalled = calledWords.has(term);
     const isDaubed = daubed.has(term);
 
-    if (isDaubed) {
-      cell.classList.add('daubed');
-    } else if (isCalled) {
-      cell.classList.add('called');
-      cell.onclick = () => daub(term);
-    } else {
-      cell.classList.add('uncalled');
-    }
+    if      (isDaubed) { cell.classList.add('daubed'); }
+    else if (isCalled) { cell.classList.add('called'); cell.onclick = () => daub(term); }
+    else               { cell.classList.add('uncalled'); }
 
     cell.innerHTML = `<span>${term}</span>`;
 
@@ -568,36 +885,51 @@ const WIN_LINES = [
   [0,6,12,18,24],[4,8,12,16,20]
 ];
 
-function checkWin() {
-  const cells = Array.from(document.getElementById('cardGrid').children);
-  const isMarked = i => {
-    const item = card[i];
-    return item.free || daubed.has(item.term);
-  };
+async function reportWinner() {
+  if (winnerReported || !playerEmail) return;
+  winnerReported = true;
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '🏆 Prohaska Lingo WINNER!',
+        type: 'WINNER',
+        email: playerEmail,
+        day,
+        daubed: daubed.size,
+        time: new Date().toLocaleString()
+      })
+    });
+  } catch (e) { console.warn('Winner report failed:', e); }
+}
 
-  let won = false;
-  let winningIndices = [];
+function checkWin() {
+  const cells    = Array.from(document.getElementById('cardGrid').children);
+  const isMarked = i => card[i].free || daubed.has(card[i].term);
+
+  let won = false, winningIndices = [];
   for (const line of WIN_LINES) {
-    if (line.every(i => isMarked(i))) {
-      won = true;
-      winningIndices = line;
-      break;
-    }
+    if (line.every(i => isMarked(i))) { won = true; winningIndices = line; break; }
   }
 
   const banner = document.getElementById('winBanner');
   banner.classList.toggle('show', won);
 
   if (won) {
+    document.getElementById('winBannerSub').textContent =
+      playerEmail ? `Winner: ${playerEmail}` : 'You completed a line!';
     winningIndices.forEach(i => {
       cells[i].classList.add('winning');
       setTimeout(() => cells[i].classList.remove('winning'), 2000);
     });
+    launchConfetti();
+    reportWinner();
   }
 }
 
 function updateStats() {
-  document.getElementById('statDay').textContent = day > 0 ? day : '—';
+  document.getElementById('statDay').textContent    = day > 0 ? day : '—';
   document.getElementById('statCalled').textContent = calledWords.size;
   document.getElementById('statDaubed').textContent = daubed.size;
 }
@@ -611,8 +943,8 @@ function renderCalledList() {
   list.innerHTML = '';
   const cardTerms = new Set(card.map(c => c.term));
   [...calledLog].reverse().forEach(entry => {
-    const pill = document.createElement('div');
-    const onCard = cardTerms.has(entry.term);
+    const pill    = document.createElement('div');
+    const onCard  = cardTerms.has(entry.term);
     pill.className = 'called-pill' + (onCard ? ' on-card' : '');
     pill.innerHTML = `<span>${entry.term}</span><span class="called-pill-day">Day ${entry.day}</span>`;
     list.appendChild(pill);
@@ -621,26 +953,19 @@ function renderCalledList() {
 
 function drawDay() {
   const remaining = ALL_WORDS.filter(w => !calledWords.has(w.term));
-  if (remaining.length < 3) {
-    document.getElementById('drawBtn').disabled = true;
-    return;
-  }
+  if (remaining.length < 3) { document.getElementById('drawBtn').disabled = true; return; }
 
   day++;
   const toCall = shuffle(remaining).slice(0, 3);
-  toCall.forEach(w => {
-    calledWords.add(w.term);
-    calledLog.push({ term: w.term, day });
-  });
+  toCall.forEach(w => { calledWords.add(w.term); calledLog.push({ term: w.term, day }); });
 
   document.getElementById('dayLabel').textContent = `Day ${day} — ${toCall.map(w => w.term).join(', ')}`;
   renderGrid();
   renderCalledList();
   updateStats();
 
-  if (ALL_WORDS.filter(w => !calledWords.has(w.term)).length < 3) {
+  if (ALL_WORDS.filter(w => !calledWords.has(w.term)).length < 3)
     document.getElementById('drawBtn').disabled = true;
-  }
 }
 
 function newCard() {
@@ -649,6 +974,7 @@ function newCard() {
   daubed = new Set();
   calledLog = [];
   day = 0;
+  winnerReported = false;
   document.getElementById('dayLabel').textContent = 'Hit draw to start playing';
   document.getElementById('winBanner').classList.remove('show');
   document.getElementById('drawBtn').disabled = false;
