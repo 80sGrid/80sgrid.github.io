@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannes Lingo — Prohaska Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:        #1D6FD4;
+    --blue-light:  #E5F0FB;
+    --blue-dark:   #1450A0;
+    --navy:        #1B2D8F;
+    --cyan:        #29ABE2;
+    --gold:        #C9A84C;
+    --gold-light:  #FDF6E3;
+    --bg:          #F4F7FC;
+    --surface:     #FFFFFF;
+    --border:      rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+    --text:        #151C2E;
+    --text-mid:    #4A5470;
+    --text-light:  #8A92AA;
+    --called-bg:   #E5F0FB;
+    --called-text: #1450A0;
+    --shadow:      0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:         #0F1623;
+      --surface:    #182035;
+      --border:     rgba(255,255,255,0.09);
+      --border-strong: rgba(255,255,255,0.16);
+      --text:       #EEF1F8;
+      --text-mid:   #9AA3BF;
+      --text-light: #5A6280;
+      --blue-light: #1A2B4A;
+      --called-bg:  #1A2B4A;
+      --called-text:#6FB3F0;
+      --gold-light: #2A2210;
+      --shadow:     0 2px 12px rgba(0,0,0,0.3);
+    }
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Confetti ── */
+  #confettiCanvas {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 999; display: none;
+  }
+
+  /* ── Email Gate ── */
+  #emailGate {
+    position: fixed; inset: 0;
+    background: var(--bg); z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    transition: opacity 0.4s ease;
+  }
+  #emailGate.hiding { opacity: 0; pointer-events: none; }
+
+  .gate-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 44px 44px 40px;
+    max-width: 460px; width: 100%;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    text-align: center;
+  }
+
+  .gate-logo-wrap {
+    display: flex; align-items: center;
+    justify-content: center; gap: 14px; margin-bottom: 20px;
+  }
+  .gate-logo-text { text-align: left; line-height: 1.1; }
+  .gate-logo-prohaska {
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 22px; color: #1B2D8F;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .gate-logo-consulting {
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    font-size: 16px; color: #29ABE2;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .gate-event-badge {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .gate-game-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px; letter-spacing: 5px;
+    color: var(--text); margin-bottom: 4px; line-height: 1;
+  }
+  .gate-game-title span { color: var(--blue); }
+
+  .gate-tagline {
+    font-size: 14px; color: var(--text-light);
+    margin-bottom: 28px; line-height: 1.5;
+  }
+
+  .gate-label {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-mid); text-align: left;
+    margin-bottom: 8px; display: block;
+  }
+
+  .gate-input {
+    width: 100%;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 10px; padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: var(--text); background: var(--bg);
+    outline: none; transition: border-color 0.15s;
+    margin-bottom: 14px;
+  }
+  .gate-input:focus { border-color: var(--blue); }
+  .gate-input::placeholder { color: var(--text-light); }
+
+  .gate-submit {
+    width: 100%; background: var(--blue); color: white;
+    border: none; border-radius: 10px; padding: 14px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 16px;
+    font-weight: 600; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .gate-submit:hover { background: var(--blue-dark); }
+  .gate-submit:active { transform: scale(0.98); }
+  .gate-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .gate-privacy {
+    font-size: 11px; color: var(--text-light);
+    margin-top: 12px; line-height: 1.5;
+  }
+
+  .gate-error { font-size: 12px; color: #c0392b; margin-bottom: 10px; display: none; }
+  .gate-error.show { display: block; }
+
+  /* ── Header ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex; align-items: center;
+    gap: 14px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: var(--shadow);
+  }
+
+  .header-brand { display: flex; align-items: center; gap: 10px; }
+  .header-brand-text { line-height: 1.15; }
+  .header-prohaska {
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    font-size: 14px; color: #1B2D8F;
+    letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  .header-consulting {
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    font-size: 10px; color: #29ABE2;
+    letter-spacing: 0.8px; text-transform: uppercase;
+  }
+
+  .header-divider {
+    width: 1px; height: 36px;
+    background: var(--border-strong); margin: 0 2px;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 3px; line-height: 1;
+  }
+  .logo span { color: var(--blue); }
+
+  .event-badge {
+    background: var(--gold-light); color: var(--gold);
+    border: 1px solid var(--gold); border-radius: 12px;
+    padding: 3px 10px; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; white-space: nowrap;
+  }
+
+  .header-stats {
+    margin-left: auto; display: flex;
+    gap: 20px; align-items: center;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; color: var(--blue); line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  /* ── Layout ── */
+  .main {
+    max-width: 920px; margin: 0 auto;
+    padding: 24px 20px 60px;
+    display: grid; grid-template-columns: 1fr 280px;
+    gap: 24px; align-items: start;
+  }
+
+  @media (max-width: 720px) {
+    .main { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    header { padding: 10px 14px; }
+    .logo { font-size: 28px; }
+    .header-divider { display: none; }
+    .gate-card { padding: 32px 20px 28px; }
+  }
+
+  /* ── Card ── */
+  .card-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .adlin-header {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 5px; margin-bottom: 5px;
+  }
+
+  .adlin-letter {
+    background: linear-gradient(135deg, var(--cyan), var(--navy));
+    color: white; font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 2px;
+    text-align: center; padding: 9px 0; border-radius: 8px;
+  }
+
+  .card-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px;
+  }
+
+  .cell {
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 5px; text-align: center;
+    font-size: 10px; font-weight: 500;
+    min-height: 68px;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1.3; color: var(--text); background: var(--surface);
+    transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.1s;
+    cursor: pointer; user-select: none; position: relative;
+  }
+
+  .cell:hover { transform: scale(1.04); border-color: var(--blue); }
+
+  .cell.daubed {
+    background: var(--blue); color: white;
+    border-color: var(--blue-dark); cursor: default;
+  }
+  .cell.daubed:hover { transform: none; border-color: var(--blue-dark); }
+
+  .cell.free {
+    background: linear-gradient(135deg, var(--cyan), var(--navy));
+    color: white; border-color: var(--navy);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px; letter-spacing: 1px; cursor: default;
+  }
+  .cell.free:hover { transform: none; }
+
+  .cell.winning { animation: pulse 0.6s ease 3; }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.08); box-shadow: 0 0 0 3px rgba(29,111,212,0.4); }
+  }
+
+  /* ── Sidebar ── */
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+  .panel {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px; box-shadow: var(--shadow);
+  }
+
+  .panel-title {
+    font-size: 11px; font-weight: 600; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+  }
+
+  /* Win banner */
+  .win-banner {
+    display: none;
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+    color: white; border-radius: 12px;
+    padding: 18px 20px; text-align: center;
+  }
+  .win-banner.show { display: block; }
+  .win-banner-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 3px;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .win-banner-sub { font-size: 13px; opacity: 0.88; margin-bottom: 14px; }
+
+  .claim-btn {
+    width: 100%; background: white; color: var(--navy);
+    border: none; border-radius: 8px; padding: 11px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    font-weight: 700; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.2px;
+  }
+  .claim-btn:hover { background: #EEF1F8; }
+  .claim-btn:active { transform: scale(0.98); }
+
+  /* How to play */
+  .how-list {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+  }
+  .how-list li {
+    font-size: 13px; color: var(--text-mid);
+    line-height: 1.5; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .how-num {
+    background: var(--blue-light); color: var(--blue);
+    font-weight: 700; font-size: 11px; width: 20px; height: 20px;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* Daubed list */
+  .daubed-list {
+    display: flex; flex-direction: column; gap: 5px;
+    max-height: 220px; overflow-y: auto;
+  }
+  .daubed-pill {
+    background: var(--called-bg); color: var(--called-text);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0; padding: 6px 10px;
+    font-size: 12px; font-weight: 500;
+    animation: slideIn 0.2s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-6px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .empty-daubed {
+    font-size: 13px; color: var(--text-light);
+    text-align: center; padding: 10px 0; line-height: 1.6;
+  }
+
+  .daubed-list::-webkit-scrollbar { width: 4px; }
+  .daubed-list::-webkit-scrollbar-track { background: transparent; }
+  .daubed-list::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+  /* ── Claim Modal ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 900;
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+
+  .modal {
+    background: var(--surface); border-radius: 20px;
+    padding: 36px 32px 32px; max-width: 480px; width: 100%;
+    box-shadow: 0 16px 60px rgba(0,0,0,0.2);
+    max-height: 90vh; overflow-y: auto;
+  }
+
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 3px;
+    color: var(--navy); margin-bottom: 6px;
+  }
+  .modal-sub {
+    font-size: 14px; color: var(--text-mid);
+    margin-bottom: 24px; line-height: 1.5;
+  }
+
+  .claim-row { margin-bottom: 16px; }
+  .claim-row-label {
+    font-size: 12px; font-weight: 600; color: var(--text);
+    margin-bottom: 5px; display: block;
+  }
+  .claim-row-word {
+    display: inline-block;
+    background: var(--blue-light); color: var(--blue);
+    border-radius: 6px; padding: 3px 8px;
+    font-size: 11px; font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .claim-input {
+    width: 100%; border: 1.5px solid var(--border-strong);
+    border-radius: 8px; padding: 10px 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--text); background: var(--bg);
+    outline: none; transition: border-color 0.15s;
+  }
+  .claim-input:focus { border-color: var(--blue); }
+  .claim-input::placeholder { color: var(--text-light); }
+
+  .modal-submit {
+    width: 100%; background: var(--blue); color: white;
+    border: none; border-radius: 10px; padding: 13px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    font-weight: 600; cursor: pointer; margin-top: 8px;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .modal-submit:hover { background: var(--blue-dark); }
+  .modal-submit:active { transform: scale(0.98); }
+  .modal-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .modal-cancel {
+    width: 100%; background: transparent; color: var(--text-light);
+    border: none; padding: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; cursor: pointer; margin-top: 4px;
+    transition: color 0.15s;
+  }
+  .modal-cancel:hover { color: var(--text); }
+
+  .modal-success { text-align: center; padding: 12px 0; }
+  .modal-success-icon { font-size: 48px; margin-bottom: 12px; }
+  .modal-success-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px; letter-spacing: 2px; color: var(--navy); margin-bottom: 8px;
+  }
+  .modal-success-sub { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ══════════════════════════════════════
+     EMAIL GATE
+════════════════════════════════════════ -->
+<div id="emailGate">
+  <div class="gate-card">
+
+    <div class="gate-logo-wrap">
+      <svg width="48" height="66" viewBox="0 0 52 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gGate" x1="26" y1="0" x2="26" y2="72" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#29ABE2"/>
+            <stop offset="100%" stop-color="#1B2D8F"/>
+          </linearGradient>
+        </defs>
+        <rect x="4" y="4" width="16" height="64" rx="8" fill="url(#gGate)"/>
+        <path d="M20 10 C20 10 48 10 48 30 C48 50 20 50 20 50" stroke="url(#gGate)" stroke-width="16" stroke-linecap="round" fill="none"/>
+        <circle cx="34" cy="30" r="9" stroke="white" stroke-width="4.5" fill="none" opacity="0.75"/>
+      </svg>
+      <div class="gate-logo-text">
+        <div class="gate-logo-prohaska">Prohaska</div>
+        <div class="gate-logo-consulting">Consulting</div>
+      </div>
+    </div>
+
+    <div class="gate-event-badge">🌴 Cannes Lions 2025</div>
+    <div class="gate-game-title">CANNES <span>LINGO</span></div>
+    <div class="gate-tagline">
+      Hear a buzzword in a session or on the Croisette?<br>
+      Tap it. Fill your card. Claim the glory.
+    </div>
+
+    <label class="gate-label" for="gateEmail">Enter your email to play</label>
+    <input type="email" id="gateEmail" class="gate-input"
+           placeholder="you@example.com" autocomplete="email" spellcheck="false"/>
+    <div class="gate-error" id="gateError">Please enter a valid email address.</div>
+    <button class="gate-submit" id="gateSubmit" onclick="submitGate()">Get My Card →</button>
+    <p class="gate-privacy">Used only to contact winners. No spam, ever.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CLAIM WIN MODAL
+════════════════════════════════════════ -->
+<div class="modal-overlay" id="claimModal">
+  <div class="modal" id="claimModalInner">
+    <div id="claimForm">
+      <div class="modal-title">🏆 Claim Your Win</div>
+      <div class="modal-sub">
+        Tell us who said each word on your winning line — this is how we verify the win. Be as specific as you can (speaker name, panel, or session).
+      </div>
+      <div id="claimFields"></div>
+      <button class="modal-submit" id="claimSubmitBtn" onclick="submitClaim()">Submit My Win →</button>
+      <button class="modal-cancel" onclick="closeModal()">Not yet — go back</button>
+    </div>
+    <div id="claimSuccess" class="modal-success" style="display:none;">
+      <div class="modal-success-icon">🎉</div>
+      <div class="modal-success-title">Win Submitted!</div>
+      <div class="modal-success-sub">
+        We've got your win on record.<br>
+        The Prohaska team will be in touch if you're the verified winner.
+      </div>
+      <button class="modal-submit" style="margin-top:20px;" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GAME
+════════════════════════════════════════ -->
+<header>
+  <div class="header-brand">
+    <svg width="28" height="38" viewBox="0 0 52 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gHdr" x1="26" y1="0" x2="26" y2="72" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#29ABE2"/>
+          <stop offset="100%" stop-color="#1B2D8F"/>
+        </linearGradient>
+      </defs>
+      <rect x="4" y="4" width="16" height="64" rx="8" fill="url(#gHdr)"/>
+      <path d="M20 10 C20 10 48 10 48 30 C48 50 20 50 20 50" stroke="url(#gHdr)" stroke-width="16" stroke-linecap="round" fill="none"/>
+      <circle cx="34" cy="30" r="9" stroke="white" stroke-width="4.5" fill="none" opacity="0.75"/>
+    </svg>
+    <div class="header-brand-text">
+      <div class="header-prohaska">Prohaska</div>
+      <div class="header-consulting">Consulting</div>
+    </div>
+  </div>
+
+  <div class="header-divider"></div>
+
+  <div>
+    <div class="logo">CANNES <span>LINGO</span></div>
+  </div>
+
+  <div class="event-badge">🌴 Cannes Lions 2025</div>
+
+  <div class="header-stats">
+    <div class="stat">
+      <div class="stat-num" id="statDaubed">0</div>
+      <div class="stat-label">Daubed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="statLeft">24</div>
+      <div class="stat-label">Remaining</div>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- Card -->
+  <div>
+    <div class="card-wrap">
+      <div class="adlin-header">
+        <div class="adlin-letter">L</div>
+        <div class="adlin-letter">I</div>
+        <div class="adlin-letter">N</div>
+        <div class="adlin-letter">G</div>
+        <div class="adlin-letter">O</div>
+      </div>
+      <div class="card-grid" id="cardGrid"></div>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);margin-top:10px;text-align:center;">
+      Tap a square the moment you hear it said at Cannes
+    </p>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <!-- Win banner -->
+    <div class="win-banner" id="winBanner">
+      <div class="win-banner-title">🎉 LINGO!</div>
+      <div class="win-banner-sub">You completed a line — claim your win below!</div>
+      <button class="claim-btn" onclick="openClaimModal()">Claim Your Win →</button>
+    </div>
+
+    <!-- How to play -->
+    <div class="panel">
+      <div class="panel-title">How to play</div>
+      <ul class="how-list">
+        <li><span class="how-num">1</span>You have a unique card filled with buzzwords you'll hear at Cannes this week.</li>
+        <li><span class="how-num">2</span>When you hear a word spoken — in a keynote, panel, or even a hallway chat — tap it to daub it.</li>
+        <li><span class="how-num">3</span>Complete any row, column, or diagonal and you've got LINGO!</li>
+        <li><span class="how-num">4</span>Hit <strong>Claim Your Win</strong> and tell us who said each word. That's how we verify — no cheating!</li>
+      </ul>
+    </div>
+
+    <!-- Words daubed -->
+    <div class="panel">
+      <div class="panel-title">Words you've daubed</div>
+      <div class="daubed-list" id="daubedList">
+        <div class="empty-daubed">Nothing yet.<br>Get out there and listen!</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  ⚙️  CONFIGURATION
+//  Replace with your Formspree URL.
+//  Sign up free at https://formspree.io → New Form → copy URL.
+// ══════════════════════════════════════════════════════════
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
+
+// ══════════════════════════════════════════════════════════
+//  📝  CANNES BUZZWORD LIST
+//  Edit this list each year to keep it fresh and topical.
+//  Aim for 40–60 words so every card feels different.
+// ══════════════════════════════════════════════════════════
+const ALL_WORDS = [
+  "Purpose-driven",
+  "Authentic storytelling",
+  "The creator economy",
+  "Human-centered",
+  "Earned attention",
+  "Brand purpose",
+  "Cultural relevance",
+  "Radical transparency",
+  "Gen Z",
+  "AI-powered",
+  "Immersive experience",
+  "Disruption",
+  "Sustainability",
+  "Hyper-personalization",
+  "Full-funnel",
+  "Attention economy",
+  "Emotional resonance",
+  "Data-driven creativity",
+  "Community-first",
+  "Social impact",
+  "Inclusive marketing",
+  "The algorithm",
+  "Storytelling at scale",
+  "Cultural currency",
+  "Human truth",
+  "Brave work",
+  "The insight",
+  "Always-on",
+  "Viral moment",
+  "Breakthrough creative",
+  "Long-term brand building",
+  "Short-termism",
+  "ROI of creativity",
+  "Emotional connection",
+  "Brand love",
+  "Share of culture",
+  "Democratizing creativity",
+  "Big idea",
+  "Moment of truth",
+  "Growth mindset",
+  "360 campaign",
+  "Brave",
+  "Real people",
+  "Earned media",
+  "Category disruption",
+  "The brief",
+  "Frictionless",
+  "Ecosystem",
+  "Permission to play",
+  "Move at the speed of culture",
+  "Meet people where they are",
+  "Leaning into vulnerability",
+  "We need to talk about...",
+  "Changing the narrative",
+  "Driving meaningful change",
+  "Unlocking creativity",
+  "The future of advertising",
+  "Radical creativity",
+  "Responsible AI"
+];
+
+// ── Confetti ─────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+
+  const colors = ['#1D6FD4','#29ABE2','#1B2D8F','#C9A84C','#FF6B6B','#4ECDC4','#A8E6CF','#FFEAA7'];
+  const pieces = Array.from({ length: 200 }, () => ({
+    x: Math.random() * canvas.width, y: -20 - Math.random() * 100,
+    w: Math.random() * 13 + 6, h: Math.random() * 7 + 3,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    rot: Math.random() * Math.PI * 2, rotV: (Math.random() - 0.5) * 0.18,
+    vx: (Math.random() - 0.5) * 5, vy: Math.random() * 4 + 2,
+    g: 0.09, alpha: 1
+  }));
+
+  let frame = 0;
+  const MAX = 260;
+  (function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += p.g; p.rot += p.rotV;
+      if (frame > MAX * 0.55) p.alpha = Math.max(0, p.alpha - 0.012);
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    frame++;
+    if (frame < MAX) requestAnimationFrame(animate);
+    else canvas.style.display = 'none';
+  })();
+}
+
+// ── Email Gate ───────────────────────────────────────────
+let playerEmail = '';
+
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim()); }
+
+async function submitGate() {
+  const input = document.getElementById('gateEmail');
+  const btn   = document.getElementById('gateSubmit');
+  const err   = document.getElementById('gateError');
+  const email = input.value.trim();
+  err.classList.remove('show');
+
+  if (!isValidEmail(email)) { err.classList.add('show'); input.focus(); return; }
+
+  playerEmail = email;
+  btn.disabled = true;
+  btn.textContent = 'One moment…';
+
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '🌴 New Cannes Lingo Player',
+        type: 'Registration',
+        email: playerEmail,
+        time: new Date().toLocaleString()
+      })
+    });
+  } catch (e) { console.warn('Email failed:', e); }
+
+  const gate = document.getElementById('emailGate');
+  gate.classList.add('hiding');
+  setTimeout(() => { gate.style.display = 'none'; }, 420);
+}
+
+document.getElementById('gateEmail').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitGate();
+});
+
+// ── Game State ───────────────────────────────────────────
+let card   = [];
+let daubed = new Set();
+let winningLine = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function generateCard() {
+  const picked = shuffle(ALL_WORDS).slice(0, 24);
+  picked.splice(12, 0, 'FREE SPACE');
+  return picked;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = '';
+  card.forEach((term, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+
+    if (term === 'FREE SPACE') {
+      cell.classList.add('free');
+      cell.textContent = 'FREE SPACE';
+    } else if (daubed.has(term)) {
+      cell.classList.add('daubed');
+      cell.innerHTML = `<span>${term}</span>`;
+    } else {
+      cell.innerHTML = `<span>${term}</span>`;
+      cell.onclick = () => daubCell(term);
+    }
+
+    grid.appendChild(cell);
+  });
+}
+
+function daubCell(term) {
+  if (daubed.has(term)) return;
+  daubed.add(term);
+  renderGrid();
+  renderDaubedList();
+  updateStats();
+  checkWin();
+}
+
+const WIN_LINES = [
+  [0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24],
+  [0,5,10,15,20],[1,6,11,16,21],[2,7,12,17,22],[3,8,13,18,23],[4,9,14,19,24],
+  [0,6,12,18,24],[4,8,12,16,20]
+];
+
+function checkWin() {
+  const isMarked = i => card[i] === 'FREE SPACE' || daubed.has(card[i]);
+  let won = false;
+
+  for (const line of WIN_LINES) {
+    if (line.every(i => isMarked(i))) {
+      won = true;
+      winningLine = line;
+      break;
+    }
+  }
+
+  const banner = document.getElementById('winBanner');
+  banner.classList.toggle('show', won);
+
+  if (won) {
+    const cells = Array.from(document.getElementById('cardGrid').children);
+    winningLine.forEach(i => {
+      cells[i].classList.add('winning');
+      setTimeout(() => cells[i].classList.remove('winning'), 2000);
+    });
+    launchConfetti();
+  }
+}
+
+function updateStats() {
+  const daubCount = daubed.size + 1; // +1 for free space
+  document.getElementById('statDaubed').textContent = daubCount;
+  document.getElementById('statLeft').textContent   = Math.max(0, 24 - daubed.size);
+}
+
+function renderDaubedList() {
+  const list = document.getElementById('daubedList');
+  if (daubed.size === 0) {
+    list.innerHTML = '<div class="empty-daubed">Nothing yet.<br>Get out there and listen!</div>';
+    return;
+  }
+  list.innerHTML = '';
+  [...daubed].reverse().forEach(term => {
+    const pill = document.createElement('div');
+    pill.className = 'daubed-pill';
+    pill.textContent = term;
+    list.appendChild(pill);
+  });
+}
+
+// ── Claim Modal ──────────────────────────────────────────
+function openClaimModal() {
+  const fieldsDiv = document.getElementById('claimFields');
+  fieldsDiv.innerHTML = '';
+
+  // Show fields for winning line words (excluding FREE SPACE)
+  const wordsToVerify = winningLine
+    .map(i => card[i])
+    .filter(t => t !== 'FREE SPACE');
+
+  wordsToVerify.forEach((term, idx) => {
+    const row = document.createElement('div');
+    row.className = 'claim-row';
+    row.innerHTML = `
+      <span class="claim-row-word">${term}</span>
+      <input class="claim-input" id="claimInput_${idx}"
+             placeholder="Who said this? (name, panel, session…)"
+             autocomplete="off"/>
+    `;
+    fieldsDiv.appendChild(row);
+  });
+
+  document.getElementById('claimForm').style.display = 'block';
+  document.getElementById('claimSuccess').style.display = 'none';
+  document.getElementById('claimSubmitBtn').disabled = false;
+  document.getElementById('claimSubmitBtn').textContent = 'Submit My Win →';
+  document.getElementById('claimModal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('claimModal').classList.remove('show');
+}
+
+async function submitClaim() {
+  const btn = document.getElementById('claimSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const wordsToVerify = winningLine
+    .map(i => card[i])
+    .filter(t => t !== 'FREE SPACE');
+
+  const attributions = {};
+  wordsToVerify.forEach((term, idx) => {
+    const val = document.getElementById(`claimInput_${idx}`)?.value?.trim() || '(not provided)';
+    attributions[term] = val;
+  });
+
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '🏆 Cannes Lingo WINNER CLAIM!',
+        type: 'WINNER_CLAIM',
+        email: playerEmail,
+        winning_words: attributions,
+        all_daubed: [...daubed].join(', '),
+        time: new Date().toLocaleString()
+      })
+    });
+  } catch (e) { console.warn('Claim submit failed:', e); }
+
+  document.getElementById('claimForm').style.display = 'none';
+  document.getElementById('claimSuccess').style.display = 'block';
+  launchConfetti();
+}
+
+// Init
+card = generateCard();
+daubed.add('FREE SPACE');
+renderGrid();
+updateStats();
+</script>
+</body>
+</html>
