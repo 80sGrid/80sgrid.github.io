@@ -2125,6 +2125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePlaysCounter();
   initNav();
   restoreSurveyOnLoad();
+  if(typeof renderClassicQuizzes==='function') renderClassicQuizzes();
   initDedicationBox();
 
   document.querySelectorAll('.feedback-star').forEach((s,i)=>{
