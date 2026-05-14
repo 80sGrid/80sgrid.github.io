@@ -822,13 +822,21 @@
       </div>
 
       <div class="share-btns">
-        <button class="share-btn copy-link" id="copyLinkBtn" onclick="copyLink()">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
-            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+        <a class="share-btn" id="smsShareBtn" href="#" onclick="shareSMS(event)">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+            <rect width="20" height="20" rx="4" fill="#1D6FD4"/>
+            <rect x="2" y="2"  width="5" height="5" rx="1" fill="white"/>
+            <rect x="8" y="2"  width="5" height="5" rx="1" fill="white" opacity="0.4"/>
+            <rect x="13" y="2" width="5" height="5" rx="1" fill="white"/>
+            <rect x="2" y="8"  width="5" height="5" rx="1" fill="white" opacity="0.4"/>
+            <rect x="8" y="8"  width="5" height="5" rx="1" fill="#29ABE2"/>
+            <rect x="13" y="8" width="5" height="5" rx="1" fill="white" opacity="0.4"/>
+            <rect x="2" y="13" width="5" height="5" rx="1" fill="white"/>
+            <rect x="8" y="13" width="5" height="5" rx="1" fill="white" opacity="0.4"/>
+            <rect x="13" y="13" width="5" height="5" rx="1" fill="white"/>
           </svg>
-          <span id="copyLinkText">Copy Link</span>
-        </button>
+          Share with a Friend via SMS
+        </a>
 
         <a class="share-btn linkedin" id="linkedinBtn" href="#" target="_blank" onclick="shareLinkedIn(event)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -1240,7 +1248,7 @@ async function submitClaim() {
 
 // ── Share Functions ──────────────────────────────────────
 function getShareURL() {
-  return window.location.href.split('?')[0];
+  return 'https://80sGrid.com/cannes-lingo.html';
 }
 
 const SHARE_TEXT = "I'm playing Prohaska Consulting Ad Lingo and you should too! 🎯 Buzzword bingo for the ad industry at Cannes Lions 2026.";
@@ -1282,6 +1290,16 @@ function copyLink() {
     txt.textContent = 'Link Copied!';
     setTimeout(() => { txt.textContent = 'Copy Game Link'; }, 2500);
   });
+}
+
+function shareSMS(e) {
+  e.preventDefault();
+  const msg = encodeURIComponent(
+    `I am playing Prohaska Consulting Ad Lingo and you should too! Get your free card here: ${getShareURL()}`
+  );
+  // iOS uses &, Android uses ?
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  window.location.href = isIOS ? `sms:&body=${msg}` : `sms:?body=${msg}`;
 }
 
 function shareLinkedIn(e) {
