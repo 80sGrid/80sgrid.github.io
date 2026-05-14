@@ -224,11 +224,49 @@
 
   @media (max-width: 720px) {
     .main { grid-template-columns: 1fr; }
-    .sidebar { order: -1; }
     header { padding: 10px 14px; }
     .logo { font-size: 28px; }
     .header-divider { display: none; }
     .gate-card { padding: 32px 20px 28px; }
+    #winBanner    { order: 1; }
+    #howToPlay    { order: 2; }
+    #daubedPanel  { order: 3; }
+    #sharePanel   { order: 10; }
+  }
+
+  /* ── Collapsible How to Play ── */
+  .panel-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .panel-toggle-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--text); text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .panel-toggle-arrow {
+    transition: transform 0.25s ease;
+    color: var(--text-light);
+    flex-shrink: 0;
+  }
+  .panel-toggle-arrow.open { transform: rotate(180deg); }
+  .panel-collapsible {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+  .panel-collapsible.open {
+    max-height: 400px;
+    margin-top: 14px;
+  }
+
+  /* On desktop: always show How to play, hide the arrow */
+  @media (min-width: 721px) {
+    .panel-collapsible { max-height: none !important; margin-top: 14px !important; overflow: visible !important; }
+    .panel-toggle-arrow { display: none; }
+    .panel-toggle { cursor: default; }
   }
 
   /* ── Card ── */
@@ -778,18 +816,25 @@
     </div>
 
     <!-- How to play -->
-    <div class="panel">
-      <div class="panel-title">How to play</div>
-      <ul class="how-list">
-        <li><span class="how-num">1</span>You have a unique card filled with buzzwords you'll hear at Cannes this week.</li>
-        <li><span class="how-num">2</span>When you hear a word spoken — in a keynote, panel, or even a hallway chat — tap it to daub it.</li>
-        <li><span class="how-num">3</span>Complete any row, column, or diagonal and you've got LINGO!</li>
-        <li><span class="how-num">4</span>Hit <strong>Claim Your Win</strong> and tell us who said each word. That's how we verify — no cheating!</li>
-      </ul>
+    <div class="panel" id="howToPlay">
+      <div class="panel-toggle" onclick="toggleHowToPlay()">
+        <span class="panel-toggle-title">How to play</span>
+        <svg class="panel-toggle-arrow" id="howToPlayArrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="panel-collapsible" id="howToPlayContent">
+        <ul class="how-list">
+          <li><span class="how-num">1</span>You have a unique card filled with buzzwords you'll hear at Cannes this week.</li>
+          <li><span class="how-num">2</span>When you hear a word spoken — in a keynote, panel, or even a hallway chat — tap it to daub it.</li>
+          <li><span class="how-num">3</span>Complete any row, column, or diagonal and you've got LINGO!</li>
+          <li><span class="how-num">4</span>Hit <strong>Claim Your Win</strong> and tell us who said each word. That's how we verify — no cheating!</li>
+        </ul>
+      </div>
     </div>
 
     <!-- Share -->
-    <div class="panel">
+    <div class="panel" id="sharePanel">
       <div class="panel-title">Challenge a colleague</div>
 
       <div class="share-btns">
@@ -829,7 +874,7 @@
     </div>
 
     <!-- Words daubed -->
-    <div class="panel">
+    <div class="panel" id="daubedPanel">
       <div class="panel-title">Words you've daubed</div>
       <div class="daubed-list" id="daubedList">
         <div class="empty-daubed">Nothing yet.<br>Get out there and listen!</div>
@@ -1286,6 +1331,15 @@ function shareEmail(e) {
     `${SHARE_TEXT}\n\nGet your free card here: ${getShareURL()}`
   );
   window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+// ── How to Play Toggle (mobile) ──────────────────────────
+function toggleHowToPlay() {
+  const content = document.getElementById('howToPlayContent');
+  const arrow   = document.getElementById('howToPlayArrow');
+  const isOpen  = content.classList.contains('open');
+  content.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
 }
 
 // Init
