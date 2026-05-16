@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Len's 80sGrid.com — Beards, Bands & Brilliance</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FE9N3JWSGN');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap" rel="stylesheet">
 <style>
 body {
@@ -194,7 +201,7 @@ body {
   font-weight: bold;
   outline: none;
   cursor: pointer;
-  pointer-events: none;
+  pointer-events: auto;
   line-height: 1.8;
 }
 .cell input::placeholder { color:#8B00FF; font-style:italic; font-size:1.15em; opacity:0.6; }
@@ -335,9 +342,9 @@ button:hover { background:#5568d3; }
       <div style="font-size:0.68em;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:3px;">Use a Lifeline if you're stuck?</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
         <div style="display:flex;gap:5px;">
-          <div class="lifeline-pip" id="pip1">&#128703;</div>
-          <div class="lifeline-pip" id="pip2">&#128703;</div>
-          <div class="lifeline-pip" id="pip3">&#128703;</div>
+          <div class="lifeline-pip" id="pip1">🧔</div>
+          <div class="lifeline-pip" id="pip2">🧔</div>
+          <div class="lifeline-pip" id="pip3">🧔</div>
         </div>
         <span class="lifeline-count" id="lifelineCount">3 remaining</span>
       </div>
@@ -355,7 +362,11 @@ button:hover { background:#5568d3; }
     <div id="score" style="font-size:1.3em;font-weight:bold;color:#333;margin-bottom:10px;"></div>
   </div>
 
-  <div class="footnote-box" style="margin-top:16px;">
+  <div style="background:#e3f2fd;border:1px solid #2196f3;padding:12px;border-radius:8px;margin-top:16px;margin-bottom:16px;text-align:center;font-size:.9em;">
+    🎸 Love this? Play the main game at <a href="https://80sgrid.com" style="color:#8B00FF;font-weight:bold;">80sGrid.com</a>!
+  </div>
+
+  <div class="footnote-box">
     <strong>&#128221; Notes</strong>
     <ul>
       <li>Bob Seger was nominated for Grammys but never won a competitive one &#8212; hard to believe for someone that prolific.</li>
@@ -366,9 +377,6 @@ button:hover { background:#5568d3; }
   </div>
 
   <div style="background:#e3f2fd;border:1px solid #2196f3;padding:12px;border-radius:8px;margin-top:16px;text-align:center;font-size:.9em;">
-    <strong>&#127928; Bonus Quiz</strong> &#8212; Part of Len's 80sGrid.com daily music trivia. Play the main game at <a href="https://80sgrid.com" style="color:#8B00FF;font-weight:bold;">80sGrid.com</a>!
-  </div>
-
   <div class="site-footer">
     <div class="tagline-wrap" style="margin:6px 0 10px;">
       <div class="tagline-line"></div>
@@ -397,8 +405,8 @@ const answers = {
 const mcOptions = {
   '1-0':['Against the Wind','Night Moves','Old Time Rock and Roll'],
   '1-1':['Careless Whisper','Wake Me Up Before You Go-Go','Faith'],
-  '1-2':['Sharp Dressed Man','Legs','Gimme All Your Lovin\'\'\'],
-  '2-0':['Gray / Salt & Pepper','Brown','Black'],
+  '1-2':['Sharp Dressed Man','Legs','Gimme All Your Lovin'],
+  '2-0':['Gray / Salt and Pepper','Brown','Black'],
   '2-1':['Dark Brown Stubble','Blonde','Red'],
   '2-2':['Long Black / Blonde','Fiery Red','Sandy Brown']
 };
@@ -406,8 +414,11 @@ let currentCell=null,lifelinesRemaining=3;
 function initializeCells(){
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
-    cell.querySelector('input').placeholder=yesNoKeys.includes(key)?'Yes or No?':'Answer';
-    cell.addEventListener('click',()=>openModal(cell));
+    const inp=cell.querySelector('input');
+    if(inp){inp.placeholder=yesNoKeys.includes(key)?'Yes or No?':'Answer'; inp.style.pointerEvents='auto';}
+    const handler=()=>openModal(cell);
+    cell.addEventListener('click',handler);
+    if(inp) inp.addEventListener('click',function(e){e.stopPropagation();openModal(cell);});
   });
 }
 function openModal(cell){
@@ -439,7 +450,7 @@ function showTextEntry(){document.getElementById('textSection').classList.remove
 function showYesNoEntry(){document.getElementById('ynSection').style.display='block';document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.remove('visible');}
 function selectYesNo(v){if(currentCell){currentCell.querySelector('input').value=v;closeModal();}}
 function updateLifelineUI(){
-  for(let i=1;i<=3;i++){const p=document.getElementById('pip'+i);if(i<=lifelinesRemaining){p.classList.remove('used');p.textContent='\u{1F6DF}';}else{p.classList.add('used');p.textContent='';}}
+  for(let i=1;i<=3;i++){const p=document.getElementById('pip'+i);if(i<=lifelinesRemaining){p.classList.remove('used');p.textContent='🧔';}else{p.classList.add('used');p.textContent='';}}
   const c=document.getElementById('lifelineCount');const b=document.getElementById('mcToggleBtn');const r=document.getElementById('mcRemaining');if(r)r.textContent=lifelinesRemaining;
   const h=document.getElementById('lifelineHintText');
   if(lifelinesRemaining===0){c.textContent='None left!';c.classList.add('empty');if(b){b.disabled=true;b.style.display='none';}if(h)h.style.display='none';}
@@ -481,7 +492,7 @@ function checkAnswers(){
 function resetGrid(){
   document.querySelectorAll('.cell').forEach(cell=>{
     const inp=cell.querySelector('input');const rev=cell.querySelector('.answer-reveal');if(rev)rev.remove();
-    if(inp){inp.value='';inp.style.display='';inp.style.pointerEvents='none';inp.style.cursor='default';}
+    if(inp){inp.value='';inp.style.display='';inp.style.pointerEvents='auto';inp.style.cursor='pointer';}
     cell.classList.remove('correct','incorrect');cell.style.pointerEvents='';cell.style.cursor='';
   });
   lifelinesRemaining=3;updateLifelineUI();
