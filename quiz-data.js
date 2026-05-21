@@ -1727,20 +1727,20 @@ window.QUIZ_DATA = [
     t: "Power Women of New Wave",
     sub: "Swing Out Sister, Till Tuesday & Scandal",
     a: ["Swing Out Sister", "Till Tuesday", "Scandal"],
-    r: ["Biggest Hit Song", "Lead Singer's Name", "Home City or Country"],
+    r: ["Biggest Hit Song", "Lead Singer's Name", "Home Country"],
     d: "medium",
     yn: [],
     notes: ["Swing Out Sister formed in 1985. Corinne Drewery's distinctive voice and the band's sophisticated jazz-pop sound made one of their a track that became a classic on both sides of the Atlantic.", "Till Tuesday were . Aimee Mann co-wrote and sang lead on one of their a signature track that peaked at #8 in the US. She later became one of the most critically acclaimed singer-songwriters of the 1990s and 2000s.", "Scandal's Patty Smyth sang one of their a 1984 single that hit #7 on the Billboard Hot 100. She later had a second chart run with Don Henley on \"Sometimes Love Just Ain't Enough\" in 1992.", "Three very different cities — Manchester, Boston, and New York — but the same sharp, no-nonsense pop sensibility."],
     ans: {
       "0-0": ["breakout", "you on my mind", "surrender your love"],
-      "0-1": ["voices carry", "coming up close"],
+      "0-1": ["voices carry", "voices carrie", "voices carey", "coming up close"],
       "0-2": ["the warrior", "goodbye to you", "beat of a heart"],
       "1-0": ["corinne drewery", "corinne"],
       "1-1": ["aimee mann", "aimee"],
       "1-2": ["patty smyth", "patty"],
-      "2-0": ["manchester", "england", "uk"],
-      "2-1": ["boston", "usa", "united states"],
-      "2-2": ["new york", "usa", "united states"]
+      "2-0": ["england", "uk", "united kingdom"],
+      "2-1": ["usa", "united states", "america"],
+      "2-2": ["usa", "united states", "america"]
     },
     mc: {
       "0-0": ["Breakout", "Don't Stop Believin'", "Jump"],
@@ -1749,9 +1749,9 @@ window.QUIZ_DATA = [
       "1-0": ["Corinne Drewery", "Sade", "Alison Moyet"],
       "1-1": ["Aimee Mann", "Cyndi Lauper", "Debbie Harry"],
       "1-2": ["Patty Smyth", "Pat Benatar", "Joan Jett"],
-      "2-0": ["Manchester", "London", "Birmingham"],
-      "2-1": ["Boston", "New York", "Los Angeles"],
-      "2-2": ["New York", "Los Angeles", "Chicago"]
+      "2-0": ["England", "USA", "Scotland"],
+      "2-1": ["USA", "England", "Australia"],
+      "2-2": ["USA", "England", "Australia"]
     },
     og: { title: "Len's 80sGrid.com Music Edition - Quiz 52", desc: "Can you match Swing Out Sister, Till Tuesday & Scandal to their songs, hits, and chart history? Play Quiz 52 on 80sGrid.com!", url: "https://80sgrid.com/quiz52.html", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
     social: { fb: "I just played Power Women of New Wave on 80sGrid.com! Swing Out Sister, Till Tuesday & Scandal — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 52 • Power Women of New Wave\nSwing Out Sister, Till Tuesday & Scandal\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Swing Out Sister, Till Tuesday & Scandal — do you know ALL their hits? Quiz 52 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Power Women of New Wave on 80sGrid.com 🎸 Swing Out Sister, Till Tuesday & Scandal. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/quiz52.html" }

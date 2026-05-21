@@ -1208,7 +1208,7 @@ document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 /* ===== LIFELINES ===== */
 let bonusSurveyAnswers = [];
-const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
+const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3_quiz'+(new URLSearchParams(window.location.search).get('id')||getDailyQuizId());
 // Initialize from localStorage — if already claimed today, don't offer again
 let bonusLifelineUsed = !!localStorage.getItem(BONUS_SURVEY_KEY);
 const BONUS_SURVEY = {
@@ -1699,16 +1699,24 @@ function normalizeString(str){
     .replace(/\bwanna\b/g,'want to')
     .replace(/\bgotta\b/g,'got to')
     .replace(/\bcuz\b/g,'because')
+    .replace(/\bneal\b/g,'neil')
     .replace(/\s+/g,' ').trim();
+}
+function editDistance(a,b){
+  const m=a.length,n=b.length;if(Math.abs(m-n)>2)return 99;
+  const r=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i===0?j:j===0?i:0));
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)r[i][j]=a[i-1]===b[j-1]?r[i-1][j-1]:1+Math.min(r[i-1][j],r[i][j-1],r[i-1][j-1]);
+  return r[m][n];
 }
 function wordOverlap(user, answer){
   const stopWords=new Set(['the','and','a','an','of','in','to','is','it','my','me','you','your','we','our','i']);
   const uWords=new Set(user.split(' ').filter(w=>w.length>1&&!stopWords.has(w)));
+  const uArr=[...uWords];
   const aWords=answer.split(' ').filter(w=>w.length>1&&!stopWords.has(w));
   if(aWords.length===0)return false;
-  // For short answers (1-2 key words), just check if user contains them all
-  if(aWords.length<=2)return aWords.every(w=>uWords.has(w)||user.includes(w));
-  const matches=aWords.filter(w=>uWords.has(w)).length;
+  const wordMatch=aw=>uWords.has(aw)||user.includes(aw)||(aw.length>=4&&uArr.some(uw=>editDistance(uw,aw)<=1));
+  if(aWords.length<=2)return aWords.every(wordMatch);
+  const matches=aWords.filter(wordMatch).length;
   return matches/aWords.length>=0.65;
 }
 function checkAnswers(){
@@ -1719,7 +1727,7 @@ function checkAnswers(){
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
-    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellResults.push(true);
+    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a)||userAnswer.replace(/ /g,'')===a.replace(/ /g,''));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellResults.push(true);
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
       reveal.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+input.value+'</div>';
@@ -2335,7 +2343,7 @@ function quizInit(){
   const dc={easy:'--badge-color:#28a745;--badge-glow:rgba(40,167,69,0.4)',medium:'--badge-color:#fd7e14;--badge-glow:rgba(253,126,20,0.4)',hard:'--badge-color:#dc3545;--badge-glow:rgba(220,53,69,0.4)'};
   const dstar={easy:'&#9733;&#9733;&#9734;&#9734;&#9734;',medium:'&#9733;&#9733;&#9733;&#9734;&#9734;',hard:'&#9733;&#9733;&#9733;&#9733;&#9734;'};
   const dname={easy:'Easy',medium:'Medium',hard:'Hard'};
-  const db=document.getElementById('diff-badge'); if(db) db.style.cssText=dc[q.d]||dc.medium;
+  const db=document.getElementById('diff-badge'); if(db){const _dc=dc[q.d]||dc.medium;_dc.split(';').forEach(r=>{const i=r.indexOf(':');if(i>0)db.style.setProperty(r.slice(0,i).trim(),r.slice(i+1).trim());});}
   const dsr=document.getElementById('diff-stars'); if(dsr) dsr.innerHTML=dstar[q.d]||dstar.medium;
   const dlbl=document.getElementById('diff-label'); if(dlbl) dlbl.textContent=dname[q.d];
   const dde=document.getElementById('diff-desc'); if(dde) dde.textContent=q.a.join(' \u00b7 ');
