@@ -872,12 +872,19 @@
           Share with a Friend via SMS
         </a>
 
+        <button class="share-btn copy-linkedin-text" id="copyLinkedInTextBtn" onclick="copyLinkedInText()" style="background:var(--blue-light);color:var(--blue);border:none;cursor:pointer;text-align:left;width:100%;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
+          <span id="copyLinkedInTextLabel">Copy text for LinkedIn post</span>
+        </button>
+
         <a class="share-btn linkedin" id="linkedinBtn" href="#" target="_blank" onclick="shareLinkedIn(event)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
             <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
           </svg>
-          Share on LinkedIn
+          Open LinkedIn (paste text first)
         </a>
 
         <a class="share-btn" id="emailShareBtn" href="#" onclick="shareEmail(event)">
@@ -1378,8 +1385,35 @@ function shareSMS(e) {
 
 function shareLinkedIn(e) {
   e.preventDefault();
-  const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareURL())}`;
+  const url = `https://www.linkedin.com/feed/?shareActive=true&url=${encodeURIComponent(getShareURL())}`;
   window.open(url, '_blank', 'width=600,height=500');
+}
+
+function copyLinkedInText() {
+  const text = SHARE_TEXT + ' ' + getShareURL();
+  const btn  = document.getElementById('copyLinkedInTextBtn');
+  const lbl  = document.getElementById('copyLinkedInTextLabel');
+  navigator.clipboard.writeText(text).then(() => {
+    lbl.textContent = '✓ Copied! Now open LinkedIn and paste';
+    btn.style.background = 'var(--cyan)';
+    setTimeout(() => {
+      lbl.textContent = 'Copy text for LinkedIn post';
+      btn.style.background = 'var(--blue-light)';
+    }, 3000);
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    lbl.textContent = '✓ Copied! Now open LinkedIn and paste';
+    btn.style.background = 'var(--cyan)';
+    setTimeout(() => {
+      lbl.textContent = 'Copy text for LinkedIn post';
+      btn.style.background = 'var(--blue-light)';
+    }, 3000);
+  });
 }
 
 function shareEmail(e) {
