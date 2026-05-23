@@ -134,7 +134,7 @@
     align-items: center;
     gap: 8px;
     font-family: 'Oswald', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 3px;
     color: rgba(232,240,255,0.5);
@@ -188,7 +188,7 @@
   .answer-btn .letter {
     display: block;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 2px;
     color: var(--orange);
     margin-bottom: 4px;
@@ -304,7 +304,30 @@
     pointer-events: none;
     line-height: 1;
   }
+
+  @media (max-width: 480px) {
+    body { padding: 12px; }
+    .answers { grid-template-columns: 1fr; }
+    .header-banner img { max-height: 160px; }
+    .quiz-card { padding: 20px 16px 24px; }
+    .welcome-box { padding: 14px 16px; }
+    .answer-btn { padding: 14px 12px; }
+    .answer-btn .label { font-size: 14px; }
+    .cta-btn { font-size: 17px; padding: 16px; }
+    .header-overlay { padding: 20px 16px 14px; }
+  }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FE9N3JWSGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FE9N3JWSGN', {
+    page_title: '86 Mets Trivia',
+    page_location: 'https://80sgrid.com/86mets.html'
+  });
+</script>
 </head>
 <body>
 
