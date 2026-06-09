@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>80sGrid.com – Irish 80s Artists Edition</title>
+  <meta name="description" content="Think you know Irish 80s artists? Test your trivia at 80sGrid.com — free, no sign-up!" />
+  <meta property="og:title" content="80sGrid Salutes Irish 80s Artists" />
+  <meta property="og:description" content="Think you know your Irish 80s music? Take the ultimate trivia challenge!" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" />
+  <meta property="og:url" content="https://80sgrid.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Oswald:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a2e0a 0%, #0d3b1e 50%, #1a5c1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+      max-width: 440px;
+      width: 100%;
+      padding: 28px 22px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      display: block;
+      height: 6px;
+      background: linear-gradient(90deg, #169B62, #FFFFFF, #FF883E, #FFFFFF, #169B62);
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .logo-wrap { margin-bottom: 4px; }
+    .logo-wrap img {
+      max-width: 88%;
+      height: auto;
+      display: block;
+      margin: 0 auto 6px;
+      border-radius: 10px;
+    }
+
+    .logo-text {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 1.8em;
+      font-weight: 900;
+      color: #8B00FF;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #6a0dad;
+      font-size: 1.05em;
+      margin-bottom: 6px;
+    }
+
+    .boss-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95em;
+      font-weight: 900;
+      color: #169B62;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .headline-block {
+      margin-bottom: 16px;
+    }
+
+    .hl-salutes {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 1.05em;
+      font-weight: 400;
+      color: #666;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hl-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 0 auto 10px;
+      max-width: 280px;
+      height: 5px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .hl-rule span {
+      display: block;
+      flex: 1;
+      height: 100%;
+    }
+
+    .hl-main {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 2.05em;
+      font-weight: 900;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .hl-main em {
+      font-style: normal;
+      color: #0d7a42;
+    }
+
+    .sample-box {
+      background: linear-gradient(135deg, #0a2e0a 0%, #169B62 60%, #00CED1 100%);
+      border-radius: 14px;
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      color: white;
+    }
+
+    .sample-label {
+      font-size: 0.7em;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+
+    .sample-q {
+      font-size: 1.08em;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ans {
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 10px;
+      padding: 10px 8px;
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.82em;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .ans:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.03);
+    }
+
+    .ans.correct {
+      background: #00C851;
+      border-color: #007E33;
+      cursor: default;
+    }
+
+    .ans.wrong {
+      background: rgba(255,0,0,0.4);
+      border-color: rgba(255,0,0,0.6);
+      cursor: default;
+    }
+
+    .answer-reveal {
+      margin-top: 10px;
+      font-size: 0.85em;
+      font-weight: 700;
+      min-height: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+      line-height: 1.4;
+    }
+
+    .answer-reveal.show {
+      max-height: 80px;
+      opacity: 1;
+      margin-top: 12px;
+    }
+
+    .howto {
+      font-size: 0.9em;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .howto strong:first-child { color: #8B00FF; }
+    .howto strong:last-child  { color: #169B62; }
+
+    .cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #169B62, #8B00FF);
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.2em;
+      text-decoration: none;
+      padding: 18px 36px;
+      border-radius: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: pulse 2s infinite;
+      transition: transform 0.15s;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .cta-btn .arrow { display: block; font-size: 1.4em; margin-bottom: 2px; }
+    .cta-btn .btn-sub {
+      display: block;
+      font-size: 0.65em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 28px rgba(22,155,98,0.65), 0 6px 18px rgba(0,0,0,0.25); }
+      50%       { box-shadow: 0 0 42px rgba(22,155,98,0.9), 0 8px 24px rgba(0,0,0,0.3); }
+    }
+
+    .cta-btn:hover { transform: scale(1.04); animation: none; }
+
+    .cta-secondary {
+      display: block;
+      color: #8B00FF;
+      font-size: 0.88em;
+      font-weight: 900;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      font-size: 0.7em;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 380px) {
+      .card { padding: 22px 14px 20px; }
+      .headline { font-size: 1.7em; }
+      .cta-btn { font-size: 1.05em; padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="logo-wrap">
+      <img src="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" alt="80sGrid.com – Music Edition" />
+      <div class="logo-text">80sGrid.com</div>
+    </div>
+
+    <div class="headline-block">
+      <div class="hl-salutes">80sGrid Salutes</div>
+      <div class="hl-rule">
+        <span style="background:#169B62;"></span>
+        <span style="background:#fff; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;"></span>
+        <span style="background:#FF883E;"></span>
+      </div>
+      <div class="hl-main"><em>Irish</em> 80s Artists</div>
+    </div>
+    <div class="boss-label">☘️ Do You Know Your Cranberries?</div>
+
+    <div class="sample-box">
+      <div class="sample-label">🎵 Sample Question</div>
+      <div class="sample-q">
+        Before shortening their name, The Cranberries went by a punny original name. What was it?
+      </div>
+      <div class="answers">
+        <div class="ans" onclick="pick(this, false)">Cranberry Fields</div>
+        <div class="ans" onclick="pick(this, true)">The Cranberry Saw Us</div>
+        <div class="ans" onclick="pick(this, false)">The Limerick Sound</div>
+        <div class="ans" onclick="pick(this, false)">Cranberry Dream</div>
+      </div>
+      <div class="answer-reveal" id="reveal"></div>
+    </div>
+
+    <p class="howto">
+      Each quiz has a <strong>3x3 grid</strong> — match artists to categories across rows and columns.
+      Think you know your 80s music? <strong>It's free, no login needed.</strong>
+    </p>
+
+    <div class="cta-wrap">
+      <a href="https://80sgrid.com" class="cta-btn">
+        <span class="arrow">▶</span>
+        PLAY FREE NOW
+        <span class="btn-sub">Challenge Your Friends!</span>
+      </a>
+      <a href="https://80sgrid.com" class="cta-secondary">👉 80sGrid.com</a>
+
+
+    </div>
+
+    <div class="footer-note">100% FREE · No sign-up · New quizzes added regularly</div>
+
+  </div>
+
+  <script>
+    function pick(el, correct) {
+      const all = document.querySelectorAll('.ans');
+      const reveal = document.getElementById('reveal');
+      all.forEach(a => { a.onclick = null; });
+
+      if (correct) {
+        el.classList.add('correct');
+        reveal.textContent = '✅ Right! "The Cranberry Saw Us" — a pun on cranberry sauce! Dolores O\'Riordan joined in 1989 and they shortened the name. Play the full quiz 👇';
+      } else {
+        el.classList.add('wrong');
+        all.forEach(a => {
+          if (a.textContent.trim() === 'The Cranberry Saw Us') a.classList.add('correct');
+        });
+        reveal.textContent = '❌ Not quite — it was The Cranberry Saw Us, a pun on cranberry sauce! Dolores O\'Riordan joined in 1989 and they shortened it. Play the full quiz 👇';
+      }
+      reveal.classList.add('show');
+    }
+
+
+  </script>
+</body>
+</html>
