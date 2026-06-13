@@ -2403,6 +2403,726 @@ window.QUIZ_DATA = [
     },
     og: { title: "Len's 80sGrid.com Music Edition - Quiz 70", desc: "Can you match Bon Jovi, U2 & Sting to their songs, hits, and chart history? Play Quiz 70 on 80sGrid.com!", url: "https://80sgrid.com/quiz70.html", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
     social: { fb: "I just played 80s Legends Who Never Quit on 80sGrid.com! Bon Jovi, U2 & Sting — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 70 • 80s Legends Who Never Quit\nBon Jovi, U2 & Sting\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Bon Jovi, U2 & Sting — do you know ALL their hits? Quiz 70 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played 80s Legends Who Never Quit on 80sGrid.com 🎸 Bon Jovi, U2 & Sting. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/quiz70.html" }
+  },
+
+  /* ─── Quiz 71: Massive 80s Rock Frontmen (EASY) ─── */
+  {
+    n: 71, f: "index.html?id=71",
+    t: "Massive 80s Rock Frontmen",
+    sub: "The Police, Bruce Springsteen & Billy Idol",
+    a: ["The Police", "Bruce Springsteen", "Billy Idol"],
+    r: ["Name One of Their Songs", "Lead Singer's Name", "Had a Billboard Hot 100 #1 Hit?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Police quit at the top of their game — Synchronicity went to #1 and they broke up the very next year.", "Bruce Springsteen's Born in the U.S.A. tied the record for most Top 10 singles from a single album — seven.", "Billy Idol went from punk outsider with Generation X to a global pop-rock megastar in less than five years."],
+    ans: {
+      "0-0": ["every breath you take", "roxanne", "dont stand so close to me", "message in a bottle", "king of pain"],
+      "0-1": ["born in the usa", "dancing in the dark", "born to run", "glory days", "hungry heart"],
+      "0-2": ["white wedding", "rebel yell", "mony mony", "eyes without a face", "dancing with myself"],
+      "1-0": ["sting", "gordon sumner", "gordon matthew thomas sumner"],
+      "1-1": ["bruce springsteen", "the boss"],
+      "1-2": ["billy idol", "william broad", "william michael albert broad"],
+      "2-0": ["yes"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Every Breath You Take", "Message in a Bottle", "Roxanne"],
+      "0-1": ["Born in the U.S.A.", "Dancing in the Dark", "Glory Days"],
+      "0-2": ["White Wedding", "Rebel Yell", "Eyes Without a Face"],
+      "1-0": ["Sting", "Stewart Copeland", "Andy Summers"],
+      "1-1": ["Bruce Springsteen", "Little Steven", "Clarence Clemons"],
+      "1-2": ["Billy Idol", "Steve Stevens", "Tony James"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 71", desc: "Can you match The Police, Bruce Springsteen & Billy Idol to their songs and chart history? Play Quiz 71 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=71", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Massive 80s Rock Frontmen on 80sGrid.com! The Police, Bruce Springsteen & Billy Idol — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 71 • Massive 80s Rock Frontmen\nThe Police, Bruce Springsteen & Billy Idol\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "The Police, Springsteen & Billy Idol — do you know ALL their hits? Quiz 71 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Massive 80s Rock Frontmen on 80sGrid.com 🎸 The Police, Bruce Springsteen & Billy Idol. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=71" }
+  },
+
+  /* ─── Quiz 72: Transatlantic Chart-Toppers (MEDIUM) ─── */
+  {
+    n: 72, f: "index.html?id=72",
+    t: "Transatlantic Chart-Toppers",
+    sub: "Alphaville, Human League & The Cure",
+    a: ["Alphaville", "Human League", "The Cure"],
+    r: ["Name a Charting 80s Track", "Lead Vocalist Name", "Had a Song in a John Hughes Movie Soundtrack?"],
+    d: "medium",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Cure's 'In Between Days' appeared in 'She's Having a Baby' — part of Hughes' habit of cherry-picking British alt acts.", "Human League's Philip Oakey famously cut his hair asymmetrically — one side short, one side long — a look that defined the early 80s.", "Alphaville's Marian Gold sang 'Forever Young' in German before recording the English version that conquered global radio."],
+    ans: {
+      "0-0": ["forever young", "big in japan", "sounds like a melody"],
+      "0-1": ["dont you want me", "human", "fascination", "keep feeling fascination", "mirror man"],
+      "0-2": ["lovesong", "just like heaven", "in between days", "lullaby", "friday im in love"],
+      "1-0": ["marian gold"],
+      "1-1": ["philip oakey", "phil oakey"],
+      "1-2": ["robert smith"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Forever Young", "Big in Japan", "Sounds Like a Melody"],
+      "0-1": ["Don't You Want Me", "Human", "Fascination"],
+      "0-2": ["Lovesong", "Just Like Heaven", "In Between Days"],
+      "1-0": ["Marian Gold", "Bernhard Lloyd", "Frank Mertens"],
+      "1-1": ["Philip Oakey", "Adrian Wright", "Ian Burden"],
+      "1-2": ["Robert Smith", "Simon Gallup", "Lol Tolhurst"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 72", desc: "Can you match Alphaville, Human League & The Cure to their songs and chart history? Play Quiz 72 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=72", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Transatlantic Chart-Toppers on 80sGrid.com! Alphaville, Human League & The Cure — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 72 • Transatlantic Chart-Toppers\nAlphaville, Human League & The Cure\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Alphaville, Human League & The Cure — do you know ALL their hits? Quiz 72 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Transatlantic Chart-Toppers on 80sGrid.com 🎸 Alphaville, Human League & The Cure. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=72" }
+  },
+
+  /* ─── Quiz 73: College Radio Legends (HARD) ─── */
+  {
+    n: 73, f: "index.html?id=73",
+    t: "College Radio Legends",
+    sub: "R.E.M., Pixies & The Church",
+    a: ["R.E.M.", "Pixies", "The Church"],
+    r: ["Name an 80s Deep Cut", "Inducted into the Rock & Roll Hall of Fame?", "Originally from Australia?"],
+    d: "hard",
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
+    notes: ["The Church's Steve Kilbey wrote 'Under the Milky Way' in about twenty minutes — it became the band's only Top 40 US hit.", "The Pixies never had a US Top 40 single during their original run, yet are considered one of the most influential bands in rock history.", "R.E.M. built their reputation by relentless touring of the American college circuit for nearly a decade before breaking mainstream."],
+    ans: {
+      "0-0": ["radio free europe", "fall on me", "so central rain", "driver 8", "the one i love"],
+      "0-1": ["monkey gone to heaven", "where is my mind", "debaser", "here comes your man", "gigantic"],
+      "0-2": ["under the milky way", "the reptile", "almost with you", "unguarded moment"],
+      "1-0": ["yes"],
+      "1-1": ["no"],
+      "1-2": ["no"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Radio Free Europe", "Fall on Me", "So. Central Rain"],
+      "0-1": ["Monkey Gone to Heaven", "Where Is My Mind?", "Debaser"],
+      "0-2": ["Under the Milky Way", "The Reptile", "Metropolis"],
+      "1-0": ["Yes", "No"],
+      "1-1": ["Yes", "No"],
+      "1-2": ["Yes", "No"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 73", desc: "Can you match R.E.M., Pixies & The Church to their songs and chart history? Play Quiz 73 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=73", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played College Radio Legends on 80sGrid.com! R.E.M., Pixies & The Church — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 73 • College Radio Legends\nR.E.M., Pixies & The Church\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "R.E.M., Pixies & The Church — do you know ALL their hits? Quiz 73 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played College Radio Legends on 80sGrid.com 🎸 R.E.M., Pixies & The Church. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=73" }
+  },
+
+  /* ─── Quiz 74: New Wave & Synth-Pop Icons (EASY) ─── */
+  {
+    n: 74, f: "index.html?id=74",
+    t: "New Wave & Synth-Pop Icons",
+    sub: "Alphaville, Tears For Fears & Human League",
+    a: ["Alphaville", "Tears For Fears", "Human League"],
+    r: ["Name One of Their Songs", "Country of Origin", "Features Prominent Synthesizers?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["Alphaville's 'Forever Young' has been covered or sampled more than 200 times — one of the most borrowed songs of the decade.", "Tears For Fears named themselves after a chapter in Arthur Janov's 'The Primal Scream' — therapy as band identity.", "Human League recruited two women from a Sheffield nightclub as backup singers — they became the voices of 'Don't You Want Me'."],
+    ans: {
+      "0-0": ["forever young", "big in japan", "sounds like a melody"],
+      "0-1": ["shout", "everybody wants to rule the world", "head over heels", "mad world", "change"],
+      "0-2": ["dont you want me", "human", "fascination", "keep feeling fascination", "mirror man"],
+      "1-0": ["germany", "west germany"],
+      "1-1": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "1-2": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "2-0": ["yes"],
+      "2-1": ["yes"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Forever Young", "Big in Japan", "Sounds Like a Melody"],
+      "0-1": ["Shout", "Everybody Wants to Rule the World", "Mad World"],
+      "0-2": ["Don't You Want Me", "Human", "(Keep Feeling) Fascination"],
+      "1-0": ["Germany", "England", "Sweden"],
+      "1-1": ["England", "Scotland", "Australia"],
+      "1-2": ["England", "Germany", "USA"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 74", desc: "Can you match Alphaville, Tears For Fears & Human League to their songs and chart history? Play Quiz 74 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=74", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played New Wave & Synth-Pop Icons on 80sGrid.com! Alphaville, Tears For Fears & Human League — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 74 • New Wave & Synth-Pop Icons\nAlphaville, Tears For Fears & Human League\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Alphaville, Tears For Fears & Human League — do you know ALL their hits? Quiz 74 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played New Wave & Synth-Pop Icons on 80sGrid.com 🎸 Alphaville, Tears For Fears & Human League. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=74" }
+  },
+
+  /* ─── Quiz 75: Pioneers of Alternative Rock (MEDIUM) ─── */
+  {
+    n: 75, f: "index.html?id=75",
+    t: "Pioneers of Alternative Rock",
+    sub: "R.E.M., Pixies & The Cure",
+    a: ["R.E.M.", "Pixies", "The Cure"],
+    r: ["Name a Charting 80s Track", "Famous Bassist or Backup Vocalist", "Known for the Loud-Quiet-Loud Song Structure?"],
+    d: "medium",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Pixies' loud-quiet-loud dynamic was so influential that Kurt Cobain openly credited it as the blueprint for Nirvana's sound.", "Kim Deal recorded her debut with the Pixies the same week she formed the Breeders — moonlighting from day one.", "R.E.M. proved that college radio mainstays could slowly scale all the way up to arena-tier commercial status."],
+    ans: {
+      "0-0": ["the one i love", "radio free europe", "fall on me", "driver 8", "so central rain"],
+      "0-1": ["where is my mind", "monkey gone to heaven", "here comes your man", "debaser", "gigantic"],
+      "0-2": ["just like heaven", "lovesong", "boys dont cry", "in between days", "lullaby"],
+      "1-0": ["mike mills"],
+      "1-1": ["kim deal", "kim santiago"],
+      "1-2": ["simon gallup"],
+      "2-0": ["no"],
+      "2-1": ["yes"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["The One I Love", "Radio Free Europe", "Driver 8"],
+      "0-1": ["Where Is My Mind?", "Monkey Gone to Heaven", "Here Comes Your Man"],
+      "0-2": ["Just Like Heaven", "Lovesong", "In Between Days"],
+      "1-0": ["Mike Mills", "Peter Buck", "Bill Berry"],
+      "1-1": ["Kim Deal", "Joey Santiago", "David Lovering"],
+      "1-2": ["Simon Gallup", "Porl Thompson", "Boris Williams"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 75", desc: "Can you match R.E.M., Pixies & The Cure to their songs and chart history? Play Quiz 75 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=75", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Pioneers of Alternative Rock on 80sGrid.com! R.E.M., Pixies & The Cure — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 75 • Pioneers of Alternative Rock\nR.E.M., Pixies & The Cure\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "R.E.M., Pixies & The Cure — do you know ALL their hits? Quiz 75 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Pioneers of Alternative Rock on 80sGrid.com 🎸 R.E.M., Pixies & The Cure. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=75" }
+  },
+
+  /* ─── Quiz 76: Sophisticated New Wave (HARD) ─── */
+  {
+    n: 76, f: "index.html?id=76",
+    t: "Sophisticated New Wave",
+    sub: "Tears For Fears, OMD & Human League",
+    a: ["Tears For Fears", "Orchestral Manoeuvres in the Dark", "Human League"],
+    r: ["Name an 80s Deep Cut", "Has a Song on the 'Pretty in Pink' Soundtrack?", "Did They Form Outside of England?"],
+    d: "hard",
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
+    notes: ["OMD's 'If You Leave' was written in a single day after John Hughes recut the ending of 'Pretty in Pink' at the last minute.", "Human League formed in Sheffield in 1977 — strictly an English band, despite sounding like they arrived from outer space.", "Tears For Fears recorded their breakthrough debut 'The Hurting' entirely in Bath, England — far from the London scene."],
+    ans: {
+      "0-0": ["shout", "everybody wants to rule the world", "head over heels", "mad world", "pale shelter", "change"],
+      "0-1": ["if you leave", "enola gay", "souvenir", "messages", "electricity"],
+      "0-2": ["dont you want me", "human", "fascination", "keep feeling fascination", "mirror man"],
+      "1-0": ["no"],
+      "1-1": ["yes"],
+      "1-2": ["no"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["Shout", "Everybody Wants to Rule the World", "Mad World"],
+      "0-1": ["If You Leave", "Enola Gay", "Souvenir"],
+      "0-2": ["Don't You Want Me", "Human", "(Keep Feeling) Fascination"],
+      "1-0": ["Yes", "No"],
+      "1-1": ["Yes", "No"],
+      "1-2": ["Yes", "No"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 76", desc: "Can you match Tears For Fears, OMD & Human League to their songs and chart history? Play Quiz 76 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=76", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Sophisticated New Wave on 80sGrid.com! Tears For Fears, OMD & Human League — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 76 • Sophisticated New Wave\nTears For Fears, OMD & Human League\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Tears For Fears, OMD & Human League — do you know ALL their hits? Quiz 76 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Sophisticated New Wave on 80sGrid.com 🎸 Tears For Fears, OMD & Human League. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=76" }
+  },
+
+  /* ─── Quiz 77: NYC Icons & British Royalty (EASY) ─── */
+  {
+    n: 77, f: "index.html?id=77",
+    t: "NYC Icons & British Royalty",
+    sub: "Beastie Boys, Talking Heads & David Bowie",
+    a: ["Beastie Boys", "Talking Heads", "David Bowie"],
+    r: ["Name One of Their Songs", "City of Origin", "Inducted into the Rock & Roll Hall of Fame?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Beastie Boys started as a hardcore punk band before pivoting to hip-hop — their debut rap EP was a last-minute label experiment.", "David Bowie's 'Let's Dance' was produced by Nile Rodgers and hit #1 in both the US and UK — his biggest commercial record ever.", "Talking Heads were formed at the Rhode Island School of Design, making them arguably the most art-school band in rock history."],
+    ans: {
+      "0-0": ["fight for your right", "no sleep till brooklyn", "brass monkey", "paul revere", "she was"],
+      "0-1": ["burning down the house", "once in a lifetime", "and she was", "road to nowhere", "wild wild life"],
+      "0-2": ["lets dance", "modern love", "china girl", "blue jean", "ashes to ashes"],
+      "1-0": ["new york city", "nyc", "new york", "brooklyn"],
+      "1-1": ["new york city", "nyc", "new york", "providence", "rhode island"],
+      "1-2": ["london", "england", "uk", "united kingdom", "great britain", "brixton"],
+      "2-0": ["yes"],
+      "2-1": ["yes"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["(You Gotta) Fight for Your Right (To Party!)", "No Sleep till Brooklyn", "Brass Monkey"],
+      "0-1": ["Burning Down the House", "Once in a Lifetime", "Psycho Killer"],
+      "0-2": ["Let's Dance", "Modern Love", "Ashes to Ashes"],
+      "1-0": ["New York City", "Los Angeles", "London"],
+      "1-1": ["New York City", "Boston", "Chicago"],
+      "1-2": ["London", "Manchester", "New York City"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 77", desc: "Can you match Beastie Boys, Talking Heads & David Bowie to their songs and chart history? Play Quiz 77 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=77", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played NYC Icons & British Royalty on 80sGrid.com! Beastie Boys, Talking Heads & David Bowie — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 77 • NYC Icons & British Royalty\nBeastie Boys, Talking Heads & David Bowie\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Beastie Boys, Talking Heads & David Bowie — do you know ALL their hits? Quiz 77 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played NYC Icons & British Royalty on 80sGrid.com 🎸 Beastie Boys, Talking Heads & David Bowie. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=77" }
+  },
+
+  /* ─── Quiz 78: Post-Punk Masters of Rhythm (MEDIUM) ─── */
+  {
+    n: 78, f: "index.html?id=78",
+    t: "Post-Punk Masters of Rhythm",
+    sub: "Talking Heads, The Clash & Public Image Limited",
+    a: ["Talking Heads", "The Clash", "Public Image Limited"],
+    r: ["Name a Charting 80s Track", "Famous Frontman / Lead Lyricist", "Features a Former Sex Pistols Member?"],
+    d: "medium",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["Public Image Limited was John Lydon's explicit rejection of the Sex Pistols formula — he called it his real band.", "The Clash's Joe Strummer was once described by the NME as the only man in rock who truly meant every word he sang.", "Talking Heads integrated dense West African polyrhythms into their early-decade masterworks under Brian Eno's production guidance."],
+    ans: {
+      "0-0": ["once in a lifetime", "burning down the house", "psycho killer", "and she was", "road to nowhere"],
+      "0-1": ["rock the casbah", "should i stay or should i go", "london calling", "train in vain", "know your rights"],
+      "0-2": ["this is not a love song", "rise", "public image", "seattle", "flowers of romance"],
+      "1-0": ["david byrne"],
+      "1-1": ["joe strummer"],
+      "1-2": ["john lydon", "johnny rotten"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Once in a Lifetime", "Burning Down the House", "Psycho Killer"],
+      "0-1": ["Rock the Casbah", "Should I Stay or Should I Go", "Train in Vain"],
+      "0-2": ["This Is Not a Love Song", "Rise", "Public Image"],
+      "1-0": ["David Byrne", "Chris Frantz", "Jerry Harrison"],
+      "1-1": ["Joe Strummer", "Mick Jones", "Paul Simonon"],
+      "1-2": ["John Lydon", "Keith Levene", "Jah Wobble"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 78", desc: "Can you match Talking Heads, The Clash & Public Image Limited to their songs and chart history? Play Quiz 78 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=78", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Post-Punk Masters of Rhythm on 80sGrid.com! Talking Heads, The Clash & PIL — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 78 • Post-Punk Masters of Rhythm\nTalking Heads, The Clash & Public Image Limited\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Talking Heads, The Clash & PIL — do you know ALL their hits? Quiz 78 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Post-Punk Masters of Rhythm on 80sGrid.com 🎸 Talking Heads, The Clash & PIL. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=78" }
+  },
+
+  /* ─── Quiz 79: Left of the Dial Indie (HARD) ─── */
+  {
+    n: 79, f: "index.html?id=79",
+    t: "Left of the Dial Indie",
+    sub: "Pixies, Concrete Blonde & Dead Milkmen",
+    a: ["Pixies", "Concrete Blonde", "Dead Milkmen"],
+    r: ["Name an Indie Underground Track", "Won a Competitive Grammy Award?", "Known for Satirical or Comedic Lyrics?"],
+    d: "hard",
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
+    notes: ["Dead Milkmen's 'Punk Rock Girl' became a cult anthem by satirizing the very scene it belonged to — and it worked.", "Concrete Blonde's dark, theatrical output stood completely apart from the glam-metal themes dominating late-80s Los Angeles.", "The Pixies broke in the UK years before American radio touched them — NME and John Peel championed them first."],
+    ans: {
+      "0-0": ["monkey gone to heaven", "here comes your man", "debaser", "wave of mutilation", "gigantic"],
+      "0-1": ["god is a bullet", "joey", "bloodletting", "caroline"],
+      "0-2": ["punk rock girl", "bitchin camaro", "stuart", "instant club hit"],
+      "1-0": ["no"],
+      "1-1": ["no"],
+      "1-2": ["no"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Monkey Gone to Heaven", "Here Comes Your Man", "Gouge Away"],
+      "0-1": ["God Is a Bullet", "Joey", "Bloodletting"],
+      "0-2": ["Punk Rock Girl", "Bitchin' Camaro", "Stuart"],
+      "1-0": ["Yes", "No"],
+      "1-1": ["Yes", "No"],
+      "1-2": ["Yes", "No"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 79", desc: "Can you match Pixies, Concrete Blonde & Dead Milkmen to their songs and chart history? Play Quiz 79 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=79", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Left of the Dial Indie on 80sGrid.com! Pixies, Concrete Blonde & Dead Milkmen — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 79 • Left of the Dial Indie\nPixies, Concrete Blonde & Dead Milkmen\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Pixies, Concrete Blonde & Dead Milkmen — do you know ALL their hits? Quiz 79 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Left of the Dial Indie on 80sGrid.com 🎸 Pixies, Concrete Blonde & Dead Milkmen. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=79" }
+  },
+
+  /* ─── Quiz 80: Alt-Rock and New Wave Giants (EASY) ─── */
+  {
+    n: 80, f: "index.html?id=80",
+    t: "Alt-Rock and New Wave Giants",
+    sub: "R.E.M., The Police & Talking Heads",
+    a: ["R.E.M.", "The Police", "Talking Heads"],
+    r: ["Name One of Their Songs", "Home Country", "Did They Start as a Three-Piece Band?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Police called it quits at the peak of their powers in 1984 — Sting wanted out and that was that.", "R.E.M. grew out of Athens, Georgia and built the guitar-jangling template for American college rock.", "Talking Heads started as a trio at CBGB before expanding into an eight-piece live ensemble by the time of 'Stop Making Sense'."],
+    ans: {
+      "0-0": ["the one i love", "radio free europe", "its the end of the world", "fall on me", "driver 8"],
+      "0-1": ["every breath you take", "dont stand so close to me", "roxanne", "king of pain", "wrapped around your finger"],
+      "0-2": ["burning down the house", "once in a lifetime", "road to nowhere", "and she was", "wild wild life"],
+      "1-0": ["usa", "united states", "america", "us"],
+      "1-1": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "1-2": ["usa", "united states", "america", "us"],
+      "2-0": ["no"],
+      "2-1": ["yes"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["The One I Love", "Radio Free Europe", "Fall on Me"],
+      "0-1": ["Every Breath You Take", "Don't Stand So Close to Me", "King of Pain"],
+      "0-2": ["Burning Down the House", "Once in a Lifetime", "Road to Nowhere"],
+      "1-0": ["USA", "England", "Australia"],
+      "1-1": ["England", "USA", "Jamaica"],
+      "1-2": ["USA", "England", "Scotland"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 80", desc: "Can you match R.E.M., The Police & Talking Heads to their songs and chart history? Play Quiz 80 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=80", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Alt-Rock and New Wave Giants on 80sGrid.com! R.E.M., The Police & Talking Heads — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 80 • Alt-Rock and New Wave Giants\nR.E.M., The Police & Talking Heads\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "R.E.M., The Police & Talking Heads — do you know ALL their hits? Quiz 80 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Alt-Rock and New Wave Giants on 80sGrid.com 🎸 R.E.M., The Police & Talking Heads. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=80" }
+  },
+
+  /* ─── Quiz 81: New Wave and Alternative Duos (MEDIUM) ─── */
+  {
+    n: 81, f: "index.html?id=81",
+    t: "New Wave and Alternative Duos",
+    sub: "Pet Shop Boys, Tears For Fears & Alison Moyet",
+    a: ["Pet Shop Boys", "Tears For Fears", "Alison Moyet"],
+    r: ["Name a Charting 80s Track", "Act Type — Solo Artist or Duo?", "Associated with Vince Clarke?"],
+    d: "medium",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["Vince Clarke co-founded Depeche Mode, then Yazoo with Alison Moyet, then Erasure — three iconic acts in four years.", "Alison Moyet originally teamed with Clarke in Yazoo, delivering powerful soulful vocals over machine-sequenced club hooks.", "Pet Shop Boys used cutting-edge digital sampling to layer classical orchestration directly over synthetic electronic beats."],
+    ans: {
+      "0-0": ["west end girls", "its a sin", "opportunities", "what have i done to deserve this", "always on my mind"],
+      "0-1": ["everybody wants to rule the world", "shout", "head over heels", "mad world", "sowing the seeds of love"],
+      "0-2": ["invisible", "all cried out", "love resurrection", "weak in the presence of beauty"],
+      "1-0": ["duo"],
+      "1-1": ["duo"],
+      "1-2": ["solo artist", "solo"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["West End Girls", "It's a Sin", "Opportunities"],
+      "0-1": ["Everybody Wants to Rule the World", "Shout", "Head over Heels"],
+      "0-2": ["Invisible", "All Cried Out", "Love Resurrection"],
+      "1-0": ["Duo", "Full Band", "Solo Artist"],
+      "1-1": ["Duo", "Full Band", "Solo Artist"],
+      "1-2": ["Solo Artist", "Duo", "Full Band"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 81", desc: "Can you match Pet Shop Boys, Tears For Fears & Alison Moyet to their songs and chart history? Play Quiz 81 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=81", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played New Wave and Alternative Duos on 80sGrid.com! Pet Shop Boys, Tears For Fears & Alison Moyet — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 81 • New Wave and Alternative Duos\nPet Shop Boys, Tears For Fears & Alison Moyet\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Pet Shop Boys, Tears For Fears & Alison Moyet — do you know ALL their hits? Quiz 81 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played New Wave and Alternative Duos on 80sGrid.com 🎸 Pet Shop Boys, Tears For Fears & Alison Moyet. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=81" }
+  },
+
+  /* ─── Quiz 82: Alternative Divas & Crooners (HARD) ─── */
+  {
+    n: 82, f: "index.html?id=82",
+    t: "Alternative Divas & Crooners",
+    sub: "Deborah Harry, Morrissey & Alison Moyet",
+    a: ["Deborah Harry", "Morrissey", "Alison Moyet"],
+    r: ["Name an Indie or Alt-Rock Hit", "Won a Competitive Solo Grammy Award?", "Previously Part of a Famous Synth-Pop Duo?"],
+    d: "hard",
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
+    notes: ["Deborah Harry was one of the first artists to embrace hip-hop — Blondie's 'Rapture' was the first rap song to hit #1 on the Hot 100.", "Alison Moyet formed Yazoo with Vince Clarke after he left Depeche Mode — their first single went Top 5 in the UK immediately.", "Morrissey and Johnny Marr dissolved the Smiths in 1987 without a formal announcement — Marr simply stopped showing up."],
+    ans: {
+      "0-0": ["french kissin in the usa", "i want that man", "in love with love", "backfired"],
+      "0-1": ["suedehead", "everyday is like sunday", "interesting drug", "last of the famous international playboys"],
+      "0-2": ["invisible", "love resurrection", "all cried out", "weak in the presence of beauty"],
+      "1-0": ["no"],
+      "1-1": ["no"],
+      "1-2": ["no"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["French Kissin' in the USA", "I Want That Man", "Backfired"],
+      "0-1": ["Suedehead", "Everyday Is Like Sunday", "Interesting Drug"],
+      "0-2": ["Invisible", "Love Resurrection", "All Cried Out"],
+      "1-0": ["Yes", "No"],
+      "1-1": ["Yes", "No"],
+      "1-2": ["Yes", "No"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 82", desc: "Can you match Deborah Harry, Morrissey & Alison Moyet to their songs and chart history? Play Quiz 82 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=82", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Alternative Divas & Crooners on 80sGrid.com! Deborah Harry, Morrissey & Alison Moyet — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 82 • Alternative Divas & Crooners\nDeborah Harry, Morrissey & Alison Moyet\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Deborah Harry, Morrissey & Alison Moyet — do you know ALL their hits? Quiz 82 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Alternative Divas & Crooners on 80sGrid.com 🎸 Deborah Harry, Morrissey & Alison Moyet. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=82" }
+  },
+
+  /* ─── Quiz 83: Icons of the MTV Screen (EASY) ─── */
+  {
+    n: 83, f: "index.html?id=83",
+    t: "Icons of the MTV Screen",
+    sub: "Prince & the Revolution, David Bowie & The Police",
+    a: ["Prince & the Revolution", "David Bowie", "The Police"],
+    r: ["Name One of Their Songs", "Lead Singer's First Name", "Toured Stadiums Globally?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["Prince's Purple Rain was both a movie and soundtrack — the film opened at #1 and the album spent 24 weeks at the top.", "Bowie's Serious Moonlight Tour in 1983 was one of the highest-grossing tours of the decade, playing to 2.6 million people.", "The Police's Synchronicity Tour broke attendance records across North America — including three nights at Shea Stadium."],
+    ans: {
+      "0-0": ["purple rain", "when doves cry", "lets go crazy", "raspberry beret", "kiss"],
+      "0-1": ["lets dance", "modern love", "blue jean", "china girl", "golden years"],
+      "0-2": ["every breath you take", "dont stand so close to me", "roxanne", "king of pain", "synchronicity ii"],
+      "1-0": ["prince", "prince rogers nelson"],
+      "1-1": ["david"],
+      "1-2": ["sting", "gordon"],
+      "2-0": ["yes"],
+      "2-1": ["yes"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["Purple Rain", "When Doves Cry", "Raspberry Beret"],
+      "0-1": ["Let's Dance", "Modern Love", "China Girl"],
+      "0-2": ["Every Breath You Take", "Don't Stand So Close to Me", "Roxanne"],
+      "1-0": ["Prince", "Wendy", "Lisa"],
+      "1-1": ["David", "Mick", "Brian"],
+      "1-2": ["Sting", "Stewart", "Andy"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 83", desc: "Can you match Prince, David Bowie & The Police to their songs and chart history? Play Quiz 83 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=83", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Icons of the MTV Screen on 80sGrid.com! Prince, David Bowie & The Police — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 83 • Icons of the MTV Screen\nPrince & the Revolution, David Bowie & The Police\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Prince, David Bowie & The Police — do you know ALL their hits? Quiz 83 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Icons of the MTV Screen on 80sGrid.com 🎸 Prince, David Bowie & The Police. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=83" }
+  },
+
+  /* ─── Quiz 84: Political Edge and Power Pop (MEDIUM) ─── */
+  {
+    n: 84, f: "index.html?id=84",
+    t: "Political Edge and Power Pop",
+    sub: "The Clash, Billy Idol & Talking Heads",
+    a: ["The Clash", "Billy Idol", "Talking Heads"],
+    r: ["Name a Charting 80s Track", "Country of Origin", "Recorded a Famous Jamaican Reggae Cover?"],
+    d: "medium",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Clash covered Junior Murvin's 'Police and Thieves' in 1977 — it set the template for their lifelong love of Jamaican music.", "Billy Idol smoothly adapted his underground street image into sleek, cinematic music videos built for heavy MTV rotation.", "Talking Heads' David Byrne researched West African and Brazilian rhythms intensively before recording 'Remain in Light'."],
+    ans: {
+      "0-0": ["rock the casbah", "should i stay or should i go", "london calling", "train in vain", "know your rights"],
+      "0-1": ["rebel yell", "white wedding", "eyes without a face", "dancing with myself", "mony mony"],
+      "0-2": ["burning down the house", "once in a lifetime", "and she was", "road to nowhere", "wild wild life"],
+      "1-0": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "1-1": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "1-2": ["usa", "united states", "america", "us"],
+      "2-0": ["yes"],
+      "2-1": ["no"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["Rock the Casbah", "Should I Stay or Should I Go", "London Calling"],
+      "0-1": ["Rebel Yell", "White Wedding", "Dancing with Myself"],
+      "0-2": ["Burning Down the House", "Once in a Lifetime", "Road to Nowhere"],
+      "1-0": ["England", "USA", "Australia"],
+      "1-1": ["England", "USA", "Canada"],
+      "1-2": ["USA", "England", "Scotland"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 84", desc: "Can you match The Clash, Billy Idol & Talking Heads to their songs and chart history? Play Quiz 84 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=84", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Political Edge and Power Pop on 80sGrid.com! The Clash, Billy Idol & Talking Heads — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 84 • Political Edge and Power Pop\nThe Clash, Billy Idol & Talking Heads\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "The Clash, Billy Idol & Talking Heads — do you know ALL their hits? Quiz 84 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Political Edge and Power Pop on 80sGrid.com 🎸 The Clash, Billy Idol & Talking Heads. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=84" }
+  },
+
+  /* ─── Quiz 85: Indie Rock Legends (HARD) ─── */
+  {
+    n: 85, f: "index.html?id=85",
+    t: "Indie Rock Legends",
+    sub: "10,000 Maniacs, Pixies & The Church",
+    a: ["10,000 Maniacs", "Pixies", "The Church"],
+    r: ["Name an Indie or Alt-Rock Hit", "Has a Lead Female Vocalist?", "Inducted into the Rock & Roll Hall of Fame?"],
+    d: "hard",
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
+    notes: ["10,000 Maniacs' Natalie Merchant wrote deeply political, literary lyrics at a time when most MTV acts avoided saying anything at all.", "The Pixies' Kim Deal sang lead on 'Gigantic' — one of the band's most beloved songs, written entirely by her.", "The Church spent years as cult figures in Australia before 'Under the Milky Way' broke them internationally in 1988."],
+    ans: {
+      "0-0": ["like the weather", "whats the matter here", "trouble me", "because the night", "candy everybody wants"],
+      "0-1": ["where is my mind", "monkey gone to heaven", "here comes your man", "debaser", "gigantic"],
+      "0-2": ["under the milky way", "the reptile", "almost with you", "unguarded moment"],
+      "1-0": ["yes"],
+      "1-1": ["yes"],
+      "1-2": ["no"],
+      "2-0": ["no"],
+      "2-1": ["no"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["Like the Weather", "What's the Matter Here?", "Trouble Me"],
+      "0-1": ["Where Is My Mind?", "Monkey Gone to Heaven", "Gigantic"],
+      "0-2": ["Under the Milky Way", "The Reptile", "Metropolis"],
+      "1-0": ["Yes", "No"],
+      "1-1": ["Yes", "No"],
+      "1-2": ["Yes", "No"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 85", desc: "Can you match 10,000 Maniacs, Pixies & The Church to their songs and chart history? Play Quiz 85 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=85", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Indie Rock Legends on 80sGrid.com! 10,000 Maniacs, Pixies & The Church — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 85 • Indie Rock Legends\n10,000 Maniacs, Pixies & The Church\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "10,000 Maniacs, Pixies & The Church — do you know ALL their hits? Quiz 85 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Indie Rock Legends on 80sGrid.com 🎸 10,000 Maniacs, Pixies & The Church. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=85" }
+  },
+
+  /* ─── Quiz 86: Electronic Beats and Bars (EASY) ─── */
+  {
+    n: 86, f: "index.html?id=86",
+    t: "Electronic Beats and Bars",
+    sub: "Pet Shop Boys, Beastie Boys & Human League",
+    a: ["Pet Shop Boys", "Beastie Boys", "Human League"],
+    r: ["Name One of Their Songs", "Primary Vocal Style", "Features Multiple Lead Vocalists?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["Human League added two women as vocalists after half the band quit — those new members sang lead on 'Don't You Want Me'.", "Beastie Boys merged rock guitar samples with traded-off, multi-vocal rhyming to smash into the mainstream.", "Pet Shop Boys constructed clean, architectural club rhythms using heavily layered analog electronic hardware sequencers."],
+    ans: {
+      "0-0": ["west end girls", "its a sin", "opportunities", "what have i done to deserve this", "always on my mind"],
+      "0-1": ["fight for your right", "no sleep till brooklyn", "brass monkey", "paul revere", "she was"],
+      "0-2": ["dont you want me", "human", "fascination", "keep feeling fascination"],
+      "1-0": ["singing"],
+      "1-1": ["rapping", "rap"],
+      "1-2": ["singing"],
+      "2-0": ["no"],
+      "2-1": ["yes"],
+      "2-2": ["yes"]
+    },
+    mc: {
+      "0-0": ["West End Girls", "It's a Sin", "What Have I Done to Deserve This?"],
+      "0-1": ["(You Gotta) Fight for Your Right (To Party!)", "No Sleep till Brooklyn", "Paul Revere"],
+      "0-2": ["Don't You Want Me", "Human", "Fascination"],
+      "1-0": ["Singing", "Rapping", "Spoken Word"],
+      "1-1": ["Rapping", "Singing", "Instrumental"],
+      "1-2": ["Singing", "Rapping", "Instrumental"],
+      "2-0": ["No", "Yes"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 86", desc: "Can you match Pet Shop Boys, Beastie Boys & Human League to their songs and chart history? Play Quiz 86 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=86", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Electronic Beats and Bars on 80sGrid.com! Pet Shop Boys, Beastie Boys & Human League — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 86 • Electronic Beats and Bars\nPet Shop Boys, Beastie Boys & Human League\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Pet Shop Boys, Beastie Boys & Human League — do you know ALL their hits? Quiz 86 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Electronic Beats and Bars on 80sGrid.com 🎸 Pet Shop Boys, Beastie Boys & Human League. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=86" }
+  },
+
+  /* ─── Quiz 87: Gothic Romance and Pop Soul (MEDIUM) ─── */
+  {
+    n: 87, f: "index.html?id=87",
+    t: "Gothic Romance and Pop Soul",
+    sub: "The Cure, Tears For Fears & Concrete Blonde",
+    a: ["The Cure", "Tears For Fears", "Concrete Blonde"],
+    r: ["Name a Charting 80s Track", "Lead Singer's First Name", "Country or State of Origin"],
+    d: "medium",
+    yn: [],
+    notes: ["Concrete Blonde injected dark gothic elements into the LA alt-rock scene while the Sunset Strip was obsessed with glam metal.", "Tears For Fears' Roland Orzabal and Curt Smith were childhood friends from Bath — they named the band to process their difficult childhoods.", "The Cure's Robert Smith has worn smeared lipstick and back-combed hair since the early 80s — a look he has never once abandoned."],
+    ans: {
+      "0-0": ["just like heaven", "lovesong", "lullaby", "pictures of you", "in between days", "boys dont cry"],
+      "0-1": ["everybody wants to rule the world", "shout", "head over heels", "mad world", "sowing the seeds of love"],
+      "0-2": ["joey", "god is a bullet", "bloodletting", "caroline"],
+      "1-0": ["robert"],
+      "1-1": ["roland", "curt"],
+      "1-2": ["johnette"],
+      "2-0": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "2-1": ["england", "uk", "united kingdom", "great britain", "britain"],
+      "2-2": ["california", "los angeles", "la", "usa", "united states", "america"]
+    },
+    mc: {
+      "0-0": ["Just Like Heaven", "Lovesong", "Fascination Street"],
+      "0-1": ["Everybody Wants to Rule the World", "Shout", "Sowing the Seeds of Love"],
+      "0-2": ["Joey", "God Is a Bullet", "Bloodletting"],
+      "1-0": ["Robert", "Simon", "Lol"],
+      "1-1": ["Roland", "Curt", "Ian"],
+      "1-2": ["Johnette", "James", "Harry"],
+      "2-0": ["England", "USA", "France"],
+      "2-1": ["England", "Scotland", "Germany"],
+      "2-2": ["California", "New York", "England"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 87", desc: "Can you match The Cure, Tears For Fears & Concrete Blonde to their songs and chart history? Play Quiz 87 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=87", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Gothic Romance and Pop Soul on 80sGrid.com! The Cure, Tears For Fears & Concrete Blonde — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 87 • Gothic Romance and Pop Soul\nThe Cure, Tears For Fears & Concrete Blonde\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "The Cure, Tears For Fears & Concrete Blonde — do you know ALL their hits? Quiz 87 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Gothic Romance and Pop Soul on 80sGrid.com 🎸 The Cure, Tears For Fears & Concrete Blonde. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=87" }
+  },
+
+  /* ─── Quiz 88: Legends of the Left Dial (HARD) ─── */
+  {
+    n: 88, f: "index.html?id=88",
+    t: "Legends of the Left Dial",
+    sub: "R.E.M., Pixies & Marshall Crenshaw",
+    a: ["R.E.M.", "Pixies", "Marshall Crenshaw"],
+    r: ["Name an 80s Deep Cut", "Had a Song Featured on a Major Film Soundtrack?", "Won a Competitive Grammy Award?"],
+    d: "hard",
+    yn: ["1-0", "1-1", "1-2", "2-0", "2-1", "2-2"],
+    notes: ["Marshall Crenshaw played John Lennon in the 1987 film 'La Bamba' and appeared on its soundtrack — a neat trivia double.", "The Pixies' 'Where Is My Mind?' gained a massive new audience when it soundtracked the climax of 'Fight Club' in 1999.", "R.E.M. won three Grammys in a single night in 1992 for 'Losing My Religion' — a song built around a mandolin riff."],
+    ans: {
+      "0-0": ["so central rain", "driver 8", "talk about the passion", "radio free europe", "fall on me"],
+      "0-1": ["debaser", "wave of mutilation", "gigantic", "where is my mind", "here comes your man"],
+      "0-2": ["someday someway", "whenever youre on my mind", "cynical girl", "fantastic planet of love"],
+      "1-0": ["yes"],
+      "1-1": ["yes"],
+      "1-2": ["yes"],
+      "2-0": ["yes"],
+      "2-1": ["no"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["So. Central Rain", "Driver 8", "Talk About the Passion"],
+      "0-1": ["Debaser", "Wave of Mutilation", "Gigantic"],
+      "0-2": ["Someday, Someway", "Whenever You're on My Mind", "Cynical Girl"],
+      "1-0": ["Yes", "No"],
+      "1-1": ["Yes", "No"],
+      "1-2": ["Yes", "No"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 88", desc: "Can you match R.E.M., Pixies & Marshall Crenshaw to their songs and chart history? Play Quiz 88 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=88", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Legends of the Left Dial on 80sGrid.com! R.E.M., Pixies & Marshall Crenshaw — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 88 • Legends of the Left Dial\nR.E.M., Pixies & Marshall Crenshaw\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "R.E.M., Pixies & Marshall Crenshaw — do you know ALL their hits? Quiz 88 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Legends of the Left Dial on 80sGrid.com 🎸 R.E.M., Pixies & Marshall Crenshaw. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=88" }
+  },
+
+  /* ─── Quiz 89: High Art and Street Beats (EASY) ─── */
+  {
+    n: 89, f: "index.html?id=89",
+    t: "High Art and Street Beats",
+    sub: "Beastie Boys, Talking Heads & Pet Shop Boys",
+    a: ["Beastie Boys", "Talking Heads", "Pet Shop Boys"],
+    r: ["Name One of Their Songs", "Primary Instrumental Framework", "Released a Highly Acclaimed Concert Film?"],
+    d: "easy",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["Talking Heads partnered with director Jonathan Demme to deliver 'Stop Making Sense' — widely considered the greatest concert film ever made.", "Beastie Boys' debut album 'Licensed to Ill' was the first rap album to hit #1 on the Billboard 200.", "Pet Shop Boys leveraged sleek minimalist visuals to stand completely apart from the flashy excess of 80s pop."],
+    ans: {
+      "0-0": ["fight for your right", "no sleep till brooklyn", "brass monkey", "paul revere", "she was"],
+      "0-1": ["burning down the house", "once in a lifetime", "and she was", "road to nowhere"],
+      "0-2": ["west end girls", "its a sin", "opportunities", "what have i done to deserve this"],
+      "1-0": ["samplers", "drums", "guitars", "samples and drums"],
+      "1-1": ["guitars", "bass", "world percussion", "guitars and percussion"],
+      "1-2": ["synthesizers", "sequencers", "synthesizers and sequencers"],
+      "2-0": ["no"],
+      "2-1": ["yes"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["(You Gotta) Fight for Your Right (To Party!)", "No Sleep till Brooklyn", "Shake Your Rump"],
+      "0-1": ["Burning Down the House", "Once in a Lifetime", "Life During Wartime"],
+      "0-2": ["West End Girls", "It's a Sin", "Left to My Own Devices"],
+      "1-0": ["Samplers and Drums", "Synthesizers Only", "Acoustic Brass"],
+      "1-1": ["Guitars and Percussion", "Turntables Only", "Orchestral Strings"],
+      "1-2": ["Synthesizers and Sequencers", "Drums and Bass", "Acoustic Guitars"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 89", desc: "Can you match Beastie Boys, Talking Heads & Pet Shop Boys to their songs and chart history? Play Quiz 89 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=89", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played High Art and Street Beats on 80sGrid.com! Beastie Boys, Talking Heads & Pet Shop Boys — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 89 • High Art and Street Beats\nBeastie Boys, Talking Heads & Pet Shop Boys\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "Beastie Boys, Talking Heads & Pet Shop Boys — do you know ALL their hits? Quiz 89 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played High Art and Street Beats on 80sGrid.com 🎸 Beastie Boys, Talking Heads & Pet Shop Boys. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=89" }
+  },
+
+  /* ─── Quiz 90: Alternative British Landscapes (MEDIUM) ─── */
+  {
+    n: 90, f: "index.html?id=90",
+    t: "Alternative British Landscapes",
+    sub: "The Cure, The Police & Morrissey",
+    a: ["The Cure", "The Police", "Morrissey"],
+    r: ["Name a Charting 80s Track", "Lead Guitarist's Name", "Inducted into the Rock & Roll Hall of Fame?"],
+    d: "medium",
+    yn: ["2-0", "2-1", "2-2"],
+    notes: ["The Police secured multiple Grammy Awards thanks to their technically demanding jazz-reggae-rock hybrid sound.", "Andy Summers of The Police learned his trademark reggae-influenced guitar style partly from studying with classical jazz players.", "Morrissey's solo work kept the Smiths' melodic sensibility alive while pushing deeper into British music hall and rockabilly territory."],
+    ans: {
+      "0-0": ["just like heaven", "lovesong", "in between days", "boys dont cry", "lullaby"],
+      "0-1": ["every breath you take", "king of pain", "dont stand so close to me", "roxanne", "wrapped around your finger"],
+      "0-2": ["suedehead", "everyday is like sunday", "november spawned a monster", "our frank"],
+      "1-0": ["robert smith", "porl thompson"],
+      "1-1": ["andy summers"],
+      "1-2": ["alain whyte", "boz boorer"],
+      "2-0": ["yes"],
+      "2-1": ["yes"],
+      "2-2": ["no"]
+    },
+    mc: {
+      "0-0": ["Just Like Heaven", "Lovesong", "Pictures of You"],
+      "0-1": ["Every Breath You Take", "King of Pain", "Wrapped Around Your Finger"],
+      "0-2": ["Suedehead", "Everyday Is Like Sunday", "Our Frank"],
+      "1-0": ["Robert Smith", "Simon Gallup", "Lol Tolhurst"],
+      "1-1": ["Andy Summers", "Sting", "Stewart Copeland"],
+      "1-2": ["Alain Whyte", "Johnny Marr", "Boz Boorer"],
+      "2-0": ["Yes", "No"],
+      "2-1": ["Yes", "No"],
+      "2-2": ["Yes", "No"]
+    },
+    og: { title: "Len's 80sGrid.com Music Edition - Quiz 90", desc: "Can you match The Cure, The Police & Morrissey to their songs and chart history? Play Quiz 90 on 80sGrid.com!", url: "https://80sgrid.com/index.html?id=90", img: "https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg" },
+    social: { fb: "I just played Alternative British Landscapes on 80sGrid.com! The Cure, The Police & Morrissey — can you beat my score? 🎸 #80sGrid #80sMusic", ig: "Quiz 90 • Alternative British Landscapes\nThe Cure, The Police & Morrissey\n\n🎸 Free daily 80s trivia at 80sGrid.com\n\n#80sGrid #80sMusic #MusicTrivia", tt: "The Cure, The Police & Morrissey — do you know ALL their hits? Quiz 90 on 80sGrid.com 🎶 #80sGrid #80sMusic", tw: "Just played Alternative British Landscapes on 80sGrid.com 🎸 The Cure, The Police & Morrissey. Can you beat me? #80sGrid #80sMusic", url: "https://80sgrid.com/index.html?id=90" }
   }
 
 ];
