@@ -12,12 +12,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://80sgrid.com/">
 <meta property="og:title" content="Len's 80sGrid.com — Daily Music Trivia">
-<meta property="og:description" content="Can you match The Police, The Cure, and Depeche Mode to their songs, hits, and chart history? Play Quiz 3 on 80sGrid.com!">
+<meta property="og:description" content="The daily 80s music trivia game. Match artists to categories. Free to play, no sign-up required.">
 <meta property="og:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://80sgrid.com/">
 <meta property="twitter:title" content="Len's 80sGrid.com — Daily Music Trivia">
-<meta property="twitter:description" content="Can you match The Police, The Cure, and Depeche Mode to their songs, hits, and chart history? Play Quiz 3 on 80sGrid.com!">
+<meta property="twitter:description" content="The daily 80s music trivia game. Match artists to categories. Free to play, no sign-up required.">
 <meta property="twitter:image" content="https://raw.githubusercontent.com/80sGrid/80sgrid.github.io/main/images/header26.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap" rel="stylesheet">
 <style>
@@ -467,7 +467,6 @@ min-height: 400px; width: 100%; box-sizing: border-box;
   animation: surveyPulse 2s ease-in-out infinite;
 }
 </style>
-<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </head>
 <body>
 <div class="yn-toast" id="ynToast">It's Yes or No — no lifeline needed! &#127928;</div>
@@ -479,6 +478,14 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 <div style="display:flex;gap:12px;justify-content:center;">
 <button id="ynYesBtn" onclick="selectYesNo('Yes')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#00b894,#00cec9);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(0,184,148,0.4);">✅ YES</button>
 <button id="ynNoBtn" onclick="selectYesNo('No')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#d63031,#e17055);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(214,48,49,0.4);">❌ NO</button>
+</div>
+<button onclick="closeModal()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">Cancel</button>
+</div>
+<div class="yn-section" id="rfSection" style="display:none;">
+<div style="text-align:center;margin-bottom:8px;font-size:0.85em;color:#888;font-style:italic;">Is it Real or Fake?</div>
+<div style="display:flex;gap:12px;justify-content:center;">
+<button onclick="selectRealFake('Real')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#00b894,#00cec9);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(0,184,148,0.4);">✅ REAL</button>
+<button onclick="selectRealFake('Fake')" style="flex:1;padding:18px 10px;font-size:1.3em;font-weight:900;background:linear-gradient(135deg,#d63031,#e17055);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 12px rgba(214,48,49,0.4);">❌ FAKE</button>
 </div>
 <button onclick="closeModal()" style="width:100%;margin-top:12px;background:#6c757d;padding:10px;font-size:0.9em;border:none;border-radius:8px;color:white;cursor:pointer;">Cancel</button>
 </div>
@@ -609,15 +616,29 @@ min-height: 400px; width: 100%; box-sizing: border-box;
 </div>
 
 <!-- SCORE MESSAGE -->
-<div id="scoreMessage" style="display:none; text-align:center; margin:8px 0 10px; padding:10px 16px; border-radius:10px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border:2px solid rgba(139,0,255,0.2); font-family:'Oxanium',Arial,sans-serif; font-size:0.95em; font-weight:900; color:#8B00FF; letter-spacing:0.5px;"></div>
+<div id="scoreMessage" style="display:none; text-align:center; margin:8px 0 4px; padding:10px 16px; border-radius:10px; background:linear-gradient(135deg,#f8f0ff,#fff0f8); border:2px solid rgba(139,0,255,0.2); font-family:'Oxanium',Arial,sans-serif; font-size:0.95em; font-weight:900; color:#8B00FF; letter-spacing:0.5px;"></div>
+
+<!-- SURVEY LINK ROW: mobile + low-score desktop fallback -->
+<div id="surveyLinkRow" style="display:none; text-align:center; margin:0 0 10px;">
+  <a id="surveyLinkBtn" href="#" onclick="openInlineSurvey(); return false;" style="font-size:1.05em; color:#0066FF; font-weight:900; text-decoration:underline; font-family:'Oxanium',Arial,sans-serif; letter-spacing:0.5px;">&#187; Take a 3 second fun survey please! &#171;</a>
+  <span id="surveyInsiderBadge" style="display:none; font-size:0.8em; color:#8B00FF; font-weight:700; font-family:'Oxanium',Arial,sans-serif;">&#127928; Certified 80s Insider &#8212; all surveys complete!</span>
+</div>
 
 <!-- DIFFICULTY + LIFELINE ROW -->
 <div style="display:flex; gap:10px; margin:10px 0 16px; align-items:stretch;">
   <!-- Difficulty pill -->
   <div id="diff-badge" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 14px; border-radius:10px; border:2px solid var(--badge-color); background:color-mix(in srgb,var(--badge-color) 10%,white); box-shadow:0 0 12px var(--badge-glow); --badge-color:#fd7e14; --badge-glow:rgba(253,126,20,0.4);">
-    <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
-    <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
-    <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
+    <div id="diff-inner" style="text-align:center; width:100%;">
+      <div style="font-size:0.68em; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--badge-color); margin-bottom:2px;">Difficulty Rating</div>
+      <div id="diff-stars" style="font-size:1.1em; color:var(--badge-color); letter-spacing:1px;">&#9733;&#9733;&#9733;&#9734;&#9734;</div>
+      <div id="diff-label" style="font-size:0.9em; font-weight:900; color:var(--badge-color); letter-spacing:1px;">Medium</div>
+    </div>
+    <div id="diffSurveyWrap" style="display:none; width:100%; margin-top:8px; border-top:1px solid rgba(0,0,0,0.1); padding-top:8px;">
+      <div id="diffSurveyTitle" style="font-size:0.72em; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; color:#8B00FF; text-align:center; margin-bottom:6px;">Quick 80s Survey!</div>
+      <div id="diffSurveyQuestion" style="font-size:0.74em; font-weight:700; color:#333; text-align:center; margin-bottom:7px; line-height:1.3;"></div>
+      <div id="diffSurveyOptions" style="display:flex; flex-direction:column; gap:5px;"></div>
+      <div id="diffSurveyInsider" style="display:none; text-align:center; padding:6px 0; font-size:0.75em; font-weight:900; color:#8B00FF; font-family:Oxanium,Arial,sans-serif;">&#127928; Certified 80s Insider!</div>
+    </div>
   </div>
   <!-- Lifeline pill -->
   <div class="lifeline-bar" id="lifelineBar" style="flex:1; margin:0; flex-direction:column; gap:4px; padding:8px 14px;">
@@ -632,9 +653,16 @@ min-height: 400px; width: 100%; box-sizing: border-box;
     </div>
   </div>
   <!-- Survey pill replaces lifeline bar after Check Answers -->
-  <div id="surveyPill" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:10px 14px; border-radius:10px; border:2px solid rgba(255,20,147,0.4); background:linear-gradient(135deg,rgba(139,0,255,0.08),rgba(255,20,147,0.08));">
-    <form action="https://app.kit.com/forms/9368954/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="9368954" data-uid="f7da23749b" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;redirect&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;https://80sgrid.com/index.html?id=32&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;hide&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}" min-width="400 500 600 700 800"><div data-style="clean"><ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul><div data-element="fields" data-stacked="false" class="seva-fields formkit-fields"><div class="formkit-field"><input class="formkit-input" aria-label="First name (We love you, btw!) " name="fields[first_name]" placeholder="First name (We love you, btw!) " type="text" style="color: rgb(0, 0, 0); border-color: rgb(227, 227, 227); border-radius: 4px; font-weight: 400;"></div><div class="formkit-field"><input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email" style="color: rgb(0, 0, 0); border-color: rgb(227, 227, 227); border-radius: 4px; font-weight: 400;"></div><button data-element="submit" class="formkit-submit formkit-submit" style="color: rgb(255, 255, 255); background-color: rgb(22, 119, 190); border-radius: 4px; font-weight: 400;"><div class="formkit-spinner"><div></div><div></div><div></div></div><span class="">Subscribe</span></button></div><div class="formkit-powered-by-convertkit-container"><a href="https://kit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic" data-element="powered-by" class="formkit-powered-by-convertkit" data-variant="dark" target="_blank" rel="nofollow noopener">Built with Kit</a></div></div><style>.formkit-form[data-uid="f7da23749b"] *{box-sizing:border-box;}.formkit-form[data-uid="f7da23749b"]{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}.formkit-form[data-uid="f7da23749b"] .formkit-input,.formkit-form[data-uid="f7da23749b"] .formkit-select,.formkit-form[data-uid="f7da23749b"] .formkit-checkboxes{width:100%;}.formkit-form[data-uid="f7da23749b"] .formkit-button,.formkit-form[data-uid="f7da23749b"] .formkit-submit{border:0;border-radius:5px;color:#ffffff;cursor:pointer;display:inline-block;text-align:center;font-size:15px;font-weight:500;margin-bottom:15px;overflow:hidden;padding:0;position:relative;vertical-align:middle;}.formkit-form[data-uid="f7da23749b"] .formkit-button:hover > span,.formkit-form[data-uid="f7da23749b"] .formkit-submit:hover > span{background-color:rgba(0,0,0,0.1);}.formkit-form[data-uid="f7da23749b"] .formkit-button > span,.formkit-form[data-uid="f7da23749b"] .formkit-submit > span{display:block;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;padding:12px 24px;}.formkit-form[data-uid="f7da23749b"] .formkit-input{background:#ffffff;font-size:15px;padding:12px;border:1px solid #e3e3e3;flex:1 0 auto;line-height:1.4;margin:0;-webkit-transition:border-color ease-out 300ms;transition:border-color ease-out 300ms;}.formkit-form[data-uid="f7da23749b"] .formkit-input:focus{outline:none;border-color:#1677be;}.formkit-form[data-uid="f7da23749b"] .formkit-input::placeholder{color:inherit;opacity:0.8;}.formkit-form[data-uid="f7da23749b"] .formkit-alert{background:#f9fafb;border:1px solid #e3e3e3;border-radius:5px;flex:1 0 auto;list-style:none;margin:25px auto;padding:12px;text-align:center;width:100%;}.formkit-form[data-uid="f7da23749b"] .formkit-alert:empty{display:none;}.formkit-form[data-uid="f7da23749b"] .formkit-alert-error{background:#fde8e2;border-color:#f2643b;color:#ea4110;}.formkit-form[data-uid="f7da23749b"] .formkit-spinner{display:flex;height:0px;width:0px;margin:0 auto;position:absolute;top:0;left:0;right:0;overflow:hidden;text-align:center;-webkit-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}.formkit-form[data-uid="f7da23749b"] .formkit-spinner > div{margin:auto;width:12px;height:12px;background-color:#fff;opacity:0.3;border-radius:100%;display:inline-block;animation:formkit-bouncedelay-formkit-form-data-uid-f7da23749b- 1.4s infinite ease-in-out both;}.formkit-form[data-uid="f7da23749b"] .formkit-spinner > div:nth-child(1){animation-delay:-0.32s;}.formkit-form[data-uid="f7da23749b"] .formkit-spinner > div:nth-child(2){animation-delay:-0.16s;}.formkit-form[data-uid="f7da23749b"] .formkit-submit[data-active] .formkit-spinner{opacity:1;height:100%;width:50px;}.formkit-form[data-uid="f7da23749b"] .formkit-submit[data-active] .formkit-spinner ~ span{opacity:0;}.formkit-form[data-uid="f7da23749b"] .formkit-powered-by-convertkit-container{display:none;}.formkit-form[data-uid="f7da23749b"] .formkit-powered-by-convertkit{align-items:center;background-color:#ffffff;border-radius:9px;color:#3d3d3d;cursor:pointer;display:block;height:36px;margin:0 auto;opacity:0.95;padding:0;text-decoration:none;text-indent:100%;transition:ease-in-out all 200ms;white-space:nowrap;overflow:hidden;user-select:none;width:157px;background-repeat:no-repeat;background-position:center;}@keyframes formkit-bouncedelay-formkit-form-data-uid-f7da23749b-{0%,80%,100%{transform:scale(0);}40%{transform:scale(1);}}.formkit-form[data-uid="f7da23749b"]{max-width:700px;}.formkit-form[data-uid="f7da23749b"] [data-style="clean"]{width:100%;}.formkit-form[data-uid="f7da23749b"] .formkit-fields{display:flex;flex-wrap:wrap;margin:0 auto;}.formkit-form[data-uid="f7da23749b"] .formkit-field,.formkit-form[data-uid="f7da23749b"] .formkit-submit{margin:0 0 15px 0;flex:1 0 100%;}.formkit-form[data-uid="f7da23749b"] .formkit-powered-by-convertkit-container{margin:0;}.formkit-form[data-uid="f7da23749b"] .formkit-submit{position:static;}</style></form>
-    <p style="font-size:0.72em;color:#888;text-align:center;margin:4px 0 0;font-weight:bold;">We will only email you reminders and news. No spam, ever.</p>
+  <div id="surveyPill" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:14px; border-radius:10px; border:2px solid rgba(255,20,147,0.4); background:linear-gradient(135deg,rgba(139,0,255,0.08),rgba(255,20,147,0.08));">
+    <div id="eoFormWrap">
+      <script async src="https://eomail5.com/form/978a724e-4c01-11f1-ab1e-9f64fc493324.js" data-form="978a724e-4c01-11f1-ab1e-9f64fc493324"></script>
+
+    </div>
+    <div id="eoThankYou" style="display:none; text-align:center; padding:10px;">
+      <p style="font-size:1em;font-weight:900;color:#8B00FF;margin:0 0 6px;font-family:'Oxanium',Arial,sans-serif;">You're in!</p>
+      <p style="font-size:0.85em;color:#555;margin:0 0 12px;">Want more 80s? Try one of this week's themed quizzes.</p>
+      <button onclick="document.getElementById('classicQuizzesGrid').scrollIntoView({behavior:'smooth',block:'center'});" style="background:linear-gradient(135deg,#8B00FF,#FF1493);color:white;border:none;border-radius:22px;padding:10px 22px;font-size:0.88em;font-weight:900;cursor:pointer;letter-spacing:0.5px;box-shadow:0 3px 14px rgba(139,0,255,0.35);">Play a Themed Quiz</button>
+    </div>
   </div>
 </div>
 <!-- secret code btn removed -->
@@ -1006,6 +1034,7 @@ const FAKE_SCORES = [
 ];
 const PLAYS_START = 1986;
 let yesNoKeys = []; // Set by hub
+let rfKeys = []; // Real/Fake cells — set by hub
 let answers = {}; // Set by hub
 let mcOptions = {}; // Set by hub
 let currentCell = null;
@@ -1152,7 +1181,7 @@ function submitUnlockEmail(){
 function initializeCells(){
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
-    cell.querySelector('input').placeholder=yesNoKeys.includes(key)?'Y/N':'Answer';
+    cell.querySelector('input').placeholder=rfKeys.includes(key)?'R/F':yesNoKeys.includes(key)?'Y/N':'Answer';
     cell.addEventListener('click',()=>openModal(cell));
   });
 }
@@ -1165,7 +1194,10 @@ function openModal(cell){
   document.getElementById('modalTitle').textContent=(colH[parseInt(cell.dataset.col)]||'')+' — '+(rowH[parseInt(cell.dataset.row)]||'');
   const key=cell.dataset.row+'-'+cell.dataset.col;
   const isYN=yesNoKeys.includes(key);
-  if(isYN){
+  const isRF=rfKeys.includes(key);
+  if(isRF){
+    showRealFakeEntry();
+  } else if(isYN){
     showYesNoEntry();
   } else {
     document.getElementById('modalInput').value=cell.querySelector('input').value;
@@ -1175,9 +1207,9 @@ function openModal(cell){
   }
   document.getElementById('inputModal').classList.add('active');
   document.getElementById('inputOverlay').classList.add('active');
-  if(!isYN) setTimeout(()=>document.getElementById('modalInput').focus(),100);
+  if(!isYN&&!isRF) setTimeout(()=>document.getElementById('modalInput').focus(),100);
 }
-function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';setTimeout(updateLifelineUI,80);}
+function closeModal(){document.getElementById('inputModal').classList.remove('active');document.getElementById('inputOverlay').classList.remove('active');currentCell=null;document.getElementById('modalTitle').textContent='';document.getElementById('modalInput').value='';const mc=document.getElementById('mcOptions');if(mc)mc.innerHTML='';document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';const rf=document.getElementById('rfSection');if(rf)rf.style.display='none';setTimeout(updateLifelineUI,80);}
 function saveModalAnswer(){
   if(currentCell){
     const val=document.getElementById('modalInput').value;
@@ -1190,7 +1222,7 @@ document.getElementById('inputOverlay').addEventListener('click',closeModal);
 
 /* ===== LIFELINES ===== */
 let bonusSurveyAnswers = [];
-const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3_quiz'+(new URLSearchParams(window.location.search).get('id')||'1');
+const BONUS_SURVEY_KEY = '80sGrid_bonusSurveyAnswered3_quiz'+(new URLSearchParams(window.location.search).get('id')||getDailyQuizId());
 // Initialize from localStorage — if already claimed today, don't offer again
 let bonusLifelineUsed = !!localStorage.getItem(BONUS_SURVEY_KEY);
 const BONUS_SURVEY = {
@@ -1241,7 +1273,7 @@ function updateLifelineUI(){
 function showMultipleChoice(){
   if(lifelinesRemaining<=0)return;
   const key=currentCell.dataset.row+'-'+currentCell.dataset.col;
-  if(yesNoKeys.includes(key)){const toast=document.getElementById('ynToast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000);return;}
+  if(yesNoKeys.includes(key)||rfKeys.includes(key)){const toast=document.getElementById('ynToast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000);return;}
   if(!mcOptions[key]||mcOptions[key].length===0)return;
   // Charge lifeline — unless day pass is active
   if(!window.hasDayPass||!window.hasDayPass()){lifelinesRemaining=Math.max(0,lifelinesRemaining-1);}
@@ -1252,9 +1284,11 @@ function showMultipleChoice(){
   opts.forEach(opt=>{const btn=document.createElement('button');btn.className='mc-option';btn.textContent=opt;btn.onclick=()=>selectMCOption(opt);container.appendChild(btn);});
   document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.add('visible');
 }
-function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';setTimeout(()=>document.getElementById('modalInput').focus(),60);}
+function showTextEntry(){document.getElementById('textSection').classList.remove('hidden');document.getElementById('mcSection').classList.remove('visible');const yn=document.getElementById('ynSection');if(yn)yn.style.display='none';const rf=document.getElementById('rfSection');if(rf)rf.style.display='none';setTimeout(()=>document.getElementById('modalInput').focus(),60);}
 function showYesNoEntry(){const yn=document.getElementById('ynSection');if(yn)yn.style.display='block';document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.remove('visible');}
 function selectYesNo(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','yesno_selected',{quiz_number:QUIZ_NUM,answer:value});}catch(e){}closeModal();}}
+function showRealFakeEntry(){const rf=document.getElementById('rfSection');if(rf)rf.style.display='block';document.getElementById('textSection').classList.add('hidden');document.getElementById('mcSection').classList.remove('visible');}
+function selectRealFake(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','realfake_selected',{quiz_number:QUIZ_NUM,answer:value});}catch(e){}closeModal();}}
 function selectMCOption(value){if(currentCell){currentCell.querySelector('input').value=value;try{gtag('event','lifeline_selected',{quiz_number:QUIZ_NUM,lifelines_left:lifelinesRemaining});}catch(e){}closeModal();}}
 
 /* ===== BONUS LIFELINE MODAL ===== */
@@ -1679,16 +1713,24 @@ function normalizeString(str){
     .replace(/\bwanna\b/g,'want to')
     .replace(/\bgotta\b/g,'got to')
     .replace(/\bcuz\b/g,'because')
+    .replace(/\bneal\b/g,'neil')
     .replace(/\s+/g,' ').trim();
+}
+function editDistance(a,b){
+  const m=a.length,n=b.length;if(Math.abs(m-n)>2)return 99;
+  const r=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i===0?j:j===0?i:0));
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)r[i][j]=a[i-1]===b[j-1]?r[i-1][j-1]:1+Math.min(r[i-1][j],r[i][j-1],r[i-1][j-1]);
+  return r[m][n];
 }
 function wordOverlap(user, answer){
   const stopWords=new Set(['the','and','a','an','of','in','to','is','it','my','me','you','your','we','our','i']);
   const uWords=new Set(user.split(' ').filter(w=>w.length>1&&!stopWords.has(w)));
+  const uArr=[...uWords];
   const aWords=answer.split(' ').filter(w=>w.length>1&&!stopWords.has(w));
   if(aWords.length===0)return false;
-  // For short answers (1-2 key words), just check if user contains them all
-  if(aWords.length<=2)return aWords.every(w=>uWords.has(w)||user.includes(w));
-  const matches=aWords.filter(w=>uWords.has(w)).length;
+  const wordMatch=aw=>uWords.has(aw)||user.includes(aw)||(aw.length>=4&&uArr.some(uw=>editDistance(uw,aw)<=1));
+  if(aWords.length<=2)return aWords.every(wordMatch);
+  const matches=aWords.filter(wordMatch).length;
   return matches/aWords.length>=0.65;
 }
 function checkAnswers(){
@@ -1699,7 +1741,7 @@ function checkAnswers(){
   cells.forEach(cell=>{
     const input=cell.querySelector('input');const userAnswer=normalizeString(input.value);const key=cell.dataset.row+'-'+cell.dataset.col;
     const old=cell.querySelector('.answer-reveal');if(old)old.remove();
-    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellResults.push(true);
+    if(userAnswer){total++;const valid=answers[key].map(a=>normalizeString(a));const isCorrect=valid.some(a=>userAnswer===a||userAnswer.includes(a)||a.includes(userAnswer)||wordOverlap(userAnswer,a)||userAnswer.replace(/ /g,'')===a.replace(/ /g,''));if(isCorrect){cell.classList.add('correct');cell.classList.remove('incorrect');correct++;cellResults.push(true);
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
       reveal.innerHTML='<div style="font-size:1.5em;color:#28a745;font-weight:900;">\u2713</div><div style="font-size:0.6em;color:#155724;font-weight:700;margin-top:2px;word-break:break-word;">'+input.value+'</div>';
@@ -1708,7 +1750,7 @@ function checkAnswers(){
       const bestAnswer=answers[key][0];
       input.style.display='none';
       const reveal=document.createElement('div');reveal.className='answer-reveal';reveal.style.cssText='text-align:center;line-height:1.3;padding:2px 0;';
-      const _isYNCell=yesNoKeys.includes(key);
+      const _isYNCell=yesNoKeys.includes(key)||rfKeys.includes(key);
       if(_isYNCell){
         reveal.innerHTML='<div style="font-size:1.5em;color:#dc3545;font-weight:900;">\u2715</div><div style="font-size:0.6em;color:#721c24;font-weight:700;margin-top:1px;word-break:break-word;">You said: '+input.value+'</div><div style="font-size:0.6em;color:#155724;font-weight:900;margin-top:3px;word-break:break-word;">Answer: '+(bestAnswer.charAt(0).toUpperCase()+bestAnswer.slice(1))+'</div>';
       }else{
@@ -1777,9 +1819,56 @@ function checkAnswers(){
   // Funny score message
   const _msgs={1:'1/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 — Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 — Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 — That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 — Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 — Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
   const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[correct]||'';_msgEl.style.display='block';}
-  // Swap lifeline bar for survey pill
+  // Survey link row + diff-box survey
+  (function(){
+    const row=document.getElementById('surveyLinkRow');
+    const link=document.getElementById('surveyLinkBtn');
+    const badge=document.getElementById('surveyInsiderBadge');
+    const isMobile=window.innerWidth<=600;
+    if(row)row.style.display='block';
+    const nextId=getNextSurvey();
+    if(isMobile){
+      // Mobile: always show link row, never diff box
+      if(nextId){if(link)link.style.display='';if(badge)badge.style.display='none';}
+      else{if(link)link.style.display='none';if(badge)badge.style.display='';}
+    } else {
+      // Desktop: show diff box survey; hide link row (survey is in the box)
+      if(row)row.style.display='none';
+      renderDiffBoxSurvey(correct);
+    }
+  })();
+  // Swap lifeline bar for survey pill (hide if already subscribed)
   const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
-  if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
+  if(_lb)_lb.style.display='none';
+  if(_sp){
+    if(localStorage.getItem('eoSubscribed')==='true'){
+      _sp.style.display='none';
+    } else {
+      _sp.style.display='flex';
+      // Detect EmailOctopus form submission via message event
+      window.addEventListener('message',function _eoListener(e){
+        if(e.data&&(e.data.type==='eo-form-submitted'||e.data==='eo-form-submitted')){
+          localStorage.setItem('eoSubscribed','true');
+          document.getElementById('eoFormWrap').style.display='none';
+          document.getElementById('eoThankYou').style.display='block';
+          window.removeEventListener('message',_eoListener);
+        }
+      });
+      // Fallback: watch for EO success message appearing in DOM
+      setTimeout(function(){
+        const observer=new MutationObserver(function(){
+          const successEl=_sp.querySelector('.email-octopus-success,.eo-success,[class*="success"]');
+          if(successEl){
+            localStorage.setItem('eoSubscribed','true');
+            document.getElementById('eoFormWrap').style.display='none';
+            document.getElementById('eoThankYou').style.display='block';
+            observer.disconnect();
+          }
+        });
+        observer.observe(_sp,{childList:true,subtree:true,attributes:true});
+      },2000);
+    }
+  }
 }
 /* FIX: use innerHTML not textContent so emoji HTML entity renders */
 function updatePlaysCounter(){
@@ -1901,7 +1990,7 @@ function getSurveysCompleted(){try{return JSON.parse(localStorage.getItem(SURVEY
 function markSurveyCompleted(id){const done=getSurveysCompleted();if(!done.includes(id)){done.push(id);localStorage.setItem(SURVEY_DONE_KEY,JSON.stringify(done));}}
 function getSurveysShownToday(){const today=getLocalDateStr();const val=localStorage.getItem(SURVEY_SHOWN_TODAY_KEY)||'';if(!val.startsWith(today))return 0;return parseInt(val.split(':')[1]||'0');}
 function markSurveyShownToday(){const today=getLocalDateStr();const n=getSurveysShownToday()+1;localStorage.setItem(SURVEY_SHOWN_TODAY_KEY,today+':'+n);}
-function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[0];}
+function getNextSurvey(){const done=getSurveysCompleted();const rem=SURVEY_ORDER.filter(id=>!done.includes(id));if(rem.length===0)return null;return rem[Math.floor(Math.random()*rem.length)];}
 function renderSurvey(surveyId){
   const survey=SURVEYS[surveyId];if(!survey)return;
   const el=document.getElementById('surveyQuestion');const titleEl=document.getElementById('surveyTitle');const optionsEl=document.getElementById('surveyOptions');
@@ -1957,18 +2046,95 @@ function closeSurveyModal(){
   if(m){m.classList.remove('show');m.style.display='none';}
 }
 function showSurveyModal(){
+  // Modal kept for bonus lifeline flow only
   const nextId=getNextSurvey();
-  if(!nextId)return; // no surveys left
-  if(getSurveysShownToday()>=2)return; // max 2 per day
+  if(!nextId)return;
   const m=document.getElementById('surveyModal');
   if(m){
-    m.style.display=''; // clear any inline style
+    m.style.display='';
     m.classList.add('show');
-    // Prevent click-bleed from initials entry — disable buttons briefly
     const btns=m.querySelectorAll('button');
     btns.forEach(b=>{b.style.pointerEvents='none';});
-    setTimeout(()=>{btns.forEach(b=>{b.style.pointerEvents='';});}, 600);
+    setTimeout(()=>{btns.forEach(b=>{b.style.pointerEvents='';});},600);
   }
+}
+function openInlineSurvey(){
+  const nextId=getNextSurvey();
+  if(!nextId)return;
+  markSurveyShownToday();
+  renderSurvey(nextId);
+  setTimeout(()=>{
+    const sq=document.getElementById('surveyQuestion');
+    if(sq)sq.scrollIntoView({behavior:'smooth',block:'center'});
+  },150);
+}
+function renderDiffBoxSurvey(score){
+  if(window.innerWidth<=600)return;
+  const wrap=document.getElementById('diffSurveyWrap');
+  if(!wrap)return;
+  const nextId=getNextSurvey();
+  const diffInner=document.getElementById('diff-inner');
+  // Score 6 and under: hide difficulty, survey takes full box
+  if(score<=6&&diffInner)diffInner.style.display='none';
+  wrap.style.display='block';
+  const insider=document.getElementById('diffSurveyInsider');
+  if(!nextId){
+    document.getElementById('diffSurveyTitle').style.display='none';
+    document.getElementById('diffSurveyQuestion').style.display='none';
+    document.getElementById('diffSurveyOptions').style.display='none';
+    if(insider)insider.style.display='block';
+    return;
+  }
+  const survey=SURVEYS[nextId];
+  if(!survey)return;
+  const qEl=document.getElementById('diffSurveyQuestion');
+  if(qEl)qEl.innerHTML=survey.title;
+  const optWrap=document.getElementById('diffSurveyOptions');
+  if(!optWrap)return;
+  optWrap.innerHTML='';
+  survey.options.forEach(function(opt){
+    const btn=document.createElement('button');
+    btn.textContent=opt.label;
+    btn.style.cssText='width:100%;padding:5px 8px;border-radius:7px;border:1.5px solid '+opt.border+';background:'+opt.bg+';color:#fff;font-size:0.68em;font-weight:900;cursor:pointer;text-align:left;letter-spacing:0.5px;margin:0;';
+    btn.dataset.pct=opt.pct;
+    btn.dataset.color=opt.color;
+    btn.onclick=function(){
+      if(optWrap.dataset.voted)return;
+      optWrap.dataset.voted='1';
+      localStorage.setItem('80sGrid_surveyAnswer_'+nextId,opt.value);
+      markSurveyCompleted(nextId);
+      try{sbClient.from('survey_responses').insert({survey_id:nextId,answer:opt.value,quiz_num:String(QUIZ_NUM)});}catch(e){}
+      optWrap.querySelectorAll('button').forEach(function(b){
+        b.style.cursor='default';
+        const bPct=parseInt(b.dataset.pct)||0;
+        const bColor=b.dataset.color||'#fff';
+        const isChosen=(b===btn);
+        const bar=document.createElement('div');
+        bar.style.cssText='margin-top:4px;height:5px;border-radius:3px;background:rgba(0,0,0,0.2);overflow:hidden;';
+        const fill=document.createElement('div');
+        fill.style.cssText='height:100%;width:0%;border-radius:3px;transition:width 0.7s ease;background:'+(isChosen?'#00ff00':bColor)+';';
+        bar.appendChild(fill);
+        b.appendChild(bar);
+        const pctLabel=document.createElement('span');
+        pctLabel.style.cssText='float:right;font-size:0.85em;opacity:0.9;';
+        pctLabel.textContent=bPct+'%';
+        b.appendChild(pctLabel);
+        if(isChosen){b.style.boxShadow='0 0 8px rgba(0,255,0,0.6)';b.style.borderColor='#00ff00';}
+        else{b.style.opacity='0.6';}
+        setTimeout(function(){fill.style.width=bPct+'%';},50);
+      });
+      setTimeout(function(){
+        const tEl=document.getElementById('diffSurveyTitle');
+        if(tEl)tEl.textContent='Thanks! 🎶';
+        const nxt=getNextSurvey();
+        const link=document.getElementById('surveyLinkBtn');
+        const badge=document.getElementById('surveyInsiderBadge');
+        if(nxt){if(link)link.style.display='';if(badge)badge.style.display='none';}
+        else{if(link)link.style.display='none';if(badge)badge.style.display='';}
+      },900);
+    };
+    optWrap.appendChild(btn);
+  });
 }
 function restoreSurveyOnLoad(){if(getSurveysShownToday()===0)return;for(const id of SURVEY_ORDER){const saved=localStorage.getItem('80sGrid_surveyAnswer_'+id);if(saved){renderSurvey(id);break;}}}
 
@@ -2076,8 +2242,9 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePlaysCounter();
   initNav();
   restoreSurveyOnLoad();
+  if(typeof renderClassicQuizzes==='function') renderClassicQuizzes();
   initDedicationBox();
-  renderClassicQuizzes();
+
   document.querySelectorAll('.feedback-star').forEach((s,i)=>{
     s.addEventListener('mouseenter',()=>updateStars(i+1));
     s.addEventListener('mouseleave',()=>updateStars(feedbackRating));
@@ -2272,11 +2439,11 @@ function quizInit(){
     if(c)c.innerHTML='<div style="text-align:center;padding:60px;font-family:Arial;"><h2>Quiz '+n+' not found</h2><p><a href="/">Back to 80sGrid</a></p></div>';
     return;
   }
-  answers=q.ans; mcOptions=q.mc||{}; yesNoKeys=q.yn||[];
+  answers=q.ans; mcOptions=q.mc||{}; yesNoKeys=q.yn||[]; rfKeys=q.rf||[];
   document.querySelectorAll('.cell').forEach(cell=>{
     const key=cell.dataset.row+'-'+cell.dataset.col;
     const inp=cell.querySelector('input');
-    if(inp) inp.placeholder=yesNoKeys.includes(key)?'Y/N':'Answer';
+    if(inp) inp.placeholder=rfKeys.includes(key)?'R/F':yesNoKeys.includes(key)?'Y/N':'Answer';
   });
   const dl=document.getElementById('today-label');
   if(dl) dl.textContent='Today\'s Grid \u00b7 '+new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
@@ -2285,7 +2452,7 @@ function quizInit(){
   const dc={easy:'--badge-color:#28a745;--badge-glow:rgba(40,167,69,0.4)',medium:'--badge-color:#fd7e14;--badge-glow:rgba(253,126,20,0.4)',hard:'--badge-color:#dc3545;--badge-glow:rgba(220,53,69,0.4)'};
   const dstar={easy:'&#9733;&#9733;&#9734;&#9734;&#9734;',medium:'&#9733;&#9733;&#9733;&#9734;&#9734;',hard:'&#9733;&#9733;&#9733;&#9733;&#9734;'};
   const dname={easy:'Easy',medium:'Medium',hard:'Hard'};
-  const db=document.getElementById('diff-badge'); if(db) db.style.cssText=dc[q.d]||dc.medium;
+  const db=document.getElementById('diff-badge'); if(db){const _dc=dc[q.d]||dc.medium;_dc.split(';').forEach(r=>{const i=r.indexOf(':');if(i>0)db.style.setProperty(r.slice(0,i).trim(),r.slice(i+1).trim());});}
   const dsr=document.getElementById('diff-stars'); if(dsr) dsr.innerHTML=dstar[q.d]||dstar.medium;
   const dlbl=document.getElementById('diff-label'); if(dlbl) dlbl.textContent=dname[q.d];
   const dde=document.getElementById('diff-desc'); if(dde) dde.textContent=q.a.join(' \u00b7 ');
@@ -2375,10 +2542,26 @@ function quizInit(){
         if(checkBtn){checkBtn.disabled=true;checkBtn.style.opacity='0.5';checkBtn.title='All answers submitted';}
         // Swap lifeline bar for survey pill (already completed)
         const _lb=document.getElementById('lifelineBar');const _sp=document.getElementById('surveyPill');
-        if(_lb)_lb.style.display='none';if(_sp)_sp.style.display='flex';
+        if(_lb)_lb.style.display='none';
+        if(_sp)_sp.style.display=(localStorage.getItem('eoSubscribed')==='true')?'none':'flex';
         // Restore score message
         const _msgs={1:'1/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',2:'2/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',3:'3/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',4:'4/9 \u2014 Dude, go see Mr. Hand. \uD83D\uDD90\uFE0F',5:"5/9 \u2014 Hey, not bad \u2014 you'll rock out tomorrow! \uD83C\uDFB8",6:"6/9 \u2014 That's a C+ \u2014 we still love you \u2764\uFE0F",7:'7/9 \u2014 Good, you Smooth Operator you! \uD83D\uDE0E',8:'8/9 \u2014 Yes, I will be your Father Figure \uD83C\uDFA4',9:'9/9 \u2014 Wow! George Michael would be proud \uD83D\uDE4F'};
         const _msgEl=document.getElementById('scoreMessage');if(_msgEl){_msgEl.textContent=_msgs[_correct]||'';_msgEl.style.display='block';}
+        (function(){
+          const row=document.getElementById('surveyLinkRow');
+          const link=document.getElementById('surveyLinkBtn');
+          const badge=document.getElementById('surveyInsiderBadge');
+          const isMobile=window.innerWidth<=600;
+          if(row)row.style.display='block';
+          const nextId=getNextSurvey();
+          if(isMobile){
+            if(nextId){if(link)link.style.display='';if(badge)badge.style.display='none';}
+            else{if(link)link.style.display='none';if(badge)badge.style.display='';}
+          } else {
+            if(row)row.style.display='none';
+            renderDiffBoxSurvey(_correct);
+          }
+        })();
         // Re-mark session so play limit isn't double-counted
         sessionStorage.setItem(SESSION_KEY,'true');
       }
