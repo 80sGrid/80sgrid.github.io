@@ -2307,14 +2307,29 @@ function getLocalDateStr(d){
   d=d||new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
+/* ===== DAILY ROTATION ORDER =====
+   Original run: Mar 30 2026 - Jul 22 2026 used (daysSince % 70)+1.
+   From Jul 23 2026 the never-aired quizzes 71-90 run first, then the
+   library wraps to 1-70 and loops on a 90-day cycle.
+   To reorder the rotation later, just change ROTATION_ORDER below. */
+var ROTATION_START='2026-07-23';
+var ROTATION_ORDER=(function(){
+  var o=[],i;
+  for(i=71;i<=90;i++) o.push(i);   // fresh block, first airing
+  for(i=1;i<=70;i++)  o.push(i);   // back to the front
+  return o;
+})();
+
 function getDailyQuizId(){
-  // Soft launch starts March 30 2026 = Quiz 1, rolls forward daily at local midnight
   // Use local date strings to avoid UTC/timezone offset issues (EST vs EDT, etc.)
-  var launchStr='2026-03-30';
   var now=new Date();
   var todayStr=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
-  var launch=new Date(launchStr+'T00:00:00');
   var today=new Date(todayStr+'T00:00:00');
+  var start=new Date(ROTATION_START+'T00:00:00');
+  var days=Math.round((today-start)/86400000);
+  if(days>=0) return ROTATION_ORDER[days % ROTATION_ORDER.length];
+  // Before the switchover date, fall back to the original 70-quiz cycle
+  var launch=new Date('2026-03-30T00:00:00');
   var daysSince=Math.round((today-launch)/86400000);
   if(daysSince<0) daysSince=0;
   return (daysSince % 70)+1;
